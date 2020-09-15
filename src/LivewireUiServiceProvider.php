@@ -24,14 +24,6 @@ class LivewireUiServiceProvider extends ServiceProvider
         $this->registerComponents();
 
         $this->publishes([
-
-        ], 'config');
-
-        $this->publishes([
-
-        ]);
-
-        $this->publishes([
             // Config
             __DIR__ . '/config/livewire-ui.php' => config_path('livewire-ui.php'),
 
