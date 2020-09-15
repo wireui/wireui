@@ -19,7 +19,7 @@
 
         <div onclick="$openDatePicker('{{ $this->id }}')"
              class="absolute cursor-pointer top-0 right-0 px-3"
-             style="padding-top: 10px">
+             style="padding-top: 6px">
             <x-lw-ui.icon.spinner wire:loading color="#666" class="w-5 h-5 mr-1" />
             <x-lw-ui.icon.calendar wire:loading.remove class="h-6 w-6 text-gray-400" />
         </div>
