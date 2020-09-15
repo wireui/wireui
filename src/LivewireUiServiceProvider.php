@@ -13,28 +13,39 @@ class LivewireUiServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->registerViews();
+        $this->loadViewsFrom(__DIR__ . '/resources/views', self::PACKAGE_KEY);
 
-        $this->registerComponents();
-
-        $this->publishes([
-            __DIR__ . '/config/livewire-ui.php' => config_path('livewire-ui.php'),
-        ], 'config');
-
-        $this->publishes([
-            __DIR__ . '/resources/lang' => resource_path('lang/vendor/' . self::PACKAGE_KEY),
-        ]);
-    }
-
-    public function register()
-    {
-        $this->registerScripts();
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', self::PACKAGE_KEY);
 
         $this->mergeConfigFrom(
             __DIR__ . '/config/livewire-ui.php', self::PACKAGE_KEY
         );
 
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', self::PACKAGE_KEY);
+        $this->registerComponents();
+
+        $this->publishes([
+
+        ], 'config');
+
+        $this->publishes([
+
+        ]);
+
+        $this->publishes([
+            // Config
+            __DIR__ . '/config/livewire-ui.php' => config_path('livewire-ui.php'),
+
+            // Views
+            __DIR__ . '/resources/views' => resource_path('views/vendor/' . self::PACKAGE_KEY),
+
+            // Translations
+            __DIR__ . '/resources/lang' => resource_path('lang/vendor/' . self::PACKAGE_KEY),
+        ], self::PACKAGE_KEY);
+    }
+
+    public function register()
+    {
+        $this->registerScripts();
     }
 
     private function registerScripts()
@@ -149,17 +160,6 @@ class LivewireUiServiceProvider extends ServiceProvider
                 </script>
             HTML;
         });
-    }
-
-    private function registerViews()
-    {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', self::PACKAGE_KEY);
-
-        if ($this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__ . '/resources/views' => $this->app->resourcePath('views/vendor/' . self::PACKAGE_KEY),
-            ], self::PACKAGE_KEY);
-        }
     }
 
     private function registerComponents()
