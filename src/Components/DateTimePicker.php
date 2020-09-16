@@ -288,7 +288,6 @@ class DateTimePicker extends Component
         $date       = Carbon::createFromFormat($this->format, $this->date)->format($this->dateFormat);
         $this->date = "$date $this->time";
         $this->emitInput();
-        $this->setDatePickerVisibility(false);
         $this->mode = 'date';
     }
 
