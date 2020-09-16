@@ -9,16 +9,17 @@ use PH7JACK\LivewireUi\Components\DateTimePicker;
 
 class LivewireUiServiceProvider extends ServiceProvider
 {
-    protected const PACKAGE_KEY = 'livewire-ui';
+    protected const PACKAGE_NAME       = 'livewire-ui';
+    protected const PACKAGE_SHORT_NAME = 'lw-ui';
 
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/resources/views', self::PACKAGE_KEY);
+        $this->loadViewsFrom(__DIR__ . '/resources/views', self::PACKAGE_NAME);
 
-        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', self::PACKAGE_KEY);
+        $this->loadTranslationsFrom(__DIR__ . '/resources/lang', self::PACKAGE_NAME);
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/livewire-ui.php', self::PACKAGE_KEY
+            __DIR__ . '/config/livewire-ui.php', self::PACKAGE_NAME
         );
 
         $this->registerComponents();
@@ -28,11 +29,11 @@ class LivewireUiServiceProvider extends ServiceProvider
             __DIR__ . '/config/livewire-ui.php' => config_path('livewire-ui.php'),
 
             // Views
-            __DIR__ . '/resources/views' => resource_path('views/vendor/' . self::PACKAGE_KEY),
+            __DIR__ . '/resources/views' => resource_path('views/vendor/' . self::PACKAGE_NAME),
 
             // Translations
-            __DIR__ . '/resources/lang' => resource_path('lang/vendor/' . self::PACKAGE_KEY),
-        ], self::PACKAGE_KEY);
+            __DIR__ . '/resources/lang' => resource_path('lang/vendor/' . self::PACKAGE_NAME),
+        ], self::PACKAGE_NAME);
     }
 
     public function register()
@@ -47,6 +48,30 @@ class LivewireUiServiceProvider extends ServiceProvider
                 <style>
                     .lw-ui-shadow {
                         box-shadow: 3px 3px 16px #446b8d33;
+                    }
+
+                    @keyframes lwUiScaleUpAnimation {
+                        0% {
+                            transform: scale(0.5, 0.5);
+                        }
+
+                        100% {
+                            transform: scale(1, 1);
+                        }
+                    }
+                    .lw-ui-fade-hide {
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: visibility 0s linear 300ms, opacity 300ms;
+                    }
+
+                    .lw-ui-fade-show {
+                        opacity: 1;
+                        visibility: visible;
+                        transition: visibility 0s linear 0s, opacity 300ms;
+                    }
+                    .lw-ui-fade-show .date-picker-modal {
+                        animation: lwUiScaleUpAnimation 0.2s linear;
                     }
                 </style>
 
@@ -63,13 +88,13 @@ class LivewireUiServiceProvider extends ServiceProvider
                         return document.getElementById(id)
                     }
 
-                    function $toggleHiddenClass(element, visibility = true) {
-                        const hasHiddenClass = element.classList.value.includes('hidden')
+                    function $toggleClass(element, className, visibility = true) {
+                        const hasClass = element.classList.value.includes(className)
 
-                        if (visibility && hasHiddenClass) {
-                            element.classList.remove('hidden')
-                        } else if (!visibility && !hasHiddenClass) {
-                            element.classList.add('hidden')
+                        if (visibility && hasClass) {
+                            element.classList.remove(className)
+                        } else if (!visibility && !hasClass) {
+                            element.classList.add(className)
                         }
                     }
 
@@ -111,13 +136,13 @@ class LivewireUiServiceProvider extends ServiceProvider
                             return new Promise((resolve, reject) => {
                                 Swal.fire({
                                     icon: options.icon ?? 'warning',
-                                    title: options.title ?? 'Are you sure?',
-                                    html: options.text ?? "You won't be able to revert this!",
+                                    title: options.title ?? __('livewire-ui::messages.confirm'),
+                                    html: options.text ?? __('livewire-ui::messages.danger_alert'),
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',
-                                    confirmButtonText: options.confirmText ?? 'Yes',
+                                    confirmButtonText: options.confirmText ?? __('livewire-ui::messages.yes'),
                                     cancelButtonColor: '#d33',
-                                    cancelButtonText: options.cancelText ?? 'No',
+                                    cancelButtonText: options.cancelText ?? __('livewire-ui::messages.no'),
                                     reverseButtons: true,
                                 }).then(result => {
                                     if (!result.value || result.dismiss) {
@@ -168,13 +193,13 @@ class LivewireUiServiceProvider extends ServiceProvider
         ];
 
         foreach ($icons as $icon) {
-            Blade::component(self::PACKAGE_KEY . "::components.svg.{$icon}", "lw-ui.icon.{$icon}");
+            Blade::component(self::PACKAGE_NAME . "::components.svg.{$icon}", self::PACKAGE_SHORT_NAME . ".icon.{$icon}");
         }
 
         foreach ($components as $component) {
-            Blade::component(self::PACKAGE_KEY . "::components.{$component}", "lw-ui.{$component}");
+            Blade::component(self::PACKAGE_NAME . "::components.{$component}", self::PACKAGE_SHORT_NAME . ".{$component}");
         }
 
-        Livewire::component('livewire-ui:date-time-picker', DateTimePicker::class);
+        Livewire::component(self::PACKAGE_NAME . ':date-time-picker', DateTimePicker::class);
     }
 }

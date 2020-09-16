@@ -27,8 +27,8 @@
         <x-lw-ui.error name="date" />
 
         <div id="{{ $this->id }}-date-picker-container"
-            style="z-index: 999; backdrop-filter: blur(5px)"
-            class="fixed hidden inset-0 overflow-y-auto">
+            style="z-index: 999; backdrop-filter: blur(5px);"
+            class="fixed inset-0 overflow-y-auto lw-ui-fade-hide">
             <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
                 <div onclick="$closeDatePicker('{{ $this->id }}')" class="fixed inset-0 transition-opacity">
                     <div class="absolute inset-0 bg-black" style="opacity: 0.45"></div>
@@ -36,7 +36,7 @@
 
                 <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
 
-                <div class="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden
+                <div class="date-picker-modal inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden
                         lw-ui-shadow transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
                      role="dialog"
                      aria-modal="true"
@@ -139,17 +139,16 @@
 @once
     <script type="text/javascript">
         function $openDatePicker(id) {
-            $setDatePickerVisibility(id, true)
+            const element = $getDatePickerContainer(id)
+            element.classList.remove('lw-ui-fade-hide')
+            element.classList.add('lw-ui-fade-show')
         }
 
         function $closeDatePicker(id) {
-            $livewireCall(id, 'setDefaultMode')
-            $setDatePickerVisibility(id, false)
-        }
-
-        function $setDatePickerVisibility(id, visibility) {
             const element = $getDatePickerContainer(id)
-            $toggleHiddenClass(element, visibility)
+            element.classList.remove('lw-ui-fade-show')
+            element.classList.add('lw-ui-fade-hide')
+            $livewireCall(id, 'setDefaultMode')
         }
 
         function $getDatePickerContainer(id) {
@@ -180,7 +179,9 @@
 
         document.addEventListener('livewire:load', () => {
             this.livewire.on('livewire-ui:date-time-picker:setVisibility', data => {
-                $setDatePickerVisibility(data.id, data.status)
+                if (data.status) {
+                    $openDatePicker(data.id)
+                }
             })
 
             this.livewire.on('livewire-ui:date-time-picker:setTimeInput', data => {

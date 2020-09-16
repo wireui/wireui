@@ -9,7 +9,7 @@ trait Actions
         $this->confirmAction([
             'method' => $method ?? 'delete',
             'params' => $data,
-            'title'  => 'Do you want to delete?',
+            'title'  => __('livewire-ui::messages.confirm_delete'),
         ]);
     }
 
@@ -24,9 +24,10 @@ trait Actions
         $this->emit('app:confirm', [
             'id'          => $this->id,
             'icon'        => $params['icon'] ?? 'warning',
-            'title'       => $params['title'] ?? 'Are you sure?',
-            'text'        => $params['text'] ?? "You won't be able to revert this!",
-            'confirmText' => $params['confirmText'] ?? 'Yes',
+            'title'       => $params['title'] ?? __('livewire-ui::messages.confirm'),
+            'text'        => $params['text'] ?? __('livewire-ui::messages.danger_alert'),
+            'confirmText' => $params['confirmText'] ?? __('livewire-ui::messages.yes'),
+            'cancelText'  => $params['cancelText'] ?? __('livewire-ui::messages.no'),
             'method'      => $method,
             'params'      => $params['params'] ?? null,
             'callback'    => $params['callback'] ?? null,
