@@ -2,6 +2,8 @@
 
 namespace PH7JACK\LivewireUi\Traits;
 
+use Illuminate\Support\Arr;
+
 trait DynamicComponent
 {
     abstract protected function getExtendedModels(): array;
@@ -32,7 +34,9 @@ trait DynamicComponent
         $index = $data['modelIndex'] ?? null;
         $sync  = $data['sync']       ?? false;
 
-        if ($sync) {
+        $modelHasDot = strpos($data['model'], '.');
+
+        if ($sync || $modelHasDot !== false) {
             $this->syncInput($model, $value);
 
             return;
@@ -54,16 +58,29 @@ trait DynamicComponent
         foreach ($extendedModels as $component => $model) {
             if (gettype($model) === 'array') {
                 foreach ($model as $modelName) {
-                    $value = $this->{$modelName};
+                    $value = $this->getExtendedModelValue($modelName);
                     $this->emitTo($component, "model:{$modelName}", $value);
                 }
             }
 
             if (gettype($model) === 'string') {
-                $value = $this->{$model};
+                $value = $this->getExtendedModelValue($model);
                 $this->emitTo($component, "model:{$model}", $value);
             }
         }
+    }
+
+    private function getExtendedModelValue($model)
+    {
+        if (strpos($model, '.')) {
+            $keys  = explode('.', $model);
+            $key   = array_shift($keys);
+            $value = data_get($this->{$key}->toArray(), Arr::dot($keys));
+        } else {
+            $value = $this->{$model};
+        }
+
+        return $value;
     }
 
     protected function refreshExtendedModel($model): void
