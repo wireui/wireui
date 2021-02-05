@@ -1,6 +1,6 @@
 <?php
 
-namespace PH7JACK\LivewireUi\Traits;
+namespace PH7JACK\WireUi\Traits;
 
 trait Actions
 {

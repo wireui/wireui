@@ -1,13 +1,16 @@
 {
-    "name": "ph7jack/livewire-ui",
+    "name": "ph7jack/wireui",
     "description": "Livewire ui components with tailwind base style",
     "type": "library",
     "keywords": [
         "livewire components",
-        "livewire-ui"
+        "livewire-ui",
+        "wireui",
+        "laravel components",
+        "blade components"
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|8.0",
         "laravel/framework": "^7.0|^8.0",
         "livewire/livewire": "^1.0|^2.0"
     },
@@ -21,13 +24,13 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "PH7JACK\\LivewireUi\\": "src/"
+            "PH7JACK\\WireUi\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "PH7JACK\\LivewireUi\\LivewireUiServiceProvider"
+                "PH7JACK\\WireUi\\WireUiServiceProvider"
             ],
             "aliases": []
         }
