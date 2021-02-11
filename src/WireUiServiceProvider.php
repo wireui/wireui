@@ -18,13 +18,9 @@ class WireUiServiceProvider extends ServiceProvider
             __DIR__ . '/resources/views'   => resource_path('views/vendor/' . self::PACKAGE_NAME),
             __DIR__ . '/resources/lang'    => resource_path('lang/vendor/' . self::PACKAGE_NAME),
         ], self::PACKAGE_NAME);
-
-        RegisterBladeComponents::register();
-        RegisterLivewireComponents::register();
     }
 
     public function register()
     {
-        WireUiBladeDirectives::register();
     }
 }
