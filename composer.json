@@ -10,9 +10,11 @@
         "blade components"
     ],
     "require": {
-        "php": "^7.4|8.0",
-        "laravel/framework": "^7.0|^8.0",
-        "livewire/livewire": "^1.0|^2.0"
+        "php": "^7.4|^8.0",
+        "livewire/livewire": "^2.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^7.0|^8.0"
     },
     "authors": [
         {
