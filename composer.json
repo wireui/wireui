@@ -26,7 +26,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "PH7JACK\\WireUi\\": "src/"
+            "PH7JACK\\WireUi\\": "/"
         }
     },
     "extra": {
