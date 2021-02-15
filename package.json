@@ -1,0 +1,12 @@
+{
+    "name": "wireui",
+    "version": "1.0.0",
+    "description": "Livewire ui components with tailwind base style",
+    "repository": "git@github.com:PH7-Jack/wireui.git",
+    "author": "PH7-Jack <pedrolivertwd@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "sweetalert2": "^10.14.1",
+        "tailwindcss": "^2.0.3"
+    }
+}
