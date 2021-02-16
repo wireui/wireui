@@ -1,6 +1,6 @@
-# Livewire UI
+# WireUI
 
-Livewire UI is a components pack to [Livewire]. Mobile friendly and modern with [Tailwind]
+WireUi is a [Blade] with [Alpinejs] and [Livewire] component library, styled with [Tailwind]
 
 #### Prerequisites
 
@@ -11,16 +11,19 @@ Livewire UI is a components pack to [Livewire]. Mobile friendly and modern with 
 
 #### Installation
 
-- Install composer package `composer require ph7jack/livewire-ui`
-- Import **Livewire UI** scripts into your base layout, ex: `resources/views/components/layouts/my-layout.blade.php`
+- Install composer package `composer require ph7jack/wireui`
+- Import **Wire UI** scripts into your Webpack, ex: `webpack.mix.js`
   ```
-  <html>
-      <head>
-         ...
-          @livewireUiAssets
-      </head>
-      ...
-  </html>
+  mix.js('wireui/resources/js/index.js', 'public/js/wireui.js')
+  ```
+- Import wireui.js in your app layout, below Livewire and Alpine.js, ex: `resources/views/layouts/app.blade.php`
+  ```
+  <script src="{{ asset(mix('js/wireui.js')) }}"></script>
+  ```
+- Add these paths in the tailwindcss purge option
+  ```
+  './vendor/ph7j4ck/wireui/resources/views/**/*.blade.php',
+  './vendor/ph7j4ck/wireui/resources/js/**/*.js',
   ```
 
 #### Langs
@@ -29,104 +32,16 @@ Livewire UI is a components pack to [Livewire]. Mobile friendly and modern with 
 
 #### Components
 
-[Images](https://drive.google.com/drive/folders/16tziiT-8UnXSITomKCpq3SKY5_HMJsNh?usp=sharing)
+- All heroicons outline and solid
+- Spinner loading
+- Message Error
 
-- Date Time Picker - `<livewire:livewire-ui:date-time-picker />`
+#### Publish
 
-| Params       | Description                                             | Value           | Default            | Required                          |
-| ------------ | ------------------------------------------------------- | --------------- | ------------------ | --------------------------------- |
-| label        | Label of input                                          | any string      |                    | Yes                               |
-| model        | Name of variable on parent component                    | any string      |                    | Yes                               |
-| sync-input   | Define if input call livewire hooks                     | boolean         | false              | No                                |
-| select-date  | Set if date is selectable                               | boolean         | true               | No                                |
-| select-time  | Set if time is selectable                               | boolean         | true               | No                                |
-| mode         | Set default mode                                        | time or date    | date               | No                                |
-| placeholder  | Placeholder of input                                    | any string      | mm/dd/yyyy 12:30pm | No                                |
-| date-format  | Format of date displayed                                | carbon format   | m/d/Y h:ia         | No                                |
-| date         | Date to fill component when mount                       | any date string |                    | No                                |
-| parse-format | Format to parse initial date when component was mounted | carbon format   |                    | Required if **date** was informed |
-| emit-format  | Format of date when input is emitted                    | carbon format   | m/d/Y h:ia         | No                                |
-
-#### How to use
-
-In parent component, ex: **Form.php**, configure this to share values between components
-
-- import dynamic component trait `App\Traits\Livewire\DynamicComponent`
-- create method `getExtendedModels` to set all extended models to Livewire UI components
-- If you use listeners, don't use the method `getListeners`, use `getRawListeners` or `$listeners` property
-
-```
-// Project/App/Http/Livewire/Calendar/Form.php
-
-<?php
-
-namespace App\Http\Livewire\Calendar;
-
-use App\Traits\Livewire\DynamicComponent;
-use Livewire\Component;
-
-class Form extends Component
-{
-    use DynamicComponent;
-
-    public $date;
-
-    protected $listeners = [
-        'event-form:resetForm' => 'resetForm',
-    ];
-
-    public function getRawListeners()
-    {
-        return [
-            'event-form:set-date' => 'resetForm',
-        ];
-    }
-
-    public function render()
-    {
-        return view('livewire.form');
-    }
-
-    protected function getExtendedModels(): array
-    {
-        return [
-            'components.date-time-picker' => 'date', // if use more of one model in this component, put in array ['date1', 'date2']
-        ];
-    }
-
-    public function setDateValue($date)
-    {
-        $this->date = $date;
-        $this->refreshExtendedModel('date'); // refresh an specifc extended model
-    }
-
-    public function resetForm()
-    {
-        $this->date = null;
-        $this->refreshExtendedModels(); // refresh all extended models
-    }
-}
-
-
-// Project/resources/views/livewire/form.blade.php
-<div>
-    <livewire:livewire-ui:date-time-picker label="Date" model="date" />
-</div>
-```
-
-#### Tip
-
-Your can customize default values in env or publishing configs
-
-```
-    'time_format'                 => env('TIME_FORMAT', 'h:ia'),
-    'date_format'                 => env('DATE_FORMAT', 'm/d/Y'),
-    'datetime_format'             => env('DATETIME_FORMAT', 'm/d/Y h:ia'),
-    'placeholder_datetime_format' => env('PLACEHOLDER_DATETIME_FORMAT', 'mm/dd/yyyy 12:30pm'),
-```
-
-You can publish assets (config, lang) and configure
-`php artisan vendor:publish --tag=livewire-ui`
+You can publish assets, config and lang to ccustomize
+`php artisan vendor:publish --tag="wireui.config"`
+`php artisan vendor:publish --tag="wireui.resources"`
+`php artisan vendor:publish --tag="wireui.lang"`
 
 ## License
 
@@ -136,5 +51,6 @@ MIT
 [livewire]: https://laravel-livewire.com/
 [livewire 2+]: https://laravel-livewire.com/
 [laravel 7+]: https://laravel.com/
+[blade]: https://laravel.com/docs/8.x/blade
 [sweetalert2 10+]: https://sweetalert2.github.io/
 [tailwind]: https://tailwindcss.com/
