@@ -5,8 +5,17 @@
     "repository": "git@github.com:PH7-Jack/wireui.git",
     "author": "PH7-Jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
+    "scripts": {
+        "lint": "eslint . --ext .ts"
+    },
     "dependencies": {
         "sweetalert2": "^10.15.0",
         "tailwindcss": "^2.0.3"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.15.1",
+        "@typescript-eslint/parser": "^4.15.1",
+        "eslint": "^7.20.0",
+        "eslint-plugin-import": "^2.22.1"
     }
 }
