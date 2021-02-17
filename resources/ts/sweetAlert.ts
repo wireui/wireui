@@ -19,7 +19,7 @@ const notify = (notify: Notify): Promise<SweetAlertResult<any>> => {
   const swal = Swal.mixin({
     toast: true,
     position: notify.position ?? 'top-end',
-    showConfirmButton: false,
+    showCloseButton: true,
     timerProgressBar: notify.progressBar ?? false,
     timer: notify.timeout || 8000,
     didOpen: toast => {
