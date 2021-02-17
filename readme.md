@@ -39,9 +39,11 @@ WireUi is a [Blade] with [Alpinejs] and [Livewire] component library, styled wit
 #### Publish
 
 You can publish assets, config and lang to ccustomize
-`php artisan vendor:publish --tag="wireui.config"`
-`php artisan vendor:publish --tag="wireui.resources"`
-`php artisan vendor:publish --tag="wireui.lang"`
+```
+php artisan vendor:publish --tag="wireui.config"
+php artisan vendor:publish --tag="wireui.resources"
+php artisan vendor:publish --tag="wireui.lang"
+```
 
 ## License
 
