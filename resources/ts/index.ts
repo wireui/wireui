@@ -1,7 +1,9 @@
-import { notify, Notify } from './sweetAlert'
+import { SweetAlertResult } from 'sweetalert2'
+import { notify, Notify, modal, Modal } from './sweetAlert'
 
 export interface WireUi {
-  notify (notify: Notify): void
+  notify (notify: Notify): Promise<SweetAlertResult<any>>
+  modal (modal: Modal): Promise<SweetAlertResult<any>>
 }
 
 declare global {
@@ -11,7 +13,8 @@ declare global {
 }
 
 const wireui = {
-  notify
+  notify,
+  modal
 }
 
 window.$wireui = wireui

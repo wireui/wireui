@@ -1,17 +1,24 @@
-import Swal, { SweetAlertIcon, SweetAlertPosition } from 'sweetalert2'
+import Swal, { SweetAlertIcon, SweetAlertPosition, SweetAlertResult } from 'sweetalert2'
 
 export interface Notify {
   timeout?: number
-  progressBar: boolean
-  position: SweetAlertPosition
-  icon: SweetAlertIcon
+  progressBar?: boolean
+  position?: SweetAlertPosition
+  icon?: SweetAlertIcon
   title: string
 }
 
-const notify = (notify: Notify): void => {
-  Swal.mixin({
+export interface Modal {
+  icon?: SweetAlertIcon
+  title?: string
+  html?: string
+  confirmText?: string
+}
+
+const notify = (notify: Notify): Promise<SweetAlertResult<any>> => {
+  const swal = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: notify.position ?? 'top-end',
     showConfirmButton: false,
     timerProgressBar: notify.progressBar ?? false,
     timer: notify.timeout || 8000,
@@ -19,11 +26,32 @@ const notify = (notify: Notify): void => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
-  }).fire({
-    icon: notify.icon,
-    title: notify.title
+  })
+
+  return new Promise(resolve => {
+    swal.fire({
+      icon: notify.icon,
+      title: notify.title
+    }).then(value => {
+      return resolve(value)
+    })
   })
 }
 
-export { notify }
-export default { notify }
+const modal = (modal: Modal): Promise<SweetAlertResult<any>> => {
+  const swal = Swal.fire({
+    icon: modal.icon,
+    title: modal.title,
+    html: modal.html,
+    confirmButtonText: modal.confirmText ?? 'Ok'
+  })
+
+  return new Promise(resolve => {
+    swal.then(value => {
+      return resolve(value)
+    })
+  })
+}
+
+export { notify, modal }
+export default { notify, modal }
