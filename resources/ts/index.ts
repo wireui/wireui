@@ -1,9 +1,12 @@
 import { SweetAlertResult } from 'sweetalert2'
-import { notify, Notify, modal, Modal } from './sweetAlert'
+import {
+  notify, Notify, modal, Modal, confirmation, Confirmation
+} from './sweetAlert'
 
 export interface WireUi {
-  notify (notify: Notify): Promise<SweetAlertResult<any>>
-  modal (modal: Modal): Promise<SweetAlertResult<any>>
+  notify (options: Notify): Promise<SweetAlertResult<any>>
+  modal (options: Modal): Promise<SweetAlertResult<any>>
+  confirmation (options: Confirmation): Promise<SweetAlertResult<any>>
 }
 
 declare global {
@@ -14,7 +17,8 @@ declare global {
 
 const wireui = {
   notify,
-  modal
+  modal,
+  confirmation
 }
 
 window.$wireui = wireui
