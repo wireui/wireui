@@ -56,8 +56,7 @@ const confirmation = (options: Confirmation): Promise<SweetAlertResult<any>> => 
   return Swal.fire({
     icon: 'question',
     title: options.title ?? 'Are you sure?',
-    html: options.html ?? '<p>Do you want to confirm this action?</p>\
-                                <br><small>This can be irreversible</small>',
+    html: options.html ?? 'Do you want to confirm this action?',
     showCancelButton: true,
     confirmButtonText: options.confirmText ?? 'Accept',
     cancelButtonText: options.cancelText ?? 'Reject',
