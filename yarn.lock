@@ -1561,10 +1561,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-sweetalert2@^10.15.0:
-  version "10.15.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.15.0.tgz#b387db1fc04aafe50c66d76f6685a80bfaf44791"
-  integrity sha512-zh/4URSGH1b2RrJuPHI9nzcKsg1qMuRCNkmgVILJ+sQavXQn5jRx+ocCUN15vdGi05oavwdbMaXg2qjgr9Lplw==
+sweetalert2@^10.15.2:
+  version "10.15.2"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.15.2.tgz#7d99a168c2a84460a4f457f5817ab02192a1d259"
+  integrity sha512-PQyFnkfURWyDRXeSmk0bojvdxnhqGj0xbjtecAPtzDMAHSuJeVd8jr0/AdR/nkyzGV9HNEjRXk8b5hyWinhf9w==
 
 table@^6.0.4:
   version "6.0.7"
