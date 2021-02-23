@@ -52,7 +52,7 @@ const modal = (options: Modal): Promise<SweetAlertResult<any>> => {
   })
 }
 
-const confirmation = (options: Confirmation): Promise<SweetAlertResult<any>> => {
+const confirmation = (options = {} as Confirmation): Promise<SweetAlertResult<any>> => {
   return Swal.fire({
     icon: 'question',
     title: options.title ?? 'Are you sure?',
