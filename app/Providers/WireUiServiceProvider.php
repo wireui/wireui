@@ -3,6 +3,7 @@
 namespace WireUi\App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use WireUi\App\View\Directives\WireUiBladeDirectives;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -27,6 +28,8 @@ class WireUiServiceProvider extends ServiceProvider
         $this->publishes([
             "{$rootDir}/resources/lang" => resource_path('lang/vendor/' . self::PACKAGE_NAME),
         ], self::PACKAGE_NAME . '.lang');
+
+        WireUiBladeDirectives::register();
     }
 
     public function register()
