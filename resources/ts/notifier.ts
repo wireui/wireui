@@ -1,6 +1,6 @@
 import Swal, { SweetAlertIcon, SweetAlertPosition, SweetAlertResult } from 'sweetalert2'
 
-export interface Notify {
+export interface NotifyOptions {
   timeout?: number
   progressBar?: boolean
   position?: SweetAlertPosition
@@ -8,14 +8,14 @@ export interface Notify {
   title: string
 }
 
-export interface Modal {
+export interface ModalOptions {
   icon?: SweetAlertIcon
   title?: string
   html?: string
   confirmText?: string
 }
 
-export interface Confirmation {
+export interface ConfirmationOptions {
   title?: string
   html?: string
   confirmText?: string
@@ -25,7 +25,13 @@ export interface Confirmation {
   reverseButtons?: boolean
 }
 
-const notify = (options: Notify): Promise<SweetAlertResult<any>> => {
+export interface Notifier {
+  notify (options: NotifyOptions): Promise<SweetAlertResult<any>>
+  modal (options: ModalOptions): Promise<SweetAlertResult<any>>
+  confirmation (options: ConfirmationOptions): Promise<SweetAlertResult<any>>
+}
+
+export const notify = (options: NotifyOptions): Promise<SweetAlertResult<any>> => {
   return Swal.mixin({
     toast: true,
     position: options.position ?? 'top-end',
@@ -43,7 +49,7 @@ const notify = (options: Notify): Promise<SweetAlertResult<any>> => {
   })
 }
 
-const modal = (options: Modal): Promise<SweetAlertResult<any>> => {
+export const modal = (options: ModalOptions): Promise<SweetAlertResult<any>> => {
   return Swal.fire({
     icon: options.icon,
     title: options.title,
@@ -52,7 +58,7 @@ const modal = (options: Modal): Promise<SweetAlertResult<any>> => {
   })
 }
 
-const confirmation = (options = {} as Confirmation): Promise<SweetAlertResult<any>> => {
+export const confirmation = (options = {} as ConfirmationOptions): Promise<SweetAlertResult<any>> => {
   return Swal.fire({
     icon: 'question',
     title: options.title ?? 'Are you sure?',
@@ -66,5 +72,4 @@ const confirmation = (options = {} as Confirmation): Promise<SweetAlertResult<an
   })
 }
 
-export { notify, modal, confirmation }
 export default { notify, modal, confirmation }

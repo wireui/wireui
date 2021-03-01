@@ -1,13 +1,7 @@
-import { SweetAlertResult } from 'sweetalert2'
-import Livewire, { LivewireActions } from './livewire'
-import {
-  notify, Notify, modal, Modal, confirmation, Confirmation
-} from './sweetAlert'
+import livewireActions, { LivewireActions } from './livewire-actions'
+import notifier, { Notifier } from './notifier'
 
-export interface WireUi {
-  notify (options: Notify): Promise<SweetAlertResult<any>>
-  modal (options: Modal): Promise<SweetAlertResult<any>>
-  confirmation (options: Confirmation): Promise<SweetAlertResult<any>>
+export interface WireUi extends Notifier {
   livewire: LivewireActions
 }
 
@@ -19,10 +13,8 @@ declare global {
 }
 
 const wireui = {
-  notify,
-  modal,
-  confirmation,
-  livewire: Livewire
+  ...notifier,
+  livewire: livewireActions
 }
 
 window.$wireui = wireui

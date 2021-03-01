@@ -1,15 +1,15 @@
-import { confirmation, Confirmation } from './sweetAlert'
+import { confirmation, ConfirmationOptions } from './notifier'
 
-export interface ConfirmAction extends Confirmation {
+export interface ConfirmActionOptions extends ConfirmationOptions {
   method: string
   params: any
 }
 
 export interface LivewireActions {
-  confirmAction (options: ConfirmAction, componentId: string): void
+  confirmAction (options: ConfirmActionOptions, componentId: string): void
 }
 
-const confirmAction = (options: ConfirmAction, componentId: string): void => {
+export const confirmAction = (options: ConfirmActionOptions, componentId: string): void => {
   confirmation(options).then(status => {
     if (!status.isConfirmed || !status.value) return
 
@@ -20,5 +20,4 @@ const confirmAction = (options: ConfirmAction, componentId: string): void => {
   })
 }
 
-export { confirmAction }
 export default { confirmAction }
