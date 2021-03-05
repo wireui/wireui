@@ -12,6 +12,5 @@ return [
     */
     'icons' => [
         'style' => env('WIREUI_ICONS_STYLE', 'outline'),
-        'size'  => env('WIREUI_ICONS_SIZE', 5),
     ],
 ];
