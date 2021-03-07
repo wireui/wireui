@@ -1,8 +1,4 @@
-import livewireActions, { LivewireActions } from './livewire-actions'
-import notifier, { Notifier } from './notifier'
-
-export interface WireUi extends Notifier {
-  livewire: LivewireActions
+export interface WireUi {
 }
 
 declare global {
@@ -13,8 +9,6 @@ declare global {
 }
 
 const wireui = {
-  ...notifier,
-  livewire: livewireActions
 }
 
 window.$wireui = wireui

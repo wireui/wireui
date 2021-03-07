@@ -9,7 +9,6 @@
         "lint": "eslint . --ext .ts"
     },
     "dependencies": {
-        "sweetalert2": "^10.15.2",
         "tailwindcss": "^2.0.3"
     },
     "devDependencies": {
