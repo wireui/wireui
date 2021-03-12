@@ -1,4 +1,7 @@
+import utils, { Utilities } from './utils'
+
 export interface WireUi {
+  utils: Utilities
 }
 
 declare global {
@@ -9,6 +12,7 @@ declare global {
 }
 
 const wireui = {
+  utils
 }
 
 window.$wireui = wireui
