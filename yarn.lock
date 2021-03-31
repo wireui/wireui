@@ -191,6 +191,11 @@ ajv@^7.0.2:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
+alpinejs@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-2.8.2.tgz#b14ec21ae3cd78dcee4aed0a78ed0f01b676dac4"
+  integrity sha512-5yOUtckn4CBp0qsHpo2qgjZyZit84uXvHbB7NJ27sn4FA6UlFl2i9PGUAdTXkcbFvvxDJBM+zpOD8RuNYFvQAw==
+
 ansi-colors@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
@@ -1560,11 +1565,6 @@ supports-color@^7.1.0:
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
-
-sweetalert2@^10.15.2:
-  version "10.15.2"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-10.15.2.tgz#7d99a168c2a84460a4f457f5817ab02192a1d259"
-  integrity sha512-PQyFnkfURWyDRXeSmk0bojvdxnhqGj0xbjtecAPtzDMAHSuJeVd8jr0/AdR/nkyzGV9HNEjRXk8b5hyWinhf9w==
 
 table@^6.0.4:
   version "6.0.7"

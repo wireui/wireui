@@ -9,6 +9,7 @@
         "lint": "eslint . --ext .ts"
     },
     "dependencies": {
+        "alpinejs": "^2.8.2",
         "tailwindcss": "^2.0.3"
     },
     "devDependencies": {
