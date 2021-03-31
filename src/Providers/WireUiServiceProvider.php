@@ -2,7 +2,9 @@
 
 namespace WireUi\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use WireUi\View\Components\Icon;
 use WireUi\View\Directives\WireUiBladeDirectives;
 
 class WireUiServiceProvider extends ServiceProvider
@@ -31,5 +33,6 @@ class WireUiServiceProvider extends ServiceProvider
         ], self::PACKAGE_NAME . '.lang');
 
         WireUiBladeDirectives::register();
+        Blade::component(Icon::class, 'icon');
     }
 }
