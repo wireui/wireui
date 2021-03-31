@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\App\Traits;
+namespace WireUi\Traits;
 
 use Livewire\ComponentConcerns\ReceivesEvents;
 

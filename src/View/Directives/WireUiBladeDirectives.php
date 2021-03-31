@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\App\View\Directives;
+namespace WireUi\View\Directives;
 
 use Illuminate\Support\Facades\Blade;
 

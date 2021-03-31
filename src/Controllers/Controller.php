@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\App\Http\Controllers;
+namespace WireUi\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

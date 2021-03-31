@@ -26,14 +26,13 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "WireUi\\": "/",
-            "WireUi\\App\\": "app/"
+            "WireUi\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "WireUi\\App\\Providers\\WireUiServiceProvider"
+                "WireUi\\Providers\\WireUiServiceProvider"
             ],
             "aliases": []
         }
