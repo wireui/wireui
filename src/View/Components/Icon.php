@@ -10,7 +10,7 @@ class Icon extends Component
 
     public string $name;
 
-    public function __construct(string $name, string $style = '')
+    public function __construct(string $name, ?string $style = null)
     {
         $this->name  = $name;
         $this->style = $style ?: config('wireui.icons.style');
