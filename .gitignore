@@ -1,3 +1,9 @@
 dist
 node_modules
 vendor
+tests/Browser/console
+tests/Browser/screenshots
+tests/Browser/source
+composer.lock
+yarn.lock
+.phpunit.result.cache
