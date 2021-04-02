@@ -6,7 +6,10 @@
     "author": "PH7-Jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint . --ext .ts"
+        "lint": "eslint . --ext .ts",
+        "dev": "mix",
+        "watch": "mix watch",
+        "build": "mix --production"
     },
     "dependencies": {
         "alpinejs": "^2.8.2",
@@ -16,6 +19,8 @@
         "@typescript-eslint/eslint-plugin": "^4.15.1",
         "@typescript-eslint/parser": "^4.15.1",
         "eslint": "^7.20.0",
-        "eslint-plugin-import": "^2.22.1"
+        "eslint-plugin-import": "^2.22.1",
+        "laravel-mix": "^6.0.13",
+        "postcss": "^8.2.9"
     }
 }
