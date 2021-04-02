@@ -12,15 +12,18 @@
         "build": "mix --production"
     },
     "dependencies": {
-        "alpinejs": "^2.8.2",
-        "tailwindcss": "^2.0.3"
+        "alpinejs": "^2.8.2"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^4.15.1",
         "@typescript-eslint/parser": "^4.15.1",
+        "autoprefixer": "^10.2.5",
         "eslint": "^7.20.0",
         "eslint-plugin-import": "^2.22.1",
         "laravel-mix": "^6.0.13",
-        "postcss": "^8.2.9"
+        "postcss": "^8.2.9",
+        "sass": "^1.32.8",
+        "sass-loader": "^11.0.1",
+        "tailwindcss": "^2.0.4"
     }
 }
