@@ -5,13 +5,20 @@ namespace WireUi\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use WireUi\View\Components\Icon;
-use WireUi\View\Directives\WireUiBladeDirectives;
+use WireUi\WireUiBladeDirectives;
 
 class WireUiServiceProvider extends ServiceProvider
 {
     public const PACKAGE_NAME = 'wireui';
 
     public function boot()
+    {
+        $this->registerViews();
+        $this->registerBladeDirectives();
+        $this->registerBladeComponents();
+    }
+
+    protected function registerViews(): void
     {
         $rootDir = __DIR__ . '/../..';
 
@@ -31,8 +38,21 @@ class WireUiServiceProvider extends ServiceProvider
         $this->publishes([
             "{$rootDir}/resources/lang" => resource_path('lang/vendor/' . self::PACKAGE_NAME),
         ], self::PACKAGE_NAME . '.lang');
+    }
 
-        WireUiBladeDirectives::register();
+    protected function registerBladeDirectives(): void
+    {
+        $bladeDirectives = new WireUiBladeDirectives();
+
+        Blade::directive('confirmAction', function(string $expression) {
+            return WireUiBladeDirectives::confirmAction($expression);
+        });
+        Blade::directive('wireUiScripts', fn () => $bladeDirectives->scripts());
+        Blade::directive('wireUiStyles', fn () => $bladeDirectives->styles());
+    }
+
+    protected function registerBladeComponents(): void
+    {
         Blade::component(Icon::class, 'icon');
     }
 }
