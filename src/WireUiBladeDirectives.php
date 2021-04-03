@@ -4,7 +4,7 @@ namespace WireUi;
 
 class WireUiBladeDirectives
 {
-    public function scripts($absolute = true): string
+    public function scripts(bool $absolute = true): string
     {
         $route = route('wireui.assets.scripts', $parameters = [], $absolute);
         $this->getManifestVersion('wireui.js', $route);
@@ -12,7 +12,7 @@ class WireUiBladeDirectives
         return "<script src=\"{$route}\" defer></script>";
     }
 
-    public function styles($absolute = true): string
+    public function styles(bool $absolute = true): string
     {
         $route = route('wireui.assets.styles', $parameters = [], $absolute);
         $this->getManifestVersion('wireui.css', $route);
