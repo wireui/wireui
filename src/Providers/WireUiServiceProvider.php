@@ -4,8 +4,9 @@ namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use WireUi\Facades\WireUiDirectives;
+use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Icon;
-use WireUi\WireUiBladeDirectives;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,16 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
+        $this->registerTagCompiler();
+    }
+
+    protected function registerTagCompiler()
+    {
+        if (method_exists($this->app['blade.compiler'], 'precompiler')) {
+            $this->app['blade.compiler']->precompiler(function ($string) {
+                return app(WireUiTagCompiler::class)->compile($string);
+            });
+        }
     }
 
     protected function registerViews(): void
@@ -42,13 +53,11 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerBladeDirectives(): void
     {
-        $bladeDirectives = new WireUiBladeDirectives();
-
         Blade::directive('confirmAction', function(string $expression) {
-            return WireUiBladeDirectives::confirmAction($expression);
+            return WireUiDirectives::confirmAction($expression);
         });
-        Blade::directive('wireUiScripts', fn () => $bladeDirectives->scripts());
-        Blade::directive('wireUiStyles', fn () => $bladeDirectives->styles());
+        Blade::directive('wireUiScripts', fn () => WireUiDirectives::scripts());
+        Blade::directive('wireUiStyles', fn () => WireUiDirectives::styles());
     }
 
     protected function registerBladeComponents(): void
