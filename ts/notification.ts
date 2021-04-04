@@ -6,8 +6,6 @@ export interface NotificationAction {
   solid?: boolean
   url?: string
   callback?: CallableFunction
-  method?: string
-  params?: any
 }
 
 export interface NotificationOptions {

@@ -1,9 +1,16 @@
-import { notify, NotificationOptions } from './notification'
+import { notify, NotificationOptions, NotificationAction } from './notification'
 
 export interface NotificationEvent {
-  method: string
+  url?: string
+  method?: string
   params?: any
 }
+
+export interface ConfirmAction extends NotificationAction {
+  method?: string
+  params?: any
+}
+
 export interface ConfirmActionOptions
   extends Omit<NotificationOptions, 'onClose' | 'onDismiss' | 'onTimeout'> {
   method?: string
@@ -65,13 +72,17 @@ export const makeNotification = (options: ConfirmActionOptions, componentId: str
 
   actions.forEach(action => {
     if (typeof notification[action] === 'object') {
-      notification[action].callback = makeCallback(componentId, options[action].method, options[action].params)
+      notification[action].url
+        ? notification[action].callback = () => { window.location.href = notification[action].url }
+        : notification[action].callback = makeCallback(componentId, options[action].method, options[action].params)
     }
   })
 
   events.forEach(event => {
     if (typeof notification[event] === 'object') {
-      notification[event] = makeCallback(componentId, options[event].method, options[event].params)
+      notification[event] = notification[event].url
+        ? notification[event] = () => { window.location.href = notification[event].url }
+        : notification[event] = makeCallback(componentId, options[event].method, options[event].params)
     }
   })
 
