@@ -1,5 +1,13 @@
-export type Notification = {
-  (options: NotificationOptions): void
+export type NotificationIcon = 'success' | 'error' | 'info' | 'warning' | 'question'
+
+export interface NotificationAction {
+  label: string
+  style?: string
+  solid?: boolean
+  url?: string
+  callback?: CallableFunction
+  method?: string
+  params?: any
 }
 
 export interface NotificationOptions {
@@ -20,23 +28,12 @@ export interface NotificationOptions {
   onTimeout?: CallableFunction
 }
 
-export type NotificationIcon = 'success' | 'error' | 'info' | 'warning' | 'question'
-
-export interface NotificationAction {
-  label: string
-  style?: string
-  solid?: boolean
-  url?: string
-  callback?: CallableFunction
-  method?: string
-  params?: any
+export type Notification = {
+  (options: NotificationOptions): void
 }
 
-
-
-const defaultOptions = { closeButton: true, progressbar: true }
-
 export const notify: Notification = (options: NotificationOptions): void => {
+  const defaultOptions = { closeButton: true, progressbar: true }
   const notification = Object.assign(defaultOptions, options)
   const event = new CustomEvent('wireui:notification', { detail: notification })
   window.dispatchEvent(event)

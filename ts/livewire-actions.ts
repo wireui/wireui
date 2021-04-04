@@ -1,12 +1,18 @@
-import { notify, NotificationOptions, NotificationAction } from './notification'
+import { notify, NotificationOptions } from './notification'
 
-export interface ConfirmActionOptions extends NotificationOptions {
-  method?: string
+export interface NotificationEvent {
+  method: string
   params?: any
 }
-export interface ConfirmationEvent {
-  method: string
-  params: any
+export interface ConfirmActionOptions
+  extends Omit<NotificationOptions, 'onClose' | 'onDismiss' | 'onTimeout'> {
+  method?: string
+  params?: any
+  acceptLabel?: string
+  rejectLabel?: string
+  onClose?: CallableFunction | NotificationEvent
+  onDismiss?: CallableFunction | NotificationEvent
+  onTimeout?: CallableFunction | NotificationEvent
 }
 
 export type CallComponentAction = {
@@ -19,53 +25,63 @@ export interface LivewireActions {
   call: CallComponentAction
 }
 
-const makeCallback = (options: ConfirmationEvent, componentId: string): CallableFunction => {
-  return () => callComponentAction(componentId, options.method, options.params)
+export const callComponentAction: CallComponentAction = (componentId, method, params = null) => {
+  const component = window.Livewire.find(componentId)
+
+  params
+    ? Array.isArray(params)
+      ? component?.call(method, ...params)
+      : component?.call(method, params)
+    : component?.call(method)
+}
+
+const makeCallback = (componentId: string, method: string, params: any = null): CallableFunction => {
+  return () => callComponentAction(componentId, method, params)
 }
 
 export const makeNotification = (options: ConfirmActionOptions, componentId: string): NotificationOptions => {
-  const notification = Object.assign({}, options)
-  const keys = Object.keys(notification)
-  const actions = keys.filter(key => ['accept', 'reject'].includes(key))
-  const events = keys.filter(key => ['onClose', 'onDismiss', 'onTimeout'].includes(key))
-
-  actions.forEach(action => notification[action].callback = makeCallback(notification[action], componentId))
-  events.forEach(event => notification[event] = makeCallback(notification[event], componentId))
-
-  if (!notification.accept) {
-    notification.accept = {
-      label: 'Confirm',
-      callback: makeCallback(notification as ConfirmationEvent, componentId)
-    }
-    notification.reject = { label: 'Cancel' }
-  }
-
-  return notification
-}
-
-export const confirmAction = (options: ConfirmActionOptions, componentId: string): void => {
   const notification = Object.assign({
     title: 'You Sure?',
     description: 'Do you want to confirm?',
-    icon: 'question',
+    icon: 'question'
   }, options)
 
-  if (notification.method) {
-    notification.accept = {
-      label: 'Confirm',
-      callback: makeCallback(notification as ConfirmationEvent, componentId)
-    }
-    notification.reject = { label: 'Cancel' }
+  if (!options.reject) {
+    notification.reject = { label: options.rejectLabel ?? 'Cancel' }
   }
 
-  notify(notification)
+  if (options.method) {
+    notification.accept = {
+      label: options.acceptLabel ?? 'Confirm',
+      callback: makeCallback(componentId, options.method, options.params)
+    }
+
+    return notification as NotificationOptions
+  }
+
+  const keys = Object.keys(options)
+  const actions = keys.filter(key => ['accept', 'reject'].includes(key))
+  const events = keys.filter(key => ['onClose', 'onDismiss', 'onTimeout'].includes(key))
+
+  actions.forEach(action => {
+    if (typeof notification[action] === 'object') {
+      notification[action].callback = makeCallback(componentId, options[action].method, options[action].params)
+    }
+  })
+
+  events.forEach(event => {
+    if (typeof notification[event] === 'object') {
+      notification[event] = makeCallback(componentId, options[event].method, options[event].params)
+    }
+  })
+
+  return notification as NotificationOptions
 }
 
-export const callComponentAction: CallComponentAction = (componentId, method, params) => {
-  const component = window.Livewire.find(componentId)
-  Array.isArray(params)
-    ? component?.call(method, ...params)
-    : component?.call(method, params)
+export const confirmAction = (options: ConfirmActionOptions, componentId: string): void => {
+  const notification = makeNotification(options, componentId)
+
+  notify(notification)
 }
 
 export default {
