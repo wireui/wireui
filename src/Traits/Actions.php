@@ -6,7 +6,10 @@ trait Actions
 {
     public function notify(array $options): void
     {
-        $this->dispatchBrowserEvent('wireui:notification', $options);
+        $this->dispatchBrowserEvent('wireui:notification', [
+            'options'     => $options,
+            'componentId' => $this->id,
+        ]);
     }
 
     public function successNotification(string $title, ?string $description = null): void
@@ -35,9 +38,6 @@ trait Actions
     {
         $options['icon'] ??= 'question';
 
-        $this->dispatchBrowserEvent('wireui:confirmation', [
-            'options'     => $options,
-            'componentId' => $this->id,
-        ]);
+        $this->notify($options);
     }
 }

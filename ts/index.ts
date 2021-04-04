@@ -1,11 +1,10 @@
 import utils, { Utilities } from './utils'
-import { notify, Notification } from './notification'
-import livewireActions, { LivewireActions } from './livewire-actions'
+import { notify, Notification, makeNotification, NotificationParser } from './notification'
 
 export interface WireUi {
   utils: Utilities
   notify: Notification
-  livewire: LivewireActions
+  makeNotification: NotificationParser
 }
 
 declare global {
@@ -18,7 +17,7 @@ declare global {
 const wireui = {
   utils,
   notify,
-  livewire: livewireActions
+  makeNotification
 }
 
 window.$wireui = wireui

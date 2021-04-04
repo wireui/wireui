@@ -40,24 +40,19 @@
                 },
             }
         },
-        addNotification(options) {
-            const id  = window.$wireui.utils.uuid()
-            let timer = null
+        addNotification(event) {
+            const notification = window.$wireui.makeNotification(event.options, event.componentId)
+            notification.id    = window.$wireui.utils.uuid()
 
-            if (options.timeout !== false) {
-                timer = this.makeNotificationTimer(id, options.timeout || 8500)
+            if (notification.timeout !== false) {
+                notification.timer = this.makeNotificationTimer(notification.id, notification.timeout)
             }
-            if (options.closeButton == null) { options.closeButton = true }
 
-            const notification = Object.assign({ id, timer }, options)
             this.notifications.push(notification)
+
             if (notification.icon && !this.defaultIcons.includes(notification.icon)) {
                 this.fillNotificationIcon(notification)
             }
-        },
-        addConfirmation(event) {
-            const notification = window.$wireui.livewire.makeNotification(event.options, event.componentId)
-            this.addNotification(notification)
         },
         pauseNotification(notification) { notification.timer?.pause() },
         resumeNotification(notification) { notification.timer?.resume() },
@@ -111,7 +106,6 @@
         },
     }"
     x-on:wireui:notification.window="addNotification($event.detail)"
-    x-on:wireui:confirmation.window="addConfirmation($event.detail)"
     wire:ignore>
     <div class="max-w-sm w-full space-y-2 pointer-events-auto flex flex-col-reverse">
         <template x-for="notification in notifications" :key="`notification-${notification.id}`">

@@ -40,6 +40,6 @@ class WireUiBladeDirectives
 
     public static function confirmAction(string $expression): string
     {
-        return "onclick=\"window.\$wireui.livewire.confirmAction($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
     }
 }
