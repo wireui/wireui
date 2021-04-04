@@ -9,7 +9,7 @@ class Component extends \Livewire\Component
 {
     use Actions;
 
-    public mixed $value = null;
+    public $value = null;
 
     public array $events = [];
 
@@ -20,7 +20,7 @@ class Component extends \Livewire\Component
         return View::file(__DIR__ . '/view.blade.php');
     }
 
-    public function setValue(mixed $anyValue): void
+    public function setValue($anyValue): void
     {
         $this->value = $anyValue;
     }
