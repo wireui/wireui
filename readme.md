@@ -1,30 +1,19 @@
 # WireUI
 
-WireUi is a [Blade] with [Alpinejs] and [Livewire] component library, styled with [Tailwind]
-
-#### Prerequisites
-
--   [Laravel 7+]
--   [Livewire 2+]
--   [SweetAlert2 10+]
--   [Tailwind]
+WireUi is a [Tall Stack] UI Components library
 
 #### Installation
 
 -   Install composer package `composer require ph7jack/wireui`
--   Install **ts-loader** `yarn add ts-loader typescript --dev`
--   Import **Wire UI** scripts into your Webpack, ex: `webpack.mix.js`
+-   Import Wire UI assets in your app layout, below Livewire and Alpine.js, ex: `resources/views/layouts/app.blade.php`
     ```
-    mix.ts('wireui/resources/ts/index.js', 'public/js/wireui.js')
-    ```
--   Import wireui.js in your app layout, below Livewire and Alpine.js, ex: `resources/views/layouts/app.blade.php`
-    ```
-    <script src="{{ asset(mix('js/wireui.js')) }}"></script>
-    ```
--   Add these paths in the tailwindcss purge option
-    ```
-    './vendor/ph7j4ck/wireui/resources/views/**/*.blade.php',
-    './vendor/ph7j4ck/wireui/resources/ts/**/*.js',
+    <head>
+        ...
+        <wireui:styles /> or @wireUiStyles
+        ...
+    </head>
+    ...
+    <wireui:scripts /> or @wireUiScripts
     ```
 
 #### Langs
@@ -36,6 +25,7 @@ WireUi is a [Blade] with [Alpinejs] and [Livewire] component library, styled wit
 -   All heroicons outline and solid
 -   Spinner loading
 -   Message Error
+-   Notifications
 
 #### Publish
 
@@ -52,9 +42,10 @@ php artisan vendor:publish --tag="wireui.lang"
 MIT
 **Free Software, Hell Yeah!**
 
-[livewire]: https://laravel-livewire.com/
-[livewire 2+]: https://laravel-livewire.com/
-[laravel 7+]: https://laravel.com/
+[livewire]: https://laravel-livewire.com
+[livewire 2+]: https://laravel-livewire.com
+[laravel 7+]: https://laravel.com
 [blade]: https://laravel.com/docs/8.x/blade
-[sweetalert2 10+]: https://sweetalert2.github.io/
-[tailwind]: https://tailwindcss.com/
+[sweetalert2 10+]: https://sweetalert2.github.io
+[tailwind]: https://tailwindcss.com
+[tall stack]: https://tallstack.dev
