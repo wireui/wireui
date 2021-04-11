@@ -26,7 +26,7 @@ trait Actions
     public function errorNotification(string $title, ?string $description = null): void
     {
         $options = [
-            'icon'        => 'success',
+            'icon'        => 'error',
             'title'       => $title,
             'description' => $description,
         ];
