@@ -16,6 +16,6 @@ class WireUiAssetsController
 
     public function styles(): BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.css');
+        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.css', $mimeType = 'text/css');
     }
 }
