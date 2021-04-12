@@ -65,7 +65,7 @@ const parseActions = (options: NotificationOptions, componentId?: string | null)
 
   actions.forEach(actionName => {
     const action = options[actionName] as NotificationAction
-    if (typeof action === 'object' && !action.url && componentId) {
+    if (typeof action === 'object' && !action.callback && !action.url && componentId) {
       options[actionName].callback = makeCallback(componentId, action.method as string, action.params)
     }
 
