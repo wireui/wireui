@@ -1,4 +1,6 @@
-<div class="fixed z-50 inset-0 flex items-end justify-center px-4 py-6
+@props(['zIndex' => 'z-50'])
+
+<div class="fixed {{ $zIndex }} inset-0 flex items-end justify-center px-4 py-6
             pointer-events-none sm:p-5 sm:pt-4 sm:items-start sm:justify-end"
     x-data="{
         defaultIcons: ['success', 'error', 'warning', 'info', 'question'],
