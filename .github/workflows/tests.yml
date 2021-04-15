@@ -14,7 +14,7 @@ jobs:
       fail-fast: true
       matrix:
         php: [7.4, 8.0]
-        laravel: [7.*, 8.*]
+        laravel: [8.*]
         dependency-version: [prefer-stable]
 
     name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}(${{ matrix.dependency-version }})
