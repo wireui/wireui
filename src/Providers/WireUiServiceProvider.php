@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Icon;
+use WireUi\View\Components\Input;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -63,5 +64,6 @@ class WireUiServiceProvider extends ServiceProvider
     protected function registerBladeComponents(): void
     {
         Blade::component(Icon::class, 'icon');
+        Blade::component(Input::class, 'input');
     }
 }

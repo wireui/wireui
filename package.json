@@ -15,6 +15,7 @@
         "alpinejs": "^2.8.2"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.3.2",
         "@typescript-eslint/eslint-plugin": "^4.15.1",
         "@typescript-eslint/parser": "^4.15.1",
         "autoprefixer": "^10.2.5",
@@ -24,7 +25,7 @@
         "postcss": "^8.2.9",
         "sass": "^1.32.8",
         "sass-loader": "^11.0.1",
-        "tailwindcss": "^2.0.4",
+        "tailwindcss": "^2.1.1",
         "ts-loader": "^8.1.0",
         "typescript": "^4.2.4"
     }

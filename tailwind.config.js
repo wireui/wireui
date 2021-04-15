@@ -1,6 +1,6 @@
 module.exports = {
   purge: [
-    './wireui/resources/ts/**/*.js',
+    './ts/**/*.js',
     './resources/views/**/*.blade.php'
   ],
   darkMode: false,
@@ -10,5 +10,5 @@ module.exports = {
   variants: {
     extend: {}
   },
-  plugins: []
+  plugins: [require('@tailwindcss/forms')]
 }
