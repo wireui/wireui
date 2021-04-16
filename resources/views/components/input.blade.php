@@ -26,7 +26,7 @@
                 @if ($icon)
                     <x-wireui::icon :name="$icon" class="h-5 w-5" />
                 @elseif($prefix)
-                    <span class="w-5 flex items-center justify-center font-semibold">
+                    <span class="pl-1 flex items-center self-center">
                         {{ $prefix }}
                     </span>
                 @endif
@@ -47,7 +47,7 @@
                 @if ($rightIcon)
                     <x-wireui::icon :name="$rightIcon" class="h-5 w-5" />
                 @elseif($suffix)
-                    <span class="w-5 flex items-center justify-center font-semibold">
+                    <span class="pr-1 flex items-center justify-center">
                         {{ $suffix }}
                     </span>
                 @elseif($hasError)
