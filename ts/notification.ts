@@ -56,30 +56,30 @@ export const callComponentAction: CallComponentAction = (componentId, method, pa
     : component?.call(method)
 }
 
-const makeCallback = (componentId: string, method: string, params: any = null): CallableFunction => {
+export const makeCallback = (componentId: string, method: string, params: any = null): CallableFunction => {
   return () => callComponentAction(componentId, method, params)
 }
 
-const parseActions = (options: NotificationOptions, componentId?: string | null) => {
+export const parseActions = (options: NotificationOptions, componentId?: string | null): NotificationOptions => {
   const actions = Object.keys(options).filter(key => ['accept', 'reject'].includes(key))
 
   actions.forEach(actionName => {
     const action = options[actionName] as NotificationAction
+
     if (typeof action === 'object' && !action.callback && !action.url && componentId) {
       options[actionName].callback = makeCallback(componentId, action.method as string, action.params)
     }
-
-    if (typeof action === 'object' && action.url) {
-      options[actionName].callback = () => { window.location.href = action.url as string }
-    }
   })
+
+  return options
 }
 
-const parseEvents = (options: NotificationOptions, componentId?: string | null) => {
+export const parseEvents = (options: NotificationOptions, componentId?: string | null): NotificationOptions => {
   const events = Object.keys(options).filter(key => ['onClose', 'onDismiss', 'onTimeout'].includes(key))
 
   events.forEach(eventName => {
     const event = options[eventName] as NotificationEvent
+
     if (typeof event === 'object' && !event.url && componentId) {
       options[eventName] = makeCallback(componentId, event.method as string, event.params)
     }
@@ -88,6 +88,8 @@ const parseEvents = (options: NotificationOptions, componentId?: string | null) 
       options[eventName] = () => { window.location.href = event.url as string }
     }
   })
+
+  return options
 }
 
 export type NotificationParser = {

@@ -88,8 +88,8 @@
         proccessAction(action) {
             if (!action) return
 
-            if (action.url) { window.location.href = action.url }
             if (action.callback) { action.callback() }
+            else if (action.url) { window.location.href = action.url }
         },
         fillNotificationIcon(notification) {
             const classes = ['w-6', 'h-6']
