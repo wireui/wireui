@@ -1,7 +1,8 @@
 import { Pausable, PausableInterval } from './timeout'
 
 export const interval: PausableInterval = (callback, delay): Pausable => {
-  let timerId, remaining = delay
+  let timerId = delay
+  let remaining = delay
   let start = new Date()
 
   const resume = () => {
