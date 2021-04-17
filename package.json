@@ -9,24 +9,30 @@
         "lint": "eslint . --ext .ts",
         "dev": "mix",
         "watch": "mix watch",
-        "build": "mix --production"
+        "build": "mix --production",
+        "test": "mocha -r ts-node/register ./ts-tests/**/*.spec.ts"
     },
     "dependencies": {
         "alpinejs": "^2.8.2"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.3.2",
+        "@types/chai": "^4.2.16",
+        "@types/mocha": "^8.2.2",
         "@typescript-eslint/eslint-plugin": "^4.15.1",
         "@typescript-eslint/parser": "^4.15.1",
         "autoprefixer": "^10.2.5",
+        "chai": "^4.3.4",
         "eslint": "^7.20.0",
         "eslint-plugin-import": "^2.22.1",
         "laravel-mix": "^6.0.13",
+        "mocha": "^8.3.2",
         "postcss": "^8.2.9",
         "sass": "^1.32.8",
         "sass-loader": "^11.0.1",
         "tailwindcss": "^2.1.1",
         "ts-loader": "^8.1.0",
+        "ts-node": "^9.1.1",
         "typescript": "^4.2.4"
     }
 }
