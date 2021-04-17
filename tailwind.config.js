@@ -1,7 +1,8 @@
 module.exports = {
   purge: [
     './ts/**/*.js',
-    './resources/views/**/*.blade.php'
+    './resources/views/**/*.blade.php',
+    './src/View/**/*.php'
   ],
   darkMode: false,
   theme: {
