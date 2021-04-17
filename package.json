@@ -10,7 +10,7 @@
         "dev": "mix",
         "watch": "mix watch",
         "build": "mix --production",
-        "test": "mocha -r ts-node/register ./ts-tests/**/*.spec.ts"
+        "test": "mocha -r ts-node/register -r jsdom-global/register ts-tests/**/*.spec.ts"
     },
     "dependencies": {
         "alpinejs": "^2.8.2"
@@ -25,6 +25,8 @@
         "chai": "^4.3.4",
         "eslint": "^7.20.0",
         "eslint-plugin-import": "^2.22.1",
+        "jsdom": "^16.5.3",
+        "jsdom-global": "^3.0.2",
         "laravel-mix": "^6.0.13",
         "mocha": "^8.3.2",
         "postcss": "^8.2.9",

@@ -1,14 +1,15 @@
-export type PausableInterval = {
-  (callback: CallableFunction, delay: number): Pausable
-}
-
 export type Pausable = {
   pause: () => void,
   resume: () => void
 }
 
-export const timeout: PausableInterval = (callback: Function, delay: number): Pausable => {
-  let timerId, remaining = delay
+export type PausableInterval = {
+  (callback: CallableFunction, delay: number): Pausable
+}
+
+export const timeout: PausableInterval = (callback: CallableFunction, delay: number): Pausable => {
+  let timerId = delay
+  let remaining = delay
   let start = new Date()
 
   const resume = () => {
