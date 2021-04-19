@@ -6,6 +6,9 @@ use Illuminate\View\Component;
 
 class Input extends Component
 {
+    protected const VIEW          = 'wireui::components.input';
+    protected const DEFAULT_COLOR = 'focus:ring-indigo-500 focus:border-indigo-500';
+
     public string $color;
 
     public ?string $label;
@@ -27,7 +30,7 @@ class Input extends Component
     public ?string $append;
 
     public function __construct(
-        string $color = 'focus:ring-indigo-500 focus:border-indigo-500',
+        ?string $color = null,
         ?string $label = null,
         ?string $hint = null,
         ?string $cornerHint = null,
@@ -38,7 +41,7 @@ class Input extends Component
         ?string $prepend = null,
         ?string $append = null
     ) {
-        $this->color      = $color;
+        $this->color      = $color ?? static::DEFAULT_COLOR;
         $this->label      = $label;
         $this->hint       = $hint;
         $this->cornerHint = $cornerHint;
@@ -53,7 +56,7 @@ class Input extends Component
     public function render()
     {
         return function (array $data) {
-            return view('wireui::components.input', $this->mergeData($data))->render();
+            return view(static::VIEW, $this->mergeData($data))->render();
         };
     }
 

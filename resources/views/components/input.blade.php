@@ -14,7 +14,7 @@
             @endif
 
             @if ($cornerHint)
-                <span class="text-sm text-gray-500">{{ $cornerHint }}</span>
+                <label @if($id) for="{{ $id }}" @endif class="text-sm text-gray-500">{{ $cornerHint }}</label>
             @endif
         </div>
     @endif
@@ -60,7 +60,7 @@
     </div>
 
     @if (!$hasError && $hint)
-        <p class="mt-2 text-sm text-gray-500">{{ $hint }}</p>
+        <label @if($id) for="{{ $id }}" @endif class="mt-2 text-sm text-gray-500">{{ $hint }}</label>
     @endif
 
     @if ($name)
