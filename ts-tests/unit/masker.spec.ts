@@ -71,7 +71,6 @@ describe('Testing masker', () => {
     assert.equal(maskerIt.value, expected)
 
     maskerIt.apply('fe-dc-ba')
-    console.log(maskerIt)
     assert.equal(maskerIt.value, 'fe-dc-ba')
     assert.equal(maskerIt.original, 'fedcba')
   })
