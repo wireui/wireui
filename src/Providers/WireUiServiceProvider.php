@@ -9,6 +9,7 @@ use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\InputMaskable;
+use WireUi\View\Components\Inputs\InputPhone;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -67,5 +68,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Icon::class, 'icon');
         Blade::component(Input::class, 'input');
         Blade::component(InputMaskable::class, 'inputs.maskable');
+        Blade::component(InputPhone::class, 'inputs.phone');
     }
 }
