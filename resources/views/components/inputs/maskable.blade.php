@@ -21,6 +21,10 @@
 x-init="function() {
     this.masker = $wireui.utils.masker(this.config.mask, this.model)
     this.input  = this.masker.value
+
+    $watch('model', value => {
+        this.input = this.masker.apply(value).value
+    })
 }">
     <x-input
         :color="$color"
@@ -35,6 +39,6 @@ x-init="function() {
         :append="$append"
         x-model="input"
         x-on:input="emitInput($event.target.value)"
-        {{ $attributes->whereDoesntStartWith('wire:model') }}
+        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
     />
 </div>
