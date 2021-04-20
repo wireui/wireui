@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\WireUiTagCompiler;
+use WireUi\View\Components\Button;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\InputMaskable;
@@ -69,5 +70,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Input::class, 'input');
         Blade::component(InputMaskable::class, 'inputs.maskable');
         Blade::component(InputPhone::class, 'inputs.phone');
+        Blade::component(Button::class, 'button');
     }
 }
