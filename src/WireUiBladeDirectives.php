@@ -38,7 +38,12 @@ class WireUiBladeDirectives
         return $version;
     }
 
-    public static function confirmAction(string $expression): string
+    public function confirmAction(string $expression): string
+    {
+        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$_instance->id }}')\"";
+    }
+
+    public function notify(string $expression): string
     {
         return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
     }

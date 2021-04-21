@@ -57,9 +57,8 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerBladeDirectives(): void
     {
-        Blade::directive('confirmAction', function(string $expression) {
-            return WireUiDirectives::confirmAction($expression);
-        });
+        Blade::directive('confirmAction', fn (string $expression) => WireUiDirectives::confirmAction($expression));
+        Blade::directive('notify', fn (string $expression) => WireUiDirectives::notify($expression));
         Blade::directive('wireUiScripts', fn () => WireUiDirectives::scripts());
         Blade::directive('wireUiStyles', fn () => WireUiDirectives::styles());
     }

@@ -10,6 +10,7 @@ use WireUi\WireUiBladeDirectives;
  * @method static string styles(bool $absolute = true)
  * @method static string|null getManifestVersion(string $file, ?string &$route = null)
  * @method static string confirmAction(string $expression)
+ * @method static string notify(string $expression)
  */
 class WireUiDirectives extends Facade
 {
