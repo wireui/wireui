@@ -63,7 +63,7 @@ abstract class BaseButton extends Component
         ?string $size = null,
         ?string $label = null,
         ?string $icon = null,
-        ?string $rightIcon = null,
+        ?string $rightIcon = null
     ) {
         $this->xs        = $xs;
         $this->md        = $md;
