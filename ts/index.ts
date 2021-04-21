@@ -1,9 +1,10 @@
 import utils, { Utilities } from './utils'
-import { notify, Notification, makeNotification, NotificationParser } from './notification'
+import { notify, confirmAction, Notification, makeNotification, NotificationParser } from './notification'
 
 export interface WireUi {
   utils: Utilities
   notify: Notification
+  confirmAction: Notification
   makeNotification: NotificationParser
 }
 
@@ -17,6 +18,7 @@ declare global {
 const wireui = {
   utils,
   notify,
+  confirmAction,
   makeNotification
 }
 

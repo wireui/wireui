@@ -136,4 +136,14 @@ export const notify: Notification = (options, componentId = null): void => {
   window.dispatchEvent(event)
 }
 
+export const confirmAction: Notification = (options, componentId = null): void => {
+  options = Object.assign({
+    icon: 'warning',
+    title: 'Are you sure?',
+    description: 'You won\'t be able to revert this!'
+  }, options)
+
+  notify(options, componentId)
+}
+
 export default notify
