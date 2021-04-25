@@ -3,6 +3,7 @@ import { timeout, PausableInterval } from './timeout'
 import { interval } from './interval'
 import { masker, Maskable } from './masker'
 import { mask, Mask } from './masker/masker'
+import { currency, Currency } from './currency'
 
 export interface Utilities {
   uuid: UuidGenerator
@@ -10,6 +11,7 @@ export interface Utilities {
   interval: PausableInterval
   masker: Maskable
   mask: Mask
+  currency: Currency
 }
 
 const utilities: Utilities = {
@@ -17,8 +19,9 @@ const utilities: Utilities = {
   timeout,
   interval,
   masker,
-  mask
+  mask,
+  currency
 }
 
-export { uuid, timeout, interval, masker, mask }
+export { uuid, timeout, interval, masker, mask, currency }
 export default utilities
