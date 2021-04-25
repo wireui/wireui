@@ -10,7 +10,8 @@
         "dev": "mix",
         "watch": "mix watch",
         "build": "mix --production",
-        "test": "mocha -r ts-node/register -r jsdom-global/register ts-tests/**/*.spec.ts"
+        "test": "mocha -r ts-node/register -r jsdom-global/register ts-tests/**/*.spec.ts",
+        "test-file": "mocha -r ts-node/register -r jsdom-global/register"
     },
     "dependencies": {
         "alpinejs": "^2.8.2"
