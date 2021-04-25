@@ -2,6 +2,6 @@
 
 namespace WireUi\View\Components\Inputs;
 
-class InputMaskable extends BaseMaskable
+class MaskableInput extends BaseMaskable
 {
 }

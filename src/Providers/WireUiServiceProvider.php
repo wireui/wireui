@@ -10,8 +10,8 @@ use WireUi\View\Components\Button;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
-use WireUi\View\Components\Inputs\InputMaskable;
-use WireUi\View\Components\Inputs\InputPhone;
+use WireUi\View\Components\Inputs\MaskableInput;
+use WireUi\View\Components\Inputs\PhoneInput;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -68,8 +68,8 @@ class WireUiServiceProvider extends ServiceProvider
     {
         Blade::component(Icon::class, 'icon');
         Blade::component(Input::class, 'input');
-        Blade::component(InputMaskable::class, 'inputs.maskable');
-        Blade::component(InputPhone::class, 'inputs.phone');
+        Blade::component(MaskableInput::class, 'inputs.maskable');
+        Blade::component(PhoneInput::class, 'inputs.phone');
         Blade::component(CurrencyInput::class, 'inputs.currency');
         Blade::component(Button::class, 'button');
     }
