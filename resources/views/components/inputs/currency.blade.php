@@ -43,13 +43,11 @@
     },
 }"
 x-init="function() {
-    this.mask(this.model)
+    if (typeof this.model !== 'object') {
+        this.mask(this.model)
+    }
 
-    $watch('model', value => {
-        if (this.unMask(value?.toString()) !== this.unMask(this.input)) {
-            this.mask(value, false)
-        }
-    })
+    $watch('model', value => this.mask(value, false))
 }">
     <x-input {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
         :color="$color"
@@ -65,7 +63,7 @@ x-init="function() {
         x-model="input"
         x-on:input="mask($event.target.value)"
         @if ($attributes->wire('model')->hasModifier('lazy'))
-            x-on:blur="emitInput"
+            x-on:blur="emitInput($event.target.value)"
         @endif
     />
 </div>
