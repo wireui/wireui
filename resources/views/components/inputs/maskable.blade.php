@@ -1,9 +1,5 @@
 <div x-data="{
-    @if ($attributes->wire('model')->value())
-        model: @entangle($attributes->wire('model')),
-    @else
-        model: null,
-    @endif
+    model: @entangle($attributes->wire('model')),
     input: null,
     masker: null,
     config: {
