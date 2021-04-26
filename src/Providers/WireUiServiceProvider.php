@@ -15,6 +15,7 @@ use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
 use WireUi\View\Components\Inputs\MaskableInput;
 use WireUi\View\Components\Inputs\PhoneInput;
+use WireUi\View\Components\Notifications;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -78,5 +79,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Dropdown::class, 'dropdown');
         Blade::component(DropdownItem::class, 'dropdown.item');
         Blade::component(DropdownHeader::class, 'dropdown.header');
+        Blade::component(Notifications::class, 'notifications');
     }
 }
