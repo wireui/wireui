@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Button;
+use WireUi\View\Components\Dropdown;
+use WireUi\View\Components\Dropdown\DropdownHeader;
+use WireUi\View\Components\Dropdown\DropdownItem;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
@@ -72,5 +75,8 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(PhoneInput::class, 'inputs.phone');
         Blade::component(CurrencyInput::class, 'inputs.currency');
         Blade::component(Button::class, 'button');
+        Blade::component(Dropdown::class, 'dropdown');
+        Blade::component(DropdownItem::class, 'dropdown.item');
+        Blade::component(DropdownHeader::class, 'dropdown.header');
     }
 }
