@@ -1,6 +1,4 @@
 <div>
-    <x-wireui::notifications />
-
     <h1>notifications test</h1>
 
     <span dusk="value">{{ $value }}</span>

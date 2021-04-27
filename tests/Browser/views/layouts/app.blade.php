@@ -7,6 +7,8 @@
     <wireui:styles />
 </head>
 <body>
+    <x-notifications />
+
     {{ $slot }}
 
     <livewire:scripts />
