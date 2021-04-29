@@ -1,4 +1,5 @@
 import tokens, { Token } from './tokens'
+import { str } from '../helpers'
 
 const replaceTokens = (iMask, mask: string, value: string, masked: boolean): string => {
   let iValue = 0
@@ -10,6 +11,15 @@ const replaceTokens = (iMask, mask: string, value: string, masked: boolean): str
     const cValue = value[iValue]
 
     if (token && !token.escape) {
+      if (token.validate && token.validate(value, iValue) && token.output) {
+        const tokenOutput = token.output(value, iValue)
+        output += tokenOutput
+        iValue += tokenOutput.length
+        iMask++
+
+        continue
+      }
+
       if (token.pattern?.test(cValue)) {
         output += token.transform ? token.transform(cValue) : cValue
         iMask++
@@ -24,7 +34,7 @@ const replaceTokens = (iMask, mask: string, value: string, masked: boolean): str
       cMask = mask[iMask]
     }
 
-    if (masked) output += cMask
+    if (masked) { output += cMask }
     if (cValue === cMask) { iValue++ }
     iMask++
   }
@@ -49,18 +59,12 @@ const getUnreplacedOutput = (iMask, mask: string, masked: boolean): string => {
   return restOutput
 }
 
-const parseValue = (value: any): string => {
-  if (!value) { return '' }
-
-  return String(value)
-}
-
 export interface Mask {
   (mask: string, value?: string | null, masked?: boolean): string | null
 }
 
 export const mask: Mask = (mask, value = null, masked = true) => {
-  value = parseValue(value)
+  value = str(value)
   const iMask = 0
   const output = replaceTokens(iMask, mask, value, masked)
   const unreplaced = getUnreplacedOutput(iMask, mask, masked)
