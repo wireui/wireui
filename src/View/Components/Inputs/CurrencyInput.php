@@ -14,7 +14,7 @@ class CurrencyInput extends Input
 
     public int $precision;
 
-    public int $emitFormatted;
+    public bool $emitFormatted;
 
     public function __construct(
         string $thousands = ',',
