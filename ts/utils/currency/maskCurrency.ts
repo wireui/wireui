@@ -1,34 +1,8 @@
-export type CurrencyConfig = {
-  thousands: string
-  decimal: string
-  precision: number
-}
+import { str, onlyNumbers } from '../helpers'
+import { CurrencyConfig } from './index'
 
-export const defaultConfig: CurrencyConfig = {
-  thousands: ',',
-  decimal: '.',
-  precision: 2
-}
-
-export interface FormatCurrency {
+export interface MaskCurrency {
   (value: string | number | null, config: CurrencyConfig): string
-}
-
-export interface UnMaskCurrency {
-  (value: string | null, config: CurrencyConfig): number | null
-}
-
-export interface Currency {
-  mask: FormatCurrency
-  unMask: UnMaskCurrency
-}
-
-const str = (value): string => {
-  return value ? value.toString() : ''
-}
-
-const onlyNumbers = (value): string => {
-  return str(value).replace(/\D+/g, '')
 }
 
 const splitCurrency = (numbers: string | null, config: CurrencyConfig): string[] => {
@@ -55,7 +29,7 @@ const applyCurrencyMask = (numbers: string, separator: string): string => {
   return numbers.replace(/\B(?=(\d{3})+(?!\d))/g, separator)
 }
 
-export const formatCurrency: FormatCurrency = (value = null, config): string => {
+export const maskCurrency: MaskCurrency = (value = null, config): string => {
   if (typeof value === 'number') {
     value = value.toString()
   }
@@ -74,19 +48,3 @@ export const formatCurrency: FormatCurrency = (value = null, config): string => 
 
   return currency
 }
-
-export const unMaskCurrency: UnMaskCurrency = (value, config): number | null => {
-  if (!value) return null
-
-  const currency = parseFloat(value.replace(new RegExp(`\\${config.thousands}`, 'g'), '').replace(config.decimal, '.'))
-  const isNegative = value.startsWith('-')
-
-  return isNegative ? -Math.abs(currency) : Math.abs(currency)
-}
-
-export const currency: Currency = {
-  mask: formatCurrency,
-  unMask: unMaskCurrency
-}
-
-export default currency
