@@ -7,8 +7,8 @@
         "generator-star-spacing": "off",
         "arrow-parens": "off",
         "one-var": "off",
-        "no-console": "error",
-        "no-debugger": "error",
+        "no-console": "warn",
+        "no-debugger": "warn",
 
         // Possible Errors
         "no-extra-parens": "error",
