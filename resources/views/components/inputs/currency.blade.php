@@ -1,8 +1,8 @@
 <div x-data="{
     model: @entangle($attributes->wire('model')),
     input: null,
-    isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
     config: {
+        isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
         thousands: '{{ $thousands }}',
         decimal:   '{{ $decimal }}',
         precision:  {{ $precision }},
@@ -29,7 +29,7 @@
 
         this.input = $wireui.utils.currency.mask(currency, this.config)
 
-        if (!this.isLazy && emitInput) {
+        if (!this.config.isLazy && emitInput) {
             this.emitInput(this.input)
         }
     },
