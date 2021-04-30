@@ -5,3 +5,13 @@ export const str = (value: string | number | null): string => {
 export const onlyNumbers = (value: string | null): string => {
   return str(value).replace(/\D+/g, '')
 }
+
+export interface OccurrenceCount {
+  (haystack: string, needle: string | number | null): number
+}
+
+export const occurrenceCount: OccurrenceCount = (haystack, needle): number => {
+  const regex = new RegExp(`\\${needle}`, 'g')
+
+  return (haystack?.match(regex) || []).length
+}

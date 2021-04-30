@@ -9,17 +9,15 @@
         emitFormatted: @json(filter_var($emitFormatted, FILTER_VALIDATE_BOOLEAN)),
     },
 
-    countOccurrence(needle, haystack) {
-        const regex = new RegExp(`\\${needle}`, 'g')
-
-        return (haystack.match(regex) || []).length
-    },
     mask(currency, emitInput = true) {
         if (typeof currency === 'number') {
             currency = currency.toString()
         }
 
-        if (currency?.endsWith(this.config.decimal) && this.countOccurrence(this.config.decimal, currency) === 1) {
+        if (
+            currency?.endsWith(this.config.decimal)
+            && $wireui.utils.occurrenceCount(currency, this.config.decimal) === 1
+        ) {
             if (currency.length === 1) {
                 return this.input = '0.'
             }
