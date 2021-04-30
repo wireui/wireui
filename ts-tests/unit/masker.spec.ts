@@ -122,4 +122,19 @@ describe('Testing masker', () => {
     assert.equal(applyMask('h:m', '59:99'), '5:')
     assert.equal(applyMask('h:m', '00:00'), null)
   })
+
+  it('should mask 24 hours and minutes using mask H:m', () => {
+    const times = ['11:10', '01:23', '00:00', '09:59', '12:28', '07:36', '23:59']
+
+    times.forEach(time => assert.equal(applyMask('H:m', time), time))
+
+    assert.equal(applyMask('H:m', '59:99'), null)
+    assert.equal(applyMask('H', '0:0'), '0')
+    assert.equal(applyMask('H', '25'), '2')
+    assert.equal(applyMask('H', '22'), '22')
+    assert.equal(applyMask('H', '99'), null)
+    assert.equal(applyMask('H', '29'), '2')
+    assert.equal(applyMask('H', '33'), null)
+    assert.equal(applyMask('H', '3'), null)
+  })
 })

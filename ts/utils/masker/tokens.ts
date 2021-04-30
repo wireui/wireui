@@ -1,4 +1,4 @@
-import { hour12Token, minutesToken } from './timeTokens'
+import { hour24Token, hour12Token, minutesToken } from './timeTokens'
 
 export interface TokenCallable {
   (value: string, iValue: number): boolean
@@ -21,6 +21,7 @@ export type MaskerTokens = {
   'S': Token
   'A': Token
   'a': Token
+  'H': Token
   'h': Token
   'm': Token
   '!': Token
@@ -33,6 +34,7 @@ export const tokens: MaskerTokens = {
   'A': { pattern: /[a-zA-Z]/, transform: (v: string): string => v.toLocaleUpperCase() },
   'a': { pattern: /[a-zA-Z]/, transform: (v: string): string => v.toLocaleLowerCase() },
   '!': { escape: true },
+  'H': hour24Token,
   'h': hour12Token,
   'm': minutesToken
 }
