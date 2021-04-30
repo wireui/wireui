@@ -11,7 +11,7 @@
         this.input = this.masker.apply(value).value
         this.model = this.config.emitFormatted
             ? this.masker.value
-            : this.masker.original
+            : this.masker.getOriginal()
     }
 }"
 x-init="function() {
