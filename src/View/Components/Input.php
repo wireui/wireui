@@ -76,6 +76,7 @@ class Input extends Component
         $data['name']     = $attributes->get('name');
         $data['id']       = $attributes->get('id');
         $data['disabled'] = (bool)$attributes->get('disabled');
+        $data['readonly'] = (bool)$attributes->get('readonly');
 
         return $data;
     }
