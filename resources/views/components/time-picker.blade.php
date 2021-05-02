@@ -196,7 +196,7 @@ class="w-full relative">
             x-on:blur="emitInput"
         >
             <x-slot name="append">
-                <div class="absolute inset-y-0 right-3 z-10 flex items-center justify-center">
+                <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto">
                         <x-icon class="cursor-pointer w-4 h-4 text-gray-400 hover:text-red-500 transition-colors ease-in-out duration-150"
                             x-cloak
