@@ -19,7 +19,7 @@
             && $wireui.utils.occurrenceCount(currency, this.config.decimal) === 1
         ) {
             if (currency.length === 1) {
-                return this.input = '0.'
+                return this.input = `0.${this.config.decimal}`
             }
 
             return
@@ -45,7 +45,15 @@ x-init="function() {
         this.mask(this.model)
     }
 
-    $watch('model', value => this.mask(value, false))
+    $watch('model', currency => {
+        if (!this.config.emitFormatted) {
+            currency = $wireui.utils.currency.mask(currency, this.config)
+        }
+
+        if (currency !== this.input) {
+            this.mask(currency, false)
+        }
+    })
 }">
     <x-input {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
         :color="$color"
@@ -60,8 +68,6 @@ x-init="function() {
         :append="$append"
         x-model="input"
         x-on:input="mask($event.target.value)"
-        @if ($attributes->wire('model')->hasModifier('lazy'))
-            x-on:blur="emitInput($event.target.value)"
-        @endif
+        x-on:blur="emitInput($event.target.value)"
     />
 </div>

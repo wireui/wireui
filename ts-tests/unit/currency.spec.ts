@@ -49,14 +49,19 @@ describe('Testing Currency Formatter', () => {
   })
 
   it('should can customize mask separators', () => {
-    const numbers = '1234567,89'
-    const currency = maskCurrency(numbers, {
+    const brlConfig = {
       thousands: '.',
       decimal: ',',
       precision: 2
-    })
+    }
+    const numbers = '1234567,89'
+    const currency = maskCurrency(numbers, brlConfig)
 
     assert.equal('1.234.567,89', currency)
+
+    const intNumbers = 12.55
+    const masked = maskCurrency(intNumbers, brlConfig)
+    assert.equal('12,55', masked)
   })
 
   it('should unmask currency', () => {

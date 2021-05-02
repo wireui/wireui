@@ -31,7 +31,7 @@ const applyCurrencyMask = (numbers: string, separator: string): string => {
 
 export const maskCurrency: MaskCurrency = (value = null, config): string => {
   if (typeof value === 'number') {
-    value = value.toString()
+    value = value.toString().replace('.', config.decimal)
   }
 
   const [digits = null, decimals = null] = splitCurrency(value, config)
