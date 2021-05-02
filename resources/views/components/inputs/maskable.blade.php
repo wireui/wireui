@@ -3,12 +3,19 @@
     input: null,
     masker: null,
     config: {
+        isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
         mask: {{ $mask }},
         emitFormatted: @json(filter_var($emitFormatted, FILTER_VALIDATE_BOOLEAN))
     },
 
-    emitInput(value) {
+    onInput(value) {
         this.input = this.masker.apply(value).value
+
+        if (!this.config.isLazy) {
+            this.emitInput()
+        }
+    },
+    emitInput() {
         this.model = this.config.emitFormatted
             ? this.masker.value
             : this.masker.getOriginal()
@@ -34,7 +41,8 @@ x-init="function() {
         :prepend="$prepend"
         :append="$append"
         x-model="input"
-        x-on:input="emitInput($event.target.value)"
+        x-on:input="onInput($event.target.value)"
+        x-on:blur="emitInput"
         {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
     />
 </div>
