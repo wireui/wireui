@@ -16,6 +16,7 @@ use WireUi\View\Components\Inputs\CurrencyInput;
 use WireUi\View\Components\Inputs\MaskableInput;
 use WireUi\View\Components\Inputs\PhoneInput;
 use WireUi\View\Components\Notifications;
+use WireUi\View\Components\TimePicker;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -80,5 +81,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(DropdownItem::class, 'dropdown.item');
         Blade::component(DropdownHeader::class, 'dropdown.header');
         Blade::component(Notifications::class, 'notifications');
+        Blade::component(TimePicker::class, 'time-picker');
     }
 }
