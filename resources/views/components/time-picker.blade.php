@@ -197,14 +197,14 @@ class="w-full relative">
         >
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
-                    <div class="flex items-center gap-x-2 my-auto">
-                        <x-icon class="cursor-pointer w-4 h-4 text-gray-400 hover:text-red-500 transition-colors ease-in-out duration-150"
+                    <div class="flex items-center gap-x-2 my-auto {{ ($errors->has($name) ?? false) ? 'text-red-400':'text-gray-400' }}">
+                        <x-icon class="cursor-pointer w-4 h-4 hover:text-red-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
                             x-show="!config.readonly && !config.disabled && input"
                             x-on:click="clearInput()"
                         />
-                        <x-icon class="cursor-pointer w-5 h-5 text-gray-400"
+                        <x-icon class="cursor-pointer w-5 h-5"
                             name="clock"
                             x-show="!config.readonly && !config.disabled"
                             x-on:click="openPicker"
