@@ -22,13 +22,10 @@ class TimePicker extends Input
         ?string $hint = null,
         ?string $cornerHint = null,
         ?string $icon = null,
-        ?string $rightIcon = null,
         ?string $prefix = null,
-        ?string $suffix = null,
-        ?string $prepend = null,
-        ?string $append = null
+        ?string $prepend = null
     ) {
-        parent::__construct($color, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix, $prepend, $append);
+        parent::__construct($color, $label, $hint, $cornerHint, $icon, $rightIcon = null, $prefix, $suffix = null, $prepend, $append = null);
 
         $this->interval = $interval;
         $this->format   = $format;
