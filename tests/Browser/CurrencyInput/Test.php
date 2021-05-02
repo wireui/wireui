@@ -16,7 +16,8 @@ class Test extends BrowserTestCase
                 ->type('currency', '123456')
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertInputValue('currency', '123,456');
-                })->type('currency', '123456.789')
+                })->clear('currency')
+                ->type('currency', '123456.789')
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertInputValue('currency', '1,234,567.89');
                 });

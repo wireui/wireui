@@ -19,21 +19,6 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
-    public function it_should_type_input_value_and_emit_unformatted_value()
-    {
-        $this->browse(function (Browser $browser) {
-            Livewire::visit($browser, Component::class)
-                ->clear('singleMask')
-                ->type('singleMask', '3344')
-                ->waitUsing(5, 75, function () use ($browser) {
-                    return $browser
-                        ->assertSeeIn('@singleMaskValue', '3344')
-                        ->assertInputValue('singleMask', '33.44');
-                });
-        });
-    }
-
-    /** @test */
     public function it_should_type_input_value_and_emit_formatted_value()
     {
         $this->browse(function (Browser $browser) {
