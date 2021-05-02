@@ -23,9 +23,12 @@
         this.showPicker = true
         this.search = ''
         this.filteredTimes = this.times
-        this.$nextTick(() => {
-            this.$refs.search.focus()
-        })
+
+        if (window.innerWidth >= 1000) {
+            this.$nextTick(() => {
+                this.$refs.search.focus()
+            })
+        }
     },
     closePicker() { this.showPicker = false },
     clearInput() {
