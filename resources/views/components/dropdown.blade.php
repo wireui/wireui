@@ -21,7 +21,7 @@
          x-transition:leave="transition ease-in duration-75"
          x-transition:leave-start="transform opacity-100 scale-100"
          x-transition:leave-end="transform opacity-0 scale-95"
-         class="{{ $getAlign() }} absolute mt-2 w-56"
+         class="{{ $getAlign() }} z-30 absolute mt-2 w-56"
          style="display: none;"
          @unless($persistent) x-on:click="close" @endunless>
         <div class="relative max-h-60 overflow-y-auto overflow-x-hidden border border-gray-200 rounded-lg shadow-lg bg-white">
