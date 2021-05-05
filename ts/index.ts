@@ -1,5 +1,6 @@
 import utils, { Utilities } from './utils'
 import { notify, confirmAction, Notification, makeNotification, NotificationParser } from './notification'
+import './directives/confirm'
 
 export interface WireUi {
   utils: Utilities
