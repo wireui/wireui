@@ -110,7 +110,7 @@ abstract class BaseButton extends Component
     {
         $rounded = $this->squared ? '' : ($this->rounded ? 'rounded-full' : 'rounded-md');
         $size    = $this->getSize();
-        $classes = "focus:outline-none px-2.5 py-1.5 flex gap-x-2 items-center
+        $classes = "focus:outline-none px-2.5 py-1.5 flex justify-center gap-x-2 items-center
                     transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
                     hover:shadow-sm {$rounded} {$size}";
 

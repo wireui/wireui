@@ -4,7 +4,7 @@
 ]) }}
 wire:loading.attr="disabled">
     @if ($icon)
-        <x-icon :name="$icon" class="w-4 h-4" />
+        <x-icon :name="$icon" class="w-4 h-4 flex-shrink-0" />
     @endif
 
     {{ $label ?? $slot }}
