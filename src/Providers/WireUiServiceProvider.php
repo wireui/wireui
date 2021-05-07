@@ -11,6 +11,7 @@ use WireUi\View\Components\Card;
 use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
+use WireUi\View\Components\Error;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
@@ -84,5 +85,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Notifications::class, 'notifications');
         Blade::component(TimePicker::class, 'time-picker');
         Blade::component(Card::class, 'card');
+        Blade::component(Error::class, 'error');
     }
 }
