@@ -1,3 +1,5 @@
 <?php
 
-return [];
+return [
+    'empty_options' => 'Empty Options',
+];
