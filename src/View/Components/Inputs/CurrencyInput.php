@@ -6,8 +6,6 @@ use WireUi\View\Components\Input;
 
 class CurrencyInput extends Input
 {
-    protected const VIEW = 'wireui::components.inputs.currency';
-
     public string $thousands;
 
     public string $decimal;
@@ -38,5 +36,10 @@ class CurrencyInput extends Input
         $this->decimal       = $decimal;
         $this->precision     = $precision;
         $this->emitFormatted = $emitFormatted;
+    }
+
+    protected function getView(): string
+    {
+        return 'wireui::components.inputs.currency';
     }
 }

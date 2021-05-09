@@ -2,11 +2,8 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
-
-class Input extends Component
+class Input extends FormComponent
 {
-    protected const VIEW          = 'wireui::components.input';
     protected const DEFAULT_COLOR = 'focus:ring-indigo-500 focus:border-indigo-500';
 
     public string $color;
@@ -53,32 +50,9 @@ class Input extends Component
         $this->append     = $append;
     }
 
-    public function render()
+    protected function getView(): string
     {
-        return function (array $data) {
-            return view(static::VIEW, $this->mergeData($data))->render();
-        };
-    }
-
-    protected function mergeData(array $data): array
-    {
-        $attributes = $data['attributes'];
-        $model      = $attributes->wire('model')->value();
-
-        if (!$attributes->has('name') && $model) {
-            $attributes->offsetSet('name', $model);
-        }
-
-        if (!$attributes->has('id') && $model) {
-            $attributes->offsetSet('id', md5($model));
-        }
-
-        $data['name']     = $attributes->get('name');
-        $data['id']       = $attributes->get('id');
-        $data['disabled'] = (bool)$attributes->get('disabled');
-        $data['readonly'] = (bool)$attributes->get('readonly');
-
-        return $data;
+        return 'wireui::components.input';
     }
 
     public function getInputClasses(bool $hasError = false): string
