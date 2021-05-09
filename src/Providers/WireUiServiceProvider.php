@@ -17,6 +17,7 @@ use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
 use WireUi\View\Components\Inputs\MaskableInput;
 use WireUi\View\Components\Inputs\PhoneInput;
+use WireUi\View\Components\Label;
 use WireUi\View\Components\NativeSelect;
 use WireUi\View\Components\Notifications;
 use WireUi\View\Components\TimePicker;
@@ -88,5 +89,6 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Card::class, 'card');
         Blade::component(Error::class, 'error');
         Blade::component(NativeSelect::class, 'native-select');
+        Blade::component(Label::class, 'label');
     }
 }
