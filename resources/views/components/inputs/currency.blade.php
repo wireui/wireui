@@ -2,11 +2,11 @@
     model: @entangle($attributes->wire('model')),
     input: null,
     config: {
-        isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
+        isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
         thousands: '{{ $thousands }}',
         decimal:   '{{ $decimal }}',
         precision:  {{ $precision }},
-        emitFormatted: @json(filter_var($emitFormatted, FILTER_VALIDATE_BOOLEAN)),
+        emitFormatted: @boolean($emitFormatted),
     },
 
     mask(currency, emitInput = true) {
