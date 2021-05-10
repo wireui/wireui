@@ -4,7 +4,9 @@ namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Stringable;
 use WireUi\Facades\WireUiDirectives;
+use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Button;
 use WireUi\View\Components\Card;
@@ -32,6 +34,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
         $this->registerTagCompiler();
+        $this->registerMixins();
     }
 
     protected function registerTagCompiler()
@@ -91,5 +94,10 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Error::class, 'error');
         Blade::component(NativeSelect::class, 'native-select');
         Blade::component(Label::class, 'label');
+    }
+
+    protected function registerMixins()
+    {
+        Stringable::macro('unless', app(UnlessMixin::class)());
     }
 }
