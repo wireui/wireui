@@ -74,7 +74,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::directive('notify', fn (string $expression) => WireUiDirectives::notify($expression));
         Blade::directive('wireUiScripts', fn () => WireUiDirectives::scripts());
         Blade::directive('wireUiStyles', fn () => WireUiDirectives::styles());
-        Blade::directive('boolean', fn ($value) => json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)));
+        Blade::directive('boolean', fn ($value) => WireUiDirectives::boolean($value));
     }
 
     protected function registerBladeComponents(): void

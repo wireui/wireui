@@ -11,6 +11,7 @@ use WireUi\WireUiBladeDirectives;
  * @method static string|null getManifestVersion(string $file, ?string &$route = null)
  * @method static string confirmAction(string $expression)
  * @method static string notify(string $expression)
+ * @method static string boolean(string $value)
  */
 class WireUiDirectives extends Facade
 {
