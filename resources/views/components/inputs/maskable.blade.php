@@ -30,7 +30,8 @@ x-init="function() {
     })
 }">
     <x-input
-        :color="$color"
+        :borderless="$borderless"
+        :shadowless="$shadowless"
         :label="$label"
         :hint="$hint"
         :corner-hint="$cornerHint"

@@ -16,7 +16,8 @@ class TimePicker extends Input
     public function __construct(
         int $interval = self::INTERVAL,
         string $format = self::DEFAULT_FORMAT,
-        ?string $color = null,
+        bool $borderless = false,
+        bool $shadowless = false,
         ?string $label = null,
         ?string $hint = null,
         ?string $cornerHint = null,
@@ -24,7 +25,7 @@ class TimePicker extends Input
         ?string $prefix = null,
         ?string $prepend = null
     ) {
-        parent::__construct($color, $label, $hint, $cornerHint, $icon, $rightIcon = null, $prefix, $suffix = null, $prepend, $append = null);
+        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon = null, $prefix, $suffix = null, $prepend, $append = null);
 
         $this->interval = $interval;
         $this->format   = $format;

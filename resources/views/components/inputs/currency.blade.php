@@ -56,7 +56,8 @@ x-init="function() {
     })
 }">
     <x-input {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
-        :color="$color"
+        :borderless="$borderless"
+        :shadowless="$shadowless"
         :label="$label"
         :hint="$hint"
         :corner-hint="$cornerHint"

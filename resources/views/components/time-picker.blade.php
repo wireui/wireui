@@ -5,7 +5,7 @@
         isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
         interval: {{ $interval }},
         format: '{{ $format }}',
-        is12H: @boolean($format === $this::FORMAT_12H),
+        is12H: @boolean($format === '12'),
         readonly: @boolean($readonly),
         disabled: @boolean($disabled),
     },
@@ -187,7 +187,8 @@ x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
 class="w-full relative">
     <div class="relative">
         <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
-            :color="$color"
+            :borderless="$borderless"
+            :shadowless="$shadowless"
             :label="$label"
             :hint="$hint"
             :corner-hint="$cornerHint"

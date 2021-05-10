@@ -2,11 +2,13 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\{Str, Stringable};
+
 class Input extends FormComponent
 {
-    protected const DEFAULT_COLOR = 'focus:ring-indigo-500 focus:border-indigo-500';
+    public bool $borderless;
 
-    public string $color;
+    public bool $shadowless;
 
     public ?string $label;
 
@@ -27,7 +29,8 @@ class Input extends FormComponent
     public ?string $append;
 
     public function __construct(
-        ?string $color = null,
+        bool $borderless = false,
+        bool $shadowless = false,
         ?string $label = null,
         ?string $hint = null,
         ?string $cornerHint = null,
@@ -38,7 +41,8 @@ class Input extends FormComponent
         ?string $prepend = null,
         ?string $append = null
     ) {
-        $this->color      = $color ?? static::DEFAULT_COLOR;
+        $this->borderless = $borderless;
+        $this->shadowless = $shadowless;
         $this->label      = $label;
         $this->hint       = $hint;
         $this->cornerHint = $cornerHint;
@@ -76,16 +80,26 @@ class Input extends FormComponent
 
     protected function getErrorClasses(): string
     {
-        return 'border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500';
+        return Str::of('text-red-900 placeholder-red-300')
+            ->unless($this->borderless, function(Stringable $stringable) {
+                return $stringable->append(' border border-red-300 focus:ring-red-500 focus:border-red-500');
+            });
     }
 
     protected function getDefaultColorClasses(): string
     {
-        return "{$this->color} placeholder-gray-400 border-gray-300";
+        return Str::of('placeholder-gray-400')
+            ->unless($this->borderless, function(Stringable $stringable) {
+                return $stringable->append(' border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500');
+            });
     }
 
     protected function getDefaultClasses(): string
     {
-        return 'shadow-sm block w-full sm:text-sm rounded-md';
+        return Str::of('block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none')
+            ->unless($this->shadowless, fn(Stringable $stringable) => $stringable->append(' shadow-sm'))
+            ->when($this->borderless, function(Stringable $stringable) {
+                return $stringable->append(' border-transparent focus:border-transparent focus:ring-transparent');
+            });
     }
 }
