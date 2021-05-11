@@ -2,8 +2,6 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
-
 abstract class FormComponent extends Component
 {
     public function render()
