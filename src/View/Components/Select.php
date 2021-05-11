@@ -2,7 +2,7 @@
 
 namespace WireUi\View\Components;
 
-class Select extends BaseSelect
+class Select extends NativeSelect
 {
     public string $rightIcon;
 
