@@ -22,6 +22,9 @@ use WireUi\View\Components\Inputs\PhoneInput;
 use WireUi\View\Components\Label;
 use WireUi\View\Components\NativeSelect;
 use WireUi\View\Components\Notifications;
+use WireUi\View\Components\Select;
+use WireUi\View\Components\Select\Option as SelectOption;
+use WireUi\View\Components\Select\UserOption as SelectUserOption;
 use WireUi\View\Components\TimePicker;
 
 class WireUiServiceProvider extends ServiceProvider
@@ -81,6 +84,8 @@ class WireUiServiceProvider extends ServiceProvider
     {
         Blade::component(Icon::class, 'icon');
         Blade::component(Input::class, 'input');
+        Blade::component(Label::class, 'label');
+        Blade::component(Error::class, 'error');
         Blade::component(MaskableInput::class, 'inputs.maskable');
         Blade::component(PhoneInput::class, 'inputs.phone');
         Blade::component(CurrencyInput::class, 'inputs.currency');
@@ -91,9 +96,10 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Notifications::class, 'notifications');
         Blade::component(TimePicker::class, 'time-picker');
         Blade::component(Card::class, 'card');
-        Blade::component(Error::class, 'error');
         Blade::component(NativeSelect::class, 'native-select');
-        Blade::component(Label::class, 'label');
+        Blade::component(Select::class, 'select');
+        Blade::component(SelectOption::class, 'select.option');
+        Blade::component(SelectUserOption::class, 'select.user-option');
     }
 
     protected function registerMixins()
