@@ -5,21 +5,18 @@
 
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label || $cornerHint)
-        <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }}">
+        <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
-                <label class="block text-sm font-medium {{ $hasError ? 'text-red-700' : 'text-gray-700' }}"
-                    @if($id) for="{{ $id }}" @endif>
-                    {{ $label }}
-                </label>
+                <x-label :label="$label" :has-error="$hasError" :id="$id" />
             @endif
 
             @if ($cornerHint)
-                <label @if($id) for="{{ $id }}" @endif class="text-sm text-gray-500">{{ $cornerHint }}</label>
+                <x-label :label="$cornerHint" :has-error="$hasError" :id="$id" />
             @endif
         </div>
     @endif
 
-    <div class="mt-1 relative rounded-md shadow-sm">
+    <div class="relative rounded-md @unless($shadowless) shadow-sm @endunless">
         @if ($prefix || $icon)
             <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none
                 {{ $hasError ? 'text-red-500' : 'text-gray-400' }}">

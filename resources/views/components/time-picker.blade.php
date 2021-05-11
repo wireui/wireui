@@ -2,12 +2,12 @@
     model: @entangle($attributes->wire('model')),
     input: null,
     config: {
-        isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
+        isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
         interval: {{ $interval }},
         format: '{{ $format }}',
-        is12H: @json(filter_var($format === '12', FILTER_VALIDATE_BOOLEAN)),
-        readonly: @json(filter_var($readonly, FILTER_VALIDATE_BOOLEAN)),
-        disabled: @json(filter_var($disabled, FILTER_VALIDATE_BOOLEAN)),
+        is12H: @boolean($format === '12'),
+        readonly: @boolean($readonly),
+        disabled: @boolean($disabled),
     },
     search: '',
     showPicker: false,
@@ -187,7 +187,8 @@ x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
 class="w-full relative">
     <div class="relative">
         <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
-            :color="$color"
+            :borderless="$borderless"
+            :shadowless="$shadowless"
             :label="$label"
             :hint="$hint"
             :corner-hint="$cornerHint"

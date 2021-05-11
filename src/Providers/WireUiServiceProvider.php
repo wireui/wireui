@@ -4,19 +4,27 @@ namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Stringable;
 use WireUi\Facades\WireUiDirectives;
+use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Button;
 use WireUi\View\Components\Card;
 use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
+use WireUi\View\Components\Error;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
 use WireUi\View\Components\Inputs\MaskableInput;
 use WireUi\View\Components\Inputs\PhoneInput;
+use WireUi\View\Components\Label;
+use WireUi\View\Components\NativeSelect;
 use WireUi\View\Components\Notifications;
+use WireUi\View\Components\Select;
+use WireUi\View\Components\Select\Option as SelectOption;
+use WireUi\View\Components\Select\UserOption as SelectUserOption;
 use WireUi\View\Components\TimePicker;
 
 class WireUiServiceProvider extends ServiceProvider
@@ -29,6 +37,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
         $this->registerTagCompiler();
+        $this->registerMixins();
     }
 
     protected function registerTagCompiler()
@@ -68,12 +77,15 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::directive('notify', fn (string $expression) => WireUiDirectives::notify($expression));
         Blade::directive('wireUiScripts', fn () => WireUiDirectives::scripts());
         Blade::directive('wireUiStyles', fn () => WireUiDirectives::styles());
+        Blade::directive('boolean', fn ($value) => WireUiDirectives::boolean($value));
     }
 
     protected function registerBladeComponents(): void
     {
         Blade::component(Icon::class, 'icon');
         Blade::component(Input::class, 'input');
+        Blade::component(Label::class, 'label');
+        Blade::component(Error::class, 'error');
         Blade::component(MaskableInput::class, 'inputs.maskable');
         Blade::component(PhoneInput::class, 'inputs.phone');
         Blade::component(CurrencyInput::class, 'inputs.currency');
@@ -84,5 +96,14 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Notifications::class, 'notifications');
         Blade::component(TimePicker::class, 'time-picker');
         Blade::component(Card::class, 'card');
+        Blade::component(NativeSelect::class, 'native-select');
+        Blade::component(Select::class, 'select');
+        Blade::component(SelectOption::class, 'select.option');
+        Blade::component(SelectUserOption::class, 'select.user-option');
+    }
+
+    protected function registerMixins()
+    {
+        Stringable::macro('unless', app(UnlessMixin::class)());
     }
 }

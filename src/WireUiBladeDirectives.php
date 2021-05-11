@@ -47,4 +47,9 @@ class WireUiBladeDirectives
     {
         return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
     }
+
+    public function boolean(string $value): string
+    {
+        return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
+    }
 }

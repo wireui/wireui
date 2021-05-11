@@ -8,8 +8,6 @@ use WireUi\View\Components\Input;
 
 abstract class BaseMaskable extends Input
 {
-    protected const VIEW = 'wireui::components.inputs.maskable';
-
     public bool $emitFormatted;
 
     public string $mask;
@@ -17,7 +15,8 @@ abstract class BaseMaskable extends Input
     public function __construct(
         bool $emitFormatted = false,
         ?string $mask = null,
-        ?string $color = null,
+        bool $borderless = false,
+        bool $shadowless = false,
         ?string $label = null,
         ?string $hint = null,
         ?string $cornerHint = null,
@@ -28,7 +27,7 @@ abstract class BaseMaskable extends Input
         ?string $prepend = null,
         ?string $append = null
     ) {
-        parent::__construct($color, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix, $prepend, $append);
+        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix, $prepend, $append);
 
         if (!$mask) {
             $mask = $this->getInputMask();
@@ -36,6 +35,11 @@ abstract class BaseMaskable extends Input
 
         $this->mask          = $this->formatMask($mask);
         $this->emitFormatted = $emitFormatted;
+    }
+
+    protected function getView(): string
+    {
+        return 'wireui::components.inputs.maskable';
     }
 
     private function formatMask(string $mask): string

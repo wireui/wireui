@@ -3,9 +3,9 @@
     input: null,
     masker: null,
     config: {
-        isLazy: @json($attributes->wire('model')->hasModifier('lazy')),
+        isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
         mask: {{ $mask }},
-        emitFormatted: @json(filter_var($emitFormatted, FILTER_VALIDATE_BOOLEAN))
+        emitFormatted: @boolean($emitFormatted)
     },
 
     onInput(value) {
@@ -30,7 +30,8 @@ x-init="function() {
     })
 }">
     <x-input
-        :color="$color"
+        :borderless="$borderless"
+        :shadowless="$shadowless"
         :label="$label"
         :hint="$hint"
         :corner-hint="$cornerHint"
