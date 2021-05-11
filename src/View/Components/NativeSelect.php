@@ -2,10 +2,7 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\Collection;
-use Illuminate\View\Component;
-
-class NativeSelect extends Component
+class NativeSelect extends FormComponent
 {
     public ?string $label;
 
@@ -33,41 +30,20 @@ class NativeSelect extends Component
         $this->options     = $options;
     }
 
-    public function render()
+    protected function getView(): string
     {
-        return function (array $data) {
-            return view('wireui::components.native-select', $this->mergeData($data))->render();
-        };
-    }
-
-    protected function mergeData(array $data): array
-    {
-        $attributes = $data['attributes'];
-        $model      = $attributes->wire('model')->value();
-
-        if (!$attributes->has('name') && $model) {
-            $attributes->offsetSet('name', $model);
-        }
-
-        if (!$attributes->has('id') && $model) {
-            $attributes->offsetSet('id', md5($model));
-        }
-
-        $data['id']       = $attributes->get('id');
-        $data['name']     = $attributes->get('name');
-        $data['disabled'] = (bool)$attributes->get('disabled');
-
-        return $data;
+        return 'wireui::components.native-select';
     }
 
     public function defaultClasses(): string
     {
-        return 'mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm rounded-md focus:outline-none';
+        return 'mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm
+                rounded-md border bg-white focus:ring-1 focus:outline-none';
     }
 
     public function colorClasses(): string
     {
-        return 'border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500';
+        return 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500';
     }
 
     public function errorClasses()
