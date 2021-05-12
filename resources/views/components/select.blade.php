@@ -74,7 +74,7 @@
         return this.$refs.optionsContainer.querySelector(`[data-value='${value}']`)
     },
     getPlaceholderText() {
-        if (this.multiselect || this.model?.toString().length) return null
+        if (this.model?.toString().length) return null
 
         return this.placeholder
     },
