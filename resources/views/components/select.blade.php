@@ -31,11 +31,11 @@
     unSelect(value) {
         if (this.disabled || this.readonly) return
 
-        let index = this.model.findIndex(selected => selected == value)
-        this.model.splice(index, 1)
-
-        index = this.selectedOptions.findIndex(option => option.value == value)
+        let index = this.selectedOptions.findIndex(option => option.value == value)
         this.selectedOptions.splice(index, 1)
+
+        index = this.model.findIndex(selected => selected == value)
+        this.model.splice(index, 1)
     },
     select(value) {
         if (this.disabled || this.readonly) return
@@ -46,11 +46,11 @@
 
             if (~index) return this.unSelect(value)
 
-            this.model.push(value)
             const { dataset: option } = this.getOptionElement(value)
             this.$refs.select.dispatchEvent(new Event('select'))
+            this.selectedOptions.push(option)
 
-            return this.selectedOptions.push(option)
+            return this.model.push(value)
         }
 
         this.model = value
@@ -73,9 +73,13 @@
     getOptionElement(value) {
         return this.$refs.optionsContainer.querySelector(`[data-value='${value}']`)
     },
-    getSelectText() {
-        if (!this.model?.toString().length) return this.placeholder
-        if (this.multiselect) return null
+    getPlaceholderText() {
+        if (this.multiselect || this.model?.toString().length) return null
+
+        return this.placeholder
+    },
+    getValueText() {
+        if (this.multiselect || !this.model?.toString().length) return null
 
         return this.getOptionElement(this.model).dataset.label
     },
@@ -101,6 +105,17 @@
             this.selectedOptions.push(option)
         })
     },
+    modelWasChanged() {
+        return this.model?.toString()
+            !== this.selectedOptions.map(option => option.value).toString()
+    },
+    syncSelected(newModel) {
+        if (!this.multiselect || !this.modelWasChanged()) return
+
+        this.selectedOptions = this.model?.map(option => {
+            return this.getOptionElement(option).dataset
+        }) ?? []
+    },
     getFocusables() { return [...this.$el.querySelectorAll('li, input')] },
     getFirstFocusable() { return this.getFocusables().shift() },
     getLastFocusable() { return this.getFocusables().pop() },
@@ -118,7 +133,7 @@ x-init="function() {
             this.$nextTick(() => this.$refs.search?.focus())
         }
     })
-
+    $watch('model', selected => this.syncSelected(selected))
     $watch('search', search => this.filterOptions(search?.toLowerCase()))
 }">
     <div class="relative">
@@ -132,7 +147,8 @@ x-init="function() {
             readonly
             :name="$name"
             :icon="$icon"
-            ::placeholder="getSelectText()"
+            ::placeholder="getPlaceholderText()"
+            ::value="getValueText()"
             {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}
         >
             <x-slot name="prepend">
@@ -177,7 +193,7 @@ x-init="function() {
         </x-input>
     </div>
 
-    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md border border-gray-200"
+    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-gray-200"
         x-show="popover"
         x-cloak
         x-on:click.away="closePopover"
