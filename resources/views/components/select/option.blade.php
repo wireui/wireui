@@ -1,6 +1,6 @@
 <li {{ $attributes->class([
         'py-2 px-3 focus:outline-none transition-colors ease-in-out duration-50 relative group',
-        'cursor-pointer focus:bg-indigo-100 focus:text-indigo-800 hover:bg-indigo-600 hover:text-white' => !($readonly || $disabled),
+        'cursor-pointer focus:bg-indigo-100 focus:text-indigo-800 hover:text-white' => !($readonly || $disabled),
         'opacity-60 cursor-not-allowed' => $disabled
     ])->merge([
         'data-label' => $label,
@@ -11,7 +11,13 @@
         x-on:click="select('{{ $value }}')"
         x-on:keydown.enter="select('{{ $value }}')"
     @endunless
-    :class="{ 'font-semibold': isSelected('{{ $value }}') }">
+    :class="{
+        'font-semibold': isSelected('{{ $value }}'),
+        @if (!($readonly || $disabled))
+            'hover:bg-red-500':    isSelected('{{ $value }}'),
+            'hover:bg-indigo-500': !isSelected('{{ $value }}'),
+        @endif
+    }">
     {{ $label ?? $slot }}
 
     <div class="absolute inset-y-0 right-0 flex items-center pr-4"
