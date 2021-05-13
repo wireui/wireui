@@ -21,7 +21,7 @@
             <div class="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none
                 {{ $hasError ? 'text-red-500' : 'text-gray-400' }}">
                 @if ($icon)
-                    <x-wireui::icon :name="$icon" class="h-5 w-5" />
+                    <x-icon :name="$icon" class="h-5 w-5" />
                 @elseif($prefix)
                     <span class="pl-1 flex items-center self-center">
                         {{ $prefix }}
@@ -42,13 +42,13 @@
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none
                 {{ $hasError ? 'text-red-500' : 'text-gray-400' }}">
                 @if ($rightIcon)
-                    <x-wireui::icon :name="$rightIcon" class="h-5 w-5" />
+                    <x-icon :name="$rightIcon" class="h-5 w-5" />
                 @elseif($suffix)
                     <span class="pr-1 flex items-center justify-center">
                         {{ $suffix }}
                     </span>
                 @elseif($hasError)
-                    <x-wireui::icon name="exclamation-circle" class="h-5 w-5" />
+                    <x-icon name="exclamation-circle" class="h-5 w-5" />
                 @endif
             </div>
         @elseif($append)
@@ -61,6 +61,6 @@
     @endif
 
     @if ($name)
-        <x-wireui::error :name="$name" />
+        <x-error :name="$name" />
     @endif
 </div>
