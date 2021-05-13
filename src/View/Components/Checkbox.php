@@ -4,8 +4,6 @@ namespace WireUi\View\Components;
 
 class Checkbox extends FormComponent
 {
-    public $except = ['type'];
-
     public bool $sm;
 
     public bool $md;
