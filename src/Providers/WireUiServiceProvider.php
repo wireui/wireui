@@ -23,6 +23,7 @@ use WireUi\View\Components\Inputs\PhoneInput;
 use WireUi\View\Components\Label;
 use WireUi\View\Components\NativeSelect;
 use WireUi\View\Components\Notifications;
+use WireUi\View\Components\Radio;
 use WireUi\View\Components\Select;
 use WireUi\View\Components\Select\Option as SelectOption;
 use WireUi\View\Components\Select\UserOption as SelectUserOption;
@@ -104,6 +105,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(SelectUserOption::class, 'select.user-option');
         Blade::component(Toggle::class, 'toggle');
         Blade::component(Checkbox::class, 'checkbox');
+        Blade::component(Radio::class, 'radio');
     }
 
     protected function registerMixins()
