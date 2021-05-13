@@ -26,6 +26,7 @@ use WireUi\View\Components\Select;
 use WireUi\View\Components\Select\Option as SelectOption;
 use WireUi\View\Components\Select\UserOption as SelectUserOption;
 use WireUi\View\Components\TimePicker;
+use WireUi\View\Components\Toggle;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -100,6 +101,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Select::class, 'select');
         Blade::component(SelectOption::class, 'select.option');
         Blade::component(SelectUserOption::class, 'select.user-option');
+        Blade::component(Toggle::class, 'toggle');
     }
 
     protected function registerMixins()

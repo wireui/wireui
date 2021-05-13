@@ -1,5 +1,4 @@
 const colors = require('tailwindcss/colors')
-const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: [
@@ -20,18 +19,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
-    plugin(function ({ addUtilities }) {
-      const newUtilities = {
-        '.hide-scrollbar::-webkit-scrollbar': {
-          'display': 'none'
-        },
-        '.hide-scrollbar': {
-          '-ms-overflow-style': 'none',
-          'scrollbar-width': 'none'
-        }
-      }
-
-      addUtilities(newUtilities, ['responsive'])
-    })
+    require('./tailwindcss/plugins/hideScrollbar'),
+    require('./tailwindcss/components/toggle')
   ]
 }
