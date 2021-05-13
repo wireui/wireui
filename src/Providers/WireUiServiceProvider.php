@@ -110,6 +110,8 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerMixins()
     {
-        Stringable::macro('unless', app(UnlessMixin::class)());
+        if (!Stringable::hasMacro('unless')) {
+            Stringable::macro('unless', app(UnlessMixin::class)());
+        }
     }
 }
