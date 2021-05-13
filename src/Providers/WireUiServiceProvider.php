@@ -10,6 +10,7 @@ use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Button;
 use WireUi\View\Components\Card;
+use WireUi\View\Components\Checkbox;
 use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
@@ -102,6 +103,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(SelectOption::class, 'select.option');
         Blade::component(SelectUserOption::class, 'select.user-option');
         Blade::component(Toggle::class, 'toggle');
+        Blade::component(Checkbox::class, 'checkbox');
     }
 
     protected function registerMixins()
