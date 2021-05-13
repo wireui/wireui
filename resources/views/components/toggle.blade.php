@@ -13,5 +13,7 @@
         @endif
     </div>
 
-    <x-error :name="$name" />
+    @if ($name)
+        <x-error :name="$name" />
+    @endif
 </label>
