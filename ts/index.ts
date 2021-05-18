@@ -9,9 +9,15 @@ export interface WireUi {
   makeNotification: NotificationParser
 }
 
+export interface WireUiHooks {
+  hook (hook: string, callback: CallableFunction): void,
+  dispatchHook (hook: string): void
+}
+
 declare global {
   interface Window {
     $wireui: WireUi
+    Wireui: WireUiHooks
     Livewire: any
   }
 }
@@ -24,5 +30,6 @@ const wireui = {
 }
 
 window.$wireui = wireui
+window.Wireui.dispatchHook('load')
 
 export default wireui

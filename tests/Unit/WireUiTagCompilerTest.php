@@ -42,13 +42,17 @@ class WireUiTagCompilerTest extends UnitTestCase
     public function it_should_match_rendered_scripts_link()
     {
         $bladeDirectives = new WireUiBladeDirectives();
-        $expected        = '<script src="/wireui/assets/js/wireui.js" defer></script>';
+        $hooksScript     = $bladeDirectives->hooksScript();
+        $wireuiScript    = '<script src="/wireui/assets/js/wireui.js" defer></script>';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
-            $expected = str_replace('.js', ".js?id={$version}", $expected);
+            $wireuiScript = str_replace('.js', ".js?id={$version}", $wireuiScript);
         }
 
-        $this->assertEquals($expected, $bladeDirectives->scripts($absolute = false));
+        $scripts = $bladeDirectives->scripts($absolute = false);
+
+        $this->assertStringContainsString($hooksScript, $scripts);
+        $this->assertStringContainsString($wireuiScript, $scripts);
     }
 
     /** @test */

@@ -2,6 +2,8 @@
 
 namespace WireUi;
 
+use WireUi\Actions\Minify;
+
 class WireUiBladeDirectives
 {
     public function scripts(bool $absolute = true): string
@@ -9,7 +11,26 @@ class WireUiBladeDirectives
         $route = route('wireui.assets.scripts', $parameters = [], $absolute);
         $this->getManifestVersion('wireui.js', $route);
 
-        return "<script src=\"{$route}\" defer></script>";
+        return <<<HTML
+        <script>{$this->hooksScript()}</script>
+        <script src="{$route}" defer></script>
+        HTML;
+    }
+
+    public function hooksScript(): string
+    {
+        $scripts = <<<JS
+            window.Wireui = {
+                hook(hook, callback) {
+                    window.addEventListener(`wireui:\${hook}`, () => callback())
+                },
+                dispatchHook(hook) {
+                    window.dispatchEvent(new Event(`wireui:\${hook}`))
+                }
+            }
+        JS;
+
+        return Minify::execute($scripts);
     }
 
     public function styles(bool $absolute = true): string

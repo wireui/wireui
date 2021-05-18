@@ -106,6 +106,9 @@
         },
     }"
     x-on:wireui:notification.window="addNotification($event.detail)"
+    x-init="function() {
+        Wireui.dispatchHook('notifications:load')
+    }"
     wire:ignore>
     <div class="max-w-sm w-full space-y-2 pointer-events-auto flex flex-col-reverse">
         <template x-for="notification in notifications" :key="`notification-${notification.id}`">
