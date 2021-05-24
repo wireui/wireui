@@ -19,6 +19,8 @@
         return $wireui.utils.mask(mask, value)
     },
     openPicker() {
+        if (this.config.readonly || this.config.disabled) return
+
         this.fillTimes()
         this.showPicker = true
         this.search = ''
@@ -89,10 +91,15 @@
         }
     },
     onSearch(search) {
-        this.search = $wireui.utils.mask('h:m', search) ?? ''
+        const mask  = this.config.is12H ? 'h:m' : 'H:m'
+        this.search = $wireui.utils.mask(mask, search) ?? ''
         this.filteredTimes = this.times.filter(time => time.includes(this.search))
 
         if (this.filteredTimes.length === 0) {
+            if (!this.config.is12H) {
+                return this.filteredTimes.push(this.search)
+            }
+
             this.filteredTimes.push(`${this.search} AM`)
             this.filteredTimes.push(`${this.search} PM`)
         }
