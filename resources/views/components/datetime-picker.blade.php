@@ -316,8 +316,9 @@
     focusTime() {
         this.$nextTick(() => {
             this.$refs[`time.${this.modelTime}`]?.scrollIntoView({
-                block: 'center',
-                behavior: 'auto'
+                behavior: 'instant',
+                block: 'nearest',
+                inline: 'center'
             })
         })
     }
