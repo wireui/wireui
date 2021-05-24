@@ -221,7 +221,7 @@
 
         if (this.month !== date.month) {
             this.month = date.month
-            this.syncPickerDates()
+            this.fillPickerDates()
         }
 
         this.emitInput()
