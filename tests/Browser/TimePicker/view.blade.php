@@ -1,5 +1,5 @@
 <div>
-    <h1>Time Pikcer test</h1>
+    <h1>Time Picker test</h1>
 
     // test it_should_select_time_and_clear_am_pm_time
     <x-time-picker placeholder="12:00 AM" wire:model="timeAmPm" label="Time AM/PM" />

@@ -11,6 +11,7 @@ use WireUi\Support\WireUiTagCompiler;
 use WireUi\View\Components\Button;
 use WireUi\View\Components\Card;
 use WireUi\View\Components\Checkbox;
+use WireUi\View\Components\DatetimePicker;
 use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
@@ -97,6 +98,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(DropdownItem::class, 'dropdown.item');
         Blade::component(DropdownHeader::class, 'dropdown.header');
         Blade::component(Notifications::class, 'notifications');
+        Blade::component(DatetimePicker::class, 'datetime-picker');
         Blade::component(TimePicker::class, 'time-picker');
         Blade::component(Card::class, 'card');
         Blade::component(NativeSelect::class, 'native-select');
