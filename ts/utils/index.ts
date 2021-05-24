@@ -4,7 +4,7 @@ import { interval } from './interval'
 import { masker, applyMask, Maskable, ApplyMask } from './masker'
 import { currency, Currency } from './currency'
 import { occurrenceCount, OccurrenceCount } from './helpers'
-
+import { date, getLocalTimezone, ParseDate } from './date'
 export interface Utilities {
   uuid: UuidGenerator
   timeout: PausableInterval
@@ -13,6 +13,8 @@ export interface Utilities {
   mask: ApplyMask
   currency: Currency
   occurrenceCount: OccurrenceCount
+  date: ParseDate,
+  getLocalTimezone: () => string
 }
 
 const utilities: Utilities = {
@@ -22,8 +24,9 @@ const utilities: Utilities = {
   masker,
   mask: applyMask,
   currency,
-  occurrenceCount
+  occurrenceCount,
+  date,
+  getLocalTimezone
 }
 
-export { uuid, timeout, interval, masker, applyMask, currency, occurrenceCount }
 export default utilities
