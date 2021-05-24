@@ -11,6 +11,9 @@ module.exports = {
     extend: {
       colors: {
         blueGray: colors.blueGray
+      },
+      fontSize: {
+        '2xs': '.5rem'
       }
     }
   },
