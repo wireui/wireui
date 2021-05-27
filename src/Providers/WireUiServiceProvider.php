@@ -16,6 +16,7 @@ use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
 use WireUi\View\Components\Error;
+use WireUi\View\Components\Errors;
 use WireUi\View\Components\Icon;
 use WireUi\View\Components\Input;
 use WireUi\View\Components\Inputs\CurrencyInput;
@@ -90,6 +91,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Input::class, 'input');
         Blade::component(Label::class, 'label');
         Blade::component(Error::class, 'error');
+        Blade::component(Errors::class, 'errors');
         Blade::component(MaskableInput::class, 'inputs.maskable');
         Blade::component(PhoneInput::class, 'inputs.phone');
         Blade::component(CurrencyInput::class, 'inputs.currency');
