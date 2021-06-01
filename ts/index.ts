@@ -1,6 +1,7 @@
 import utils, { Utilities } from './utils'
 import { notify, confirmAction, Notification, makeNotification, NotificationParser } from './notification'
 import './directives/confirm'
+import './global'
 
 export interface WireUi {
   utils: Utilities
@@ -19,6 +20,7 @@ declare global {
     $wireui: WireUi
     Wireui: WireUiHooks
     Livewire: any
+    $openModal: CallableFunction
   }
 }
 

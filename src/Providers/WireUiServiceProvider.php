@@ -23,6 +23,8 @@ use WireUi\View\Components\Inputs\CurrencyInput;
 use WireUi\View\Components\Inputs\MaskableInput;
 use WireUi\View\Components\Inputs\PhoneInput;
 use WireUi\View\Components\Label;
+use WireUi\View\Components\Modal;
+use WireUi\View\Components\ModalCard;
 use WireUi\View\Components\NativeSelect;
 use WireUi\View\Components\Notifications;
 use WireUi\View\Components\Radio;
@@ -110,6 +112,8 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Toggle::class, 'toggle');
         Blade::component(Checkbox::class, 'checkbox');
         Blade::component(Radio::class, 'radio');
+        Blade::component(Modal::class, 'modal');
+        Blade::component(ModalCard::class, 'modal.card');
     }
 
     protected function registerMixins()

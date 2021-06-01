@@ -1,9 +1,9 @@
-<div class="w-full divide-y divide-gray-200 {{ $shadow }} {{ $rounded }} {{ $color }}">
+<div class="w-full flex flex-col {{ $divider }} {{ $shadow }} {{ $rounded }} {{ $color }} {{ $cardClasses }}">
     @if ($header)
         {{ $header }}
     @elseif ($title || $action)
         <div class="px-4 py-2.5 flex justify-between items-center">
-            <h2 class="text-md text-gray-500 font-semibold uppercase">{{ $title }}</h2>
+            <h3 class="text-md font-medium text-gray-700">{{ $title }}</h3>
 
             @if ($action)
                 {{ $action }}
@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <div {{ $attributes->merge(['class' => "{$padding}"]) }}>
+    <div {{ $attributes->merge(['class' => "{$padding} flex-grow"]) }}>
         {{ $slot }}
     </div>
 

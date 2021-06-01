@@ -15,7 +15,8 @@
     },
     "dependencies": {
         "alpinejs": "^2.8.2",
-        "dayjs": "^1.10.4"
+        "dayjs": "^1.10.4",
+        "lodash.kebabcase": "^4.1.1"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.3.2",
