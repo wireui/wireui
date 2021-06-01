@@ -3,7 +3,8 @@ name: WireUi Tests
 on:
   push:
     branches:
-      - "**"
+      - master
+      
   pull_request:
     types: [ready_for_review, synchronize, opened]
 
