@@ -1,4 +1,5 @@
-<div x-data="{
+<div class="relative"
+x-data="{
     localeDateConfig: {},
     config: {
         interval: {{ $interval }},
@@ -332,7 +333,7 @@ x-init="function() {
 
             if (!this.withoutTime) {
                 setTimeout(() => this.fillTimes(), 1000)
-             }
+            }
         }
 
         if (!popover && this.tab !== 'date') {
@@ -350,7 +351,7 @@ x-init="function() {
         this.syncInput()
         this.syncPickerDates()
     })
-}" class="relative">
+}">
     <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
@@ -380,16 +381,14 @@ x-init="function() {
         @endif
     </x-input>
 
-    <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-16 sm:mt-1 sm:right-0"
+    <div class="fixed inset-0 z-20 overflow-y-auto sm:absolute sm:inset-auto sm:top-10 sm:mt-1 sm:right-0"
         x-cloak
+        style="display: none;"
         x-show="popover"
         x-on:click.away="closePicker"
-        x-on:keydown.escape.window="handleEscape"
-        xwire:ignore
-        wire:click='$refresh'>
-
-        <div class="flex items-end justify-center h-screen sm:h-96 sm:items-start">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity sm:hidden"
+        x-on:keydown.escape.window="handleEscape">
+        <div class="flex items-end justify-center min-h-screen sm:h-96 sm:items-start">
+            <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transition-opacity sm:hidden"
                 x-show="popover"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"
