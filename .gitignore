@@ -6,3 +6,4 @@ tests/Browser/source
 composer.lock
 .phpunit.result.cache
 yarn-error.log
+.idea
