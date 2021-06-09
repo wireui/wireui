@@ -2,6 +2,7 @@
     :spacing="$fullscreen ? '' : $spacing"
     :z-index="$zIndex"
     :max-width="$maxWidth"
+    :align="$align"
     :blur="$blur">
     <x-card
         :title="$title"

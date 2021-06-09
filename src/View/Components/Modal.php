@@ -12,17 +12,30 @@ class Modal extends Component
 
     public string $spacing;
 
+    public string $align;
+
     public ?string $blur;
 
     public function __construct(
-        string $zIndex = 'z-50',
-        string $maxWidth = '2xl',
-        string $spacing = 'p-4',
-        $blur = false
+        ?string $zIndex = null,
+        ?string $maxWidth = null,
+        ?string $spacing = null,
+        ?string $align = null,
+        $blur = null
     ) {
+        $zIndex   ??= config('wireui.modal.zIndex');
+        $maxWidth ??= config('wireui.modal.maxWidth');
+        $spacing  ??= config('wireui.modal.spacing');
+        $align    ??= config('wireui.modal.align');
+
+        if ($blur === null) {
+            $blur = config('wireui.modal.blur');
+        }
+
         $this->zIndex   = $zIndex;
         $this->spacing  = $spacing;
         $this->maxWidth = $this->getMaxWidth($maxWidth);
+        $this->align    = $this->getAlign($align);
         $this->blur     = $this->getBlur($blur);
     }
 
@@ -64,5 +77,16 @@ class Modal extends Component
         ];
 
         return data_get($classes, $maxWidth, $maxWidth);
+    }
+
+    public function getAlign(string $align): string
+    {
+        $classes = [
+            'start'  => 'sm:items-start',
+            'center' => 'sm:items-center',
+            'end'    => 'sm:items-end',
+        ];
+
+        return data_get($classes, $align, $align);
     }
 }
