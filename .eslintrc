@@ -11,7 +11,7 @@
         "no-debugger": "warn",
 
         // Possible Errors
-        "no-extra-parens": "error",
+        "no-extra-parens": ["error", "all", { "returnAssign": false }],
         "import/first": "off",
         "import/named": "error",
         "import/namespace": "error",
@@ -26,7 +26,7 @@
         // Best Practices
         "eqeqeq": "error",
         "no-invalid-this": "error",
-        "no-return-assign": "error",
+        "no-return-assign": ["error", "except-parens"],
         "no-unused-expressions": ["error", { "allowTernary": true }],
         "no-useless-concat": "error",
         "no-useless-return": "error",
