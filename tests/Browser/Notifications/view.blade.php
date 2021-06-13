@@ -53,7 +53,6 @@
         Fire Simple Notification from js
     </button>
 
-
     <button
         dusk="button.test.js.complex_notification"
         onclick="firstComplexPersistentNotification()">
@@ -86,12 +85,12 @@
                     accept: {
                         label: 'Delete',
                         style: null,
-                        callback: () => @this.call('setValue', 'deleted')
+                        execute: () => @this.call('setValue', 'deleted')
                     },
                     reject: {
                         label: 'No delete',
                         style: null,
-                        callback: () => @this.call('setValue', 'delete canceled')
+                        execute: () => @this.call('setValue', 'delete canceled')
                     },
                     onClose:   () => @this.call('addEvent', 'onClose'),
                     onDismiss: () => @this.call('addEvent', 'onDismiss'),

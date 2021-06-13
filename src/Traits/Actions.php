@@ -12,6 +12,14 @@ trait Actions
         ]);
     }
 
+    public function confirmNotification(array $options): void
+    {
+        $this->dispatchBrowserEvent('wireui:confirm-notification', [
+            'options'     => $options,
+            'componentId' => $this->id,
+        ]);
+    }
+
     public function successNotification(string $title, ?string $description = null): void
     {
         $options = [
@@ -38,6 +46,6 @@ trait Actions
     {
         $options['icon'] ??= 'question';
 
-        $this->notify($options);
+        $this->confirmNotification($options);
     }
 }

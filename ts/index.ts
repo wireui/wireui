@@ -1,18 +1,15 @@
 import utils, { Utilities } from './utils'
-import { notify, confirmAction, Notification, makeNotification, NotificationParser } from './notification'
+import { notifications, notify, Notifications, Notify } from './notifications'
+import { confirmAction, ConfirmAction } from './confirmAction'
+import { WireUiHooks } from './hooks'
 import './directives/confirm'
 import './global'
 
 export interface WireUi {
   utils: Utilities
-  notify: Notification
-  confirmAction: Notification
-  makeNotification: NotificationParser
-}
-
-export interface WireUiHooks {
-  hook (hook: string, callback: CallableFunction): void,
-  dispatchHook (hook: string): void
+  notify: Notify
+  confirmAction: ConfirmAction
+  notifications: Notifications
 }
 
 declare global {
@@ -28,10 +25,9 @@ const wireui = {
   utils,
   notify,
   confirmAction,
-  makeNotification
+  notifications
 }
 
 window.$wireui = wireui
-window.Wireui.dispatchHook('load')
 
 export default wireui

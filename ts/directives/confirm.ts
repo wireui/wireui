@@ -1,4 +1,5 @@
-import { confirmAction, NotificationOptions } from '../notification'
+import { ConfirmationOptions } from '../notifications/options'
+import { confirmNotification } from '../notifications'
 
 const getElements = (component: HTMLElement): HTMLElement[] => {
   return [...component.querySelectorAll('[x-on\\:confirm]')]
@@ -11,15 +12,19 @@ const initialize = (component: HTMLElement) => {
   elements.forEach(element => {
     const insideAlpineComponent = element.closest('[x-data]')
     const confirmData = element.getAttribute('x-on:confirm')
-    const livewireId = element.closest('[wire\\:id]')?.getAttribute('wire:id')
+    const componentId = element.closest('[wire\\:id]')?.getAttribute('wire:id')
+
+    if (!componentId) {
+      throw new Error('Livewire Component id not found in x-on:confirm directive')
+    }
 
     if (insideAlpineComponent) {
-      return element.setAttribute('x-on:click', `$wireui.confirmAction(${confirmData}, '${livewireId}')`)
+      return element.setAttribute('x-on:click', `$wireui.confirmAction(${confirmData}, '${componentId}')`)
     }
 
     element.onclick = () => {
-      const options = eval(`(${confirmData})`) as NotificationOptions
-      confirmAction(options, livewireId)
+      const options = eval(`(${confirmData})`) as ConfirmationOptions
+      confirmNotification(options, componentId)
     }
   })
 }
