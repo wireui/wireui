@@ -81,16 +81,19 @@
     getValueText() {
         if (this.multiselect || !this.model?.toString().length) return null
 
-        return this.getOptionElement(this.model).dataset.label
+        return this.decodeSpecialChars(this.getOptionElement(this.model).dataset.label)
     },
     isAvailableInList(search, option) {
-        return option.dataset.label.toLowerCase().includes(search)
-            || option.dataset.value.toLowerCase().includes(search)
+        const label = this.decodeSpecialChars(option.dataset.label)
+        const value = this.decodeSpecialChars(option.dataset.value)
+
+        return label.toLowerCase().includes(search)
+            || value.toLowerCase().includes(search)
     },
     filterOptions(search) {
         const options = [...this.$refs.optionsContainer.children]
         options.map(option => {
-            if (this.isAvailableInList(search, option)) {
+            if (this.isAvailableInList(search.toLowerCase(), option)) {
                 option.classList.remove('hidden')
             } else {
                 option.classList.add('hidden')
@@ -115,6 +118,12 @@
         this.selectedOptions = this.model?.map(option => {
             return this.getOptionElement(option).dataset
         }) ?? []
+    },
+    decodeSpecialChars(text) {
+        const textarea     = document.createElement('textarea')
+        textarea.innerHTML = text
+
+        return textarea.value
     },
     getFocusables() { return [...this.$el.querySelectorAll('li, input')] },
     getFirstFocusable() { return this.getFocusables().shift() },
