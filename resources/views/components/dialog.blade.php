@@ -13,14 +13,15 @@ x-data="{
         this.show = false
         clearTimeout(this.timeoutId)
         this.dialog.onClose()
+        this.timeoutId = null
     },
     open() { this.show = true },
     processDialog(options) {
         this.dialog = options
         this.style  = options.style
 
-        this.$refs.title.innerHTML       = null
-        this.$refs.description.innerHTML = null
+        if (this.$refs.title) { this.$refs.title.innerHTML = null }
+        if (this.$refs.description) { this.$refs.description.innerHTML = null }
 
         if (options.icon) {
             this.fillIconBackground(options.icon)
@@ -43,7 +44,7 @@ x-data="{
             this.$refs.description.innerHTML = options.description
         }
 
-        this.open()
+        this.$nextTick(() => this.open())
 
         if (this.dialog.timeout) {
             this.startCloseTimeout()
