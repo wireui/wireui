@@ -3,7 +3,6 @@ x-data="{
     show: false,
     style: null,
     dialog: null,
-    timeoutId: null,
 
     dismiss() {
         this.close()
@@ -11,9 +10,8 @@ x-data="{
     },
     close() {
         this.show = false
-        clearTimeout(this.timeoutId)
+        this.dialog.timer?.pause()
         this.dialog.onClose()
-        this.timeoutId = null
     },
     open() { this.show = true },
     processDialog(options) {
@@ -123,10 +121,16 @@ x-data="{
         return div.firstElementChild
     },
     startCloseTimeout() {
-        this.timeoutId = setTimeout(() => {
-            this.close()
-            this.dialog.onTimeout()
-        }, this.dialog.timeout)
+        this.dialog.timer = $wireui.notifications.timer(
+            this.dialog.timeout,
+            () => {
+                this.close()
+                this.dialog.onTimeout()
+            },
+            (percentage) => {
+                this.$refs.progressbar.style.width = `${percentage}%`
+            }
+        )
     },
     accept() {
         this.close()
@@ -138,7 +142,9 @@ x-data="{
     },
     handleEscape() {
         if (this.show) { this.dismiss() }
-    }
+    },
+    pauseTimeout() { this.dialog?.timer?.pause() },
+    resumeTimeout() { this.dialog?.timer?.resume() },
 }"
 x-init="function() {
     Wireui.dispatchHook('{{ $dialog }}:load')
@@ -167,7 +173,9 @@ style="display: none">
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
             x-transition:leave="ease-in duration-200"
             x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-on:mouseenter="pauseTimeout"
+            x-on:mouseleave="resumeTimeout">
             <div class="relative shadow-md bg-white rounded-xl overflow-hidden space-y-4 p-4"
                 :class="{
                     'sm:p-5 sm:pt-7': style === 'center',
@@ -175,8 +183,8 @@ style="display: none">
                 }">
                 <div class="bg-gray-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
-                    x-ref="timeoutBar"
-                    x-show="dialog?.timeoutBar !== false">
+                    x-ref="progressbar"
+                    x-show="dialog?.progressbar !== false">
                 </div>
 
                 <div x-show="dialog?.closeButton" class="absolute right-2 -top-2">
