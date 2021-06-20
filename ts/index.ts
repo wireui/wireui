@@ -38,5 +38,6 @@ const wireui = {
 }
 
 window.$wireui = wireui
+document.addEventListener('DOMContentLoaded', () => window.Wireui.dispatchHook('load'))
 
 export default wireui

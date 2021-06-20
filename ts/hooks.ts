@@ -3,4 +3,3 @@ export interface WireUiHooks {
   dispatchHook (hook: string): void
 }
 
-window.Wireui.dispatchHook('load')
