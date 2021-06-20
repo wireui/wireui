@@ -34,12 +34,16 @@ export interface Notify {
   (options: Options, componentId?: string): void
 }
 
+export interface Confirm {
+  (options: ConfirmationOptions, componentId?): void
+}
+
 export const notify: Notify = (options, componentId?): void => {
   const event = new CustomEvent('wireui:notification', { detail: { options, componentId } })
   window.dispatchEvent(event)
 }
 
-export const confirmNotification = (options: ConfirmationOptions, componentId?: string): void => {
+export const confirmNotification: Confirm = (options, componentId?): void => {
   options = Object.assign({
     icon: icons['warning'],
     title: 'Are you sure?',

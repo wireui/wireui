@@ -1,7 +1,6 @@
 export interface Icon {
   name: string
   color?: string
-  size?: string
 }
 
 export const colors = {

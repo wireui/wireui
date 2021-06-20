@@ -1,10 +1,11 @@
 import { ActionOptions } from './actions'
 import { EventOptions } from './events'
+import { Icon } from './icons'
 
 export interface Options {
   title?: string
   description?: string
-  icon?: string
+  icon?: Icon | string
   iconColor?: string
   img?: string
   closeButton?: boolean
