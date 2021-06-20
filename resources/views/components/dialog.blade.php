@@ -180,7 +180,7 @@ style="display: none">
                         <div x-ref="iconContainer"></div>
                     </div>
 
-                    <div class="mt-4" :class="{ 'sm:mt-5': style === 'center' }">
+                    <div class="mt-4 w-full" :class="{ 'sm:mt-5': style === 'center' }">
                         <h3 class="text-lg leading-6 font-medium text-gray-900 text-center"
                             :class="{ 'sm:text-left': style === 'inline' }"
                             @unless($title) x-ref="title" @endunless>
