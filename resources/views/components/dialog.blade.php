@@ -27,11 +27,15 @@ x-data="{
         }
 
         if (options.accept) {
-            this.createAcceptButton(options.accept)
+            this.createButton(options.accept, 'accept')
         }
 
         if (options.reject) {
-            this.createRejectButton(options.reject)
+            this.createButton(options.reject, 'reject')
+        }
+
+        if (options.close) {
+            this.createButton(options.close, 'close')
         }
 
         if (options.title) {
@@ -76,29 +80,8 @@ x-data="{
                 this.$refs.iconContainer.replaceChildren(svg)
             })
     },
-    makeButtonParams(options) {
-        const buttonOptions = {
-            label: options.label,
-            color: options.color,
-            size: options.size,
-            rounded: options.rounded,
-            squared: options.squared,
-            bordered: options.bordered,
-            flat: options.flat,
-            icon: options.icon,
-            rightIcon: options.rightIcon
-        }
-
-        Object.keys(buttonOptions).forEach(key => {
-            if (buttonOptions[key] === undefined) {
-                delete buttonOptions[key]
-            }
-        })
-
-        return new URLSearchParams(buttonOptions)
-    },
     createButton(options, action) {
-        fetch(`/wireui/button?${this.makeButtonParams(options)}`)
+        fetch(`/wireui/button?${new URLSearchParams(options)}`)
             .then(response => response.text())
             .then(html => {
                 const button = this.parseHtmlString(html)
@@ -107,12 +90,6 @@ x-data="{
 
                 this.$refs[action].replaceChildren(button)
             })
-    },
-    createAcceptButton(accept) {
-        this.createButton(accept, 'accept')
-    },
-    createRejectButton(reject) {
-        this.createButton(reject, 'reject')
     },
     parseHtmlString(html) {
         const div     = document.createElement('div')
@@ -196,8 +173,8 @@ style="display: none">
                     </button>
                 </div>
 
-                <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
-                    <div class="mx-auto flex items-center justify-center flex-shrink-0"
+                <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
+                    <div class="mx-auto flex items-center self-start justify-center flex-shrink-0"
                         :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                         x-show="dialog?.icon">
                         <div x-ref="iconContainer"></div>
@@ -220,12 +197,19 @@ style="display: none">
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3" :class="{
+                <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3"
+                    :class="{
                         'sm:grid-cols-2 sm:gap-y-0': style === 'center',
                         'sm:p-4 sm:bg-gray-100 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
-                    }">
+                    }"
+                    x-show="dialog?.accept || dialog?.reject">
                     <div x-show="dialog?.accept" class="sm:order-last" x-ref="accept"></div>
                     <div x-show="dialog?.reject" x-ref="reject"></div>
+                </div>
+
+                <div class="flex justify-center"
+                    x-show="dialog?.close && !dialog?.accept && !dialog?.accept"
+                    x-ref="close">
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ class ConfirmDialogTest extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
                 ->pause(200)
                 ->assertSee('This is a title')
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm it'))
                 ->assertSee('Confirm it')
                 ->press('Confirm it')
                 ->waitForLivewire()

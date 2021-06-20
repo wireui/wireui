@@ -6,6 +6,7 @@ export type Size = 'xs' | 'md' | 'lg'
 export type Color = typeof colors[number]
 
 export interface ButtonOptions {
+  label?: string
   color?: Color
   size?: Size
   rounded?: boolean
@@ -22,7 +23,6 @@ export interface Action extends ButtonOptions {
 }
 
 export interface ActionOptions extends ButtonOptions {
-  label?: string
   method?: string
   params?: any
   url?: string
@@ -53,7 +53,7 @@ const getActionLabel = (
     ?? defaultLabels[actionName]
 }
 
-const iconsMap = {
+export const iconsMap = {
   question: 'primary',
   success: 'positive',
   error: 'negative'

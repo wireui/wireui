@@ -10,17 +10,17 @@
         @confirmAction({
             title: 'Confirm Action',
             accept: {
-                label: 'OK',
+                label: 'Confirm Directive',
                 method: 'setValue',
                 params: 'Accepted'
             },
             reject: {
-                label: 'Cancel',
+                label: 'Cancel Directive',
                 method: 'setValue',
                 params: 'Rejected'
             }
         })>
-        Confirm action Notification
+        Confirm action dialog
     </button>
 
     <button

@@ -1,6 +1,6 @@
 import { EventOptions } from '../notifications/events'
 import { Icon } from '../notifications/icons'
-import { Action } from './actions'
+import { Action, ButtonOptions } from './actions'
 import { ConfirmationOptions, Options, Style } from './options'
 import { parseDialog, parseConfirmation, ParseDialog, ParseConfirmation } from './parses'
 
@@ -10,6 +10,7 @@ export interface Dialog {
   icon?: Icon | string
   timeout: number
   style: Style
+  close?: ButtonOptions | string
   closeButton: boolean
   progressbar: boolean
   onClose: CallableFunction | EventOptions
@@ -49,6 +50,7 @@ export const showDialog: ShowDialog = (options, componentId?): void => {
 }
 
 export const showConfirmDialog: ShowConfirmDialog = (options, componentId?): void => {
+  if (!options.icon) { options.icon = 'question' }
   const event = new CustomEvent(`wireui:confirm-${makeEventName(options.id)}`, { detail: { options, componentId } })
   window.dispatchEvent(event)
 }

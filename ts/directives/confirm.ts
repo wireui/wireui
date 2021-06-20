@@ -1,5 +1,5 @@
-import { ConfirmationOptions } from '../notifications/options'
-import { confirmNotification } from '../notifications'
+import { showConfirmDialog } from '../dialog'
+import { ConfirmationOptions } from '../dialog/options'
 
 const getElements = (component: HTMLElement): HTMLElement[] => {
   return [...component.querySelectorAll('[x-on\\:confirm]')]
@@ -24,7 +24,7 @@ const initialize = (component: HTMLElement) => {
 
     element.onclick = () => {
       const options = eval(`(${confirmData})`) as ConfirmationOptions
-      confirmNotification(options, componentId)
+      showConfirmDialog(options, componentId)
     }
   })
 }

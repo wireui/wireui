@@ -13,20 +13,21 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
+                ->waitForLivewireToLoad()
                 ->assertSee('notifications test')
                 ->click('@button.test.directive')
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm Directive'))
+                ->pause(100)
+                ->press('Confirm Directive')
                 ->waitForLivewire()
-                ->tap(function (Browser $browser) {
-                    return $browser->script('getElementByXPath("//button[text()=\'OK\']").click();');
-                })->waitUsing(5, 75, function () use ($browser) {
-                    return $browser->assertSeeIn('@value', 'Accepted');
-                })->click('@button.test.directive')
+                ->pause(100)
+                ->assertSeeIn('@value', 'Accepted')
+                ->click('@button.test.directive')
+                ->pause(100)
+                ->press('Cancel Directive')
                 ->waitForLivewire()
-                ->tap(function (Browser $browser) {
-                    return $browser->script('getElementByXPath("//button[text()=\'Cancel\']").click();');
-                })->waitUsing(5, 75, function () use ($browser) {
-                    return $browser->assertSeeIn('@value', 'Rejected');
-                });
+                ->pause(100)
+                ->assertSeeIn('@value', 'Rejected');
         });
     }
 
@@ -103,7 +104,7 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
                 ->click('@button.test.js.simple_notification')
-                ->waitUsing(5, 75, fn() => $browser->assertSee('My Simple Notification from js'));
+                ->waitUsing(5, 75, fn () => $browser->assertSee('My Simple Notification from js'));
         });
     }
 
@@ -115,7 +116,7 @@ class Test extends BrowserTestCase
 
             Livewire::visit($browser, Component::class)
                 ->click($duskButton)
-                ->waitUsing(5, 75, fn() => $browser->assertSee('My Complex Notification from js'))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('My Complex Notification from js'))
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Delete\']").click();');
                 })->waitUsing(5, 75, function () use ($browser) {
