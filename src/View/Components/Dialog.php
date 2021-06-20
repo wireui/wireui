@@ -2,13 +2,10 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
 use WireUi\Support;
 
-class Dialog extends Component
+class Dialog extends Modal
 {
-    public string $zIndex;
-
     public string $dialog;
 
     public ?string $title;
@@ -16,12 +13,17 @@ class Dialog extends Component
     public ?string $description;
 
     public function __construct(
-        string $zIndex = 'z-50',
+        ?string $zIndex = null,
+        ?string $maxWidth = null,
+        ?string $spacing = null,
+        ?string $align = null,
         ?string $id = null,
         ?string $title = null,
-        ?string $description = null
+        ?string $description = null,
+        $blur = null
     ) {
-        $this->zIndex      = $zIndex;
+        parent::__construct($zIndex, $maxWidth, $spacing, $align, $blur);
+
         $this->title       = $title;
         $this->dialog      = Support\Dialog::makeEventName($id);
         $this->description = $description;

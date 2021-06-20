@@ -131,8 +131,9 @@ x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
 x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
 x-on:keydown.escape.window="handleEscape"
 style="display: none">
-    <div class="flex items-end sm:items-start sm:pt-16 min-h-screen justify-center">
-        <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity {{ $dialog }}-backdrop"
+    <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center">
+        <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity
+            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif"
             x-show="show"
             x-on:click="dismiss"
             x-transition:enter="ease-out duration-300"
