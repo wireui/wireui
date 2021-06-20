@@ -12,6 +12,7 @@ use WireUi\View\Components\Button;
 use WireUi\View\Components\Card;
 use WireUi\View\Components\Checkbox;
 use WireUi\View\Components\DatetimePicker;
+use WireUi\View\Components\Dialog;
 use WireUi\View\Components\Dropdown;
 use WireUi\View\Components\Dropdown\DropdownHeader;
 use WireUi\View\Components\Dropdown\DropdownItem;
@@ -114,6 +115,7 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::component(Radio::class, 'radio');
         Blade::component(Modal::class, 'modal');
         Blade::component(ModalCard::class, 'modal.card');
+        Blade::component(Dialog::class, 'dialog');
     }
 
     protected function registerMixins()

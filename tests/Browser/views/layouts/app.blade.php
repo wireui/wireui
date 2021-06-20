@@ -2,17 +2,18 @@
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-    @livewireStyles
+
     <livewire:styles />
     <wireui:styles />
+    <wireui:scripts />
 </head>
 <body>
     <x-notifications />
+    <x-dialog />
 
     {{ $slot }}
 
     <livewire:scripts />
-    <wireui:scripts />
 
     @stack('scripts')
     <script>
