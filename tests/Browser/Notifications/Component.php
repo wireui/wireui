@@ -37,7 +37,7 @@ class Component extends \Livewire\Component
 
     public function showSimpleNotification(): void
     {
-        $this->successNotification(
+        $this->notification()->success(
             $title = 'Success title',
             $description = 'Success description',
         );
@@ -45,7 +45,7 @@ class Component extends \Livewire\Component
 
     public function showConfirmActionWithSingleCallback(): void
     {
-        $this->confirmAction([
+        $this->notification()->confirm([
             'title'       => 'Confirmation Notification',
             'description' => 'You need confirm it',
             'acceptLabel' => 'Confirm it',
@@ -56,7 +56,7 @@ class Component extends \Livewire\Component
 
     public function showConfirmActionWithMultipleCallbacksAndEvents()
     {
-        $this->confirmAction([
+        $this->notification()->confirm([
             'title'       => 'Confirm It Jetete',
             'description' => 'Description can be null like title',
             'timeout'     => 300,

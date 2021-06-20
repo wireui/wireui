@@ -425,7 +425,8 @@ x-init="function() {
                         <div class="w-full flex items-center justify-center gap-x-2 text-gray-600">
                             <button class="focus:outline-none focus:underline"
                                 x-text="monthNames[month]"
-                                x-on:click="monthsPicker = !monthsPicker">
+                                x-on:click="monthsPicker = !monthsPicker"
+                                type="button">
                             </button>
                             <input class="w-10 sm:w-14 appearance-none p-0 ring-0 border-none focus:ring-0 focus:outline-none"
                                 x-model="year"
@@ -461,7 +462,8 @@ x-init="function() {
                                             'text-white bg-indigo-600 font-semibold border border-indigo-600 hover:bg-indigo-600': isSelected(date),
                                         }"
                                         x-on:click="selectDate(date)"
-                                        x-text="date.day">
+                                        x-text="date.day"
+                                        type="button">
                                     </button>
                                 </div>
                             </template>

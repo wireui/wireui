@@ -15,7 +15,9 @@ class Test extends BrowserTestCase
             Livewire::visit($browser, Component::class)
                 ->click('@button.alpine')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('Alpine Confirmation'))
-                ->tap(fn() => $browser->script('getElementByXPath("//button[text()=\'Confirm\']").click()'))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm'))
+                ->pause(100)
+                ->press('Confirm')
                 ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@value', 'Accepted by Alpine'));
         });
     }
@@ -27,7 +29,9 @@ class Test extends BrowserTestCase
             Livewire::visit($browser, Component::class)
                 ->click('@button.js')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('JS Confirmation'))
-                ->tap(fn() => $browser->script('getElementByXPath("//button[text()=\'Confirm\']").click()'))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm'))
+                ->pause(100)
+                ->press('Confirm')
                 ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@value', 'Accepted by JS'));
         });
     }

@@ -10,17 +10,17 @@
         @confirmAction({
             title: 'Confirm Action',
             accept: {
-                label: 'OK',
+                label: 'Confirm Directive',
                 method: 'setValue',
                 params: 'Accepted'
             },
             reject: {
-                label: 'Cancel',
+                label: 'Cancel Directive',
                 method: 'setValue',
                 params: 'Rejected'
             }
         })>
-        Confirm action Notification
+        Confirm action dialog
     </button>
 
     <button
@@ -52,7 +52,6 @@
         onclick="addSimpleNotification()">
         Fire Simple Notification from js
     </button>
-
 
     <button
         dusk="button.test.js.complex_notification"
@@ -86,12 +85,12 @@
                     accept: {
                         label: 'Delete',
                         style: null,
-                        callback: () => @this.call('setValue', 'deleted')
+                        execute: () => @this.call('setValue', 'deleted')
                     },
                     reject: {
                         label: 'No delete',
                         style: null,
-                        callback: () => @this.call('setValue', 'delete canceled')
+                        execute: () => @this.call('setValue', 'delete canceled')
                     },
                     onClose:   () => @this.call('addEvent', 'onClose'),
                     onDismiss: () => @this.call('addEvent', 'onDismiss'),

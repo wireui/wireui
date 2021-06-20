@@ -1,111 +1,83 @@
 <div class="fixed {{ $zIndex }} inset-0 flex items-end justify-center px-4 py-6
             pointer-events-none sm:p-5 sm:pt-4 sm:items-start sm:justify-end"
     x-data="{
-        defaultIcons: ['success', 'error', 'warning', 'info', 'question'],
         notifications: [],
 
-        makeNotificationTimer(notificationId, delay) {
-            const timer = window.$wireui.utils.timeout(() => {
-                const isDismissed = false
-                const isTimeover  = true
-                this.removeNotification(notificationId, isDismissed, isTimeover)
-            }, delay, notificationId)
+        proccessNotification(notification) {
+            notification.id = $wireui.utils.uuid()
 
-            let timeout     = delay
-            let percentage  = 100
-            let progressBar = null
+            if (notification.timeout) {
+                notification.timer = $wireui.notifications.timer(
+                    notification.timeout,
+                    () => {
+                        notification.onClose()
+                        notification.onTimeout()
+                        this.removeNotification(notification.id)
+                    },
+                    (percentage) => {
+                        const progressBar = document.getElementById(`timeout.bar.${notification.id}`)
 
-            const interval = window.$wireui.utils.interval(() => {
-                if (!progressBar) {
-                    progressBar = document.getElementById(`timeout.bar.${notificationId}`)
+                        if (!progressBar) return
 
-                    if (!progressBar) return
-                }
-
-                timeout   -= 100
-                percentage = Math.floor(timeout * 100 / delay)
-                progressBar.style.width = `${percentage}%`
-
-                if (timeout === 100) { interval.pause() }
-            }, 100)
-
-            return {
-                pause: () => {
-                    timer.pause()
-                    interval.pause()
-                },
-                resume: () => {
-                    timer.resume()
-                    interval.resume()
-                },
-            }
-        },
-        addNotification(event) {
-            const notification = window.$wireui.makeNotification(event.options, event.componentId)
-            notification.id    = window.$wireui.utils.uuid()
-
-            if (notification.timeout !== false) {
-                notification.timer = this.makeNotificationTimer(notification.id, notification.timeout)
+                        progressBar.style.width = `${percentage}%`
+                    }
+                )
             }
 
             this.notifications.push(notification)
 
-            if (notification.icon && !this.defaultIcons.includes(notification.icon)) {
-                this.fillNotificationIcon(notification)
-            }
+            this.$nextTick(() => {
+                if (notification.icon) {
+                    this.fillNotificationIcon(notification)
+                }
+            })
         },
-        pauseNotification(notification) { notification.timer?.pause() },
-        resumeNotification(notification) { notification.timer?.resume() },
-        notificationPostActions(notification, isDismissed, isTimeover) {
-            if (typeof notification.onClose === 'function') {
-                notification.onClose()
-            }
-            if (isDismissed && typeof notification.onDismiss === 'function') {
-                notification.onDismiss()
-            }
-            if (isTimeover && typeof notification.onTimeout === 'function') {
-                notification.onTimeout()
-            }
-        },
-        removeNotification(id, isDismissed = false, isTimeover = false) {
-            const index = this.notifications.findIndex(notification => notification.id === id)
-            if (~index) {
-                const notification = this.notifications[index]
-                this.notificationPostActions(notification, isDismissed, isTimeover)
-                this.notifications.splice(index, 1)
-            }
-        },
-        accept(notification) {
-            this.proccessAction(notification.accept)
-            this.removeNotification(notification.id)
-        },
-        reject(notification) {
-            this.proccessAction(notification.reject)
-            this.removeNotification(notification.id)
-        },
-        proccessAction(action) {
-            if (!action) return
+        addNotification({ options, componentId }) {
+            const notification = $wireui.notifications.parseNotification(options, componentId)
 
-            if (action.callback) { action.callback() }
-            else if (action.url) { window.location.href = action.url }
+            this.proccessNotification(notification)
+        },
+        addConfirmNotification({ options, componentId }) {
+            const notification = $wireui.notifications.parseConfirmation(options, componentId)
+
+            this.proccessNotification(notification)
         },
         fillNotificationIcon(notification) {
-            const classes = ['w-6', 'h-6']
+            const classes = `w-6 h-6 ${notification.icon.color}`.split(' ')
 
-            notification.iconColor
-                ? classes.push(...notification.iconColor.split(' '))
-                : classes.push('text-gray-400')
-
-            fetch(`/wireui/icons/{{ config('wireui.icons.style') }}/${notification.icon}`)
+            fetch(`/wireui/icons/{{ config('wireui.icons.style') }}/${notification.icon.name}`)
                 .then(response => response.text())
                 .then(text => {
                     const svg = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement
                     svg.classList.add(...classes)
-                    this.$refs[`notification.icon.${notification.id}`].appendChild(svg)
+                    this.$refs[`notification.icon.${notification.id}`].replaceChildren(svg)
                 })
         },
+        removeNotification(id) {
+            const index = this.notifications.findIndex(notification => notification.id === id)
+
+            if (~index) { this.notifications.splice(index, 1) }
+        },
+        closeNotification(notification) {
+            notification.onClose()
+            notification.onDismiss()
+            this.removeNotification(notification.id)
+        },
+        pauseNotification(notification) { notification.timer?.pause() },
+        resumeNotification(notification) { notification.timer?.resume() },
+        accept(notification) {
+            notification.onClose()
+            notification.accept.execute()
+            this.removeNotification(notification.id)
+        },
+        reject(notification) {
+            notification.onClose()
+            notification.reject.execute()
+            this.removeNotification(notification.id)
+        }
     }"
     x-on:wireui:notification.window="addNotification($event.detail)"
+    x-on:wireui:confirm-notification.window="addConfirmNotification($event.detail)"
     x-init="function() {
         Wireui.dispatchHook('notifications:load')
     }"
@@ -134,52 +106,17 @@
                         'flex items-start': !Boolean(notification.rightButtons),
                         'w-full flex': Boolean(notification.rightButtons),
                     }">
+                        <!-- notification icon|img -->
                         <template x-if="notification.icon || notification.img">
-                            <div class="flex-shrink-0"
-                                :class="{
+                            <div class="flex-shrink-0" :class="{
                                     'w-6': Boolean(notification.icon),
                                     'pt-0.5': Boolean(notification.img),
                                 }"
                                 :x-ref="`notification.${notification.id}`">
                                 <template x-if="notification.icon">
-                                    <div :x-ref="`notification.icon.${notification.id}`">
-                                        <x-wireui::icon class="h-6 w-6"
-                                            x-bind:class="{
-                                                'text-green-400': !notification.iconColor,
-                                                [notification.iconColor]: notification.iconColor
-                                            }"
-                                            x-show="notification.icon === 'success'"
-                                            name="check-circle" />
-                                        <x-wireui::icon class="h-6 w-6"
-                                            x-bind:class="{
-                                                'text-red-400': !notification.iconColor,
-                                                [notification.iconColor]: notification.iconColor
-                                            }"
-                                            x-show="notification.icon === 'error'"
-                                            name="exclamation" />
-                                        <x-wireui::icon class="h-6 w-6"
-                                            x-bind:class="{
-                                                'text-yellow-400': !notification.iconColor,
-                                                [notification.iconColor]: notification.iconColor
-                                            }"
-                                            x-show="notification.icon === 'warning'"
-                                            name="exclamation-circle" />
-                                        <x-wireui::icon class="h-6 w-6"
-                                            x-bind:class="{
-                                                'text-blue-400': !notification.iconColor,
-                                                [notification.iconColor]: notification.iconColor
-                                            }"
-                                            x-show="notification.icon === 'info'"
-                                            name="information-circle" />
-                                        <x-wireui::icon class="h-6 w-6"
-                                            x-bind:class="{
-                                                'text-gray-400': !notification.iconColor,
-                                                [notification.iconColor]: notification.iconColor
-                                            }"
-                                            x-show="notification.icon === 'question'"
-                                            name="question-mark-circle" />
-                                    </div>
+                                    <div :x-ref="`notification.icon.${notification.id}`"></div>
                                 </template>
+
                                 <template x-if="notification.img">
                                     <img class="h-10 w-10 rounded-full" :src="notification.img" />
                                 </template>
@@ -187,8 +124,8 @@
                         </template>
 
                         <div class="w-0 flex-1 pt-0.5" :class="{
-                            'ml-3': Boolean(notification.icon || notification.img)
-                        }">
+                                'ml-3': Boolean(notification.icon || notification.img)
+                            }">
                             <p class="text-sm font-medium text-gray-900"
                                 x-show="notification.title"
                                 x-text="notification.title">
@@ -197,6 +134,8 @@
                                 x-show="notification.description"
                                 x-text="notification.description">
                             </p>
+
+                            <!-- actions buttons -->
                             <template x-if="!notification.dense && !notification.rightButtons && (notification.accept || notification.reject)">
                                 <div class="mt-3 flex gap-x-3">
                                     <button class="rounded-md text-sm font-medium focus:outline-none"
@@ -224,6 +163,7 @@
                         </div>
 
                         <div class="ml-4 flex-shrink-0 flex">
+                            <!-- accept button -->
                             <button class="mr-4 flex-shrink-0 rounded-md text-sm font-medium focus:outline-none"
                                 :class="{
                                     'text-indigo-600 hover:text-indigo-500': !Boolean(notification.accept?.style),
@@ -234,21 +174,24 @@
                                 x-text="notification.accept?.label">
                             </button>
 
+                            <!-- close button -->
                             <button class="rounded-md bg-white inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
                                 x-show="notification.closeButton"
-                                x-on:click="removeNotification(notification.id, true)">
+                                x-on:click="closeNotification(notification)">
                                 <span class="sr-only">Close</span>
-                                <x-wireui::icon name="x" class="h-5 w-5" />
+                                <x-icon name="x" class="h-5 w-5" />
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <!-- actions buttons -->
                 <template x-if="notification.rightButtons">
                     <div class="flex flex-col border-l border-gray-200">
                         <template x-if="notification.accept">
                             <div class="h-0 flex-1 flex" :class="{ 'border-b border-gray-200': notification.reject }">
                                 <button class="w-full rounded-none rounded-tr-lg px-4 py-3 flex items-center
-                                                justify-center text-sm font-medium focus:outline-none"
+                                               justify-center text-sm font-medium focus:outline-none"
                                     :class="{
                                         'text-indigo-600 hover:text-indigo-500 hover:bg-gray-50': !Boolean(notification.accept.style),
                                         [notification.accept.style]: Boolean(notification.accept.style),

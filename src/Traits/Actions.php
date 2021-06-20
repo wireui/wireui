@@ -2,42 +2,17 @@
 
 namespace WireUi\Traits;
 
+use WireUi\Support\{Dialog, Notification};
+
 trait Actions
 {
-    public function notify(array $options): void
+    public function notification(): Notification
     {
-        $this->dispatchBrowserEvent('wireui:notification', [
-            'options'     => $options,
-            'componentId' => $this->id,
-        ]);
+        return new Notification($this);
     }
 
-    public function successNotification(string $title, ?string $description = null): void
+    public function dialog(): Dialog
     {
-        $options = [
-            'icon'        => 'success',
-            'title'       => $title,
-            'description' => $description,
-        ];
-
-        $this->notify($options);
-    }
-
-    public function errorNotification(string $title, ?string $description = null): void
-    {
-        $options = [
-            'icon'        => 'error',
-            'title'       => $title,
-            'description' => $description,
-        ];
-
-        $this->notify($options);
-    }
-
-    public function confirmAction(array $options): void
-    {
-        $options['icon'] ??= 'question';
-
-        $this->notify($options);
+        return new Dialog($this);
     }
 }

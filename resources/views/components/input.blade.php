@@ -7,11 +7,11 @@
     @if ($label || $cornerHint)
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
-                <x-label :label="$label" :has-error="$hasError" :id="$id" />
+                <x-label :label="$label" :has-error="$hasError" :for="$id" />
             @endif
 
             @if ($cornerHint)
-                <x-label :label="$cornerHint" :has-error="$hasError" :id="$id" />
+                <x-label :label="$cornerHint" :has-error="$hasError" :for="$id" />
             @endif
         </div>
     @endif
