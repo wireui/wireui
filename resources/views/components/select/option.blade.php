@@ -18,7 +18,7 @@
             'hover:bg-indigo-500': !isSelected('{{ $value }}'),
         @endif
     }">
-    {{ $label ?? $slot }}
+    {!! $label ?? $slot !!}
 
     <div class="absolute inset-y-0 right-0 flex items-center pr-4"
         x-show="isSelected('{{ $value }}')">

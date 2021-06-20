@@ -14,7 +14,6 @@
     {{ $slot }}
 
     <livewire:scripts />
-
     @stack('scripts')
     <script>
         function getElementByXPath(xPath) {

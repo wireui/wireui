@@ -413,9 +413,9 @@ x-init="function() {
                 <div x-show="tab === 'date'" class="space-y-5">
                     @unless ($withoutTips)
                         <div class="grid grid-cols-3 gap-x-2 text-center text-gray-600">
-                            <x-button x-on:click="selectYesterday" class="bg-gray-100 border-none" label="Yesterday" />
-                            <x-button x-on:click="selectToday"     class="bg-gray-100 border-none" label="Today" />
-                            <x-button x-on:click="selectTomorrow"  class="bg-gray-100 border-none" label="Tomorrow" />
+                            <x-button x-on:click="selectYesterday" class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.yesterday')}}" />
+                            <x-button x-on:click="selectToday"     class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.today')}}" />
+                            <x-button x-on:click="selectTomorrow"  class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.tomorrow')}}" />
                         </div>
                     @endunless
 

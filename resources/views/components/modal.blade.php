@@ -32,27 +32,29 @@
     x-on:open-modal:{{ Str::kebab((string)$model) }}.window="show = true"
     style="display: none"
     x-show="show">
-    <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity
+    <div class="flex items-end {{ $align }} min-h-screen justify-center w-full space-y-4
+                relative transform transition-all {{ $spacing }}">
+        <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity
             @if($blur) backdrop-filter {{ $blur }} @endif"
-        x-show="show"
-        x-on:click="close"
-        x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="ease-in duration-200"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0">
-    </div>
+            x-show="show"
+            x-on:click="close"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0">
+        </div>
 
-    <div class="flex items-end sm:items-start min-h-screen justify-center w-full space-y-4
-                relative transform transition-all {{ $maxWidth }} {{ $spacing }}"
-        x-show="show"
-        x-transition:enter="ease-out duration-300"
-        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave="ease-in duration-200"
-        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-        {{ $slot }}
+        <div class="w-full {{ $maxWidth }} z-10"
+            x-show="show"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+            {{ $slot }}
+        </div>
     </div>
 </div>
