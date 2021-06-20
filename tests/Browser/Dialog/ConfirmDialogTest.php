@@ -34,7 +34,7 @@ class ConfirmDialogTest extends BrowserTestCase
     private function showConfirmDialog(Browser $browser): void
     {
         $browser->script("
-            window.\$wireui.showConfirmDialog({
+            window.\$wireui.confirmDialog({
                 title: 'This is a title',
                 accept: {
                     label: 'Confirm it',

@@ -12,8 +12,8 @@ export interface WireUi {
   confirmNotification: Confirm
   confirmAction: ConfirmAction
   notifications: Notifications
-  showDialog: ShowDialog
-  showConfirmDialog: ShowConfirmDialog
+  dialog: ShowDialog
+  confirmDialog: ShowConfirmDialog
   dialogs: Dialogs
 }
 
@@ -32,8 +32,8 @@ const wireui = {
   confirmNotification,
   confirmAction,
   notifications,
-  showDialog,
-  showConfirmDialog,
+  dialog: showDialog,
+  confirmDialog: showConfirmDialog,
   dialogs
 }
 

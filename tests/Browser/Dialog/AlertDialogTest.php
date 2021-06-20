@@ -20,7 +20,7 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             Livewire::visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.\$wireui.showDialog({
+                window.\$wireui.dialog({
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
@@ -69,7 +69,7 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             Livewire::visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.\$wireui.showDialog({
+                window.\$wireui.dialog({
                     id: 'custom',
                     icon: "{$icon}",
                     title: "{$title}",
@@ -90,7 +90,7 @@ class AlertDialogTest extends BrowserTestCase
 
             Livewire::visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.\$wireui.showDialog({ title: '{$title}', timeout: 400 })
+                window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
                 EOT))
                 ->pause(200)
                 ->assertSee($title)
@@ -126,7 +126,7 @@ class AlertDialogTest extends BrowserTestCase
     private function showDialog(Browser $browser): void
     {
         $browser->script("
-            window.\$wireui.showDialog({
+            window.\$wireui.dialog({
                 title: 'Testing events',
                 timeout: 300,
                 onClose() {
