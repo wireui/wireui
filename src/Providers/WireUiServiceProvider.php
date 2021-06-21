@@ -3,37 +3,11 @@
 namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Stringable;
+use Illuminate\Support\{ServiceProvider, Stringable};
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
-use WireUi\View\Components\Button;
-use WireUi\View\Components\Card;
-use WireUi\View\Components\Checkbox;
-use WireUi\View\Components\DatetimePicker;
-use WireUi\View\Components\Dialog;
-use WireUi\View\Components\Dropdown;
-use WireUi\View\Components\Dropdown\DropdownHeader;
-use WireUi\View\Components\Dropdown\DropdownItem;
-use WireUi\View\Components\Error;
-use WireUi\View\Components\Errors;
-use WireUi\View\Components\Icon;
-use WireUi\View\Components\Input;
-use WireUi\View\Components\Inputs\CurrencyInput;
-use WireUi\View\Components\Inputs\MaskableInput;
-use WireUi\View\Components\Inputs\PhoneInput;
-use WireUi\View\Components\Label;
-use WireUi\View\Components\Modal;
-use WireUi\View\Components\ModalCard;
-use WireUi\View\Components\NativeSelect;
-use WireUi\View\Components\Notifications;
-use WireUi\View\Components\Radio;
-use WireUi\View\Components\Select;
-use WireUi\View\Components\Select\Option as SelectOption;
-use WireUi\View\Components\Select\UserOption as SelectUserOption;
-use WireUi\View\Components\TimePicker;
-use WireUi\View\Components\Toggle;
+use WireUi\View\Components;
 
 class WireUiServiceProvider extends ServiceProvider
 {
@@ -90,32 +64,33 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerBladeComponents(): void
     {
-        Blade::component(Icon::class, 'icon');
-        Blade::component(Input::class, 'input');
-        Blade::component(Label::class, 'label');
-        Blade::component(Error::class, 'error');
-        Blade::component(Errors::class, 'errors');
-        Blade::component(MaskableInput::class, 'inputs.maskable');
-        Blade::component(PhoneInput::class, 'inputs.phone');
-        Blade::component(CurrencyInput::class, 'inputs.currency');
-        Blade::component(Button::class, 'button');
-        Blade::component(Dropdown::class, 'dropdown');
-        Blade::component(DropdownItem::class, 'dropdown.item');
-        Blade::component(DropdownHeader::class, 'dropdown.header');
-        Blade::component(Notifications::class, 'notifications');
-        Blade::component(DatetimePicker::class, 'datetime-picker');
-        Blade::component(TimePicker::class, 'time-picker');
-        Blade::component(Card::class, 'card');
-        Blade::component(NativeSelect::class, 'native-select');
-        Blade::component(Select::class, 'select');
-        Blade::component(SelectOption::class, 'select.option');
-        Blade::component(SelectUserOption::class, 'select.user-option');
-        Blade::component(Toggle::class, 'toggle');
-        Blade::component(Checkbox::class, 'checkbox');
-        Blade::component(Radio::class, 'radio');
-        Blade::component(Modal::class, 'modal');
-        Blade::component(ModalCard::class, 'modal.card');
-        Blade::component(Dialog::class, 'dialog');
+        Blade::component(Components\Icon::class, 'icon');
+        Blade::component(Components\Input::class, 'input');
+        Blade::component(Components\Textarea::class, 'textarea');
+        Blade::component(Components\Label::class, 'label');
+        Blade::component(Components\Error::class, 'error');
+        Blade::component(Components\Errors::class, 'errors');
+        Blade::component(Components\Inputs\MaskableInput::class, 'inputs.maskable');
+        Blade::component(Components\Inputs\PhoneInput::class, 'inputs.phone');
+        Blade::component(Components\Inputs\CurrencyInput::class, 'inputs.currency');
+        Blade::component(Components\Button::class, 'button');
+        Blade::component(Components\Dropdown::class, 'dropdown');
+        Blade::component(Components\Dropdown\DropdownItem::class, 'dropdown.item');
+        Blade::component(Components\Dropdown\DropdownHeader::class, 'dropdown.header');
+        Blade::component(Components\Notifications::class, 'notifications');
+        Blade::component(Components\DatetimePicker::class, 'datetime-picker');
+        Blade::component(Components\TimePicker::class, 'time-picker');
+        Blade::component(Components\Card::class, 'card');
+        Blade::component(Components\NativeSelect::class, 'native-select');
+        Blade::component(Components\Select::class, 'select');
+        Blade::component(Components\Select\Option::class, 'select.option');
+        Blade::component(Components\Select\UserOption::class, 'select.user-option');
+        Blade::component(Components\Toggle::class, 'toggle');
+        Blade::component(Components\Checkbox::class, 'checkbox');
+        Blade::component(Components\Radio::class, 'radio');
+        Blade::component(Components\Modal::class, 'modal');
+        Blade::component(Components\ModalCard::class, 'modal.card');
+        Blade::component(Components\Dialog::class, 'dialog');
     }
 
     protected function registerMixins()
