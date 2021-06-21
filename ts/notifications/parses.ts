@@ -2,7 +2,7 @@ import { ConfirmNotification, Notification } from './index'
 import { parseActions } from './actions'
 import { parseEvents } from './events'
 import { parseIcon } from './icons'
-import { ConfirmationOptions, defaultOptions, Options } from './options'
+import { ConfirmationOptions, Options } from './options'
 
 export interface LivewireOptions {
   id: string,
@@ -41,7 +41,11 @@ export const parseLivewire: ParseLivewire = ({ id, method, params = undefined })
 }
 
 export const parseNotification: ParseNotification = (options, componentId?): Notification => {
-  const notification = Object.assign(defaultOptions, options) as Notification
+  const notification = Object.assign({
+    closeButton: true,
+    progressbar: true,
+    timeout: 8500
+  }, options) as Notification
 
   if (typeof options.icon === 'string') {
     notification.icon = parseIcon({ name: options.icon, color: options.iconColor })

@@ -26,9 +26,3 @@ export interface ConfirmationOptions extends Options {
   acceptLabel?: string
   rejectLabel?: string
 }
-
-export const defaultOptions = {
-  closeButton: true,
-  progressbar: true,
-  timeout: 8500
-}
