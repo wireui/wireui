@@ -40,6 +40,8 @@
     select(value) {
         if (this.disabled || this.readonly) return
 
+        this.search = ''
+
         if (this.multiselect) {
             this.model  = Object.assign([], this.model)
             const index = this.model.findIndex(selected => selected == value)
