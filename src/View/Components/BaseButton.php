@@ -44,6 +44,8 @@ abstract class BaseButton extends Component
 
     public ?string $rightIcon;
 
+    public ?string $spinner;
+
     public function __construct(
         bool $xs = false,
         bool $md = false,
@@ -63,7 +65,8 @@ abstract class BaseButton extends Component
         ?string $size = null,
         ?string $label = null,
         ?string $icon = null,
-        ?string $rightIcon = null
+        ?string $rightIcon = null,
+        ?string $spinner = null
     ) {
         $this->xs        = $xs;
         $this->md        = $md;
@@ -84,6 +87,7 @@ abstract class BaseButton extends Component
         $this->label     = $label;
         $this->icon      = $icon;
         $this->rightIcon = $rightIcon;
+        $this->spinner   = $spinner;
     }
 
     public function render()
@@ -112,7 +116,7 @@ abstract class BaseButton extends Component
         $size    = $this->getSize();
         $classes = "focus:outline-none px-2.5 py-1.5 flex justify-center gap-x-2 items-center
                     transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
-                    hover:shadow-sm {$rounded} {$size}";
+                    hover:shadow-sm disabled:opacity-60 {$rounded} {$size}";
 
         return "{$classes} {$this->getInputColor()}";
     }

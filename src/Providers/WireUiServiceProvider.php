@@ -65,6 +65,7 @@ class WireUiServiceProvider extends ServiceProvider
     protected function registerBladeComponents(): void
     {
         Blade::component(Components\Icon::class, 'icon');
+        Blade::component(Components\Icons\Spinner::class, 'icons.spinner');
         Blade::component(Components\Input::class, 'input');
         Blade::component(Components\Textarea::class, 'textarea');
         Blade::component(Components\Label::class, 'label');
