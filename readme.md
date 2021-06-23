@@ -2,6 +2,8 @@
 
 WireUi is a [Tall Stack] UI Components library
 
+This project will be forever free
+
 See the docs for everything: https://livewire-wireui.com
 
 
