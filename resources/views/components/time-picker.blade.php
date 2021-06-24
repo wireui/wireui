@@ -229,7 +229,7 @@ class="w-full relative">
     <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-0 sm:right-0 sm:mt-6"
         x-cloak
         x-show="showPicker"
-        x-on:click.away="closePicker"
+        x-on:click.outside="closePicker"
         x-on:keydown.escape.window="closePicker"
         wire:ignore>
         <div class="flex items-end justify-center h-screen sm:h-48">
@@ -271,7 +271,8 @@ class="w-full relative">
 
                 <ul class="mt-1 w-full h-64 sm:h-32 pb-1 pt-2 overflow-y-auto">
                     <template x-for="time in filteredTimes">
-                        <li class="group rounded-md focus:outline-none focus:bg-indigo-100 hover:text-white hover:bg-indigo-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
+                        <li class="group rounded-md focus:outline-none focus:bg-indigo-100 hover:text-white
+                                 hover:bg-indigo-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
                             :class="{
                                 'text-indigo-600': input === time,
                                 'text-gray-700'  : input !== time,

@@ -207,7 +207,7 @@ x-init="function() {
     <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-gray-200"
         x-show="popover"
         x-cloak
-        x-on:click.away="closePopover"
+        x-on:click.outside="closePopover"
         x-on:keydown.escape.window="closePopover">
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">

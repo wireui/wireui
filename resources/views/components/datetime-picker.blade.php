@@ -316,11 +316,14 @@ x-data="{
     },
     focusTime() {
         this.$nextTick(() => {
-            this.$refs[`time.${this.modelTime}`]?.scrollIntoView({
-                behavior: 'instant',
-                block: 'nearest',
-                inline: 'center'
-            })
+            this.$refs
+                .timesContainer
+                .querySelector(`button[name='time.${this.modelTime.value}']`)
+                ?.scrollIntoView({
+                    behavior: 'instant',
+                    block: 'nearest',
+                    inline: 'center'
+                })
         })
     }
 }"
@@ -385,7 +388,7 @@ x-init="function() {
         x-cloak
         style="display: none;"
         x-show="popover"
-        x-on:click.away="closePicker"
+        x-on:click.outside="closePicker"
         x-on:keydown.escape.window="handleEscape">
         <div class="flex items-end justify-center min-h-screen sm:h-96 sm:items-start">
             <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transition-opacity sm:hidden"
@@ -439,7 +442,9 @@ x-init="function() {
                     </div>
 
                     <div class="relative">
-                        <div x-show.transition="monthsPicker" class="absolute inset-0 bg-white grid grid-cols-3 gap-3">
+                        <div class="absolute inset-0 bg-white grid grid-cols-3 gap-3"
+                            x-show="monthsPicker"
+                            x-transition>
                             <template x-for="(monthName, index) in monthNames" :key="`month.${monthName}`">
                                 <x-button x-on:click="selectMonth(index)" class="text-gray-400 uppercase" xs x-text="monthName" />
                             </template>
@@ -471,7 +476,7 @@ x-init="function() {
                     </div>
                 </div>
 
-                <div x-show.transition="tab === 'time'">
+                <div x-show="tab === 'time'" x-transition>
                     <x-input
                         id="search.{{ $attributes->wire('model')->value() }}"
                         label="Select time"
@@ -481,16 +486,16 @@ x-init="function() {
                         x-on:input.debounce.150ms="onSearchTime($event.target.value)"
                     />
 
-                    <div class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
+                    <div x-ref="timesContainer" class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
                         <template x-for="time in filteredTimes" :key="`time.${time.value}`">
                             <button class="group rounded-md focus:outline-none focus:bg-indigo-100 cursor-pointer select-none
-                                            relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100
-                                            hover:text-white hover:bg-indigo-600"
+                                           relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100
+                                           hover:text-white hover:bg-indigo-600"
                                 :class="{
                                     'text-indigo-600': modelTime === time.value,
                                     'text-gray-700': modelTime !== time.value,
                                 }"
-                                :x-ref="`time.${time.value}`"
+                                :name="`time.${time.value}`"
                                 type="button"
                                 x-on:click="selectTime(time)">
                                 <span x-text="time.label"></span>

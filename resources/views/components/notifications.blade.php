@@ -26,11 +26,11 @@
 
             this.notifications.push(notification)
 
-            this.$nextTick(() => {
-                if (notification.icon) {
+            if (notification.icon) {
+                this.$nextTick(() => {
                     this.fillNotificationIcon(notification)
-                }
-            })
+                })
+            }
         },
         addNotification({ options, componentId }) {
             const notification = $wireui.notifications.parseNotification(options, componentId)
@@ -49,8 +49,13 @@
                 .then(response => response.text())
                 .then(text => {
                     const svg = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement
+
                     svg.classList.add(...classes)
-                    this.$refs[`notification.icon.${notification.id}`].replaceChildren(svg)
+
+                    document
+                        .getElementById(`notification.${notification.id}`)
+                        .querySelector('.notification-icon')
+                        .replaceChildren(svg)
                 })
         },
         removeNotification(id) {
@@ -87,6 +92,7 @@
             <div class="max-w-sm w-full bg-white shadow-lg rounded-lg ring-1 ring-black
                         ring-opacity-5 relative overflow-hidden pointer-events-auto"
                 :class="{ 'flex': notification.rightButtons }"
+                :id="`notification.${notification.id}`"
                 x-transition:enter="transform ease-out duration-300 transition"
                 x-transition:enter-start="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-2"
                 x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
@@ -111,10 +117,9 @@
                             <div class="flex-shrink-0" :class="{
                                     'w-6': Boolean(notification.icon),
                                     'pt-0.5': Boolean(notification.img),
-                                }"
-                                :x-ref="`notification.${notification.id}`">
+                                }">
                                 <template x-if="notification.icon">
-                                    <div :x-ref="`notification.icon.${notification.id}`"></div>
+                                    <div class="notification-icon"></div>
                                 </template>
 
                                 <template x-if="notification.img">
