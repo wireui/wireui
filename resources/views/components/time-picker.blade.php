@@ -16,6 +16,7 @@
 
     maskInput(value) {
         const mask = this.config.is12H ? 'h:m AA' : 'H:m'
+
         return $wireui.utils.mask(mask, value)
     },
     openPicker() {
@@ -77,14 +78,16 @@
     onInput(value) {
         if (this.config.is12H) {
             const timePeriod = value?.replace(/[^a-zA-Z]+/g, '')?.toLocaleUpperCase()
+            const hasAMPM    = 'AMPM'.includes(timePeriod)
 
             if (timePeriod && !'AMPM'.includes(timePeriod)) {
                 const index = 'AP'.includes(timePeriod[0]) ? 7 : 6
+
                 return this.input = value.slice(0, index)
             }
         }
 
-        this.input = this.maskInput(this.input)
+        this.input = this.maskInput(value)
 
         if (!this.config.isLazy) {
             this.emitInput()
@@ -193,6 +196,7 @@ x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
 x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
 class="w-full relative">
     <div class="relative">
+        <span x-text="input"></span>
         <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
             :borderless="$borderless"
             :shadowless="$shadowless"
