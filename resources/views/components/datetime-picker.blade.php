@@ -308,6 +308,7 @@ x-data="{
                 value: this.searchTime.padStart(2, '0'),
                 label: `${this.searchTime} AM`
             })
+
             this.filteredTimes.push({
                 value: this.searchTime.padStart(2, '0'),
                 label: `${this.searchTime} PM`
@@ -487,7 +488,7 @@ x-init="function() {
                     />
 
                     <div x-ref="timesContainer" class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
-                        <template x-for="time in filteredTimes" :key="`time.${time.value}`">
+                        <template x-for="time in filteredTimes">
                             <button class="group rounded-md focus:outline-none focus:bg-indigo-100 cursor-pointer select-none
                                            relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100
                                            hover:text-white hover:bg-indigo-600"
