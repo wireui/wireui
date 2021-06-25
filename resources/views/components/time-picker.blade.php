@@ -16,6 +16,7 @@
 
     maskInput(value) {
         const mask = this.config.is12H ? 'h:m AA' : 'H:m'
+
         return $wireui.utils.mask(mask, value)
     },
     openPicker() {
@@ -77,14 +78,16 @@
     onInput(value) {
         if (this.config.is12H) {
             const timePeriod = value?.replace(/[^a-zA-Z]+/g, '')?.toLocaleUpperCase()
+            const hasAMPM    = 'AMPM'.includes(timePeriod)
 
             if (timePeriod && !'AMPM'.includes(timePeriod)) {
                 const index = 'AP'.includes(timePeriod[0]) ? 7 : 6
+
                 return this.input = value.slice(0, index)
             }
         }
 
-        this.input = this.maskInput(this.input)
+        this.input = this.maskInput(value)
 
         if (!this.config.isLazy) {
             this.emitInput()
@@ -193,6 +196,7 @@ x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
 x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
 class="w-full relative">
     <div class="relative">
+        <span x-text="input"></span>
         <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
             :borderless="$borderless"
             :shadowless="$shadowless"
@@ -229,7 +233,7 @@ class="w-full relative">
     <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-0 sm:right-0 sm:mt-6"
         x-cloak
         x-show="showPicker"
-        x-on:click.away="closePicker"
+        x-on:click.outside="closePicker"
         x-on:keydown.escape.window="closePicker"
         wire:ignore>
         <div class="flex items-end justify-center h-screen sm:h-48">
@@ -271,7 +275,8 @@ class="w-full relative">
 
                 <ul class="mt-1 w-full h-64 sm:h-32 pb-1 pt-2 overflow-y-auto">
                     <template x-for="time in filteredTimes">
-                        <li class="group rounded-md focus:outline-none focus:bg-indigo-100 hover:text-white hover:bg-indigo-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
+                        <li class="group rounded-md focus:outline-none focus:bg-indigo-100 hover:text-white
+                                 hover:bg-indigo-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
                             :class="{
                                 'text-indigo-600': input === time,
                                 'text-gray-700'  : input !== time,

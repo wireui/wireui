@@ -4,7 +4,7 @@
 
         close() { this.open = false }
     }"
-    x-on:click.away="close"
+    x-on:click.outside="close"
     x-on:keydown.escape.window="close">
     <div class="cursor-pointer focus:outline-none" x-on:click="open = !open">
         @if (isset($trigger))
