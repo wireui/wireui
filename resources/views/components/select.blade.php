@@ -36,6 +36,8 @@
 
         index = this.model.findIndex(selected => selected == value)
         this.model.splice(index, 1)
+
+        this.$refs.select.dispatchEvent(new Event('select'))
     },
     select(value) {
         if (this.disabled || this.readonly) return
@@ -104,6 +106,10 @@
     },
     initMultiSelect() {
         if (!this.multiselect) return
+
+        if (typeof this.model === 'string') {
+            this.model = []
+        }
 
         this.model?.map(selected => {
             const { dataset: option } = this.getOptionElement(selected)
@@ -207,7 +213,7 @@ x-init="function() {
     <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-gray-200"
         x-show="popover"
         x-cloak
-        x-on:click.away="closePopover"
+        x-on:click.outside="closePopover"
         x-on:keydown.escape.window="closePopover">
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">

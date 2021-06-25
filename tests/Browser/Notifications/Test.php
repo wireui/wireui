@@ -92,6 +92,8 @@ class Test extends BrowserTestCase
                 })->click('@button.clear_events')
                 ->waitForLivewire()
                 ->click($duskButton)
+                ->waitForLivewire()
+                ->pause(1000)
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onTimeout');
                 });

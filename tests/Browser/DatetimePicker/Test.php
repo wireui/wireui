@@ -87,8 +87,10 @@ class Test extends BrowserTestCase
                 ->assertSeeIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->pause(1000)
                 ->tap(fn() => $browser->script(<<<EOT
+                    console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
+
                     [...document.querySelectorAll('[id="dateAndTime"] .picker-times button')]
-                        .find(time => time.innerText == '5:50 AM')
+                        .find(time => time.innerText.includes('5:50 AM'))
                         .click()
                 EOT))
                 ->waitForLivewire()
