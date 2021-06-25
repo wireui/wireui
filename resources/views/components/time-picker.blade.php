@@ -232,7 +232,8 @@ class="w-full relative">
         x-on:click.away="closePicker"
         x-on:keydown.escape.window="closePicker"
         wire:ignore>
-        <div class="flex items-end justify-center h-screen sm:h-48">
+        <div class="flex items-end justify-center h-screen sm:h-48"
+            style="min-height: -webkit-fill-available; min-height: fill-available;">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity sm:hidden"
                 x-show="showPicker"
                 x-transition:enter="ease-out duration-300"
