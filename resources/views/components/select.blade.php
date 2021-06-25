@@ -36,6 +36,8 @@
 
         index = this.model.findIndex(selected => selected == value)
         this.model.splice(index, 1)
+
+        this.$refs.select.dispatchEvent(new Event('select'))
     },
     select(value) {
         if (this.disabled || this.readonly) return
@@ -104,6 +106,10 @@
     },
     initMultiSelect() {
         if (!this.multiselect) return
+
+        if (typeof this.model === 'string') {
+            this.model = []
+        }
 
         this.model?.map(selected => {
             const { dataset: option } = this.getOptionElement(selected)
