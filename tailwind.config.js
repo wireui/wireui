@@ -10,7 +10,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blueGray: colors.blueGray
+        blueGray: colors.blueGray,
+        primary: colors.indigo,
+        secondary: colors.gray,
+        positive: colors.emerald,
+        negative: colors.red,
+        warning: colors.amber,
+        info: colors.blue
       },
       fontSize: {
         '2xs': '.5rem'
@@ -19,7 +25,9 @@ module.exports = {
   },
   variants: {
     extend: {
-      opacity: ['disabled']
+      opacity: ['disabled'],
+      cursor: ['disabled'],
+      pointerEvents: ['disabled']
     }
   },
   plugins: [
