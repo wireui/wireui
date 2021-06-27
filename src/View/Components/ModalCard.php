@@ -30,7 +30,7 @@ class ModalCard extends Modal
         string $padding = 'px-2 py-5 md:px-4',
         string $rounded = 'rounded-xl',
         string $shadow = 'shadow-md',
-        string $divider = 'divide-y divide-gray-200',
+        string $divider = 'divide-y divide-secondary-200',
         ?string $title = null,
         ?string $header = null,
         ?string $footer = null,

@@ -1,8 +1,6 @@
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label)
-        <label for="{{ $id }}" class="block text-sm font-medium {{ $errors->has($name) ? 'text-red-600' : 'text-gray-700' }}">
-            {{ $label }}
-        </label>
+        <x-label :label="$label" :has-error="$errors->has($name)" :for="$id" />
     @endif
 
     <select {{ $attributes->class([

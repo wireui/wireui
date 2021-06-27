@@ -35,7 +35,7 @@
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full space-y-4
                 relative transform transition-all {{ $spacing }}"
         style="min-height: -webkit-fill-available; min-height: fill-available;">
-        <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity
+        <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
             @if($blur) backdrop-filter {{ $blur }} @endif"
             x-show="show"
             x-on:click="close"

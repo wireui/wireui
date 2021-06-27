@@ -30,8 +30,8 @@ class DropdownItem extends Component
 
     public function getClasses(): string
     {
-        return Str::of('text-gray-600 px-4 py-2 text-sm flex items-center cursor-pointer rounded-md')
-            ->append(' transition-colors duration-150 hover:text-gray-900 hover:bg-gray-100')
-            ->when($this->separator, fn(Stringable $str) => $str->append(' border-t border-gray-200'));
+        return Str::of('text-secondary-600 px-4 py-2 text-sm flex items-center cursor-pointer rounded-md')
+            ->append(' transition-colors duration-150 hover:text-secondary-900 hover:bg-secondary-100')
+            ->when($this->separator, fn(Stringable $str) => $str->append(' border-t border-secondary-200'));
     }
 }

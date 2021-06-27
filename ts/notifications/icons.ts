@@ -4,11 +4,11 @@ export interface Icon {
 }
 
 export const colors = {
-  'success': 'text-green-400',
-  'error': 'text-red-400',
-  'info': 'text-blue-400',
-  'warning': 'text-yellow-400',
-  'question': 'text-gray-400'
+  'success': 'text-positive-400',
+  'error': 'text-negative-400',
+  'info': 'text-info-400',
+  'warning': 'text-warning-400',
+  'question': 'text-secondary-400'
 }
 
 export const icons = {

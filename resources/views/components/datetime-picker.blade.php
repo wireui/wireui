@@ -371,8 +371,8 @@ x-init="function() {
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
-                    <div class="flex items-center gap-x-2 my-auto {{ $errors->has($name) ? 'text-red-400' : 'text-gray-400' }}">
-                        <x-icon class="cursor-pointer w-4 h-4 hover:text-red-500 transition-colors ease-in-out duration-150"
+                    <div class="flex items-center gap-x-2 my-auto {{ $errors->has($name) ? 'text-negative-400' : 'text-secondary-400' }}">
+                        <x-icon class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
                             x-show="model"
@@ -393,7 +393,7 @@ x-init="function() {
         x-on:keydown.escape.window="handleEscape">
         <div class="flex items-end justify-center min-h-screen sm:h-96 sm:items-start"
             style="min-height: -webkit-fill-available; min-height: fill-available;">
-            <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transition-opacity sm:hidden"
+            <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden"
                 x-show="popover"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"
@@ -405,7 +405,7 @@ x-init="function() {
                 aria-hidden="true">
             </div>
 
-            <div class="w-full rounded-t-md border border-gray-200 bg-white transform shadow-lg
+            <div class="w-full rounded-t-md border border-secondary-200 bg-white transform shadow-lg
                         transition-all relative max-h-96 overflow-y-auto p-3 sm:w-72 sm:rounded-xl"
                 x-show="popover"
                 tabindex="-1"
@@ -417,17 +417,17 @@ x-init="function() {
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                 <div x-show="tab === 'date'" class="space-y-5">
                     @unless ($withoutTips)
-                        <div class="grid grid-cols-3 gap-x-2 text-center text-gray-600">
-                            <x-button x-on:click="selectYesterday" class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.yesterday')}}" />
-                            <x-button x-on:click="selectToday"     class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.today')}}" />
-                            <x-button x-on:click="selectTomorrow"  class="bg-gray-100 border-none" label="{{__('wireui::messages.datePicker.tomorrow')}}" />
+                        <div class="grid grid-cols-3 gap-x-2 text-center text-secondary-600">
+                            <x-button x-on:click="selectYesterday" class="bg-secondary-100 border-none" label="{{__('wireui::messages.datePicker.yesterday')}}" />
+                            <x-button x-on:click="selectToday"     class="bg-secondary-100 border-none" label="{{__('wireui::messages.datePicker.today')}}" />
+                            <x-button x-on:click="selectTomorrow"  class="bg-secondary-100 border-none" label="{{__('wireui::messages.datePicker.tomorrow')}}" />
                         </div>
                     @endunless
 
                     <div class="flex items-center justify-between">
                         <x-button x-show="!monthsPicker" x-on:click="previousMonth" flat icon="chevron-left" class="rounded-lg flex-shrink-0" />
 
-                        <div class="w-full flex items-center justify-center gap-x-2 text-gray-600">
+                        <div class="w-full flex items-center justify-center gap-x-2 text-secondary-600">
                             <button class="focus:outline-none focus:underline"
                                 x-text="monthNames[month]"
                                 x-on:click="monthsPicker = !monthsPicker"
@@ -448,25 +448,25 @@ x-init="function() {
                             x-show="monthsPicker"
                             x-transition>
                             <template x-for="(monthName, index) in monthNames" :key="`month.${monthName}`">
-                                <x-button x-on:click="selectMonth(index)" class="text-gray-400 uppercase" xs x-text="monthName" />
+                                <x-button x-on:click="selectMonth(index)" class="text-secondary-400 uppercase" xs x-text="monthName" />
                             </template>
                         </div>
 
                         <div class="grid grid-cols-7 gap-2">
                             <template x-for="day in weekDays" :key="`week-day.${day}`">
-                                <span class="text-gray-400 text-2xs text-center uppercase pointer-events-none" x-text="day"></span>
+                                <span class="text-secondary-400 text-2xs text-center uppercase pointer-events-none" x-text="day"></span>
                             </template>
 
                             <template x-for="date in dates" :key="`week-date.${date.day}.${date.month}`">
                                 <div class="flex justify-center picker-days">
                                     <button class="text-sm w-7 h-6 focus:outline-none rounded-md
-                                                focus:ring-2 focus:ring-ofsset-2 focus:ring-indigo-600
-                                                hover:bg-indigo-100"
+                                                focus:ring-2 focus:ring-ofsset-2 focus:ring-primary-600
+                                                hover:bg-primary-100"
                                         :class="{
-                                            'text-gray-600': date.month === month && !isSelected(date),
-                                            'text-gray-400': date.month !== month,
-                                            'text-indigo-600 border border-indigo-600': date.isToday && !isSelected(date),
-                                            'text-white bg-indigo-600 font-semibold border border-indigo-600 hover:bg-indigo-600': isSelected(date),
+                                            'text-secondary-600': date.month === month && !isSelected(date),
+                                            'text-secondary-400': date.month !== month,
+                                            'text-primary-600 border border-primary-600': date.isToday && !isSelected(date),
+                                            'text-white bg-primary-600 font-semibold border border-primary-600 hover:bg-primary-600': isSelected(date),
                                         }"
                                         x-on:click="selectDate(date)"
                                         x-text="date.day"
@@ -490,18 +490,18 @@ x-init="function() {
 
                     <div x-ref="timesContainer" class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
                         <template x-for="time in filteredTimes">
-                            <button class="group rounded-md focus:outline-none focus:bg-indigo-100 cursor-pointer select-none
+                            <button class="group rounded-md focus:outline-none focus:bg-primary-100 cursor-pointer select-none
                                            relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100
-                                           hover:text-white hover:bg-indigo-600"
+                                           hover:text-white hover:bg-primary-600"
                                 :class="{
-                                    'text-indigo-600': modelTime === time.value,
-                                    'text-gray-700': modelTime !== time.value,
+                                    'text-primary-600': modelTime === time.value,
+                                    'text-secondary-700': modelTime !== time.value,
                                 }"
                                 :name="`time.${time.value}`"
                                 type="button"
                                 x-on:click="selectTime(time)">
                                 <span x-text="time.label"></span>
-                                <span class="text-indigo-600 group-hover:text-white absolute inset-y-0 right-0 flex items-center pr-4"
+                                <span class="text-primary-600 group-hover:text-white absolute inset-y-0 right-0 flex items-center pr-4"
                                     x-show="modelTime === time.value">
                                     <x-icon name="check" class="h-5 w-5" />
                                 </span>

@@ -20,7 +20,7 @@ class Errors extends Component
     ) {
         if (is_string($only)) {
             $only = explode('|', $only);
-            $only = array_map(fn(string $name) => trim($name), $only);
+            $only = array_map(fn (string $name) => trim($name), $only);
         }
 
         $this->title = $title;
@@ -50,6 +50,6 @@ class Errors extends Component
             return $messages;
         }
 
-        return array_filter($messages, fn($name) => in_array($name, $this->only), ARRAY_FILTER_USE_KEY);
+        return array_filter($messages, fn ($name) => in_array($name, $this->only), ARRAY_FILTER_USE_KEY);
     }
 }
