@@ -5,6 +5,7 @@
         @endif
         <input {{ $attributes->class([
                 'block sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none',
+                'text-primary-600 focus:ring-primary-600',
                 'w-5 h-5' => $md,
                 'w-6 h-6' => $lg,
                 'ring-negative-500 ring-2 ring-offset-2 border-negative-400' => $errors->has($name)
