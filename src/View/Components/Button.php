@@ -7,39 +7,39 @@ class Button extends BaseButton
     protected function getOutlineColors(): array
     {
         return [
-            'primary'   => 'ring-indigo-600 text-indigo-600 border border-indigo-600 hover:bg-indigo-50',
-            'secondary' => 'ring-gray-600 text-gray-600 border border-gray-600 hover:bg-gray-100',
-            'positive'  => 'ring-green-500 text-green-600 border border-green-600 hover:bg-green-50',
-            'negative'  => 'ring-red-500 text-red-600 border border-red-600 hover:bg-red-50',
-            'warning'   => 'ring-yellow-500 text-yellow-600 border border-yellow-600 hover:bg-yellow-50',
-            'info'      => 'ring-blue-600 text-blue-800 border border-blue-800 hover:bg-blue-50',
-            'dark'      => 'ring-gray-600 text-gray-800 border border-gray-800 hover:bg-gray-200',
+            'primary'   => 'ring-primary-600 text-primary-600 border border-primary-600 hover:bg-primary-50',
+            'secondary' => 'ring-secondary-600 text-secondary-600 border border-secondary-600 hover:bg-secondary-100',
+            'positive'  => 'ring-positive-500 text-positive-600 border border-positive-600 hover:bg-positive-50',
+            'negative'  => 'ring-negative-500 text-negative-600 border border-negative-600 hover:bg-negative-50',
+            'warning'   => 'ring-warning-500 text-warning-600 border border-warning-600 hover:bg-warning-50',
+            'info'      => 'ring-info-600 text-info-800 border border-info-800 hover:bg-info-50',
+            'dark'      => 'ring-secondary-600 text-secondary-800 border border-secondary-800 hover:bg-secondary-200',
         ];
     }
 
     protected function getFlatColors(): array
     {
         return [
-            'primary'   => 'ring-indigo-600 text-indigo-600 hover:bg-indigo-100',
-            'secondary' => 'ring-gray-600 text-gray-600 hover:bg-gray-100',
-            'positive'  => 'ring-green-500 text-green-600 hover:bg-green-100',
-            'negative'  => 'ring-red-600 text-red-600 hover:bg-red-100',
-            'warning'   => 'ring-yellow-500 text-yellow-600 hover:bg-yellow-100',
-            'info'      => 'ring-blue-600 text-blue-600 hover:bg-blue-100',
-            'dark'      => 'ring-gray-600 text-gray-900 hover:bg-gray-200',
+            'primary'   => 'ring-primary-600 text-primary-600 hover:bg-primary-100',
+            'secondary' => 'ring-secondary-600 text-secondary-600 hover:bg-secondary-100',
+            'positive'  => 'ring-positive-500 text-positive-600 hover:bg-positive-100',
+            'negative'  => 'ring-negative-600 text-negative-600 hover:bg-negative-100',
+            'warning'   => 'ring-warning-500 text-warning-600 hover:bg-warning-100',
+            'info'      => 'ring-info-600 text-info-600 hover:bg-info-100',
+            'dark'      => 'ring-secondary-600 text-secondary-900 hover:bg-secondary-200',
         ];
     }
 
     protected function getDefaultColors(): array
     {
         return [
-            'primary'   => 'ring-indigo-600 text-white bg-indigo-500 hover:bg-indigo-600',
-            'secondary' => 'ring-gray-600 text-white bg-gray-500 hover:bg-gray-600',
-            'positive'  => 'ring-green-500 text-white bg-green-500 hover:bg-green-600',
-            'negative'  => 'ring-red-600 text-white bg-red-500 hover:bg-red-600',
-            'warning'   => 'ring-yellow-500 text-white bg-yellow-500 hover:bg-yellow-600',
-            'info'      => 'ring-blue-600 text-white bg-blue-500 hover:bg-blue-600',
-            'dark'      => 'ring-gray-600 text-white bg-gray-700 hover:bg-gray-900',
+            'primary'   => 'ring-primary-600 text-white bg-primary-500 hover:bg-primary-600',
+            'secondary' => 'ring-secondary-600 text-white bg-secondary-500 hover:bg-secondary-600',
+            'positive'  => 'ring-positive-500 text-white bg-positive-500 hover:bg-positive-600',
+            'negative'  => 'ring-negative-600 text-white bg-negative-500 hover:bg-negative-600',
+            'warning'   => 'ring-warning-500 text-white bg-warning-500 hover:bg-warning-600',
+            'info'      => 'ring-info-600 text-white bg-info-500 hover:bg-info-600',
+            'dark'      => 'ring-secondary-600 text-white bg-secondary-700 hover:bg-secondary-900',
         ];
     }
 

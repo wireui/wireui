@@ -10,7 +10,7 @@
         @if (isset($trigger))
             {{ $trigger }}
         @else
-            <x-icon name="dots-vertical" class="w-4 h-4 text-gray-500 hover:text-gray-700 transition duration-150 ease-in-out" />
+            <x-icon name="dots-vertical" class="w-4 h-4 text-secondary-500 hover:text-secondary-700 transition duration-150 ease-in-out" />
         @endif
     </div>
 
@@ -24,7 +24,7 @@
          class="{{ $getAlign() }} z-30 absolute mt-2 w-56"
          style="display: none;"
          @unless($persistent) x-on:click="close" @endunless>
-        <div class="relative max-h-60 overflow-y-auto overflow-x-hidden border border-gray-200 rounded-lg shadow-lg bg-white p-1">
+        <div class="relative max-h-60 overflow-y-auto overflow-x-hidden border border-secondary-200 rounded-lg shadow-lg bg-white p-1">
             {{ $slot }}
         </div>
     </div>

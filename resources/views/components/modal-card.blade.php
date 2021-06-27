@@ -17,7 +17,7 @@
             </x-slot>
         @else
             <x-slot name="action">
-                <button class="focus:outline-none p-1 focus:ring-2 focus:ring-gray-200 rounded-full text-gray-300"
+                <button class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                     x-on:click="close">
                     <x-icon name="x" class="w-5 h-5" />
                 </button>

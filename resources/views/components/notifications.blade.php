@@ -98,7 +98,7 @@
                 x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
                 x-on:mouseenter="pauseNotification(notification)"
                 x-on:mouseleave="resumeNotification(notification)">
-                <div class="bg-gray-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
                     :id="`timeout.bar.${notification.id}`"
                     x-show="Boolean(notification.timer) && notification.progressbar !== false">
@@ -131,11 +131,11 @@
                         <div class="w-0 flex-1 pt-0.5" :class="{
                                 'ml-3': Boolean(notification.icon || notification.img)
                             }">
-                            <p class="text-sm font-medium text-gray-900"
+                            <p class="text-sm font-medium text-secondary-900"
                                 x-show="notification.title"
                                 x-text="notification.title">
                             </p>
-                            <p class="text-sm text-gray-500"
+                            <p class="text-sm text-secondary-500"
                                 x-show="notification.description"
                                 x-text="notification.description">
                             </p>
@@ -145,7 +145,7 @@
                                 <div class="mt-3 flex gap-x-3">
                                     <button class="rounded-md text-sm font-medium focus:outline-none"
                                         :class="{
-                                            'bg-white text-indigo-600 hover:text-indigo-500': !Boolean(notification.accept?.style),
+                                            'bg-white text-primary-600 hover:text-primary-500': !Boolean(notification.accept?.style),
                                             [notification.accept?.style]: Boolean(notification.accept?.style),
                                             'px-3 py-2 border shadow-sm': Boolean(notification.accept?.solid),
                                         }"
@@ -155,9 +155,9 @@
                                     </button>
                                     <button class="rounded-md text-sm font-medium focus:outline-none"
                                         :class="{
-                                            'bg-white text-gray-700 hover:text-gray-500': !Boolean(notification.reject?.style),
+                                            'bg-white text-secondary-700 hover:text-secondary-500': !Boolean(notification.reject?.style),
                                             [notification.reject?.style]: Boolean(notification.reject?.style),
-                                            'px-3 py-2 border border-gray-300 shadow-sm': Boolean(notification.accept?.solid),
+                                            'px-3 py-2 border border-secondary-300 shadow-sm': Boolean(notification.accept?.solid),
                                         }"
                                         x-on:click="reject(notification)"
                                         x-show="notification.reject?.label"
@@ -171,7 +171,7 @@
                             <!-- accept button -->
                             <button class="mr-4 flex-shrink-0 rounded-md text-sm font-medium focus:outline-none"
                                 :class="{
-                                    'text-indigo-600 hover:text-indigo-500': !Boolean(notification.accept?.style),
+                                    'text-primary-600 hover:text-primary-500': !Boolean(notification.accept?.style),
                                     [notification.accept?.style]: Boolean(notification.accept?.style)
                                 }"
                                 x-on:click="accept(notification)"
@@ -180,7 +180,7 @@
                             </button>
 
                             <!-- close button -->
-                            <button class="rounded-md bg-white inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
+                            <button class="rounded-md bg-white inline-flex text-secondary-400 hover:text-secondary-500 focus:outline-none"
                                 x-show="notification.closeButton"
                                 x-on:click="closeNotification(notification)">
                                 <span class="sr-only">Close</span>
@@ -192,13 +192,13 @@
 
                 <!-- actions buttons -->
                 <template x-if="notification.rightButtons">
-                    <div class="flex flex-col border-l border-gray-200">
+                    <div class="flex flex-col border-l border-secondary-200">
                         <template x-if="notification.accept">
-                            <div class="h-0 flex-1 flex" :class="{ 'border-b border-gray-200': notification.reject }">
+                            <div class="h-0 flex-1 flex" :class="{ 'border-b border-secondary-200': notification.reject }">
                                 <button class="w-full rounded-none rounded-tr-lg px-4 py-3 flex items-center
                                                justify-center text-sm font-medium focus:outline-none"
                                     :class="{
-                                        'text-indigo-600 hover:text-indigo-500 hover:bg-gray-50': !Boolean(notification.accept.style),
+                                        'text-primary-600 hover:text-primary-500 hover:bg-secondary-50': !Boolean(notification.accept.style),
                                         [notification.accept.style]: Boolean(notification.accept.style),
                                         'rounded-br-lg': !Boolean(notification.reject),
                                     }"
@@ -212,7 +212,7 @@
                                 <button class="w-full rounded-none rounded-br-lg px-4 py-3 flex items-center
                                                 justify-center text-sm font-medium focus:outline-none"
                                     :class="{
-                                        'text-gray-700 hover:text-gray-500 hover:bg-gray-50': !Boolean(notification.reject.style),
+                                        'text-secondary-700 hover:text-secondary-500 hover:bg-secondary-50': !Boolean(notification.reject.style),
                                         [notification.reject.style]: Boolean(notification.reject.style),
                                         'rounded-tr-lg': !Boolean(notification.accept),
                                     }"

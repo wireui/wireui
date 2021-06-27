@@ -212,8 +212,8 @@ class="w-full relative">
         >
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
-                    <div class="flex items-center gap-x-2 my-auto {{ ($errors->has($name) ?? false) ? 'text-red-400':'text-gray-400' }}">
-                        <x-icon class="cursor-pointer w-4 h-4 hover:text-red-500 transition-colors ease-in-out duration-150"
+                    <div class="flex items-center gap-x-2 my-auto {{ ($errors->has($name) ?? false) ? 'text-negative-400':'text-secondary-400' }}">
+                        <x-icon class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
                             x-show="!config.readonly && !config.disabled && input"
@@ -238,7 +238,7 @@ class="w-full relative">
         wire:ignore>
         <div class="flex items-end justify-center h-screen sm:h-48"
             style="min-height: -webkit-fill-available; min-height: fill-available;">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity sm:hidden"
+            <div class="fixed inset-0 bg-secondary-500 bg-opacity-75 transition-opacity sm:hidden"
                 x-show="showPicker"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"
@@ -250,7 +250,7 @@ class="w-full relative">
                 aria-hidden="true">
             </div>
 
-            <div class="w-full rounded-t-md p-2.5 border border-gray-200 bg-white transform transition-all
+            <div class="w-full rounded-t-md p-2.5 border border-secondary-200 bg-white transform transition-all
                         relative sm:rounded-lg sm:shadow-md sm:w-48"
                 x-show="showPicker"
                 tabindex="-1"
@@ -261,7 +261,7 @@ class="w-full relative">
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                 <button class="cursor-pointer hidden sm:flex absolute top-2 right-2 focus:outline-none" x-on:click="closePicker">
-                    <x-icon name="x" class="w-4 h-4 text-gray-400 hover:text-red-400 transition-all ease-out duration-150" />
+                    <x-icon name="x" class="w-4 h-4 text-secondary-400 hover:text-negative-400 transition-all ease-out duration-150" />
                 </button>
 
                 <x-input
@@ -276,17 +276,17 @@ class="w-full relative">
 
                 <ul class="mt-1 w-full h-64 sm:h-32 pb-1 pt-2 overflow-y-auto">
                     <template x-for="time in filteredTimes">
-                        <li class="group rounded-md focus:outline-none focus:bg-indigo-100 hover:text-white
-                                 hover:bg-indigo-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
+                        <li class="group rounded-md focus:outline-none focus:bg-primary-100 hover:text-white
+                                 hover:bg-primary-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
                             :class="{
-                                'text-indigo-600': input === time,
-                                'text-gray-700'  : input !== time,
+                                'text-primary-600': input === time,
+                                'text-secondary-700'  : input !== time,
                             }"
                             tabindex="0"
                             x-on:keydown.enter="selectTime(time)"
                             x-on:click="selectTime(time)">
                             <span x-text="time" class="font-normal block truncate"></span>
-                            <span class="text-indigo-600 group-hover:text-white absolute inset-y-0 right-0 flex items-center pr-4"
+                            <span class="text-primary-600 group-hover:text-white absolute inset-y-0 right-0 flex items-center pr-4"
                                 x-show="input === time">
                                 <x-icon name="check" class="h-5 w-5" />
                             </span>

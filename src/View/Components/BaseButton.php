@@ -103,10 +103,6 @@ abstract class BaseButton extends Component
         $data['disabled'] = (bool)$attributes->get('disabled');
         $data['classes']  = $this->getClasses();
 
-        if ($data['disabled']) {
-            $data['classes'] .= ' opacity-60 cursor-not-allowed';
-        }
-
         return $data;
     }
 
@@ -116,7 +112,7 @@ abstract class BaseButton extends Component
         $size    = $this->getSize();
         $classes = "focus:outline-none px-2.5 py-1.5 flex justify-center gap-x-2 items-center
                     transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
-                    hover:shadow-sm disabled:opacity-60 {$rounded} {$size}";
+                    hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed {$rounded} {$size}";
 
         return "{$classes} {$this->getInputColor()}";
     }
@@ -147,7 +143,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getoutlineColors(),
-            $default = 'border text-gray-500 hover:bg-gray-100 ring-gray-200'
+            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
         );
     }
 
@@ -156,7 +152,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getFlatColors(),
-            $default = 'text-gray-500 hover:bg-gray-100 ring-gray-200'
+            $default = 'text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
         );
     }
 
@@ -165,7 +161,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getDefaultColors(),
-            $default = 'border text-gray-500 hover:bg-gray-100 ring-gray-200'
+            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
         );
     }
 

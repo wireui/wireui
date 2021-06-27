@@ -132,7 +132,7 @@ x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
 x-on:keydown.escape.window="handleEscape"
 style="display: none">
     <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center">
-        <div class="fixed inset-0 bg-gray-400 bg-opacity-60 transform transition-opacity
+        <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
             {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif"
             x-show="show"
             x-on:click="dismiss"
@@ -159,14 +159,14 @@ style="display: none">
                     'sm:p-5 sm:pt-7': style === 'center',
                     'sm:p-0': style === 'inline',
                 }">
-                <div class="bg-gray-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
                     x-ref="progressbar"
                     x-show="dialog?.progressbar !== false">
                 </div>
 
                 <div x-show="dialog?.closeButton" class="absolute right-2 -top-2">
-                    <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-gray-200 rounded-full text-gray-300"
+                    <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                         x-on:click="close"
                         type="button">
                         <span class="sr-only">close</span>
@@ -182,13 +182,13 @@ style="display: none">
                     </div>
 
                     <div class="mt-4 w-full" :class="{ 'sm:mt-5': style === 'center' }">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900 text-center"
+                        <h3 class="text-lg leading-6 font-medium text-secondary-900 text-center"
                             :class="{ 'sm:text-left': style === 'inline' }"
                             @unless($title) x-ref="title" @endunless>
                             {{ $title }}
                         </h3>
 
-                        <p class="mt-2 text-sm text-gray-500 text-center"
+                        <p class="mt-2 text-sm text-secondary-500 text-center"
                             :class="{ 'sm:text-left': style === 'inline' }"
                             @unless($description) x-ref="description" @endunless>
                             {{ $description }}
@@ -201,7 +201,7 @@ style="display: none">
                 <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3"
                     :class="{
                         'sm:grid-cols-2 sm:gap-y-0': style === 'center',
-                        'sm:p-4 sm:bg-gray-100 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
+                        'sm:p-4 sm:bg-secondary-100 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
                     }"
                     x-show="dialog?.accept || dialog?.reject">
                     <div x-show="dialog?.accept" class="sm:order-last" x-ref="accept"></div>

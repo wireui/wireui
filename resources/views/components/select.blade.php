@@ -174,16 +174,16 @@ x-init="function() {
                     x-show="multiselect"
                     x-on:click="togglePopover">
                     <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
-                        <span class="inline-flex text-gray-700 text-sm"
+                        <span class="inline-flex text-secondary-700 text-sm"
                             x-show="selectedOptions.length"
                             x-text="model?.length">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
                             <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                         border border-gray-200 shadow-sm bg-gray-100 text-gray-700">
+                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700">
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
-                                <button class="flex-shrink-0 h-4 w-4 flex items-center text-gray-400
-                                               justify-center hover:text-gray-500 focus:outline-none"
+                                <button class="flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
+                                               justify-center hover:text-secondary-500 focus:outline-none"
                                     x-on:click.stop="unSelect(selected.value)"
                                     type="button">
                                     <x-icon name="x" class="h-3 w-3" />
@@ -200,25 +200,25 @@ x-init="function() {
                         x-show="!isEmptyModel() && !disabled && !readonly"
                         x-on:click="clearModel"
                         type="button">
-                        <x-icon name="x" class="w-4 h-4 text-gray-400 hover:text-red-400" />
+                        <x-icon name="x" class="w-4 h-4 text-secondary-400 hover:text-negative-400" />
                     </button>
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
-                        <x-icon :name="$rightIcon" class="w-5 h-5 text-gray-400 cursor-pointer" />
+                        <x-icon :name="$rightIcon" class="w-5 h-5 text-secondary-400 cursor-pointer" />
                     </button>
                 </div>
             </x-slot>
         </x-input>
     </div>
 
-    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-gray-200"
+    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200"
         x-show="popover"
         x-cloak
         x-on:click.outside="closePopover"
         x-on:keydown.escape.window="closePopover">
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">
-                <x-input class="focus:shadow-md bg-blueGray-100 focus:ring-indigo-600 focus:border-indigo-600
-                                border border-gray-200 duration-300"
+                <x-input class="focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
+                                border border-secondary-200 duration-300"
                     x-ref="search"
                     x-model="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
@@ -250,7 +250,7 @@ x-init="function() {
                     />
                 @empty
                     <x-select.option
-                        class="text-gray-500"
+                        class="text-secondary-500"
                         x-on:click="closePopover"
                         :label="trans('wireui::messages.empty_options')"
                         readonly

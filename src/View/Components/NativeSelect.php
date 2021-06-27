@@ -43,11 +43,11 @@ class NativeSelect extends FormComponent
 
     public function colorClasses(): string
     {
-        return 'border-gray-300 focus:ring-indigo-500 focus:border-indigo-500';
+        return 'border-secondary-300 focus:ring-primary-500 focus:border-primary-500';
     }
 
     public function errorClasses()
     {
-        return 'border-red-400 focus:ring-red-500 focus:border-red-500 text-red-500';
+        return 'border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500';
     }
 }
