@@ -27,7 +27,11 @@ module.exports = {
     extend: {
       opacity: ['disabled'],
       cursor: ['disabled'],
-      pointerEvents: ['disabled']
+      pointerEvents: ['disabled'],
+      borderWidth: ['dark'],
+      borderColor: ['dark'],
+      divideWidth: ['dark'],
+      divideColor: ['dark']
     }
   },
   plugins: [
