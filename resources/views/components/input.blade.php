@@ -43,11 +43,11 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($rightIcon)
                     <x-icon :name="$rightIcon" class="h-5 w-5" />
-                @elseif($suffix)
+                @elseif ($suffix)
                     <span class="pr-1 flex items-center justify-center">
                         {{ $suffix }}
                     </span>
-                @elseif($hasError)
+                @elseif ($hasError)
                     <x-icon name="exclamation-circle" class="h-5 w-5" />
                 @endif
             </div>
@@ -57,7 +57,9 @@
     </div>
 
     @if (!$hasError && $hint)
-        <label @if($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500">{{ $hint }}</label>
+        <label @if ($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
+            {{ $hint }}
+        </label>
     @endif
 
     @if ($name)
