@@ -31,7 +31,8 @@ module.exports = {
       borderWidth: ['dark'],
       borderColor: ['dark'],
       divideWidth: ['dark'],
-      divideColor: ['dark']
+      divideColor: ['dark'],
+      ringWidth: ['dark']
     }
   },
   plugins: [
