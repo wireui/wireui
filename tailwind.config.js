@@ -6,7 +6,7 @@ module.exports = {
     './resources/views/**/*.blade.php',
     './src/View/**/*.php'
   ],
-  darkMode: false,
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
