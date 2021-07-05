@@ -57,6 +57,8 @@
             return this.model.push(value)
         }
 
+        if (value === this.model) { value = null }
+
         this.model = value
         this.$refs.select.dispatchEvent(new Event('select'))
         this.closePopover()
@@ -156,7 +158,7 @@ x-init="function() {
     <div class="relative">
         <x-label :label="$label" class="mb-1" x-on:click="togglePopover" />
         <x-input
-            class="cursor-pointer overflow-hidden"
+            class="cursor-pointer overflow-hidden dark:text-secondary-400"
             x-ref="select"
             x-on:click="togglePopover"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
@@ -210,7 +212,8 @@ x-init="function() {
         </x-input>
     </div>
 
-    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200"
+    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200
+                dark:bg-secondary-800 dark:border-secondary-600"
         x-show="popover"
         x-cloak
         x-on:click.outside="closePopover"
@@ -218,7 +221,7 @@ x-init="function() {
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">
                 <x-input class="focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
-                                border border-secondary-200 duration-300"
+                                border border-secondary-200 dark:border-secondary-600 duration-300"
                     x-ref="search"
                     x-model="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
