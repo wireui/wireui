@@ -86,7 +86,7 @@ x-data="{
             .then(html => {
                 const button = this.parseHtmlString(html)
                 button.setAttribute('x-on:click', action)
-                button.classList.add('w-full')
+                button.classList.add('w-full', 'dark:border-0', 'dark:hover:bg-secondary-700')
 
                 this.$refs[action].replaceChildren(button)
             })
@@ -154,15 +154,16 @@ style="display: none">
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             x-on:mouseenter="pauseTimeout"
             x-on:mouseleave="resumeTimeout">
-            <div class="relative shadow-md bg-white rounded-xl overflow-hidden space-y-4 p-4"
+            <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl overflow-hidden space-y-4 p-4"
                 :class="{
                     'sm:p-5 sm:pt-7': style === 'center',
                     'sm:p-0': style === 'inline',
                 }">
-                <div class="bg-secondary-300 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150
+                            ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
                     x-ref="progressbar"
-                    x-show="dialog?.progressbar !== false">
+                    x-show="Boolean(dialog?.progressbar)">
                 </div>
 
                 <div x-show="dialog?.closeButton" class="absolute right-2 -top-2">
@@ -182,7 +183,7 @@ style="display: none">
                     </div>
 
                     <div class="mt-4 w-full" :class="{ 'sm:mt-5': style === 'center' }">
-                        <h3 class="text-lg leading-6 font-medium text-secondary-900 text-center"
+                        <h3 class="text-lg leading-6 font-medium text-secondary-900 dark:text-secondary-400 text-center"
                             :class="{ 'sm:text-left': style === 'inline' }"
                             @unless($title) x-ref="title" @endunless>
                             {{ $title }}
@@ -201,7 +202,7 @@ style="display: none">
                 <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3"
                     :class="{
                         'sm:grid-cols-2 sm:gap-y-0': style === 'center',
-                        'sm:p-4 sm:bg-secondary-100 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
+                        'sm:p-4 sm:bg-secondary-100 sm:dark:bg-secondary-800 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
                     }"
                     x-show="dialog?.accept || dialog?.reject">
                     <div x-show="dialog?.accept" class="sm:order-last" x-ref="accept"></div>
