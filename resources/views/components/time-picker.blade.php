@@ -251,7 +251,7 @@ class="w-full relative">
             </div>
 
             <div class="w-full rounded-t-md p-2.5 border border-secondary-200 bg-white transform transition-all
-                        relative sm:rounded-lg sm:shadow-md sm:w-48"
+                        relative sm:rounded-lg sm:shadow-md sm:w-48 dark:bg-secondary-800 dark:border-secondary-600"
                 x-show="showPicker"
                 tabindex="-1"
                 x-transition:enter="ease-out duration-300"
@@ -277,16 +277,18 @@ class="w-full relative">
                 <ul class="mt-1 w-full h-64 sm:h-32 pb-1 pt-2 overflow-y-auto">
                     <template x-for="time in filteredTimes">
                         <li class="group rounded-md focus:outline-none focus:bg-primary-100 hover:text-white
-                                 hover:bg-primary-600 cursor-pointer select-none relative py-2 pl-2 pr-9"
+                                 hover:bg-primary-600 cursor-pointer select-none relative py-2 pl-2 pr-9
+                                 dark:hover:bg-secondary-700"
                             :class="{
-                                'text-primary-600': input === time,
-                                'text-secondary-700'  : input !== time,
+                                'text-primary-600 dark:text-secondary-400': input === time,
+                                'text-secondary-700 dark:text-secondary-400'  : input !== time,
                             }"
                             tabindex="0"
                             x-on:keydown.enter="selectTime(time)"
                             x-on:click="selectTime(time)">
                             <span x-text="time" class="font-normal block truncate"></span>
-                            <span class="text-primary-600 group-hover:text-white absolute inset-y-0 right-0 flex items-center pr-4"
+                            <span class="absolute text-primary-600 group-hover:text-white inset-y-0
+                                         right-0 flex items-center pr-4 dark:text-secondary-400"
                                 x-show="input === time">
                                 <x-icon name="check" class="h-5 w-5" />
                             </span>
