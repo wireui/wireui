@@ -1,7 +1,7 @@
 <div>
     <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
         @if ($leftLabel)
-            <span class="mr-2 text-sm font-medium">{{ $leftLabel }}</span>
+            <x-label class="mr-2" :label="$leftLabel" />
         @endif
 
         <input {{ $attributes->class([
@@ -15,7 +15,7 @@
         />
 
         @if ($label)
-            <span class="ml-2 text-sm font-medium">{{ $label }}</span>
+            <x-label class="ml-2" :label="$label" />
         @endif
     </label>
 
