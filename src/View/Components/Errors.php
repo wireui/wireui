@@ -15,7 +15,7 @@ class Errors extends Component
      * @param string|array|null $only
      */
     public function __construct(
-        string $title = 'There were {errors} errors with your submission',
+        ?string $title = null,
         $only = []
     ) {
         if (is_string($only)) {
@@ -23,7 +23,7 @@ class Errors extends Component
             $only = array_map(fn (string $name) => trim($name), $only);
         }
 
-        $this->title = $title;
+        $this->title = $title ?? __('wireui::messages.errors.title');
         $this->only  = $only;
     }
 
