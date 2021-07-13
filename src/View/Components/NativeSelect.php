@@ -37,7 +37,7 @@ class NativeSelect extends FormComponent
 
     public function defaultClasses(): string
     {
-        return 'mt-1 block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm
+        return 'block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm
                 rounded-md border bg-white focus:ring-1 focus:outline-none';
     }
 
