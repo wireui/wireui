@@ -371,7 +371,8 @@ x-init="function() {
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
-                    <div class="flex items-center gap-x-2 my-auto {{ $errors->has($name) ? 'text-negative-400' : 'text-secondary-400' }}">
+                    <div class="flex items-center gap-x-2 my-auto
+                        {{ $errors->has($name) ? 'text-negative-400 dark:text-negative-600' : 'text-secondary-400' }}">
                         <x-icon class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"

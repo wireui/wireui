@@ -8,12 +8,16 @@
 
         <div class="relative">
             <input {{ $attributes }} type="checkbox" class="hidden" @if ($readonly) disabled @endif />
-            <div class="form-toggle-background {{ $backgroundClasses() }} {{ $errors->has($name) ? 'bg-negative-500':'' }}"></div>
+            <div class="form-toggle-background {{ $backgroundClasses($errors->has($name)) }}"></div>
             <div class="form-toggle-circle {{ $circleClasses() }}"></div>
         </div>
 
         @if ($label)
-            <x-label class="ml-2" :label="$label" />
+            <x-label
+                class="ml-2"
+                :label="$label"
+                :has-error="$errors->has($name) ?? false"
+            />
         @endif
     </div>
 

@@ -51,7 +51,7 @@
                     <x-icon name="exclamation-circle" class="h-5 w-5" />
                 @endif
             </div>
-        @elseif($append)
+        @elseif ($append)
             {{ $append }}
         @endif
     </div>

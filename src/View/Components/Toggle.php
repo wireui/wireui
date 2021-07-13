@@ -9,9 +9,11 @@ class Toggle extends Checkbox
         return 'wireui::components.toggle';
     }
 
-    public function backgroundClasses(): string
+    public function backgroundClasses(bool $hasError): string
     {
         return $this->classes([
+            'bg-negative-500 dark:bg-negative-700' => $hasError,
+
             'w-7 h-4'  => $this->sm,
             'w-9 h-5'  => $this->md,
             'w-10 h-6' => $this->lg,

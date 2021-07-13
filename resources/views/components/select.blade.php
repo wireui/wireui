@@ -156,7 +156,12 @@ x-init="function() {
     $watch('search', search => this.filterOptions(search?.toLowerCase()))
 }">
     <div class="relative">
-        <x-label :label="$label" class="mb-1" x-on:click="togglePopover" />
+        <x-label
+            class="mb-1"
+            :label="$label"
+            :has-error="$errors->has($name) ?? false"
+            x-on:click="togglePopover"
+        />
         <x-input
             class="cursor-pointer overflow-hidden dark:text-secondary-400"
             x-ref="select"
@@ -205,7 +210,14 @@ x-init="function() {
                         <x-icon name="x" class="w-4 h-4 text-secondary-400 hover:text-negative-400" />
                     </button>
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
-                        <x-icon :name="$rightIcon" class="w-5 h-5 text-secondary-400 cursor-pointer" />
+                        <x-icon
+                            class="w-5 h-5
+                                {{ $errors->has($name)
+                                    ? 'text-negative-400 dark:text-negative-600'
+                                    : 'text-secondary-400'
+                                }}"
+                            :name="$rightIcon"
+                        />
                     </button>
                 </div>
             </x-slot>

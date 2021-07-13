@@ -49,6 +49,7 @@ class NativeSelect extends FormComponent
 
     public function errorClasses()
     {
-        return 'border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500';
+        return 'border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500
+                dark:border-negative-600 dark:text-negative-500';
     }
 }

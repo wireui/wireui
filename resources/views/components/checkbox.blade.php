@@ -8,9 +8,9 @@
             'block sm:text-sm rounded-sm transition ease-in-out duration-100 focus:outline-none',
             'border-secondary-300 text-primary-600 checked:bg-primary-600 focus:ring-primary-600',
             'dark:border-secondary-600 dark:text-secondary-600 dark:focus:ring-0 dark:bg-secondary-600',
+            'ring-negative-500 ring-2 ring-offset-2 border-negative-400' => $errors->has($name),
             'w-5 h-5' => $md,
             'w-6 h-6' => $lg,
-            'ring-negative-500 ring-2 ring-offset-2 border-negative-400' => $errors->has($name)
             ])->merge(['type' => 'checkbox']) }}
         />
 
