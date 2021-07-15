@@ -28,11 +28,13 @@ module.exports = {
       opacity: ['disabled'],
       cursor: ['disabled'],
       pointerEvents: ['disabled'],
+      backgroundColor: ['checked'],
       borderWidth: ['dark'],
-      borderColor: ['dark'],
+      borderColor: ['dark', 'checked'],
       divideWidth: ['dark'],
       divideColor: ['dark'],
-      ringWidth: ['dark']
+      ringWidth: ['dark'],
+      ringOffsetWidth: ['dark']
     }
   },
   plugins: [
