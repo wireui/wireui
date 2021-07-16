@@ -1,27 +1,27 @@
-<label class="form-toggle @if ($disabled) opacity-60 @endif"
-    for="{{ $id }}"
-    tabindex="0">
-    <div class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
+<div>
+    <div class="flex items-center">
         @if ($leftLabel)
-            <x-label class="mr-2" :label="$leftLabel" />
+            <x-label :for="$id" class="mr-2" :label="$leftLabel" :has-error="$errors->has($name)" />
         @endif
 
-        <div class="relative">
-            <input {{ $attributes }} type="checkbox" class="hidden" @if ($readonly) disabled @endif />
-            <div class="form-toggle-background {{ $backgroundClasses($errors->has($name)) }}"></div>
-            <div class="form-toggle-circle {{ $circleClasses() }}"></div>
+        <div class="relative flex items-center select-none">
+            <input {{ $attributes->merge([
+                    'name'  => $name,
+                    'id'    => $id,
+                    'class' => $circleClasses(),
+                ]) }}
+                type="checkbox"
+            />
+
+            <label for="{{ $id }}" class="{{ $backgroundClasses($errors->has($name)) }}"></label>
         </div>
 
         @if ($label)
-            <x-label
-                class="ml-2"
-                :label="$label"
-                :has-error="$errors->has($name) ?? false"
-            />
+            <x-label :for="$id" class="ml-2" :label="$label" :has-error="$errors->has($name)" />
         @endif
     </div>
 
     @if ($name)
         <x-error :name="$name" />
     @endif
-</label>
+</div>
