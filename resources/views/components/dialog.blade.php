@@ -133,7 +133,8 @@ x-on:keydown.escape.window="handleEscape"
 style="display: none">
     <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center">
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
-            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif"
+            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif
+            dark:bg-secondary-700 dark:bg-opacity-60"
             x-show="show"
             x-on:click="dismiss"
             x-transition:enter="ease-out duration-300"
@@ -163,7 +164,7 @@ style="display: none">
                             ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
                     x-ref="progressbar"
-                    x-show="Boolean(dialog?.progressbar)">
+                    x-show="dialog?.progressbar && dialog?.timeout">
                 </div>
 
                 <div x-show="dialog?.closeButton" class="absolute right-2 -top-2">

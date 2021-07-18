@@ -441,7 +441,13 @@ x-init="function() {
                     @endunless
 
                     <div class="flex items-center justify-between">
-                        <x-button x-show="!monthsPicker" x-on:click="previousMonth" flat icon="chevron-left" class="rounded-lg flex-shrink-0" />
+                        <x-button
+                            class="rounded-lg flex-shrink-0"
+                            x-show="!monthsPicker"
+                            x-on:click="previousMonth"
+                            icon="chevron-left"
+                            flat
+                        />
 
                         <div class="w-full flex items-center justify-center gap-x-2 text-secondary-600 dark:text-secondary-500">
                             <button class="focus:outline-none focus:underline"
@@ -456,7 +462,13 @@ x-init="function() {
                             />
                         </div>
 
-                        <x-button x-show="!monthsPicker" x-on:click="nextMonth" flat icon="chevron-right" class="rounded-lg flex-shrink-0" />
+                        <x-button
+                            class="rounded-lg flex-shrink-0"
+                            x-show="!monthsPicker"
+                            x-on:click="nextMonth"
+                            icon="chevron-right"
+                            flat
+                        />
                     </div>
 
                     <div class="relative">

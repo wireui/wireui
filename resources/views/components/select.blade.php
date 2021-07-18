@@ -181,13 +181,15 @@ x-init="function() {
                     x-show="multiselect"
                     x-on:click="togglePopover">
                     <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
-                        <span class="inline-flex text-secondary-700 text-sm"
+                        <span class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
                             x-show="selectedOptions.length"
                             x-text="model?.length">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
                             <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700">
+                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                                         dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                                ">
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
                                 <button class="flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
                                                justify-center hover:text-secondary-500 focus:outline-none"
