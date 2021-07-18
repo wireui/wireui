@@ -90,7 +90,8 @@ class Input extends FormComponent
 
     protected function getDefaultColorClasses(): string
     {
-        return Str::of('placeholder-secondary-400 dark:bg-secondary-800')
+        return Str::of('placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400')
+            ->append(' dark:placeholder-secondary-500')
             ->unless($this->borderless, function (Stringable $stringable) {
                 return $stringable
                     ->append(' border border-secondary-300 focus:ring-primary-500 focus:border-primary-500')
@@ -101,7 +102,6 @@ class Input extends FormComponent
     protected function getDefaultClasses(): string
     {
         return Str::of('block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none')
-            ->append(' dark:text-secondary-400')
             ->unless($this->shadowless, fn (Stringable $stringable) => $stringable->append(' shadow-sm'))
             ->when($this->borderless, function (Stringable $stringable) {
                 return $stringable->append(' border-transparent focus:border-transparent focus:ring-transparent');
