@@ -101,6 +101,7 @@ class Input extends FormComponent
     protected function getDefaultClasses(): string
     {
         return Str::of('block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none')
+            ->append(' dark:text-secondary-400')
             ->unless($this->shadowless, fn (Stringable $stringable) => $stringable->append(' shadow-sm'))
             ->when($this->borderless, function (Stringable $stringable) {
                 return $stringable->append(' border-transparent focus:border-transparent focus:ring-transparent');
