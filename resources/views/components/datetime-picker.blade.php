@@ -394,7 +394,8 @@ x-init="function() {
         x-on:keydown.escape.window="handleEscape">
         <div class="flex items-end justify-center min-h-screen sm:h-96 sm:items-start"
             style="min-height: -webkit-fill-available; min-height: fill-available;">
-            <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden"
+            <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden
+                        dark:bg-secondary-700 dark:bg-opacity-60"
                 x-show="popover"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"

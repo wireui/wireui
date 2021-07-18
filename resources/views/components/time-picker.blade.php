@@ -241,7 +241,8 @@ class="w-full relative">
         wire:ignore>
         <div class="flex items-end justify-center h-screen sm:h-48"
             style="min-height: -webkit-fill-available; min-height: fill-available;">
-            <div class="fixed inset-0 bg-secondary-500 bg-opacity-75 transition-opacity sm:hidden"
+            <div class="fixed inset-0 bg-secondary-500 bg-opacity-75 transition-opacity sm:hidden
+                      dark:bg-secondary-700 dark:bg-opacity-60"
                 x-show="showPicker"
                 x-transition:enter="ease-out duration-300"
                 x-transition:enter-start="opacity-0"
