@@ -4,7 +4,10 @@
             <x-label class="mr-2" :label="$leftLabel" :has-error="$errors->has($name)" />
         @endif
 
-        <input {{ $attributes->class($getClasses($errors->has($name)))->merge(['type' => 'checkbox']) }} />
+        <input {{ $attributes->merge([
+            'type'  => 'checkbox',
+            'class' => $getClasses($errors->has($name))
+        ]) }} />
 
 
         @if ($label)
