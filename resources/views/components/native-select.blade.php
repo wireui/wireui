@@ -1,6 +1,6 @@
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label)
-        <x-label :label="$label" :has-error="$errors->has($name)" :for="$id" />
+        <x-label class="mb-1" :label="$label" :has-error="$errors->has($name)" :for="$id" />
     @endif
 
     <select {{ $attributes->class([
