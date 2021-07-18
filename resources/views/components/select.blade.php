@@ -57,6 +57,8 @@
             return this.model.push(value)
         }
 
+        if (value === this.model) { value = null }
+
         this.model = value
         this.$refs.select.dispatchEvent(new Event('select'))
         this.closePopover()
@@ -154,9 +156,14 @@ x-init="function() {
     $watch('search', search => this.filterOptions(search?.toLowerCase()))
 }">
     <div class="relative">
-        <x-label :label="$label" class="mb-1" x-on:click="togglePopover" />
+        <x-label
+            class="mb-1"
+            :label="$label"
+            :has-error="$errors->has($name) ?? false"
+            x-on:click="togglePopover"
+        />
         <x-input
-            class="cursor-pointer overflow-hidden"
+            class="cursor-pointer overflow-hidden dark:text-secondary-400"
             x-ref="select"
             x-on:click="togglePopover"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
@@ -174,13 +181,15 @@ x-init="function() {
                     x-show="multiselect"
                     x-on:click="togglePopover">
                     <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
-                        <span class="inline-flex text-secondary-700 text-sm"
+                        <span class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
                             x-show="selectedOptions.length"
                             x-text="model?.length">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
                             <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700">
+                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                                         dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                                ">
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
                                 <button class="flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
                                                justify-center hover:text-secondary-500 focus:outline-none"
@@ -203,14 +212,22 @@ x-init="function() {
                         <x-icon name="x" class="w-4 h-4 text-secondary-400 hover:text-negative-400" />
                     </button>
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
-                        <x-icon :name="$rightIcon" class="w-5 h-5 text-secondary-400 cursor-pointer" />
+                        <x-icon
+                            class="w-5 h-5
+                                {{ $errors->has($name)
+                                    ? 'text-negative-400 dark:text-negative-600'
+                                    : 'text-secondary-400'
+                                }}"
+                            :name="$rightIcon"
+                        />
                     </button>
                 </div>
             </x-slot>
         </x-input>
     </div>
 
-    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200"
+    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200
+                dark:bg-secondary-800 dark:border-secondary-600"
         x-show="popover"
         x-cloak
         x-on:click.outside="closePopover"
@@ -218,7 +235,7 @@ x-init="function() {
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">
                 <x-input class="focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
-                                border border-secondary-200 duration-300"
+                                border border-secondary-200 dark:border-secondary-600 duration-300"
                     x-ref="search"
                     x-model="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"

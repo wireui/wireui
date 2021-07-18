@@ -143,7 +143,9 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getoutlineColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
+            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
+                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
+                        dark:ring-offset-secondary-800'
         );
     }
 
@@ -152,7 +154,9 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getFlatColors(),
-            $default = 'text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
+            $default = 'text-secondary-500 hover:bg-secondary-100 ring-secondary-200
+                        dark:hover:bg-secondary-700 dark:ring-secondary-600
+                        dark:ring-offset-secondary-800'
         );
     }
 
@@ -161,7 +165,9 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getDefaultColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200'
+            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
+                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
+                        dark:ring-offset-secondary-800'
         );
     }
 

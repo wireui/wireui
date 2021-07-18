@@ -12,12 +12,14 @@ class Test extends BrowserTestCase
     public function it_should_render_label_and_change_value()
     {
         $this->browse(function (Browser $browser) {
+            $id = md5('toggle');
+
             Livewire::visit($browser, Component::class)
-                ->assertSee('Active Notifications')
-                ->tap(fn() => $browser->script("document.querySelector('.form-toggle').click()"))
+                ->assertSee('Enable Notifications')
+                ->tap(fn() => $browser->script("document.getElementById('{$id}').click()"))
                 ->assertChecked('toggle')
                 ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@toggle', 'true'))
-                ->tap(fn() => $browser->script("document.querySelector('.form-toggle').click()"))
+                ->tap(fn() => $browser->script("document.getElementById('{$id}').click()"))
                 ->assertNotChecked('toggle')
                 ->click('@validate')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('accept it'));

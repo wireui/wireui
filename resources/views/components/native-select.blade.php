@@ -6,7 +6,7 @@
     <select {{ $attributes->class([
         $defaultClasses(),
         $errorClasses() =>  $errors->has($name),
-        $colorClasses() => !$errors->has($name)
+        $colorClasses() => !$errors->has($name),
     ]) }}>
         @if ($options !== null)
             @if ($placeholder)

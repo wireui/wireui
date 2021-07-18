@@ -46,6 +46,9 @@
         }
     },
     "scripts": {
+        "post-autoload-dump": [
+            "./vendor/bin/dusk-updater detect --no-interaction"
+        ],
         "test": "./vendor/bin/phpunit --configuration phpunit.xml"
     },
     "extra": {

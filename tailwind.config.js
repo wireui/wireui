@@ -6,7 +6,8 @@ module.exports = {
     './resources/views/**/*.blade.php',
     './src/View/**/*.php'
   ],
-  darkMode: false,
+  mode: 'jit',
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -20,19 +21,19 @@ module.exports = {
       },
       fontSize: {
         '2xs': '.5rem'
+      },
+      spacing: {
+        '4.5': '1.13rem'
       }
     }
   },
   variants: {
     extend: {
-      opacity: ['disabled'],
-      cursor: ['disabled'],
-      pointerEvents: ['disabled']
+
     }
   },
   plugins: [
     require('@tailwindcss/forms'),
-    require('./tailwindcss/plugins/hideScrollbar'),
-    require('./tailwindcss/components/toggle')
+    require('./tailwindcss/plugins/hideScrollbar')
   ]
 }

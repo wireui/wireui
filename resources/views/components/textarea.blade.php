@@ -57,7 +57,9 @@
     </div>
 
     @if (!$hasError && $hint)
-        <label @if($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500">{{ $hint }}</label>
+        <label @if($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
+            {{ $hint }}
+        </label>
     @endif
 
     @if ($name)
