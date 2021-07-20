@@ -1,7 +1,7 @@
 <div>
     <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
         @if ($leftLabel)
-            <x-label class="mr-2" :label="$leftLabel" :has-error="$errors->has($name)" />
+            <x-label class="mr-2" :for="$id" :label="$leftLabel" :has-error="$errors->has($name)" />
         @endif
 
         <input {{ $attributes->merge([
@@ -11,7 +11,7 @@
 
 
         @if ($label)
-            <x-label class="ml-2" :label="$label" :has-error="$errors->has($name)" />
+            <x-label class="ml-2" :for="$id" :label="$label" :has-error="$errors->has($name)" />
         @endif
     </label>
 
