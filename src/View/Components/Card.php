@@ -14,8 +14,6 @@ class Card extends Component
 
     public ?string $color;
 
-    public ?string $divider;
-
     public ?string $title;
 
     public ?string $action;
@@ -31,7 +29,6 @@ class Card extends Component
         ?string $shadow = 'shadow-md',
         ?string $rounded = 'rounded-lg',
         ?string $color = 'bg-white border border-secondary-200 dark:bg-secondary-800 dark:border-0',
-        ?string $divider = 'border-t border-b dark:border-0',
         ?string $title = null,
         ?string $action = null,
         ?string $header = null,
@@ -42,7 +39,6 @@ class Card extends Component
         $this->shadow      = $shadow;
         $this->rounded     = $rounded;
         $this->color       = $color;
-        $this->divider     = $divider;
         $this->title       = $title;
         $this->action      = $action;
         $this->header      = $header;
