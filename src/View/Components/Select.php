@@ -20,6 +20,8 @@ class Select extends NativeSelect
         string $optionComponent = 'select.option',
         bool $searchable = true,
         bool $multiselect = false,
+        bool $optionKeyLabel = false,
+        bool $optionKeyValue = false,
         ?string $label = null,
         ?string $placeholder = null,
         ?string $optionValue = null,
@@ -27,7 +29,15 @@ class Select extends NativeSelect
         ?string $icon = null,
         $options = null
     ) {
-        parent::__construct($label, $placeholder, $optionValue, $optionLabel, $options);
+        parent::__construct(
+            $label,
+            $placeholder,
+            $optionValue,
+            $optionLabel,
+            $optionKeyLabel,
+            $optionKeyValue,
+            $options
+        );
 
         $this->rightIcon       = $rightIcon;
         $this->optionComponent = $optionComponent;

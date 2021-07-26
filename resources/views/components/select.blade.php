@@ -256,11 +256,11 @@ x-init="function() {
             x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
             @if ($options)
-                @forelse ($options as $option)
+                @forelse ($options as $key => $option)
                     <x-dynamic-component
                         :component="data_get($option, 'component', $optionComponent)"
-                        :label="data_get($option, $optionLabel)"
-                        :value="data_get($option, $optionValue)"
+                        :label="$getOptionLabel($key, $option)"
+                        :value="$getOptionValue($key, $option)"
                         :disabled="data_get($option, 'disabled', false)"
                         :readonly="data_get($option, 'readonly', false)"
                         :option="$option"
