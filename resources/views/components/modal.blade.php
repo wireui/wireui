@@ -30,6 +30,7 @@
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="previousFocusable().focus()"
     x-on:open-modal:{{ Str::kebab((string)$model) }}.window="show = true"
+    {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
     x-show="show">
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full space-y-4
