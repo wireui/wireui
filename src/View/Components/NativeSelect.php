@@ -12,6 +12,10 @@ class NativeSelect extends FormComponent
 
     public ?string $optionLabel;
 
+    public bool $optionKeyLabel;
+
+    public bool $optionKeyValue;
+
     /** @var Collection|array|null */
     public $options;
 
@@ -21,13 +25,17 @@ class NativeSelect extends FormComponent
         ?string $placeholder = null,
         ?string $optionValue = null,
         ?string $optionLabel = null,
+        bool $optionKeyLabel = false,
+        bool $optionKeyValue = false,
         $options = null
     ) {
-        $this->label       = $label;
-        $this->placeholder = $placeholder;
-        $this->optionValue = $optionValue;
-        $this->optionLabel = $optionLabel;
-        $this->options     = $options;
+        $this->label          = $label;
+        $this->placeholder    = $placeholder;
+        $this->optionValue    = $optionValue;
+        $this->optionLabel    = $optionLabel;
+        $this->optionKeyLabel = $optionKeyLabel;
+        $this->optionKeyValue = $optionKeyValue;
+        $this->options        = $options;
     }
 
     protected function getView(): string
@@ -51,5 +59,23 @@ class NativeSelect extends FormComponent
     {
         return 'border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500
                 dark:border-negative-600 dark:text-negative-500';
+    }
+
+    public function getOptionValue($key, $option)
+    {
+        if ($this->optionKeyValue) {
+            return $key;
+        }
+
+        return data_get($option, $this->optionValue);
+    }
+
+    public function getOptionLabel($key, $option)
+    {
+        if ($this->optionKeyLabel) {
+            return $key;
+        }
+
+        return data_get($option, $this->optionLabel);
     }
 }

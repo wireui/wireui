@@ -13,10 +13,10 @@
                 <option value="">{{ $placeholder }}</option>
             @endif
 
-            @forelse ($options as $option)
-                <option value="{{ data_get($option, $optionValue) }}"
+            @forelse ($options as $key => $option)
+                <option value="{{ $getOptionValue($key, $option) }}"
                     @if(data_get($option, 'disabled', false)) disabled @endif>
-                    {{ data_get($option, $optionLabel) }}
+                    {{ $getOptionLabel($key, $option) }}
                 </option>
             @empty
                 <option disabled>
