@@ -18,9 +18,11 @@ class ModalCard extends Modal
 
     public ?string $footer;
 
+    public bool $fullscreen;
+
     public bool $squared;
 
-    public bool $fullscreen;
+    public bool $hideClose;
 
     public function __construct(
         ?string $zIndex = null,
@@ -36,6 +38,7 @@ class ModalCard extends Modal
         ?string $footer = null,
         bool $fullscreen = false,
         bool $squared = false,
+        bool $hideClose = false,
         $blur = null
     ) {
         if ($fullscreen) {
@@ -53,6 +56,7 @@ class ModalCard extends Modal
         $this->footer     = $footer;
         $this->fullscreen = $fullscreen;
         $this->squared    = $squared;
+        $this->hideClose  = $hideClose;
     }
 
     public function render()

@@ -27,4 +27,18 @@
         option-value="value"
         :options="$this::LABEL_VALUE_OPTIONS"
     />
+
+    // test it_should_render_select_with_give_array_options_using_key_as_value
+    <x-native-select
+        name="option-key-value"
+        option-key-value
+        :options="$options"
+    />
+
+    // test it_should_render_select_with_give_array_options_using_key_as_label
+    <x-native-select
+        name="option-key-label"
+        option-key-label
+        :options="$options"
+    />
 </div>

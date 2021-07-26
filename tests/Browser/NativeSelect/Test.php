@@ -54,4 +54,30 @@ class Test extends BrowserTestCase
                 ]);
         });
     }
+
+    /** @test */
+    public function it_should_render_select_with_give_array_options_using_key_as_value()
+    {
+        $this->browse(function (Browser $browser) {
+            Livewire::visit($browser, Component::class)
+                ->assertSelectHasOptions('option-key-value', [
+                    'Array Option 1' => 0,
+                    'Array Option 2' => 1,
+                    'Array Option 3' => 2,
+                ]);
+        });
+    }
+
+    /** @test */
+    public function it_should_render_select_with_give_array_options_using_key_as_label()
+    {
+        $this->browse(function (Browser $browser) {
+            Livewire::visit($browser, Component::class)
+                ->assertSelectHasOptions('option-key-label', [
+                    0 => 'Array Option 1',
+                    1 => 'Array Option 2',
+                    2 => 'Array Option 3',
+                ]);
+        });
+    }
 }
