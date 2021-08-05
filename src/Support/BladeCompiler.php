@@ -11,20 +11,22 @@ class BladeCompiler
 {
     public function compile(string $html, array $data = []): string
     {
-        $blade = Blade::compileString($html);
+        $safeHtml = (new SafeEval())->evaluate($html);
+
+        $blade = Blade::compileString($safeHtml);
 
         return $this->compileString($blade, $data);
     }
 
-    private function compileString($__php, $__data): string
+    private function compileString(string $blade, array $data): string
     {
-        $__data['__env'] = app(Factory::class);
-        $obLevel         = ob_get_level();
+        $data['__env'] = app(Factory::class);
+        $obLevel       = ob_get_level();
         ob_start();
-        extract($__data, EXTR_SKIP);
+        extract($data, EXTR_SKIP);
 
         try {
-            eval("?> {$__php}");
+            eval("?> {$blade}");
         } catch (Exception $e) {
             while (ob_get_level() > $obLevel) {
                 ob_end_clean();
