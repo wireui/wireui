@@ -43,10 +43,10 @@ class WireUiTagCompilerTest extends UnitTestCase
     {
         $bladeDirectives = new WireUiBladeDirectives();
         $hooksScript     = $bladeDirectives->hooksScript();
-        $wireuiScript    = '<script src="/wireui/assets/js/wireui.js" defer></script>';
+        $wireuiScript    = '<script src="/wireui/assets/scripts" defer></script>';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
-            $wireuiScript = str_replace('.js', ".js?id={$version}", $wireuiScript);
+            $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
         }
 
         $scripts = $bladeDirectives->scripts($absolute = false);
@@ -59,10 +59,10 @@ class WireUiTagCompilerTest extends UnitTestCase
     public function it_should_match_rendered_styles_link()
     {
         $bladeDirectives = new WireUiBladeDirectives();
-        $expected        = '<link href="/wireui/assets/css/wireui.css" rel="stylesheet" type="text/css">';
+        $expected        = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.css')) {
-            $expected = str_replace('.css', ".css?id={$version}", $expected);
+            $expected = str_replace('assets/styles', "assets/styles?id={$version}", $expected);
         }
 
         $this->assertEquals($expected, $bladeDirectives->styles($absolute = false));
