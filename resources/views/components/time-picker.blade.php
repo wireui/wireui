@@ -57,7 +57,7 @@
             const minutes    = Number(startTime % 60).toString().padStart(2, '0')
             const timePeriod = timePeriods[Math.floor(hour / 12)]
 
-            if (this.config.is12H && formatedHour === '00') { formatedHour = 12 }
+            if (this.config.is12H && formatedHour === 0) { formatedHour = 12 }
 
             let time = `${formatedHour}:${minutes}`
 

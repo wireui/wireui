@@ -133,7 +133,7 @@ x-data="{
             let formatedHour = this.config.is12H ? Number(hour % 12) : hour
             const minutes    = Number(startTime % 60).toString().padStart(2, '0')
 
-            if (this.config.is12H && formatedHour === '00') { formatedHour = 12 }
+            if (this.config.is12H && formatedHour === 0) { formatedHour = 12 }
 
             const time = {
                 label: `${formatedHour}:${minutes}`,
