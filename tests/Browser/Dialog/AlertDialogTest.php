@@ -94,7 +94,7 @@ class AlertDialogTest extends BrowserTestCase
                 EOT))
                 ->pause(200)
                 ->assertSee($title)
-                ->pause(400)
+                ->pause(420)
                 ->assertDontSee($title);
         });
     }
