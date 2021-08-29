@@ -89,11 +89,10 @@ class Test extends BrowserTestCase
                     return $browser->script('getElementByXPath("//span[text()=\'Close\']").parentNode.click();');
                 })->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onDismiss');
-                })->click('@button.clear_events')
-                ->waitForLivewire()
+                })
+                ->click('@button.clear_events')
+                ->waitUsing(5, 75, fn () => $browser->assertMissing('@events'))
                 ->click($duskButton)
-                ->waitForLivewire()
-                ->pause(1000)
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onTimeout');
                 });
