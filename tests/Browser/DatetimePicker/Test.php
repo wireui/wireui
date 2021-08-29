@@ -16,9 +16,8 @@ class Test extends BrowserTestCase
                 ->assertInputValue('withoutTimezone', '2021-05-22 02:48')
                 ->click('[id="withoutTimezone"]')
                 ->tap(fn () => $this->selectDate($browser, 'withoutTimezone', 5))
-                ->waitForLivewire()
-                ->assertInputValue('withoutTimezone', '2021-05-05 02:48')
-                ->assertSeeIn('@withoutTimezone', '2021-05-05T02:48:00Z');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@withoutTimezone', '2021-05-05T02:48:00Z'))
+                ->assertInputValue('withoutTimezone', '2021-05-05 02:48');
         });
     }
 
@@ -34,9 +33,8 @@ class Test extends BrowserTestCase
                 ->assertInputValue('utcTimezone', '2021-07-21 21:30')
                 ->click('[id="utcTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'utcTimezone', 31))
-                ->waitForLivewire()
-                ->assertInputValue('utcTimezone', '2021-07-31 21:30')
-                ->assertSeeIn('@utcTimezone', '2021-08-01T00:30:00Z');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@utcTimezone', '2021-08-01T00:30:00Z'))
+                ->assertInputValue('utcTimezone', '2021-07-31 21:30');
         });
     }
 
@@ -51,9 +49,8 @@ class Test extends BrowserTestCase
                 ->assertInputValue('tokyoTimezone', '2021-07-25 22:00')
                 ->click('[id="tokyoTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'tokyoTimezone', 31))
-                ->waitForLivewire()
-                ->assertInputValue('tokyoTimezone', '2021-07-31 22:00')
-                ->assertSeeIn('@tokyoTimezone', '2021-08-01T10:00:00+09:00');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@tokyoTimezone', '2021-08-01T10:00:00+09:00'))
+                ->assertInputValue('tokyoTimezone', '2021-07-31 22:00');
         });
     }
 
@@ -69,8 +66,8 @@ class Test extends BrowserTestCase
                 ->click('[id="customFormat"] input')
                 ->tap(fn () => $this->selectDate($browser, 'customFormat', 10))
                 ->waitForLivewire()
-                ->assertInputValue('customFormat', '10-2021-09 59:13')
-                ->assertSeeIn('@customFormat', '10-2021-09 59:13');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@customFormat', '10-2021-09 59:13'))
+                ->assertInputValue('customFormat', '10-2021-09 59:13');
         });
     }
 
@@ -86,16 +83,15 @@ class Test extends BrowserTestCase
                 ->assertInputValue('dateAndTime', '11-12-2021 00:00')
                 ->assertSeeIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->pause(1000)
-                ->tap(fn() => $browser->script(<<<EOT
+                ->tap(fn () => $browser->script(<<<EOT
                     console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
 
                     [...document.querySelectorAll('[id="dateAndTime"] .picker-times button')]
                         .find(time => time.innerText.includes('5:50 AM'))
                         .click()
                 EOT))
-                ->waitForLivewire()
-                ->assertInputValue('dateAndTime', '11-12-2021 05:50')
-                ->assertSeeIn('@dateAndTime', '2021-12-11T05:50:00Z');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@dateAndTime', '2021-12-11T05:50:00Z'))
+                ->assertInputValue('dateAndTime', '11-12-2021 05:50');
         });
     }
 

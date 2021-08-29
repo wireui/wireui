@@ -115,11 +115,9 @@ class AlertDialogTest extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $this->showDialog($browser))
                 ->pause(150)
                 ->tap(fn (Browser $browser) => $browser->script("
-                document.querySelector('div.dialog-backdrop').click()
+                    document.querySelector('div.dialog-backdrop').click()
                 "))
-                ->waitForLivewire()
-                ->pause(100)
-                ->assertSeeIn('@events', 'onClose, onDismiss');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
         });
     }
 
