@@ -1,12 +1,8 @@
 <div class="relative inline-block text-left"
-    x-data="{
-        open: false,
-
-        close() { this.open = false }
-    }"
+    x-data="dropdown"
     x-on:click.outside="close"
     x-on:keydown.escape.window="close">
-    <div class="cursor-pointer focus:outline-none" x-on:click="open = !open">
+    <div class="cursor-pointer focus:outline-none" x-on:click="toggle">
         @if (isset($trigger))
             {{ $trigger }}
         @else
@@ -18,7 +14,7 @@
         @endif
     </div>
 
-    <div x-show="open"
+    <div x-show="status"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="transform opacity-0 scale-95"
         x-transition:enter-end="transform opacity-100 scale-100"
