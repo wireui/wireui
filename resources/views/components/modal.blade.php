@@ -1,31 +1,9 @@
 @php $model = $attributes->wire('model'); @endphp
 
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
-    x-data="{
-        show: @entangle($model),
-
-        close() { this.show = false },
-        focusables() {
-            const selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-
-            return [...$el.querySelectorAll(selector)].filter(el => ! el.hasAttribute('disabled'))
-        },
-        firstFocusable() { return this.focusables()[0] },
-        lastFocusable() { return this.focusables().slice(-1)[0] },
-        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-        previousFocusable() { return this.focusables()[this.previousFocusableIndex()] || this.lastFocusable() },
-        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
-        previousFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
-    }"
-    x-init="function() {
-        $watch('show', value => {
-            value
-                ? document.body.classList.add('overflow-y-hidden')
-                : document.body.classList.remove('overflow-y-hidden')
-
-            this.$el.dispatchEvent(new Event(value ? 'open' : 'close'))
-        })
-    }"
+    x-data="wireui_modal({
+        model: @entangle($attributes->wire('model'))
+    })"
     x-on:keydown.escape.window="close"
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="previousFocusable().focus()"
