@@ -1,4 +1,4 @@
-<div x-data="currency({
+<div x-data="wireui_inputs_currency({
     isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
     model:  @entangle($attributes->wire('model')),
     emitFormatted: @boolean($emitFormatted),

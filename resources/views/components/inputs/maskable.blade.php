@@ -1,4 +1,4 @@
-<div x-data="maskable({
+<div x-data="wireui_inputs_maskable({
     isLazy: @boolean($attributes->wire('model')->hasModifier('lazy')),
     model: @entangle($attributes->wire('model')),
     emitFormatted: @boolean($emitFormatted),

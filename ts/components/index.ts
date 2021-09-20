@@ -8,9 +8,9 @@ export interface Start {
 }
 
 const start: Start = (Alpine: Alpine) => {
-  Alpine.data('dropdown', dropdown)
-  Alpine.data('maskable', maskable)
-  Alpine.data('currency', currency)
+  Alpine.data('wireui_dropdown', dropdown)
+  Alpine.data('wireui_inputs_maskable', maskable)
+  Alpine.data('wireui_inputs_currency', currency)
 }
 
 export default start

@@ -1,5 +1,5 @@
 <div class="relative inline-block text-left"
-    x-data="dropdown"
+    x-data="wireui_dropdown"
     x-on:click.outside="close"
     x-on:keydown.escape.window="close">
     <div class="cursor-pointer focus:outline-none" x-on:click="toggle">
