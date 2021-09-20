@@ -1,8 +1,6 @@
+import { Alpine } from './alpine'
 import dropdown from './dropdown'
-
-export interface Alpine {
-  data (name: string, data: any): void
-}
+import maskable from './inputs/maskable'
 
 export interface Start {
   (Alpine: Alpine): void
@@ -10,6 +8,7 @@ export interface Start {
 
 const start: Start = (Alpine: Alpine) => {
   Alpine.data('dropdown', dropdown)
+  Alpine.data('maskable', maskable)
 }
 
 export default start
