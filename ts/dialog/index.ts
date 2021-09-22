@@ -1,10 +1,11 @@
 import { EventOptions } from '../notifications/events'
 import { Icon } from '../notifications/icons'
+import { Pausable } from '../utils/timeout'
 import { Action, ButtonOptions } from './actions'
 import { ConfirmationOptions, Options, Style } from './options'
 import { parseDialog, parseConfirmation, ParseDialog, ParseConfirmation } from './parses'
 
-export interface Dialog {
+export interface DialogOptions {
   title?: string
   description?: string
   icon?: Icon | string
@@ -16,6 +17,20 @@ export interface Dialog {
   onClose: CallableFunction | EventOptions
   onDismiss: CallableFunction | EventOptions
   onTimeout: CallableFunction | EventOptions
+}
+
+export interface ConfirmDialogOptions extends DialogOptions {
+  accept: Action
+  reject: Action
+}
+
+export interface Dialog extends DialogOptions {
+  icon?: Icon
+  close: ButtonOptions
+  onClose: CallableFunction
+  onDismiss: CallableFunction
+  onTimeout: CallableFunction
+  timer?: Pausable
 }
 
 export interface ConfirmDialog extends Dialog {
