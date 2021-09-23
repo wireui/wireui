@@ -6,6 +6,7 @@ import notifications from './notifications'
 import maskable from './inputs/maskable'
 import currency from './inputs/currency'
 import select from './select'
+import timePicker from './timePicker'
 
 export interface Start {
   (Alpine: Alpine): void
@@ -19,6 +20,7 @@ const start: Start = (Alpine: Alpine) => {
   Alpine.data('wireui_inputs_maskable', maskable)
   Alpine.data('wireui_inputs_currency', currency)
   Alpine.data('wireui_select', select)
+  Alpine.data('wireui_timepicker', timePicker)
 }
 
 export default start
