@@ -5,6 +5,7 @@ import dialog from './dialog'
 import notifications from './notifications'
 import maskable from './inputs/maskable'
 import currency from './inputs/currency'
+import select from './select'
 
 export interface Start {
   (Alpine: Alpine): void
@@ -17,6 +18,7 @@ const start: Start = (Alpine: Alpine) => {
   Alpine.data('wireui_notifications', notifications)
   Alpine.data('wireui_inputs_maskable', maskable)
   Alpine.data('wireui_inputs_currency', currency)
+  Alpine.data('wireui_select', select)
 }
 
 export default start
