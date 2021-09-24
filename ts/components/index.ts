@@ -13,7 +13,7 @@ export interface Start {
   (Alpine: Alpine): void
 }
 
-const start: Start = (Alpine: Alpine) => {
+export const start: Start = (Alpine: Alpine) => {
   Alpine.data('wireui_dropdown', dropdown)
   Alpine.data('wireui_modal', modal)
   Alpine.data('wireui_dialog', dialog)
@@ -24,5 +24,3 @@ const start: Start = (Alpine: Alpine) => {
   Alpine.data('wireui_timepicker', timePicker)
   Alpine.data('wireui_datetime_picker', dateTimePicker)
 }
-
-export default start

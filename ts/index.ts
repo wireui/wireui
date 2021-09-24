@@ -1,21 +1,17 @@
-import utils, { Utilities } from './utils'
-import { notifications, notify, confirmNotification, Notifications, Notify, Confirm } from './notifications'
+import { notify, confirmNotification, Notify, Confirm } from './notifications'
 import { confirmAction, ConfirmAction } from './confirmAction'
-import { dialogs, showDialog, showConfirmDialog, Dialogs, ShowConfirmDialog, ShowDialog } from './dialog'
+import { showDialog, showConfirmDialog, ShowConfirmDialog, ShowDialog } from './dialog'
 import { WireUiHooks } from './hooks'
-import start, { Start } from './components'
+import { start, Start } from './components'
 import './directives/confirm'
 import './global'
 
 export interface WireUi {
-  utils: Utilities
   notify: Notify
   confirmNotification: Confirm
   confirmAction: ConfirmAction
-  notifications: Notifications
   dialog: ShowDialog
   confirmDialog: ShowConfirmDialog
-  dialogs: Dialogs
   start: Start
 }
 
@@ -29,14 +25,11 @@ declare global {
 }
 
 const wireui = {
-  utils,
   notify,
   confirmNotification,
   confirmAction,
-  notifications,
   dialog: showDialog,
   confirmDialog: showConfirmDialog,
-  dialogs,
   start
 }
 
