@@ -5,7 +5,7 @@
     <livewire:styles />
     <wireui:styles />
     <wireui:scripts />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="/testing-scripts" defer></script>
 </head>
 <body>
     <x-notifications />

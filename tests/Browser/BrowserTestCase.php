@@ -5,25 +5,20 @@ namespace Tests\Browser;
 use Closure;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Route;
+use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
+use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
-use Livewire\Component;
-use Livewire\LivewireServiceProvider;
 use Livewire\Macros\DuskBrowserMacros;
 use function Livewire\str;
-use Orchestra\Testbench\Dusk\Options as DuskOptions;
-use Orchestra\Testbench\Dusk\TestCase as BaseTestCase;
+use Livewire\{Component, LivewireServiceProvider};
+use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
 use Throwable;
 use WireUi\Providers\WireUiServiceProvider;
 
 /** @link https://github.com/livewire/livewire/blob/master/tests/Browser/TestCase.php */
-class BrowserTestCase extends BaseTestCase
+class BrowserTestCase extends Dusk\TestCase
 {
     use SupportsSafari;
 
@@ -32,7 +27,7 @@ class BrowserTestCase extends BaseTestCase
     public function setUp(): void
     {
         if (isset($_SERVER['CI'])) {
-            DuskOptions::withoutUI();
+            Dusk\Options::withoutUI();
         }
 
         Browser::mixin(new DuskBrowserMacros);
@@ -63,6 +58,12 @@ class BrowserTestCase extends BaseTestCase
                 $class = urldecode($component);
 
                 return app()->call(new $class);
+            })->middleware('web');
+
+            Route::get('/testing-scripts', function () {
+                return response()->file(__DIR__ . '/../../dist/testing/app.testing.js', [
+                    'Content-Type' => 'application/javascript; charset=utf-8',
+                ]);
             })->middleware('web');
 
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
@@ -141,11 +142,12 @@ class BrowserTestCase extends BaseTestCase
 
     protected function driver(): RemoteWebDriver
     {
-        $options = DuskOptions::getChromeOptions();
+        $options = Dusk\Options::getChromeOptions();
 
         return static::$useSafari
             ? RemoteWebDriver::create(
-                'http://localhost:9515', DesiredCapabilities::safari()
+                'http://localhost:9515',
+                DesiredCapabilities::safari()
             )
             : RemoteWebDriver::create(
                 'http://localhost:9515',
@@ -162,13 +164,13 @@ class BrowserTestCase extends BaseTestCase
             try {
                 $callback(...$browsers);
             } catch (Exception $e) {
-                if (DuskOptions::hasUI()) {
+                if (Dusk\Options::hasUI()) {
                     $this->breakIntoATinkerShell($browsers, $e);
                 }
 
                 throw $e;
             } catch (Throwable $e) {
-                if (DuskOptions::hasUI()) {
+                if (Dusk\Options::hasUI()) {
                     $this->breakIntoATinkerShell($browsers, $e);
                 }
 
