@@ -63,24 +63,24 @@
                                 <div class="mt-3 flex gap-x-3">
                                     <button class="rounded-md text-sm font-medium focus:outline-none"
                                         :class="{
-                                            'bg-white dark:bg-transparent text-primary-600 hover:text-primary-500': !Boolean(notification.accept?.style),
-                                            [notification.accept?.style]: Boolean(notification.accept?.style),
-                                            'px-3 py-2 border shadow-sm': Boolean(notification.accept?.solid),
+                                            'bg-white dark:bg-transparent text-primary-600 hover:text-primary-500': !Boolean($wireui.dataGet(notification, 'accept.style')),
+                                            [$wireui.dataGet(notification, 'accept.style')]: Boolean($wireui.dataGet(notification, 'accept.style')),
+                                            'px-3 py-2 border shadow-sm': Boolean($wireui.dataGet(notification, 'accept.solid')),
                                         }"
                                         x-on:click="accept(notification)"
-                                        x-show="notification.accept?.label"
-                                        x-text="notification.accept?.label">
+                                        x-show="$wireui.dataGet(notification, 'accept.label')"
+                                        x-text="$wireui.dataGet(notification, 'accept.label', '')">
                                     </button>
 
                                     <button class="rounded-md text-sm font-medium focus:outline-none"
                                         :class="{
-                                            'bg-white dark:bg-transparent text-secondary-700 dark:text-secondary-600 hover:text-secondary-500': !Boolean(notification.reject?.style),
-                                            [notification.reject?.style]: Boolean(notification.reject?.style),
-                                            'px-3 py-2 border border-secondary-300 shadow-sm': Boolean(notification.accept?.solid),
+                                            'bg-white dark:bg-transparent text-secondary-700 dark:text-secondary-600 hover:text-secondary-500': !Boolean($wireui.dataGet(notification, 'reject.style')),
+                                            [$wireui.dataGet(notification, 'reject.style')]: Boolean($wireui.dataGet(notification, 'reject.style')),
+                                            'px-3 py-2 border border-secondary-300 shadow-sm': Boolean($wireui.dataGet(notification, 'accept.solid')),
                                         }"
                                         x-on:click="reject(notification)"
-                                        x-show="notification.reject?.label"
-                                        x-text="notification.reject?.label">
+                                        x-show="$wireui.dataGet(notification, 'reject.label')"
+                                        x-text="$wireui.dataGet(notification, 'reject.label', '')">
                                     </button>
                                 </div>
                             </template>
@@ -90,12 +90,12 @@
                             <!-- accept button -->
                             <button class="mr-4 flex-shrink-0 rounded-md text-sm font-medium focus:outline-none"
                                 :class="{
-                                    'text-primary-600 hover:text-primary-500': !Boolean(notification.accept?.style),
-                                    [notification.accept?.style]: Boolean(notification.accept?.style)
+                                    'text-primary-600 hover:text-primary-500': !Boolean($wireui.dataGet(notification, 'accept.style')),
+                                    [$wireui.dataGet(notification, 'accept.style')]: Boolean($wireui.dataGet(notification, 'accept.style'))
                                 }"
                                 x-on:click="accept(notification)"
                                 x-show="notification.dense && notification.accept"
-                                x-text="notification.accept?.label">
+                                x-text="$wireui.dataGet(notification, 'accept.label', '')">
                             </button>
 
                             <!-- close button -->

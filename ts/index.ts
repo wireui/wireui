@@ -3,7 +3,9 @@ import { confirmAction, ConfirmAction } from './confirmAction'
 import { showDialog, showConfirmDialog, ShowConfirmDialog, ShowDialog } from './dialog'
 import { WireUiHooks } from './hooks'
 import { start, Start } from './components'
+import { dataGet, DataGet } from './utils/dataGet'
 import './directives/confirm'
+import './browserSupport'
 import './global'
 
 export interface WireUi {
@@ -13,6 +15,7 @@ export interface WireUi {
   dialog: ShowDialog
   confirmDialog: ShowConfirmDialog
   start: Start
+  dataGet: DataGet
 }
 
 declare global {
@@ -30,7 +33,8 @@ const wireui = {
   confirmAction,
   dialog: showDialog,
   confirmDialog: showConfirmDialog,
-  start
+  start,
+  dataGet
 }
 
 window.$wireui = wireui

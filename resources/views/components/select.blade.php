@@ -21,13 +21,12 @@
             x-on:click="togglePopover"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
+            x-bind:placeholder="getPlaceholderText()"
+            x-bind:value="getValueText()"
             readonly
             :name="$name"
             :icon="$icon"
-            ::placeholder="getPlaceholderText()"
-            ::value="getValueText()"
-            {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}
-        >
+            {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}>
             <x-slot name="prepend">
                 <div class="absolute left-0 inset-y-0 pl-2 pr-14 w-full flex items-center overflow-hidden cursor-pointer"
                     :class="{ 'pointer-events-none': disabled || readonly }"
@@ -36,7 +35,7 @@
                     <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
                         <span class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
                             x-show="selectedOptions.length"
-                            x-text="model?.length">
+                            x-text="model ? model.length : ''">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
                             <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium

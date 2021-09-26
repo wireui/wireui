@@ -177,7 +177,7 @@
                         id="search.{{ $attributes->wire('model')->value() }}"
                         label="Select time"
                         x-model="searchTime"
-                        ::placeholder="modelTime ?? '12:00'"
+                        ::placeholder="modelTime ? modelTime : '12:00'"
                         x-ref="searchTime"
                         x-on:input.debounce.150ms="onSearchTime($event.target.value)"
                     />
