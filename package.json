@@ -13,8 +13,8 @@
         "build:css": "NODE_ENV=production npx tailwindcss -i ./resources/css/wireui.css -o ./dist/css/wireui.css --minify",
         "build:js": "mix --production",
         "build": "yarn build:ts && yarn build:js && yarn build:css",
-        "test": "env TS_NODE_PROJECT='tsconfig.testing.json' mocha -r ts-node/register -r jsdom-global/register ts-tests/**/*.spec.ts",
-        "test-file": "mocha -r ts-node/register -r jsdom-global/register"
+        "test": "yarn test:path ts-tests/**/*.spec.ts",
+        "test:path": "env TS_NODE_PROJECT='tsconfig.testing.json' mocha -r ts-node/register -r jsdom-global/register"
     },
     "dependencies": {
         "alpinejs": "^3.4.1",
