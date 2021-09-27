@@ -5,7 +5,7 @@
     <livewire:styles />
     <wireui:styles />
     <wireui:scripts />
-    <script src="/testing-scripts" defer></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
 </head>
 <body>
     <x-notifications />

@@ -60,12 +60,6 @@ class BrowserTestCase extends Dusk\TestCase
                 return app()->call(new $class);
             })->middleware('web');
 
-            Route::get('/testing-scripts', function () {
-                return response()->file(__DIR__ . '/../../dist/testing/app.testing.js', [
-                    'Content-Type' => 'application/javascript; charset=utf-8',
-                ]);
-            })->middleware('web');
-
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
 
             app('config')->set('view.paths', [
