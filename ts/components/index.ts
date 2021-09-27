@@ -1,4 +1,3 @@
-import { Alpine } from './alpine'
 import dropdown from './dropdown'
 import modal from './modal'
 import dialog from './dialog'
@@ -9,18 +8,14 @@ import select from './select'
 import timePicker from './timePicker'
 import dateTimePicker from './dateTimePicker'
 
-export interface Start {
-  (Alpine: Alpine): void
-}
-
-export const start: Start = (Alpine: Alpine) => {
-  Alpine.data('wireui_dropdown', dropdown)
-  Alpine.data('wireui_modal', modal)
-  Alpine.data('wireui_dialog', dialog)
-  Alpine.data('wireui_notifications', notifications)
-  Alpine.data('wireui_inputs_maskable', maskable)
-  Alpine.data('wireui_inputs_currency', currency)
-  Alpine.data('wireui_select', select)
-  Alpine.data('wireui_timepicker', timePicker)
-  Alpine.data('wireui_datetime_picker', dateTimePicker)
-}
+document.addEventListener('alpine:init', () => {
+  window.Alpine.data('wireui_dropdown', dropdown)
+  window.Alpine.data('wireui_modal', modal)
+  window.Alpine.data('wireui_dialog', dialog)
+  window.Alpine.data('wireui_notifications', notifications)
+  window.Alpine.data('wireui_inputs_maskable', maskable)
+  window.Alpine.data('wireui_inputs_currency', currency)
+  window.Alpine.data('wireui_select', select)
+  window.Alpine.data('wireui_timepicker', timePicker)
+  window.Alpine.data('wireui_datetime_picker', dateTimePicker)
+})

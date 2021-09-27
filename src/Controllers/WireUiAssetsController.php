@@ -9,8 +9,13 @@ class WireUiAssetsController
 {
     use CanPretendToBeAFile;
 
+    public function scripts(): BinaryFileResponse
+    {
+        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.js', $mimeType = 'application/javascript');
+    }
+
     public function styles(): BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/css/wireui.css', $mimeType = 'text/css');
+        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.css', $mimeType = 'text/css');
     }
 }

@@ -1,1 +1,0 @@
-{"version":3,"file":"browserSupport.js","sourceRoot":"","sources":["../../ts/browserSupport.ts"],"names":[],"mappings":";AAAA,IAAI,CAAC,WAAW,CAAC,SAAS,CAAC,eAAe,EAAE;IAC1C,WAAW,CAAC,SAAS,CAAC,eAAe,GAAG,UAAU,GAAG,KAAK;QACxD,IAAI,CAAC,SAAS,GAAG,EAAE,CAAA;QACnB,IAAI,CAAC,MAAM,CAAC,GAAG,KAAK,CAAC,CAAA;IACvB,CAAC,CAAA;CACF"}
