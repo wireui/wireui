@@ -14,9 +14,9 @@ class Toggle extends Checkbox
     public function backgroundClasses(bool $hasError): string
     {
         $size = $this->classes([
-            'h-4 w-7'     => $this->sm,
-            'h-5 w-9'     => $this->md,
-            'h-6 w-10'    => $this->lg,
+            'h-4 w-7'  => $this->sm,
+            'h-5 w-9'  => $this->md,
+            'h-6 w-10' => $this->lg,
         ]);
 
         return Str::of("

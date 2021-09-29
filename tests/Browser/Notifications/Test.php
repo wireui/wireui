@@ -13,7 +13,6 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->waitForLivewireToLoad()
                 ->assertSee('notifications test')
                 ->click('@button.test.directive')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm Directive'))

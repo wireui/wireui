@@ -11,7 +11,7 @@ class WireUiAssetsController
 
     public function scripts(): BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.js');
+        return $this->pretendResponseIsFile(__DIR__ . '/../../dist/wireui.js', $mimeType = 'application/javascript');
     }
 
     public function styles(): BinaryFileResponse

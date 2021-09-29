@@ -1,20 +1,21 @@
-import utils, { Utilities } from './utils'
-import { notifications, notify, confirmNotification, Notifications, Notify, Confirm } from './notifications'
+import { notify, confirmNotification, Notify, Confirm } from './notifications'
 import { confirmAction, ConfirmAction } from './confirmAction'
-import { dialogs, showDialog, showConfirmDialog, Dialogs, ShowConfirmDialog, ShowDialog } from './dialog'
+import { showDialog, showConfirmDialog, ShowConfirmDialog, ShowDialog } from './dialog'
+import { dataGet, DataGet } from './utils/dataGet'
+import { Alpine } from './components/alpine'
 import { WireUiHooks } from './hooks'
 import './directives/confirm'
+import './browserSupport'
+import './components'
 import './global'
 
 export interface WireUi {
-  utils: Utilities
   notify: Notify
   confirmNotification: Confirm
   confirmAction: ConfirmAction
-  notifications: Notifications
   dialog: ShowDialog
   confirmDialog: ShowConfirmDialog
-  dialogs: Dialogs
+  dataGet: DataGet
 }
 
 declare global {
@@ -22,19 +23,18 @@ declare global {
     $wireui: WireUi
     Wireui: WireUiHooks
     Livewire: any
+    Alpine: Alpine
     $openModal: CallableFunction
   }
 }
 
 const wireui = {
-  utils,
   notify,
   confirmNotification,
   confirmAction,
-  notifications,
   dialog: showDialog,
   confirmDialog: showConfirmDialog,
-  dialogs
+  dataGet
 }
 
 window.$wireui = wireui

@@ -1,160 +1,13 @@
-<div x-data="{
-    searchable:  @boolean($searchable),
-    multiselect: @boolean($multiselect),
-    readonly:    @boolean($readonly),
-    disabled:    @boolean($disabled),
-    popover: false,
-    search: '',
-    placeholder: '{{ $placeholder }}',
-    optionValue: '{{ $optionValue }}',
-    optionLabel: '{{ $optionLabel }}',
-    model: @entangle($attributes->wire('model')),
-    selectedOptions: [],
-
-    togglePopover() {
-        if (this.readonly || this.disabled) return
-
-        this.popover = !this.popover
-        this.$refs.select.dispatchEvent(new Event(this.popover ? 'open' : 'close'))
-    },
-    closePopover() {
-        this.popover = false
-        this.$refs.select.dispatchEvent(new Event('close'))
-    },
-    isSelected(value) {
-        if (this.multiselect) {
-            return !!Object.values(this.model ?? []).find(option => option == value)
-        }
-
-        return value == this.model
-    },
-    unSelect(value) {
-        if (this.disabled || this.readonly) return
-
-        let index = this.selectedOptions.findIndex(option => option.value == value)
-        this.selectedOptions.splice(index, 1)
-
-        index = this.model.findIndex(selected => selected == value)
-        this.model.splice(index, 1)
-
-        this.$refs.select.dispatchEvent(new Event('select'))
-    },
-    select(value) {
-        if (this.disabled || this.readonly) return
-
-        this.search = ''
-
-        if (this.multiselect) {
-            this.model  = Object.assign([], this.model)
-            const index = this.model.findIndex(selected => selected == value)
-
-            if (~index) return this.unSelect(value)
-
-            const { dataset: option } = this.getOptionElement(value)
-            this.$refs.select.dispatchEvent(new Event('select'))
-            this.selectedOptions.push(option)
-
-            return this.model.push(value)
-        }
-
-        if (value === this.model) { value = null }
-
-        this.model = value
-        this.$refs.select.dispatchEvent(new Event('select'))
-        this.closePopover()
-    },
-    clearModel() {
-        const value = this.multiselect ? [] : null
-        this.model  = value
-        this.selectedOptions = []
-        this.$refs.select.dispatchEvent(new Event('clear'))
-    },
-    isEmptyModel() {
-        if (this.multiselect) {
-            return this.model?.length == 0
-        }
-
-        return this.model == null
-    },
-    getOptionElement(value) {
-        return this.$refs.optionsContainer.querySelector(`[data-value='${value}']`)
-    },
-    getPlaceholderText() {
-        if (this.model?.toString().length) return null
-
-        return this.placeholder
-    },
-    getValueText() {
-        if (this.multiselect || !this.model?.toString().length) return null
-
-        return this.decodeSpecialChars(this.getOptionElement(this.model).dataset.label)
-    },
-    isAvailableInList(search, option) {
-        const label = this.decodeSpecialChars(option.dataset.label)
-        const value = this.decodeSpecialChars(option.dataset.value)
-
-        return label.toLowerCase().includes(search)
-            || value.toLowerCase().includes(search)
-    },
-    filterOptions(search) {
-        const options = [...this.$refs.optionsContainer.children]
-        options.map(option => {
-            if (this.isAvailableInList(search.toLowerCase(), option)) {
-                option.classList.remove('hidden')
-            } else {
-                option.classList.add('hidden')
-            }
-        })
-    },
-    initMultiSelect() {
-        if (!this.multiselect) return
-
-        if (typeof this.model === 'string') {
-            this.model = []
-        }
-
-        this.model?.map(selected => {
-            const { dataset: option } = this.getOptionElement(selected)
-            this.selectedOptions.push(option)
-        })
-    },
-    modelWasChanged() {
-        return this.model?.toString()
-            !== this.selectedOptions.map(option => option.value).toString()
-    },
-    syncSelected(newModel) {
-        if (!this.multiselect || !this.modelWasChanged()) return
-
-        this.selectedOptions = this.model?.map(option => {
-            return this.getOptionElement(option).dataset
-        }) ?? []
-    },
-    decodeSpecialChars(text) {
-        const textarea     = document.createElement('textarea')
-        textarea.innerHTML = text
-
-        return textarea.value
-    },
-    getFocusables() { return [...this.$el.querySelectorAll('li, input')] },
-    getFirstFocusable() { return this.getFocusables().shift() },
-    getLastFocusable() { return this.getFocusables().pop() },
-    getNextFocusable() { return this.getFocusables()[this.getNextFocusableIndex()] || this.getFirstFocusable() },
-    getPrevFocusable() { return this.getFocusables()[this.getPrevFocusableIndex()] || this.getLastFocusable() },
-    getNextFocusableIndex() { return (this.getFocusables().indexOf(document.activeElement) + 1) % (this.getFocusables().length + 1) },
-    getPrevFocusableIndex() { return Math.max(0, this.getFocusables().indexOf(document.activeElement)) -1 },
-}"
-class="relative"
-x-init="function() {
-    this.initMultiSelect()
-
-    $watch('popover', status => {
-        if (status) {
-            this.$nextTick(() => this.$refs.search?.focus())
-        }
-    })
-    $watch('model', selected => this.syncSelected(selected))
-    $watch('search', search => this.filterOptions(search?.toLowerCase()))
-}">
+<div x-data="wireui_select({
+        model:       @entangle($attributes->wire('model')),
+        searchable:  @boolean($searchable),
+        multiselect: @boolean($multiselect),
+        readonly:    @boolean($readonly),
+        disabled:    @boolean($disabled),
+        placeholder: '{{ $placeholder }}',
+        optionValue: '{{ $optionValue }}',
+        optionLabel: '{{ $optionLabel }}',
+    })" class="relative">
     <div class="relative">
         <x-label
             class="mb-1"
@@ -168,13 +21,12 @@ x-init="function() {
             x-on:click="togglePopover"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
+            x-bind:placeholder="getPlaceholderText()"
+            x-bind:value="getValueText()"
             readonly
             :name="$name"
             :icon="$icon"
-            ::placeholder="getPlaceholderText()"
-            ::value="getValueText()"
-            {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}
-        >
+            {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}>
             <x-slot name="prepend">
                 <div class="absolute left-0 inset-y-0 pl-2 pr-14 w-full flex items-center overflow-hidden cursor-pointer"
                     :class="{ 'pointer-events-none': disabled || readonly }"
@@ -183,7 +35,7 @@ x-init="function() {
                     <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
                         <span class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
                             x-show="selectedOptions.length"
-                            x-text="model?.length">
+                            x-text="model ? model.length : ''">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
                             <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium

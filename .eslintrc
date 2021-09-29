@@ -2,6 +2,11 @@
     "root": true,
     "plugins": ["import"],
     "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
+    },
+    "ignorePatterns": ["node_modules/*", "dist/*"],
     "env": { "browser": true, "es6": true, "node": true },
     "rules": {
         "generator-star-spacing": "off",

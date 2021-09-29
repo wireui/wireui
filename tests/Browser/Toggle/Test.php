@@ -16,10 +16,10 @@ class Test extends BrowserTestCase
 
             Livewire::visit($browser, Component::class)
                 ->assertSee('Enable Notifications')
-                ->tap(fn() => $browser->script("document.getElementById('{$id}').click()"))
+                ->tap(fn () => $browser->script("document.getElementById('{$id}').click()"))
                 ->assertChecked('toggle')
                 ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@toggle', 'true'))
-                ->tap(fn() => $browser->script("document.getElementById('{$id}').click()"))
+                ->tap(fn () => $browser->script("document.getElementById('{$id}').click()"))
                 ->assertNotChecked('toggle')
                 ->click('@validate')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('accept it'));

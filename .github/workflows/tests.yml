@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      
+
   pull_request:
     types: [ready_for_review, synchronize, opened]
 
@@ -12,7 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         php: [7.4, 8.0]
         laravel: [8.*]
@@ -23,11 +22,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Setup Node and run tests
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "16.x"
       - run: yarn install --frozen-lockfile
       - run: yarn test
 
@@ -54,15 +53,11 @@ jobs:
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update --dev
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
-      - name: Run Unit tests
-        run: vendor/bin/phpunit --testsuite Unit
-        env:
-          RUNNING_IN_CI: true
 
       - name: Setup dusk/chrome
-        run: vendor/bin/dusk-updater detect --no-interaction
+        run: vendor/bin/dusk-updater detect --auto-update
 
-      - name: Run Browser tests
-        run: vendor/bin/phpunit --testsuite Browser
+      - name: Run PHPUnit tests
+        run: composer test
         env:
           RUNNING_IN_CI: true

@@ -34,7 +34,7 @@ class Errors extends Component
 
     public function hasErrors(ViewErrorBag $errors): bool
     {
-        return (bool)$this->count($errors);
+        return (bool) $this->count($errors);
     }
 
     public function count(ViewErrorBag $errors): int

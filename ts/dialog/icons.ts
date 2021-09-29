@@ -1,7 +1,10 @@
 import { colors } from '../notifications/icons'
 
+export type IconStyle = 'outline' | 'solid'
+
 export interface Icon {
   name: string
+  style?: IconStyle
   color?: string
   size?: string
   background?: string
@@ -39,6 +42,7 @@ export const parseIcon = (options: Icon): Icon => {
   if (icons[options.name]) {
     const { name, color, background } = icons[options.name] as Icon
     options.name = name
+    if (!options.style) { options.style = 'outline' }
     if (!options.color) { options.color = color }
     if (!options.background) { options.background = background }
   }

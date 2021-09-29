@@ -100,7 +100,7 @@ abstract class BaseButton extends Component
     protected function mergeData(array $data): array
     {
         $attributes       = $data['attributes'];
-        $data['disabled'] = (bool)$attributes->get('disabled');
+        $data['disabled'] = (bool) $attributes->get('disabled');
         $data['classes']  = $this->getClasses();
 
         return $data;

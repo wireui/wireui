@@ -1,140 +1,14 @@
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
-x-data="{
-    show: false,
-    style: null,
-    dialog: null,
-
-    dismiss() {
-        this.close()
-        this.dialog.onDismiss()
-    },
-    close() {
-        this.show = false
-        this.dialog.timer?.pause()
-        this.dialog.onClose()
-    },
-    open() { this.show = true },
-    processDialog(options) {
-        this.dialog = options
-        this.style  = options.style
-
-        if (this.$refs.title) { this.$refs.title.innerHTML = null }
-        if (this.$refs.description) { this.$refs.description.innerHTML = null }
-
-        if (options.icon) {
-            this.fillIconBackground(options.icon)
-            this.fillDialogIcon(options.icon)
-        }
-
-        if (options.accept) {
-            this.createButton(options.accept, 'accept')
-        }
-
-        if (options.reject) {
-            this.createButton(options.reject, 'reject')
-        }
-
-        if (options.close) {
-            this.createButton(options.close, 'close')
-        }
-
-        if (options.title) {
-            this.$refs.title.innerHTML = options.title
-        }
-
-        if (options.description) {
-            this.$refs.description.innerHTML = options.description
-        }
-
-        this.$nextTick(() => this.open())
-
-        if (this.dialog.timeout) {
-            this.startCloseTimeout()
-        }
-    },
-    showDialog({ options, componentId }) {
-        this.processDialog($wireui.dialogs.parseDialog(options, componentId))
-    },
-    confirmDialog({ options, componentId }) {
-        this.processDialog($wireui.dialogs.parseConfirmation(options, componentId))
-    },
-    fillIconBackground(icon) {
-        this.$refs.iconContainer.className = icon?.background ?? ''
-    },
-    fillDialogIcon(icon) {
-        const classes = ['w-10', 'h-10']
-
-        if (icon?.color) {
-            classes.push(...icon.color.split(' '))
-        }
-
-        if (this.style === 'inline') {
-            classes.push('sm:w-6', 'sm:h-6')
-        }
-
-        fetch(`/wireui/icons/{{ config('wireui.icons.style') }}/${icon.name}`)
-            .then(response => response.text())
-            .then(text => {
-                const svg = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement
-                svg.classList.add(...classes)
-                this.$refs.iconContainer.replaceChildren(svg)
-            })
-    },
-    createButton(options, action) {
-        fetch(`/wireui/button?${new URLSearchParams(options)}`)
-            .then(response => response.text())
-            .then(html => {
-                const button = this.parseHtmlString(html)
-                button.setAttribute('x-on:click', action)
-                button.classList.add('w-full', 'dark:border-0', 'dark:hover:bg-secondary-700')
-
-                this.$refs[action].replaceChildren(button)
-            })
-    },
-    parseHtmlString(html) {
-        const div     = document.createElement('div')
-        div.innerHTML = html
-
-        return div.firstElementChild
-    },
-    startCloseTimeout() {
-        this.dialog.timer = $wireui.notifications.timer(
-            this.dialog.timeout,
-            () => {
-                this.close()
-                this.dialog.onTimeout()
-            },
-            (percentage) => {
-                this.$refs.progressbar.style.width = `${percentage}%`
-            }
-        )
-    },
-    accept() {
-        this.close()
-        this.dialog.accept.execute()
-    },
-    reject() {
-        this.close()
-        this.dialog.reject.execute()
-    },
-    handleEscape() {
-        if (this.show) { this.dismiss() }
-    },
-    pauseTimeout() { this.dialog?.timer?.pause() },
-    resumeTimeout() { this.dialog?.timer?.resume() },
-}"
-x-init="function() {
-    Wireui.dispatchHook('{{ $dialog }}:load')
-}"
-x-show="show"
-x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
-x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
-x-on:keydown.escape.window="handleEscape"
-style="display: none">
-    <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center">
+    x-data="wireui_dialog({ id: '{{ $dialog }}' })"
+    x-show="show"
+    x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
+    x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
+    x-on:keydown.escape.window="handleEscape"
+    style="display: none">
+    <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center"
+        style="min-height: -webkit-fill-available; min-height: fill-available;">
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
-            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif
-            dark:bg-secondary-700 dark:bg-opacity-60"
+            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif dark:bg-secondary-700 dark:bg-opacity-60"
             x-show="show"
             x-on:click="dismiss"
             x-transition:enter="ease-out duration-300"
@@ -158,16 +32,15 @@ style="display: none">
             <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl overflow-hidden space-y-4 p-4"
                 :class="{
                     'sm:p-5 sm:pt-7': style === 'center',
-                    'sm:p-0': style === 'inline',
+                    'sm:p-0':         style === 'inline',
                 }">
-                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150
-                            ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
                     style="height: 2px; width: 100%;"
                     x-ref="progressbar"
-                    x-show="dialog?.progressbar && dialog?.timeout">
+                    x-show="dialog && dialog.progressbar && dialog.timeout">
                 </div>
 
-                <div x-show="dialog?.closeButton" class="absolute right-2 -top-2">
+                <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
                     <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                         x-on:click="close"
                         type="button">
@@ -179,7 +52,7 @@ style="display: none">
                 <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
                     <div class="mx-auto flex items-center self-start justify-center flex-shrink-0"
                         :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
-                        x-show="dialog?.icon">
+                        x-show="dialog && dialog.icon">
                         <div x-ref="iconContainer"></div>
                     </div>
 
@@ -205,13 +78,13 @@ style="display: none">
                         'sm:grid-cols-2 sm:gap-y-0': style === 'center',
                         'sm:p-4 sm:bg-secondary-100 sm:dark:bg-secondary-800 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
                     }"
-                    x-show="dialog?.accept || dialog?.reject">
-                    <div x-show="dialog?.accept" class="sm:order-last" x-ref="accept"></div>
-                    <div x-show="dialog?.reject" x-ref="reject"></div>
+                    x-show="dialog && (dialog.accept || dialog.reject)">
+                    <div x-show="dialog && dialog.accept" class="sm:order-last" x-ref="accept"></div>
+                    <div x-show="dialog && dialog.reject" x-ref="reject"></div>
                 </div>
 
                 <div class="flex justify-center"
-                    x-show="dialog?.close && !dialog?.accept && !dialog?.accept"
+                    x-show="dialog && dialog.close && !dialog.accept && !dialog.accept"
                     x-ref="close">
                 </div>
             </div>
