@@ -3,6 +3,7 @@
 namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Support\{ServiceProvider, Stringable};
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Mixins\Stringable\UnlessMixin;
@@ -64,34 +65,11 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerBladeComponents(): void
     {
-        Blade::component(Components\Icon::class, 'icon');
-        Blade::component(Components\Icons\Spinner::class, 'icons.spinner');
-        Blade::component(Components\Input::class, 'input');
-        Blade::component(Components\Textarea::class, 'textarea');
-        Blade::component(Components\Label::class, 'label');
-        Blade::component(Components\Error::class, 'error');
-        Blade::component(Components\Errors::class, 'errors');
-        Blade::component(Components\Inputs\MaskableInput::class, 'inputs.maskable');
-        Blade::component(Components\Inputs\PhoneInput::class, 'inputs.phone');
-        Blade::component(Components\Inputs\CurrencyInput::class, 'inputs.currency');
-        Blade::component(Components\Button::class, 'button');
-        Blade::component(Components\Dropdown::class, 'dropdown');
-        Blade::component(Components\Dropdown\DropdownItem::class, 'dropdown.item');
-        Blade::component(Components\Dropdown\DropdownHeader::class, 'dropdown.header');
-        Blade::component(Components\Notifications::class, 'notifications');
-        Blade::component(Components\DatetimePicker::class, 'datetime-picker');
-        Blade::component(Components\TimePicker::class, 'time-picker');
-        Blade::component(Components\Card::class, 'card');
-        Blade::component(Components\NativeSelect::class, 'native-select');
-        Blade::component(Components\Select::class, 'select');
-        Blade::component(Components\Select\Option::class, 'select.option');
-        Blade::component(Components\Select\UserOption::class, 'select.user-option');
-        Blade::component(Components\Toggle::class, 'toggle');
-        Blade::component(Components\Checkbox::class, 'checkbox');
-        Blade::component(Components\Radio::class, 'radio');
-        Blade::component(Components\Modal::class, 'modal');
-        Blade::component(Components\ModalCard::class, 'modal.card');
-        Blade::component(Components\Dialog::class, 'dialog');
+        $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
+            foreach (config('wireui.components') as $alias => $component) {
+                $blade->component($component, $alias);
+            }
+        });
     }
 
     protected function registerMixins()
