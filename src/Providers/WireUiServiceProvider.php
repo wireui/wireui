@@ -66,8 +66,8 @@ class WireUiServiceProvider extends ServiceProvider
     protected function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
-            foreach (config('wireui.components') as $alias => $component) {
-                $blade->component($component, $alias);
+            foreach (config('wireui.components') as $component) {
+                $blade->component($component['class'], $component['alias']);
             }
         });
     }

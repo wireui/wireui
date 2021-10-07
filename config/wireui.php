@@ -12,7 +12,7 @@ return [
         | https://heroicons.com
         |
     */
-    'icons' => [
+    'icons'      => [
         'style' => env('WIREUI_ICONS_STYLE', 'outline'),
     ],
 
@@ -24,7 +24,7 @@ return [
         | The default modal preferences
         |
     */
-    'modal' => [
+    'modal'      => [
         'zIndex'   => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
         'maxWidth' => env('WIREUI_MODAL_MAX_WIDTH', '2xl'),
         'spacing'  => env('WIREUI_MODAL_SPACING', 'p-4'),
@@ -38,39 +38,123 @@ return [
         |--------------------------------------------------------------------------
         |
         | List with WireUI components.
-        | Change the keys to call the component with a different name.
+        | Change the alias to call the component with a different name.
         | Extend the component and replace your changes in this file.
         | Remove the component from this file if you don't want to use.
         |
      */
     'components' => [
-        'icon'               => Components\Icon::class,
-        'icon.spinner'       => Components\Icons\Spinner::class,
-        'input'              => Components\Input::class,
-        'textarea'           => Components\Textarea::class,
-        'label'              => Components\Label::class,
-        'error'              => Components\Error::class,
-        'errors'             => Components\Errors::class,
-        'inputs.maskable'    => Components\Inputs\MaskableInput::class,
-        'inputs.phone'       => Components\Inputs\PhoneInput::class,
-        'inputs.currency'    => Components\Inputs\CurrencyInput::class,
-        'button'             => Components\Button::class,
-        'dropdown'           => Components\Dropdown::class,
-        'dropdown.item'      => Components\Dropdown\DropdownItem::class,
-        'dropdown.header'    => Components\Dropdown\DropdownHeader::class,
-        'notifications'      => Components\Notifications::class,
-        'datetime-picker'    => Components\DatetimePicker::class,
-        'time-picker'        => Components\TimePicker::class,
-        'card'               => Components\Card::class,
-        'native-select'      => Components\NativeSelect::class,
-        'select'             => Components\Select::class,
-        'select.option'      => Components\Select\Option::class,
-        'select.user-option' => Components\Select\UserOption::class,
-        'toggle'             => Components\Toggle::class,
-        'checkbox'           => Components\Checkbox::class,
-        'radio'              => Components\Radio::class,
-        'modal'              => Components\Modal::class,
-        'modal.card'         => Components\ModalCard::class,
-        'dialog'             => Components\Dialog::class,
+        'icon'               => [
+            'class' => Components\Icon::class,
+            'alias' => 'icon',
+        ],
+        'icon.spinner'       => [
+            'class' => Components\Icons\Spinner::class,
+            'alias' => 'icon.spinner',
+        ],
+        'input'              => [
+            'class' => Components\Input::class,
+            'alias' => 'input',
+        ],
+        'textarea'           => [
+            'class' => Components\Textarea::class,
+            'alias' => 'textarea',
+        ],
+        'label'              => [
+            'class' => Components\Label::class,
+            'alias' => 'label',
+        ],
+        'error'              => [
+            'class' => Components\Error::class,
+            'alias' => 'error',
+        ],
+        'errors'             => [
+            'class' => Components\Errors::class,
+            'alias' => 'errors',
+        ],
+        'inputs.maskable'    => [
+            'class' => Components\Inputs\MaskableInput::class,
+            'alias' => 'inputs.maskable',
+        ],
+        'inputs.phone'       => [
+            'class' => Components\Inputs\PhoneInput::class,
+            'alias' => 'inputs.phone',
+        ],
+        'inputs.currency'    => [
+            'class' => Components\Inputs\CurrencyInput::class,
+            'alias' => 'inputs.currency',
+        ],
+        'button'             => [
+            'class' => Components\Button::class,
+            'alias' => 'button',
+        ],
+        'dropdown'           => [
+            'class' => Components\Dropdown::class,
+            'alias' => 'dropdown',
+        ],
+        'dropdown.item'      => [
+            'class' => Components\Dropdown\DropdownItem::class,
+            'alias' => 'dropdown.item',
+        ],
+        'dropdown.header'    => [
+            'class' => Components\Dropdown\DropdownHeader::class,
+            'alias' => 'dropdown.header',
+        ],
+        'notifications'      => [
+            'class' => Components\Notifications::class,
+            'alias' => 'notifications',
+        ],
+        'datetime-picker'    => [
+            'class' => Components\DatetimePicker::class,
+            'alias' => 'datetime-picker',
+        ],
+        'time-picker'        => [
+            'class' => Components\TimePicker::class,
+            'alias' => 'time-picker',
+        ],
+        'card'               => [
+            'class' => Components\Card::class,
+            'alias' => 'card',
+        ],
+        'native-select'      => [
+            'class' => Components\NativeSelect::class,
+            'alias' => 'native-select',
+        ],
+        'select'             => [
+            'class' => Components\Select::class,
+            'alias' => 'select',
+        ],
+        'select.option'      => [
+            'class' => Components\Select\Option::class,
+            'alias' => 'select.option',
+        ],
+        'select.user-option' => [
+            'class' => Components\Select\UserOption::class,
+            'alias' => 'select.user-option',
+        ],
+        'toggle'             => [
+            'class' => Components\Toggle::class,
+            'alias' => 'toggle',
+        ],
+        'checkbox'           => [
+            'class' => Components\Checkbox::class,
+            'alias' => 'checkbox',
+        ],
+        'radio'              => [
+            'class' => Components\Radio::class,
+            'alias' => 'radio',
+        ],
+        'modal'              => [
+            'class' => Components\Modal::class,
+            'alias' => 'modal',
+        ],
+        'modal.card'         => [
+            'class' => Components\ModalCard::class,
+            'alias' => 'modal.card',
+        ],
+        'dialog'             => [
+            'class' => Components\Dialog::class,
+            'alias' => 'dialog',
+        ],
     ],
 ];

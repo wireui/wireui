@@ -15,7 +15,9 @@
     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
     class="w-full relative">
     <div class="relative">
-        <x-input {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
+        <x-dynamic-component
+            :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+            {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
             :borderless="$borderless"
             :shadowless="$shadowless"
             :label="$label"
@@ -26,7 +28,8 @@
             :prepend="$prepend"
             x-model="input"
             x-on:input.debounce.150ms="onInput($event.target.value)"
-            x-on:blur="emitInput">
+            x-on:blur="emitInput"
+        >
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto
@@ -34,13 +37,18 @@
                             ? 'text-negative-400 dark:text-negative-600'
                             :'text-secondary-400'
                         }}">
-                        <x-icon class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
+                        <x-dynamic-component
+                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
                             x-show="!config.readonly && !config.disabled && input"
                             x-on:click="clearInput()"
                         />
-                        <x-icon class="cursor-pointer w-5 h-5"
+
+                        <x-dynamic-component
+                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            class="cursor-pointer w-5 h-5"
                             name="clock"
                             x-show="!config.readonly && !config.disabled"
                             x-on:click="openPicker"
@@ -48,7 +56,7 @@
                     </div>
                 </div>
             </x-slot>
-        </x-input>
+        </x-dynamic-component>
     </div>
 
     <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-0 sm:right-0 sm:mt-6"
@@ -83,10 +91,15 @@
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                 <button type="button" class="cursor-pointer hidden sm:flex absolute top-2 right-2 focus:outline-none" x-on:click="closePicker">
-                    <x-icon name="x" class="w-4 h-4 text-secondary-400 hover:text-negative-400 transition-all ease-out duration-150" />
+                    <x-dynamic-component
+                        :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                        class="w-4 h-4 text-secondary-400 hover:text-negative-400 transition-all ease-out duration-150"
+                        name="x"
+                    />
                 </button>
 
-                <x-input
+                <x-dynamic-component
+                    :component="\WireUi\Facades\WireUiComponent::resolve('input')"
                     id="search.{{ $attributes->wire('model')->value() }}"
                     label="Select time"
                     x-model="search"
@@ -112,7 +125,11 @@
                             <span class="absolute text-primary-600 group-hover:text-white inset-y-0
                                          right-0 flex items-center pr-4 dark:text-secondary-400"
                                 x-show="input === time">
-                                <x-icon name="check" class="h-5 w-5" />
+                                <x-dynamic-component
+                                    :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                                    name="check"
+                                    class="h-5 w-5"
+                                />
                             </span>
                         </li>
                     </template>
