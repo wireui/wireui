@@ -103,11 +103,7 @@
                                 x-show="notification.closeButton"
                                 x-on:click="closeNotification(notification)">
                                 <span class="sr-only">Close</span>
-                                <x-dynamic-component
-                                    :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
-                                    class="h-5 w-5"
-                                    name="x"
-                                />
+                                <x-icon name="x" class="h-5 w-5" />
                             </button>
                         </div>
                     </div>
