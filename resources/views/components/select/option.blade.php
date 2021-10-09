@@ -5,7 +5,7 @@
         'dark:focus:bg-secondary-700' => !($readonly || $disabled),
         'opacity-60 cursor-not-allowed' => $disabled
     ])->merge([
-        'data-label' => $label,
+        'data-label' => $label ?? $slot,
         'data-value' => $value,
     ]) }}
     @unless($readonly || $disabled)
