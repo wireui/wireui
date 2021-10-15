@@ -46,7 +46,7 @@
                         type="button">
                         <span class="sr-only">close</span>
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            :component="WireUiComponent::resolve('icon')"
                             class="w-5 h-5"
                             name="x"
                         />

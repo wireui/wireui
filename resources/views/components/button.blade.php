@@ -5,7 +5,7 @@
 wire:loading.attr="disabled">
     @if ($icon)
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+            :component="WireUiComponent::resolve('icon')"
             :name="$icon"
             class="w-4 h-4 flex-shrink-0"
         />
@@ -15,7 +15,7 @@ wire:loading.attr="disabled">
 
     @if ($rightIcon)
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+            :component="WireUiComponent::resolve('icon')"
             :name="$rightIcon"
             class="w-4 h-4"
         />

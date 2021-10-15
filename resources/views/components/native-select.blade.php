@@ -1,7 +1,7 @@
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label)
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('label')"
+            :component="WireUiComponent::resolve('label')"
             class="mb-1"
             :label="$label"
             :has-error="$errors->has($name)"
@@ -34,7 +34,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('error')"
+            :component="WireUiComponent::resolve('error')"
             :name="$name"
         />
     @endif

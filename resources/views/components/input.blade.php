@@ -8,7 +8,7 @@
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
                 <x-dynamic-component
-                    :component="\WireUi\Facades\WireUiComponent::resolve('label')"
+                    :component="WireUiComponent::resolve('label')"
                     :label="$label"
                     :has-error="$hasError"
                     :for="$id"
@@ -17,7 +17,7 @@
 
             @if ($cornerHint)
                 <x-dynamic-component
-                    :component="\WireUi\Facades\WireUiComponent::resolve('label')"
+                    :component="WireUiComponent::resolve('label')"
                     :label="$cornerHint"
                     :has-error="$hasError"
                     :for="$id"
@@ -32,7 +32,7 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($icon)
                     <x-dynamic-component
-                        :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                        :component="WireUiComponent::resolve('icon')"
                         :name="$icon"
                         class="h-5 w-5"
                     />
@@ -57,7 +57,7 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($rightIcon)
                     <x-dynamic-component
-                        :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                        :component="WireUiComponent::resolve('icon')"
                         :name="$rightIcon"
                         class="h-5 w-5"
                     />
@@ -67,7 +67,7 @@
                     </span>
                 @elseif ($hasError)
                     <x-dynamic-component
-                        :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                        :component="WireUiComponent::resolve('icon')"
                         name="exclamation-circle"
                         class="h-5 w-5"
                     />
@@ -86,7 +86,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('error')"
+            :component="WireUiComponent::resolve('error')"
             :name="$name"
         />
     @endif

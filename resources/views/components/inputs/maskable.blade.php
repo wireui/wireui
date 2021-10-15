@@ -5,7 +5,7 @@
     mask: {{ $mask }},
 })">
     <x-dynamic-component
-        :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+        :component="WireUiComponent::resolve('input')"
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"

@@ -10,7 +10,7 @@
     })" class="relative">
     <div class="relative">
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('label')"
+            :component="WireUiComponent::resolve('label')"
             class="mb-1"
             :label="$label"
             :has-error="$errors->has($name) ?? false"
@@ -18,7 +18,7 @@
         />
 
         <x-dynamic-component
-            :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+            :component="WireUiComponent::resolve('input')"
             class="cursor-pointer overflow-hidden dark:text-secondary-400"
             x-ref="select"
             x-on:click="togglePopover"
@@ -53,7 +53,7 @@
                                         type="button">
 
                                     <x-dynamic-component
-                                        :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+                                        :component="WireUiComponent::resolve('input')"
                                         class="h-3 w-3"
                                         name="x"
                                     />
@@ -71,14 +71,14 @@
                             x-on:click="clearModel"
                             type="button">
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            :component="WireUiComponent::resolve('icon')"
                             class="w-4 h-4 text-secondary-400 hover:text-negative-400"
                             name="x"
                         />
                     </button>
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            :component="WireUiComponent::resolve('icon')"
                             class="w-5 h-5
                             {{ $errors->has($name)
                                 ? 'text-negative-400 dark:text-negative-600'
@@ -101,7 +101,7 @@
         @if ($options ? count($options) >= 10 : $searchable)
             <div class="px-2 my-2">
                 <x-dynamic-component
-                    :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+                    :component="WireUiComponent::resolve('input')"
                     class="focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
                             border border-secondary-200 dark:border-secondary-600 duration-300"
                     x-ref="search"
@@ -135,7 +135,7 @@
                     />
                 @empty
                     <x-dynamic-component
-                        :component="\WireUi\Facades\WireUiComponent::resolve('select.option')"
+                        :component="WireUiComponent::resolve('select.option')"
                         class="text-secondary-500"
                         x-on:click="closePopover"
                         :label="trans('wireui::messages.empty_options')"

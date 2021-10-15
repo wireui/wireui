@@ -17,7 +17,7 @@
     })"
      class="relative">
     <x-dynamic-component
-        :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+        :component="WireUiComponent::resolve('input')"
         {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
@@ -36,7 +36,7 @@
                     <div class="flex items-center gap-x-2 my-auto
                         {{ $errors->has($name) ? 'text-negative-400 dark:text-negative-600' : 'text-secondary-400' }}">
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            :component="WireUiComponent::resolve('icon')"
                             class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
@@ -45,7 +45,7 @@
                         />
 
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                            :component="WireUiComponent::resolve('icon')"
                             class="cursor-pointer w-5 h-5"
                             :name="$rightIcon"
                             x-on:click="togglePicker"
@@ -92,21 +92,21 @@
                     @unless ($withoutTips)
                         <div class="grid grid-cols-3 gap-x-2 text-center text-secondary-600">
                             <x-dynamic-component
-                                :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                                :component="WireUiComponent::resolve('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectYesterday"
                                 label="{{ __('wireui::messages.datePicker.yesterday') }}"
                             />
 
                             <x-dynamic-component
-                                :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                                :component="WireUiComponent::resolve('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectToday"
                                 label="{{ __('wireui::messages.datePicker.today') }}"
                             />
 
                             <x-dynamic-component
-                                :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                                :component="WireUiComponent::resolve('button')"
                                 class="bg-secondary-100 border-none dark:bg-secondary-800"
                                 x-on:click="selectTomorrow"
                                 label="{{ __('wireui::messages.datePicker.tomorrow') }}"
@@ -116,7 +116,7 @@
 
                     <div class="flex items-center justify-between">
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                            :component="WireUiComponent::resolve('button')"
                             class="rounded-lg flex-shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="previousMonth"
@@ -139,7 +139,7 @@
 
 
                         <x-dynamic-component
-                            :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                            :component="WireUiComponent::resolve('button')"
                             class="rounded-lg flex-shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="nextMonth"
@@ -154,7 +154,7 @@
                              x-transition>
                             <template x-for="(monthName, index) in monthNames" :key="`month.${monthName}`">
                                 <x-dynamic-component
-                                    :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                                    :component="WireUiComponent::resolve('button')"
                                     class="text-secondary-400 dark:border-0 dark:hover:bg-secondary-700 uppercase"
                                     x-on:click="selectMonth(index)"
                                     xs
@@ -192,7 +192,7 @@
 
                 <div x-show="tab === 'time'" x-transition>
                     <x-dynamic-component
-                        :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+                        :component="WireUiComponent::resolve('input')"
                         id="search.{{ $attributes->wire('model')->value() }}"
                         label="Select time"
                         x-model="searchTime"
@@ -219,7 +219,7 @@
                                              absolute inset-y-0 right-0 flex items-center pr-4"
                                       x-show="modelTime === time.value">
                                     <x-dynamic-component
-                                        :component="\WireUi\Facades\WireUiComponent::resolve('icon')"
+                                        :component="WireUiComponent::resolve('icon')"
                                         name="check"
                                         class="h-5 w-5"
                                     />

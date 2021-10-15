@@ -7,7 +7,7 @@
     precision:  {{ $precision }},
 })">
     <x-dynamic-component
-        :component="\WireUi\Facades\WireUiComponent::resolve('input')"
+        :component="WireUiComponent::resolve('input')"
         {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
         :borderless="$borderless"
         :shadowless="$shadowless"
