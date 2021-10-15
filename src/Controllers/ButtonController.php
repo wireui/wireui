@@ -18,8 +18,15 @@ class ButtonController
     public function render(Request $request): Response
     {
         $attributes = new ComponentAttributeBag($request->all());
-        $blade      = "<x-button {$attributes->toHtml()} />";
-        $html       = $this->compiler->compile($blade);
+
+        $blade = <<<EOT
+            <x-dynamic-component
+                :component="\WireUi\Facades\WireUiComponent::resolve('button')"
+                {$attributes->toHtml()}
+            />
+        EOT;
+
+        $html = $this->compiler->compile($blade);
 
         return response($html)->withHeaders([
             'Content-Type'  => 'text/html; charset=utf-8',

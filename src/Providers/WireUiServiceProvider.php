@@ -5,6 +5,7 @@ namespace WireUi\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\Support\{ServiceProvider, Stringable};
+use WireUi\Facades\WireUiComponent;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
@@ -21,6 +22,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeComponents();
         $this->registerTagCompiler();
         $this->registerMixins();
+        $this->registerFacade();
     }
 
     protected function registerTagCompiler()
@@ -77,5 +79,12 @@ class WireUiServiceProvider extends ServiceProvider
         if (!Stringable::hasMacro('unless')) {
             Stringable::macro('unless', app(UnlessMixin::class)());
         }
+    }
+
+    protected function registerFacade()
+    {
+        $this->app->bind('WireUiComponent', function () {
+            return new WireUiComponent();
+        });
     }
 }
