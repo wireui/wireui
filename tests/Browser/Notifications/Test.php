@@ -16,17 +16,11 @@ class Test extends BrowserTestCase
                 ->assertSee('notifications test')
                 ->click('@button.test.directive')
                 ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm Directive'))
-                ->pause(100)
                 ->press('Confirm Directive')
-                ->waitForLivewire()
-                ->pause(100)
-                ->assertSeeIn('@value', 'Accepted')
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@value', 'Accepted'))
                 ->click('@button.test.directive')
-                ->pause(100)
                 ->press('Cancel Directive')
-                ->waitForLivewire()
-                ->pause(100)
-                ->assertSeeIn('@value', 'Rejected');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@value', 'Rejected'));
         });
     }
 
@@ -82,8 +76,8 @@ class Test extends BrowserTestCase
                 })->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@value', 'Xablaw');
                 })->click('@button.clear_events')
-                ->waitForLivewire()
                 ->click($duskButton)
+                ->waitForLivewire()
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->script('getElementByXPath("//span[text()=\'Close\']").parentNode.click();');
                 })->waitUsing(5, 75, function () use ($browser) {
