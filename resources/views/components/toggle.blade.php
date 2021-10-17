@@ -1,7 +1,13 @@
 <div>
     <div class="flex items-center">
         @if ($leftLabel)
-            <x-label :for="$id" class="mr-2" :label="$leftLabel" :has-error="$errors->has($name)" />
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('label')"
+                :for="$id"
+                class="mr-2"
+                :label="$leftLabel"
+                :has-error="$errors->has($name)"
+            />
         @endif
 
         <div class="relative flex items-center select-none">
@@ -17,11 +23,20 @@
         </div>
 
         @if ($label)
-            <x-label :for="$id" class="ml-2" :label="$label" :has-error="$errors->has($name)" />
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('label')"
+                :for="$id"
+                class="ml-2"
+                :label="$label"
+                :has-error="$errors->has($name)"
+            />
         @endif
     </div>
 
     @if ($name)
-        <x-error :name="$name" />
+        <x-dynamic-component
+            :component="WireUiComponent::resolve('error')"
+            :name="$name"
+        />
     @endif
 </div>

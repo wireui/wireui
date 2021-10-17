@@ -1,6 +1,12 @@
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label)
-        <x-label class="mb-1" :label="$label" :has-error="$errors->has($name)" :for="$id" />
+        <x-dynamic-component
+            :component="WireUiComponent::resolve('label')"
+            class="mb-1"
+            :label="$label"
+            :has-error="$errors->has($name)"
+            :for="$id"
+        />
     @endif
 
     <select {{ $attributes->class([
@@ -27,6 +33,9 @@
     </select>
 
     @if ($name)
-        <x-error :name="$name" />
+        <x-dynamic-component
+            :component="WireUiComponent::resolve('error')"
+            :name="$name"
+        />
     @endif
 </div>
