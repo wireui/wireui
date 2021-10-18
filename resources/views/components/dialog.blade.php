@@ -45,7 +45,11 @@
                         x-on:click="close"
                         type="button">
                         <span class="sr-only">close</span>
-                        <x-icon name="x" class="w-5 h-5" />
+                        <x-dynamic-component
+                            :component="WireUiComponent::resolve('icon')"
+                            class="w-5 h-5"
+                            name="x"
+                        />
                     </button>
                 </div>
 
