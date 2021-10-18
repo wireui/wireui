@@ -4,7 +4,8 @@
     emitFormatted: @boolean($emitFormatted),
     mask: {{ $mask }},
 })">
-    <x-input
+    <x-dynamic-component
+        :component="WireUiComponent::resolve('input')"
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"

@@ -6,7 +6,9 @@
     decimal:   '{{ $decimal }}',
     precision:  {{ $precision }},
 })">
-    <x-input {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
+    <x-dynamic-component
+        :component="WireUiComponent::resolve('input')"
+        {{ $attributes->whereDoesntStartWith('wire:model')->except('type') }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"

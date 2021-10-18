@@ -24,6 +24,10 @@
 
     <div class="absolute inset-y-0 right-0 flex items-center pr-4"
         x-show="isSelected('{{ $value }}')">
-        <x-icon name="check" class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white" />
+        <x-dynamic-component
+            :component="WireUiComponent::resolve('icon')"
+            name="check"
+            class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white"
+        />
     </div>
 </li>
