@@ -3,11 +3,10 @@
 namespace WireUi\Providers;
 
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\{ServiceProvider, Stringable};
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\{ServiceProvider, Stringable};
 use Illuminate\View\Compilers\BladeCompiler;
-use WireUi\Facades\WireUiComponent;
-use WireUi\Facades\WireUiDirectives;
+use WireUi\Facades\{WireUiComponent, WireUiDirectives};
 use WireUi\Mixins\Stringable\UnlessMixin;
 use WireUi\Support\WireUiTagCompiler;
 
