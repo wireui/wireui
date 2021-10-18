@@ -1,6 +1,6 @@
 @php
     $hasError = false;
-    if ($name) { $hasError = $errors->has($name); }
+    if ($name) { $hasError = $errors->has($name) && !$lessErrors; }
 @endphp
 
 <div class="@if($disabled) opacity-60 @endif">
@@ -62,7 +62,7 @@
         </label>
     @endif
 
-    @if ($name)
+    @if ($name && !$lessErrors)
         <x-error :name="$name" />
     @endif
 </div>
