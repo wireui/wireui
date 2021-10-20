@@ -1,6 +1,6 @@
 @php
     $hasError = false;
-    if ($name) { $hasError = $errors->has($name) && !$lessErrors; }
+    if ($name) { $hasError = $errors->has($name) && !$errorless; }
 @endphp
 
 <div class="@if($disabled) opacity-60 @endif">
@@ -84,7 +84,7 @@
         </label>
     @endif
 
-    @if ($name && !$lessErrors)
+    @if ($name && !$errorless)
         <x-dynamic-component
             :component="WireUiComponent::resolve('error')"
             :name="$name"

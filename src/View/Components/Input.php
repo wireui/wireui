@@ -28,7 +28,7 @@ class Input extends FormComponent
 
     public ?string $append;
 
-    public bool $lessErrors;
+    public bool $errorless;
 
     public function __construct(
         bool $borderless = false,
@@ -42,7 +42,7 @@ class Input extends FormComponent
         ?string $suffix = null,
         ?string $prepend = null,
         ?string $append = null,
-        bool $lessErrors = false
+        bool $errorless = false
     ) {
         $this->borderless = $borderless;
         $this->shadowless = $shadowless;
@@ -55,7 +55,7 @@ class Input extends FormComponent
         $this->suffix     = $suffix;
         $this->prepend    = $prepend;
         $this->append     = $append;
-        $this->lessErrors = $lessErrors;
+        $this->errorless  = $errorless;
     }
 
     protected function getView(): string
