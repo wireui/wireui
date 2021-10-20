@@ -53,7 +53,7 @@
                                         type="button">
 
                                     <x-dynamic-component
-                                        :component="WireUiComponent::resolve('input')"
+                                        :component="WireUiComponent::resolve('icon')"
                                         class="h-3 w-3"
                                         name="x"
                                     />
