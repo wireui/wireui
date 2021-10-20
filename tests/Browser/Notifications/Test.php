@@ -62,25 +62,28 @@ class Test extends BrowserTestCase
 
             Livewire::visit($browser, Component::class)
                 ->click($duskButton)
-                ->waitForLivewire()
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
-                })->waitUsing(5, 75, function () use ($browser) {
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@value', 'Jetete');
-                })->waitUsing(5, 75, function () use ($browser) {
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose');
-                })->click($duskButton)
-                ->waitForLivewire()
+                })
+                ->click($duskButton)
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Reject\']").click();');
-                })->waitUsing(5, 75, function () use ($browser) {
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@value', 'Xablaw');
-                })->click('@button.clear_events')
+                })
+                ->click('@button.clear_events')
                 ->click($duskButton)
-                ->waitForLivewire()
                 ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->script('getElementByXPath("//span[text()=\'Close\']").parentNode.click();');
-                })->waitUsing(5, 75, function () use ($browser) {
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onDismiss');
                 })
                 ->click('@button.clear_events')
