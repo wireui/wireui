@@ -19,15 +19,11 @@ class ConfirmDialogTest extends BrowserTestCase
                 ->waitUsing(5, 75, fn () => $browser->assertSee('Confirm it'))
                 ->assertSee('Confirm it')
                 ->press('Confirm it')
-                ->waitForLivewire()
-                ->pause(100)
-                ->assertSeeIn('@events', 'accepted')
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@events', 'accepted'))
                 ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
                 ->pause(200)
                 ->press('Decline')
-                ->waitForLivewire()
-                ->pause(100)
-                ->assertSeeIn('@events', 'accepted, rejected');
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@events', 'accepted, rejected'));
         });
     }
 
