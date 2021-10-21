@@ -64,4 +64,13 @@ class Test extends BrowserTestCase
                 });
         });
     }
+
+    /** @test */
+    public function it_should_dont_see_the_input_error_message()
+    {
+        Livewire::test(Component::class)
+            ->call('validateInput')
+            ->assertDontSee('input is required')
+            ->assertHasErrors('errorless');
+    }
 }

@@ -38,4 +38,7 @@
     // test it_should_set_model_value_to_livewire
     <x-input dusk="input" wire:model="model" label="Model Input" />
     <span dusk="model-value">{{ $model }}</span>
+
+    // test it_should_dont_see_the_input_error_message
+    <x-input wire:model="errorless" label="Test error less" :errorless="true" />
 </div>

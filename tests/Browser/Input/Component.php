@@ -8,9 +8,17 @@ class Component extends \Livewire\Component
 {
     public $model = null;
 
-    protected array $rules = ['model' => 'required'];
+    public $errorless = null;
 
-    protected array $messages = ['model.required' => 'input cant be empty'];
+    protected array $rules = [
+        'model'     => 'required',
+        'errorless' => 'required',
+    ];
+
+    protected array $messages = [
+        'model.required'     => 'input cant be empty',
+        'errorless.required' => 'input is required'
+    ];
 
     public function render()
     {
