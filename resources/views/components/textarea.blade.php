@@ -86,7 +86,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="WireUiComponent::resolve('icon')"
+            :component="WireUiComponent::resolve('error')"
             :name="$name"
         />
     @endif
