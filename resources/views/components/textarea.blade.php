@@ -32,7 +32,7 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($icon)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('label')"
+                        :component="WireUiComponent::resolve('icon')"
                         :name="$icon"
                         class="h-5 w-5"
                     />
