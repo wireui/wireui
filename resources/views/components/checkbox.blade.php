@@ -12,7 +12,7 @@
 
         <input {{ $attributes->merge([
             'type'  => 'checkbox',
-            'class' => $getClasses($errors->has($name))
+            'class' => 'form-checkbox '.$getClasses($errors->has($name))
         ]) }} />
 
         @if ($label)
