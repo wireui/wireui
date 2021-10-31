@@ -46,8 +46,10 @@
             {{ $prepend }}
         @endif
 
-        <textarea {{ $attributes->merge([
-            'class'        => 'form-textarea '. $getInputClasses($hasError),
+        <textarea {{ $attributes->class([
+              $getInputClasses($hasError),
+              'form-textarea'
+          ])->merge([
             'autocomplete' => 'off',
             'rows'         => 4
         ]) }}></textarea>
