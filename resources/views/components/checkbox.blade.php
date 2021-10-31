@@ -11,7 +11,8 @@
         @endif
 
         <input {{ $attributes->class([
-              'form-checkbox'
+              $getClasses($errors->has($name)),
+              'form-checkbox',
           ])->merge([
             'type'  => 'checkbox',
           ]) }} />

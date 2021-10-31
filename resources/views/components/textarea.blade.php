@@ -48,7 +48,7 @@
 
         <textarea {{ $attributes->class([
               $getInputClasses($hasError),
-              'form-textarea'
+              'form-textarea',
           ])->merge([
             'autocomplete' => 'off',
             'rows'         => 4
