@@ -10,10 +10,12 @@
             />
         @endif
 
-        <input {{ $attributes->merge([
+        <input {{ $attributes->class([
+              $getClasses($errors->has($name)),
+              'form-checkbox',
+          ])->merge([
             'type'  => 'checkbox',
-            'class' => $getClasses($errors->has($name))
-        ]) }} />
+          ]) }} />
 
         @if ($label)
             <x-dynamic-component
