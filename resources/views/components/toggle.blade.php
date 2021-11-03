@@ -10,7 +10,7 @@
             />
         @endif
 
-        <div class="relative flex items-center select-none">
+        <label for="{{ $id }}" tabindex="-1" class="group relative flex items-center select-none">
             <input {{ $attributes->merge([
                     'name'  => $name,
                     'id'    => $id,
@@ -19,7 +19,7 @@
                 type="checkbox"
             />
 
-            <label for="{{ $id }}" class="{{ $backgroundClasses($errors->has($name)) }}"></label>
+            <div class="{{ $backgroundClasses($errors->has($name)) }}"></div>
         </div>
 
         @if ($label)

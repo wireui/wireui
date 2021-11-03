@@ -22,11 +22,13 @@ class Toggle extends Checkbox
         return Str::of("
             block rounded-full cursor-pointer transition ease-in-out duration-100
             peer-focus:ring-2 peer-focus:ring-offset-2 {$size}
+            group-focus:ring-2 group-focus:ring-offset-2
         ")->unless(
             $hasError,
             function (Stringable $stringable) {
                 return $stringable->append('
                     bg-secondary-200 peer-checked:bg-primary-600 peer-focus:ring-primary-600
+                    group-focus:ring-primary-600 dark:group-focus:ring-secondary-600
                     dark:peer-focus:ring-secondary-600 dark:peer-focus:ring-offset-secondary-800
                     dark:bg-secondary-600 dark:peer-checked:bg-secondary-700
                 ');
@@ -34,6 +36,7 @@ class Toggle extends Checkbox
             function (Stringable $stringable) {
                 return $stringable->append('
                     bg-negative-600 peer-focus:ring-negative-600 dark:bg-negative-700
+                    group-focus:ring-negative-600 dark:group-focus:ring-negative-700
                     dark:peer-focus:ring-negative-700 dark:peer-focus:ring-offset-secondary-800
                 ');
             }
