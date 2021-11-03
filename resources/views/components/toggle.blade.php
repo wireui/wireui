@@ -20,7 +20,7 @@
             />
 
             <div class="{{ $backgroundClasses($errors->has($name)) }}"></div>
-        </div>
+        </label>
 
         @if ($label)
             <x-dynamic-component
