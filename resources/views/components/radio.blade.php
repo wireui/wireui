@@ -13,7 +13,7 @@
         <input {{ $attributes->class([
                 $getClasses($errors->has($name)),
             ])->merge([
-                'type'  => 'checkbox',
+                'type'  => 'radio',
             ]) }} />
 
         @if ($label)
