@@ -47,12 +47,11 @@
         @endif
 
         <input {{ $attributes->class([
-              $getInputClasses($hasError),
-              'form-input'
-          ])->merge([
-              'type'         => 'text',
-              'autocomplete' => 'off',
-          ]) }} />
+                $getInputClasses($hasError),
+            ])->merge([
+                'type'         => 'text',
+                'autocomplete' => 'off',
+            ]) }} />
 
         @if ($suffix || $rightIcon || ($hasError && !$append))
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none
