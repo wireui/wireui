@@ -10,7 +10,6 @@
     @endif
 
     <select {{ $attributes->class([
-        'form-select',
         $defaultClasses(),
         $errorClasses() =>  $errors->has($name),
         $colorClasses() => !$errors->has($name),

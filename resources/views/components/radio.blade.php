@@ -1,9 +1,36 @@
-<x-dynamic-component
-    :component="WireUiComponent::resolve('checkbox')"
-    {{ $attributes->class(['form-radio']) }}
-    {{ $attributes->merge(['type' => 'radio', 'class' => '!rounded-full']) }}
-    :label="$label"
-    :left-label="$leftLabel"
-    :md="$md"
-    :lg="$lg"
-/>
+<div>
+    <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
+        @if ($leftLabel)
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('label')"
+                class="mr-2"
+                :for="$id"
+                :label="$leftLabel"
+                :has-error="$errors->has($name)"
+            />
+        @endif
+
+        <input {{ $attributes->class([
+                $getClasses($errors->has($name)),
+            ])->merge([
+                'type'  => 'radio',
+            ]) }} />
+
+        @if ($label)
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('label')"
+                class="ml-2"
+                :for="$id"
+                :label="$label"
+                :has-error="$errors->has($name)"
+            />
+        @endif
+    </label>
+
+    @if ($name)
+        <x-dynamic-component
+            :component="WireUiComponent::resolve('error')"
+            :name="$name"
+        />
+    @endif
+</div>
