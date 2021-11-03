@@ -36,11 +36,11 @@ class Checkbox extends FormComponent
 
     public function getClasses(bool $hasError): string
     {
-        return Str::of("rounded-sm transition ease-in-out duration-100 {$this->getSize()}")->unless(
+        return Str::of("form-checkbox rounded transition ease-in-out duration-100 {$this->size()}")->unless(
             $hasError,
             function (Stringable $stringable) {
                 return $stringable->append('
-                    border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-300
+                    border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-400
                     dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600
                     dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600
                     dark:focus:ring-offset-secondary-800
@@ -57,8 +57,11 @@ class Checkbox extends FormComponent
         );
     }
 
-    private function getSize(): string
+    private function size(): string
     {
-        return $this->classes(['w-5 h-5' => $this->md, 'w-6 h-6' => $this->lg, ]);
+        return $this->classes([
+            'w-5 h-5' => $this->md,
+            'w-6 h-6' => $this->lg,
+        ]);
     }
 }
