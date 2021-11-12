@@ -60,12 +60,12 @@ export default (options: Options): Currency => ({
   },
   mask (value, emitInput = true) {
     if (typeof value === 'number') {
-      value = value.toFixed(this.config.precision).toString()
+      value = value.toFixed(this.config.precision).toString().replace('.', this.config.decimal)
     }
 
     if (value?.endsWith(this.config.decimal) && occurrenceCount(value, this.config.decimal) === 1) {
       if (value.length === 1) {
-        this.input = `0.${this.config.decimal}`
+        this.input = `0${this.config.decimal}`
 
         return
       }

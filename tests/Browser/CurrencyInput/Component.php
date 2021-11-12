@@ -10,6 +10,8 @@ class Component extends \Livewire\Component
 
     public $formattedCurrency = null;
 
+    public $brazilCurrency = '123.456,99';
+
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');
