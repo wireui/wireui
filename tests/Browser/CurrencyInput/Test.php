@@ -58,10 +58,9 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->waitForLivewire()
                 ->assertInputValue('brazilCurrency', '123.456,99')
-                ->type('brazilCurrency', '159,66')
-                ->assertInputValue('brazilCurrency', '159,66');
+                ->append('brazilCurrency', '66')
+                ->assertInputValue('brazilCurrency', '12.345.699,66');
         });
     }
 }
