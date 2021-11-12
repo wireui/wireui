@@ -8,7 +8,7 @@ export interface MaskCurrency {
 const splitCurrency = (numbers: string | null, config: CurrencyConfig): string[] => {
   if (!numbers) return []
 
-  let [digits = null, decimals = null] = numbers?.split(config.decimal)
+  let [digits = null, decimals = null] = numbers?.split(config.decimal) ?? []
 
   digits = onlyNumbers(digits)
   decimals = onlyNumbers(decimals)

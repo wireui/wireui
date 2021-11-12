@@ -52,4 +52,16 @@ class Test extends BrowserTestCase
                 });
         });
     }
+
+    /** @test */
+    public function it_should_parse_custom_currencies_like_brazilian_real()
+    {
+        $this->browse(function (Browser $browser) {
+            Livewire::visit($browser, Component::class)
+                ->waitForLivewire()
+                ->assertInputValue('brazilCurrency', '123.456,99')
+                ->type('brazilCurrency', '159,66')
+                ->assertInputValue('brazilCurrency', '159,66');
+        });
+    }
 }

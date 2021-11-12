@@ -12,6 +12,39 @@ describe('Testing Currency Formatter', () => {
     assert.equal('123,456', currency)
   })
 
+  it('should mask currency value with custom decimals separator', () => {
+    const numbers = '123456,99'
+    const currency = maskCurrency(numbers, {
+      decimal: ',',
+      thousands: '.',
+      precision: 2
+    })
+
+    assert.equal('123.456,99', currency)
+  })
+
+  it('should mask currency value with custom thousands separator', () => {
+    const numbers = '123456.99'
+    const currency = maskCurrency(numbers, {
+      decimal: '.',
+      thousands: ';',
+      precision: 2
+    })
+
+    assert.equal('123;456.99', currency)
+  })
+
+  it('should mask currency value with custom decimals and thousands separator', () => {
+    const numbers = '123456D99'
+    const currency = maskCurrency(numbers, {
+      decimal: 'D',
+      thousands: 'T',
+      precision: 2
+    })
+
+    assert.equal('123T456D99', currency)
+  })
+
   it('should mask zero value', () => {
     const numbers = 0
     const currency = maskCurrency(numbers, defaultConfig)
