@@ -7,7 +7,7 @@
         placeholder: '{{ $placeholder }}',
         optionValue: '{{ $optionValue }}',
         optionLabel: '{{ $optionLabel }}',
-    })" class="relative">
+    })" class="relative" {{ $attributes->only('wire:key') }}>
     <div class="relative">
         <x-dynamic-component
             :component="WireUiComponent::resolve('label')"
@@ -29,7 +29,7 @@
             readonly
             :name="$name"
             :icon="$icon"
-            {{ $attributes->whereDoesntStartWith(['wire:model', 'type']) }}>
+            {{ $attributes->whereDoesntStartWith(['wire:model', 'type', 'wire:key']) }}>
 
             <x-slot name="prepend">
                 <div class="absolute left-0 inset-y-0 pl-2 pr-14 w-full flex items-center overflow-hidden cursor-pointer"
@@ -42,16 +42,19 @@
                               x-text="model ? model.length : ''">
                         </span>
                         <template x-for="selected in selectedOptions" :key="`selected.${selected.value}`">
-                            <span class="inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                         border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
-                                         dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                            <span class="
+                                    inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
+                                    border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                                    dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
                                 ">
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
-                                <button class="flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
-                                               justify-center hover:text-secondary-500 focus:outline-none"
-                                        x-on:click.stop="unSelect(selected.value)"
-                                        type="button">
 
+                                <button class="
+                                        flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
+                                        justify-center hover:text-secondary-500 focus:outline-none
+                                    "
+                                    x-on:click.stop="unSelect(selected.value)"
+                                    type="button">
                                     <x-dynamic-component
                                         :component="WireUiComponent::resolve('icon')"
                                         class="h-3 w-3"
@@ -66,16 +69,18 @@
 
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 gap-x-2">
-                    <button class="focus:outline-none"
-                            x-show="!isEmptyModel() && !disabled && !readonly"
-                            x-on:click="clearModel"
-                            type="button">
+                    <button
+                        class="focus:outline-none"
+                        x-show="!isEmptyModel() && !disabled && !readonly"
+                        x-on:click="clearModel"
+                        type="button">
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('icon')"
                             class="w-4 h-4 text-secondary-400 hover:text-negative-400"
                             name="x"
                         />
                     </button>
+
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('icon')"
@@ -92,8 +97,10 @@
         </x-dynamic-component>
     </div>
 
-    <div class="absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200
-                dark:bg-secondary-800 dark:border-secondary-600"
+    <div class="
+            absolute w-full mt-1 rounded-lg overflow-hidden shadow-md bg-white z-10 border border-secondary-200
+            dark:bg-secondary-800 dark:border-secondary-600
+        "
         x-show="popover"
         x-cloak
         x-on:click.outside="closePopover"
@@ -102,8 +109,10 @@
             <div class="px-2 my-2">
                 <x-dynamic-component
                     :component="WireUiComponent::resolve('input')"
-                    class="focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
-                            border border-secondary-200 dark:border-secondary-600 duration-300"
+                    class="
+                        focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
+                        border border-secondary-200 dark:border-secondary-600 duration-300
+                    "
                     x-ref="search"
                     x-model="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
@@ -116,6 +125,7 @@
                 />
             </div>
         @endif
+
         <ul class="max-h-60 overflow-y-auto select-none"
             tabindex="-1"
             x-ref="optionsContainer"
