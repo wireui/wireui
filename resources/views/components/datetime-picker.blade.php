@@ -15,10 +15,11 @@
         monthNames: @lang('wireui::messages.datePicker.months'),
         withoutTime: @boolean($withoutTime),
     })"
-     class="relative">
+    class="relative"
+    {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
         :component="WireUiComponent::resolve('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
+        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
@@ -29,7 +30,7 @@
         :prepend="$prepend"
         readonly
         x-on:click="togglePicker"
-        ::value="getInputValue()">
+        x-bind:value="getInputValue()">
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
@@ -196,7 +197,7 @@
                         id="search.{{ $attributes->wire('model')->value() }}"
                         label="Select time"
                         x-model="searchTime"
-                        ::placeholder="modelTime ? modelTime : '12:00'"
+                        x-bind:placeholder="modelTime ? modelTime : '12:00'"
                         x-ref="searchTime"
                         x-on:input.debounce.150ms="onSearchTime($event.target.value)"
                     />

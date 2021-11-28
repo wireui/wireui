@@ -13,11 +13,12 @@
     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
-    class="w-full relative">
+    class="w-full relative"
+    {{ $attributes->only('wire:key') }}>
     <div class="relative">
         <x-dynamic-component
             :component="WireUiComponent::resolve('input')"
-            {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model']) }}
+            {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
             :borderless="$borderless"
             :shadowless="$shadowless"
             :label="$label"
@@ -28,8 +29,7 @@
             :prepend="$prepend"
             x-model="input"
             x-on:input.debounce.150ms="onInput($event.target.value)"
-            x-on:blur="emitInput"
-        >
+            x-on:blur="emitInput">
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto
