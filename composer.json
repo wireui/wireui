@@ -1,5 +1,5 @@
 {
-    "name": "ph7jack/wireui",
+    "name": "wireui/wireui",
     "description": "Livewire ui components with tailwind base style",
     "type": "library",
     "keywords": [
