@@ -78,7 +78,7 @@
                  aria-hidden="true">
             </div>
 
-            <div class="w-full rounded-t-md border border-secondary-200 bg-white transform shadow-lg
+            <div class="w-full rounded-t-md border border-secondary-200 bg-white shadow-lg
                         dark:bg-secondary-800 dark:border-secondary-600 transition-all relative
                         max-h-96 overflow-y-auto p-3 sm:w-72 sm:rounded-xl"
                  x-show="popover"
@@ -118,7 +118,7 @@
                     <div class="flex items-center justify-between">
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('button')"
-                            class="rounded-lg flex-shrink-0"
+                            class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="previousMonth"
                             icon="chevron-left"
@@ -141,7 +141,7 @@
 
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('button')"
-                            class="rounded-lg flex-shrink-0"
+                            class="rounded-lg shrink-0"
                             x-show="!monthsPicker"
                             x-on:click="nextMonth"
                             icon="chevron-right"

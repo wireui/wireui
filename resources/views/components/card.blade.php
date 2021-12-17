@@ -11,7 +11,7 @@
         </div>
     @endif
 
-    <div {{ $attributes->merge(['class' => "{$padding} text-secondary-700 dark:text-secondary-400 flex-grow"]) }}>
+    <div {{ $attributes->merge(['class' => "{$padding} text-secondary-700 dark:text-secondary-400 grow"]) }}>
         {{ $slot }}
     </div>
 

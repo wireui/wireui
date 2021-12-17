@@ -18,6 +18,12 @@ Wire UI is a library of components and resources to empower your Laravel and Liv
 
 Starting a new project with Livewire can be time-consuming when you have to create all the components from scratch. Wire UI helps to skip this step and get you straight to the development phase.
 
+---
+
+If you are looking for the version with support to tailwind v2, please check out [Support Tailwind v2](https://deprecated.livewire-wireui.com)
+
+---
+
 <div align="center">
     <p>
         <img  src="images/features.png" alt="Wire UI Features"/>

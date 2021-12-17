@@ -8,7 +8,7 @@
     <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center"
         style="min-height: -webkit-fill-available; min-height: fill-available;">
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
-            {{ $dialog }}-backdrop @if($blur) backdrop-filter {{ $blur }} @endif dark:bg-secondary-700 dark:bg-opacity-60"
+            {{ $dialog }}-backdrop @if ($blur) {{ $blur }} @endif dark:bg-secondary-700 dark:bg-opacity-60"
             x-show="show"
             x-on:click="dismiss"
             x-transition:enter="ease-out duration-300"
@@ -19,7 +19,7 @@
             x-transition:leave-end="opacity-0">
         </div>
 
-        <div class="w-full transform transition-all p-4 sm:max-w-lg"
+        <div class="w-full transition-all p-4 sm:max-w-lg"
             x-show="show"
             x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
-                    <div class="mx-auto flex items-center self-start justify-center flex-shrink-0"
+                    <div class="mx-auto flex items-center self-start justify-center shrink-0"
                         :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                         x-show="dialog && dialog.icon">
                         <div x-ref="iconContainer"></div>
