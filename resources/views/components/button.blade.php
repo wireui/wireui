@@ -7,7 +7,7 @@ wire:loading.attr="disabled">
         <x-dynamic-component
             :component="WireUiComponent::resolve('icon')"
             :name="$icon"
-            class="w-4 h-4 flex-shrink-0"
+            class="w-4 h-4 shrink-0"
         />
     @endif
 

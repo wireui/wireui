@@ -50,7 +50,7 @@
                                 <span style="max-width: 5rem" class="truncate" x-text="selected.label"></span>
 
                                 <button class="
-                                        flex-shrink-0 h-4 w-4 flex items-center text-secondary-400
+                                        shrink-0 h-4 w-4 flex items-center text-secondary-400
                                         justify-center hover:text-secondary-500 focus:outline-none
                                     "
                                     x-on:click.stop="unSelect(selected.value)"
@@ -110,7 +110,7 @@
                 <x-dynamic-component
                     :component="WireUiComponent::resolve('input')"
                     class="
-                        focus:shadow-md bg-blueGray-100 focus:ring-primary-600 focus:border-primary-600
+                        focus:shadow-md bg-slate-100 focus:ring-primary-600 focus:border-primary-600
                         border border-secondary-200 dark:border-secondary-600 duration-300
                     "
                     x-ref="search"

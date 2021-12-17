@@ -1,17 +1,16 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: [
+  content: [
     './ts/**/*.js',
     './resources/views/**/*.blade.php',
     './src/View/**/*.php'
   ],
-  mode: 'jit',
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        blueGray: colors.blueGray,
+        slate: colors.slate,
         primary: colors.indigo,
         secondary: colors.gray,
         positive: colors.emerald,
@@ -27,12 +26,9 @@ module.exports = {
       }
     }
   },
-  variants: {
-    extend: {}
-  },
   plugins: [
-    require("@tailwindcss/forms")({
-      strategy: 'class',
+    require('@tailwindcss/forms')({
+      strategy: 'class'
     }),
     require('./tailwindcss/plugins/hideScrollbar')
   ]

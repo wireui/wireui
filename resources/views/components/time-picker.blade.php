@@ -80,7 +80,7 @@
                 aria-hidden="true">
             </div>
 
-            <div class="w-full rounded-t-md p-2.5 border border-secondary-200 bg-white transform transition-all
+            <div class="w-full rounded-t-md p-2.5 border border-secondary-200 bg-white transition-all
                         relative sm:rounded-lg sm:shadow-md sm:w-48 dark:bg-secondary-800 dark:border-secondary-600"
                 x-show="showPicker"
                 tabindex="-1"
