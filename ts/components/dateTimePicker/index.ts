@@ -1,45 +1,7 @@
-import { applyMask } from '../utils/masker'
-import { getLocalTimezone, date as parseDate } from '../utils/date'
-import { Entangle } from './alpine'
-
-export interface InitOptions {
-  model: Entangle
-  config: {
-    interval: number
-    is12H: boolean
-    readonly: boolean
-    disabled: boolean
-  }
-  withoutTimezone: boolean
-  timezone: string
-  userTimezone: string
-  parseFormat: string
-  displayFormat: string
-  weekDays: string[]
-  monthNames: string[]
-  withoutTime: boolean
-}
-
-export interface PreviousDate {
-  month: number
-  day: number
-}
-
-export type NextDate = PreviousDate
-
-export interface CurrentDate extends PreviousDate {
-  isToday: boolean,
-  date: string
-}
-
-export interface Time {
-  label: string
-  value: string
-}
-
-export interface DateTimePicker {
-  [index: string]: any
-}
+import { applyMask } from '../../utils/masker'
+import { getLocalTimezone, date as parseDate } from '../../utils/date'
+import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate } from './interfaces'
+import { makeTimes } from './makeTimes'
 
 export default (options: InitOptions): DateTimePicker => ({
   model: options.model,
@@ -48,19 +10,26 @@ export default (options: InitOptions): DateTimePicker => ({
   timezone: options.timezone,
   userTimezone: options.userTimezone,
   localTimezone: getLocalTimezone(),
-  parseFormat: options.parseFormat,
+  parseFormat: options.parseFormat ?? 'YYYY-MM-DDTHH:mm:ss.SSSZ',
   displayFormat: options.displayFormat,
   weekDays: options.weekDays,
   monthNames: options.monthNames,
   withoutTime: options.withoutTime,
-  localeDateConfig: {},
+  localeDateConfig: {
+    year: undefined,
+    month: undefined,
+    day: undefined,
+    timeZone: undefined
+  },
   searchTime: null,
   input: null,
   modelTime: null,
   popover: false,
   tab: 'date',
   monthsPicker: false,
-  dates: [],
+  previousDates: [],
+  currentDates: [],
+  nextDates: [],
   times: [],
   filteredTimes: [],
   month: 0,
@@ -70,7 +39,7 @@ export default (options: InitOptions): DateTimePicker => ({
     this.initComponent()
 
     this.$watch('popover', popover => {
-      if (popover && !this.dates.length) {
+      if (popover && !this.currentDates.length) {
         this.syncPickerDates()
 
         if (!this.withoutTime) {
@@ -122,6 +91,8 @@ export default (options: InitOptions): DateTimePicker => ({
     this.syncCalendar()
   },
   syncCalendar () {
+    if (!this.input?.getYear || !this.input?.getMonth) return
+
     this.year = this.input.getYear()
     this.month = this.input.getMonth()
   },
@@ -140,7 +111,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     return dates
   },
-  getMonthDates (currentDate) {
+  getCurrentDates (currentDate) {
     const formatted = currentDate.format('YYYY-MM')
     const monthDays = currentDate.getMonthDays()
     const dates: CurrentDate[] = []
@@ -170,9 +141,9 @@ export default (options: InitOptions): DateTimePicker => ({
     return dates
   },
   mustSyncDate () {
-    if (!this.dates.length) return true
+    if (!this.currentDates.length) return true
 
-    const inputDate = this.input.format('YYYY-MM', this.localTimezone)
+    const inputDate = this.input?.format('YYYY-MM', this.localTimezone)
     const calendarDate = `${this.year}-${String(this.month + 1).padStart(2, '0')}`
 
     return inputDate !== calendarDate
@@ -185,37 +156,15 @@ export default (options: InitOptions): DateTimePicker => ({
   },
   fillPickerDates () {
     const date = parseDate(`${this.year}-${this.month + 1}`, this.localTimezone)
-    const dates = [...this.getPreviousDates(date), ...this.getMonthDates(date)]
-    this.dates = dates.concat(this.getNextDates(date, dates.length))
+
+    this.previousDates = this.getPreviousDates(date)
+    this.currentDates = this.getCurrentDates(date)
+    this.nextDates = this.getNextDates(date, this.previousDates.length + this.currentDates.length)
   },
   fillTimes () {
     if (this.times.length > 0) return
 
-    const times: Time[] = []
-    let startTime = 0
-    const timePeriods = ['AM', 'PM']
-
-    for (let i = 0; startTime < 24 * 60; i++) {
-      const hour = Number(Math.floor(startTime / 60).toString().padStart(2, '0'))
-      let formatedHour = this.config.is12H ? Number(hour % 12) : hour
-      const minutes = Number(startTime % 60).toString().padStart(2, '0')
-
-      if (this.config.is12H && formatedHour === 0) { formatedHour = 12 }
-
-      const time = {
-        label: `${formatedHour}:${minutes}`,
-        value: `${hour}:${minutes}`
-      }
-
-      if (this.config.is12H) {
-        time.label += ` ${timePeriods[Math.floor(hour / 12)]}`
-      }
-
-      times.push(time)
-
-      startTime += this.config.interval
-    }
-
+    const times = makeTimes(this.config.is12H, this.config.interval)
     this.times = times
     this.filteredTimes = times
   },
@@ -245,14 +194,14 @@ export default (options: InitOptions): DateTimePicker => ({
 
     return model.setTimezone(this.userTimezone).isSame(compare, 'date')
   },
-  isToday (day) {
+  isToday (date) {
     const now = new Date()
 
     if (this.month !== now.getMonth() || this.year !== now.getFullYear()) {
       return false
     }
 
-    return day === now.getDate()
+    return date.getDay() === now.getDate()
   },
   selectMonth (month) {
     this.month = month
@@ -260,32 +209,32 @@ export default (options: InitOptions): DateTimePicker => ({
     this.fillPickerDates()
   },
   emitInput () {
-    this.model = this.input.format(this.parseFormat, this.timezone)
+    this.model = this.input?.format(this.parseFormat, this.timezone)
   },
   syncInput () {
-    if (this.model && this.input?.format(this.parseFormat ?? 'YYYY-MM-DDTHH:mm:ss.SSSZ') !== this.model) {
+    if (this.model && this.input?.format(this.parseFormat) !== this.model) {
       this.input = parseDate(this.model, this.timezone, this.parseFormat)
     }
 
-    if (!this.model || this.input.isInvalid()) {
+    if (!this.model || this.input?.isInvalid()) {
       this.input = parseDate(new Date(), this.userTimezone).setTimezone(this.timezone)
     }
 
-    this.modelTime = this.input.getTime(this.userTimezone)
+    this.modelTime = this.input?.getTime(this.userTimezone)
   },
   selectDate (date) {
     this.monthsPicker = false
 
     this.syncInput()
 
-    if (!this.withoutTimezone) { this.input.setTimezone(this.userTimezone) }
+    if (!this.withoutTimezone) { this.input?.setTimezone(this.userTimezone) }
 
     this.input
-      .setYear(this.year)
+      ?.setYear(this.year)
       .setMonth(date.month)
       .setDay(date.day)
 
-    if (!this.withoutTimezone) { this.input.setTimezone(this.timezone) }
+    if (!this.withoutTimezone) { this.input?.setTimezone(this.timezone) }
 
     if (this.month !== date.month) {
       this.month = date.month
@@ -294,14 +243,20 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.emitInput()
 
-    if (!this.withoutTime) { this.tab = 'time' } else this.popover = false
+    !this.withoutTime
+      ? this.tab = 'time'
+      : this.popover = false
   },
   selectTime (time) {
-    if (!this.withoutTimezone) { this.input.setTimezone(this.userTimezone) }
+    if (!this.withoutTimezone) {
+      this.input?.setTimezone(this.userTimezone)
+    }
 
-    this.input.setTime(time.value)
+    this.input?.setTime(time.value)
 
-    if (!this.withoutTimezone) { this.input.setTimezone(this.timezone) }
+    if (!this.withoutTimezone) {
+      this.input?.setTimezone(this.timezone)
+    }
 
     this.emitInput()
     this.popover = false
@@ -325,14 +280,16 @@ export default (options: InitOptions): DateTimePicker => ({
     this.emitInput()
   },
   getLocaleDateConfig () {
-    const config = {
+    const config: LocaleDateConfig = {
       year: 'numeric',
       month: 'numeric',
       day: 'numeric',
       timeZone: this.userTimezone
-    } as any
+    }
 
-    if (this.withoutTimezone) { config.timeZone = this.timezone }
+    if (this.withoutTimezone) {
+      config.timeZone = this.timezone
+    }
 
     if (!this.withoutTime) {
       config.hour = 'numeric'
@@ -354,13 +311,10 @@ export default (options: InitOptions): DateTimePicker => ({
       ?.getNativeDate()
       .toLocaleString(navigator.language, this.localeDateConfig)
   },
-  getInputValue () {
-    return this.model ? this.getDisplayValue() : null
-  },
-  onSearchTime (searchTime) {
+  onSearchTime (search) {
     const mask = this.config.is12H ? 'h:m' : 'H:m'
-    this.searchTime = applyMask(mask, searchTime) ?? ''
-    this.filteredTimes = this.times.filter(time => time.label.includes(this.searchTime))
+    this.searchTime = applyMask(mask, search) ?? ''
+    this.filteredTimes = this.times.filter(time => time.label.includes(this.searchTime ?? ''))
 
     if (this.filteredTimes.length === 0) {
       if (!this.config.is12H) {
@@ -385,7 +339,7 @@ export default (options: InitOptions): DateTimePicker => ({
     this.$nextTick(() => {
       this.$refs
         .timesContainer
-        .querySelector(`button[name = 'time.${this.modelTime.value}']`)
+        .querySelector(`button[name = 'time.${this.modelTime}']`)
         ?.scrollIntoView({
           behavior: 'instant',
           block: 'nearest',
