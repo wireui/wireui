@@ -7,9 +7,9 @@
             disabled: @boolean($disabled),
         },
         withoutTimezone: @boolean($withoutTimezone),
-        timezone: '{{ $timezone }}',
-        userTimezone: '{{ $userTimezone }}',
-        parseFormat: '{{ $parseFormat }}',
+        timezone:      '{{ $timezone }}',
+        userTimezone:  '{{ $userTimezone }}',
+        parseFormat:   '{{ $parseFormat }}',
         displayFormat: '{{ $displayFormat }}',
         weekDays:   @lang('wireui::messages.datePicker.days'),
         monthNames: @lang('wireui::messages.datePicker.months'),
@@ -30,7 +30,7 @@
         :prepend="$prepend"
         readonly
         x-on:click="togglePicker"
-        x-bind:value="getInputValue()">
+        x-bind:value="getDisplayValue()">
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
@@ -170,7 +170,9 @@
                                       x-text="day"></span>
                             </template>
 
-                            <template x-for="date in dates" :key="`week-date.${date.day}.${date.month}`">
+                            <template
+                                x-for="date in [...previousDates, ...currentDates, ...nextDates]"
+                                :key="`week-date.${date.day}.${date.month}`">
                                 <div class="flex justify-center picker-days">
                                     <button class="text-sm w-7 h-6 focus:outline-none rounded-md focus:ring-2 focus:ring-ofsset-2 focus:ring-primary-600
                                                  hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400"
@@ -181,9 +183,9 @@
                                             'text-white bg-primary-600 font-semibold border border-primary-600': isSelected(date),
                                             'hover:bg-primary-600 dark:bg-secondary-700 dark:border-secondary-400': isSelected(date),
                                         }"
-                                            x-on:click="selectDate(date)"
-                                            x-text="date.day"
-                                            type="button">
+                                        x-on:click="selectDate(date)"
+                                        x-text="date.day"
+                                        type="button">
                                     </button>
                                 </div>
                             </template>
@@ -212,9 +214,9 @@
                                     'text-primary-600': modelTime === time.value,
                                     'text-secondary-700': modelTime !== time.value,
                                 }"
-                                    :name="`time.${time.value}`"
-                                    type="button"
-                                    x-on:click="selectTime(time)">
+                                :name="`time.${time.value}`"
+                                type="button"
+                                x-on:click="selectTime(time)">
                                 <span x-text="time.label"></span>
                                 <span class="text-primary-600 dark:text-secondary-400 group-hover:text-white
                                              absolute inset-y-0 right-0 flex items-center pr-4"
