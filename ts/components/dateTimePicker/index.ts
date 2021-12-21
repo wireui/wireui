@@ -60,7 +60,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.$watch('model', () => {
       this.syncInput()
-      this.syncPickerDates()
+      this.syncPickerDates(true)
     })
   },
   clearDate () {
@@ -98,13 +98,14 @@ export default (options: InitOptions): DateTimePicker => ({
   },
   getPreviousDates (currentDate) {
     const dayOfWeek = currentDate.getDayOfWeek()
-    const lastMonth = currentDate.clone().subMonth()
-    const monthDays = lastMonth.getMonthDays()
+    const previousDate = currentDate.clone().subMonth()
+    const monthDays = previousDate.getMonthDays()
     const dates: PreviousDate[] = []
 
     for (let day = 0; day < dayOfWeek; day++) {
       dates.unshift({
-        month: lastMonth.getMonth(),
+        year: previousDate.getYear(),
+        month: previousDate.getMonth(),
         day: monthDays - day
       })
     }
@@ -117,23 +118,30 @@ export default (options: InitOptions): DateTimePicker => ({
     const dates: CurrentDate[] = []
 
     for (let day = 1; day <= monthDays; day++) {
-      dates.push({
+      const date: CurrentDate = {
+        year: currentDate.getYear(),
         month: currentDate.getMonth(),
         day,
         isToday: this.isToday(day),
-        date: `${formatted}-${day.toString().padStart(2, '0')}`
-      })
+        date: `${formatted}-${day.toString().padStart(2, '0')}`,
+        isSelected: false
+      }
+
+      date.isSelected = this.isSelected(date)
+
+      dates.push(date)
     }
 
     return dates
   },
   getNextDates (currentDate, datesLength) {
-    const nextMonth = currentDate.clone().addMonth()
+    const nextDate = currentDate.clone().addMonth()
     const dates: NextDate[] = []
 
     for (let day = 1; dates.length + datesLength < 42; day++) {
       dates.push({
-        month: nextMonth.getMonth(),
+        year: nextDate.getYear(),
+        month: nextDate.getMonth(),
         day
       })
     }
@@ -148,8 +156,8 @@ export default (options: InitOptions): DateTimePicker => ({
 
     return inputDate !== calendarDate
   },
-  syncPickerDates () {
-    if (!this.mustSyncDate()) return
+  syncPickerDates (forceSync = false) {
+    if (!this.mustSyncDate() && !forceSync) return
 
     this.syncCalendar()
     this.fillPickerDates()
@@ -187,21 +195,21 @@ export default (options: InitOptions): DateTimePicker => ({
     this.fillPickerDates()
   },
   isSelected (date) {
-    if (!this.model || !date.date) return false
+    if (!this.model) return false
 
     const model = parseDate(this.model, this.timezone, this.parseFormat)
     const compare = parseDate(date.date, this.userTimezone)
 
     return model.setTimezone(this.userTimezone).isSame(compare, 'date')
   },
-  isToday (date) {
+  isToday (day) {
     const now = new Date()
 
     if (this.month !== now.getMonth() || this.year !== now.getFullYear()) {
       return false
     }
 
-    return date.getDay() === now.getDate()
+    return day === now.getDate()
   },
   selectMonth (month) {
     this.month = month
@@ -227,14 +235,18 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.syncInput()
 
-    if (!this.withoutTimezone) { this.input?.setTimezone(this.userTimezone) }
+    if (!this.withoutTimezone) {
+      this.input?.setTimezone(this.userTimezone)
+    }
 
     this.input
-      ?.setYear(this.year)
+      ?.setYear(date.year)
       .setMonth(date.month)
       .setDay(date.day)
 
-    if (!this.withoutTimezone) { this.input?.setTimezone(this.timezone) }
+    if (!this.withoutTimezone) {
+      this.input?.setTimezone(this.timezone)
+    }
 
     if (this.month !== date.month) {
       this.month = date.month

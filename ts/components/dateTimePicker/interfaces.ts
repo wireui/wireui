@@ -21,6 +21,7 @@ export interface InitOptions {
 }
 
 export interface iDate {
+  year: number
   month: number
   day: number
 }
@@ -29,6 +30,7 @@ export type PreviousDate = iDate
 
 export interface CurrentDate extends iDate {
   isToday: boolean
+  isSelected: boolean
   date: string
 }
 
@@ -73,13 +75,13 @@ export interface DateTimePicker extends InitOptions {
   getCurrentDates (currentDate: Dateable): CurrentDate[]
   getNextDates (currentDate: Dateable, datesLength: number): NextDate[]
   mustSyncDate (): boolean
-  syncPickerDates (): void
+  syncPickerDates (forceSync?: boolean): void
   fillPickerDates (): void
   fillTimes (): void
   previousMonth (): void
   nextMonth (): void
-  isSelected (date): boolean
-  isToday (date): boolean
+  isSelected (date: CurrentDate): boolean
+  isToday (day: number): boolean
   selectMonth (month: number): void
   emitInput (): void
   syncInput (): void
