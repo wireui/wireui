@@ -38,7 +38,9 @@ export type Dateable = {
   clone (): Dateable
   isValid (): boolean
   isInvalid (): boolean
+  isBefore (date: Dateable | string, unit?: UnitType): boolean
   isSame (date: Dateable | string, unit?: UnitType): boolean
+  isAfter (date: Dateable | string, unit?: UnitType): boolean
   toJson (): string
 }
 
@@ -207,12 +209,28 @@ export class FluentDate implements Dateable {
     return !this.isValid()
   }
 
+  isBefore (date: Dateable | string, unit?: UnitType): boolean {
+    if (date instanceof FluentDate) {
+      return this.date.isBefore(date.date, unit)
+    }
+
+    return this.date.isBefore(String(date), unit)
+  }
+
   isSame (date: Dateable | string, unit?: UnitType): boolean {
     if (date instanceof FluentDate) {
       return this.date.isSame(date.date, unit)
     }
 
     return this.date.isSame(String(date), unit)
+  }
+
+  isAfter (date: Dateable | string, unit?: UnitType): boolean {
+    if (date instanceof FluentDate) {
+      return this.date.isAfter(date.date, unit)
+    }
+
+    return this.date.isAfter(String(date), unit)
   }
 
   toJson (): string {
