@@ -5,6 +5,8 @@
             is12H:    @boolean($timeFormat == '12'),
             readonly: @boolean($readonly),
             disabled: @boolean($disabled),
+            min: @js($min ? $min->toISOString() : null),
+            max: @js($max ? $max->toISOString() : null),
         },
         withoutTimezone: @boolean($withoutTimezone),
         timezone:      '{{ $timezone }}',
@@ -30,7 +32,7 @@
         :prepend="$prepend"
         readonly
         x-on:click="togglePicker"
-        x-bind:value="getDisplayValue()">
+        x-bind:value="model ? getDisplayValue(): null">
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
@@ -171,18 +173,22 @@
                             </template>
 
                             <template
-                                x-for="date in [...previousDates, ...currentDates, ...nextDates]"
+                                x-for="date in dates"
                                 :key="`week-date.${date.day}.${date.month}`">
                                 <div class="flex justify-center picker-days">
                                     <button class="text-sm w-7 h-6 focus:outline-none rounded-md focus:ring-2 focus:ring-ofsset-2 focus:ring-primary-600
-                                                 hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400"
-                                            :class="{
-                                            'text-secondary-600 dark:text-secondary-400': date.month === month && !isSelected(date),
-                                            'text-secondary-400 dark:text-secondary-600': date.month !== month,
-                                            'text-primary-600 border border-primary-600 dark:border-gray-400': date.isToday && !isSelected(date),
-                                            'text-white bg-primary-600 font-semibold border border-primary-600': isSelected(date),
-                                            'hover:bg-primary-600 dark:bg-secondary-700 dark:border-secondary-400': isSelected(date),
+                                                 hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400
+                                                  disabled:cursor-not-allowed"
+                                        :class="{
+                                            'text-secondary-600 dark:text-secondary-400': !date.isDisabled && !date.isSelected && date.month === month,
+                                            'text-secondary-400 dark:text-secondary-600': date.isDisabled || date.month !== month,
+                                            'text-primary-600 border border-primary-600 dark:border-gray-400': date.isToday && !date.isSelected,
+                                            'disabled:text-primary-400 disabled:border-primary-400': date.isToday && !date.isSelected,
+                                            '!text-white bg-primary-600 font-semibold border border-primary-600': date.isSelected,
+                                            'disabled:bg-primary-400 disabled:border-primary-400': date.isSelected,
+                                            'hover:bg-primary-600 dark:bg-secondary-700 dark:border-secondary-400': date.isSelected,
                                         }"
+                                        :disabled="date.isDisabled"
                                         x-on:click="selectDate(date)"
                                         x-text="date.day"
                                         type="button">

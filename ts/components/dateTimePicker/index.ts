@@ -34,6 +34,12 @@ export default (options: InitOptions): DateTimePicker => ({
   filteredTimes: [],
   month: 0,
   year: 0,
+  minDate: null,
+  maxDate: null,
+
+  get dates () {
+    return [...this.previousDates, ...this.currentDates, ...this.nextDates]
+  },
 
   init () {
     this.initComponent()
@@ -63,11 +69,28 @@ export default (options: InitOptions): DateTimePicker => ({
       this.syncPickerDates(true)
     })
   },
+  initComponent () {
+    if (!this.userTimezone) {
+      this.userTimezone = getLocalTimezone()
+    }
+
+    this.localeDateConfig = this.getLocaleDateConfig()
+    this.syncInput()
+    this.syncCalendar()
+  },
   clearDate () {
     this.model = null
   },
   togglePicker () {
     if (this.config.readonly || this.config.disabled) return
+
+    if (this.config.min && !this.minDate) {
+      this.minDate = parseDate(this.config.min)
+    }
+
+    if (this.config.max && !this.maxDate) {
+      this.maxDate = parseDate(this.config.max)
+    }
 
     this.popover = !this.popover
     this.monthsPicker = false
@@ -80,15 +103,6 @@ export default (options: InitOptions): DateTimePicker => ({
     if (this.monthsPicker) return (this.monthsPicker = false)
 
     this.popover = false
-  },
-  initComponent () {
-    if (!this.userTimezone) {
-      this.userTimezone = getLocalTimezone()
-    }
-
-    this.localeDateConfig = this.getLocaleDateConfig()
-    this.syncInput()
-    this.syncCalendar()
   },
   syncCalendar () {
     if (!this.input?.getYear || !this.input?.getMonth) return
@@ -103,11 +117,16 @@ export default (options: InitOptions): DateTimePicker => ({
     const dates: PreviousDate[] = []
 
     for (let day = 0; day < dayOfWeek; day++) {
-      dates.unshift({
+      const date: PreviousDate = {
         year: previousDate.getYear(),
         month: previousDate.getMonth(),
-        day: monthDays - day
-      })
+        day: monthDays - day,
+        isDisabled: false
+      }
+
+      date.isDisabled = this.isDateDisabled(date)
+
+      dates.unshift(date)
     }
 
     return dates
@@ -124,10 +143,12 @@ export default (options: InitOptions): DateTimePicker => ({
         day,
         isToday: this.isToday(day),
         date: `${formatted}-${day.toString().padStart(2, '0')}`,
-        isSelected: false
+        isSelected: false,
+        isDisabled: false
       }
 
       date.isSelected = this.isSelected(date)
+      date.isDisabled = this.isDateDisabled(date)
 
       dates.push(date)
     }
@@ -139,14 +160,32 @@ export default (options: InitOptions): DateTimePicker => ({
     const dates: NextDate[] = []
 
     for (let day = 1; dates.length + datesLength < 42; day++) {
-      dates.push({
+      const date: NextDate = {
         year: nextDate.getYear(),
         month: nextDate.getMonth(),
-        day
-      })
+        day,
+        isDisabled: false
+      }
+
+      date.isDisabled = this.isDateDisabled(date)
+
+      dates.push(date)
     }
 
     return dates
+  },
+  isDateDisabled (date) {
+    const compareDate = `${date.year}-${date.month + 1}-${date.day}`
+
+    if (!this.minDate?.isSame(compareDate, 'date') && this.minDate?.isAfter(compareDate)) {
+      return true
+    }
+
+    if (!this.maxDate?.isSame(compareDate, 'date') && this.maxDate?.isBefore(compareDate)) {
+      return true
+    }
+
+    return false
   },
   mustSyncDate () {
     if (!this.currentDates.length) return true
@@ -231,6 +270,8 @@ export default (options: InitOptions): DateTimePicker => ({
     this.modelTime = this.input?.getTime(this.userTimezone)
   },
   selectDate (date) {
+    if (date.isDisabled) return
+
     this.monthsPicker = false
 
     this.syncInput()

@@ -2,6 +2,9 @@
 
 namespace WireUi\View\Components;
 
+use Carbon\Carbon;
+use DateTimeInterface;
+
 class DatetimePicker extends Input
 {
     public bool $withoutTips;
@@ -22,6 +25,14 @@ class DatetimePicker extends Input
 
     public ?string $displayFormat;
 
+    public ?Carbon $min;
+
+    public ?Carbon $max;
+
+    /**
+     * @param Carbon|DateTimeInterface|string|int|null $min
+     * @param Carbon|DateTimeInterface|string|int|null $max
+     */
     public function __construct(
         bool $borderless = false,
         bool $shadowless = false,
@@ -40,7 +51,9 @@ class DatetimePicker extends Input
         ?string $cornerHint = null,
         ?string $icon = null,
         ?string $prefix = null,
-        ?string $prepend = null
+        ?string $prepend = null,
+        $min = null,
+        $max = null
     ) {
         parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix = null, $prepend, $append = null);
 
@@ -53,6 +66,8 @@ class DatetimePicker extends Input
         $this->userTimezone    = $userTimezone;
         $this->parseFormat     = $parseFormat;
         $this->displayFormat   = $displayFormat;
+        $this->min             = $min ? Carbon::parse($min) : null;
+        $this->max             = $max ? Carbon::parse($max) : null;
     }
 
     protected function getView(): string

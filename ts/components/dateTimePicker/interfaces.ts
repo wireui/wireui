@@ -9,6 +9,8 @@ export interface InitOptions {
     is12H: boolean
     readonly: boolean
     disabled: boolean
+    min?: string | null
+    max?: string | null
   }
   withoutTimezone: boolean
   timezone: string
@@ -24,6 +26,7 @@ export interface iDate {
   year: number
   month: number
   day: number
+  isDisabled: boolean
 }
 
 export type PreviousDate = iDate
@@ -37,12 +40,12 @@ export interface CurrentDate extends iDate {
 export type NextDate = iDate
 
 export interface LocaleDateConfig {
-  year: 'numeric' | '2-digit' | undefined
-  month: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow' | undefined
-  day: 'numeric' | '2-digit' | undefined
-  timeZone: string | undefined
-  hour?: 'numeric' | '2-digit' | undefined
-  minute?: 'numeric' | '2-digit' | undefined
+  year?: 'numeric' | '2-digit'
+  month?: 'numeric' | '2-digit' | 'long' | 'short' | 'narrow'
+  day?: 'numeric' | '2-digit'
+  timeZone?: string
+  hour?: 'numeric' | '2-digit'
+  minute?: 'numeric' | '2-digit'
 }
 
 export interface DateTimePicker extends InitOptions {
@@ -63,17 +66,22 @@ export interface DateTimePicker extends InitOptions {
   filteredTimes: Time[]
   month: number
   year: number
+  minDate: Dateable | null
+  maxDate: Dateable | null
+
+  get dates (): iDate[]
 
   init (): void
+  initComponent (): void
   clearDate (): void
   togglePicker (): void
   closePicker (): void
   handleEscape (): void
-  initComponent (): void
   syncCalendar (): void
   getPreviousDates (currentDate: Dateable): PreviousDate[]
   getCurrentDates (currentDate: Dateable): CurrentDate[]
   getNextDates (currentDate: Dateable, datesLength: number): NextDate[]
+  isDateDisabled (date: iDate): boolean
   mustSyncDate (): boolean
   syncPickerDates (forceSync?: boolean): void
   fillPickerDates (): void
