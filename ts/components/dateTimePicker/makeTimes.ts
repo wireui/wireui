@@ -14,18 +14,19 @@ const makeTimes: MakeTimes = (isTime12H, interval) => {
 
   for (let i = 0; startTime < 24 * 60; i++) {
     const hour = Number(Math.floor(startTime / 60).toString().padStart(2, '0'))
-    let formatedHour = isTime12H ? Number(hour % 12) : hour
     const minutes = Number(startTime % 60).toString().padStart(2, '0')
 
-    if (isTime12H && formatedHour === 0) { formatedHour = 12 }
-
     const time: Time = {
-      label: `${formatedHour}:${minutes}`,
+      label: `${hour}:${minutes}`,
       value: `${hour}:${minutes}`
     }
 
     if (isTime12H) {
-      time.label += ` ${timePeriods[Math.floor(hour / 12)]}`
+      let displayHour = Number(hour % 12)
+
+      if (displayHour === 0) displayHour = 12
+
+      time.label = `${Number(displayHour % 12)}:${minutes} ${timePeriods[Math.floor(hour / 12)]}`
     }
 
     times.push(time)
