@@ -86,7 +86,7 @@ export interface DateTimePicker extends InitOptions {
   syncPickerDates (forceSync?: boolean): void
   fillPickerDates (): void
   fillTimes (): void
-  filterTimes (): void
+  filterTimes (times: Time[]): Time[]
   previousMonth (): void
   nextMonth (): void
   isSelected (date: CurrentDate): boolean
@@ -102,6 +102,7 @@ export interface DateTimePicker extends InitOptions {
   selectTomorrow (): void
   getLocaleDateConfig (): LocaleDateConfig
   getDisplayValue (): string | undefined
-  onSearchTime (search): void
+  onSearchTime (search: string): void
+  makeSearchTimes (search: string): Time[]
   focusTime (): void
 }

@@ -1,7 +1,7 @@
 import { applyMask } from '../../utils/masker'
 import { getLocalTimezone, date as parseDate } from '../../utils/date'
 import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate } from './interfaces'
-import { makeTimes } from './makeTimes'
+import { makeTimes, Time } from './makeTimes'
 
 export default (options: InitOptions): DateTimePicker => ({
   model: options.model,
@@ -60,7 +60,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.$watch('tab', () => {
       if (this.tab === 'time') {
-        this.filterTimes()
+        this.filteredTimes = this.filterTimes(this.times)
       }
 
       if (this.modelTime && this.tab === 'time') {
@@ -219,24 +219,20 @@ export default (options: InitOptions): DateTimePicker => ({
     this.times = times
     this.filteredTimes = times
   },
-  filterTimes () {
-    if (!this.input) {
-      this.filteredTimes = this.times
-
-      return
-    }
-
+  filterTimes (times) {
     if (this.minDate && this.input && this.minDate.isSame(this.input, 'date')) {
-      this.filteredTimes = this.times.filter(time => {
+      return times.filter(time => {
         return Number(time.value.replace(':', '')) >= Number(this.minDate?.getTime().replace(':', ''))
       })
     }
 
     if (this.maxDate && this.input && this.maxDate.isSame(this.input, 'date')) {
-      this.filteredTimes = this.times.filter(time => {
+      return times.filter(time => {
         return Number(time.value.replace(':', '')) <= Number(this.maxDate?.getTime().replace(':', ''))
       })
     }
+
+    return times
   },
   previousMonth () {
     if (this.month === 0) {
@@ -390,26 +386,37 @@ export default (options: InitOptions): DateTimePicker => ({
   onSearchTime (search) {
     const mask = this.config.is12H ? 'h:m' : 'H:m'
     this.searchTime = applyMask(mask, search) ?? ''
-    this.filteredTimes = this.times.filter(time => time.label.includes(this.searchTime ?? ''))
+    this.filteredTimes = this.filterTimes(
+      this.times.filter(time => time.label.includes(this.searchTime ?? ''))
+    )
 
-    if (this.filteredTimes.length === 0) {
-      if (!this.config.is12H) {
-        return this.filteredTimes.push({
-          value: this.searchTime,
-          label: this.searchTime
-        })
-      }
+    if (this.filteredTimes.length > 0) return
 
-      this.filteredTimes.push({
-        value: this.searchTime.padStart(2, '0'),
-        label: `${this.searchTime} AM`
+    this.filteredTimes = this.makeSearchTimes(this.searchTime)
+  },
+  makeSearchTimes (search) {
+    const times: Time[] = []
+
+    if (!this.config.is12H) {
+      times.push({
+        value: search,
+        label: search
       })
 
-      this.filteredTimes.push({
-        value: this.searchTime.padStart(2, '0'),
-        label: `${this.searchTime} PM`
-      })
+      return this.filterTimes(times)
     }
+
+    this.filteredTimes.push({
+      value: search.padStart(2, '0'),
+      label: `${search} AM`
+    })
+
+    this.filteredTimes.push({
+      value: search.padStart(2, '0'),
+      label: `${search} PM`
+    })
+
+    return this.filterTimes(times)
   },
   focusTime () {
     this.$nextTick(() => {
