@@ -212,7 +212,7 @@
                     />
 
                     <div x-ref="timesContainer"
-                         class="mt-1 w-full h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
+                         class="mt-1 w-full max-h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
                         <template x-for="time in filteredTimes">
                             <button class="group rounded-md focus:outline-none focus:bg-primary-100 dark:focus:bg-secondary-700
                                            relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100 cursor-pointer select-none
