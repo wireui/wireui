@@ -59,6 +59,10 @@ export default (options: InitOptions): DateTimePicker => ({
     })
 
     this.$watch('tab', () => {
+      if (this.tab === 'time') {
+        this.filterTimes()
+      }
+
       if (this.modelTime && this.tab === 'time') {
         this.focusTime()
       }
@@ -85,11 +89,11 @@ export default (options: InitOptions): DateTimePicker => ({
     if (this.config.readonly || this.config.disabled) return
 
     if (this.config.min && !this.minDate) {
-      this.minDate = parseDate(this.config.min)
+      this.minDate = parseDate(this.config.min, this.userTimezone)
     }
 
     if (this.config.max && !this.maxDate) {
-      this.maxDate = parseDate(this.config.max)
+      this.maxDate = parseDate(this.config.max, this.userTimezone)
     }
 
     this.popover = !this.popover
@@ -214,6 +218,25 @@ export default (options: InitOptions): DateTimePicker => ({
     const times = makeTimes(this.config.is12H, this.config.interval)
     this.times = times
     this.filteredTimes = times
+  },
+  filterTimes () {
+    if (!this.input) {
+      this.filteredTimes = this.times
+
+      return
+    }
+
+    if (this.minDate && this.input && this.minDate.isSame(this.input, 'date')) {
+      this.filteredTimes = this.times.filter(time => {
+        return Number(time.value.replace(':', '')) >= Number(this.minDate?.getTime().replace(':', ''))
+      })
+    }
+
+    if (this.maxDate && this.input && this.maxDate.isSame(this.input, 'date')) {
+      this.filteredTimes = this.times.filter(time => {
+        return Number(time.value.replace(':', '')) <= Number(this.maxDate?.getTime().replace(':', ''))
+      })
+    }
   },
   previousMonth () {
     if (this.month === 0) {

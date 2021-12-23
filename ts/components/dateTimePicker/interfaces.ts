@@ -86,6 +86,7 @@ export interface DateTimePicker extends InitOptions {
   syncPickerDates (forceSync?: boolean): void
   fillPickerDates (): void
   fillTimes (): void
+  filterTimes (): void
   previousMonth (): void
   nextMonth (): void
   isSelected (date: CurrentDate): boolean
