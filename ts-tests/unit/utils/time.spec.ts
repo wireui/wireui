@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { describe, it } from 'mocha'
-import { convertMilitaryTimeToStandard } from '../../../ts/utils/time'
+import { convertMilitaryTimeToStandard, convertStandardTimeToMilitary } from '../../../ts/utils/time'
 
 describe('Testing The time helpers', () => {
   it('should convert from military time to standard time', () => {
@@ -33,6 +33,39 @@ describe('Testing The time helpers', () => {
 
     times.forEach(({ time, expected }) => {
       assert.equal(convertMilitaryTimeToStandard(time), expected)
+    })
+  })
+
+  it('should convert from standard time to military time', () => {
+    const times = [
+      { time: '0:00 AM', expected: '00:00' },
+      { time: '1:05 AM', expected: '01:05' },
+      { time: '2:10 AM', expected: '02:10' },
+      { time: '3:15 AM', expected: '03:15' },
+      { time: '4:20 AM', expected: '04:20' },
+      { time: '5:25 AM', expected: '05:25' },
+      { time: '6:30 AM', expected: '06:30' },
+      { time: '7:35 AM', expected: '07:35' },
+      { time: '8:40 AM', expected: '08:40' },
+      { time: '9:45 AM', expected: '09:45' },
+      { time: '10:50 AM', expected: '10:50' },
+      { time: '11:55 AM', expected: '11:55' },
+      { time: '0:00 PM', expected: '12:00' },
+      { time: '1:05 PM', expected: '13:05' },
+      { time: '2:10 PM', expected: '14:10' },
+      { time: '3:15 PM', expected: '15:15' },
+      { time: '4:20 PM', expected: '16:20' },
+      { time: '5:25 PM', expected: '17:25' },
+      { time: '6:30 PM', expected: '18:30' },
+      { time: '7:35 PM', expected: '19:35' },
+      { time: '8:40 PM', expected: '20:40' },
+      { time: '9:45 PM', expected: '21:45' },
+      { time: '10:50 PM', expected: '22:50' },
+      { time: '11:55 PM', expected: '23:55' }
+    ]
+
+    times.forEach(({ time, expected }) => {
+      assert.equal(convertStandardTimeToMilitary(time), expected)
     })
   })
 })
