@@ -46,6 +46,8 @@ abstract class BaseButton extends Component
 
     public ?string $spinner;
 
+    public ?string $loadingDelay;
+
     public function __construct(
         bool $xs = false,
         bool $md = false,
@@ -66,28 +68,30 @@ abstract class BaseButton extends Component
         ?string $label = null,
         ?string $icon = null,
         ?string $rightIcon = null,
-        ?string $spinner = null
+        ?string $spinner = null,
+        ?string $loadingDelay = null
     ) {
-        $this->xs        = $xs;
-        $this->md        = $md;
-        $this->lg        = $lg;
-        $this->primary   = $primary;
-        $this->secondary = $secondary;
-        $this->positive  = $positive;
-        $this->negative  = $negative;
-        $this->warning   = $warning;
-        $this->info      = $info;
-        $this->dark      = $dark;
-        $this->rounded   = $rounded;
-        $this->squared   = $squared;
-        $this->outline   = $outline;
-        $this->flat      = $flat;
-        $this->color     = $color;
-        $this->size      = $size;
-        $this->label     = $label;
-        $this->icon      = $icon;
-        $this->rightIcon = $rightIcon;
-        $this->spinner   = $spinner;
+        $this->xs           = $xs;
+        $this->md           = $md;
+        $this->lg           = $lg;
+        $this->primary      = $primary;
+        $this->secondary    = $secondary;
+        $this->positive     = $positive;
+        $this->negative     = $negative;
+        $this->warning      = $warning;
+        $this->info         = $info;
+        $this->dark         = $dark;
+        $this->rounded      = $rounded;
+        $this->squared      = $squared;
+        $this->outline      = $outline;
+        $this->flat         = $flat;
+        $this->color        = $color;
+        $this->size         = $size;
+        $this->label        = $label;
+        $this->icon         = $icon;
+        $this->rightIcon    = $rightIcon;
+        $this->spinner      = $spinner;
+        $this->loadingDelay = $loadingDelay;
     }
 
     public function render()
