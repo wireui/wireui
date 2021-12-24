@@ -2,6 +2,7 @@ import { applyMask } from '../../utils/masker'
 import { getLocalTimezone, date as parseDate } from '../../utils/date'
 import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate } from './interfaces'
 import { makeTimes, Time } from './makeTimes'
+import { convertStandardTimeToMilitary } from '../../utils/time'
 
 export default (options: InitOptions): DateTimePicker => ({
   model: options.model,
@@ -399,20 +400,20 @@ export default (options: InitOptions): DateTimePicker => ({
 
     if (!this.config.is12H) {
       times.push({
-        value: search,
-        label: search
+        value: search.padEnd(5, '0'),
+        label: search.padEnd(5, '0')
       })
 
       return this.filterTimes(times)
     }
 
-    this.filteredTimes.push({
-      value: search.padStart(2, '0'),
+    times.push({
+      value: convertStandardTimeToMilitary(`${search} AM`),
       label: `${search} AM`
     })
 
-    this.filteredTimes.push({
-      value: search.padStart(2, '0'),
+    times.push({
+      value: convertStandardTimeToMilitary(`${search} PM`),
       label: `${search} PM`
     })
 
