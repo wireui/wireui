@@ -13,12 +13,13 @@ const makeTimes: MakeTimes = (isTime12H, interval) => {
   const timePeriods = ['AM', 'PM']
 
   for (let i = 0; startTime < 24 * 60; i++) {
-    const hour = Number(Math.floor(startTime / 60).toString().padStart(2, '0'))
+    const hour = Number(Math.floor(startTime / 60))
+    const hours = hour.toString().padStart(2, '0')
     const minutes = Number(startTime % 60).toString().padStart(2, '0')
 
     const time: Time = {
-      label: `${hour}:${minutes}`,
-      value: `${hour}:${minutes}`
+      label: `${hours}:${minutes}`,
+      value: `${hours}:${minutes}`
     }
 
     if (isTime12H) {
