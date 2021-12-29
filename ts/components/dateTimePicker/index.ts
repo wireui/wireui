@@ -423,7 +423,7 @@ export default (options: InitOptions): DateTimePicker => ({
     this.$nextTick(() => {
       this.$refs
         .timesContainer
-        .querySelector(`button[name = 'time.${this.modelTime}']`)
+        .querySelector(`button[name = 'times.${this.input?.getTime(this.userTimezone)}']`)
         ?.scrollIntoView({
           behavior: 'instant',
           block: 'nearest',
