@@ -221,7 +221,7 @@
                                     'text-primary-600': modelTime === time.value,
                                     'text-secondary-700': modelTime !== time.value,
                                 }"
-                                :name="`time.${time.value}`"
+                                :name="`times.${time.value}`"
                                 type="button"
                                 x-on:click="selectTime(time)">
                                 <span x-text="time.label"></span>
