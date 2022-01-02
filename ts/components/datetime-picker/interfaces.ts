@@ -57,7 +57,7 @@ export interface DateTimePicker extends InitOptions {
   input: Dateable | null
   modelTime: string | null | undefined
   popover: boolean
-  tab: string
+  tab: 'date' | 'time'
   monthsPicker: boolean
   previousDates: PreviousDate[]
   currentDates: CurrentDate[]
