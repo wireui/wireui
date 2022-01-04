@@ -8,6 +8,8 @@ abstract class BaseButton extends Component
 {
     public bool $xs;
 
+    public bool $sm;
+
     public bool $md;
 
     public bool $lg;
@@ -50,6 +52,7 @@ abstract class BaseButton extends Component
 
     public function __construct(
         bool $xs = false,
+        bool $sm = false,
         bool $md = false,
         bool $lg = false,
         bool $primary = false,
@@ -72,6 +75,7 @@ abstract class BaseButton extends Component
         ?string $loadingDelay = null
     ) {
         $this->xs           = $xs;
+        $this->sm           = $sm;
         $this->md           = $md;
         $this->lg           = $lg;
         $this->primary      = $primary;
@@ -114,7 +118,7 @@ abstract class BaseButton extends Component
     {
         $rounded = $this->squared ? '' : ($this->rounded ? 'rounded-full' : 'rounded-md');
         $size    = $this->getSize();
-        $classes = "focus:outline-none px-2.5 py-1.5 flex justify-center gap-x-2 items-center
+        $classes = "focus:outline-none inline-flex justify-center gap-x-2 items-center
                     transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
                     hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed {$rounded} {$size}";
 
@@ -177,7 +181,7 @@ abstract class BaseButton extends Component
 
     private function getSize(): string
     {
-        return $this->getStyleClasses($alias = 'size', $this->getSizes(), $default = 'text-sm');
+        return $this->getStyleClasses($alias = 'size', $this->getSizes(), $default = 'text-sm px-4 py-2');
     }
 
     private function getStyleClasses(string $alias, array $items, string $default): string
