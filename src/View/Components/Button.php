@@ -95,7 +95,7 @@ class Button extends BaseButton
     {
         return [
             'xs' => 'text-xs px-2.5 py-1.5',
-            'sm' => 'text-sm px-3 py-2',
+            'sm' => 'text-sm leading-4 px-3 py-2',
             'md' => 'text-base px-4 py-2',
             'lg' => 'text-base px-6 py-3',
         ];
