@@ -31,7 +31,7 @@
             x-on:input.debounce.150ms="onInput($event.target.value)"
             x-on:blur="emitInput">
             <x-slot name="append">
-                <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
+                <div class="absolute inset-y-0 ltr:right-3 rtl:left-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto
                         {{ ($errors->has($name) ?? false)
                             ? 'text-negative-400 dark:text-negative-600'
@@ -59,7 +59,7 @@
         </x-dynamic-component>
     </div>
 
-    <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-0 sm:right-0 sm:mt-6"
+    <div class="fixed inset-0 z-10 sm:absolute sm:inset-auto sm:top-0 ltr:sm:right-0 rtl:sm:left-0 sm:mt-6"
         x-cloak
         x-show="showPicker"
         x-on:click.outside="closePicker"
@@ -90,7 +90,7 @@
                 x-transition:leave="ease-in duration-200"
                 x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
-                <button type="button" class="cursor-pointer hidden sm:flex absolute top-2 right-2 focus:outline-none" x-on:click="closePicker">
+                <button type="button" class="cursor-pointer hidden sm:flex absolute top-2 ltr:right-2 rtl:left-2 focus:outline-none" x-on:click="closePicker">
                     <x-dynamic-component
                         :component="WireUiComponent::resolve('icon')"
                         class="w-4 h-4 text-secondary-400 hover:text-negative-400 transition-all ease-out duration-150"
@@ -123,7 +123,7 @@
                             x-on:click="selectTime(time)">
                             <span x-text="time" class="font-normal block truncate"></span>
                             <span class="absolute text-primary-600 group-hover:text-white inset-y-0
-                                         right-0 flex items-center pr-4 dark:text-secondary-400"
+                                         ltr:right-0 rtl:left-0 flex items-center pr-4 dark:text-secondary-400"
                                 x-show="input === time">
                                 <x-dynamic-component
                                     :component="WireUiComponent::resolve('icon')"
