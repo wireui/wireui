@@ -22,7 +22,7 @@
     }">
     {!! $label ?? $slot !!}
 
-    <div class="absolute inset-y-0 right-0 flex items-center pr-4"
+    <div class="absolute inset-y-0 ltr:right-0 rtl:left-0 flex items-center ltr:pr-4 rtl:pl-4"
         x-show="isSelected('{{ $value }}')">
         <x-dynamic-component
             :component="WireUiComponent::resolve('icon')"
