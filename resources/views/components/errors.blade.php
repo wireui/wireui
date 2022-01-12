@@ -3,7 +3,7 @@
         <div class="flex items-center pb-3 border-b-2 border-negative-200 dark:border-negative-700">
             <x-dynamic-component
                 :component="WireUiComponent::resolve('icon')"
-                class="w-5 h-5 text-negative-400 dark:text-negative-600 shrink-0 mr-3"
+                class="w-5 h-5 text-negative-400 dark:text-negative-600 shrink-0 ltr:mr-3 rtl:ml-3"
                 name="exclamation-circle"
             />
 
