@@ -16,7 +16,7 @@
                  x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
                  x-on:mouseenter="pauseNotification(notification)"
                  x-on:mouseleave="resumeNotification(notification)">
-                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 ltr:left-0 rtl:right-0"
                      style="height: 2px; width: 100%;"
                      :id="`timeout.bar.${notification.id}`"
                      x-show="Boolean(notification.timer) && notification.progressbar !== false">
@@ -47,7 +47,7 @@
                         </template>
 
                         <div class="w-0 flex-1 pt-0.5" :class="{
-                                'ml-3': Boolean(notification.icon || notification.img)
+                                'ltr:ml-3 rtl:mr-3': Boolean(notification.icon || notification.img)
                             }">
                             <p class="text-sm font-medium text-secondary-900 dark:text-secondary-400"
                                x-show="notification.title"
@@ -86,9 +86,9 @@
                             </template>
                         </div>
 
-                        <div class="ml-4 shrink-0 flex">
+                        <div class="ltr:ml-4 rtl:mr-4 shrink-0 flex">
                             <!-- accept button -->
-                            <button class="mr-4 shrink-0 rounded-md text-sm font-medium focus:outline-none"
+                            <button class="ltr:mr-4 rtl:ml-4 shrink-0 rounded-md text-sm font-medium focus:outline-none"
                                     :class="{
                                     'text-primary-600 hover:text-primary-500': !Boolean($wireui.dataGet(notification, 'accept.style')),
                                     [$wireui.dataGet(notification, 'accept.style')]: Boolean($wireui.dataGet(notification, 'accept.style'))
