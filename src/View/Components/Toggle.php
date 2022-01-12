@@ -47,8 +47,8 @@ class Toggle extends Checkbox
     {
         $classes = $this->classes([
             'checked:translate-x-3 w-3 h-3'                => $this->sm,
-            'checked:translate-x-3.5 left-0.5 w-3.5 h-3.5' => $this->md,
-            'checked:translate-x-4 left-0.5 w-4 h-4'       => $this->lg,
+            'checked:translate-x-3.5 ltr:left-0.5 rtl:right-0.5 w-3.5 h-3.5' => $this->md,
+            'checked:translate-x-4 ltr:left-0.5 rtl:right-0.5 w-4 h-4'       => $this->lg,
         ]);
 
         return "
