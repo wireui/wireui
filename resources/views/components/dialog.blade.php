@@ -34,13 +34,13 @@
                     'sm:p-5 sm:pt-7': style === 'center',
                     'sm:p-0':         style === 'inline',
                 }">
-                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+                <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 ltr:left-0 rtl:right-0"
                     style="height: 2px; width: 100%;"
                     x-ref="progressbar"
                     x-show="dialog && dialog.progressbar && dialog.timeout">
                 </div>
 
-                <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
+                <div x-show="dialog && dialog.closeButton" class="absolute ltr:right-2 rtl:left-0 -top-2">
                     <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                         x-on:click="close"
                         type="button">
@@ -62,13 +62,13 @@
 
                     <div class="mt-4 w-full" :class="{ 'sm:mt-5': style === 'center' }">
                         <h3 class="text-lg leading-6 font-medium text-secondary-900 dark:text-secondary-400 text-center"
-                            :class="{ 'sm:text-left': style === 'inline' }"
+                            :class="{ 'ltr:sm:text-left rtl:sm:text-right': style === 'inline' }"
                             @unless($title) x-ref="title" @endunless>
                             {{ $title }}
                         </h3>
 
                         <p class="mt-2 text-sm text-secondary-500 text-center"
-                            :class="{ 'sm:text-left': style === 'inline' }"
+                            :class="{ 'ltr:sm:text-left rtl:sm:text-right': style === 'inline' }"
                             @unless($description) x-ref="description" @endunless>
                             {{ $description }}
                         </p>
