@@ -4,7 +4,7 @@
             <x-dynamic-component
                 :component="WireUiComponent::resolve('label')"
                 :for="$id"
-                class="mr-2"
+                class="ltr:mr-2 rtl:ml-2"
                 :label="$leftLabel"
                 :has-error="$errors->has($name)"
             />
@@ -26,7 +26,7 @@
             <x-dynamic-component
                 :component="WireUiComponent::resolve('label')"
                 :for="$id"
-                class="ml-2"
+                class="ltr:ml-2 rtl:mr-2"
                 :label="$label"
                 :has-error="$errors->has($name)"
             />
