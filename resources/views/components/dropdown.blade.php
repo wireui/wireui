@@ -1,4 +1,4 @@
-<div class="relative inline-block text-left"
+<div class="relative inline-block ltr:text-left rtl:text-right"
     x-data="wireui_dropdown"
     x-on:click.outside="close"
     x-on:keydown.escape.window="close"
