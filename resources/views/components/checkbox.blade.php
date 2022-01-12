@@ -3,7 +3,7 @@
         @if ($leftLabel)
             <x-dynamic-component
                 :component="WireUiComponent::resolve('label')"
-                class="mr-2"
+                class="ltr:mr-2 rtl:ml-2"
                 :for="$id"
                 :label="$leftLabel"
                 :has-error="$errors->has($name)"
@@ -19,7 +19,7 @@
         @if ($label)
             <x-dynamic-component
                 :component="WireUiComponent::resolve('label')"
-                class="ml-2"
+                class="ltr:ml-2 rtl:mr-2"
                 :for="$id"
                 :label="$label"
                 :has-error="$errors->has($name)"
