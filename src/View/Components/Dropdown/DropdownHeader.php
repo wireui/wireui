@@ -26,7 +26,7 @@ class DropdownHeader extends Component
 
     protected function getClasses(): string
     {
-        return 'block pl-2 pt-2 pb-1 text-xs text-secondary-600 sticky top-0 bg-white
+        return 'block ltr:pl-2 rtl:pr-2 pt-2 pb-1 text-xs text-secondary-600 sticky top-0 bg-white
                 dark:bg-secondary-800 dark:text-secondary-400';
     }
 }
