@@ -48,6 +48,8 @@ abstract class BaseButton extends Component
 
     public ?string $loadingDelay;
 
+    public ?string $href;
+
     public function __construct(
         bool $xs = false,
         bool $md = false,
@@ -69,7 +71,8 @@ abstract class BaseButton extends Component
         ?string $icon = null,
         ?string $rightIcon = null,
         ?string $spinner = null,
-        ?string $loadingDelay = null
+        ?string $loadingDelay = null,
+        ?string $href = null
     ) {
         $this->xs           = $xs;
         $this->md           = $md;
@@ -92,6 +95,7 @@ abstract class BaseButton extends Component
         $this->rightIcon    = $rightIcon;
         $this->spinner      = $spinner;
         $this->loadingDelay = $loadingDelay;
+        $this->href         = $href;
     }
 
     public function render()
@@ -106,6 +110,7 @@ abstract class BaseButton extends Component
         $attributes       = $data['attributes'];
         $data['disabled'] = (bool) $attributes->get('disabled');
         $data['classes']  = $this->getClasses();
+        $data['href']     = $this->href;
 
         return $data;
     }
