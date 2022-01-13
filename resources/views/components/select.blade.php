@@ -120,7 +120,7 @@
                     borderless
                     shadowless
                     right-icon="search"
-                    placeholder="Search here"
+                    :placeholder="trans('wireui::messages.searchHere')"
                     wire:key="select-search"
                 />
             </div>

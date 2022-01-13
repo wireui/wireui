@@ -2,6 +2,7 @@
 
 return [
     'empty_options' => 'بدون گزینه',
+    'searchHere'    => 'Search here',
     'datePicker'    => [
         'months'    => "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']",
         'days'      => "['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'جمعه', 'شنبه']",
