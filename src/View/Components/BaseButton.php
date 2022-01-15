@@ -112,11 +112,9 @@ abstract class BaseButton extends Component
 
     protected function getClasses(): string
     {
-        $rounded = $this->squared ? '' : ($this->rounded ? 'rounded-full' : 'rounded-md');
+        $rounded = $this->squared ? '' : ($this->rounded ? config('wireui.classes.baseButton.border-radius.rounded') : config('wireui.classes.baseButton.border-radius.default'));
         $size    = $this->getSize();
-        $classes = "focus:outline-none px-2.5 py-1.5 flex justify-center gap-x-2 items-center
-                    transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
-                    hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed {$rounded} {$size}";
+        $classes = "{$rounded} {$size}";
 
         return "{$classes} {$this->getInputColor()}";
     }
@@ -147,9 +145,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getoutlineColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
-                        dark:ring-offset-secondary-800'
+            $default = config('wireui.classes.baseButton.outlineColor')
         );
     }
 
@@ -158,9 +154,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getFlatColors(),
-            $default = 'text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:hover:bg-secondary-700 dark:ring-secondary-600
-                        dark:ring-offset-secondary-800'
+            $default = config('wireui.classes.baseButton.flatColor')
         );
     }
 
@@ -169,9 +163,7 @@ abstract class BaseButton extends Component
         return $this->getStyleClasses(
             $alias = 'color',
             $colors = $this->getDefaultColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
-                        dark:ring-offset-secondary-800'
+            $default = config('wireui.classes.baseButton.defaultColor')
         );
     }
 
