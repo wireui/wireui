@@ -90,11 +90,19 @@ export default (options: InitOptions): DateTimePicker => ({
     if (this.config.readonly || this.config.disabled) return
 
     if (this.config.min && !this.minDate) {
-      this.minDate = parseDate(this.config.min, this.userTimezone)
+      this.minDate = parseDate(this.config.min, this.timezone)
+
+      if (!this.withoutTimezone) {
+        this.minDate.setTimezone(this.userTimezone)
+      }
     }
 
     if (this.config.max && !this.maxDate) {
-      this.maxDate = parseDate(this.config.max, this.userTimezone)
+      this.maxDate = parseDate(this.config.max, this.timezone)
+
+      if (!this.withoutTimezone) {
+        this.maxDate.setTimezone(this.userTimezone)
+      }
     }
 
     this.popover = !this.popover
