@@ -6,7 +6,7 @@ import maskable from './inputs/maskable'
 import currency from './inputs/currency'
 import select from './select'
 import timePicker from './timePicker'
-import dateTimePicker from './dateTimePicker'
+import datetimePicker from './datetime-picker'
 
 document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_dropdown', dropdown)
@@ -17,5 +17,5 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_inputs_currency', currency)
   window.Alpine.data('wireui_select', select)
   window.Alpine.data('wireui_timepicker', timePicker)
-  window.Alpine.data('wireui_datetime_picker', dateTimePicker)
+  window.Alpine.data('wireui_datetime_picker', datetimePicker)
 })

@@ -89,11 +89,25 @@ describe('Fluent date api tests', () => {
     assert.equal(26, clonedDate.getDay())
   })
 
+  it('can check if date is before another date', () => {
+    const before = parseDate('2020-12-24')
+    const after = parseDate('2020-12-25')
+
+    assert.equal(true, before.isBefore(after))
+  })
+
   it('can check if date is same another date', () => {
     const dateOne = parseDate('2020-12-25')
     const dateTwo = parseDate('2020-12-25')
 
     assert.equal(true, dateOne.isSame(dateTwo))
+  })
+
+  it('can check if date is after another date', () => {
+    const before = parseDate('2020-12-24')
+    const after = parseDate('2020-12-25')
+
+    assert.equal(true, after.isAfter(before))
   })
 
   it('can get date as json', () => {
