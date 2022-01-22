@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [7.4, 8.0]
-        laravel: [8.*]
+        php: [8.0, 8.1]
+        laravel: [8.*, 9.*]
         dependency-version: [prefer-stable]
 
     name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}(${{ matrix.dependency-version }})
