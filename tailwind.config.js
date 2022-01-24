@@ -19,7 +19,8 @@ module.exports = {
         info: colors.blue
       },
       fontSize: {
-        '2xs': '.5rem'
+        '3xs': '0.5rem',
+        '2xs': '0.65rem'
       },
       spacing: {
         '4.5': '1.13rem'
