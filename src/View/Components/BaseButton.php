@@ -10,20 +10,6 @@ abstract class BaseButton extends Component
 
     private array $smartAttributes = [];
 
-    public bool $primary;
-
-    public bool $secondary;
-
-    public bool $positive;
-
-    public bool $negative;
-
-    public bool $warning;
-
-    public bool $info;
-
-    public bool $dark;
-
     public bool $rounded;
 
     public bool $squared;
@@ -47,13 +33,6 @@ abstract class BaseButton extends Component
     public ?string $loadingDelay;
 
     public function __construct(
-        bool $primary = false,
-        bool $secondary = false,
-        bool $positive = false,
-        bool $negative = false,
-        bool $warning = false,
-        bool $info = false,
-        bool $dark = false,
         bool $rounded = false,
         bool $squared = false,
         bool $outline = false,
@@ -66,13 +45,6 @@ abstract class BaseButton extends Component
         ?string $spinner = null,
         ?string $loadingDelay = null
     ) {
-        $this->primary      = $primary;
-        $this->secondary    = $secondary;
-        $this->positive     = $positive;
-        $this->negative     = $negative;
-        $this->warning      = $warning;
-        $this->info         = $info;
-        $this->dark         = $dark;
         $this->rounded      = $rounded;
         $this->squared      = $squared;
         $this->outline      = $outline;
@@ -113,7 +85,7 @@ abstract class BaseButton extends Component
             'rounded-full' => !$this->squared && $this->rounded,
             'rounded'      => !$this->squared && !$this->rounded,
             $this->size($attributes),
-            $this->getInputColor(),
+            $this->color($attributes),
         ]);
     }
 
@@ -124,59 +96,33 @@ abstract class BaseButton extends Component
             : $this->modifierClasses($attributes, $this->sizes());
     }
 
-    private function getInputColor(): string
+    private function color(ComponentAttributeBag $attributes): string
+    {
+        return $this->color
+            ? $this->currentColors()[$this->color]
+            : $this->modifierClasses($attributes, $this->currentColors());
+    }
+
+    private function currentColors(): array
     {
         if ($this->outline) {
-            return $this->outlineColor();
+            return $this->outlineColors();
         }
 
         if ($this->flat) {
-            return $this->flatColor();
+            return $this->flatColors();
         }
 
-        return $this->defaultColor();
+        return $this->defaultColors();
     }
 
-    abstract protected function getOutlineColors(): array;
+    abstract protected function outlineColors(): array;
 
-    abstract protected function getFlatColors(): array;
+    abstract protected function flatColors(): array;
 
-    abstract protected function getDefaultColors(): array;
+    abstract protected function defaultColors(): array;
 
     abstract protected function sizes(): array;
-
-    private function outlineColor(): string
-    {
-        return $this->getStyleClasses(
-            $alias = 'color',
-            $colors = $this->getoutlineColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
-                        dark:ring-offset-secondary-800'
-        );
-    }
-
-    private function flatColor(): string
-    {
-        return $this->getStyleClasses(
-            $alias = 'color',
-            $colors = $this->getFlatColors(),
-            $default = 'text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:hover:bg-secondary-700 dark:ring-secondary-600
-                        dark:ring-offset-secondary-800'
-        );
-    }
-
-    protected function defaultColor(): string
-    {
-        return $this->getStyleClasses(
-            $alias = 'color',
-            $colors = $this->getDefaultColors(),
-            $default = 'border text-secondary-500 hover:bg-secondary-100 ring-secondary-200
-                        dark:ring-secondary-600 dark:border-secondary-600 dark:hover:bg-secondary-700
-                        dark:ring-offset-secondary-800'
-        );
-    }
 
     /**
      * Will find the correct modifier, like sizes, xs, sm given as a component attribute
@@ -202,23 +148,8 @@ abstract class BaseButton extends Component
     /** Finds the correct modifier css classes on attributes */
     public function modifierClasses(ComponentAttributeBag $attributes, array $modifiers): string
     {
-        $modifier = $this->findModifier($attributes, $this->sizes());
+        $modifier = $this->findModifier($attributes, $modifiers);
 
         return $modifiers[$modifier];
-    }
-
-    private function getStyleClasses(string $alias, array $items, string $default): string
-    {
-        if ($this->{$alias}) {
-            return $items[$this->{$alias}];
-        }
-
-        foreach ($items as $item => $classes) {
-            if ($this->{$item}) {
-                return $classes;
-            }
-        }
-
-        return $default;
     }
 }
