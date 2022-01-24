@@ -12,7 +12,7 @@ module.exports = {
       colors: {
         slate: colors.slate,
         primary: colors.indigo,
-        secondary: colors.gray,
+        secondary: colors.slate,
         positive: colors.emerald,
         negative: colors.red,
         warning: colors.amber,
