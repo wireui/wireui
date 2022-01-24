@@ -91,13 +91,14 @@ class Button extends BaseButton
         ];
     }
 
-    protected function getSizes(): array
+    protected function sizes(): array
     {
         return [
-            'xs' => 'text-xs px-2.5 py-1.5',
-            'sm' => 'text-sm leading-4 px-3 py-2',
-            'md' => 'text-base px-4 py-2',
-            'lg' => 'text-base px-6 py-3',
+            'xs'                => 'text-xs px-2.5 py-1.5',
+            'sm'                => 'text-sm leading-4 px-3 py-2',
+            BaseButton::DEFAULT => 'text-sm px-4 py-2',
+            'md'                => 'text-base px-4 py-2',
+            'lg'                => 'text-base px-6 py-3',
         ];
     }
 }
