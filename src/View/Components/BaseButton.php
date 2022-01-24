@@ -107,12 +107,19 @@ abstract class BaseButton extends Component
     protected function getClasses(ComponentAttributeBag $attributes): string
     {
         $rounded = $this->squared ? '' : ($this->rounded ? 'rounded-full' : 'rounded-md');
-        $size    = $this->modifierClasses($attributes, $this->sizes());
+        $size    = $this->size($attributes);
         $classes = 'focus:outline-none inline-flex justify-center gap-x-2 items-center
                     transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
                     hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed';
 
         return "{$classes} {$rounded} {$size} {$this->getInputColor()}";
+    }
+
+    private function size(ComponentAttributeBag $attributes): string
+    {
+        return $this->size
+            ? $this->sizes()[$this->size]
+            : $this->modifierClasses($attributes, $this->sizes());
     }
 
     private function getInputColor(): string
