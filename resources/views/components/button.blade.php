@@ -1,7 +1,6 @@
 @if(isset($href))
 <a {{ $attributes->merge([
     'class' => $classes,
-    'type'  => 'button',
     'href'  => $href
 ]) }}
 wire:loading.attr="disabled">
