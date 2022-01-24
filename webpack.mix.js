@@ -7,3 +7,5 @@ mix.ts('ts/index.ts', 'dist/wireui.js')
 if (mix.inProduction()) {
   mix.version()
 }
+
+mix.disableSuccessNotifications()
