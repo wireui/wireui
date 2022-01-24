@@ -97,22 +97,24 @@ abstract class BaseButton extends Component
     {
         /** @var ComponentAttributeBag $attributes */
         $attributes         = $data['attributes'];
+        $attributes         = $this->mergeClasses($attributes);
         $data['disabled']   = (bool) $attributes->get('disabled');
-        $data['classes']    = $this->getClasses($attributes);
         $data['attributes'] = $attributes->except($this->smartAttributes);
 
         return $data;
     }
 
-    protected function getClasses(ComponentAttributeBag $attributes): string
+    private function mergeClasses(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
-        $rounded = $this->squared ? '' : ($this->rounded ? 'rounded-full' : 'rounded-md');
-        $size    = $this->size($attributes);
-        $classes = 'focus:outline-none inline-flex justify-center gap-x-2 items-center
-                    transition-all ease-in duration-75 focus:ring-2 focus:ring-offset-2
-                    hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed';
-
-        return "{$classes} {$rounded} {$size} {$this->getInputColor()}";
+        return $attributes->class([
+            'focus:outline-none inline-flex justify-center gap-x-2 items-center',
+            'transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2',
+            'hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed',
+            'rounded-full' => !$this->squared && $this->rounded,
+            'rounded'      => !$this->squared && !$this->rounded,
+            $this->size($attributes),
+            $this->getInputColor(),
+        ]);
     }
 
     private function size(ComponentAttributeBag $attributes): string

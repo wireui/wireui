@@ -1,8 +1,6 @@
-<button {{ $attributes->merge([
-    'class' => $classes,
-    'type'  => 'button'
-]) }}
-wire:loading.attr="disabled">
+<button
+    {{ $attributes->merge(['type' => 'button']) }}
+    wire:loading.attr="disabled">
     @if ($icon)
         <x-dynamic-component
             :component="WireUiComponent::resolve('icon')"
