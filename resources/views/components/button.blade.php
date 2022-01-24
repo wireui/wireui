@@ -5,7 +5,7 @@
         <x-dynamic-component
             :component="WireUiComponent::resolve('icon')"
             :name="$icon"
-            class="w-4 h-4 shrink-0"
+            class="{{ $iconSize }} shrink-0"
         />
     @endif
 
@@ -15,12 +15,12 @@
         <x-dynamic-component
             :component="WireUiComponent::resolve('icon')"
             :name="$rightIcon"
-            class="w-4 h-4"
+            class="{{ $iconSize }} shrink-0"
         />
     @endif
 
     @if ($spinner)
-        <svg class="animate-spin w-4 h-4"
+        <svg class="animate-spin {{ $iconSize }} shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"

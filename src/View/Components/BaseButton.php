@@ -70,6 +70,7 @@ abstract class BaseButton extends Component
         /** @var ComponentAttributeBag $attributes */
         $attributes         = $data['attributes'];
         $attributes         = $this->mergeClasses($attributes);
+        $data['iconSize']   = $this->iconSize($attributes);
         $data['disabled']   = (bool) $attributes->get('disabled');
         $data['attributes'] = $attributes->except($this->smartAttributes);
 
@@ -79,7 +80,7 @@ abstract class BaseButton extends Component
     private function mergeClasses(ComponentAttributeBag $attributes): ComponentAttributeBag
     {
         return $attributes->class([
-            'focus:outline-none inline-flex justify-center gap-x-2 items-center',
+            'focus:outline-none inline-flex justify-center items-center',
             'transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2',
             'hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed',
             'rounded-full' => !$this->squared && $this->rounded,
@@ -94,6 +95,13 @@ abstract class BaseButton extends Component
         return $this->size
             ? $this->sizes()[$this->size]
             : $this->modifierClasses($attributes, $this->sizes());
+    }
+
+    private function iconSize(ComponentAttributeBag $attributes): string
+    {
+        return $this->size
+            ? $this->iconSizes()[$this->size]
+            : $this->modifierClasses($attributes, $this->iconSizes());
     }
 
     private function color(ComponentAttributeBag $attributes): string
@@ -115,14 +123,6 @@ abstract class BaseButton extends Component
 
         return $this->defaultColors();
     }
-
-    abstract protected function outlineColors(): array;
-
-    abstract protected function flatColors(): array;
-
-    abstract protected function defaultColors(): array;
-
-    abstract protected function sizes(): array;
 
     /**
      * Will find the correct modifier, like sizes, xs, sm given as a component attribute
@@ -152,4 +152,14 @@ abstract class BaseButton extends Component
 
         return $modifiers[$modifier];
     }
+
+    abstract protected function outlineColors(): array;
+
+    abstract protected function flatColors(): array;
+
+    abstract protected function defaultColors(): array;
+
+    abstract protected function sizes(): array;
+
+    abstract protected function iconSizes(): array;
 }
