@@ -45,13 +45,4 @@
     <x-button outline warning label="warning" right-icon="home" />
     <x-button outline info label="info" right-icon="home" />
     <x-button outline dark label="dark" right-icon="home" />
-
-    <x-button href="#" label="Label" icon="home" />
-    <x-button href="#" primary label="primary" icon="home" />
-    <x-button href="#" secondary label="secondary" icon="home" />
-    <x-button href="#" disabled positive label="positive" icon="home" />
-    <x-button href="#" disabled negative label="negative" icon="home" />
-    <x-button href="#" warning label="warning" icon="home" />
-    <x-button href="#" info label="info" icon="home" />
-    <x-button href="#" dark label="dark" icon="home" />
 </div>
