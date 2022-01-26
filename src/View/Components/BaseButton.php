@@ -110,7 +110,6 @@ abstract class BaseButton extends Component
         $attributes       = $data['attributes'];
         $data['disabled'] = (bool) $attributes->get('disabled');
         $data['classes']  = $this->getClasses();
-        $data['href']     = $this->href;
 
         return $data;
     }
