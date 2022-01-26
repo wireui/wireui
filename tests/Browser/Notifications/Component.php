@@ -13,11 +13,17 @@ class Component extends \Livewire\Component
 
     public array $events = [];
 
-    protected $listeners = ['setValue', 'addEvent'];
+    protected $listeners = ['setValue', 'addEvent', 'fireEmit'];
 
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');
+    }
+
+    public function fireEmit($anyValue): void
+    {
+        $this->value = $anyValue['data'] ?? $anyValue;
+        $this->events[] = $anyValue['event'] ?? null;
     }
 
     public function setValue($anyValue): void
@@ -82,6 +88,22 @@ class Component extends \Livewire\Component
                 'method' => 'addEvent',
                 'params' => 'onTimeout',
             ],
+        ]);
+    }
+
+    public function showConfirmWithEvents()
+    {
+        $this->notification()->confirm([
+            'title'       => 'Title',
+            'description' => 'Description is in here',
+            'timeout'     => 300,
+            'onClose' => [
+                'emit' => 'fireEmit',
+                'params' => [
+                    'data' => 'onCloseEmit',
+                    'event' => 'onCloseEmitEvent',
+                ],
+            ]
         ]);
     }
 }
