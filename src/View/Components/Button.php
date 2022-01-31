@@ -526,7 +526,20 @@ class Button extends BaseButton
             self::DEFAULT => 'gap-x-2 text-sm px-4 py-2',
             'md'          => 'gap-x-2 text-base px-4 py-2',
             'lg'          => 'gap-x-2 text-base px-6 py-3',
-            'xl'          => 'gap-x-3 text-base px-8 py-4',
+            'xl'          => 'gap-x-3 text-base px-7 py-4',
+        ];
+    }
+
+    protected function circleSizes(): array
+    {
+        return [
+            '2xs'         => 'text-2xs p-1.5',
+            'xs'          => 'gap-x-1 text-xs p-2',
+            'sm'          => 'gap-x-2 text-sm p-2.5',
+            self::DEFAULT => 'gap-x-2 text-sm p-3.5',
+            'md'          => 'gap-x-2 text-base p-4',
+            'lg'          => 'gap-x-2 text-base p-5',
+            'xl'          => 'gap-x-3 text-base p-5.5',
         ];
     }
 
@@ -539,7 +552,7 @@ class Button extends BaseButton
             self::DEFAULT => 'w-4 h-4',
             'md'          => 'w-4 h-4',
             'lg'          => 'w-5 h-5',
-            'xl'          => 'w-5 h-5',
+            'xl'          => 'w-6 h-6',
         ];
     }
 }

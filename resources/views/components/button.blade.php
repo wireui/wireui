@@ -1,6 +1,7 @@
 <button {{ $attributes->merge([
     'type'              => 'button',
     'wire:loading.attr' => 'disabled',
+    'wire:loading.class' => '!cursor-wait',
 ]) }}>
     @if ($icon)
         <x-dynamic-component

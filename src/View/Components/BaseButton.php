@@ -82,7 +82,7 @@ abstract class BaseButton extends Component
         return $attributes->class([
             'focus:outline-none inline-flex justify-center items-center',
             'transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2',
-            'hover:shadow-sm disabled:opacity-60 disabled:cursor-not-allowed',
+            'hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed',
             'rounded-full' => !$this->squared && $this->rounded,
             'rounded'      => !$this->squared && !$this->rounded,
             $this->size($attributes),
