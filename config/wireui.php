@@ -88,6 +88,10 @@ return [
             'class' => Components\Button::class,
             'alias' => 'button',
         ],
+        'button.circle' => [
+            'class' => Components\CircleButton::class,
+            'alias' => 'button.circle',
+        ],
         'dropdown' => [
             'class' => Components\Dropdown::class,
             'alias' => 'dropdown',
