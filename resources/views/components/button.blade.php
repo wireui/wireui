@@ -18,6 +18,7 @@
             :component="WireUiComponent::resolve('icon')"
             :name="$rightIcon"
             class="{{ $iconSize }} shrink-0"
+            :wire:loading.remove="(bool) $spinner"
         />
     @endif
 
