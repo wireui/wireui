@@ -47,12 +47,11 @@
         @endif
 
         <textarea {{ $attributes->class([
-                $getInputClasses($hasError),
-            ])->merge([
-                'autocomplete' => 'off',
-                'rows'         => 4
-            ]) }}>
-        </textarea>
+            $getInputClasses($hasError),
+        ])->merge([
+            'autocomplete' => 'off',
+            'rows'         => 4
+        ]) }}></textarea>
 
         @if ($suffix || $rightIcon || ($hasError && !$append))
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none
