@@ -169,9 +169,9 @@ export default (options: InitOptions): Select => ({
     return textarea.value
   },
   getFocusables () {
-    const focusables = this.$el.querySelectorAll('li, input')
+    const focusables = this.$el?.querySelectorAll('li, input') ?? []
 
-    return focusables.length > 0 ? [...focusables] : [...this.$root.querySelectorAll('li, input')]
+    return focusables.length > 0 ? [...focusables] : [...this.$root?.querySelectorAll('li, input')]
   },
   getFirstFocusable () { return this.getFocusables().shift() },
   getLastFocusable () { return this.getFocusables().pop() },
