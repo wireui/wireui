@@ -32,6 +32,8 @@ abstract class BaseButton extends Component
 
     public ?string $loadingDelay;
 
+    public ?string $href;
+
     public function __construct(
         bool $rounded = false,
         bool $squared = false,
@@ -43,7 +45,8 @@ abstract class BaseButton extends Component
         ?string $icon = null,
         ?string $rightIcon = null,
         ?string $spinner = null,
-        ?string $loadingDelay = null
+        ?string $loadingDelay = null,
+        ?string $href = null
     ) {
         $this->rounded      = $rounded;
         $this->squared      = $squared;
@@ -56,6 +59,7 @@ abstract class BaseButton extends Component
         $this->rightIcon    = $rightIcon;
         $this->spinner      = $spinner;
         $this->loadingDelay = $loadingDelay;
+        $this->href         = $href;
     }
 
     public function render()
