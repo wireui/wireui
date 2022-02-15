@@ -2,8 +2,9 @@
 
 return [
     'empty_options' => 'بدون گزینه',
+    'searchHere'    => 'اینجا جستجو کنید',
     'datePicker'    => [
-        'months'    => "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']",
+        'months'    => "['ژانویه', 'فوریه', 'مارس', 'آوریل', 'ماه مه', 'ژوئن', 'جولای', 'اوت', 'سپتامبر', 'اکتبر', 'نوامبر', 'دسامبر']",
         'days'      => "['یکشنبه', 'دوشنبه', 'سه شنبه', 'چهارشنبه', 'پنج شنبه', 'جمعه', 'شنبه']",
         'tomorrow'  => 'فردا',
         'today'     => 'امروز',
