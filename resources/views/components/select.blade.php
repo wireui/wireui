@@ -69,17 +69,19 @@
 
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 gap-x-2">
-                    <button
-                        class="focus:outline-none"
-                        x-show="!isEmptyModel() && !disabled && !readonly"
-                        x-on:click="clearModel"
-                        type="button">
-                        <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
-                            class="w-4 h-4 text-secondary-400 hover:text-negative-400"
-                            name="x"
-                        />
-                    </button>
+                    @if ($clearable)
+                        <button
+                            class="focus:outline-none"
+                            x-show="!isEmptyModel() && !disabled && !readonly"
+                            x-on:click="clearModel"
+                            type="button">
+                            <x-dynamic-component
+                                :component="WireUiComponent::resolve('icon')"
+                                class="w-4 h-4 text-secondary-400 hover:text-negative-400"
+                                name="x"
+                            />
+                        </button>
+                    @endif
 
                     <button class="focus:outline-none" x-on:click="togglePopover" type="button">
                         <x-dynamic-component

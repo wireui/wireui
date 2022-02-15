@@ -24,13 +24,14 @@ class Test extends BrowserTestCase
     public function it_should_render_a_tag_buttons_without_errors(): void
     {
         Livewire::test(ATagComponent::class)
-            ->assertSeeHtml('#0')
-            ->assertSeeHtml('#1')
-            ->assertSeeHtml('#2')
-            ->assertSeeHtml('#3')
-            ->assertSeeHtml('#4')
-            ->assertSeeHtml('#5')
-            ->assertSeeHtml('#6')
-            ->assertSeeHtml('#7');
+            ->assertSeeHtml('<a')
+            ->assertSeeHtml('href="#0"')
+            ->assertSeeHtml('href="#1"')
+            ->assertSeeHtml('href="#2"')
+            ->assertSeeHtml('href="#3"')
+            ->assertSeeHtml('href="#4"')
+            ->assertSeeHtml('href="#5"')
+            ->assertSeeHtml('href="#6"')
+            ->assertSeeHtml('href="#7"');
     }
 }

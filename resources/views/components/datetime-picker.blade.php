@@ -38,14 +38,17 @@
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div class="flex items-center gap-x-2 my-auto
                         {{ $errors->has($name) ? 'text-negative-400 dark:text-negative-600' : 'text-secondary-400' }}">
-                        <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
-                            class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
-                            x-cloak
-                            name="x"
-                            x-show="model"
-                            x-on:click="clearDate()"
-                        />
+
+                        @if ($clearable)
+                            <x-dynamic-component
+                                :component="WireUiComponent::resolve('icon')"
+                                class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
+                                x-cloak
+                                name="x"
+                                x-show="model"
+                                x-on:click="clearDate()"
+                            />
+                        @endif
 
                         <x-dynamic-component
                             :component="WireUiComponent::resolve('icon')"
@@ -168,7 +171,7 @@
 
                         <div class="grid grid-cols-7 gap-2">
                             <template x-for="day in weekDays" :key="`week-day.${day}`">
-                                <span class="text-secondary-400 text-2xs text-center uppercase pointer-events-none"
+                                <span class="text-secondary-400 text-3xs text-center uppercase pointer-events-none"
                                     x-text="day">
                                 </span>
                             </template>

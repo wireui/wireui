@@ -7,6 +7,8 @@ use DateTimeInterface;
 
 class DatetimePicker extends Input
 {
+    public bool $clearable;
+
     public bool $withoutTips;
 
     public bool $withoutTimezone;
@@ -34,6 +36,7 @@ class DatetimePicker extends Input
      * @param Carbon|DateTimeInterface|string|int|null $max
      */
     public function __construct(
+        bool $clearable = true,
         bool $borderless = false,
         bool $shadowless = false,
         bool $withoutTips = false,
@@ -57,6 +60,7 @@ class DatetimePicker extends Input
     ) {
         parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix = null, $prepend, $append = null);
 
+        $this->clearable       = $clearable;
         $this->withoutTips     = $withoutTips;
         $this->withoutTimezone = $withoutTimezone;
         $this->withoutTime     = $withoutTime;

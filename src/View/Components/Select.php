@@ -4,6 +4,8 @@ namespace WireUi\View\Components;
 
 class Select extends NativeSelect
 {
+    public bool $clearable;
+
     public string $rightIcon;
 
     public string $optionComponent;
@@ -18,6 +20,7 @@ class Select extends NativeSelect
     public function __construct(
         string $rightIcon = 'selector',
         string $optionComponent = 'select.option',
+        bool $clearable = true,
         bool $searchable = true,
         bool $multiselect = false,
         bool $optionKeyLabel = false,
@@ -39,6 +42,7 @@ class Select extends NativeSelect
             $options
         );
 
+        $this->clearable       = $clearable;
         $this->rightIcon       = $rightIcon;
         $this->optionComponent = $optionComponent;
         $this->searchable      = $searchable;

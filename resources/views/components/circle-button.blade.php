@@ -12,24 +12,17 @@
 @endphp
 
 <{{ $tag }} {{ $attributes->merge($defaultAttributes) }}>
-    @if ($icon)
-        <x-dynamic-component
-            :component="WireUiComponent::resolve('icon')"
-            :name="$icon"
-            class="{{ $iconSize }} shrink-0"
-        />
-    @endif
-
-    {{ $label ?? $slot }}
-
-    @if ($rightIcon)
-        <x-dynamic-component
-            :component="WireUiComponent::resolve('icon')"
-            :name="$rightIcon"
-            class="{{ $iconSize }} shrink-0"
-            :wire:loading.remove="(bool) $spinner"
-        />
-    @endif
+    <div @if($spinner) wire:loading.remove @endif>
+        @if ($icon)
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('icon')"
+                :name="$icon"
+                class="{{ $iconSize }} shrink-0"
+            />
+        @else
+            {{ $label ?? $slot }}
+        @endif
+    </div>
 
     @if ($spinner)
         <svg class="animate-spin {{ $iconSize }} shrink-0"
@@ -44,4 +37,4 @@
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
     @endif
-</{{ $tag}}>
+</{{ $tag }}>
