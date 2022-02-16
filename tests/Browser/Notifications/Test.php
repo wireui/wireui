@@ -152,8 +152,12 @@ class Test extends BrowserTestCase
             Livewire::visit($browser, Component::class)
                 ->click($duskButton)
                 ->waitUsing(5, 75, function () use ($browser) {
+                    return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@value', 'onCloseEmit');
-                })->waitUsing(5, 75, function () use ($browser) {
+                })
+                ->waitUsing(5, 75, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onCloseEmitEvent');
                 });
         });

@@ -97,6 +97,7 @@ class Component extends \Livewire\Component
             'title'       => 'Title',
             'description' => 'Description is in here',
             'timeout'     => 300,
+            'acceptLabel' => 'Accept',
             'onClose' => [
                 'emit' => 'fireEmit',
                 'params' => [
