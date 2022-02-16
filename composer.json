@@ -15,7 +15,7 @@
         "illuminate/support": "^8.0",
         "illuminate/database": "^8.0",
         "illuminate/validation": "^8.0",
-        "laravel/framework": "^8.80",
+        "laravel/framework": "^8.80|^9.0",
         "livewire/livewire": "^2.9"
     },
     "require-dev": {
