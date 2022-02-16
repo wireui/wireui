@@ -10,8 +10,18 @@ export interface LivewireOptions {
   params?: any
 }
 
+export interface LivewireEmitOptions {
+  emit: string,
+  to?: string,
+  params?: any
+}
+
 export interface ParseLivewire {
   (options: LivewireOptions): CallableFunction
+}
+
+export interface ParseLivewireEmit {
+  (options: LivewireEmitOptions): CallableFunction
 }
 
 export interface ParseNotification {
@@ -37,6 +47,30 @@ export const parseLivewire: ParseLivewire = ({ id, method, params = undefined })
     }
 
     component?.call(method)
+  }
+}
+
+export const parseLivewireEmit: ParseLivewireEmit = ({ emit, to = undefined, params = undefined }) => {
+  return () => {
+    const component = window.Livewire
+
+    if (to !== undefined) {
+      if (params !== undefined) {
+        return Array.isArray(params)
+          ? component?.emitTo(to, emit, ...params)
+          : component?.emitTo(to, emit, params)
+      }
+
+      component?.emitTo(to, emit)
+    } else {
+      if (params !== undefined) {
+        return Array.isArray(params)
+          ? component?.emit(emit, ...params)
+          : component?.emit(emit, params)
+      }
+
+      component?.emit(emit)
+    }
   }
 }
 

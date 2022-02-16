@@ -142,4 +142,20 @@ class Test extends BrowserTestCase
                 });
         });
     }
+
+    /** @test */
+    public function it_should_emit_when_notification_is_closed()
+    {
+        $this->browse(function (Browser $browser) {
+            $duskButton = '@button.test.emit_on_close_notification';
+
+            Livewire::visit($browser, Component::class)
+                ->click($duskButton)
+                ->waitUsing(5, 75, function () use ($browser) {
+                    return $browser->assertSeeIn('@value', 'onCloseEmit');
+                })->waitUsing(5, 75, function () use ($browser) {
+                    return $browser->assertSeeIn('@events', 'onCloseEmitEvent');
+                });
+        });
+    }
 }

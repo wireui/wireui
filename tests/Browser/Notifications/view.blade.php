@@ -65,6 +65,12 @@
         Redirect on close Notification
     </button>
 
+    <button
+        dusk="button.test.emit_on_close_notification"
+        wire:click="showConfirmWithEvents">
+        Emit on close Notification
+    </button>
+
     @push('scripts')
         <script>
             function addSimpleNotification() {
