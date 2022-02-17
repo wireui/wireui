@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7086295ceb99fa5be6f4afda6084ddfc",
+    "content-hash": "8831be5fd553fbd1067bb85bfcb91cf1",
     "packages": [
         {
             "name": "brick/math",
@@ -4954,16 +4954,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.5.0",
+            "version": "v3.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "333f15e07c866e33e2765e84ba1e0b88e6a3af3b"
+                "reference": "1975e4453eb2726d1f50da0ce7fa91295029a4fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/333f15e07c866e33e2765e84ba1e0b88e6a3af3b",
-                "reference": "333f15e07c866e33e2765e84ba1e0b88e6a3af3b",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/1975e4453eb2726d1f50da0ce7fa91295029a4fa",
+                "reference": "1975e4453eb2726d1f50da0ce7fa91295029a4fa",
                 "shasum": ""
             },
             "require": {
@@ -5031,7 +5031,7 @@
             "description": "A tool to automatically fix PHP code style",
             "support": {
                 "issues": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues",
-                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.5.0"
+                "source": "https://github.com/FriendsOfPHP/PHP-CS-Fixer/tree/v3.6.0"
             },
             "funding": [
                 {
@@ -5039,7 +5039,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-14T00:29:20+00:00"
+            "time": "2022-02-07T18:02:40+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -8770,7 +8770,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4|^8.0"
+        "php": "^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.2.0"
