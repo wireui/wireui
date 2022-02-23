@@ -4,7 +4,7 @@ namespace WireUi\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\{ServiceProvider, Stringable};
+use Illuminate\Support\{ServiceProvider, Str, Stringable};
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\{WireUiComponent, WireUiDirectives};
 use WireUi\Mixins\Stringable\UnlessMixin;
@@ -12,8 +12,6 @@ use WireUi\Support\WireUiTagCompiler;
 
 class WireUiServiceProvider extends ServiceProvider
 {
-    public const PACKAGE_NAME = 'wireui';
-
     public function boot()
     {
         $this->registerViews();
@@ -43,22 +41,30 @@ class WireUiServiceProvider extends ServiceProvider
     {
         $rootDir = __DIR__ . '/../..';
 
-        $this->loadViewsFrom("{$rootDir}/resources/views", self::PACKAGE_NAME);
-        $this->loadTranslationsFrom("{$rootDir}/resources/lang", self::PACKAGE_NAME);
-        $this->mergeConfigFrom("{$rootDir}/config/wireui.php", self::PACKAGE_NAME);
+        $this->loadViewsFrom("{$rootDir}/resources/views", 'wireui');
+        $this->loadTranslationsFrom("{$rootDir}/src/lang", 'wireui');
+        $this->mergeConfigFrom("{$rootDir}/config/wireui.php", 'wireui');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->publishes([
             "{$rootDir}/config/wireui.php" => config_path('wireui.php'),
-        ], self::PACKAGE_NAME . '.config');
+        ], 'wireui.config');
 
         $this->publishes([
-            "{$rootDir}/resources/views" => resource_path('views/vendor/' . self::PACKAGE_NAME),
-        ], self::PACKAGE_NAME . '.resources');
+            "{$rootDir}/resources/views" => resource_path('views/vendor/wireui'),
+        ], 'wireui.resources');
 
-        $this->publishes([
-            "{$rootDir}/resources/lang" => resource_path('lang/vendor/' . self::PACKAGE_NAME),
-        ], self::PACKAGE_NAME . '.lang');
+        if (is_dir(resource_path('lang'))) {
+            $this->publishes([
+                "{$rootDir}/resources/lang" => resource_path('lang/vendor/wireui'),
+            ], 'wireui.lang');
+        }
+
+        if (is_dir(base_path('lang'))) {
+            $this->publishes([
+                "{$rootDir}/src/lang" => $this->app->langPath('vendor/wireui'),
+            ], 'wireui.lang');
+        }
     }
 
     protected function registerBladeDirectives(): void
