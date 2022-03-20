@@ -35,7 +35,11 @@ export const parseDialog: ParseDialog = (options, componentId?): Dialog => {
   if (
     typeof dialog.close === 'object'
     && !dialog.close.color
-    && typeof options.icon === 'string'
+    && (options.icon == 'success' ||
+        options.icon == 'error' ||
+        options.icon == 'info' ||
+        options.icon == 'warning' ||
+        options.icon == 'question')
   ) {
     dialog.close.color = iconsMap[options.icon] ?? options.icon
   }

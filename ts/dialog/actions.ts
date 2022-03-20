@@ -67,20 +67,12 @@ export const parseActions = (options: ConfirmationOptions, componentId?: string)
     }, options.accept)
   }
 
-  return Object.assign({}, ...['accept', 'reject'].map(actionName => {
+  return Object.assign({}, ...['accept', 'reject', 'close'].map(actionName => {
     const action = Object.assign({}, options[actionName]) as ActionOptions
     action.label = getActionLabel(options, action, actionName)
 
     if (!action.execute) {
       action.execute = parseAction(action, componentId)
-    }
-
-    if (
-      actionName === 'accept'
-      && !action.color
-      && typeof options.icon === 'string'
-    ) {
-      action.color = iconsMap[options.icon] ?? options.icon
     }
 
     if (actionName === 'accept' && !action.color) {
