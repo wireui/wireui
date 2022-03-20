@@ -23,6 +23,7 @@
                 <option value="{{ $getOptionValue($key, $option) }}"
                     @if(data_get($option, 'disabled', false)) disabled @endif>
                     {{ $getOptionLabel($key, $option) }}
+                    {{ $getOptionSubtitle($key, $option, true) }}
                 </option>
             @empty
                 <option disabled>

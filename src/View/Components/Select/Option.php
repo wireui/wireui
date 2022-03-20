@@ -14,6 +14,8 @@ class Option extends Component
 
     public ?string $value;
 
+    public ?string $subtitle;
+
     public $option;
 
     /** @param array|string|null $option */
@@ -22,12 +24,14 @@ class Option extends Component
         bool $disabled = false,
         ?string $label = null,
         ?string $value = null,
+        ?string $subtitle = null,
         $option = null
     ) {
         $this->readonly = $readonly;
         $this->disabled = $disabled;
         $this->label    = $label;
         $this->value    = $value;
+        $this->subtitle = $subtitle;
         $this->option   = $option;
     }
 
