@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'empty_options' => 'leere Optionen',
+    'selectTime' => 'Zeit auswählen',
+    'empty_options' => 'Leere optionen',
     'searchHere'    => 'Hier suchen',
     'datePicker'    => [
         'months'    => "['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']",
