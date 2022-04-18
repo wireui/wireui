@@ -12,7 +12,7 @@
 @endphp
 
 <{{ $tag }} {{ $attributes->merge($defaultAttributes) }}>
-    <div @if($spinner) wire:loading.remove @endif>
+    <div @if($spinner) wire:target="{{ $spinner }}" wire:loading.remove @endif>
         @if ($icon)
             <x-dynamic-component
                 :component="WireUiComponent::resolve('icon')"
