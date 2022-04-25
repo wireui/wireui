@@ -14,7 +14,7 @@
         $errorClasses() =>  $errors->has($name),
         $colorClasses() => !$errors->has($name),
     ]) }}>
-        @if ($options !== null)
+        @if ($options->isNotEmpty())
             @if ($placeholder)
                 <option value="">{{ $placeholder }}</option>
             @endif

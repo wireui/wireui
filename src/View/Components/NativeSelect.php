@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\Collection;
+
 class NativeSelect extends FormComponent
 {
     public ?string $label;
@@ -16,10 +18,8 @@ class NativeSelect extends FormComponent
 
     public bool $optionKeyValue;
 
-    /** @var Collection|array|null */
-    public $options;
+    public Collection $options;
 
-    /** @param Collection|array|null $options */
     public function __construct(
         ?string $label = null,
         ?string $placeholder = null,
@@ -27,7 +27,7 @@ class NativeSelect extends FormComponent
         ?string $optionLabel = null,
         bool $optionKeyLabel = false,
         bool $optionKeyValue = false,
-        $options = null
+        Collection|array|null $options = null
     ) {
         $this->label          = $label;
         $this->placeholder    = $placeholder;
@@ -35,7 +35,7 @@ class NativeSelect extends FormComponent
         $this->optionLabel    = $optionLabel;
         $this->optionKeyLabel = $optionKeyLabel;
         $this->optionKeyValue = $optionKeyValue;
-        $this->options        = $options;
+        $this->options        = collect($options);
     }
 
     protected function getView(): string
