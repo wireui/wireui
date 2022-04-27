@@ -2,56 +2,60 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\Collection;
+
 class Select extends NativeSelect
 {
-    public bool $clearable;
-
-    public string $rightIcon;
-
-    public string $optionComponent;
-
-    public bool $searchable;
-
-    public bool $multiselect;
-
-    public ?string $icon;
-
-    /** @param Collection|array|null $options */
     public function __construct(
-        string $rightIcon = 'selector',
-        string $optionComponent = 'select.option',
-        bool $clearable = true,
-        bool $searchable = true,
-        bool $multiselect = false,
-        bool $optionKeyLabel = false,
-        bool $optionKeyValue = false,
-        ?string $label = null,
-        ?string $placeholder = null,
-        ?string $optionValue = null,
-        ?string $optionLabel = null,
-        ?string $icon = null,
-        $options = null
+        public string $rightIcon = 'selector',
+        public string $optionComponent = 'select.option',
+        public bool $clearable = true,
+        public bool $searchable = true,
+        public bool $multiselect = false,
+        public ?string $icon = null,
+        public ?string $label = null,
+        public ?string $placeholder = null,
+        public ?string $optionValue = null,
+        public ?string $optionLabel = null,
+        public bool $flipOptions = false,
+        Collection|array|null $options = null,
     ) {
         parent::__construct(
             $label,
             $placeholder,
             $optionValue,
             $optionLabel,
-            $optionKeyLabel,
-            $optionKeyValue,
+            $flipOptions,
             $options
         );
-
-        $this->clearable       = $clearable;
-        $this->rightIcon       = $rightIcon;
-        $this->optionComponent = $optionComponent;
-        $this->searchable      = $searchable;
-        $this->multiselect     = $multiselect;
-        $this->icon            = $icon;
     }
 
     protected function getView(): string
     {
         return 'wireui::components.select';
+    }
+
+    public function optionsToJson(): string
+    {
+        return $this->options->map(function (mixed $rawOption, int $index) {
+            $option = [
+                'label' => $this->getOptionLabel($index, $rawOption),
+                'value' => $this->getOptionValue($index, $rawOption),
+            ];
+
+            if ($component = data_get($rawOption, 'component')) {
+                $option['component'] = $component;
+            }
+
+            if (data_get($rawOption, 'disabled')) {
+                $option['disabled'] = true;
+            }
+
+            if (data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled')) {
+                $option['readonly'] = true;
+            }
+
+            return $option;
+        })->toJson();
     }
 }
