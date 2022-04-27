@@ -91,7 +91,7 @@ class NativeSelect extends FormComponent
 
     public function getOptionValue(int|string $key, mixed $option): mixed
     {
-        if (!$this->flipOptions) {
+        if (!$this->flipOptions && !$this->optionValue) {
             return $key;
         }
 
