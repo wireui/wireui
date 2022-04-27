@@ -13,6 +13,7 @@ export interface Select extends Focusables {
   displayOptions: Options
   init (): void
   initOptionsObserver (): void
+  fillSelectedFromInputValue (): void
   searchOptions (search: string): Options
   togglePopover (): void
   closePopover (): void

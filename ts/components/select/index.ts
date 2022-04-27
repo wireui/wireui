@@ -39,6 +39,7 @@ export default (initOptions: InitOptions): Select => ({
     })
 
     this.initOptionsObserver()
+    this.fillSelectedFromInputValue()
   },
   initOptionsObserver () {
     const observer = new MutationObserver(mutations => {
@@ -54,6 +55,26 @@ export default (initOptions: InitOptions): Select => ({
       subtree: true,
       characterData: true
     })
+  },
+  fillSelectedFromInputValue () {
+    const inputValue = this.$refs.input.value
+
+    if (!this.config.multiselect) {
+      // eslint-disable-next-line eqeqeq
+      this.selected = this.options.find(option => option.value == inputValue)
+
+      return
+    }
+
+    try {
+      this.selectedOptions = JSON.parse(inputValue).map(value => {
+        // eslint-disable-next-line eqeqeq
+        return this.options.find(option => option.value == value)
+      })
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error)
+    }
   },
   searchOptions (search) {
     return this.options.filter(option => {
