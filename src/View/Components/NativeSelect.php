@@ -2,40 +2,68 @@
 
 namespace WireUi\View\Components;
 
+use Exception;
 use Illuminate\Support\Collection;
 
 class NativeSelect extends FormComponent
 {
-    public ?string $label;
-
-    public ?string $placeholder;
-
-    public ?string $optionValue;
-
-    public ?string $optionLabel;
-
-    public bool $optionKeyLabel;
-
-    public bool $optionKeyValue;
+    private const PRIMITIVE_VALUES = [
+        'string',
+        'integer',
+        'double',
+        'boolean',
+        'NULL',
+    ];
 
     public Collection $options;
 
     public function __construct(
-        ?string $label = null,
-        ?string $placeholder = null,
-        ?string $optionValue = null,
-        ?string $optionLabel = null,
-        bool $optionKeyLabel = false,
-        bool $optionKeyValue = false,
-        Collection|array|null $options = null
+        public ?string $label = null,
+        public ?string $placeholder = null,
+        public ?string $optionValue = null,
+        public ?string $optionLabel = null,
+        public bool $flipOptions = false,
+        Collection|array|null $options = null,
     ) {
-        $this->label          = $label;
-        $this->placeholder    = $placeholder;
-        $this->optionValue    = $optionValue;
-        $this->optionLabel    = $optionLabel;
-        $this->optionKeyLabel = $optionKeyLabel;
-        $this->optionKeyValue = $optionKeyValue;
-        $this->options        = collect($options);
+        $this->options = collect($options);
+
+        $this->validateConfig();
+    }
+
+    /**
+     * Validate if the select options is set correctly.
+     * @return void
+     * @throws Exception
+     */
+    private function validateConfig(): void
+    {
+        if (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel)) {
+            throw new Exception('The {option-value} and {option-label} attributes must be set together.');
+        }
+
+        if ($this->flipOptions && $this->optionValue && $this->optionLabel) {
+            throw new Exception('The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.');
+        }
+
+        if (
+            !($this->optionValue && $this->optionLabel)
+            && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+        ) {
+            throw new Exception(
+                'Inform the {option-value} and {option-label} to use array, model, or object option.'
+                    . '<x-select [...] option-value="id" option-label="name" />'
+            );
+        }
+
+        if (
+            ($this->optionValue && $this->optionLabel)
+            && in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+        ) {
+            throw new Exception(
+                'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
+                    . implode(', ', self::PRIMITIVE_VALUES)
+            );
+        }
     }
 
     protected function getView(): string
@@ -61,18 +89,18 @@ class NativeSelect extends FormComponent
                 dark:border-negative-600 dark:text-negative-500';
     }
 
-    public function getOptionValue($key, $option)
+    public function getOptionValue(int|string $key, mixed $option): mixed
     {
-        if ($this->optionKeyValue) {
+        if (!$this->flipOptions) {
             return $key;
         }
 
         return data_get($option, $this->optionValue);
     }
 
-    public function getOptionLabel($key, $option)
+    public function getOptionLabel(int|string $key, mixed $option): mixed
     {
-        if ($this->optionKeyLabel) {
+        if ($this->flipOptions) {
             return $key;
         }
 
