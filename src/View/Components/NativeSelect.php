@@ -23,9 +23,13 @@ class NativeSelect extends FormComponent
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
         public bool $flipOptions = false,
+        public bool $optionKeyValue = false,
         Collection|array|null $options = null,
     ) {
-        $this->options = collect($options);
+        $this->options = collect($options)->when(
+            $flipOptions,
+            fn (Collection $collection) => $collection->flip()
+        );
 
         $this->validateConfig();
     }
@@ -41,7 +45,7 @@ class NativeSelect extends FormComponent
             throw new Exception('The {option-value} and {option-label} attributes must be set together.');
         }
 
-        if ($this->flipOptions && $this->optionValue && $this->optionLabel) {
+        if ($this->flipOptions && ($this->optionValue || $this->optionLabel)) {
             throw new Exception('The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.');
         }
 
@@ -91,19 +95,15 @@ class NativeSelect extends FormComponent
 
     public function getOptionValue(int|string $key, mixed $option): mixed
     {
-        if (!$this->flipOptions && !$this->optionValue) {
+        if ($this->optionKeyValue) {
             return $key;
         }
 
         return data_get($option, $this->optionValue);
     }
 
-    public function getOptionLabel(int|string $key, mixed $option): mixed
+    public function getOptionLabel(mixed $option): mixed
     {
-        if ($this->flipOptions) {
-            return $key;
-        }
-
         return data_get($option, $this->optionLabel);
     }
 }

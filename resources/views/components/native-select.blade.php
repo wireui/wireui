@@ -22,7 +22,7 @@
             @forelse ($options as $key => $option)
                 <option value="{{ $getOptionValue($key, $option) }}"
                     @if(data_get($option, 'disabled', false)) disabled @endif>
-                    {{ $getOptionLabel($key, $option) }}
+                    {{ $getOptionLabel($option) }}
                 </option>
             @empty
                 <option disabled>
