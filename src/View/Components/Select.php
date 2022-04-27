@@ -18,6 +18,7 @@ class Select extends NativeSelect
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
         public bool $flipOptions = false,
+        public bool $optionKeyValue = false,
         Collection|array|null $options = null,
     ) {
         parent::__construct(
@@ -26,7 +27,8 @@ class Select extends NativeSelect
             $optionValue,
             $optionLabel,
             $flipOptions,
-            $options
+            $optionKeyValue,
+            $options,
         );
     }
 
@@ -39,7 +41,7 @@ class Select extends NativeSelect
     {
         return $this->options->map(function (mixed $rawOption, int $index) {
             $option = [
-                'label' => $this->getOptionLabel($index, $rawOption),
+                'label' => $this->getOptionLabel($rawOption),
                 'value' => $this->getOptionValue($index, $rawOption),
             ];
 
@@ -56,6 +58,6 @@ class Select extends NativeSelect
             }
 
             return $option;
-        })->toJson();
+        })->values()->toJson();
     }
 }
