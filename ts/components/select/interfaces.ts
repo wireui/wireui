@@ -16,7 +16,8 @@ export interface Select extends Focusables {
   searchOptions (search: string): Options
   togglePopover (): void
   closePopover (): void
-  getValueText (): string
+  getSelectedValue (): any
+  getSelectedDysplayText (): string
   getPlaceholder (): string
   isSelected (option: Option): boolean
   select (option: Option): void

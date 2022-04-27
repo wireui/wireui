@@ -66,11 +66,20 @@ export default (initOptions: InitOptions): Select => ({
     if (this.config.readonly) return
 
     this.popover = !this.popover
+
+    this.$refs.input.focus()
   },
   closePopover () {
     this.popover = false
   },
-  getValueText () {
+  getSelectedValue () {
+    if (this.config.multiselect) {
+      return JSON.stringify(this.selectedOptions.map(option => option.value))
+    }
+
+    return this.selected?.value ?? ''
+  },
+  getSelectedDysplayText () {
     if (this.config.multiselect) return ''
 
     return this.selected?.label ?? ''
