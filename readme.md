@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/packagist/dt/wireui/wireui" alt="Packagist Downloads" data-canonical-src="https://img.shields.io/packagist/dt/wireui/wireui" style="max-width:100%;" />
     </a>
     <a href="https://github.com/wireui/wireui/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/PH7-Jack/wireui" alt="GitHub license" data-canonical-src="https://img.shields.io/github/license/wireui/wireui" style="max-width:100%;" />
+    <img src="https://img.shields.io/github/license/wireui/wireui" alt="GitHub license" data-canonical-src="https://img.shields.io/github/license/wireui/wireui" style="max-width:100%;" />
     </a>
     <a href="https://twitter.com/ph7jack"><img alt="Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FPH7-Jack%2Fwireui"></a>
     </a>
