@@ -1,6 +1,6 @@
 import { focusables } from '../modules/focusables'
 import { Select } from './interfaces'
-import { InitOptions, Options, Refs } from './types'
+import { InitOptions, Option, Options, Refs } from './types'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -14,13 +14,24 @@ export default (initOptions: InitOptions): Select => ({
   placeholder: initOptions.placeholder,
   popover: false,
   search: '',
+  wireModel: initOptions.wireModel,
   selected: undefined,
   selectedOptions: [],
   options: [],
   displayOptions: [],
-
+  get hasWireModel () {
+    return this.wireModel !== undefined
+  },
   init () {
-    this.$watch('popover', state => {
+    this.initWatchers()
+    this.initOptionsObserver()
+
+    this.hasWireModel
+      ? this.initWireModelWatchers()
+      : this.fillSelectedFromInputValue()
+  },
+  initWatchers () {
+    this.$watch('popover', (state: boolean) => {
       if (state) {
         this.$nextTick(() => {
           setTimeout(() => this.$refs.search?.focus(), 100)
@@ -37,9 +48,33 @@ export default (initOptions: InitOptions): Select => ({
     this.$watch('options', (options: Options) => {
       this.displayOptions = options
     })
+  },
+  initWireModelWatchers () {
+    if (this.hasWireModel && this.config.multiselect) {
+      this.$watch('selectedOptions', (options: Options) => {
+        if (this.mustSyncWireModel()) {
+          this.wireModel = options.map((option: Option) => option.value)
+        }
+      })
 
-    this.initOptionsObserver()
-    this.fillSelectedFromInputValue()
+      this.$watch('wireModel', (options: any[]) => {
+        if (this.mustSyncWireModel()) {
+          this.selectedOptions = options.map(value => {
+            return this.options.find(option => option.value === value)
+          }).filter((option: Option | undefined) => option !== undefined) as Options
+        }
+      })
+    }
+
+    if (this.hasWireModel && !this.config.multiselect) {
+      this.$watch('selected', (option: Option | undefined) => {
+        this.wireModel = option?.value ?? null
+      })
+
+      this.$watch('wireModel', value => {
+        this.selected = this.options.find(option => option.value === value)
+      })
+    }
   },
   initOptionsObserver () {
     const observer = new MutationObserver(mutations => {
@@ -76,6 +111,9 @@ export default (initOptions: InitOptions): Select => ({
       console.error(error)
     }
   },
+  mustSyncWireModel () {
+    return this.wireModel?.toString() !== this.selectedOptions.map(option => option.value).toString()
+  },
   searchOptions (search) {
     return this.options.filter(option => {
       const label = option.label.toLocaleLowerCase()
@@ -95,6 +133,8 @@ export default (initOptions: InitOptions): Select => ({
   },
   getSelectedValue () {
     if (this.config.multiselect) {
+      if (this.selectedOptions.length === 0) return null
+
       return JSON.stringify(this.selectedOptions.map(option => option.value))
     }
 

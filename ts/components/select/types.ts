@@ -1,3 +1,5 @@
+import { Entangle } from '../alpine'
+
 export type Option = {
   value: any
   label: string
@@ -14,6 +16,7 @@ export type InitOptions = {
   readonly: boolean
   disabled: boolean
   placeholder: string
+  wireModel?: Entangle
 }
 
 export type Config = {

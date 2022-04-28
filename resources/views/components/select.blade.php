@@ -5,6 +5,9 @@
         readonly:    @boolean($readonly || $disabled),
         disabled:    @boolean($disabled),
         placeholder: @js($placeholder),
+        @if ($attributes->wire('model')->value())
+            wireModel: @entangle($attributes->wire('model')),
+        @endif
     })">
     <div hidden x-ref="json">{{ $optionsToJson() }}</div>
 

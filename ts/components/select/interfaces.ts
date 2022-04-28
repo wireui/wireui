@@ -1,3 +1,4 @@
+import { Entangle } from '../alpine'
 import { Focusables } from '../modules/focusables'
 import { Config, Option, Options, Refs } from './types'
 
@@ -7,13 +8,18 @@ export interface Select extends Focusables {
   placeholder?: string
   popover: boolean
   search?: string
+  wireModel?: Entangle
   selected?: Option
   selectedOptions: Options
   options: Options
   displayOptions: Options
+  get hasWireModel (): boolean
   init (): void
+  initWatchers (): void
+  initWireModelWatchers (): void
   initOptionsObserver (): void
   fillSelectedFromInputValue (): void
+  mustSyncWireModel (): boolean
   searchOptions (search: string): Options
   togglePopover (): void
   closePopover (): void
