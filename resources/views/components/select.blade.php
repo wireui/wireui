@@ -1,10 +1,11 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
-        searchable:  @boolean($searchable),
-        multiselect: @boolean($multiselect),
-        readonly:    @boolean($readonly || $disabled),
-        disabled:    @boolean($disabled),
-        placeholder: @js($placeholder),
+        searchable:     @boolean($searchable),
+        multiselect:    @boolean($multiselect),
+        readonly:       @boolean($readonly || $disabled),
+        disabled:       @boolean($disabled),
+        placeholder:    @js($placeholder),
+        optionTemplate: @js($optionTemplate),
         @if ($attributes->wire('model')->value())
             wireModel: @entangle($attributes->wire('model')),
         @endif
@@ -37,8 +38,7 @@
             readonly
             :name="$name"
             :icon="$icon"
-            {{ $attributes->except(['class'])->whereDoesntStartWith(['wire:model', 'type', 'wire:key']) }}
-        >
+            {{ $attributes->except(['class'])->whereDoesntStartWith(['wire:model', 'type', 'wire:key']) }}>
             <x-slot name="prepend">
                 <div :class="{
                     'pointer-events-none': config.readonly,
@@ -97,7 +97,8 @@
                             x-show="!isEmpty()"
                             x-on:click="clear"
                             tabindex="-1"
-                            type="button">
+                            type="button"
+                            x-cloak>
                             <x-dynamic-component
                                 :component="WireUiComponent::resolve('icon')"
                                 class="w-4 h-4 text-secondary-400 hover:text-negative-400"
@@ -156,32 +157,7 @@
                 x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
                 x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                    <li class="
-                            py-2 px-3 focus:outline-none all-colors ease-in-out duration-150 relative group
-                            text-secondary-600 dark:text-secondary-400 flex items-center justify-between
-                        "
-                        :class="{
-                            'cursor-pointer focus:bg-primary-100 focus:text-primary-800 hover:text-white dark:focus:bg-secondary-700': !option.readonly,
-                            'opacity-60 cursor-not-allowed': option.disabled,
-                            'font-semibold': isSelected(option),
-                            'hover:bg-negative-500 dark:hover:text-secondary-100': !option.readonly && isSelected(option),
-                            'hover:bg-primary-500 dark:hover:bg-secondary-700': !option.readonly && !isSelected(option),
-                        }"
-                        :tabindex="!option.readonly && '0'"
-                        onclick="this.blur()"
-                        x-on:click="!option.readonly && select(option)"
-                        x-on:keydown.enter="!option.readonly && select(option)">
-                        <span x-text="option.label"></span>
-
-                        <div class="flex-shrink-0">
-                            <x-dynamic-component
-                                :component="WireUiComponent::resolve('icon')"
-                                name="check"
-                                x-show="isSelected(option)"
-                                class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white"
-                            />
-                        </div>
-                    </li>
+                    <div x-html="renderOption(option)"></div>
                 </template>
             </ul>
         </template>

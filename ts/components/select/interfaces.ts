@@ -31,4 +31,5 @@ export interface Select extends Focusables {
   unSelect (option: Option): void
   clear (): void
   isEmpty (): boolean
+  renderOption (option: Option): string
 }
