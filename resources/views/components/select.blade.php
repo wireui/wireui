@@ -159,6 +159,12 @@
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                     <div x-html="renderOption(option)"></div>
                 </template>
+
+                <template x-if="displayOptions.length === 0">
+                    <li class="py-2 px-3 text-secondary-500 cursor-pointer" x-on:click="closePopover">
+                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                    </li>
+                </template>
             </ul>
         </template>
     </div>
