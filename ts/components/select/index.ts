@@ -60,6 +60,10 @@ export default (initOptions: InitOptions): Select => ({
       })
 
       this.$watch('wireModel', (options: any[]) => {
+        if (!Array.isArray(options)) {
+          throw new Error('The wire:model value must be an array to use the select as multiselect')
+        }
+
         if (this.mustSyncWireModel()) {
           this.selectedOptions = options.map(value => {
             return this.options.find(option => option.value === value)
