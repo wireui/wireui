@@ -1,11 +1,11 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
-        searchable:     @boolean($searchable),
-        multiselect:    @boolean($multiselect),
-        readonly:       @boolean($readonly || $disabled),
-        disabled:       @boolean($disabled),
-        placeholder:    @js($placeholder),
-        optionTemplate: @js($optionTemplate),
+        searchable:  @boolean($searchable),
+        multiselect: @boolean($multiselect),
+        readonly:    @boolean($readonly || $disabled),
+        disabled:    @boolean($disabled),
+        placeholder: @js($placeholder),
+        template:    @js($template),
         @if ($attributes->wire('model')->value())
             wireModel: @entangle($attributes->wire('model')),
         @endif

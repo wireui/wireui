@@ -1,12 +1,22 @@
+import { Option } from '../types'
 import option from './option'
 import userOption from './userOption'
 
-export type Templates = {
-  'default': string
-  'user-option': string
+export interface Template {
+  config?: any
+  render: (option: Option) => string
 }
 
-export type Template = keyof Templates
+export interface InitTemplate {
+  (options?: any): Template
+}
+
+export type Templates = {
+  'default': InitTemplate
+  'user-option': InitTemplate
+}
+
+export type TemplateName = keyof Templates
 
 export const templates: Templates = {
   'default': option,

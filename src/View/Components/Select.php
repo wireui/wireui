@@ -7,18 +7,18 @@ use Illuminate\Support\Collection;
 class Select extends NativeSelect
 {
     public function __construct(
-        public string $rightIcon = 'selector',
         public bool $clearable = true,
         public bool $searchable = true,
         public bool $multiselect = false,
+        public string $rightIcon = 'selector',
         public ?string $icon = null,
         public ?string $label = null,
         public ?string $placeholder = null,
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
-        public ?string $optionTemplate = null,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
+        public string|array|null $template = null,
         Collection|array|null $options = null,
     ) {
         parent::__construct(
@@ -30,6 +30,10 @@ class Select extends NativeSelect
             $optionKeyValue,
             $options,
         );
+
+        if (gettype($template) === 'string') {
+            $this->template = ['name' => $template];
+        }
     }
 
     protected function getView(): string

@@ -1,6 +1,6 @@
 import { focusables } from '../modules/focusables'
 import { Select } from './interfaces'
-import templates from './templates'
+import { templates } from './templates'
 import { InitOptions, Option, Options, Refs } from './types'
 
 export default (initOptions: InitOptions): Select => ({
@@ -11,7 +11,9 @@ export default (initOptions: InitOptions): Select => ({
     multiselect: initOptions.multiselect,
     readonly: initOptions.readonly,
     disabled: initOptions.disabled,
-    optionTemplate: initOptions.optionTemplate ?? 'default'
+    template: templates[initOptions.template?.name ?? 'default']({
+      config: initOptions.template?.config ?? {}
+    })
   },
   placeholder: initOptions.placeholder,
   popover: false,
@@ -204,8 +206,12 @@ export default (initOptions: InitOptions): Select => ({
     return this.selected === undefined
   },
   renderOption (option) {
-    const template = option.template ?? this.config.optionTemplate
+    if (option.template) {
+      const config = initOptions.template?.config ?? {}
 
-    return templates[template]
+      return templates[option.template]({ config }).render(option)
+    }
+
+    return this.config.template.render(option)
   }
 })

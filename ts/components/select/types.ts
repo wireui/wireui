@@ -1,12 +1,18 @@
 import { Entangle } from '../alpine'
-import { Template } from './templates'
+import { Template, TemplateName } from './templates'
 
 export type Option = {
   value: any
   label: string
-  template?: Template
+  template?: TemplateName
   disabled?: boolean
   readonly?: boolean
+  [index: string]: any
+}
+
+export type TemplateConfig = {
+  name: TemplateName,
+  config: object
 }
 
 export type Options = Option[]
@@ -17,7 +23,7 @@ export type InitOptions = {
   readonly: boolean
   disabled: boolean
   placeholder: string
-  optionTemplate?: Template
+  template?: TemplateConfig
   wireModel?: Entangle
 }
 
@@ -26,7 +32,7 @@ export type Config = {
   multiselect: boolean
   readonly: boolean
   disabled: boolean
-  optionTemplate: Template
+  template: Template
 }
 
 export type Refs = {
