@@ -2,7 +2,8 @@ import baseTemplate from './baseTemplate'
 import { Option } from '../types'
 import { Template, InitTemplate } from '.'
 
-export interface UserTemplate extends Template {
+export interface UserTemplate extends Omit<Template, 'config'> {
+  config: { src?: string }
   getSrc (option: Option): string | undefined
 }
 
@@ -10,7 +11,7 @@ export interface UserInitTemplate extends InitTemplate {
   (options): UserTemplate
 }
 
-export const template: UserInitTemplate = (config: { src?: string }): UserTemplate => ({
+export const template: UserInitTemplate = (config): UserTemplate => ({
   config,
   render (option: Option) {
     return baseTemplate(`

@@ -11,9 +11,7 @@ export default (initOptions: InitOptions): Select => ({
     multiselect: initOptions.multiselect,
     readonly: initOptions.readonly,
     disabled: initOptions.disabled,
-    template: templates[initOptions.template?.name ?? 'default']({
-      config: initOptions.template?.config ?? {}
-    })
+    template: templates[initOptions.template?.name ?? 'default'](initOptions.template?.config ?? {})
   },
   placeholder: initOptions.placeholder,
   popover: false,
@@ -209,7 +207,7 @@ export default (initOptions: InitOptions): Select => ({
     if (option.template) {
       const config = initOptions.template?.config ?? {}
 
-      return templates[option.template]({ config }).render(option)
+      return templates[option.template](config).render(option)
     }
 
     return this.config.template.render(option)
