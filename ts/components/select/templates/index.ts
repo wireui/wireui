@@ -5,6 +5,7 @@ import userOption from './userOption'
 export interface Template {
   config?: any
   render: (option: Option) => string
+  renderSelected?: (option: Option) => string
 }
 
 export interface InitTemplate {

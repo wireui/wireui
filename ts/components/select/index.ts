@@ -179,9 +179,21 @@ export default (initOptions: InitOptions): Select => ({
     return this.selected?.value ?? ''
   },
   getSelectedDysplayText () {
-    if (this.config.multiselect) return ''
+    if (!this.selected || this.config.multiselect) return ''
+    if (this.selected.html) return this.selected.html
+    if (this.selected.template) {
+      const config = initOptions.template?.config ?? {}
+      const template = templates[this.selected.template](config)
 
-    return this.selected?.label ?? ''
+      if (template.renderSelected) {
+        return template.renderSelected(this.selected)
+      }
+    }
+    if (this.config.template.renderSelected) {
+      return this.config.template.renderSelected(this.selected)
+    }
+
+    return this.selected.label ?? ''
   },
   getPlaceholder () {
     if (this.config.multiselect && this.selectedOptions.length > 0) return ''

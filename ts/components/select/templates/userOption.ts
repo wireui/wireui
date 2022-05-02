@@ -4,6 +4,7 @@ import { Template, InitTemplate } from '.'
 
 export interface UserTemplate extends Omit<Template, 'config'> {
   config: { src?: string }
+  renderSelected: (option: Option) => string
   getSrc (option: Option): string | undefined
 }
 
@@ -14,13 +15,16 @@ export interface UserInitTemplate extends InitTemplate {
 export const template: UserInitTemplate = (config): UserTemplate => ({
   config,
   render (option: Option) {
-    return baseTemplate(`
+    return baseTemplate(this.renderSelected(option))
+  },
+  renderSelected (option) {
+    return `
       <div class="flex items-center gap-x-3">
           <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 rounded-full">
 
           <span>${option.label}</span>
       </div>
-    `)
+    `
   },
   getSrc (option) {
     if (this.config.src) {

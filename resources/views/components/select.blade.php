@@ -51,7 +51,7 @@
                             <span
                                 class="truncate text-secondary-700 dark:text-secondary-400 text-sm"
                                 x-show="!isEmpty()"
-                                x-text="getSelectedDysplayText()">
+                                x-html="getSelectedDysplayText()">
                             </span>
                         </div>
                     </template>

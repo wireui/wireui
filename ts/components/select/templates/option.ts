@@ -1,10 +1,17 @@
 import baseTemplate from './baseTemplate'
 import { Option } from '../types'
-import { InitTemplate } from '.'
+import { InitTemplate, Template } from '.'
 
-export const template: InitTemplate = () => ({
+export interface DefaultTemplate extends Template {
+  renderSelected: (option: Option) => string
+}
+
+export const template: InitTemplate = (): DefaultTemplate => ({
   render (option: Option) {
-    return baseTemplate(`<span>${option.label}</span>`)
+    return baseTemplate(this.renderSelected(option))
+  },
+  renderSelected (option) {
+    return `<span>${option.label}</span>`
   }
 })
 
