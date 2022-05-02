@@ -1,6 +1,9 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
-        hasSlot:    @boolean($slot->isNotEmpty()),
+        asyncData:   @js($asyncData),
+        optionValue: @js($optionValue),
+        optionLabel: @js($optionLabel),
+        hasSlot:     @boolean($slot->isNotEmpty()),
         searchable:  @boolean($searchable),
         multiselect: @boolean($multiselect),
         readonly:    @boolean($readonly || $disabled),
@@ -134,13 +137,13 @@
         x-cloak
         x-on:click.outside="closePopover"
         x-on:keydown.escape.window="closePopover">
-        @if ($searchable && $options->count() > 10)
+        <template x-if="asyncData.api || (config.searchable && options.length > 10)">
             <div class="px-2 my-2" wire:key="search.options">
                 <x-dynamic-component
                     :component="WireUiComponent::resolve('input')"
                     class="bg-slate-100"
                     x-ref="search"
-                    x-model="search"
+                    x-model.debounce.{{ $asyncData ? 750 : 0 }}ms="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                     shadowless
@@ -148,7 +151,7 @@
                     :placeholder="trans('wireui::messages.searchHere')"
                 />
             </div>
-        @endif
+        </template>
 
         <template x-if="popover">
             <ul class="max-h-60 overflow-y-auto select-none"
@@ -158,11 +161,17 @@
                 x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                 x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
                 x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
+                <template x-if="asyncData.fetching">
+                    <li class="py-2 px-3 text-secondary-500 cursor-pointer" x-on:click="closePopover">
+                        {{ $loadingMessage ?? __('wireui::messages.loading') }}
+                    </li>
+                </template>
+
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                     <div x-html="renderOption(option)"></div>
                 </template>
 
-                <template x-if="displayOptions.length === 0">
+                <template x-if="!asyncData.fetching && displayOptions.length === 0">
                     <li class="py-2 px-3 text-secondary-500 cursor-pointer" x-on:click="closePopover">
                         {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
                     </li>

@@ -1,9 +1,10 @@
 import { Entangle } from '../alpine'
 import { Focusables } from '../modules/focusables'
-import { Config, Option, Options, Refs } from './types'
+import { AsyncData, Config, Option, Options, Refs } from './types'
 
 export interface Select extends Focusables {
   $refs: Refs
+  asyncData: AsyncData
   config: Config
   placeholder?: string
   popover: boolean
@@ -20,6 +21,9 @@ export interface Select extends Focusables {
   initOptionsObserver (): void
   initSlotObserver (): void
   syncSlotOptions (): void
+  fetchOptions (): void
+  fetchSelected (): void
+  mapOption (option: any): Option
   fillSelectedFromInputValue (): void
   mustSyncWireModel (): boolean
   searchOptions (search: string): Options

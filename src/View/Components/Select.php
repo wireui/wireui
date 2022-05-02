@@ -17,6 +17,8 @@ class Select extends NativeSelect
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
         public ?string $emptyMessage = null,
+        public ?string $loadingMessage = null,
+        public ?string $asyncData = null,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
         public string|array|null $template = null,

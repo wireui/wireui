@@ -3,17 +3,24 @@ import { Select } from './interfaces'
 import { templates } from './templates'
 import { InitOptions, Option, Options, Refs } from './types'
 import baseTemplate from './templates/baseTemplate'
+import dataGet from '../../utils/dataGet'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
   focusableSelector: 'li[tabindex="0"], input',
   $refs: {} as Refs,
+  asyncData: {
+    api: initOptions.asyncData,
+    fetching: false
+  },
   config: {
     hasSlot: initOptions.hasSlot,
     searchable: initOptions.searchable,
     multiselect: initOptions.multiselect,
     readonly: initOptions.readonly,
     disabled: initOptions.disabled,
+    optionValue: initOptions.optionValue,
+    optionLabel: initOptions.optionLabel,
     template: templates[initOptions.template?.name ?? 'default'](initOptions.template?.config ?? {})
   },
   placeholder: initOptions.placeholder,
@@ -30,9 +37,11 @@ export default (initOptions: InitOptions): Select => ({
   init () {
     this.initWatchers()
 
-    this.config.hasSlot
-      ? this.initSlotObserver()
-      : this.initOptionsObserver()
+    if (!this.asyncData.api) {
+      this.config.hasSlot
+        ? this.initSlotObserver()
+        : this.initOptionsObserver()
+    }
 
     this.hasWireModel
       ? this.initWireModelWatchers()
@@ -41,6 +50,10 @@ export default (initOptions: InitOptions): Select => ({
   initWatchers () {
     this.$watch('popover', (state: boolean) => {
       if (state) {
+        if (this.asyncData.api && this.options.length === 0) {
+          this.fetchOptions()
+        }
+
         this.$nextTick(() => {
           setTimeout(() => this.$refs.search?.focus(), 100)
         })
@@ -50,6 +63,10 @@ export default (initOptions: InitOptions): Select => ({
     })
 
     this.$watch('search', (search: string) => {
+      if (this.asyncData.api) {
+        return this.fetchOptions()
+      }
+
       this.displayOptions = this.searchOptions(search.toLocaleLowerCase())
     })
 
@@ -86,6 +103,10 @@ export default (initOptions: InitOptions): Select => ({
       this.$watch('wireModel', value => {
         this.selected = this.options.find(option => option.value === value)
       })
+    }
+
+    if (this.wireModel) {
+      this.fetchSelected()
     }
   },
   initOptionsObserver () {
@@ -128,6 +149,40 @@ export default (initOptions: InitOptions): Select => ({
 
       return option
     })
+  },
+  fetchOptions () {
+    if (!this.asyncData.api) return
+
+    this.asyncData.fetching = true
+
+    fetch(`${this.asyncData.api}?search=${this.search}`)
+      .then(response => response.json())
+      .then((rawOptions: any[]) => {
+        this.options = rawOptions.map(rawOption => this.mapOption(rawOption))
+      }).catch(error => {
+        reportError(error)
+      }).finally(() => {
+        this.asyncData.fetching = false
+      })
+  },
+  fetchSelected () {
+    fetch(`${this.asyncData.api}?find=${this.wireModel}`)
+      .then(response => response.json())
+      .then(rawOptions => {
+        this.selected = this.mapOption(rawOptions[0])
+      }).catch(error => {
+        reportError(error)
+      })
+  },
+  mapOption (option) {
+    return {
+      ...option,
+      label: dataGet(option, this.config.optionLabel),
+      value: dataGet(option, this.config.optionValue),
+      template: option.template,
+      disabled: option.disabled,
+      readonly: option.readonly || option.disabled
+    }
   },
   fillSelectedFromInputValue () {
     const inputValue = this.$refs.input.value
@@ -239,6 +294,7 @@ export default (initOptions: InitOptions): Select => ({
     this.$refs.input.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
   },
   clear () {
+    this.search = ''
     this.config.multiselect
       ? this.selectedOptions = []
       : this.selected = undefined
