@@ -1,6 +1,7 @@
 import { baseComponent, Component } from '../alpine'
 
 export interface Focusables extends Component {
+  focusableSelector: string
   getFocusables (): Element[]
   getFirstFocusable (): Element | undefined
   getLastFocusable (): Element | undefined
@@ -12,8 +13,10 @@ export interface Focusables extends Component {
 
 export const focusables: Focusables = {
   ...baseComponent,
+  focusableSelector: '',
   getFocusables () {
-    return [...this.$root.querySelectorAll('li, input')]
+    return Array.from(this.$root.querySelectorAll(this.focusableSelector))
+      .filter(el => !el.hasAttribute('disabled'))
   },
   getFirstFocusable () { return this.getFocusables().shift() },
   getLastFocusable () { return this.getFocusables().pop() },

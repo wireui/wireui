@@ -6,6 +6,7 @@ import baseTemplate from './templates/baseTemplate'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
+  focusableSelector: 'li[tabindex="0"], input',
   $refs: {} as Refs,
   config: {
     hasSlot: initOptions.hasSlot,
