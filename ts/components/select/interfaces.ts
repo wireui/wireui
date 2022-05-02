@@ -18,6 +18,8 @@ export interface Select extends Focusables {
   initWatchers (): void
   initWireModelWatchers (): void
   initOptionsObserver (): void
+  initSlotObserver (): void
+  syncSlotOptions (): void
   fillSelectedFromInputValue (): void
   mustSyncWireModel (): boolean
   searchOptions (search: string): Options

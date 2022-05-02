@@ -5,6 +5,7 @@ export type Option = {
   value: any
   label: string
   template?: TemplateName
+  html?: string
   disabled?: boolean
   readonly?: boolean
   [index: string]: any
@@ -18,6 +19,7 @@ export type TemplateConfig = {
 export type Options = Option[]
 
 export type InitOptions = {
+  hasSlot: boolean
   searchable: boolean
   multiselect: boolean
   readonly: boolean
@@ -28,6 +30,7 @@ export type InitOptions = {
 }
 
 export type Config = {
+  hasSlot: boolean
   searchable: boolean
   multiselect: boolean
   readonly: boolean
@@ -39,4 +42,5 @@ export type Refs = {
   json: HTMLElement
   search: HTMLInputElement
   input: HTMLInputElement
+  slot: HTMLElement
 }

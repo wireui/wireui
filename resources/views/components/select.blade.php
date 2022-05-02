@@ -1,5 +1,6 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
+        hasSlot:    @boolean($slot->isNotEmpty()),
         searchable:  @boolean($searchable),
         multiselect: @boolean($multiselect),
         readonly:    @boolean($readonly || $disabled),
@@ -10,7 +11,8 @@
             wireModel: @entangle($attributes->wire('model')),
         @endif
     })">
-    <div hidden x-ref="json">{{ $optionsToJson() }}</div>
+    <div hidden x-ref="json">{!! $optionsToJson() !!}</div>
+    <div hidden x-ref="slot">{{ $slot }}</div>
 
     <div class="relative">
         @if ($label)

@@ -2,11 +2,13 @@ import { focusables } from '../modules/focusables'
 import { Select } from './interfaces'
 import { templates } from './templates'
 import { InitOptions, Option, Options, Refs } from './types'
+import baseTemplate from './templates/baseTemplate'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
   $refs: {} as Refs,
   config: {
+    hasSlot: initOptions.hasSlot,
     searchable: initOptions.searchable,
     multiselect: initOptions.multiselect,
     readonly: initOptions.readonly,
@@ -26,7 +28,10 @@ export default (initOptions: InitOptions): Select => ({
   },
   init () {
     this.initWatchers()
-    this.initOptionsObserver()
+
+    this.config.hasSlot
+      ? this.initSlotObserver()
+      : this.initOptionsObserver()
 
     this.hasWireModel
       ? this.initWireModelWatchers()
@@ -83,18 +88,44 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   initOptionsObserver () {
+    const element = this.$refs.json
+    this.options = JSON.parse(element.innerText)
+
     const observer = new MutationObserver(mutations => {
       const textContent = mutations[0]?.target?.textContent ?? '[]'
 
       this.options = JSON.parse(textContent)
     })
 
-    const element = this.$refs.json
-    this.options = JSON.parse(element.innerText)
-
     observer.observe(element, {
       subtree: true,
       characterData: true
+    })
+  },
+  initSlotObserver () {
+    this.syncSlotOptions()
+
+    const element = this.$refs.slot
+    const observer = new MutationObserver(this.syncSlotOptions.bind(this))
+
+    observer.observe(element, {
+      characterData: true,
+      childList: true,
+      subtree: true
+    })
+  },
+  syncSlotOptions () {
+    const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
+
+    this.options = Array.from(elements).flatMap(element => {
+      const json = element.querySelector('[name="wireui.select.json"]')?.textContent
+
+      if (!json) return []
+
+      const option: Option = JSON.parse(json)
+      option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
+
+      return option
     })
   },
   fillSelectedFromInputValue () {
@@ -208,6 +239,10 @@ export default (initOptions: InitOptions): Select => ({
     return this.selected === undefined
   },
   renderOption (option) {
+    if (option.html) {
+      return baseTemplate(option.html)
+    }
+
     if (option.template) {
       const config = initOptions.template?.config ?? {}
 
