@@ -51,6 +51,7 @@ class NativeSelect extends FormComponent
 
         if (
             !($this->optionValue && $this->optionLabel)
+            && $this->options->isNotEmpty()
             && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
             throw new Exception(
@@ -61,6 +62,7 @@ class NativeSelect extends FormComponent
 
         if (
             ($this->optionValue && $this->optionLabel)
+            && $this->options->isNotEmpty()
             && in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
             throw new Exception(
