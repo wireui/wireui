@@ -31,7 +31,7 @@
 
         <x-dynamic-component
             :component="WireUiComponent::resolve('input')"
-            class="cursor-pointer overflow-hidden text-transparent"
+            class="cursor-pointer overflow-hidden text-transparent dark:text-transparent"
             x-ref="input"
             x-on:click="togglePopover"
             x-on:keydown.enter.stop.prevent="togglePopover"
@@ -161,21 +161,25 @@
                 x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                 x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
                 x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
-                <template x-if="asyncData.fetching">
-                    <li class="py-2 px-3 text-secondary-500 cursor-pointer" x-on:click="closePopover">
-                        {{ $loadingMessage ?? __('wireui::messages.loading') }}
-                    </li>
-                </template>
+                <div class="w-full h-0.5 rounded-full relative overflow-hidden"
+                    :class="{
+                        'bg-gray-200 dark:bg-gray-700': asyncData.fetching
+                    }">
+                    <div class="bg-primary-500 h-0.5 rounded-full absolute animate-linear-progress"
+                        style="width: 30%"
+                        x-show="asyncData.fetching">
+                    </div>
+                </div>
 
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                    <div x-html="renderOption(option)"></div>
+                    <div x-transition x-html="renderOption(option)"></div>
                 </template>
 
-                <template x-if="!asyncData.fetching && displayOptions.length === 0">
-                    <li class="py-2 px-3 text-secondary-500 cursor-pointer" x-on:click="closePopover">
-                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
-                    </li>
-                </template>
+                <li class="py-2 px-3 text-secondary-500 cursor-pointer"
+                    x-show="displayOptions.length === 0"
+                    x-on:click="closePopover">
+                    {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                </li>
             </ul>
         </template>
     </div>

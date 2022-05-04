@@ -50,7 +50,8 @@ export type Config = {
 
 export type Refs = {
   json: HTMLElement
-  search: HTMLInputElement
+  search?: HTMLInputElement
   input: HTMLInputElement
   slot: HTMLElement
+  optionsContainer?: HTMLElement
 }

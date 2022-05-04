@@ -63,6 +63,8 @@ export default (initOptions: InitOptions): Select => ({
     })
 
     this.$watch('search', (search: string) => {
+      this.$refs.optionsContainer?.scroll({ top: 0, left: 0, behavior: 'smooth' })
+
       if (this.asyncData.api) {
         return this.fetchOptions()
       }
@@ -87,10 +89,12 @@ export default (initOptions: InitOptions): Select => ({
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
 
-        if (this.mustSyncWireModel()) {
+        if (this.mustSyncWireModel() && !this.asyncData.api) {
           this.selectedOptions = options.map(value => {
             return this.options.find(option => option.value === value)
           }).filter((option: Option | undefined) => option !== undefined) as Options
+        } else if (this.mustSyncWireModel() && this.asyncData.api) {
+          this.fetchSelected()
         }
       })
     }
@@ -101,11 +105,21 @@ export default (initOptions: InitOptions): Select => ({
       })
 
       this.$watch('wireModel', value => {
-        this.selected = this.options.find(option => option.value === value)
+        if (value === null || value === '') {
+          return (this.selected = undefined)
+        }
+
+        const selected = this.options.find(option => option.value === value)
+
+        if (value && selected) {
+          this.selected = selected
+        } else if (value && !selected && this.asyncData.api) {
+          this.fetchSelected()
+        }
       })
     }
 
-    if (this.wireModel) {
+    if (this.wireModel && this.asyncData.api) {
       this.fetchSelected()
     }
   },
@@ -166,9 +180,17 @@ export default (initOptions: InitOptions): Select => ({
       })
   },
   fetchSelected () {
-    fetch(`${this.asyncData.api}?find=${this.wireModel}`)
+    const queryParams = this.config.multiselect
+      ? this.wireModel.map(id => `scope[]=${id}`).join('&')
+      : `scope[]=${this.wireModel}`
+
+    fetch(`${this.asyncData.api}?${queryParams}`)
       .then(response => response.json())
       .then(rawOptions => {
+        if (this.config.multiselect) {
+          return (this.selectedOptions = rawOptions.map(rawOption => this.mapOption(rawOption)))
+        }
+
         this.selected = this.mapOption(rawOptions[0])
       }).catch(error => {
         reportError(error)
