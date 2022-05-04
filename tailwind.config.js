@@ -29,6 +29,15 @@ module.exports = {
         '5.5': '1.38rem',
         '6.5': '1.63rem',
         '9.5': '2.38rem'
+      },
+      keyframes: {
+        'linear-progress': {
+          '0%': { left: '-30%' },
+          '100%': { left: '100%' }
+        }
+      },
+      animation: {
+        'linear-progress': 'linear-progress 2s linear infinite'
       }
     }
   },
