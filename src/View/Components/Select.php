@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Exception;
 use Illuminate\Support\Collection;
 
 class Select extends NativeSelect
@@ -17,7 +18,6 @@ class Select extends NativeSelect
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
         public ?string $emptyMessage = null,
-        public ?string $loadingMessage = null,
         public ?string $asyncData = null,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
@@ -37,6 +37,15 @@ class Select extends NativeSelect
         if (gettype($template) === 'string') {
             $this->template = ['name' => $template];
         }
+
+        $this->validateConfig();
+    }
+
+    private function validateConfig(): void
+    {
+        if ($this->options && $this->asyncData) {
+            throw new Exception('The {async-data} attribute cannot be used with {options} attribute.');
+        }
     }
 
     protected function getView(): string
@@ -48,7 +57,7 @@ class Select extends NativeSelect
     {
         return $this->options
             ->map(fn (mixed $rawOption, int $index) => array_filter([
-                ...$rawOption,
+                ...$this->optionValue ? $rawOption : [],
                 'label'    => $this->getOptionLabel($rawOption),
                 'value'    => $this->getOptionValue($index, $rawOption),
                 'template' => data_get($rawOption, 'template'),
