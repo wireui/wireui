@@ -11,6 +11,6 @@ return [
         'yesterday' => 'Ieri',
     ],
     'errors' => [
-        'title' => 'Si sono verificati {errors} errori con la tua presentazione',
+        'title' => 'Si sono verificati {errors} errori di validazione della form',
     ],
 ];
