@@ -23,14 +23,22 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model"]\').click();
-                    document.querySelector(\'li[data-value="Array Option 2"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model', 'Array Option 2'))
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model"]\').click();
-                    document.querySelector(\'li[data-value="Array Option 1"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model', 'Array Option 1'));
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Array Option 2'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[1].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model', 'Array Option 2'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Array Option 1'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[0].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model', 'Array Option 1'));
         });
     }
 
@@ -39,14 +47,22 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model2"]\').click();
-                    document.querySelector(\'li[data-value="2"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model2', '2'))
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model2"]\').click();
-                    document.querySelector(\'li[data-value="1"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model2', '1'));
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model2"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('2'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[1].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model2', '2'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model2"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('1'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[0].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model2', '1'));
         });
     }
 
@@ -55,16 +71,22 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model3"]\').click();
-                    document.querySelector(\'li[data-value="A"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'A'))
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'li[data-value="B"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'A,B'))
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'li[data-value="A"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'B'));
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model3"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('A'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[0].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'A'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[1].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'A,B'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[0].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model3', 'B'));
         });
     }
 
@@ -73,10 +95,14 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model4"]\').click();
-                    document.querySelector(\'li[data-value="E"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model4', 'E'));
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model4"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Option E'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[1].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model4', 'E'));
         });
     }
 
@@ -85,12 +111,16 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->script('
-                    document.querySelector(\'input[name="model5"]\').click();
-                    document.querySelector(\'li[data-value="disabled"]\').click();
-                    document.querySelector(\'li[data-value="readonly"]\').click();
-                    document.querySelector(\'li[data-value="normal"]\').click();
-                '))->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model5', 'normal'));
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelector('input[name="model5"]').click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Normal Option 3'))
+                ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                    document.querySelectorAll('ul li')[0].click();
+                    document.querySelectorAll('ul li')[1].click();
+                    document.querySelectorAll('ul li')[2].click();
+                JS))
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model5', 'normal'));
         });
     }
 }
