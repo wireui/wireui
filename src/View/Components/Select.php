@@ -43,7 +43,7 @@ class Select extends NativeSelect
 
     private function validateConfig(): void
     {
-        if ($this->options && $this->asyncData) {
+        if ($this->options->isNotEmpty() && $this->asyncData) {
             throw new Exception('The {async-data} attribute cannot be used with {options} attribute.');
         }
     }
