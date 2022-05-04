@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 class NativeSelect extends FormComponent
 {
-    private const PRIMITIVE_VALUES = [
+    public const PRIMITIVE_VALUES = [
         'string',
         'integer',
         'double',
@@ -56,7 +56,7 @@ class NativeSelect extends FormComponent
         ) {
             throw new Exception(
                 'Inform the {option-value} and {option-label} to use array, model, or object option.'
-                    . '<x-select [...] option-value="id" option-label="name" />'
+                    . ' <x-select [...] option-value="id" option-label="name" />'
             );
         }
 
