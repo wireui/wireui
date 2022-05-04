@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Components;
 
-use Orchestra\Testbench\TestCase;
+use Tests\Unit\UnitTestCase;
 use WireUi\View\Components\Select;
 
-class SelectTest extends TestCase
+class SelectTest extends UnitTestCase
 {
     /** @test */
     public function It_should_throw_an_error_if_async_data_and_options_is_set_together()

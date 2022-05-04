@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Components;
 
-use Orchestra\Testbench\TestCase;
+use Tests\Unit\UnitTestCase;
 use WireUi\View\Components\NativeSelect;
 
-class NativeSelectTest extends TestCase
+class NativeSelectTest extends UnitTestCase
 {
     /**
      * @test
