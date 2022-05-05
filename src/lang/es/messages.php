@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'selectTime' => 'Seleccionar hora',
+    'selectTime'    => 'Seleccionar hora',
     'empty_options' => 'Opciones vacías',
     'searchHere'    => 'Buscar aquí',
     'datePicker'    => [
