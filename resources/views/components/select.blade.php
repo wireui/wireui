@@ -157,6 +157,7 @@
             <ul class="max-h-60 overflow-y-auto select-none"
                 tabindex="-1"
                 x-ref="optionsContainer"
+                name="wireui.select.options.{{ $name }}"
                 x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
                 x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                 x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
