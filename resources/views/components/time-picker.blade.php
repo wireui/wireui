@@ -102,6 +102,7 @@
                     :component="WireUiComponent::resolve('input')"
                     id="search.{{ $attributes->wire('model')->value() }}"
                     label="Select time"
+                    :label="trans('wireui::messages.selectTime')"
                     x-model="search"
                     ::placeholder="input ? input : '12:00'"
                     tabindex="0"

@@ -12,7 +12,12 @@
 @endphp
 
 <{{ $tag }} {{ $attributes->merge($defaultAttributes) }}>
-    <div @if($spinner) wire:loading.remove @endif>
+    <div @if($spinner) 
+            @if (preg_replace('/[^a-zA-Z]+/', '', $spinner))
+                wire:target="{{ $spinner }}"
+            @endif
+            wire:loading.remove 
+        @endif>
         @if ($icon)
             <x-dynamic-component
                 :component="WireUiComponent::resolve('icon')"

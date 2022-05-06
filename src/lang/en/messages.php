@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'selectTime'    => 'Select time',
     'empty_options' => 'Empty Options',
     'loading'       => 'Loading...',
     'searchHere'    => 'Search here',
