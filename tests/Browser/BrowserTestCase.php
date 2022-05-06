@@ -8,12 +8,12 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
-use Livewire\Macros\DuskBrowserMacros;
 use function Livewire\str;
 use Livewire\{Component, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
+use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Providers\WireUiServiceProvider;
 
@@ -30,7 +30,7 @@ class BrowserTestCase extends Dusk\TestCase
             Dusk\Options::withoutUI();
         }
 
-        Browser::mixin(new DuskBrowserMacros);
+        Browser::mixin(new DuskBrowserMacros());
 
         $this->afterApplicationCreated(function () {
             $this->makeACleanSlate();
@@ -59,6 +59,20 @@ class BrowserTestCase extends Dusk\TestCase
 
                 return app()->call(new $class);
             })->middleware('web');
+
+            Route::get('/api/options', function () {
+                return collect([
+                    ['id' => 1, 'name' => 'Pedro'],
+                    ['id' => 2, 'name' => 'Keithy'],
+                    ['id' => 3, 'name' => 'Fernando'],
+                    ['id' => 4, 'name' => 'Andre'],
+                ])->filter(function (array $option) {
+                    return str_contains(
+                        strtolower($option['name']),
+                        strtolower(request()->query('search'))
+                    );
+                })->values();
+            })->name('api.options')->middleware('web');
 
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
 
