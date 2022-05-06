@@ -39,6 +39,8 @@ class Component extends \Livewire\Component
 
     public $model5 = null;
 
+    public $asyncModel = null;
+
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');

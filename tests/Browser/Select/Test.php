@@ -123,4 +123,23 @@ class Test extends BrowserTestCase
                 ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@model5', 'normal'));
         });
     }
+
+    /** @test */
+    public function it_should_load_and_search_options_from_the_api()
+    {
+        $this->browse(function (Browser $browser) {
+            Livewire::visit($browser, Component::class)
+                ->openSelect('asyncModel')
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Pedro'))
+                ->wireuiSelectValue('asyncModel', 0)
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@asyncModel', 1))
+                ->openSelect('asyncModel')
+                ->waitUsing(5, 75, fn () => $browser->assertSee('Pedro'))
+                ->typeSlowly('div[wire\\:key="asyncModel"] input[x-ref="search"]', 'kei')
+                ->pause(1000)
+                ->assertSee('Keithy')
+                ->wireuiSelectValue('asyncModel', 0)
+                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@asyncModel', 2));
+        });
+    }
 }
