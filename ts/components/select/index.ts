@@ -4,6 +4,7 @@ import { templates } from './templates'
 import { InitOptions, Option, Options, Refs } from './types'
 import baseTemplate from './templates/baseTemplate'
 import dataGet from '../../utils/dataGet'
+import { notify } from '../../notifications'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -169,24 +170,49 @@ export default (initOptions: InitOptions): Select => ({
 
     this.asyncData.fetching = true
 
-    fetch(`${this.asyncData.api}?search=${this.search}`)
-      .then(response => response.json())
+    const request = new Request(`${this.asyncData.api}?search=${this.search}`, {
+      method: 'GET',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      })
+    })
+
+    fetch(request)
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(data => {
+            throw new Error(data.message ?? 'Failed to fetch options')
+          })
+        }
+
+        return response.json()
+      })
       .then((rawOptions: any[]) => {
+        if (!Array.isArray(rawOptions)) return
+
         this.options = rawOptions.map(rawOption => this.mapOption(rawOption))
-      }).catch(error => {
-        reportError(error)
+      }).catch((message: Error) => {
+        notify({
+          title: String(message.message),
+          description: 'Try to reload the page',
+          icon: 'error',
+          timeout: 2500
+        })
       }).finally(() => {
         this.asyncData.fetching = false
       })
   },
   fetchSelected () {
     const queryParams = this.config.multiselect
-      ? this.wireModel.map(id => `scope[]=${id}`).join('&')
-      : `scope[]=${this.wireModel}`
+      ? this.wireModel.map(id => `selected[]=${id}`).join('&')
+      : `selected[]=${this.wireModel}`
 
     fetch(`${this.asyncData.api}?${queryParams}`)
       .then(response => response.json())
       .then(rawOptions => {
+        if (!Array.isArray(rawOptions)) return
+
         if (this.config.multiselect) {
           return (this.selectedOptions = rawOptions.map(rawOption => this.mapOption(rawOption)))
         }
