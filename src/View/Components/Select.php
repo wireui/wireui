@@ -29,6 +29,7 @@ class Select extends NativeSelect
         ?string $placeholder = null,
         ?string $optionValue = null,
         ?string $optionLabel = null,
+        ?string $optionSubtitle = null,
         ?string $icon = null,
         $options = null
     ) {
@@ -37,6 +38,7 @@ class Select extends NativeSelect
             $placeholder,
             $optionValue,
             $optionLabel,
+            $optionSubtitle,
             $optionKeyLabel,
             $optionKeyValue,
             $options

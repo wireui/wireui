@@ -143,6 +143,7 @@
                         :component="data_get($option, 'component', $optionComponent)"
                         :label="$getOptionLabel($key, $option)"
                         :value="$getOptionValue($key, $option)"
+                        :subtitle="$getOptionSubtitle($key, $option)"
                         :disabled="data_get($option, 'disabled', false)"
                         :readonly="data_get($option, 'readonly', false)"
                         :option="$option"
