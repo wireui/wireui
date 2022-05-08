@@ -21,6 +21,9 @@
         @endif
     }">
     {!! $label ?? $slot !!}
+    @if ($subtitle)
+        <div class="text-xs text-gray-400">{!! $subtitle !!}</div>
+    @endif
 
     <div class="absolute inset-y-0 right-0 flex items-center pr-4"
         x-show="isSelected('{{ $value }}')">

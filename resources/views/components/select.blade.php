@@ -9,13 +9,15 @@
         optionLabel: '{{ $optionLabel }}',
     })" class="relative" {{ $attributes->only('wire:key') }}>
     <div class="relative">
-        <x-dynamic-component
-            :component="WireUiComponent::resolve('label')"
-            class="mb-1"
-            :label="$label"
-            :has-error="$errors->has($name) ?? false"
-            x-on:click="togglePopover"
-        />
+        @if ($label)
+            <x-dynamic-component
+                :component="WireUiComponent::resolve('label')"
+                class="mb-1"
+                :label="$label"
+                :has-error="$errors->has($name) ?? false"
+                x-on:click="togglePopover"
+            />
+        @endif
 
         <x-dynamic-component
             :component="WireUiComponent::resolve('input')"
@@ -141,6 +143,7 @@
                         :component="data_get($option, 'component', $optionComponent)"
                         :label="$getOptionLabel($key, $option)"
                         :value="$getOptionValue($key, $option)"
+                        :subtitle="$getOptionSubtitle($key, $option)"
                         :disabled="data_get($option, 'disabled', false)"
                         :readonly="data_get($option, 'readonly', false)"
                         :option="$option"

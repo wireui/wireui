@@ -12,6 +12,8 @@ class NativeSelect extends FormComponent
 
     public ?string $optionLabel;
 
+    public ?string $optionSubtitle;
+
     public bool $optionKeyLabel;
 
     public bool $optionKeyValue;
@@ -25,6 +27,7 @@ class NativeSelect extends FormComponent
         ?string $placeholder = null,
         ?string $optionValue = null,
         ?string $optionLabel = null,
+        ?string $optionSubtitle = null,
         bool $optionKeyLabel = false,
         bool $optionKeyValue = false,
         $options = null
@@ -33,6 +36,7 @@ class NativeSelect extends FormComponent
         $this->placeholder    = $placeholder;
         $this->optionValue    = $optionValue;
         $this->optionLabel    = $optionLabel;
+        $this->optionSubtitle = $optionSubtitle;
         $this->optionKeyLabel = $optionKeyLabel;
         $this->optionKeyValue = $optionKeyValue;
         $this->options        = $options;
@@ -77,5 +81,14 @@ class NativeSelect extends FormComponent
         }
 
         return data_get($option, $this->optionLabel);
+    }
+
+    public function getOptionSubtitle($key, $option, $native = false)
+    {
+        $data = data_get($option, $this->optionSubtitle ?? '');
+
+        return $native && !empty($data)
+            ? '- ' . $data
+            : $data;
     }
 }

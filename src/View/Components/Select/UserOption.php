@@ -11,10 +11,11 @@ class UserOption extends Option
         bool $disabled = false,
         ?string $label = null,
         ?string $value = null,
+        ?string $subtitle = null,
         ?string $img = null,
         $option = null
     ) {
-        parent::__construct($readonly, $disabled, $label, $value, $option);
+        parent::__construct($readonly, $disabled, $label, $value, $subtitle, $option);
 
         $this->img = $img;
     }
