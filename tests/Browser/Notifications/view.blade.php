@@ -4,45 +4,70 @@
     <span dusk="value">{{ $value }}</span>
     <span dusk="events">{{ implode(',', $events) }}</span>
 
-    <button dusk="button.test.directive" type="button" @confirmAction({ title: 'Confirm Action' , accept: {
-        label: 'Confirm Directive' , method: 'setValue' , params: 'Accepted' }, reject: { label: 'Cancel Directive' ,
-        method: 'setValue' , params: 'Rejected' } })>
+    <button
+        dusk="button.test.directive"
+        type="button"
+        @confirmAction({
+            title: 'Confirm Action',
+            accept: {
+                label: 'Confirm Directive',
+                method: 'setValue',
+                params: 'Accepted'
+            },
+            reject: {
+                label: 'Cancel Directive',
+                method: 'setValue',
+                params: 'Rejected'
+            }
+        })>
         Confirm action dialog
     </button>
 
-    <button dusk="button.test.simple_notification" wire:click="showSimpleNotification">
+    <button
+        dusk="button.test.simple_notification"
+        wire:click="showSimpleNotification">
         Show Success Notification
     </button>
 
-    <button dusk="button.test.call_confirm_action_with_single_callback"
+    <button
+        dusk="button.test.call_confirm_action_with_single_callback"
         wire:click="showConfirmActionWithSingleCallback">
         Call Confirm Action with single callback
     </button>
 
-    <button dusk="button.clear_events" wire:click="clearEvents">
+    <button
+        dusk="button.clear_events"
+        wire:click="clearEvents">
         clear events
     </button>
 
-    <button dusk="button.test.call_confirm_action_with_multiples_callbacks_and_events"
+    <button
+        dusk="button.test.call_confirm_action_with_multiples_callbacks_and_events"
         wire:click="showConfirmActionWithMultipleCallbacksAndEvents">
         Call Confirm Action with multiples callbacks and events
     </button>
 
-    <button dusk="button.test.js.simple_notification" onclick="addSimpleNotification()">
+    <button
+        dusk="button.test.js.simple_notification"
+        onclick="addSimpleNotification()">
         Fire Simple Notification from js
     </button>
 
-    <button dusk="button.test.js.complex_notification" onclick="firstComplexPersistentNotification()">
+    <button
+        dusk="button.test.js.complex_notification"
+        onclick="firstComplexPersistentNotification()">
         Fire Complex Notification from js
     </button>
 
-    <button dusk="button.test.redirect_on_close_notification" onclick="showNotificationWithRedirectOnClose()">
+    <button
+        dusk="button.test.redirect_on_close_notification"
+        onclick="showNotificationWithRedirectOnClose()">
         Redirect on close Notification
     </button>
 
     @push('scripts')
-    <script>
-        function addSimpleNotification() {
+        <script>
+            function addSimpleNotification() {
                 window.$wireui.notify({
                     title: 'My Simple Notification from js',
                     icon: 'info',
@@ -82,6 +107,6 @@
                     }
                 })
             }
-    </script>
+        </script>
     @endpush
 </div>

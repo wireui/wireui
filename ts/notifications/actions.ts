@@ -48,7 +48,8 @@ export const parseActions = (options: ConfirmationOptions, componentId?: string)
       method: options.method,
       params: options.params
     }, options.accept)
-  } else if (options.emit) {
+  }
+  if (options.emit) {
     options.accept = Object.assign({
       emit: options.emit,
       to: options.to,
