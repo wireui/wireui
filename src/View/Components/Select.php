@@ -56,14 +56,21 @@ class Select extends NativeSelect
     public function optionsToJson(): string
     {
         return $this->options
-            ->map(fn (mixed $rawOption, int $index) => array_filter([
-                ...$this->optionValue ? $rawOption : [],
-                'label'    => $this->getOptionLabel($rawOption),
-                'value'    => $this->getOptionValue($index, $rawOption),
-                'template' => data_get($rawOption, 'template'),
-                'disabled' => data_get($rawOption, 'disabled'),
-                'readonly' => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
-            ]))
+            ->map(function (mixed $rawOption, int $index) {
+                $option = [
+                    'label'    => $this->getOptionLabel($rawOption),
+                    'value'    => $this->getOptionValue($index, $rawOption),
+                    'template' => data_get($rawOption, 'template'),
+                    'disabled' => data_get($rawOption, 'disabled'),
+                    'readonly' => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                ];
+
+                if ($this->optionValue) {
+                    $option = array_merge($rawOption, $option);
+                }
+
+                return array_filter($option);
+            })
             ->values()
             ->toJson();
     }
