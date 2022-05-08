@@ -10,7 +10,7 @@ class Option extends Component
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $label = null,
-        public ?string $value = null,
+        public mixed $value = null,
         public mixed $option = null
     ) {
     }

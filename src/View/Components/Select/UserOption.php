@@ -8,7 +8,7 @@ class UserOption extends Option
         public bool $readonly = false,
         public bool $disabled = false,
         public ?string $label = null,
-        public ?string $value = null,
+        public mixed $value = null,
         public mixed $option = null,
         public ?string $src = null,
     ) {
