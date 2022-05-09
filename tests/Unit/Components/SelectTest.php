@@ -31,8 +31,8 @@ class SelectTest extends UnitTestCase
 
         $this->assertEquals(
             json_encode([
-                ['name' => 'Option 1', 'value' => '1', 'label' => 'Option 1'],
-                ['name' => 'Option 2', 'value' => '2', 'label' => 'Option 2'],
+                ['value' => '1', 'label' => 'Option 1'],
+                ['value' => '2', 'label' => 'Option 2'],
             ]),
             $select->optionsToJson()
         );
@@ -60,7 +60,7 @@ class SelectTest extends UnitTestCase
         $options = [
             ['name' => 'Option 1', 'value' => '1', 'disabled' => true],
             ['name' => 'Option 2', 'value' => '2', 'readonly' => true],
-            ['name' => 'Option 2', 'value' => '2', 'template' => 'option-template'],
+            ['name' => 'Option 3', 'value' => '3', 'template' => 'option-template'],
         ];
 
         $select = new Select(
@@ -71,9 +71,9 @@ class SelectTest extends UnitTestCase
 
         $this->assertEquals(
             json_encode([
-                ['name' => 'Option 1', 'value' => '1', 'disabled' => true, 'label' => 'Option 1', 'readonly' => true],
-                ['name' => 'Option 2', 'value' => '2', 'readonly' => true, 'label' => 'Option 2'],
-                ['name' => 'Option 2', 'value' => '2', 'template' => 'option-template', 'label' => 'Option 2'],
+                ['value' => '1', 'disabled' => true, 'label' => 'Option 1', 'readonly' => true],
+                ['value' => '2', 'readonly' => true, 'label' => 'Option 2'],
+                ['value' => '3', 'template' => 'option-template', 'label' => 'Option 3'],
             ]),
             $select->optionsToJson()
         );
@@ -93,7 +93,6 @@ class SelectTest extends UnitTestCase
         $this->assertEquals(
             json_encode([
                 [
-                    'name'        => 'WireUI',
                     'value'       => 'wireui',
                     'description' => 'The wireui is amazing',
                     'label'       => 'WireUI',
@@ -118,9 +117,7 @@ class SelectTest extends UnitTestCase
         $this->assertEquals(
             json_encode([
                 [
-                    'name'        => 'WireUI',
                     'value'       => 'wireui',
-                    'info'        => 'The wireui is amazing',
                     'label'       => 'WireUI',
                     'description' => 'The wireui is amazing',
                 ],
