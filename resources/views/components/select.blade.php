@@ -1,8 +1,9 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
-        asyncData:   @js($asyncData),
-        optionValue: @js($optionValue),
-        optionLabel: @js($optionLabel),
+        asyncData:         @js($asyncData),
+        optionValue:       @js($optionValue),
+        optionLabel:       @js($optionLabel),
+        optionDescription: @js($optionDescription),
         hasSlot:     @boolean($slot->isNotEmpty()),
         searchable:  @boolean($searchable),
         multiselect: @boolean($multiselect),
@@ -154,7 +155,7 @@
         </template>
 
         <template x-if="popover">
-            <ul class="max-h-60 overflow-y-auto select-none"
+            <ul class="max-h-60 overflow-y-auto overscroll-contain select-none"
                 tabindex="-1"
                 x-ref="optionsContainer"
                 name="wireui.select.options.{{ $name }}"

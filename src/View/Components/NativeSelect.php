@@ -22,6 +22,7 @@ class NativeSelect extends FormComponent
         public ?string $placeholder = null,
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
+        public ?string $optionDescription = null,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
         Collection|array|null $options = null,
@@ -104,8 +105,23 @@ class NativeSelect extends FormComponent
         return data_get($option, $this->optionValue);
     }
 
-    public function getOptionLabel(mixed $option): mixed
+    public function getOptionLabel(mixed $option): string
     {
-        return data_get($option, $this->optionLabel);
+        $label = data_get($option, $this->optionLabel);
+
+        if ($this->optionDescription || data_get($option, 'description')) {
+            return "{$label} - {$this->getOptionDescription($option)}";
+        }
+
+        return $label;
+    }
+
+    public function getOptionDescription(mixed $option): string
+    {
+        if ($this->optionDescription) {
+            return data_get($option, $this->optionDescription);
+        }
+
+        return data_get($option, 'description');
     }
 }
