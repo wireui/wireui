@@ -105,7 +105,7 @@ class NativeSelect extends FormComponent
         return data_get($option, $this->optionValue);
     }
 
-    public function getOptionLabel(mixed $option): string
+    public function getOptionLabel(mixed $option): ?string
     {
         $label = data_get($option, $this->optionLabel);
 
@@ -116,7 +116,7 @@ class NativeSelect extends FormComponent
         return $label;
     }
 
-    public function getOptionDescription(mixed $option): string
+    public function getOptionDescription(mixed $option): ?string
     {
         if ($this->optionDescription) {
             return data_get($option, $this->optionDescription);

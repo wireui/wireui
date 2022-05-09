@@ -22,6 +22,7 @@ export default (initOptions: InitOptions): Select => ({
     disabled: initOptions.disabled,
     optionValue: initOptions.optionValue,
     optionLabel: initOptions.optionLabel,
+    optionDescription: initOptions.optionDescription,
     template: templates[initOptions.template?.name ?? 'default'](initOptions.template?.config ?? {})
   },
   placeholder: initOptions.placeholder,
@@ -222,15 +223,22 @@ export default (initOptions: InitOptions): Select => ({
         reportError(error)
       })
   },
-  mapOption (option) {
-    return {
-      ...option,
-      label: dataGet(option, this.config.optionLabel),
-      value: dataGet(option, this.config.optionValue),
-      template: option.template,
-      disabled: option.disabled,
-      readonly: option.readonly || option.disabled
+  mapOption (rawOption) {
+    const option: Option = {
+      ...rawOption,
+      label: dataGet(rawOption, this.config.optionLabel),
+      value: dataGet(rawOption, this.config.optionValue),
+      description: dataGet(rawOption, 'description'),
+      template: rawOption.template,
+      disabled: rawOption.disabled,
+      readonly: rawOption.readonly || rawOption.disabled
     }
+
+    if (this.config.optionDescription) {
+      option.description = dataGet(rawOption, this.config.optionDescription)
+    }
+
+    return option
   },
   fillSelectedFromInputValue () {
     const inputValue = this.$refs.input.value

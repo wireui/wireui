@@ -78,4 +78,54 @@ class SelectTest extends UnitTestCase
             $select->optionsToJson()
         );
     }
+
+    /** @test */
+    public function it_should_parse_the_description_by_default_key()
+    {
+        $select = new Select(
+            optionLabel: 'name',
+            optionValue: 'value',
+            options: [
+                ['name' => 'WireUI', 'value' => 'wireui', 'description' => 'The wireui is amazing'],
+            ]
+        );
+
+        $this->assertEquals(
+            json_encode([
+                [
+                    'name'        => 'WireUI',
+                    'value'       => 'wireui',
+                    'description' => 'The wireui is amazing',
+                    'label'       => 'WireUI',
+                ],
+            ]),
+            $select->optionsToJson()
+        );
+    }
+
+    /** @test */
+    public function it_should_parse_the_description_by_custom_description_key()
+    {
+        $select = new Select(
+            optionLabel: 'name',
+            optionValue: 'value',
+            optionDescription: 'info',
+            options: [
+                ['name' => 'WireUI', 'value' => 'wireui', 'info' => 'The wireui is amazing'],
+            ]
+        );
+
+        $this->assertEquals(
+            json_encode([
+                [
+                    'name'        => 'WireUI',
+                    'value'       => 'wireui',
+                    'info'        => 'The wireui is amazing',
+                    'label'       => 'WireUI',
+                    'description' => 'The wireui is amazing',
+                ],
+            ]),
+            $select->optionsToJson()
+        );
+    }
 }

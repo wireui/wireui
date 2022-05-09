@@ -55,16 +55,22 @@ class Select extends NativeSelect
         return 'wireui::components.select';
     }
 
+    public function getOptionLabel(mixed $option): string
+    {
+        return data_get($option, $this->optionLabel);
+    }
+
     public function optionsToJson(): string
     {
         return $this->options
             ->map(function (mixed $rawOption, int $index) {
                 $option = [
-                    'label'    => $this->getOptionLabel($rawOption),
-                    'value'    => $this->getOptionValue($index, $rawOption),
-                    'template' => data_get($rawOption, 'template'),
-                    'disabled' => data_get($rawOption, 'disabled'),
-                    'readonly' => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                    'label'       => $this->getOptionLabel($rawOption),
+                    'value'       => $this->getOptionValue($index, $rawOption),
+                    'template'    => data_get($rawOption, 'template'),
+                    'disabled'    => data_get($rawOption, 'disabled'),
+                    'readonly'    => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                    'description' => $this->getOptionDescription($rawOption),
                 ];
 
                 if ($this->optionValue) {

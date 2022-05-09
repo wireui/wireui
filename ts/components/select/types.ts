@@ -33,6 +33,7 @@ export type InitOptions = {
   placeholder: string
   optionValue?: string
   optionLabel?: string
+  optionDescription?: string
   template?: TemplateConfig
   wireModel?: Entangle
 }
@@ -45,6 +46,7 @@ export type Config = {
   disabled: boolean
   optionValue?: string
   optionLabel?: string
+  optionDescription?: string
   template: Template
 }
 

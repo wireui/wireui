@@ -8,18 +8,15 @@ export interface DefaultTemplate extends Template {
 
 export const template: InitTemplate = (): DefaultTemplate => ({
   render (option: Option) {
-    if (option.description) {
-      return baseTemplate(`
+    return baseTemplate(`
       <div>
         ${option.label}
-        <span class="text-xs opacity-75">
-          <br/> ${option.description}
-        </span>
-      </div>
-      `)
-    }
 
-    return baseTemplate(this.renderSelected(option))
+        <span x-show="option.description" class="text-xs opacity-70">
+            <br/> ${option.description}
+          </span>
+      </div>
+    `)
   },
   renderSelected (option) {
     return `<span>${option.label}</span>`

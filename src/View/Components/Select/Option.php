@@ -25,10 +25,11 @@ class Option extends Component
     {
         return collect((array) $this->option)
             ->merge([
-                'label'    => $this->label,
-                'value'    => $this->value,
-                'disabled' => $this->disabled,
-                'readonly' => $this->readonly || $this->disabled,
+                'label'       => $this->label,
+                'value'       => $this->value,
+                'disabled'    => $this->disabled,
+                'readonly'    => $this->readonly || $this->disabled,
+                'description' => $this->description,
             ])
             ->filter()
             ->toJson();

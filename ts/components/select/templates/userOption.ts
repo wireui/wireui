@@ -15,14 +15,26 @@ export interface UserInitTemplate extends InitTemplate {
 export const template: UserInitTemplate = (config): UserTemplate => ({
   config,
   render (option: Option) {
-    return baseTemplate(this.renderSelected(option))
+    return baseTemplate(`
+      <div class="flex items-center gap-x-3">
+        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 rounded-full">
+
+        <div :class="{ 'text-sm': Boolean(option.description) }">
+          ${option.label}
+
+          <span x-show="option.description" class="text-xs opacity-70">
+            <br/> ${option.description}
+          </span>
+        </div>
+      </div>
+    `)
   },
   renderSelected (option) {
     return `
       <div class="flex items-center gap-x-3">
-          <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 rounded-full">
+        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 rounded-full">
 
-          <span>${option.label}</span>
+        <span>${option.label}</span>
       </div>
     `
   },
