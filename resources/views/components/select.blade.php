@@ -155,7 +155,7 @@
         </template>
 
         <template x-if="popover">
-            <ul class="max-h-60 overflow-y-auto overscroll-contain select-none"
+            <ul class="max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
                 tabindex="-1"
                 x-ref="optionsContainer"
                 name="wireui.select.options.{{ $name }}"
