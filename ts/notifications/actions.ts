@@ -1,5 +1,5 @@
 import { ConfirmationOptions } from './options'
-import { LivewireOptions, parseLivewire, parseRedirect } from './parses'
+import { LivewireOptions, LivewireEmitOptions, parseLivewire, parseLivewireEmit, parseRedirect } from './parses'
 
 export interface Action {
   label: string
@@ -10,6 +10,8 @@ export interface Action {
 
 export interface ActionOptions extends Omit<Action, 'execute'> {
   method?: string
+  emit?: string
+  to?: string
   params?: any
   url?: string
   execute?: CallableFunction
@@ -23,6 +25,7 @@ export type Actions = {
 export const parseAction = (options: ActionOptions, componentId?: string): CallableFunction => {
   if (options?.url) return parseRedirect(options.url)
   if (options?.method && componentId) return parseLivewire({ ...options, id: componentId } as LivewireOptions)
+  if (options?.emit) return parseLivewireEmit({ ...options } as LivewireEmitOptions)
 
   return () => null
 }
@@ -43,6 +46,13 @@ export const parseActions = (options: ConfirmationOptions, componentId?: string)
   if (options.method) {
     options.accept = Object.assign({
       method: options.method,
+      params: options.params
+    }, options.accept)
+  }
+  if (options.emit) {
+    options.accept = Object.assign({
+      emit: options.emit,
+      to: options.to,
       params: options.params
     }, options.accept)
   }
