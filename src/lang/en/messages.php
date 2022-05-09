@@ -3,6 +3,7 @@
 return [
     'selectTime'    => 'Select time',
     'empty_options' => 'Empty Options',
+    'loading'       => 'Loading...',
     'searchHere'    => 'Search here',
     'datePicker'    => [
         'months'    => "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']",

@@ -2,10 +2,9 @@
 
 namespace Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use WireUi\Support\SafeEval;
 
-class SafeEvalTest extends TestCase
+class SafeEvalTest extends UnitTestCase
 {
     /** @test */
     public function it_should_assert_directives_regex_matches()

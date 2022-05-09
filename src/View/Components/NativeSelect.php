@@ -2,44 +2,75 @@
 
 namespace WireUi\View\Components;
 
+use Exception;
+use Illuminate\Support\Collection;
+
 class NativeSelect extends FormComponent
 {
-    public ?string $label;
+    public const PRIMITIVE_VALUES = [
+        'string',
+        'integer',
+        'double',
+        'boolean',
+        'NULL',
+    ];
 
-    public ?string $placeholder;
+    public Collection $options;
 
-    public ?string $optionValue;
-
-    public ?string $optionLabel;
-
-    public ?string $optionSubtitle;
-
-    public bool $optionKeyLabel;
-
-    public bool $optionKeyValue;
-
-    /** @var Collection|array|null */
-    public $options;
-
-    /** @param Collection|array|null $options */
     public function __construct(
-        ?string $label = null,
-        ?string $placeholder = null,
-        ?string $optionValue = null,
-        ?string $optionLabel = null,
-        ?string $optionSubtitle = null,
-        bool $optionKeyLabel = false,
-        bool $optionKeyValue = false,
-        $options = null
+        public ?string $label = null,
+        public ?string $placeholder = null,
+        public ?string $optionValue = null,
+        public ?string $optionLabel = null,
+        public ?string $optionDescription = null,
+        public bool $flipOptions = false,
+        public bool $optionKeyValue = false,
+        Collection|array|null $options = null,
     ) {
-        $this->label          = $label;
-        $this->placeholder    = $placeholder;
-        $this->optionValue    = $optionValue;
-        $this->optionLabel    = $optionLabel;
-        $this->optionSubtitle = $optionSubtitle;
-        $this->optionKeyLabel = $optionKeyLabel;
-        $this->optionKeyValue = $optionKeyValue;
-        $this->options        = $options;
+        $this->options = collect($options)->when(
+            $flipOptions,
+            fn (Collection $collection) => $collection->flip()
+        );
+
+        $this->validateConfig();
+    }
+
+    /**
+     * Validate if the select options is set correctly.
+     * @return void
+     * @throws Exception
+     */
+    private function validateConfig(): void
+    {
+        if (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel)) {
+            throw new Exception('The {option-value} and {option-label} attributes must be set together.');
+        }
+
+        if ($this->flipOptions && ($this->optionValue || $this->optionLabel)) {
+            throw new Exception('The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.');
+        }
+
+        if (
+            !($this->optionValue && $this->optionLabel)
+            && $this->options->isNotEmpty()
+            && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+        ) {
+            throw new Exception(
+                'Inform the {option-value} and {option-label} to use array, model, or object option.'
+                    . ' <x-select [...] option-value="id" option-label="name" />'
+            );
+        }
+
+        if (
+            ($this->optionValue && $this->optionLabel)
+            && $this->options->isNotEmpty()
+            && in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+        ) {
+            throw new Exception(
+                'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
+                    . implode(', ', self::PRIMITIVE_VALUES)
+            );
+        }
     }
 
     protected function getView(): string
@@ -65,7 +96,7 @@ class NativeSelect extends FormComponent
                 dark:border-negative-600 dark:text-negative-500';
     }
 
-    public function getOptionValue($key, $option)
+    public function getOptionValue(int|string $key, mixed $option): mixed
     {
         if ($this->optionKeyValue) {
             return $key;
@@ -74,21 +105,23 @@ class NativeSelect extends FormComponent
         return data_get($option, $this->optionValue);
     }
 
-    public function getOptionLabel($key, $option)
+    public function getOptionLabel(mixed $option): ?string
     {
-        if ($this->optionKeyLabel) {
-            return $key;
+        $label = data_get($option, $this->optionLabel);
+
+        if ($this->optionDescription || data_get($option, 'description')) {
+            return "{$label} - {$this->getOptionDescription($option)}";
         }
 
-        return data_get($option, $this->optionLabel);
+        return $label;
     }
 
-    public function getOptionSubtitle($key, $option, $native = false)
+    public function getOptionDescription(mixed $option): ?string
     {
-        $data = data_get($option, $this->optionSubtitle ?? '');
+        if ($this->optionDescription) {
+            return data_get($option, $this->optionDescription);
+        }
 
-        return $native && !empty($data)
-            ? '- ' . $data
-            : $data;
+        return data_get($option, 'description');
     }
 }

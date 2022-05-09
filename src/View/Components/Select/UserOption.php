@@ -4,20 +4,15 @@ namespace WireUi\View\Components\Select;
 
 class UserOption extends Option
 {
-    public ?string $img;
-
     public function __construct(
-        bool $readonly = false,
-        bool $disabled = false,
-        ?string $label = null,
-        ?string $value = null,
-        ?string $subtitle = null,
-        ?string $img = null,
-        $option = null
+        public bool $readonly = false,
+        public bool $disabled = false,
+        public mixed $value = null,
+        public ?string $label = null,
+        public ?string $description = null,
+        public mixed $option = null,
+        public ?string $src = null,
     ) {
-        parent::__construct($readonly, $disabled, $label, $value, $subtitle, $option);
-
-        $this->img = $img;
     }
 
     public function render()

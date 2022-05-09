@@ -10,8 +10,7 @@ $rules = [
     'array_indentation'           => true,
     'array_syntax'                => ['syntax' => 'short'],
     'binary_operator_spaces'      => [
-        'default'   => 'align_single_space',
-        'operators' => ['=>' => 'align_single_space_minimal'],
+        'default' => 'align_single_space_minimal',
     ],
     'blank_line_after_namespace'   => true,
     'blank_line_after_opening_tag' => false,

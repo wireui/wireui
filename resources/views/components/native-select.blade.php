@@ -14,7 +14,7 @@
         $errorClasses() =>  $errors->has($name),
         $colorClasses() => !$errors->has($name),
     ]) }}>
-        @if ($options !== null)
+        @if ($options->isNotEmpty())
             @if ($placeholder)
                 <option value="">{{ $placeholder }}</option>
             @endif
@@ -22,8 +22,7 @@
             @forelse ($options as $key => $option)
                 <option value="{{ $getOptionValue($key, $option) }}"
                     @if(data_get($option, 'disabled', false)) disabled @endif>
-                    {{ $getOptionLabel($key, $option) }}
-                    {{ $getOptionSubtitle($key, $option, true) }}
+                    {{ $getOptionLabel($option) }}
                 </option>
             @empty
                 <option disabled>

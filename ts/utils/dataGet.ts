@@ -1,11 +1,11 @@
 // this script is a refactored code from https://github.com/zhorton34/laravel-js-helpers
 
 export interface DataGet {
-  (target: any, key: string | string[], fallback?: any): any
+  (target: any, key: string | string[] | undefined, fallback?: any): any
 }
 
 export const dataGet: DataGet = (target, path, fallback = undefined) => {
-  if ([null, undefined].includes(target) || ['boolean', 'number', 'string'].includes(typeof target)) {
+  if (!path || [null, undefined].includes(target) || ['boolean', 'number', 'string'].includes(typeof target)) {
     return target
   }
 
@@ -41,3 +41,5 @@ export const dataGet: DataGet = (target, path, fallback = undefined) => {
 
   return find
 }
+
+export default dataGet

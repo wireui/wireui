@@ -6,37 +6,32 @@ use Illuminate\View\Component;
 
 class Option extends Component
 {
-    public bool $readonly;
-
-    public bool $disabled;
-
-    public ?string $label;
-
-    public ?string $value;
-
-    public ?string $subtitle;
-
-    public $option;
-
-    /** @param array|string|null $option */
     public function __construct(
-        bool $readonly = false,
-        bool $disabled = false,
-        ?string $label = null,
-        ?string $value = null,
-        ?string $subtitle = null,
-        $option = null
+        public bool $readonly = false,
+        public bool $disabled = false,
+        public mixed $value = null,
+        public ?string $label = null,
+        public ?string $description = null,
+        public mixed $option = null
     ) {
-        $this->readonly = $readonly;
-        $this->disabled = $disabled;
-        $this->label    = $label;
-        $this->value    = $value;
-        $this->subtitle = $subtitle;
-        $this->option   = $option;
     }
 
     public function render()
     {
         return view('wireui::components.select.option');
+    }
+
+    public function jsonOption(): string
+    {
+        return collect((array) $this->option)
+            ->merge([
+                'label'       => $this->label,
+                'value'       => $this->value,
+                'disabled'    => $this->disabled,
+                'readonly'    => $this->readonly || $this->disabled,
+                'description' => $this->description,
+            ])
+            ->filter()
+            ->toJson();
     }
 }

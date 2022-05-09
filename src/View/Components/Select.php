@@ -2,58 +2,96 @@
 
 namespace WireUi\View\Components;
 
+use Exception;
+use Illuminate\Support\Collection;
+
 class Select extends NativeSelect
 {
-    public bool $clearable;
-
-    public string $rightIcon;
-
-    public string $optionComponent;
-
-    public bool $searchable;
-
-    public bool $multiselect;
-
-    public ?string $icon;
-
-    /** @param Collection|array|null $options */
     public function __construct(
-        string $rightIcon = 'selector',
-        string $optionComponent = 'select.option',
-        bool $clearable = true,
-        bool $searchable = true,
-        bool $multiselect = false,
-        bool $optionKeyLabel = false,
-        bool $optionKeyValue = false,
-        ?string $label = null,
-        ?string $placeholder = null,
-        ?string $optionValue = null,
-        ?string $optionLabel = null,
-        ?string $optionSubtitle = null,
-        ?string $icon = null,
-        $options = null
+        public bool $clearable = true,
+        public bool $searchable = true,
+        public bool $multiselect = false,
+        public string $rightIcon = 'selector',
+        public ?string $icon = null,
+        public ?string $label = null,
+        public ?string $placeholder = null,
+        public ?string $optionValue = null,
+        public ?string $optionLabel = null,
+        public ?string $optionDescription = null,
+        public ?string $emptyMessage = null,
+        public ?string $asyncData = null,
+        public bool $flipOptions = false,
+        public bool $optionKeyValue = false,
+        public string|array|null $template = null,
+        Collection|array|null $options = null,
     ) {
         parent::__construct(
             $label,
             $placeholder,
             $optionValue,
             $optionLabel,
-            $optionSubtitle,
-            $optionKeyLabel,
+            $optionDescription,
+            $flipOptions,
             $optionKeyValue,
-            $options
+            $options,
         );
 
-        $this->clearable       = $clearable;
-        $this->rightIcon       = $rightIcon;
-        $this->optionComponent = $optionComponent;
-        $this->searchable      = $searchable;
-        $this->multiselect     = $multiselect;
-        $this->icon            = $icon;
+        if (gettype($template) === 'string') {
+            $this->template = ['name' => $template];
+        }
+
+        $this->validateConfig();
+    }
+
+    private function validateConfig(): void
+    {
+        if ($this->options->isNotEmpty() && $this->asyncData) {
+            throw new Exception('The {async-data} attribute cannot be used with {options} attribute.');
+        }
     }
 
     protected function getView(): string
     {
         return 'wireui::components.select';
+    }
+
+    public function getOptionLabel(mixed $option): string
+    {
+        return data_get($option, $this->optionLabel);
+    }
+
+    public function optionsToJson(): string
+    {
+        return $this->options
+            ->map(function (mixed $rawOption, int $index) {
+                $option = [
+                    'label'       => $this->getOptionLabel($rawOption),
+                    'value'       => $this->getOptionValue($index, $rawOption),
+                    'template'    => data_get($rawOption, 'template'),
+                    'disabled'    => data_get($rawOption, 'disabled'),
+                    'readonly'    => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                    'description' => $this->getOptionDescription($rawOption),
+                ];
+
+                if ($this->optionValue) {
+                    $option = array_merge($rawOption, $option);
+                }
+
+                if ($this->optionValue && $this->optionValue !== 'value') {
+                    unset($option[$this->optionValue]);
+                }
+
+                if ($this->optionLabel && $this->optionLabel !== 'label') {
+                    unset($option[$this->optionLabel]);
+                }
+
+                if ($this->optionDescription && $this->optionDescription !== 'description') {
+                    unset($option[$this->optionDescription]);
+                }
+
+                return array_filter($option);
+            })
+            ->values()
+            ->toJson();
     }
 }
