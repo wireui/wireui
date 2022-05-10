@@ -74,7 +74,7 @@ class Select extends NativeSelect
                 ];
 
                 if ($this->optionValue) {
-                    $option = array_merge($rawOption, $option);
+                    $option = array_merge((array) $rawOption, $option);
                 }
 
                 if ($this->optionValue && $this->optionValue !== 'value') {
