@@ -46,7 +46,7 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     this.hasWireModel
-      ? this.initWireModelWatchers()
+      ? this.initWireModel()
       : this.fillSelectedFromInputValue()
   },
   initWatchers () {
@@ -78,7 +78,9 @@ export default (initOptions: InitOptions): Select => ({
       this.displayOptions = options
     })
   },
-  initWireModelWatchers () {
+  initWireModel () {
+    this.syncSelectedFromWireModel()
+
     if (this.hasWireModel && this.config.multiselect) {
       this.$watch('selectedOptions', (options: Options) => {
         if (this.mustSyncWireModel()) {
@@ -91,12 +93,10 @@ export default (initOptions: InitOptions): Select => ({
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
 
-        if (this.mustSyncWireModel() && !this.asyncData.api) {
-          this.selectedOptions = options.map(value => {
-            return this.options.find(option => option.value === value)
-          }).filter((option: Option | undefined) => option !== undefined) as Options
-        } else if (this.mustSyncWireModel() && this.asyncData.api) {
-          this.fetchSelected()
+        if (this.mustSyncWireModel()) {
+          this.asyncData.api
+            ? this.fetchSelected()
+            : this.syncSelectedFromWireModel()
         }
       })
     }
@@ -259,6 +259,21 @@ export default (initOptions: InitOptions): Select => ({
       // eslint-disable-next-line no-console
       console.error(error)
     }
+  },
+  syncSelectedFromWireModel () {
+    if (this.config.multiselect) {
+      this.selectedOptions = this.wireModel
+        .map(value => {
+          return this.options.find(option => option.value === value)
+        })
+        .filter((option?: Option) => {
+          return option !== undefined
+        })
+
+      return
+    }
+
+    this.selected = this.options.find(option => option.value === this.wireModel)
   },
   mustSyncWireModel () {
     return this.wireModel?.toString() !== this.selectedOptions.map(option => option.value).toString()
