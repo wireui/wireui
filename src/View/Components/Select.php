@@ -63,7 +63,7 @@ class Select extends NativeSelect
     public function optionsToJson(): string
     {
         return $this->options
-            ->map(function (mixed $rawOption, int $index) {
+            ->map(function ($rawOption, $index): array {
                 $option = [
                     'label'       => $this->getOptionLabel($rawOption),
                     'value'       => $this->getOptionValue($index, $rawOption),
