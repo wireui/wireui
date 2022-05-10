@@ -17,7 +17,7 @@ export interface Select extends Focusables {
   get hasWireModel (): boolean
   init (): void
   initWatchers (): void
-  initWireModelWatchers (): void
+  initWireModel (): void
   initOptionsObserver (): void
   initSlotObserver (): void
   syncSlotOptions (): void
@@ -25,6 +25,7 @@ export interface Select extends Focusables {
   fetchSelected (): void
   mapOption (option: any): Option
   fillSelectedFromInputValue (): void
+  syncSelectedFromWireModel (): void
   mustSyncWireModel (): boolean
   searchOptions (search: string): Options
   togglePopover (): void
