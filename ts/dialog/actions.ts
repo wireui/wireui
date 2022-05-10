@@ -75,6 +75,15 @@ export const parseActions = (options: ConfirmationOptions, componentId?: string)
       action.execute = parseAction(action, componentId)
     }
 
+    if (
+      actionName === 'accept'
+      && !action.color
+      && typeof options.icon === 'string'
+      && ['success', 'error', 'info', 'warning', 'question'].includes(options.icon)
+    ) {
+      action.color = iconsMap[options.icon] ?? options.icon
+    }
+
     if (actionName === 'accept' && !action.color) {
       action.color = 'primary'
     }
