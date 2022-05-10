@@ -36,6 +36,7 @@ export const parseDialog: ParseDialog = (options, componentId?): Dialog => {
     typeof dialog.close === 'object'
     && !dialog.close.color
     && typeof options.icon === 'string'
+    && ['success', 'error', 'info', 'warning', 'question'].includes(options.icon)
   ) {
     dialog.close.color = iconsMap[options.icon] ?? options.icon
   }
