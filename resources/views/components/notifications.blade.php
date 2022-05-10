@@ -51,11 +51,11 @@
                             }">
                             <p class="text-sm font-medium text-secondary-900 dark:text-secondary-400"
                                x-show="notification.title"
-                               x-text="notification.title">
+                               x-html="notification.title">
                             </p>
-                            <p class="text-sm text-secondary-500"
+                            <p class="mt-1 text-sm text-secondary-500"
                                x-show="notification.description"
-                               x-text="notification.description">
+                               x-html="notification.description">
                             </p>
 
                             <!-- actions buttons -->
