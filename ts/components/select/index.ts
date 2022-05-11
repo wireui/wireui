@@ -99,6 +99,10 @@ export default (initOptions: InitOptions): Select => ({
             : this.syncSelectedFromWireModel()
         }
       })
+
+      if (this.wireModel?.length > 0 && this.asyncData.api) {
+        this.fetchSelected()
+      }
     }
 
     if (this.hasWireModel && !this.config.multiselect) {
@@ -119,10 +123,10 @@ export default (initOptions: InitOptions): Select => ({
           this.fetchSelected()
         }
       })
-    }
 
-    if (this.wireModel && this.asyncData.api) {
-      this.fetchSelected()
+      if (this.wireModel && this.asyncData.api) {
+        this.fetchSelected()
+      }
     }
   },
   initOptionsObserver () {
@@ -261,16 +265,10 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   syncSelectedFromWireModel () {
-    if (this.config.multiselect) {
-      this.selectedOptions = this.wireModel
-        .map(value => {
-          return this.options.find(option => option.value === value)
-        })
-        .filter((option?: Option) => {
-          return option !== undefined
-        })
-
-      return
+    if (this.config.multiselect && Array.isArray(this.wireModel)) {
+      return (this.selectedOptions = this.wireModel.flatMap(value => {
+        return this.options.find(option => option.value === value) ?? []
+      }))
     }
 
     this.selected = this.options.find(option => option.value === this.wireModel)
