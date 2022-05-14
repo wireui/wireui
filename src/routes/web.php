@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use WireUi\Controllers\{ButtonController, IconsController, WireUiAssetsController};
 
 Route::name('wireui.')->prefix('/wireui')->group(function () {
-    Route::get('icons/{style}/{icon}', [IconsController::class, 'getIcon'])
+    Route::get('icons/{style}/{icon}', IconsController::class)
         ->where('style', '(outline|solid)')
         ->name('icons');
 
