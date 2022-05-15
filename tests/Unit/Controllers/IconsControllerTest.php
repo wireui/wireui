@@ -14,7 +14,7 @@ class IconsControllerTest extends UnitTestCase
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'image/svg+xml; charset=utf-8')
             ->assertHeader('Cache-Control', 'max-age=31536000, only-if-cached, public')
-            ->assertSee('<svg', escape: false);
+            ->assertSee('<svg', false);
     }
 
     /**
@@ -27,7 +27,7 @@ class IconsControllerTest extends UnitTestCase
             ->assertStatus(200)
             ->assertHeader('Content-Type', 'image/svg+xml; charset=utf-8')
             ->assertHeader('Cache-Control', 'max-age=31536000, only-if-cached, public')
-            ->assertSee('<svg', escape: false);
+            ->assertSee('<svg', false);
     }
 
     public function iconsProvider(): array
