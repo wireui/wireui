@@ -39,7 +39,7 @@ class CircleButton extends Button
         };
     }
 
-    protected function sizes(): array
+    public function sizes(): array
     {
         return [
             '2xs'         => 'w-5 h-5',
@@ -52,7 +52,7 @@ class CircleButton extends Button
         ];
     }
 
-    protected function iconSizes(): array
+    public function iconSizes(): array
     {
         return [
             '2xs'         => 'w-2 h-2',
