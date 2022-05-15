@@ -10,4 +10,11 @@ class WireUiComponentResolver
 
         return $components[$originalComponentName]['alias'];
     }
+
+    public function getComponentClass(string $originalComponentName): string
+    {
+        $components = config('wireui.components');
+
+        return $components[$originalComponentName]['class'];
+    }
 }
