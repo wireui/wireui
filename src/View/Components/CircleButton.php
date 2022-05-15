@@ -5,15 +5,12 @@ namespace WireUi\View\Components;
 class CircleButton extends Button
 {
     public function __construct(
-        bool $rounded = true,
-        bool $squared = false,
         bool $outline = false,
         bool $flat = false,
         ?string $color = null,
         ?string $size = null,
         ?string $label = null,
         ?string $icon = null,
-        ?string $rightIcon = null,
         ?string $spinner = null,
         ?string $loadingDelay = null
     ) {
@@ -39,7 +36,7 @@ class CircleButton extends Button
         };
     }
 
-    protected function sizes(): array
+    public function sizes(): array
     {
         return [
             '2xs'         => 'w-5 h-5',
@@ -52,7 +49,7 @@ class CircleButton extends Button
         ];
     }
 
-    protected function iconSizes(): array
+    public function iconSizes(): array
     {
         return [
             '2xs'         => 'w-2 h-2',
