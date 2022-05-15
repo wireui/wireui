@@ -15,7 +15,7 @@ class ButtonControllerTest extends UnitTestCase
             'type'  => 'primary',
             'label' => 'Click me',
         ]))
-            ->assertSee('<button', escape: false)
+            ->assertSee('<button', false)
             ->assertSee('Click me');
     }
 
@@ -24,7 +24,7 @@ class ButtonControllerTest extends UnitTestCase
         $this->getJson(route('wireui.render.button', [
             ':label' => "strtoupper('Click me')",
         ]))
-            ->assertSee('<button', escape: false)
+            ->assertSee('<button', false)
             ->assertDontSee('CLICK ME');
     }
 
