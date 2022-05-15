@@ -130,7 +130,11 @@ export default (options: InitOptions): DialogComponent => ({
       classes.push('sm:w-6', 'sm:h-6')
     }
 
-    fetch(`/wireui/icons/${icon.style ?? 'outline'}/${icon.name}`)
+    fetch(`/wireui/icons/${icon.style ?? 'outline'}/${icon.name}`, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
       .then(response => response.text())
       .then(text => {
         const svg = new DOMParser().parseFromString(text, 'image/svg+xml').documentElement
@@ -139,7 +143,15 @@ export default (options: InitOptions): DialogComponent => ({
       })
   },
   createButton (options, action) {
-    fetch(`/wireui/button?${new URLSearchParams(options as string)}`)
+    const params = new URLSearchParams(options as string)
+
+    params.delete('execute')
+
+    fetch(`/wireui/button?${params}`, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
       .then(response => response.text())
       .then(html => {
         const button = this.parseHtmlString(html)

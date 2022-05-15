@@ -2,10 +2,9 @@
 
 namespace Tests\Unit;
 
-use Orchestra\Testbench\TestCase;
 use WireUi\Support\SafeEval;
 
-class SafeEvalTest extends TestCase
+class SafeEvalTest extends UnitTestCase
 {
     /** @test */
     public function it_should_assert_directives_regex_matches()
@@ -34,6 +33,7 @@ class SafeEvalTest extends TestCase
             {!! $variable !!}
             <?php echo "text"; ?>
             <?= "text" ?>
+            <? echo "text" ?>
 
             @directive() @endDirective
             @directive($first, $second) @endDirective
@@ -55,6 +55,7 @@ class SafeEvalTest extends TestCase
         $this->assertStringContainsString('$variable', $escaped);
         $this->assertStringContainsString('echo "text";', $escaped);
         $this->assertStringContainsString('"text"', $escaped);
+        $this->assertStringContainsString('echo "text"', $escaped);
         $this->assertStringContainsString('inside content', $escaped);
     }
 }
