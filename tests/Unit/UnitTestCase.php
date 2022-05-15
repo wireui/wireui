@@ -27,7 +27,7 @@ class UnitTestCase extends TestCase
     }
 
     /** Call protected/private method of a class */
-    public function invokeMethod(mixed $object, string $method, array $parameters = [])
+    public function invokeMethod($object, string $method, array $parameters = [])
     {
         $reflection = new ReflectionClass(get_class($object));
         $method     = $reflection->getMethod($method);
