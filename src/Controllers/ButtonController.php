@@ -18,12 +18,10 @@ class ButtonController
 
     public function __invoke(ButtonRequest $request): Response
     {
-        $attributes = new ComponentAttributeBag($request->all());
-
         $blade = <<<EOT
             <x-dynamic-component
                 :component="WireUiComponent::resolve('button')"
-                {$attributes->toHtml()}
+                {$this->attributes($request->all())->toHtml()}
             />
         EOT;
 
@@ -33,5 +31,12 @@ class ButtonController
             'Content-Type'  => 'text/html; charset=utf-8',
             'Cache-Control' => 'public, only-if-cached, max-age=31536000',
         ]);
+    }
+
+    protected function attributes(array $attributes): ComponentAttributeBag
+    {
+        $attributes = new ComponentAttributeBag($attributes);
+
+        return $attributes->whereDoesntStartWith(':');
     }
 }

@@ -2,8 +2,10 @@
 
 namespace Tests\Unit\Controllers;
 
+use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Unit\UnitTestCase;
+use WireUi\Controllers\ButtonController;
 
 class ButtonControllerTest extends UnitTestCase
 {
@@ -15,6 +17,35 @@ class ButtonControllerTest extends UnitTestCase
         ]))
             ->assertSee('<button', escape: false)
             ->assertSee('Click me');
+    }
+
+    public function test_if_the_malicious_attributes_are_ignored()
+    {
+        $this->getJson(route('wireui.render.button', [
+            ':label' => "strtoupper('Click me')",
+        ]))
+            ->assertSee('<button', escape: false)
+            ->assertDontSee('CLICK ME');
+    }
+
+    public function test_if_the_attributes_safe_filtered()
+    {
+        $attributes = [
+            'color'  => 'primary',
+            ':label' => "strtoupper('Click me')",
+            ':type'  => "config('app.name')",
+        ];
+
+        /** @var ButtonController $controller */
+        $controller = resolve(ButtonController::class);
+
+        /** @var ComponentAttributeBag $filteredAttributes */
+        $filteredAttributes = $this->invokeMethod($controller, 'attributes', [$attributes]);
+
+        $this->assertSame(
+            ['color' => 'primary'],
+            $filteredAttributes->getAttributes()
+        );
     }
 
     /**
