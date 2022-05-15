@@ -33,6 +33,7 @@ class SafeEvalTest extends UnitTestCase
             {!! $variable !!}
             <?php echo "text"; ?>
             <?= "text" ?>
+            <? echo "text" ?>
 
             @directive() @endDirective
             @directive($first, $second) @endDirective
@@ -54,6 +55,7 @@ class SafeEvalTest extends UnitTestCase
         $this->assertStringContainsString('$variable', $escaped);
         $this->assertStringContainsString('echo "text";', $escaped);
         $this->assertStringContainsString('"text"', $escaped);
+        $this->assertStringContainsString('echo "text"', $escaped);
         $this->assertStringContainsString('inside content', $escaped);
     }
 }

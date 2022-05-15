@@ -2,8 +2,9 @@
 
 namespace WireUi\Controllers;
 
-use Illuminate\Http\{Request, Response};
+use Illuminate\Http\Response;
 use Illuminate\View\ComponentAttributeBag;
+use WireUi\Http\Requests\ButtonRequest;
 use WireUi\Support\BladeCompiler;
 
 class ButtonController
@@ -15,7 +16,7 @@ class ButtonController
         $this->compiler = $compiler;
     }
 
-    public function render(Request $request): Response
+    public function __invoke(ButtonRequest $request): Response
     {
         $attributes = new ComponentAttributeBag($request->all());
 
