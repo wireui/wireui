@@ -157,13 +157,13 @@ abstract class BaseButton extends Component
         return $modifiers[$modifier];
     }
 
-    abstract protected function outlineColors(): array;
+    abstract public function outlineColors(): array;
 
-    abstract protected function flatColors(): array;
+    abstract public function flatColors(): array;
 
-    abstract protected function defaultColors(): array;
+    abstract public function defaultColors(): array;
 
-    abstract protected function sizes(): array;
+    abstract public function sizes(): array;
 
-    abstract protected function iconSizes(): array;
+    abstract public function iconSizes(): array;
 }

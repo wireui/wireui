@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 class Button extends BaseButton
 {
-    protected function outlineColors(): array
+    public function outlineColors(): array
     {
         return [
             self::DEFAULT => <<<EOT
@@ -165,7 +165,7 @@ class Button extends BaseButton
         ];
     }
 
-    protected function flatColors(): array
+    public function flatColors(): array
     {
         return [
             self::DEFAULT => <<<EOT
@@ -325,7 +325,7 @@ class Button extends BaseButton
         ];
     }
 
-    protected function defaultColors(): array
+    public function defaultColors(): array
     {
         return [
             self::DEFAULT => <<<EOT
@@ -517,7 +517,7 @@ class Button extends BaseButton
         ];
     }
 
-    protected function sizes(): array
+    public function sizes(): array
     {
         return [
             '2xs'         => 'gap-x-0.5 text-2xs px-2 py-0.5',
@@ -530,20 +530,7 @@ class Button extends BaseButton
         ];
     }
 
-    protected function circleSizes(): array
-    {
-        return [
-            '2xs'         => 'text-2xs p-1.5',
-            'xs'          => 'gap-x-1 text-xs p-2',
-            'sm'          => 'gap-x-2 text-sm p-2.5',
-            self::DEFAULT => 'gap-x-2 text-sm p-3.5',
-            'md'          => 'gap-x-2 text-base p-4',
-            'lg'          => 'gap-x-2 text-base p-5',
-            'xl'          => 'gap-x-3 text-base p-5.5',
-        ];
-    }
-
-    protected function iconSizes(): array
+    public function iconSizes(): array
     {
         return [
             '2xs'         => 'w-2 h-2',
