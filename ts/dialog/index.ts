@@ -43,7 +43,7 @@ export interface ShowDialog {
 }
 
 export interface ShowConfirmDialog {
-  (options: ConfirmationOptions, componentId?: string): void
+  (options: ConfirmationOptions, componentId?: string | null): void
 }
 
 export interface Dialogs {

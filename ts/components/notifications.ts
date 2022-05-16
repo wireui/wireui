@@ -10,7 +10,9 @@ export default (): Notifications => ({
   notifications: [],
 
   init () {
-    window.Wireui.dispatchHook('notifications:load')
+    this.$nextTick(() => {
+      window.Wireui.dispatchHook('notifications:load')
+    })
   },
   proccessNotification (notification) {
     notification.id = uuid()
