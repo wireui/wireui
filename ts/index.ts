@@ -1,5 +1,4 @@
 import { notify, confirmNotification, Notify, Confirm } from './notifications'
-import { confirmAction, ConfirmAction } from './confirmAction'
 import { showDialog, showConfirmDialog, ShowConfirmDialog, ShowDialog } from './dialog'
 import { dataGet, DataGet } from './utils/dataGet'
 import { Alpine } from './components/alpine'
@@ -12,7 +11,7 @@ import './global'
 export interface WireUi {
   notify: Notify
   confirmNotification: Confirm
-  confirmAction: ConfirmAction
+  confirmAction: ShowConfirmDialog
   dialog: ShowDialog
   confirmDialog: ShowConfirmDialog
   dataGet: DataGet
@@ -31,7 +30,7 @@ declare global {
 const wireui = {
   notify,
   confirmNotification,
-  confirmAction,
+  confirmAction: showConfirmDialog,
   dialog: showDialog,
   confirmDialog: showConfirmDialog,
   dataGet
