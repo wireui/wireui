@@ -56,7 +56,9 @@ export default (options: InitOptions): DialogComponent => ({
   dialog: null,
 
   init () {
-    window.Wireui.dispatchHook(`${options.id}:load`)
+    this.$nextTick(() => {
+      window.Wireui.dispatchHook(`${options.id}:load`)
+    })
   },
   dismiss () {
     this.close()
