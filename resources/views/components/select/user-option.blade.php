@@ -1,5 +1,5 @@
 <x-dynamic-component
-    :component="WireUiComponent::resolve('select.option')"
+    :component="WireUi::component('select.option')"
     :value="$value"
     :label="$label"
     :description="$description"

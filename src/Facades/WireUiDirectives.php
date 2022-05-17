@@ -3,7 +3,7 @@
 namespace WireUi\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use WireUi\BladeDirectives;
+use WireUi\Support\BladeDirectives;
 
 /**
  * @method static string scripts(bool $absolute = true)

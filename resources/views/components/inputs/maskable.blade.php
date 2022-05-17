@@ -5,7 +5,7 @@
     mask: {{ $mask }},
 })" {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
-        :component="WireUiComponent::resolve('input')"
+        :component="WireUi::component('input')"
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"

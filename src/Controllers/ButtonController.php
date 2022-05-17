@@ -20,7 +20,7 @@ class ButtonController
     {
         $blade = <<<EOT
             <x-dynamic-component
-                :component="WireUiComponent::resolve('button')"
+                :component="WireUi::component('button')"
                 {$this->attributes($request->all())->toHtml()}
             />
         EOT;

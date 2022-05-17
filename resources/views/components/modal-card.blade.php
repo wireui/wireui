@@ -1,5 +1,5 @@
 <x-dynamic-component
-    :component="WireUiComponent::resolve('modal')"
+    :component="WireUi::component('modal')"
     {{ $attributes }}
     :spacing="$fullscreen ? '' : $spacing"
     :z-index="$zIndex"
@@ -8,7 +8,7 @@
     :blur="$blur"
 >
     <x-dynamic-component
-        :component="WireUiComponent::resolve('card')"
+        :component="WireUi::component('card')"
         :title="$title"
         :rounded="$squared || $fullscreen ? '' : $rounded"
         :card-classes="$fullscreen ? 'min-h-screen' : ''"
@@ -24,7 +24,7 @@
                 <button class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                         x-on:click="close">
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         name="x"
                         class="w-5 h-5"
                     />

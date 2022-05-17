@@ -4,14 +4,14 @@ namespace WireUi\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use WireUi\Facades\WireUiComponent;
+use WireUi\Facades\WireUi;
 use WireUi\View\Components\BaseButton;
 
 class ButtonRequest extends FormRequest
 {
     public function rules(): array
     {
-        $buttonClass = WireUiComponent::getComponentClass('button');
+        $buttonClass = WireUi::components()->resolveClass('button');
 
         /** @var BaseButton $button */
         $button = new $buttonClass();

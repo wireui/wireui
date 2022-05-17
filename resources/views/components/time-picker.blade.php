@@ -17,7 +17,7 @@
     {{ $attributes->only('wire:key') }}>
     <div class="relative">
         <x-dynamic-component
-            :component="WireUiComponent::resolve('input')"
+            :component="WireUi::component('input')"
             {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
             :borderless="$borderless"
             :shadowless="$shadowless"
@@ -38,7 +38,7 @@
                             :'text-secondary-400'
                         }}">
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
+                            :component="WireUi::component('icon')"
                             class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
                             name="x"
@@ -47,7 +47,7 @@
                         />
 
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
+                            :component="WireUi::component('icon')"
                             class="cursor-pointer w-5 h-5"
                             name="clock"
                             x-show="!config.readonly && !config.disabled"
@@ -92,14 +92,14 @@
                 x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
                 <button type="button" class="cursor-pointer hidden sm:flex absolute top-2 right-2 focus:outline-none" x-on:click="closePicker">
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         class="w-4 h-4 text-secondary-400 hover:text-negative-400 transition-all ease-out duration-150"
                         name="x"
                     />
                 </button>
 
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('input')"
+                    :component="WireUi::component('input')"
                     id="search.{{ $attributes->wire('model')->value() }}"
                     label="Select time"
                     :label="trans('wireui::messages.selectTime')"
@@ -127,7 +127,7 @@
                                          right-0 flex items-center pr-4 dark:text-secondary-400"
                                 x-show="input === time">
                                 <x-dynamic-component
-                                    :component="WireUiComponent::resolve('icon')"
+                                    :component="WireUi::component('icon')"
                                     name="check"
                                     class="h-5 w-5"
                                 />

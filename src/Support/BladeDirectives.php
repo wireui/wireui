@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi;
+namespace WireUi\Support;
 
 use WireUi\Actions\Minify;
 

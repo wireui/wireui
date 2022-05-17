@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use WireUi\BladeDirectives;
+use WireUi\Support\BladeDirectives;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\WireUiTagCompiler;
 
