@@ -6,4 +6,5 @@ tests/Browser/source
 .phpunit.result.cache
 yarn-error.log
 .idea
+.vscode
 .php-cs-fixer.cache
