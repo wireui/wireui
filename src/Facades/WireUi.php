@@ -12,7 +12,7 @@ use WireUi\Support\{BladeDirectives, ComponentResolver};
  */
 class WireUi extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \WireUi\Wireui::class;
     }
