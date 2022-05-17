@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { describe, it } from 'mocha'
-import { makeTimes } from '../../../../ts/components/datetime-picker/makeTimes'
+import { makeTimes } from '../../../ts/components/datetime-picker/makeTimes'
 
 describe('Test the make times function', () => {
   it('should generate AM/PM times for a given interval', () => {

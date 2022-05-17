@@ -9,7 +9,7 @@
         "lint": "eslint . --ext .ts",
         "watch": "mix watch",
         "build": "mix --production",
-        "test": "yarn test:path ts-tests/**/*.spec.ts",
+        "test": "yarn test:path tests/TypeScript/**/*.spec.ts",
         "test:path": "mocha -r ts-node/register -r jsdom-global/register"
     },
     "dependencies": {
