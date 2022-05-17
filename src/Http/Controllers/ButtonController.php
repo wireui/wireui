@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Controllers;
+namespace WireUi\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\View\ComponentAttributeBag;
