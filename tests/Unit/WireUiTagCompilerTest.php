@@ -2,9 +2,8 @@
 
 namespace Tests\Unit;
 
-use WireUi\Support\BladeDirectives;
 use WireUi\Facades\WireUiDirectives;
-use WireUi\Support\WireUiTagCompiler;
+use WireUi\Support\{BladeDirectives, WireUiTagCompiler};
 
 class WireUiTagCompilerTest extends UnitTestCase
 {
@@ -43,7 +42,7 @@ class WireUiTagCompilerTest extends UnitTestCase
     {
         $bladeDirectives = new BladeDirectives();
         $hooksScript     = $bladeDirectives->hooksScript();
-        $wireuiScript    = '<script src="/wireui/assets/scripts" async></script>';
+        $wireuiScript    = '<script src="/wireui/assets/scripts" defer></script>';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
             $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
