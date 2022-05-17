@@ -74,7 +74,6 @@ $rules = [
 $finder = Finder::create();
 
 $finder->in([
-    __DIR__ . '/config',
     __DIR__ . '/src',
     __DIR__ . '/tests',
 ]);

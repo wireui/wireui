@@ -45,7 +45,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->publishes([
-            "{$rootDir}/config/wireui.php" => config_path('wireui.php'),
+            "{$rootDir}/src/config/wireui.php" => config_path('wireui.php'),
         ], 'wireui.config');
 
         $this->publishes([
