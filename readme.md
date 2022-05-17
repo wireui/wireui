@@ -26,7 +26,7 @@ If you are looking for the version with support to tailwind v2, please check out
 
 <div align="center">
     <p>
-        <img  src="images/features.png" alt="Wire UI Features"/>
+        <img  src="resources/images/features.png" alt="Wire UI Features"/>
     </p>
 </div>
 
