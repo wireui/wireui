@@ -25,5 +25,5 @@ module.exports = plugin(function ({ addUtilities }) {
     }
   }
 
-  addUtilities(utility, ['dark'])
+  addUtilities(utility, ['dark', 'responsive'])
 })
