@@ -3,7 +3,7 @@
 namespace WireUi\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use WireUi\WireUiBladeDirectives;
+use WireUi\BladeDirectives;
 
 /**
  * @method static string scripts(bool $absolute = true)
@@ -17,6 +17,6 @@ class WireUiDirectives extends Facade
 {
     protected static function getFacadeAccessor()
     {
-        return WireUiBladeDirectives::class;
+        return BladeDirectives::class;
     }
 }

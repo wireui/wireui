@@ -4,7 +4,7 @@ namespace WireUi;
 
 use WireUi\Actions\Minify;
 
-class WireUiBladeDirectives
+class BladeDirectives
 {
     public function scripts(bool $absolute = true): string
     {
