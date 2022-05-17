@@ -41,7 +41,7 @@ class WireUiServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom("{$rootDir}/resources/views", 'wireui');
         $this->loadTranslationsFrom("{$rootDir}/src/lang", 'wireui');
-        $this->mergeConfigFrom("{$rootDir}/config/wireui.php", 'wireui');
+        $this->mergeConfigFrom("{$rootDir}/src/config/wireui.php", 'wireui');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->publishes([
