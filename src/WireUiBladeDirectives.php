@@ -13,7 +13,7 @@ class WireUiBladeDirectives
 
         return <<<HTML
         <script>{$this->hooksScript()}</script>
-        <script src="{$route}" defer></script>
+        <script src="{$route}" async></script>
         HTML;
     }
 
