@@ -47,6 +47,7 @@
             "./vendor/bin/dusk-updater detect --no-interaction"
         ],
         "test": "./vendor/bin/phpunit --configuration phpunit.xml",
+        "test:ci": "CI=true ./vendor/bin/phpunit --configuration phpunit.xml",
         "phpcs": "./vendor/bin/php-cs-fixer fix"
     },
     "extra": {
