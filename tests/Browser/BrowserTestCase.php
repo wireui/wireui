@@ -135,7 +135,7 @@ class BrowserTestCase extends Dusk\TestCase
 
     protected function resolveApplicationHttpKernel($app)
     {
-        $app->singleton(\Illuminate\Contracts\Http\Kernel::class, \Tests\HttpKernel::class);
+        $app->singleton(\Illuminate\Contracts\Http\Kernel::class, HttpKernel::class);
     }
 
     protected function livewireClassesPath($path = '')
