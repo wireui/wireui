@@ -1,7 +1,7 @@
 {
     "name": "wireui",
     "version": "1.0.0",
-    "description": "Livewire ui components with tailwind base style",
+    "description": "TallStack components",
     "repository": "git@github.com:wireui/wireui.git",
     "author": "PH7-Jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
