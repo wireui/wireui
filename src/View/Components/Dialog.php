@@ -2,7 +2,7 @@
 
 namespace WireUi\View\Components;
 
-use WireUi\Support;
+use WireUi\Actions;
 
 class Dialog extends Modal
 {
@@ -20,12 +20,12 @@ class Dialog extends Modal
         ?string $id = null,
         ?string $title = null,
         ?string $description = null,
-        $blur = null
+        ?string $blur = null
     ) {
         parent::__construct($zIndex, $maxWidth, $spacing, $align, $blur);
 
         $this->title       = $title;
-        $this->dialog      = Support\Dialog::makeEventName($id);
+        $this->dialog      = Actions\Dialog::makeEventName($id);
         $this->description = $description;
     }
 
