@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Support;
+namespace WireUi\Actions;
 
 use Illuminate\Support\Str;
 
