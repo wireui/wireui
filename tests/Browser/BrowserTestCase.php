@@ -24,7 +24,7 @@ class BrowserTestCase extends Dusk\TestCase
 
     public static $useSafari = false;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($_SERVER['CI'])) {
             Dusk\Options::withoutUI();
