@@ -1,6 +1,6 @@
 {
     "name": "wireui/wireui",
-    "description": "Livewire ui components with tailwind base style",
+    "description": "TallStack components",
     "type": "library",
     "keywords": [
         "livewire components",
@@ -10,7 +10,7 @@
         "blade components"
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|8.1",
         "laravel/framework": "^8.80|^9.0",
         "livewire/livewire": "^2.10"
     },
