@@ -13,7 +13,7 @@ class WireUiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->registerViews();
+        $this->registerConfig();
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
         $this->registerTagCompiler();
@@ -35,7 +35,7 @@ class WireUiServiceProvider extends ServiceProvider
         }
     }
 
-    protected function registerViews(): void
+    protected function registerConfig(): void
     {
         $rootDir = __DIR__ . '/../..';
 
@@ -71,30 +71,30 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerBladeDirectives(): void
     {
-        Blade::directive('confirmAction', function (string $expression) {
+        Blade::directive('confirmAction', static function (string $expression): string {
             return WireUiDirectives::confirmAction($expression);
         });
 
-        Blade::directive('notify', function (string $expression) {
+        Blade::directive('notify', static function (string $expression): string {
             return WireUiDirectives::notify($expression);
         });
 
-        Blade::directive('wireUiScripts', function () {
+        Blade::directive('wireUiScripts', static function (): string {
             return WireUiDirectives::scripts();
         });
 
-        Blade::directive('wireUiStyles', function () {
+        Blade::directive('wireUiStyles', static function (): string {
             return WireUiDirectives::styles();
         });
 
-        Blade::directive('boolean', function ($value) {
+        Blade::directive('boolean', static function ($value): string {
             return WireUiDirectives::boolean($value);
         });
     }
 
     protected function registerBladeComponents(): void
     {
-        $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade) {
+        $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
             foreach (config('wireui.components') as $component) {
                 $blade->component($component['class'], $component['alias']);
             }
