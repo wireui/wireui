@@ -2,7 +2,7 @@
     <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
         @if ($leftLabel)
             <x-dynamic-component
-                :component="WireUiComponent::resolve('label')"
+                :component="WireUi::component('label')"
                 class="mr-2"
                 :for="$id"
                 :label="$leftLabel"
@@ -18,7 +18,7 @@
 
         @if ($label)
             <x-dynamic-component
-                :component="WireUiComponent::resolve('label')"
+                :component="WireUi::component('label')"
                 class="ml-2"
                 :for="$id"
                 :label="$label"
@@ -29,7 +29,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="WireUiComponent::resolve('error')"
+            :component="WireUi::component('error')"
             :name="$name"
         />
     @endif

@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Controllers;
+namespace WireUi\Http\Controllers;
 
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;

@@ -21,7 +21,7 @@
     <div class="relative">
         @if ($label)
             <x-dynamic-component
-                :component="WireUiComponent::resolve('label')"
+                :component="WireUi::component('label')"
                 class="mb-1"
                 :label="$label"
                 :has-error="$name && $errors->has($name)"
@@ -31,7 +31,7 @@
         @endif
 
         <x-dynamic-component
-            :component="WireUiComponent::resolve('input')"
+            :component="WireUi::component('input')"
             class="cursor-pointer overflow-hidden text-transparent dark:text-transparent"
             x-ref="input"
             x-on:click="togglePopover"
@@ -83,7 +83,7 @@
                                             tabindex="-1"
                                             type="button">
                                             <x-dynamic-component
-                                                :component="WireUiComponent::resolve('icon')"
+                                                :component="WireUi::component('icon')"
                                                 class="h-3 w-3"
                                                 name="x"
                                             />
@@ -106,7 +106,7 @@
                             type="button"
                             x-cloak>
                             <x-dynamic-component
-                                :component="WireUiComponent::resolve('icon')"
+                                :component="WireUi::component('icon')"
                                 class="w-4 h-4 text-secondary-400 hover:text-negative-400"
                                 name="x"
                             />
@@ -115,7 +115,7 @@
 
                     <button tabindex="-1" x-on:click="togglePopover" type="button">
                         <x-dynamic-component
-                            :component="WireUiComponent::resolve('icon')"
+                            :component="WireUi::component('icon')"
                             class="w-5 h-5
                             {{ $name && $errors->has($name)
                                 ? 'text-negative-400 dark:text-negative-600'
@@ -141,7 +141,7 @@
         <template x-if="asyncData.api || (config.searchable && options.length > 10)">
             <div class="px-2 my-2" wire:key="search.options">
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('input')"
+                    :component="WireUi::component('input')"
                     class="bg-slate-100"
                     x-ref="search"
                     x-model.debounce.{{ $asyncData ? 750 : 0 }}ms="search"

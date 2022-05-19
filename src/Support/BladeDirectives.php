@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi;
+namespace WireUi\Support;
 
 use WireUi\Actions\Minify;
 
-class WireUiBladeDirectives
+class BladeDirectives
 {
     public function scripts(bool $absolute = true): string
     {

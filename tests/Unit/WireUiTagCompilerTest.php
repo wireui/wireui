@@ -3,8 +3,7 @@
 namespace Tests\Unit;
 
 use WireUi\Facades\WireUiDirectives;
-use WireUi\Support\WireUiTagCompiler;
-use WireUi\WireUiBladeDirectives;
+use WireUi\Support\{BladeDirectives, WireUiTagCompiler};
 
 class WireUiTagCompilerTest extends UnitTestCase
 {
@@ -41,7 +40,7 @@ class WireUiTagCompilerTest extends UnitTestCase
     /** @test */
     public function it_should_match_rendered_scripts_link()
     {
-        $bladeDirectives = new WireUiBladeDirectives();
+        $bladeDirectives = new BladeDirectives();
         $hooksScript     = $bladeDirectives->hooksScript();
         $wireuiScript    = '<script src="/wireui/assets/scripts" defer></script>';
 
@@ -58,7 +57,7 @@ class WireUiTagCompilerTest extends UnitTestCase
     /** @test */
     public function it_should_match_rendered_styles_link()
     {
-        $bladeDirectives = new WireUiBladeDirectives();
+        $bladeDirectives = new BladeDirectives();
         $expected        = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.css')) {

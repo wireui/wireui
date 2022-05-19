@@ -2,7 +2,7 @@
     <div class="flex items-center">
         @if ($leftLabel)
             <x-dynamic-component
-                :component="WireUiComponent::resolve('label')"
+                :component="WireUi::component('label')"
                 :for="$id"
                 class="mr-2"
                 :label="$leftLabel"
@@ -24,7 +24,7 @@
 
         @if ($label)
             <x-dynamic-component
-                :component="WireUiComponent::resolve('label')"
+                :component="WireUi::component('label')"
                 :for="$id"
                 class="ml-2"
                 :label="$label"
@@ -35,7 +35,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="WireUiComponent::resolve('error')"
+            :component="WireUi::component('error')"
             :name="$name"
         />
     @endif

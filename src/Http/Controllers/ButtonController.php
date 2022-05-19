@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\Controllers;
+namespace WireUi\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Http\Requests\ButtonRequest;
 use WireUi\Support\BladeCompiler;
 
-class ButtonController
+class ButtonController extends Controller
 {
     private BladeCompiler $compiler;
 
@@ -20,7 +20,7 @@ class ButtonController
     {
         $blade = <<<EOT
             <x-dynamic-component
-                :component="WireUiComponent::resolve('button')"
+                :component="WireUi::component('button')"
                 {$this->attributes($request->all())->toHtml()}
             />
         EOT;

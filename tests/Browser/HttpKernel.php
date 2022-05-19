@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Browser;
 
 use Illuminate\Foundation\Http\Kernel;
 

@@ -2,17 +2,29 @@
 
 namespace WireUi\Traits;
 
-use WireUi\Support\{Dialog, Notification};
+use WireUi\Actions\{Dialog, Notification};
 
 trait Actions
 {
-    public function notification(): Notification
+    public function notification(array $options = []): Notification
     {
-        return new Notification($this);
+        $notification = new Notification($this);
+
+        if ($options) {
+            return $notification->send($options);
+        }
+
+        return $notification;
     }
 
-    public function dialog(): Dialog
+    public function dialog(array $options = []): Dialog
     {
-        return new Dialog($this);
+        $dialog = new Dialog($this);
+
+        if ($options) {
+            return $dialog->show($options);
+        }
+
+        return $dialog;
     }
 }

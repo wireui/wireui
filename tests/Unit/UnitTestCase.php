@@ -3,13 +3,14 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\Route;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase;
 use ReflectionClass;
 use WireUi\Providers\WireUiServiceProvider;
 
 class UnitTestCase extends TestCase
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -23,7 +24,10 @@ class UnitTestCase extends TestCase
 
     protected function getPackageProviders($app)
     {
-        return [WireUiServiceProvider::class];
+        return [
+            LivewireServiceProvider::class,
+            WireUiServiceProvider::class,
+        ];
     }
 
     /** Call protected/private method of a class */

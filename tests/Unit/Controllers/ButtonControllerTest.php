@@ -5,7 +5,7 @@ namespace Tests\Unit\Controllers;
 use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Unit\UnitTestCase;
-use WireUi\Controllers\ButtonController;
+use WireUi\Http\Controllers\ButtonController;
 
 class ButtonControllerTest extends UnitTestCase
 {

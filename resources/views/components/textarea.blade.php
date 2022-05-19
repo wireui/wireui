@@ -8,7 +8,7 @@
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('label')"
+                    :component="WireUi::component('label')"
                     :label="$label"
                     :has-error="$hasError"
                     :for="$id"
@@ -17,7 +17,7 @@
 
             @if ($cornerHint)
                 <x-dynamic-component
-                    :component="WireUiComponent::resolve('label')"
+                    :component="WireUi::component('label')"
                     :label="$cornerHint"
                     :has-error="$hasError"
                     :for="$id"
@@ -32,7 +32,7 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($icon)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         :name="$icon"
                         class="h-5 w-5"
                     />
@@ -58,7 +58,7 @@
                 {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($rightIcon)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         :name="$rightIcon"
                         class="h-5 w-5"
                     />
@@ -68,7 +68,7 @@
                     </span>
                 @elseif($hasError)
                     <x-dynamic-component
-                        :component="WireUiComponent::resolve('icon')"
+                        :component="WireUi::component('icon')"
                         name="exclamation-circle"
                         class="h-5 w-5"
                     />
@@ -87,7 +87,7 @@
 
     @if ($name)
         <x-dynamic-component
-            :component="WireUiComponent::resolve('error')"
+            :component="WireUi::component('error')"
             :name="$name"
         />
     @endif

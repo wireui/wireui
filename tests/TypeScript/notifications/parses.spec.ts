@@ -38,7 +38,7 @@ describe('Testing notifications parses', () => {
     const successIcon = parseIcon({ name: 'success' })
     assert.deepEqual(successIcon, {
       name: 'check-circle',
-      color: 'text-emerald-400'
+      color: 'text-positive-400'
     })
 
     const customIcon = parseIcon({ name: 'x', color: 'text-red-400' })

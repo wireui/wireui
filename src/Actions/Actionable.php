@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Support;
+namespace WireUi\Actions;
 
 use Livewire\Component;
 
@@ -12,10 +12,8 @@ abstract class Actionable
     public const WARNING  = 'warning';
     public const QUESTION = 'question';
 
-    protected Component $component;
-
-    public function __construct(Component $component)
-    {
-        $this->component = $component;
+    public function __construct(
+        protected Component $component
+    ) {
     }
 }
