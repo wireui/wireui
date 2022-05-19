@@ -392,6 +392,13 @@ export default (options: InitOptions): DateTimePicker => ({
       ?.getNativeDate()
       .toLocaleString(navigator.language, this.localeDateConfig)
   },
+  getSearchPlaceholder () {
+    if (this.config.is12H) {
+      return this.input?.format('h:mm a', this.userTimezone) ?? '12:00 AM'
+    }
+
+    return this.modelTime ? this.modelTime : '12:00'
+  },
   onSearchTime (search) {
     const mask = this.config.is12H ? 'h:m' : 'H:m'
     this.searchTime = applyMask(mask, search) ?? ''
