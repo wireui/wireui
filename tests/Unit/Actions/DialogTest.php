@@ -1,20 +1,8 @@
 <?php
 
-use Livewire\Component;
 use Mockery\Mock;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\{LivewireComponent, UnitTestCase};
 use WireUi\Actions\Dialog;
-use WireUi\Traits\Actions;
-
-class LivewireComponent extends Component
-{
-    use Actions;
-
-    public function __construct()
-    {
-        $this->id = 'fake-id';
-    }
-}
 
 it('should create the default dialog event name')
     ->and(Dialog::makeEventName())
