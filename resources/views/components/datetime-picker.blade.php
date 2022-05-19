@@ -207,7 +207,7 @@
                     <x-dynamic-component
                         :component="WireUi::component('input')"
                         id="search.{{ $attributes->wire('model')->value() }}"
-                        label="Select time"
+                        :label="__('wireui::messages.selectTime')"
                         x-model="searchTime"
                         x-bind:placeholder="getSearchPlaceholder"
                         x-ref="searchTime"
