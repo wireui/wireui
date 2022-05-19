@@ -12,6 +12,17 @@ it('should create the dialog event name')
     ->and(Dialog::makeEventName('foo'))
     ->toBe('dialog:foo');
 
+it('should create the dialog event name to a custom dialog', function () {
+    $dialog = new Dialog(new LivewireComponent());
+
+    $dialog->id('foo');
+
+    /** @var UnitTestCase $this */
+    $event = $this->invokeMethod($dialog, 'getEventName');
+
+    $this->assertSame('dialog:foo', $event);
+});
+
 it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
     $event  = 'wireui:dialog';
     $params = [
