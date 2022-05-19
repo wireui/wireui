@@ -7,7 +7,7 @@ use Illuminate\View\ComponentAttributeBag;
 use WireUi\Http\Requests\ButtonRequest;
 use WireUi\Support\BladeCompiler;
 
-class ButtonController
+class ButtonController extends Controller
 {
     private BladeCompiler $compiler;
 

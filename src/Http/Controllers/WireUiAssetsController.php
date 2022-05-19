@@ -4,7 +4,7 @@ namespace WireUi\Http\Controllers;
 
 use Livewire\Controllers\CanPretendToBeAFile;
 
-class WireUiAssetsController
+class WireUiAssetsController extends Controller
 {
     use CanPretendToBeAFile;
 
