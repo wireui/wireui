@@ -102,6 +102,7 @@ export interface DateTimePicker extends InitOptions {
   selectTomorrow (): void
   getLocaleDateConfig (): LocaleDateConfig
   getDisplayValue (): string | undefined
+  getSearchPlaceholder (): string
   onSearchTime (search: string): void
   makeSearchTimes (search: string): Time[]
   focusTime (): void
