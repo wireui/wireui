@@ -12,7 +12,7 @@ it('should create the dialog event name')
     ->and(Dialog::makeEventName('foo'))
     ->toBe('dialog:foo');
 
-it('should emit a dialog event to a custom id', function (?string $icon, string $expectedIcon) {
+it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
     $event  = 'wireui:dialog';
     $params = [
         'options' => [
@@ -45,7 +45,7 @@ it('should emit a dialog event to a custom id', function (?string $icon, string 
     [null, Dialog::INFO], // assert the default icon
 ]);
 
-it('should emit a confirm dialog event with a default icon /2', function (?string $icon, string $expectedIcon) {
+it('should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
     $event  = 'wireui:confirm-dialog';
     $params = [
         'options'     => ['title' => 'User created!', 'icon' => $icon],
@@ -75,7 +75,7 @@ it('should emit a confirm dialog event with a default icon /2', function (?strin
     [null, Dialog::QUESTION], // assert the default icon
 ]);
 
-it('should assert the event emitted in the simple dialog messages', function (string $method) {
+it('should emit the simple dialog event', function (string $method) {
     $event = 'wireui:dialog';
 
     /** @var UnitTestCase $this */
