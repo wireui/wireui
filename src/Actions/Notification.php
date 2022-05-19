@@ -4,7 +4,7 @@ namespace WireUi\Actions;
 
 class Notification extends Actionable
 {
-    public function notify(array $options): self
+    public function send(array $options): self
     {
         $this->component->dispatchBrowserEvent('wireui:notification', [
             'options'     => $options,
@@ -12,6 +12,15 @@ class Notification extends Actionable
         ]);
 
         return $this;
+    }
+
+    /**
+     * @deprecated version v1.3.0
+     * use the `send()` method instead
+     */
+    public function notify(array $options): self
+    {
+        return $this->send($options);
     }
 
     public function confirm(array $options): self
@@ -57,7 +66,7 @@ class Notification extends Actionable
             'description' => $description,
         ];
 
-        $this->notify($options);
+        $this->send($options);
 
         return $this;
     }
