@@ -23,7 +23,7 @@ declare global {
     Wireui: WireUiHooks
     Livewire: any
     Alpine: Alpine
-    $openModal: CallableFunction
+    $openWireModal: CallableFunction
   }
 }
 

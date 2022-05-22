@@ -1,5 +1,5 @@
 import kebabCase from 'lodash.kebabcase'
 
-window.$openModal = name => {
-  return window.dispatchEvent(new Event(`open-modal:${kebabCase(name)}`))
+window.$openWireModal = name => {
+  return window.dispatchEvent(new Event(`open-wire-modal:${kebabCase(name)}`))
 }
