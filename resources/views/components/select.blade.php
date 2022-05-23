@@ -127,6 +127,13 @@
                 </div>
             </x-slot>
         </x-dynamic-component>
+
+        @if ($hint)
+            <label @if ($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
+                {{ $hint }}
+            </label>
+        @endif
+
     </div>
 
     <div class="
