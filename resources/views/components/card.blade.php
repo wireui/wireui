@@ -2,8 +2,8 @@
     @if ($header)
         {{ $header }}
     @elseif ($title || $action)
-        <div class="px-4 py-2.5 flex justify-between items-center border-b dark:border-0 ">
-            <h3 class="text-md font-medium text-secondary-700 dark:text-secondary-400 whitespace-normal">{{ $title }}</h3>
+        <div class="px-4 py-2.5 flex justify-between items-center border-b dark:border-gray-600 ">
+            <h3 class="font-medium whitespace-normal text-md text-secondary-700 dark:text-secondary-400">{{ $title }}</h3>
 
             @if ($action)
                 {{ $action }}
