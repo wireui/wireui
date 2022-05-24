@@ -28,7 +28,7 @@ class Card extends Component
         ?string $padding = 'px-2 py-5 md:px-4',
         ?string $shadow = 'shadow-md',
         ?string $rounded = 'rounded-lg',
-        ?string $color = 'bg-white border border-secondary-200 dark:bg-secondary-800 dark:border-0',
+        ?string $color = 'bg-white border border-secondary-200 dark:bg-secondary-800 dark:border-gray-600',
         ?string $title = null,
         ?string $action = null,
         ?string $header = null,
