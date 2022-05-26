@@ -63,11 +63,13 @@
                     <template x-if="config.multiselect">
                         <div class="absolute left-0 inset-y-0 pl-3 pr-14 w-full flex items-center overflow-hidden" x-on:click="togglePopover">
                             <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
-                                <span
-                                    class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
-                                    x-show="selectedOptions.length"
-                                    x-text="selectedOptions.length">
-                                </span>
+                                @if ($withoutItemsCount)
+                                    <span
+                                        class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
+                                        x-show="selectedOptions.length"
+                                        x-text="selectedOptions.length">
+                                    </span>
+                                @endif
 
                                 <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
                                     <span class="
