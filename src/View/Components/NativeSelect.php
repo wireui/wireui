@@ -19,6 +19,7 @@ class NativeSelect extends FormComponent
 
     public function __construct(
         public ?string $label = null,
+        public ?string $hint = null,
         public ?string $placeholder = null,
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
