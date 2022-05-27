@@ -5,7 +5,7 @@
                     <div class="mr-2 text-sm text-right">
                         <x-dynamic-component
                             :component="WireUi::component('label')"
-                            class="mr-0"
+                            class=""
                             :for="$id"
                             :label="$leftLabel"
                             :has-error="$errors->has($name)"
@@ -28,7 +28,7 @@
                     <div class="ml-2 text-sm">
                         <x-dynamic-component
                             :component="WireUi::component('label')"
-                            class="ml-0"
+                            class=""
                             :for="$id"
                             :label="$label"
                             :has-error="$errors->has($name)"
