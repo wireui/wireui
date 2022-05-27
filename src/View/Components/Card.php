@@ -12,6 +12,8 @@ class Card extends Component
 
     public ?string $rounded;
 
+    public ?string $border;
+
     public ?string $color;
 
     public ?string $title;
@@ -28,7 +30,8 @@ class Card extends Component
         ?string $padding = 'px-2 py-5 md:px-4',
         ?string $shadow = 'shadow-md',
         ?string $rounded = 'rounded-lg',
-        ?string $color = 'bg-white border border-secondary-200 dark:bg-secondary-800 dark:border-gray-600',
+        ?string $border = 'border-gray-200 dark:border-gray-600',
+        ?string $color = 'bg-white dark:bg-secondary-800',
         ?string $title = null,
         ?string $action = null,
         ?string $header = null,
@@ -38,6 +41,7 @@ class Card extends Component
         $this->padding     = $padding;
         $this->shadow      = $shadow;
         $this->rounded     = $rounded;
+        $this->border      = $border;
         $this->color       = $color;
         $this->title       = $title;
         $this->action      = $action;
