@@ -1,6 +1,4 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { dataGet } from '../../ts/utils/dataGet'
+import { dataGet } from '@/utils/dataGet'
 
 describe('Test if dataGet function can get any value from target', () => {
   it('it should get value from nested object', () => {
@@ -14,7 +12,7 @@ describe('Test if dataGet function can get any value from target', () => {
 
     const expected = 22
 
-    assert.equal(dataGet(object, 'foo.bar.baz'), expected)
+    expect(dataGet(object, 'foo.bar.baz')).toEqual(expected)
   })
 
   it('should return fallback when path doest exists', () => {
@@ -23,15 +21,15 @@ describe('Test if dataGet function can get any value from target', () => {
     const expected = 22
     const fallback = expected
 
-    assert.equal(dataGet(object, 'foo.bar.baz', fallback), expected)
+    expect(dataGet(object, 'foo.bar.baz', fallback)).toEqual(expected)
   })
 
   it('should return undefined as default fallback when path doest exists', () => {
-    const object = null
+    const object = {}
 
     const expected = undefined
 
-    assert.equal(dataGet(object, 'foo.bar.baz'), expected)
+    expect(dataGet(object, 'foo.bar.baz')).toEqual(expected)
   })
 
   it('should get all data using *', () => {
@@ -49,6 +47,6 @@ describe('Test if dataGet function can get any value from target', () => {
       baz: 3
     }
 
-    assert.deepEqual(dataGet(object, 'foo.*'), expected)
+    expect(dataGet(object, 'foo.*')).toEqual(expected)
   })
 })

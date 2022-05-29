@@ -25,11 +25,13 @@
         "rootDir": "./",
         "paths": {
             "*": ["node_modules/*"],
-            "@/*": ["ts/*"]
+            "@/*": ["ts/*"],
+            "@tests/*": ["tests/TypeScript/*"]
         },
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["ts/**/*.ts"]
+    "include": ["ts/**/*.ts", "tests/TypeScript/**/*.ts"],
+    "files": ["ts/global.d.ts"]
 }

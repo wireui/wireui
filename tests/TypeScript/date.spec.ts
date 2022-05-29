@@ -1,6 +1,4 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { date as parseDate } from '../../ts/utils/date'
+import { date as parseDate } from '@/utils/date'
 
 const testTimezone = 'America/Sao_Paulo'
 
@@ -9,74 +7,74 @@ describe('Fluent date api tests', () => {
     const date = parseDate('2021-05-26', testTimezone)
 
     date.addMonth()
-    assert.equal(6, date.getMonth() + 1)
+    expect(6).toEqual(date.getMonth() + 1)
 
     date.addMonths(2)
-    assert.equal(8, date.getMonth() + 1)
+    expect(8).toEqual(date.getMonth() + 1)
 
     date.addDay()
-    assert.equal(27, date.getDay())
+    expect(27).toEqual(date.getDay())
 
     date.addDays(2)
-    assert.equal(29, date.getDay())
+    expect(29).toEqual(date.getDay())
 
     date.subMonth()
-    assert.equal(7, date.getMonth() + 1)
+    expect(7).toEqual(date.getMonth() + 1)
 
     date.subMonths(2)
-    assert.equal(5, date.getMonth() + 1)
+    expect(5).toEqual(date.getMonth() + 1)
 
     date.subDay()
-    assert.equal(28, date.getDay())
+    expect(28).toEqual(date.getDay())
 
     date.subDays(2)
-    assert.equal(26, date.getDay())
+    expect(26).toEqual(date.getDay())
   })
 
   it('should pass in getters test', () => {
     const date = parseDate('2021-05-26 12:33', testTimezone)
 
-    assert.equal(31, date.getMonthDays())
-    assert.equal(2021, date.getYear())
-    assert.equal(5, date.getMonth() + 1)
-    assert.equal(26, date.getDay())
-    assert.equal(3, date.getDayOfWeek()) // wed
-    assert.equal(12, date.getHours())
-    assert.equal('12:33', date.getTime())
-    assert.equal(33, date.getMinutes())
-    assert.isTrue(date.getNativeDate() instanceof Date)
+    expect(31).toEqual(date.getMonthDays())
+    expect(2021).toEqual(date.getYear())
+    expect(5).toEqual(date.getMonth() + 1)
+    expect(26).toEqual(date.getDay())
+    expect(3).toEqual(date.getDayOfWeek()) // wed
+    expect(12).toEqual(date.getHours())
+    expect('12:33').toEqual(date.getTime())
+    expect(33).toEqual(date.getMinutes())
+    expect(date.getNativeDate()).toBeInstanceOf(Date)
   })
 
-  it('should pass in seters test', () => {
+  it('should pass in setters test', () => {
     const date = parseDate('2021-05-26 12:33', testTimezone)
 
-    assert.equal(2000, date.setYear(2000).getYear())
-    assert.equal(7, date.setMonth(7).getMonth())
-    assert.equal(31, date.setDay(31).getDay())
-    assert.equal('15:59', date.setTime('15:59').getTime())
-    assert.equal(4, date.setHours(4).getHours())
-    assert.equal(30, date.setMinutes(30).getMinutes())
-    assert.equal('America/Denver', date.setTimezone('America/Denver').timezone)
+    expect(2000).toEqual(date.setYear(2000).getYear())
+    expect(7).toEqual(date.setMonth(7).getMonth())
+    expect(31).toEqual(date.setDay(31).getDay())
+    expect('15:59').toEqual(date.setTime('15:59').getTime())
+    expect(4).toEqual(date.setHours(4).getHours())
+    expect(30).toEqual(date.setMinutes(30).getMinutes())
+    expect('America/Denver').toEqual(date.setTimezone('America/Denver').timezone)
   })
 
   it('can get number os days in month', () => {
     const month31Days = parseDate('2021-07-15', testTimezone)
-    assert.equal(31, month31Days.getMonthDays())
+    expect(31).toEqual(month31Days.getMonthDays())
 
     const month30Days = parseDate('2021-06-15', testTimezone)
-    assert.equal(30, month30Days.getMonthDays())
+    expect(30).toEqual(month30Days.getMonthDays())
 
-    const februaryMonth = parseDate('2021-02-15', testTimezone)
-    assert.equal(28, februaryMonth.getMonthDays())
+    const FebruaryMonth = parseDate('2021-02-15', testTimezone)
+    expect(28).toEqual(FebruaryMonth.getMonthDays())
 
     const leapYearFebruary = parseDate('2016-02-15', testTimezone)
-    assert.equal(29, leapYearFebruary.getMonthDays())
+    expect(29).toEqual(leapYearFebruary.getMonthDays())
   })
 
   it('can return formatted date', () => {
     const date = parseDate('2021-05-26')
 
-    assert.equal('26/05/2021', date.format('DD/MM/YYYY'))
+    expect('26/05/2021').toEqual(date.format('DD/MM/YYYY'))
   })
 
   it('can clone instance', () => {
@@ -85,34 +83,34 @@ describe('Fluent date api tests', () => {
 
     date.subDays(10)
 
-    assert.equal(16, date.getDay())
-    assert.equal(26, clonedDate.getDay())
+    expect(16).toEqual(date.getDay())
+    expect(26).toEqual(clonedDate.getDay())
   })
 
   it('can check if date is before another date', () => {
     const before = parseDate('2020-12-24')
     const after = parseDate('2020-12-25')
 
-    assert.equal(true, before.isBefore(after))
+    expect(true).toEqual(before.isBefore(after))
   })
 
   it('can check if date is same another date', () => {
     const dateOne = parseDate('2020-12-25')
     const dateTwo = parseDate('2020-12-25')
 
-    assert.equal(true, dateOne.isSame(dateTwo))
+    expect(true).toEqual(dateOne.isSame(dateTwo))
   })
 
   it('can check if date is after another date', () => {
     const before = parseDate('2020-12-24')
     const after = parseDate('2020-12-25')
 
-    assert.equal(true, after.isAfter(before))
+    expect(true).toEqual(after.isAfter(before))
   })
 
   it('can get date as json', () => {
     const date = parseDate('2020-05-22')
 
-    assert.equal('2020-05-22T00:00:00.000Z', date.toJson())
+    expect('2020-05-22T00:00:00.000Z').toEqual(date.toJson())
   })
 })

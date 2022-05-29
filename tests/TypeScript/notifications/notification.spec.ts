@@ -1,6 +1,4 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { parseConfirmation, parseNotification } from '../../../ts/notifications/parses'
+import { parseConfirmation, parseNotification } from '@/notifications/parses'
 
 declare global {
   interface Window {
@@ -21,11 +19,11 @@ describe('Testing notifications', () => {
 
     const notification = parseNotification(options)
 
-    assert.equal(notification.title, options.title)
-    assert.equal(notification.description, options.description)
-    assert.isFunction(notification.onClose)
-    assert.isFunction(notification.onTimeout)
-    assert.isFunction(notification.onDismiss)
+    expect(notification.title).toEqual(options.title)
+    expect(notification.description).toEqual(options.description)
+    expect(notification.onClose).toBeFunction()
+    expect(notification.onTimeout).toBeFunction()
+    expect(notification.onDismiss).toBeFunction()
   })
 
   it('should parse notification with events', () => {
@@ -42,17 +40,17 @@ describe('Testing notifications', () => {
 
     const notification = parseNotification(options)
 
-    assert.isFunction(notification.onClose)
-    assert.isFunction(notification.onTimeout)
-    assert.isFunction(notification.onDismiss)
+    expect(notification.onClose).toBeFunction()
+    expect(notification.onTimeout).toBeFunction()
+    expect(notification.onDismiss).toBeFunction()
 
     notification.onClose()
     notification.onTimeout()
     notification.onDismiss()
 
-    assert.isTrue(onClose)
-    assert.isTrue(onTimeout)
-    assert.isTrue(onDismiss)
+    expect(onClose).toBeTrue()
+    expect(onTimeout).toBeTrue()
+    expect(onDismiss).toBeTrue()
   })
 
   it('should parse confirm notification', () => {
@@ -71,10 +69,10 @@ describe('Testing notifications', () => {
 
     const notification = parseConfirmation(options, 'x-x-x')
 
-    assert.equal(notification.accept.label, 'Save')
-    assert.equal(notification.reject.label, 'Delete')
-    assert.isFunction(notification.accept.execute)
-    assert.isFunction(notification.reject.execute)
+    expect(notification.accept.label).toEqual('Save')
+    expect(notification.reject.label).toEqual('Delete')
+    expect(notification.accept.execute).toBeFunction()
+    expect(notification.reject.execute).toBeFunction()
   })
 
   it('should parse confirm notification with callable actions', () => {
@@ -94,15 +92,15 @@ describe('Testing notifications', () => {
 
     const notification = parseConfirmation(options, 'x-x-x')
 
-    assert.equal(notification.accept.label, 'Save')
-    assert.equal(notification.reject.label, 'Delete')
-    assert.isFunction(notification.accept.execute)
-    assert.isFunction(notification.reject.execute)
+    expect(notification.accept.label).toBe('Save')
+    expect(notification.reject.label).toBe('Delete')
+    expect(notification.accept.execute).toBeFunction()
+    expect(notification.reject.execute).toBeFunction()
 
     notification.reject.execute()
     notification.accept.execute()
 
-    assert.isTrue(accepted)
-    assert.isTrue(rejected)
+    expect(accepted).toBeTrue()
+    expect(rejected).toBeTrue()
   })
 })

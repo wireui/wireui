@@ -1,15 +1,13 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { maskCurrency } from '../../ts/utils/currency/maskCurrency'
-import { unMaskCurrency } from '../../ts/utils/currency/unMaskCurrency'
-import { defaultConfig } from '../../ts/utils/currency'
+import { maskCurrency } from '@/utils/currency/maskCurrency'
+import { unMaskCurrency } from '@/utils/currency/unMaskCurrency'
+import { defaultConfig } from '@/utils/currency'
 
 describe('Testing Currency Formatter', () => {
   it('should mask currency value', () => {
     const numbers = 123456
     const currency = maskCurrency(numbers, defaultConfig)
 
-    assert.equal('123,456', currency)
+    expect('123,456').toEqual(currency)
   })
 
   it('should mask currency value with custom decimals separator', () => {
@@ -20,7 +18,7 @@ describe('Testing Currency Formatter', () => {
       precision: 2
     })
 
-    assert.equal('123.456,99', currency)
+    expect('123.456,99').toEqual(currency)
   })
 
   it('should mask currency value with custom thousands separator', () => {
@@ -31,7 +29,7 @@ describe('Testing Currency Formatter', () => {
       precision: 2
     })
 
-    assert.equal('123;456.99', currency)
+    expect('123;456.99').toEqual(currency)
   })
 
   it('should mask currency value with custom decimals and thousands separator', () => {
@@ -42,21 +40,21 @@ describe('Testing Currency Formatter', () => {
       precision: 2
     })
 
-    assert.equal('123T456D99', currency)
+    expect('123T456D99').toEqual(currency)
   })
 
   it('should mask zero value', () => {
     const numbers = 0
     const currency = maskCurrency(numbers, defaultConfig)
 
-    assert.equal('0', currency)
+    expect('0').toEqual(currency)
   })
 
   it('should mask negative numbers', () => {
     const numbers = -1234567.89
     const currency = maskCurrency(numbers, defaultConfig)
 
-    assert.equal('-1,234,567.89', currency)
+    expect('-1,234,567.89').toEqual(currency)
   })
 
   it('should mask numbers with four decimals', () => {
@@ -67,7 +65,7 @@ describe('Testing Currency Formatter', () => {
       precision: 4
     })
 
-    assert.equal('1,234.4567', currency)
+    expect('1,234.4567').toEqual(currency)
   })
 
   it('should mask numbers without decimals', () => {
@@ -78,7 +76,7 @@ describe('Testing Currency Formatter', () => {
       precision: 0
     })
 
-    assert.equal('1,234,567', currency)
+    expect('1,234,567').toEqual(currency)
   })
 
   it('should can customize mask separators', () => {
@@ -90,16 +88,16 @@ describe('Testing Currency Formatter', () => {
     const numbers = '1234567,89'
     const currency = maskCurrency(numbers, brlConfig)
 
-    assert.equal('1.234.567,89', currency)
+    expect('1.234.567,89').toEqual(currency)
 
     const intNumbers = 12.55
     const masked = maskCurrency(intNumbers, brlConfig)
-    assert.equal('12,55', masked)
+    expect('12,55').toEqual(masked)
   })
 
   it('should unmask currency', () => {
     const currency = '1,234,567.89'
 
-    assert.equal('1234567.89', unMaskCurrency(currency, defaultConfig)?.toString())
+    expect('1234567.89').toEqual(unMaskCurrency(currency, defaultConfig)?.toString())
   })
 })

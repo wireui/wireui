@@ -1,25 +1,25 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import interval from '../../ts/utils/interval'
+import interval from '@/utils/interval'
+import { sleep } from '@tests/helpers'
 
 describe('Testing pausable interval', () => {
-  let calledIntervalTimes = 0
-  let calledBeforePause = 0
-  const pausableInterval = interval(() => { calledIntervalTimes++ }, 5)
-
   it('should pause interval', () => {
-    assert.isFunction(pausableInterval.pause)
+    let called = false
+    const pausableInterval = interval(() => { called = true }, 5)
     pausableInterval.pause()
-    assert.isTrue(calledIntervalTimes > 0)
-    calledBeforePause = calledIntervalTimes
+
+    expect(called).toBeFalse()
   })
 
-  it('should resume a interval', () => {
-    pausableInterval.resume()
+  it('should resume a interval', async () => {
+    let called = false
+    const pausableInterval = interval(() => { called = true }, 5)
 
-    setTimeout(() => {
-      assert.notEqual(calledBeforePause, calledIntervalTimes)
-      pausableInterval.pause()
-    }, 10)
+    pausableInterval.pause()
+    await sleep(6)
+    expect(called).toBeFalse()
+
+    pausableInterval.resume()
+    await sleep(6)
+    expect(called).toBeTrue()
   })
 })
