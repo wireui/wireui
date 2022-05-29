@@ -2,6 +2,7 @@ export type Entangle = any
 
 export interface Alpine {
   data (name: string, data: any): void
+  store (name: string, data?: any): any
 }
 
 export interface Component {
