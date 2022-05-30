@@ -15,6 +15,8 @@ class Component extends \Livewire\Component
         return <<<HTML
             <x-color-picker name="color-picker" value="#123" />
             <x-color-picker name="color-picker-wire" wire:model="color" />
+            <x-color-picker :colors="['#123', '#456']" />
+            <x-color-picker :colors="[['name'=>'FFF', 'value'=>'#FFF']]" />
         HTML;
     }
 }
@@ -124,5 +126,13 @@ class ColorPickerTest extends BrowserTestCase
                 ->waitForLivewireToLoad()
                 ->assertInputValue('color-picker-wire', '#001');
         });
+    }
+
+    /** @test */
+    public function it_should_pass_the_colors_to_js_component()
+    {
+        Livewire::test(Component::class)
+            ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IiMxMjMiLCJ2YWx1ZSI6IiMxMjMifSx7Im5hbWUiOiIjNDU2IiwidmFsdWUiOiIjNDU2In1d'))", false)
+            ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))", false);
     }
 }

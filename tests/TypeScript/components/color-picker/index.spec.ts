@@ -81,4 +81,11 @@ describe('Testing the color picker component', () => {
 
     expect(component.$watch).toBeCalledTimes(0)
   })
+
+  it('should show colors from a custom provider', () => {
+    const colors = [{ name: 'AAA', value: '#AAA' }]
+    const component = mockComponent({ colors })
+
+    expect(component.colors).toBe(colors)
+  })
 })

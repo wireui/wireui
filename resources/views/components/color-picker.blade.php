@@ -2,6 +2,10 @@
     @if ($attributes->wire('model')->value())
         wireModel: @entangle($attributes->wire('model')),
     @endif
+
+    @if ($colors)
+        colors: @js($getColors())
+    @endif
 })">
     <x-input
         x-model="selected"

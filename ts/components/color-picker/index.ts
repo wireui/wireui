@@ -8,6 +8,7 @@ export type Color = {
 
 export type InitOptions = {
   wireModel?: Entangle
+  colors?: Color[]
 }
 
 type Refs = {
@@ -40,6 +41,8 @@ export default (options: InitOptions = {}): ColorPicker => ({
   wireModel: options.wireModel ?? null,
 
   get colors (): Color[] {
+    if (options.colors) return options.colors
+
     return window.Alpine.store('wireui:color-picker')?.colors ?? []
   },
 
