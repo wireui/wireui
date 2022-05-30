@@ -18,8 +18,8 @@ export const makeColors = (): Color[] => {
     }))
   })
 
-  colors.unshift({ name: 'Black', value: '#000' })
-  colors.unshift({ name: 'White', value: '#fff' })
+  colors.push({ name: 'Black', value: '#000' })
+  colors.push({ name: 'White', value: '#fff' })
 
   return colors
 }
