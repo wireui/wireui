@@ -10,7 +10,12 @@ export type InitOptions = {
   wireModel?: Entangle
 }
 
+type Refs = {
+  input: HTMLInputElement
+}
+
 export interface ColorPicker extends Component {
+  $refs: Refs
   state: boolean
   selected: string | null
   masker: Masker
@@ -28,6 +33,7 @@ export interface ColorPicker extends Component {
 
 export default (options: InitOptions = {}): ColorPicker => ({
   ...baseComponent,
+  $refs: {} as Refs,
   state: false,
   selected: null,
   masker: masker('!#XXXXXX', null),
@@ -38,6 +44,10 @@ export default (options: InitOptions = {}): ColorPicker => ({
   },
 
   init () {
+    if (this.$refs.input.value) {
+      this.setColor(this.$refs.input.value)
+    }
+
     if (options.wireModel) {
       this.selected = this.wireModel
 
