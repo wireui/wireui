@@ -1,5 +1,5 @@
 import { makeColors } from '@/components/color-picker/colors'
-import { Color } from '@/components/color-picker/types'
+import { Color } from '@/components/color-picker'
 
 export interface ColorsStore {
   colors: Color[]

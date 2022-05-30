@@ -1,7 +1,7 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
 import { TailwindConfig } from 'tailwindcss/tailwind-config'
 import tailwindConfig from '@/../tailwind.config.js'
-import { Color } from '@/components/color-picker/types'
+import { Color } from '@/components/color-picker'
 
 export const makeColors = (): Color[] => {
   const config = resolveConfig(tailwindConfig as unknown as TailwindConfig)

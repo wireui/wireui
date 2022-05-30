@@ -7,6 +7,7 @@ import currency from './inputs/currency'
 import select from './select'
 import timePicker from './timePicker'
 import datetimePicker from './datetime-picker'
+import colorPicker from './color-picker'
 
 document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_dropdown', dropdown)
@@ -18,4 +19,5 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_select', select)
   window.Alpine.data('wireui_timepicker', timePicker)
   window.Alpine.data('wireui_datetime_picker', datetimePicker)
+  window.Alpine.data('wireui_color_picker', colorPicker)
 })
