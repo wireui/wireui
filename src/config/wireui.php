@@ -52,6 +52,10 @@ return [
             'class' => Components\Icons\Spinner::class,
             'alias' => 'icon.spinner',
         ],
+        'color-picker' => [
+            'class' => Components\ColorPicker::class,
+            'alias' => 'color-picker',
+        ],
         'input' => [
             'class' => Components\Input::class,
             'alias' => 'input',
