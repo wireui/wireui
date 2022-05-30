@@ -11,6 +11,7 @@ export interface Component {
   $watch: (name: string, callback: CallableFunction) => void
   $nextTick: (callback: CallableFunction) => void
   $dispatch: (name: string, value: any) => void
+  init?(): void
 }
 
 export const baseComponent = {} as Component
