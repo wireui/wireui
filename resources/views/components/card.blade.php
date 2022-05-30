@@ -1,8 +1,8 @@
-<div class="w-full flex flex-col border {{ $shadow }} {{ $rounded }} {{ $border }} {{ $color }} {{ $cardClasses }}">
+<div class="{{ $cardClasses }}">
     @if ($header)
         {{ $header }}
     @elseif ($title || $action)
-        <div class="px-4 py-2.5 flex justify-between items-center border-b {{ $border }}">
+        <div class="{{ $headerClasses }}">
             <h3 class="font-medium whitespace-normal text-md text-secondary-700 dark:text-secondary-400">{{ $title }}</h3>
 
             @if ($action)
@@ -16,7 +16,7 @@
     </div>
 
     @if ($footer)
-        <div class="px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none dark:bg-secondary-800 {{ $rounded }} border-t {{ $border }}">
+        <div class="{{ $footerClasses }}">
             {{ $footer }}
         </div>
     @endif
