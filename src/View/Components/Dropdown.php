@@ -8,24 +8,13 @@ class Dropdown extends Component
 {
     public const DEFAULT_ALIGN = 'right';
 
-    public string $width;
-
-    public string $align;
-
-    public ?string $trigger;
-
-    public bool $persistent;
-
     public function __construct(
-        string $width = 'w-48',
-        string $align = self::DEFAULT_ALIGN,
-        bool $persistent = false,
-        ?string $trigger = null
+        public string $width = 'w-48',
+        public string $height = 'max-h-60',
+        public string $align = self::DEFAULT_ALIGN,
+        public bool $persistent = false,
+        public ?string $trigger = null
     ) {
-        $this->width      = $width;
-        $this->align      = $align;
-        $this->persistent = $persistent;
-        $this->trigger    = $trigger;
     }
 
     public function render()

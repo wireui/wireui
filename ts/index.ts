@@ -5,6 +5,7 @@ import { Alpine } from './components/alpine'
 import { WireUiHooks } from './hooks'
 import './directives/confirm'
 import './browserSupport'
+import './alpine/store'
 import './components'
 import './global'
 
