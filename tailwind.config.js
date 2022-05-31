@@ -11,7 +11,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        slate: colors.slate,
         primary: colors.indigo,
         secondary: colors.slate,
         positive: colors.emerald,
