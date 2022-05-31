@@ -31,6 +31,18 @@ describe('Testing the color picker component', () => {
     expect(component.state).toBeFalse()
   })
 
+  it('should toggle the dropdown', () => {
+    const component = mockComponent()
+
+    component.toggle()
+
+    expect(component.state).toBeTrue()
+
+    component.toggle()
+
+    expect(component.state).toBeFalse()
+  })
+
   it('should select a color and close the dropdown', () => {
     const color = '#FFFFFF'
     const component = mockComponent()

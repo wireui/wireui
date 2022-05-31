@@ -28,6 +28,7 @@ export interface ColorPicker extends Component {
 
   open: () => void
   close: () => void
+  toggle: () => void
   select: (color: string) => void
   setColor (value: string | null): void
 }
@@ -60,6 +61,7 @@ export default (options: InitOptions = {}): ColorPicker => ({
   },
   open () { this.state = true },
   close () { this.state = false },
+  toggle () { this.state = !this.state },
   select (color) {
     this.selected = color
     this.close()
