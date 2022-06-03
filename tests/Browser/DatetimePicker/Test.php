@@ -68,7 +68,6 @@ class Test extends BrowserTestCase
                 ->assertInputValue('customFormat', '29-2021-09 59:13')
                 ->click('[id="customFormat"] input')
                 ->tap(fn () => $this->selectDate($browser, 'customFormat', 10))
-                ->waitForLivewire()
                 ->waitForTextIn('@customFormat', '10-2021-09 59:13')
                 ->assertInputValue('customFormat', '10-2021-09 59:13')
         );

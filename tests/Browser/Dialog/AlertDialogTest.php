@@ -42,6 +42,7 @@ class AlertDialogTest extends BrowserTestCase
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
+                ->waitForLivewireToLoad()
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.livewire.emit('showDialog', {
                     icon: "{$icon}",
