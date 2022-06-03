@@ -43,6 +43,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
+                ->waitForLivewireToLoad()
                 ->click('@button.test.call_confirm_action_with_single_callback')
                 ->waitForLivewire()
                 ->waitUsing(7, 100, function () use ($browser) {
@@ -61,6 +62,7 @@ class Test extends BrowserTestCase
             $duskButton = '@button.test.call_confirm_action_with_multiples_callbacks_and_events';
 
             $this->visit($browser, Component::class)
+                ->waitForLivewireToLoad()
                 ->click($duskButton)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
