@@ -2,10 +2,10 @@
 
 namespace Tests\Unit;
 
-use Tests\Browser\Button\Component;
+use Tests\Browser\Button\ButtonComponent;
 use WireUi\Traits\Actions;
 
-class LivewireComponent extends Component
+class LivewireComponent extends ButtonComponent
 {
     use Actions;
 

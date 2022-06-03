@@ -32,7 +32,7 @@
                     flat
                     squared
                     x-on:click="toggle"
-                    dusk="dropdown.toggle">
+                    trigger>
                     <x-icon
                         class="
                             w-4 h-4 group-focus:text-primary-700 text-gray-400 dark:text-gray-600

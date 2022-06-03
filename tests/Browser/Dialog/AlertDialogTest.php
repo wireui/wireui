@@ -3,7 +3,6 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class AlertDialogTest extends BrowserTestCase
@@ -18,7 +17,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     icon: "{$icon}",
@@ -42,7 +41,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.livewire.emit('showDialog', {
                     icon: "{$icon}",
@@ -67,7 +66,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     id: 'custom',
@@ -88,9 +87,9 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $title = 'Autoclosing...';
 
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
+                    window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
                 EOT))
                 ->pause(200)
                 ->assertSee($title)
@@ -103,11 +102,11 @@ class AlertDialogTest extends BrowserTestCase
     public function it_should_call_callable_events_actions()
     {
         $this->browse(function (Browser $browser) {
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $this->showDialog($browser))
                 ->pause(400)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                document.querySelector('button.dialog-button-close').click()
+                    document.querySelector('button.dialog-button-close').click()
                 EOT))
                 ->waitForLivewire()
                 ->pause(100)
@@ -117,7 +116,7 @@ class AlertDialogTest extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script("
                     document.querySelector('div.dialog-backdrop').click()
                 "))
-                ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
         });
     }
 
