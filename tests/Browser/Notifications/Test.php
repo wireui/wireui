@@ -65,6 +65,7 @@ class Test extends BrowserTestCase
             $this->visit($browser, Component::class)
                 ->waitForLivewireToLoad()
                 ->click($duskButton)
+                ->waitForEvent('wireui:confirm-notification')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
                 })
@@ -90,6 +91,7 @@ class Test extends BrowserTestCase
                     return $browser->assertSeeIn('@events', 'onClose,onDismiss');
                 })
                 ->click('@button.clear_events')
+                ->waitForLivewire()
                 ->waitUsing(7, 100, fn () => $browser->assertMissing('@events'))
                 ->click($duskButton)
                 ->waitUsing(7, 100, function () use ($browser) {
