@@ -28,6 +28,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
+                ->waitForLivewireToLoad()
                 ->click('@button.test.simple_notification')
                 ->waitForEvent('wireui:notification')
                 ->waitUsing(7, 100, function () use ($browser) {
