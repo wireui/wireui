@@ -9,7 +9,8 @@ use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
 use function Livewire\str;
-use Livewire\{Component, LivewireServiceProvider};
+use Livewire\Testing\TestableLivewire;
+use Livewire\{Component, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
@@ -29,6 +30,8 @@ class BrowserTestCase extends Dusk\TestCase
         if (isset($_SERVER['CI'])) {
             Dusk\Options::withoutUI();
         }
+
+        Browser::$waitSeconds = 7;
 
         Browser::mixin(new DuskBrowserMacros());
 
@@ -204,5 +207,10 @@ class BrowserTestCase extends Dusk\TestCase
         $sh->run();
 
         return $sh->getScopeVariables(false);
+    }
+
+    public function visit(Browser $browser, string $livewire): Browser|TestableLivewire
+    {
+        return Livewire::visit($browser, $livewire);
     }
 }

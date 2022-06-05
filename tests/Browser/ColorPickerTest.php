@@ -13,10 +13,23 @@ class Component extends \Livewire\Component
     public function render()
     {
         return <<<HTML
-            <x-color-picker name="color-picker" value="#123" />
-            <x-color-picker name="color-picker-wire" wire:model="color" />
-            <x-color-picker :colors="['#123', '#456']" />
-            <x-color-picker :colors="[['name'=>'FFF', 'value'=>'#FFF']]" />
+        <div>
+            <div id="color-picker">
+                <x-color-picker name="color-picker" value="#123" />
+            </div>
+
+            <div id="color-picker-wire">
+                <x-color-picker name="color-picker-wire" wire:model="color" />
+            </div>
+
+            <div id="colors">
+                <x-color-picker name="colors" :colors="['#123', '#456']" />
+            </div>
+
+            <div id="named-colors">
+                <x-color-picker name="named-colors" :colors="[['name'=>'FFF', 'value'=>'#FFF']]" />
+            </div>
+        </div>
         HTML;
     }
 }
@@ -28,15 +41,15 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
-                ->click('@dropdown.toggle')
-                ->waitUsing(5, 75, function () use ($browser) {
+                ->click('div[id="color-picker"] button[trigger]')
+                ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
-                ->click('@dropdown.toggle')
-                ->waitUsing(5, 75, function () use ($browser) {
+                ->click('div[id="color-picker"] button[trigger]')
+                ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertDontSee('dropdown-open');
                 });
         });
@@ -47,16 +60,17 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
-                ->click('@dropdown.toggle')
-                ->waitUsing(5, 75, function () use ($browser) {
+                ->click('div[id="color-picker"] button[trigger]')
+                ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
-                ->click('button[title="White"')
-                ->pause(100)
-                ->assertInputValue('color-picker', '#fff');
+                ->click('div[id="color-picker"] button[title="White"')
+                ->waitUsing(7, 100, function () use ($browser) {
+                    return $browser->assertInputValue('color-picker', '#fff');
+                });
         });
     }
 
@@ -65,23 +79,29 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
-                ->click('@dropdown.toggle')
-                ->waitUsing(5, 75, function () use ($browser) {
+                ->click('div[id="color-picker"] button[trigger]')
+                ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
-                ->click('button[title="White"')
-                ->pause(100)
-                ->assertInputValue('color-picker', '#fff')
-                ->click('@dropdown.toggle')
-                ->waitUsing(5, 75, function () use ($browser) {
+                ->click('div[id="color-picker"] button[title="White"')
+                ->waitUsing(7, 100, function () use ($browser) {
+                    return $browser->assertInputValue('color-picker', '#fff');
+                })
+                ->waitUsing(7, 100, function () use ($browser) {
+                    return $browser->assertDontSee('dropdown-open');
+                })
+                ->click('div[id="color-picker"] button[trigger]')
+                ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
-                ->click('button[title="Black"')
+                ->click('div[id="color-picker"] button[title="Black"')
                 ->pause(100)
-                ->assertInputValue('color-picker', '#000');
+                ->waitUsing(7, 100, function () use ($browser) {
+                    return $browser->assertInputValue('color-picker', '#000');
+                });
         });
     }
 
@@ -90,7 +110,7 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
                 ->clear('color-picker')
@@ -107,7 +127,7 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
                 ->waitForLivewireToLoad()
@@ -120,7 +140,7 @@ class ColorPickerTest extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|TestableLivewire $testable */
-            $testable = Livewire::visit($browser, Component::class);
+            $testable = $this->visit($browser, Component::class);
 
             $testable
                 ->waitForLivewireToLoad()
