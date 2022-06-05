@@ -63,9 +63,8 @@ class Test extends BrowserTestCase
             $duskButton = '@button.test.call_confirm_action_with_multiples_callbacks_and_events';
 
             $this->visit($browser, Component::class)
-                ->waitForLivewireToLoad()
+                ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->click($duskButton)
-                ->waitForLivewire()
                 ->waitForEvent('wireui:confirm-notification')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
@@ -92,8 +91,8 @@ class Test extends BrowserTestCase
                     return $browser->assertSeeIn('@events', 'onClose,onDismiss');
                 })
                 ->click('@button.clear_events')
-                ->waitForLivewire()
-                ->waitUsing(7, 100, fn () => $browser->assertMissing('@events'))
+                ->pause(100)
+                ->waitUsing(7, 100, fn () => $browser->assertMissing('onClose,onDismiss'))
                 ->click($duskButton)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onTimeout');
