@@ -65,6 +65,7 @@ class Test extends BrowserTestCase
             $this->visit($browser, Component::class)
                 ->waitForLivewireToLoad()
                 ->click($duskButton)
+                ->waitForLivewire()
                 ->waitForEvent('wireui:confirm-notification')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
