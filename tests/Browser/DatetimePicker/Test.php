@@ -79,12 +79,13 @@ class Test extends BrowserTestCase
         $this->browse(
             fn (Browser $browser) => $this
                 ->visit($browser, Component::class)
+                ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->assertInputValue('dateAndTime', '25-12-2021 00:00')
                 ->click('[id="dateAndTime"] input')
                 ->tap(fn () => $this->selectDate($browser, 'dateAndTime', 11))
-                ->waitForLivewire()
+                ->tap(fn () => $browser->waitForLivewire())
+                ->waitForTextIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->assertInputValue('dateAndTime', '11-12-2021 00:00')
-                ->assertSeeIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->pause(1000)
                 ->tap(fn () => $browser->script(<<<EOT
                     console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
