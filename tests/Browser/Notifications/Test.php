@@ -30,7 +30,7 @@ class Test extends BrowserTestCase
             $this->visit($browser, Component::class)
                 ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->click('@button.test.simple_notification')
-                ->waitForEvent('wireui:notification')
+                ->tap(fn () => $browser->waitForLivewire())
                 ->pause(100)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
