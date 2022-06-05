@@ -12,13 +12,16 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
+                ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->assertSelectHasOptions('model', ['Slot Option 1', 'Slot Option 2', 'Slot Option 3'])
                 ->select('model', 'Slot Option 2')
                 ->assertSelected('model', 'Slot Option 2')
                 ->waitForTextIn('@value', 'Slot Option 2')
                 ->select('model', '')
+                ->assertSelected('model', '')
                 ->click('@validate')
-                ->waitUsing(7, 75, fn () => $browser->assertSeeNothingIn('@value')->assertSee('select a value'));
+                ->tap(fn () => $browser->waitForLivewire())
+                ->waitUsing(7, 100, fn () => $browser->assertSeeNothingIn('@value')->assertSee('select a value'));
         });
     }
 
