@@ -75,11 +75,11 @@ class Card extends Component
             ->append(" {$headerClasses}");
     }
 
-    public function setFooterClasses($footerClasses)
+    public function setFooterClasses(?string $footerClasses): string
     {
-        return Str::of('px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600')->finish(' ')
-            ->append($this->rounded)->finish(' ')
-            ->append($footerClasses);
+        return Str::of('px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600')
+            ->append(" {$this->rounded}")
+            ->append(" {$footerClasses}");
     }
 
     public function render()
