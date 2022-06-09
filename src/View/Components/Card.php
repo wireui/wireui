@@ -64,15 +64,15 @@ class Card extends Component
             ->append($cardClasses);
     }
 
-    public function setHeaderClasses($headerClasses)
+    public function setHeaderClasses(?string $headerClasses): string
     {
         if (Str::contains($headerClasses, 'dark:border')) {
-            return Str::of('px-4 py-2.5 flex justify-between items-center border-b dark:border-0')->replace('dark:border-0', '')->finish(' ')
-            ->append($headerClasses);
-        } else {
-            return Str::of('px-4 py-2.5 flex justify-between items-center border-b dark:border-0')->finish(' ')
-            ->append($headerClasses);
+            return Str::of('px-4 py-2.5 flex justify-between items-center border-b dark:border-0')
+                ->replace('dark:border-0', '')
+                ->append(" {$headerClasses}");
         }
+        return Str::of('px-4 py-2.5 flex justify-between items-center border-b dark:border-0')
+            ->append(" {$headerClasses}");
     }
 
     public function setFooterClasses($footerClasses)
