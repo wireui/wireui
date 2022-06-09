@@ -55,13 +55,13 @@ class Card extends Component
         $this->footerClasses = $this->setFooterClasses($footerClasses);
     }
 
-    public function setCardClasses($cardClasses)
+    public function setCardClasses(?string $cardClasses): string
     {
-        return Str::of('w-full flex flex-col')->finish(' ')
-            ->append($this->shadow)->finish(' ')
-            ->append($this->rounded)->finish(' ')
-            ->append($this->color)->finish(' ')
-            ->append($cardClasses);
+        return Str::of('w-full flex flex-col')
+            ->append(" {$this->shadow}")
+            ->append(" {$this->rounded}")
+            ->append(" {$this->color}")
+            ->append(" {$cardClasses}");
     }
 
     public function setHeaderClasses(?string $headerClasses): string
