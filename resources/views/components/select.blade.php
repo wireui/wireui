@@ -191,6 +191,8 @@
                     x-on:click="closePopover">
                     {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
                 </li>
+
+                {{ $customOptions ?? null }}
             </ul>
         </template>
     </div>
