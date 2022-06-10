@@ -1,7 +1,7 @@
 // this script is a refactored code from https://github.com/zhorton34/laravel-js-helpers
 
 export interface DataGet {
-  (target: any, key: string | string[] | undefined, fallback?: any): any
+  (target: any, key: string | string[] | null | undefined, fallback?: any): any
 }
 
 export const dataGet: DataGet = (target, path, fallback = undefined) => {
