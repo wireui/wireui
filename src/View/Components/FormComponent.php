@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\View\ComponentAttributeBag;
+
 abstract class FormComponent extends Component
 {
     public function render()
@@ -20,8 +22,11 @@ abstract class FormComponent extends Component
 
     protected function mergeAttributes(array $data): array
     {
+        /** @var ComponentAttributeBag $attributes */
         $attributes = $data['attributes'];
-        $model      = $attributes->wire('model')->value();
+
+        /** @var string|null $model */
+        $model = $attributes->wire('model')->value();
 
         if (!$attributes->has('name') && $model) {
             $attributes->offsetSet('name', $model);
@@ -32,7 +37,12 @@ abstract class FormComponent extends Component
         }
 
         foreach ($this->sharedAttributes() as $attribute) {
-            $data[$attribute] = $attributes->get($attribute);
+            $value = property_exists($this, $attribute)
+                ? data_get($this, $attribute)
+                : $attributes->get($attribute);
+
+            $data[$attribute] = $value;
+            $attributes->offsetSet($attribute, $value);
         }
 
         return $data;

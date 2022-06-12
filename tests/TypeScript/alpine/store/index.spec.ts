@@ -1,11 +1,9 @@
 import '@/alpine/store/index'
 import colorPicker from '@/alpine/store/colorPicker'
+import { AlpineMock } from '@tests/helpers'
 
 describe('Testing the alpine store', () => {
-  window.Alpine = {
-    data: jest.fn((name, data) => ({ name, data })),
-    store: jest.fn((name, data) => ({ name, data }))
-  }
+  window.Alpine = AlpineMock
 
   it('should register all store modules', () => {
     document.dispatchEvent(new Event('alpine:init'))

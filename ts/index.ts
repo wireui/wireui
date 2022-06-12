@@ -6,6 +6,7 @@ import { WireUiHooks } from './hooks'
 import './directives/confirm'
 import './browserSupport'
 import './alpine/store'
+import './alpine/magic'
 import './components'
 import './global'
 
