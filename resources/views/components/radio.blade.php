@@ -38,6 +38,7 @@
                 @endif
             </div>
         @endif
+        </div>
     </label>
 
     @if ($name)
