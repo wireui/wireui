@@ -33,7 +33,7 @@
 
         <x-dynamic-component
             :component="WireUi::component('input')"
-            class="cursor-pointer overflow-hidden text-transparent dark:text-transparent"
+            class="cursor-pointer overflow-hidden !text-transparent !dark:text-transparent"
             x-ref="input"
             x-on:click="togglePopover"
             x-on:keydown.enter.stop.prevent="togglePopover"
