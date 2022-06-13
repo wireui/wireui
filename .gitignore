@@ -1,5 +1,6 @@
 node_modules
 vendor
+coverage
 tests/Browser/console
 tests/Browser/screenshots
 tests/Browser/source

@@ -57,11 +57,9 @@ class Test extends BrowserTestCase
     public function it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
-            Livewire::visit($browser, Component::class)
+            $this->visit($browser, Component::class)
                 ->type('model', 'wireui@livewire-wireui.com')
-                ->waitUsing(5, 75, function () use ($browser) {
-                    return $browser->assertSeeIn('@model-value', 'wireui@livewire-wireui.com');
-                });
+                ->waitForTextIn('@model-value', 'wireui@livewire-wireui.com');
         });
     }
 

@@ -23,10 +23,14 @@
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="{{ $getAlign() }} z-30 absolute mt-2 w-56"
+        {{ $attributes->except('wire:key')->class([
+            $getAlign(),
+            $width,
+            'z-30 absolute mt-2 whitespace-nowrap'
+        ]) }}
         style="display: none;"
         @unless($persistent) x-on:click="close" @endunless>
-        <div class="relative max-h-60 overflow-y-auto overflow-x-hidden border border-secondary-200
+        <div class="relative {{ $height }} soft-scrollbar overflow-auto border border-secondary-200
                     rounded-lg shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600">
             {{ $slot }}
         </div>

@@ -3,7 +3,6 @@
 namespace Tests\Browser\DatetimePicker\MinMaxLimits;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -19,7 +18,8 @@ class Test extends BrowserTestCase
         string $input
     ) {
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
-            $component = Livewire::visit($browser, Component::class)
+            /** @var Browser|TestableLivewire $component */
+            $component = $this->visit($browser, Component::class)
                 ->waitForLivewireToLoad()
                 ->click('[name="model"]')
                 ->tap(fn () => $browser->assertScript(<<<EOT
@@ -31,7 +31,7 @@ class Test extends BrowserTestCase
 
             if (!$disabled) {
                 $component
-                    ->waitUsing(5, 75, fn () => $browser->assertSeeIn('@value', $model))
+                    ->waitForTextIn('@value', $model)
                     ->assertInputValue('model', $input);
             }
         });
@@ -46,16 +46,17 @@ class Test extends BrowserTestCase
         string $time,
         bool $exists
     ) {
-        $this->browse(function (Browser $browser) use ($day, $time, $exists) {
-            Livewire::visit($browser, Component::class)
+        $this->browse(
+            fn (Browser $browser) => $this
+                ->visit($browser, Component::class)
                 ->waitForLivewireToLoad()
                 ->click('[name="model"]')
                 ->tap(fn () => $this->selectDate($browser, $day))
-                ->waitUsing(5, 75, fn () => $browser->assertScript(
+                ->waitUsing(7, 100, fn () => $browser->assertScript(
                     "!!document.querySelector('[name=\"times.{$time}\"]')",
                     $exists
-                ));
-        });
+                ))
+        );
     }
 
     public function datesProvider(): array

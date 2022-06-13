@@ -19,22 +19,11 @@ export type TemplateConfig = {
 export type Options = Option[]
 
 export type AsyncData = {
-  api?: string
+  api: string | null
   fetching: boolean
 }
 
 export type InitOptions = {
-  asyncData?: string
-  hasSlot: boolean
-  searchable: boolean
-  multiselect: boolean
-  readonly: boolean
-  disabled: boolean
-  placeholder: string
-  optionValue?: string
-  optionLabel?: string
-  optionDescription?: string
-  template?: TemplateConfig
   wireModel?: Entangle
 }
 
@@ -44,10 +33,16 @@ export type Config = {
   multiselect: boolean
   readonly: boolean
   disabled: boolean
-  optionValue?: string
-  optionLabel?: string
-  optionDescription?: string
+  placeholder: string | null
+  optionValue: string | null
+  optionLabel: string | null
+  optionDescription: string | null
   template: Template
+}
+
+export type Props = Config & {
+  asyncData: string | null
+  template: TemplateConfig
 }
 
 export type Refs = {
@@ -55,5 +50,6 @@ export type Refs = {
   search?: HTMLInputElement
   input: HTMLInputElement
   slot: HTMLElement
+  route: HTMLElement
   optionsContainer?: HTMLElement
 }

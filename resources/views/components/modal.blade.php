@@ -7,7 +7,7 @@
     x-on:keydown.escape.window="close"
     x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="previousFocusable().focus()"
-    x-on:open-modal:{{ Str::kebab((string)$model) }}.window="show = true"
+    x-on:open-wireui-modal:{{ Str::kebab((string)$model) }}.window="show = true"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
     x-show="show">

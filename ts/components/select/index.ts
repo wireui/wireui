@@ -1,31 +1,33 @@
-import { focusables } from '../modules/focusables'
+import { focusables } from '@/components/modules/focusables'
 import { Select } from './interfaces'
 import { templates } from './templates'
-import { InitOptions, Option, Options, Refs } from './types'
+import { InitOptions, Option, Options, Props, Refs } from './types'
 import baseTemplate from './templates/baseTemplate'
-import dataGet from '../../utils/dataGet'
-import { notify } from '../../notifications'
+import dataGet from '@/utils/dataGet'
+import { notify } from '@/notifications'
+import { watchProps } from '@/alpine/magic/props'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
   focusableSelector: 'li[tabindex="0"], input',
   $refs: {} as Refs,
+  $props: {} as Props,
   asyncData: {
-    api: initOptions.asyncData,
+    api: null,
     fetching: false
   },
   config: {
-    hasSlot: initOptions.hasSlot,
-    searchable: initOptions.searchable,
-    multiselect: initOptions.multiselect,
-    readonly: initOptions.readonly,
-    disabled: initOptions.disabled,
-    optionValue: initOptions.optionValue,
-    optionLabel: initOptions.optionLabel,
-    optionDescription: initOptions.optionDescription,
-    template: templates[initOptions.template?.name ?? 'default'](initOptions.template?.config ?? {})
+    hasSlot: false,
+    searchable: false,
+    multiselect: false,
+    readonly: false,
+    disabled: false,
+    optionValue: null,
+    optionLabel: null,
+    optionDescription: null,
+    placeholder: null,
+    template: templates['default']()
   },
-  placeholder: initOptions.placeholder,
   popover: false,
   search: '',
   wireModel: initOptions.wireModel,
@@ -37,6 +39,10 @@ export default (initOptions: InitOptions): Select => ({
     return this.wireModel !== undefined
   },
   init () {
+    this.syncProps()
+
+    watchProps(this, this.syncProps.bind(this))
+
     this.initWatchers()
 
     if (!this.asyncData.api) {
@@ -77,6 +83,12 @@ export default (initOptions: InitOptions): Select => ({
     this.$watch('options', (options: Options) => {
       this.displayOptions = options
     })
+
+    if (this.asyncData.api) {
+      this.$watch('asyncData.api', () => {
+        this.options = []
+      })
+    }
   },
   initWireModel () {
     this.syncSelectedFromWireModel()
@@ -155,6 +167,29 @@ export default (initOptions: InitOptions): Select => ({
       childList: true,
       subtree: true
     })
+  },
+  syncProps () {
+    const props = this.$props
+
+    const template = {
+      name: props.template?.name ?? 'default',
+      config: props.template?.config ?? {}
+    }
+
+    this.config = {
+      hasSlot: props.hasSlot,
+      searchable: props.searchable,
+      multiselect: props.multiselect,
+      readonly: props.readonly,
+      disabled: props.disabled,
+      placeholder: props.placeholder,
+      optionValue: props.optionValue,
+      optionLabel: props.optionLabel,
+      optionDescription: props.optionDescription,
+      template: templates[template.name](template.config)
+    }
+
+    this.asyncData.api = props.asyncData
   },
   syncSlotOptions () {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
@@ -306,7 +341,7 @@ export default (initOptions: InitOptions): Select => ({
     if (!this.selected || this.config.multiselect) return ''
     if (this.selected.html) return this.selected.html
     if (this.selected.template) {
-      const config = initOptions.template?.config ?? {}
+      const config = this.config.template.config ?? {}
       const template = templates[this.selected.template](config)
 
       if (template.renderSelected) {
@@ -322,7 +357,7 @@ export default (initOptions: InitOptions): Select => ({
   getPlaceholder () {
     if (this.config.multiselect && this.selectedOptions.length > 0) return ''
 
-    return this.placeholder ?? ''
+    return this.config.placeholder ?? ''
   },
   isSelected (option) {
     if (this.config.multiselect) {
@@ -382,7 +417,7 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     if (option.template) {
-      const config = initOptions.template?.config ?? {}
+      const config = this.config.template?.config ?? {}
 
       return templates[option.template](config).render(option)
     }

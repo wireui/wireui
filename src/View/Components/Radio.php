@@ -16,17 +16,21 @@ class Radio extends FormComponent
 
     public ?string $leftLabel;
 
+    public ?string $description;
+
     public function __construct(
         bool $md = false,
         bool $lg = false,
         ?string $label = null,
-        ?string $leftLabel = null
+        ?string $leftLabel = null,
+        ?string $description = null
     ) {
-        $this->sm        = !$md && !$lg;
-        $this->md        = $md;
-        $this->lg        = $lg;
-        $this->label     = $label;
-        $this->leftLabel = $leftLabel;
+        $this->sm           = !$md && !$lg;
+        $this->md           = $md;
+        $this->lg           = $lg;
+        $this->label        = $label;
+        $this->leftLabel    = $leftLabel;
+        $this->description  = $description;
     }
 
     protected function getView(): string

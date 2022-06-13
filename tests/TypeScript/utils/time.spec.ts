@@ -1,6 +1,4 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { convertMilitaryTimeToStandard, convertStandardTimeToMilitary } from '../../../ts/utils/time'
+import { convertMilitaryTimeToStandard, convertStandardTimeToMilitary } from '@/utils/time'
 
 describe('Testing The time helpers', () => {
   it('should convert from military time to standard time', () => {
@@ -32,7 +30,7 @@ describe('Testing The time helpers', () => {
     ]
 
     times.forEach(({ time, expected }) => {
-      assert.equal(convertMilitaryTimeToStandard(time), expected)
+      expect(convertMilitaryTimeToStandard(time)).toEqual(expected)
     })
   })
 
@@ -65,7 +63,7 @@ describe('Testing The time helpers', () => {
     ]
 
     times.forEach(({ time, expected }) => {
-      assert.equal(convertStandardTimeToMilitary(time), expected)
+      expect(convertStandardTimeToMilitary(time)).toEqual(expected)
     })
   })
 })

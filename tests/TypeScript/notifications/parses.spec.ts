@@ -1,7 +1,5 @@
-import { assert } from 'chai'
-import { describe, it } from 'mocha'
-import { parseIcon } from '../../../ts/notifications/icons'
-import { parseRedirect, parseLivewire } from '../../../ts/notifications/parses'
+import { parseIcon } from '@/notifications/icons'
+import { parseRedirect, parseLivewire } from '@/notifications/parses'
 
 declare global {
   interface Window {
@@ -19,7 +17,7 @@ describe('Testing notifications parses', () => {
 
     const callback = parseRedirect(redirect)
 
-    assert.isFunction(callback)
+    expect(callback).toBeFunction()
   })
 
   it('should parse livewire action', () => {
@@ -31,18 +29,18 @@ describe('Testing notifications parses', () => {
 
     const callback = parseLivewire(options)
 
-    assert.isFunction(callback)
+    expect(callback).toBeFunction()
   })
 
   it('should parse notification icon', () => {
     const successIcon = parseIcon({ name: 'success' })
-    assert.deepEqual(successIcon, {
+    expect(successIcon).toEqual({
       name: 'check-circle',
       color: 'text-positive-400'
     })
 
     const customIcon = parseIcon({ name: 'x', color: 'text-red-400' })
-    assert.deepEqual(customIcon, {
+    expect(customIcon).toEqual({
       name: 'x',
       color: 'text-red-400'
     })
