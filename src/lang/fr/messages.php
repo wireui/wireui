@@ -1,7 +1,9 @@
 <?php
 
 return [
+    'selectTime'    => 'Sélectionner l\'heure',
     'empty_options' => 'Aucune Option',
+    'loading'       => 'Chargement...',
     'searchHere'    => 'Cherchez ici',
     'datePicker'    => [
         'months'    => "['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']",
