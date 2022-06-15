@@ -142,7 +142,7 @@ abstract class BaseButton extends Component
         $modifier  = collect($modifiers)->filter()->keys()->first();
 
         // store the modifier to remove from attributes bag
-        if (!in_array($modifier, $this->smartAttributes)) {
+        if ($modifier && !in_array($modifier, $this->smartAttributes)) {
             $this->smartAttributes[] = $modifier;
         }
 
