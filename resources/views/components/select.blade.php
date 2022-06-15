@@ -1,21 +1,21 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
-        asyncData:         @js($asyncData),
-        optionValue:       @js($optionValue),
-        optionLabel:       @js($optionLabel),
-        optionDescription: @js($optionDescription),
-        hasSlot:     @boolean($slot->isNotEmpty()),
-        searchable:  @boolean($searchable),
-        multiselect: @boolean($multiselect),
-        readonly:    @boolean($readonly || $disabled),
-        disabled:    @boolean($disabled),
-        placeholder: @js($placeholder),
-        template:    @js($template),
         @if ($attributes->wire('model')->value())
             wireModel: @entangle($attributes->wire('model')),
         @endif
-    })">
-    <div hidden x-ref="json">{!! $optionsToJson() !!}</div>
+    })"
+    x-props="{
+        asyncData:    @js($asyncData),
+        optionValue:  @js($optionValue),
+        optionLabel:  @js($optionLabel),
+        optionDescription: @js($optionDescription),
+        hasSlot:     @boolean($slot->isNotEmpty()),
+        multiselect: @boolean($multiselect),
+        readonly:    @boolean($readonly || $disabled),
+        placeholder: @js($placeholder),
+        template:    @js($template),
+    }">
+    <div hidden x-ref="json">{{ $optionsToJson() }}</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
 
     <div class="relative">
@@ -25,6 +25,7 @@
                 class="mb-1"
                 :label="$label"
                 :has-error="$name && $errors->has($name)"
+                :disabled="$disabled"
                 x-on:click="togglePopover"
                 wire:key="select.label"
             />
@@ -32,7 +33,7 @@
 
         <x-dynamic-component
             :component="WireUi::component('input')"
-            class="cursor-pointer overflow-hidden text-transparent dark:text-transparent"
+            class="cursor-pointer overflow-hidden !text-transparent !dark:text-transparent"
             x-ref="input"
             x-on:click="togglePopover"
             x-on:keydown.enter.stop.prevent="togglePopover"
