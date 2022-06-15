@@ -18,6 +18,7 @@ export const mockAlpineComponent = (component: Component): Component => {
 }
 
 export const AlpineMock: AlpineInterface = {
+  raw: jest.fn(Alpine.raw),
   data: jest.fn(Alpine.data),
   store: jest.fn(Alpine.store),
   magic: jest.fn(Alpine.magic),
