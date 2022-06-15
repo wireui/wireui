@@ -22,6 +22,7 @@ export interface Select extends Focusables {
   initSlotObserver (): void
   syncProps (): void
   syncSlotOptions (): void
+  makeRequest (params: any): Request
   fetchOptions (): void
   fetchSelected (): void
   mapOption (option: any): Option

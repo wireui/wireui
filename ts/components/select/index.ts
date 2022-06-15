@@ -14,7 +14,9 @@ export default (initOptions: InitOptions): Select => ({
   $props: {} as Props,
   asyncData: {
     api: null,
-    fetching: false
+    method: 'GET',
+    fetching: false,
+    params: {}
   },
   config: {
     hasSlot: false,
@@ -189,7 +191,9 @@ export default (initOptions: InitOptions): Select => ({
       template: templates[template.name](template.config)
     }
 
-    this.asyncData.api = props.asyncData
+    this.asyncData.api = props.asyncData.api
+    this.asyncData.method = props.asyncData.method
+    this.asyncData.params = props.asyncData.params
   },
   syncSlotOptions () {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
@@ -205,20 +209,57 @@ export default (initOptions: InitOptions): Select => ({
       return option
     })
   },
+  makeRequest (params = {}) {
+    const { api, method } = this.asyncData
+
+    const url = new URL(api ?? '')
+
+    const parameters = Object.assign(
+      params,
+      window.Alpine.raw(this.asyncData.params),
+      ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
+    )
+
+    url.search = ''
+
+    if (method === 'GET') {
+      const urlSearchParams = new URLSearchParams()
+
+      for (const [key, value] of Object.entries(parameters)) {
+        if (Array.isArray(value)) {
+          value.forEach(v => urlSearchParams.append(`${key}[]`, String(v)))
+
+          continue
+        }
+
+        urlSearchParams.append(key, String(value))
+      }
+
+      url.search = urlSearchParams.toString()
+    }
+
+    const request = new Request(url, {
+      method,
+      body: method === 'POST' ? JSON.stringify(parameters) : undefined
+    })
+
+    request.headers.set('Content-Type', 'application/json')
+    request.headers.set('Accept', 'application/json')
+
+    const csrfToken = document.head.querySelector('[name="csrf-token"]')?.getAttribute('content')
+
+    if (csrfToken) {
+      request.headers.set('X-CSRF-TOKEN', csrfToken)
+    }
+
+    return request
+  },
   fetchOptions () {
     if (!this.asyncData.api) return
 
     this.asyncData.fetching = true
 
-    const request = new Request(`${this.asyncData.api}?search=${this.search}`, {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    })
-
-    fetch(request)
+    fetch(this.makeRequest({ search: this.search }))
       .then(response => {
         if (!response.ok) {
           return response.json().then(data => {
@@ -244,11 +285,7 @@ export default (initOptions: InitOptions): Select => ({
       })
   },
   fetchSelected () {
-    const queryParams = this.config.multiselect
-      ? this.wireModel.map(id => `selected[]=${id}`).join('&')
-      : `selected[]=${this.wireModel}`
-
-    fetch(`${this.asyncData.api}?${queryParams}`)
+    fetch(this.makeRequest({ selected: this.wireModel }))
       .then(response => response.json())
       .then(rawOptions => {
         if (!Array.isArray(rawOptions)) return

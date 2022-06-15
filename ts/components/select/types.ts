@@ -20,7 +20,15 @@ export type Options = Option[]
 
 export type AsyncData = {
   api: string | null
+  method: string
+  params: any
   fetching: boolean
+}
+
+export type AsyncDataConfig = {
+  api: string | null
+  method: string
+  params: any
 }
 
 export type InitOptions = {
@@ -41,7 +49,7 @@ export type Config = {
 }
 
 export type Props = Config & {
-  asyncData: string | null
+  asyncData: AsyncDataConfig
   template: TemplateConfig
 }
 
