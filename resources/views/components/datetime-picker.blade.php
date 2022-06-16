@@ -13,7 +13,8 @@
         userTimezone:  '{{ $userTimezone }}',
         parseFormat:   '{{ $parseFormat }}',
         displayFormat: '{{ $displayFormat }}',
-        weekDays:   @lang('wireui::messages.datePicker.days'),
+        mondayFirstDay: @boolean($mondayFirstDay),
+        weekDays:   {{json_encode($weekDays)}},
         monthNames: @lang('wireui::messages.datePicker.months'),
         withoutTime: @boolean($withoutTime),
     })"

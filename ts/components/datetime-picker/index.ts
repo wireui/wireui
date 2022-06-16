@@ -13,6 +13,7 @@ export default (options: InitOptions): DateTimePicker => ({
   localTimezone: getLocalTimezone(),
   parseFormat: options.parseFormat ?? 'YYYY-MM-DDTHH:mm:ss.SSSZ',
   displayFormat: options.displayFormat,
+  mondayFirstDay: options.mondayFirstDay,
   weekDays: options.weekDays,
   monthNames: options.monthNames,
   withoutTime: options.withoutTime,
@@ -124,7 +125,10 @@ export default (options: InitOptions): DateTimePicker => ({
     this.month = this.input.getMonth()
   },
   getPreviousDates (currentDate) {
-    const dayOfWeek = currentDate.getDayOfWeek()
+    let dayOfWeek = currentDate.getDayOfWeek()
+    if (this.mondayFirstDay) {
+      dayOfWeek = dayOfWeek !== 0 ? dayOfWeek - 1 : 6;
+    }
     const previousDate = currentDate.clone().subMonth()
     const monthDays = previousDate.getMonthDays()
     const dates: PreviousDate[] = []

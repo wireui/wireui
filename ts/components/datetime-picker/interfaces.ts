@@ -13,6 +13,7 @@ export interface InitOptions {
     max?: string | null
   }
   withoutTimezone: boolean
+  mondayFirstDay: boolean
   timezone: string
   userTimezone: string
   parseFormat: string

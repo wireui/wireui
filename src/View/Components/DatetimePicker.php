@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Illuminate\Contracts\Translation\Translator;
 
 class DatetimePicker extends Input
 {
@@ -14,6 +15,8 @@ class DatetimePicker extends Input
     public bool $withoutTimezone;
 
     public bool $withoutTime;
+
+    public bool $mondayFirstDay;
 
     public int $interval;
 
@@ -31,6 +34,8 @@ class DatetimePicker extends Input
 
     public ?Carbon $max;
 
+    public array $weekDays;
+
     /**
      * @param Carbon|DateTimeInterface|string|int|null $min
      * @param Carbon|DateTimeInterface|string|int|null $max
@@ -42,6 +47,7 @@ class DatetimePicker extends Input
         bool $withoutTips = false,
         bool $withoutTimezone = false,
         bool $withoutTime = false,
+        bool $mondayFirstDay = false,
         int $interval = TimePicker::INTERVAL,
         string $timeFormat = TimePicker::DEFAULT_FORMAT,
         ?string $parseFormat = null,
@@ -64,6 +70,7 @@ class DatetimePicker extends Input
         $this->withoutTips     = $withoutTips;
         $this->withoutTimezone = $withoutTimezone;
         $this->withoutTime     = $withoutTime;
+        $this->mondayFirstDay  = $mondayFirstDay;
         $this->timeFormat      = $timeFormat;
         $this->interval        = $interval;
         $this->timezone        = $timezone ?? config('app.timezone', 'UTC');
@@ -72,6 +79,25 @@ class DatetimePicker extends Input
         $this->displayFormat   = $displayFormat;
         $this->min             = $min ? Carbon::parse($min) : null;
         $this->max             = $max ? Carbon::parse($max) : null;
+        $this->weekDays        = $this->parseWeekDays();
+    }
+
+    protected function parseWeekDays(): array {
+        $weekdays = __('wireui::messages.datePicker.days');
+
+        // @todo: I do not really know how to get the array so I do it like this...
+        $daysArray = explode('\',', $weekdays);
+
+        foreach ($daysArray as &$day) {
+            $day = rtrim(ltrim($day, '[\' '), ']\' ');
+        }
+
+        if ($this->mondayFirstDay) {
+            $sunday = array_shift($daysArray);
+            $daysArray[count($daysArray) + 1] = $sunday;
+        }
+
+        return $daysArray;
     }
 
     protected function getView(): string
