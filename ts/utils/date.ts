@@ -3,7 +3,6 @@ import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -50,7 +49,6 @@ export class FluentDate implements Dateable {
   private date: Dayjs
 
   constructor (date: ConfigType, timezone = 'UTC', format = '') {
-
     this.timezone = timezone
     this.date = format
       ? dayjs.tz(date, format, timezone)
