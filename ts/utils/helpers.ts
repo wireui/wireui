@@ -15,3 +15,11 @@ export const occurrenceCount: OccurrenceCount = (haystack, needle): number => {
 
   return (haystack?.match(regex) || []).length
 }
+
+export const jsonParse = (value?: string | null, fallback: any = null): any => {
+  try {
+    return JSON.parse(value ?? '')
+  } catch (error) {
+    return fallback
+  }
+}

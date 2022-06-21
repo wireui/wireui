@@ -6,6 +6,7 @@ import baseTemplate from './templates/baseTemplate'
 import dataGet from '@/utils/dataGet'
 import { notify } from '@/notifications'
 import { watchProps } from '@/alpine/magic/props'
+import { jsonParse } from '@/utils/helpers'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -51,6 +52,8 @@ export default (initOptions: InitOptions): Select => ({
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
+    } else if (!this.hasWireModel && this.asyncData.api && this.getValue()) {
+      this.fetchSelected()
     }
 
     this.hasWireModel
@@ -144,16 +147,15 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   initOptionsObserver () {
-    const element = this.$refs.json
-    this.options = JSON.parse(element.innerText)
+    this.options = jsonParse(this.$refs.json.innerText, [])
 
     const observer = new MutationObserver(mutations => {
       const textContent = mutations[0]?.target?.textContent ?? '[]'
 
-      this.options = JSON.parse(textContent)
+      this.options = jsonParse(textContent, [])
     })
 
-    observer.observe(element, {
+    observer.observe(this.$refs.json, {
       subtree: true,
       characterData: true
     })
@@ -200,10 +202,10 @@ export default (initOptions: InitOptions): Select => ({
 
     this.options = Array.from(elements).flatMap(element => {
       const json = element.querySelector('[name="wireui.select.json"]')?.textContent
+      const option: Option = jsonParse(json, false)
 
-      if (!json) return []
+      if (!option) return []
 
-      const option: Option = JSON.parse(json)
       option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
 
       return option
@@ -285,10 +287,13 @@ export default (initOptions: InitOptions): Select => ({
       })
   },
   fetchSelected () {
-    fetch(this.makeRequest({ selected: this.wireModel }))
+    fetch(this.makeRequest({ selected: this.getValue() }))
       .then(response => response.json())
       .then(rawOptions => {
-        if (!Array.isArray(rawOptions)) return
+        this.selected = undefined
+        this.selectedOptions = []
+
+        if (!Array.isArray(rawOptions) || !rawOptions?.length) return
 
         if (this.config.multiselect) {
           return (this.selectedOptions = rawOptions.map(rawOption => this.mapOption(rawOption)))
@@ -317,9 +322,20 @@ export default (initOptions: InitOptions): Select => ({
     return option
   },
   fillSelectedFromInputValue () {
+    this.selected = undefined
+    this.selectedOptions = []
+
+    if (this.options.length === 0) return
+
     const inputValue = this.$refs.input.value
 
     if (!this.config.multiselect) {
+      if (!inputValue) {
+        this.selected = undefined
+
+        return
+      }
+
       // eslint-disable-next-line eqeqeq
       this.selected = this.options.find(option => option.value == inputValue)
 
@@ -327,17 +343,21 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     try {
-      this.selectedOptions = JSON.parse(inputValue).map(value => {
+      this.selectedOptions = jsonParse(inputValue, []).map(value => {
         // eslint-disable-next-line eqeqeq
         return this.options.find(option => option.value == value)
       })
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error)
+      this.selectedOptions = []
+      reportError(error)
     }
   },
   syncSelectedFromWireModel () {
-    if (this.config.multiselect && Array.isArray(this.wireModel)) {
+    if (this.config.multiselect) {
+      if (!Array.isArray(this.wireModel)) {
+        this.wireModel = [this.wireModel]
+      }
+
       return (this.selectedOptions = this.wireModel.flatMap(value => {
         return this.options.find(option => option.value === value) ?? []
       }))
@@ -364,6 +384,21 @@ export default (initOptions: InitOptions): Select => ({
   },
   closePopover () {
     this.popover = false
+  },
+  getValue () {
+    try {
+      const values = this.hasWireModel
+        ? this.wireModel
+        : jsonParse(this.$refs.input.value)
+
+      if (!values) return []
+
+      return [values].flat()
+    } catch (error) {
+      reportError(error)
+
+      return []
+    }
   },
   getSelectedValue () {
     if (this.config.multiselect) {

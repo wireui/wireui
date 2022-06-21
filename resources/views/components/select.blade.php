@@ -11,6 +11,7 @@
         optionDescription: @js($optionDescription),
         hasSlot:     @boolean($slot->isNotEmpty()),
         multiselect: @boolean($multiselect),
+        searchable:  @boolean($searchable),
         readonly:    @boolean($readonly || $disabled),
         placeholder: @js($placeholder),
         template:    @js($template),
