@@ -12,7 +12,7 @@ class Dialog extends Actionable
     {
         $event = 'dialog';
 
-        if ($id = Str::kebab($dialogId)) {
+        if ($dialogId && $id = Str::kebab($dialogId)) {
             return "{$event}:{$id}";
         }
 

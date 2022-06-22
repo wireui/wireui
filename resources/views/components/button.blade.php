@@ -4,7 +4,7 @@
     $defaultAttributes = [
         'wire:loading.attr'  => 'disabled',
         'wire:loading.class' => '!cursor-wait',
-        'wire:target'        => (strlen($spinner) > 1) ? $spinner : null,
+        'wire:target'        => ($spinner && strlen($spinner) > 1) ? $spinner : null,
     ];
 
     $href === null

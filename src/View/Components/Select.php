@@ -21,9 +21,9 @@ class Select extends NativeSelect
         public ?string $optionLabel = null,
         public ?string $optionDescription = null,
         public ?string $emptyMessage = null,
-        public ?string $asyncData = null,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
+        public string|array|null $asyncData = null,
         public string|array|null $template = null,
         Collection|array|null $options = null,
     ) {
@@ -43,12 +43,27 @@ class Select extends NativeSelect
             $this->template = ['name' => $template];
         }
 
+        if (gettype($asyncData) === 'string' || $asyncData === null) {
+            $this->asyncData = [
+                'api'    => $asyncData,
+                'method' => 'GET',
+                'params' => [],
+            ];
+        }
+
+        $this->ensureAsyncData();
         $this->validateConfig();
+    }
+
+    private function ensureAsyncData(): void
+    {
+        data_set($this->asyncData, 'method', data_get($this->asyncData, 'method', 'GET'));
+        data_set($this->asyncData, 'params', data_get($this->asyncData, 'params', []));
     }
 
     private function validateConfig(): void
     {
-        if ($this->options->isNotEmpty() && $this->asyncData) {
+        if ($this->options->isNotEmpty() && $this->asyncData['api']) {
             throw new Exception('The {async-data} attribute cannot be used with {options} attribute.');
         }
     }

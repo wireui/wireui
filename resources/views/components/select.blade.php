@@ -11,6 +11,7 @@
         optionDescription: @js($optionDescription),
         hasSlot:     @boolean($slot->isNotEmpty()),
         multiselect: @boolean($multiselect),
+        searchable:  @boolean($searchable),
         readonly:    @boolean($readonly || $disabled),
         placeholder: @js($placeholder),
         template:    @js($template),
@@ -183,6 +184,10 @@
                     </div>
                 </div>
 
+                @isset ($beforeOptions)
+                    {{ $beforeOptions }}
+                @endisset
+
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                     <div x-transition x-html="renderOption(option)"></div>
                 </template>
@@ -192,6 +197,9 @@
                     x-on:click="closePopover">
                     {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
                 </li>
+                @isset ($afterOptions)
+                    {{ $afterOptions }}
+                @endisset
             </ul>
         </template>
     </div>

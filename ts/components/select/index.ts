@@ -6,6 +6,7 @@ import baseTemplate from './templates/baseTemplate'
 import dataGet from '@/utils/dataGet'
 import { notify } from '@/notifications'
 import { watchProps } from '@/alpine/magic/props'
+import { jsonParse } from '@/utils/helpers'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -14,7 +15,9 @@ export default (initOptions: InitOptions): Select => ({
   $props: {} as Props,
   asyncData: {
     api: null,
-    fetching: false
+    method: 'GET',
+    fetching: false,
+    params: {}
   },
   config: {
     hasSlot: false,
@@ -49,6 +52,8 @@ export default (initOptions: InitOptions): Select => ({
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
+    } else if (!this.hasWireModel && this.asyncData.api && this.getValue()) {
+      this.fetchSelected()
     }
 
     this.hasWireModel
@@ -142,16 +147,15 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   initOptionsObserver () {
-    const element = this.$refs.json
-    this.options = JSON.parse(element.innerText)
+    this.options = jsonParse(this.$refs.json.innerText, [])
 
     const observer = new MutationObserver(mutations => {
       const textContent = mutations[0]?.target?.textContent ?? '[]'
 
-      this.options = JSON.parse(textContent)
+      this.options = jsonParse(textContent, [])
     })
 
-    observer.observe(element, {
+    observer.observe(this.$refs.json, {
       subtree: true,
       characterData: true
     })
@@ -189,36 +193,75 @@ export default (initOptions: InitOptions): Select => ({
       template: templates[template.name](template.config)
     }
 
-    this.asyncData.api = props.asyncData
+    this.asyncData.api = props.asyncData.api
+    this.asyncData.method = props.asyncData.method
+    this.asyncData.params = props.asyncData.params
   },
   syncSlotOptions () {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
 
     this.options = Array.from(elements).flatMap(element => {
       const json = element.querySelector('[name="wireui.select.json"]')?.textContent
+      const option: Option = jsonParse(json, false)
 
-      if (!json) return []
+      if (!option) return []
 
-      const option: Option = JSON.parse(json)
       option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
 
       return option
     })
+  },
+  makeRequest (params = {}) {
+    const { api, method } = this.asyncData
+
+    const url = new URL(api ?? '')
+
+    const parameters = Object.assign(
+      params,
+      window.Alpine.raw(this.asyncData.params),
+      ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
+    )
+
+    url.search = ''
+
+    if (method === 'GET') {
+      const urlSearchParams = new URLSearchParams()
+
+      for (const [key, value] of Object.entries(parameters)) {
+        if (Array.isArray(value)) {
+          value.forEach(v => urlSearchParams.append(`${key}[]`, String(v)))
+
+          continue
+        }
+
+        urlSearchParams.append(key, String(value))
+      }
+
+      url.search = urlSearchParams.toString()
+    }
+
+    const request = new Request(url, {
+      method,
+      body: method === 'POST' ? JSON.stringify(parameters) : undefined
+    })
+
+    request.headers.set('Content-Type', 'application/json')
+    request.headers.set('Accept', 'application/json')
+
+    const csrfToken = document.head.querySelector('[name="csrf-token"]')?.getAttribute('content')
+
+    if (csrfToken) {
+      request.headers.set('X-CSRF-TOKEN', csrfToken)
+    }
+
+    return request
   },
   fetchOptions () {
     if (!this.asyncData.api) return
 
     this.asyncData.fetching = true
 
-    const request = new Request(`${this.asyncData.api}?search=${this.search}`, {
-      method: 'GET',
-      headers: new Headers({
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      })
-    })
-
-    fetch(request)
+    fetch(this.makeRequest({ search: this.search }))
       .then(response => {
         if (!response.ok) {
           return response.json().then(data => {
@@ -244,14 +287,13 @@ export default (initOptions: InitOptions): Select => ({
       })
   },
   fetchSelected () {
-    const queryParams = this.config.multiselect
-      ? this.wireModel.map(id => `selected[]=${id}`).join('&')
-      : `selected[]=${this.wireModel}`
-
-    fetch(`${this.asyncData.api}?${queryParams}`)
+    fetch(this.makeRequest({ selected: this.getValue() }))
       .then(response => response.json())
       .then(rawOptions => {
-        if (!Array.isArray(rawOptions)) return
+        this.selected = undefined
+        this.selectedOptions = []
+
+        if (!Array.isArray(rawOptions) || !rawOptions?.length) return
 
         if (this.config.multiselect) {
           return (this.selectedOptions = rawOptions.map(rawOption => this.mapOption(rawOption)))
@@ -280,9 +322,20 @@ export default (initOptions: InitOptions): Select => ({
     return option
   },
   fillSelectedFromInputValue () {
+    this.selected = undefined
+    this.selectedOptions = []
+
+    if (this.options.length === 0) return
+
     const inputValue = this.$refs.input.value
 
     if (!this.config.multiselect) {
+      if (!inputValue) {
+        this.selected = undefined
+
+        return
+      }
+
       // eslint-disable-next-line eqeqeq
       this.selected = this.options.find(option => option.value == inputValue)
 
@@ -290,17 +343,21 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     try {
-      this.selectedOptions = JSON.parse(inputValue).map(value => {
+      this.selectedOptions = jsonParse(inputValue, []).map(value => {
         // eslint-disable-next-line eqeqeq
         return this.options.find(option => option.value == value)
       })
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error)
+      this.selectedOptions = []
+      reportError(error)
     }
   },
   syncSelectedFromWireModel () {
-    if (this.config.multiselect && Array.isArray(this.wireModel)) {
+    if (this.config.multiselect) {
+      if (!Array.isArray(this.wireModel)) {
+        this.wireModel = [this.wireModel]
+      }
+
       return (this.selectedOptions = this.wireModel.flatMap(value => {
         return this.options.find(option => option.value === value) ?? []
       }))
@@ -327,6 +384,21 @@ export default (initOptions: InitOptions): Select => ({
   },
   closePopover () {
     this.popover = false
+  },
+  getValue () {
+    try {
+      const values = this.hasWireModel
+        ? this.wireModel
+        : jsonParse(this.$refs.input.value)
+
+      if (!values) return []
+
+      return [values].flat()
+    } catch (error) {
+      reportError(error)
+
+      return []
+    }
   },
   getSelectedValue () {
     if (this.config.multiselect) {

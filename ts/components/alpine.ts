@@ -1,6 +1,7 @@
 export type Entangle = any
 
 export interface Alpine {
+  raw (data: any): any
   data (name: string, data: any): void
   store (name: string, data?: any): any
   evaluate (scope: any, expression: string): any
