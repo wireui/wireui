@@ -1,10 +1,13 @@
-import { applyMask } from '../../utils/masker'
-import { getLocalTimezone, date as parseDate } from '../../utils/date'
-import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate } from './interfaces'
+import { applyMask } from '@/utils/masker'
+import { getLocalTimezone, date as parseDate } from '@/utils/date'
+import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate, Refs } from './interfaces'
 import { makeTimes, Time } from './makeTimes'
-import { convertStandardTimeToMilitary } from '../../utils/time'
+import { convertStandardTimeToMilitary } from '@/utils/time'
+import { baseComponent } from '@/components/alpine'
 
 export default (options: InitOptions): DateTimePicker => ({
+  ...baseComponent,
+  $refs: {} as Refs,
   model: options.model,
   config: options.config,
   withoutTimezone: options.withoutTimezone,
@@ -37,6 +40,10 @@ export default (options: InitOptions): DateTimePicker => ({
   year: 0,
   minDate: null,
   maxDate: null,
+  position: {
+    x: 'right',
+    y: 'bottom'
+  },
 
   get dates () {
     return [...this.previousDates, ...this.currentDates, ...this.nextDates]
@@ -45,7 +52,17 @@ export default (options: InitOptions): DateTimePicker => ({
   init () {
     this.initComponent()
 
+    window.addEventListener('scroll', () => {
+      this.syncPopoverPosition()
+    })
+
     this.$watch('popover', popover => {
+      if (popover) {
+        this.$nextTick(() => {
+          this.syncPopoverPosition()
+        })
+      }
+
       if (popover && !this.currentDates.length) {
         this.syncPickerDates()
 
@@ -82,6 +99,22 @@ export default (options: InitOptions): DateTimePicker => ({
     this.localeDateConfig = this.getLocaleDateConfig()
     this.syncInput()
     this.syncCalendar()
+  },
+  syncPopoverPosition () {
+    const rect = this.$root.getBoundingClientRect()
+    const popover = this.$refs.popover
+
+    if (popover.clientHeight + rect.top + rect.height > window.innerHeight) {
+      this.position.y = 'top'
+    } else {
+      this.position.y = 'bottom'
+    }
+
+    if (popover.clientWidth + rect.right + rect.width > window.innerWidth) {
+      this.position.x = 'right'
+    } else {
+      this.position.x = 'left'
+    }
   },
   clearDate () {
     this.model = null
@@ -440,8 +473,8 @@ export default (options: InitOptions): DateTimePicker => ({
         .timesContainer
         .querySelector(`button[name = 'times.${this.input?.getTime(this.userTimezone)}']`)
         ?.scrollIntoView({
-          behavior: 'instant',
-          block: 'nearest',
+          behavior: 'auto',
+          block: 'center',
           inline: 'center'
         })
     })

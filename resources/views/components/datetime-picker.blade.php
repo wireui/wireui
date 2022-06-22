@@ -1,7 +1,7 @@
 <div x-data="wireui_datetime_picker({
         model: @entangle($attributes->wire('model')),
         config: {
-            interval: {{ $interval }},
+            interval: @js($interval),
             is12H:    @boolean($timeFormat == '12'),
             readonly: @boolean($readonly),
             disabled: @boolean($disabled),
@@ -9,13 +9,13 @@
             max: @js($max ? $max->format('Y-m-d\TH:i') : null),
         },
         withoutTimezone: @boolean($withoutTimezone),
-        timezone:      '{{ $timezone }}',
-        userTimezone:  '{{ $userTimezone }}',
-        parseFormat:   '{{ $parseFormat }}',
-        displayFormat: '{{ $displayFormat }}',
-        weekDays:   @lang('wireui::messages.datePicker.days'),
-        monthNames: @lang('wireui::messages.datePicker.months'),
-        withoutTime: @boolean($withoutTime),
+        timezone:      @js($timezone),
+        userTimezone:  @js($userTimezone),
+        parseFormat:   @js($parseFormat),
+        displayFormat: @js($displayFormat),
+        weekDays:      @lang('wireui::messages.datePicker.days'),
+        monthNames:    @lang('wireui::messages.datePicker.months'),
+        withoutTime:   @boolean($withoutTime),
     })"
     class="relative"
     {{ $attributes->only('wire:key') }}>
@@ -62,14 +62,21 @@
         @endif
     </x-dynamic-component>
 
-    <div class="fixed inset-0 z-20 overflow-y-auto sm:absolute sm:inset-auto sm:top-10 sm:mt-1 sm:right-0"
-         x-cloak
-         style="display: none;"
-         x-show="popover"
-         x-on:click.outside="closePicker"
-         x-on:keydown.escape.window="handleEscape">
-        <div class="flex items-end justify-center min-h-screen sm:h-96 sm:items-start"
-             style="min-height: -webkit-fill-available; min-height: fill-available;">
+    <div class="fixed inset-0 z-20 sm:z-10 sm:absolute sm:inset-auto transition-all ease-linear duration-150"
+        :class="{
+            'sm:left-0': position.x === 'left',
+            'sm:right-0': position.x === 'right',
+            'sm:top-0 {{ $label ? 'sm:mt-16' : 'sm:mt-11' }}': position.y === 'bottom',
+            'sm:bottom-0 {{ $label ? 'sm:mb-16' : 'sm:mb-11' }}': position.y === 'top',
+        }"
+        x-cloak
+        style="display: none;"
+        x-show="popover"
+        x-ref="popover"
+        x-on:click.outside="closePicker"
+        x-on:keydown.escape.window="handleEscape">
+        <div class="flex items-end justify-center min-h-screen sm:h-auto sm:items-start"
+            style="min-height: -webkit-fill-available; min-height: fill-available;">
             <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden
                         dark:bg-secondary-700 dark:bg-opacity-60"
                  x-show="popover"
@@ -136,13 +143,12 @@
                                     x-on:click="monthsPicker = !monthsPicker"
                                     type="button">
                             </button>
-                            <input class="w-10 sm:w-14 appearance-none p-0 ring-0 border-none focus:ring-0 focus:outline-none dark:bg-secondary-800"
+                            <input class="w-14 appearance-none p-0 ring-0 border-none focus:ring-0 focus:outline-none dark:bg-secondary-800"
                                    x-model="year"
                                    x-on:input.debounce.500ms="fillPickerDates"
                                    type="number"
                             />
                         </div>
-
 
                         <x-dynamic-component
                             :component="WireUi::component('button')"

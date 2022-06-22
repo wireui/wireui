@@ -1,5 +1,5 @@
-import { Dateable } from '../../utils/date'
-import { Entangle } from '../alpine'
+import { Dateable } from '@/utils/date'
+import { Component, Entangle } from '@/components/alpine'
 import { Time } from './makeTimes'
 
 export interface InitOptions {
@@ -48,9 +48,18 @@ export interface LocaleDateConfig {
   minute?: 'numeric' | '2-digit'
 }
 
-export interface DateTimePicker extends InitOptions {
-  [index: string]: any
+export type Refs = {
+  timesContainer: HTMLElement
+  popover: HTMLElement
+}
 
+export type Position = {
+  x: 'left' | 'right'
+  y: 'top' | 'bottom'
+}
+
+export interface DateTimePicker extends Component, InitOptions {
+  $refs: Refs
   localTimezone: string
   localeDateConfig: LocaleDateConfig
   searchTime: string | null
@@ -68,11 +77,13 @@ export interface DateTimePicker extends InitOptions {
   year: number
   minDate: Dateable | null
   maxDate: Dateable | null
+  position: Position
 
   get dates (): iDate[]
 
   init (): void
   initComponent (): void
+  syncPopoverPosition (): void
   clearDate (): void
   togglePicker (): void
   closePicker (): void
