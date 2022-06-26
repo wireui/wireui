@@ -77,8 +77,9 @@ class AlertDialogTest extends BrowserTestCase
                     description: "{$description}",
                 })
                 EOT))
-                ->pause(200)
+                ->waitForText($title)
                 ->assertSee($title)
+                ->waitForText($description)
                 ->assertSee($description);
         });
     }
@@ -94,9 +95,9 @@ class AlertDialogTest extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                     window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
                 EOT))
-                ->pause(200)
+                ->waitForText($title)
                 ->assertSee($title)
-                ->pause(420)
+                ->waitUntilMissingText($title)
                 ->assertDontSee($title);
         });
     }

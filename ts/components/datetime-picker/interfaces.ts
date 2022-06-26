@@ -11,6 +11,8 @@ export interface InitOptions {
     disabled: boolean
     min?: string | null
     max?: string | null
+    minTime: string | number
+    maxTime: string | number
   }
   withoutTimezone: boolean
   timezone: string
