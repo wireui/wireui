@@ -3,36 +3,49 @@ export interface Time {
   value: string
 }
 
-export interface MakeTimes {
-  (time12H: boolean, interval: number): Time[]
+export type Config = {
+  time12H: boolean
+  interval: number
+  min?: string | number
+  max?: string | number
 }
 
-const makeTimes: MakeTimes = (isTime12H, interval) => {
+export interface MakeTimes {
+  (config: Config): Time[]
+}
+
+const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
+  const [minHours = 0, minMinutes = 0] = min.toString().split(':')
+  const [maxHours = 0, maxMinutes = 0] = max.toString().split(':')
+
+  let currentTime = (Number(minHours) + Number(minMinutes)) * 60
+  const maxTime = (Number(maxHours) + Number(maxMinutes)) * 60
+
   const times: Time[] = []
-  let startTime = 0
   const timePeriods = ['AM', 'PM']
 
-  for (let i = 0; startTime < 24 * 60; i++) {
-    const hour = Number(Math.floor(startTime / 60))
-    const hours = hour.toString().padStart(2, '0')
-    const minutes = Number(startTime % 60).toString().padStart(2, '0')
+  if (interval <= 0) { interval = 60 }
+
+  while (currentTime < maxTime) {
+    const hours = Number(Math.floor(currentTime / 60)).toString().padStart(2, '0')
+    const minutes = Number(currentTime % 60).toString().padStart(2, '0')
 
     const time: Time = {
       label: `${hours}:${minutes}`,
       value: `${hours}:${minutes}`
     }
 
-    if (isTime12H) {
-      let displayHour = Number(hour % 12)
+    if (time12H) {
+      let displayHour = Number(hours) % 12
 
       if (displayHour === 0) displayHour = 12
 
-      time.label = `${Number(displayHour % 12)}:${minutes} ${timePeriods[Math.floor(hour / 12)]}`
+      time.label = `${Number(displayHour % 12)}:${minutes} ${timePeriods[Math.floor(Number(hours) / 12)]}`
     }
 
     times.push(time)
 
-    startTime += interval
+    currentTime += interval
   }
 
   return times

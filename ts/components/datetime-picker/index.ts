@@ -224,7 +224,13 @@ export default (options: InitOptions): DateTimePicker => ({
   fillTimes () {
     if (this.times.length > 0) return
 
-    const times = makeTimes(this.config.is12H, this.config.interval)
+    const times = makeTimes({
+      time12H: this.config.is12H,
+      interval: this.config.interval,
+      min: this.config.minTime,
+      max: this.config.maxTime
+    })
+
     this.times = times
     this.filteredTimes = times
   },
