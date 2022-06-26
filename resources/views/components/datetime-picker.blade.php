@@ -7,6 +7,8 @@
             disabled: @boolean($disabled),
             min: @js($min ? $min->format('Y-m-d\TH:i') : null),
             max: @js($max ? $max->format('Y-m-d\TH:i') : null),
+            minTime: @js($minTime),
+            maxTime: @js($maxTime),
         },
         withoutTimezone: @boolean($withoutTimezone),
         timezone:      '{{ $timezone }}',
