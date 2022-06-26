@@ -15,7 +15,8 @@ class CircleButton extends Button
         ?string $icon = null,
         ?string $rightIcon = null,
         ?string $spinner = null,
-        ?string $loadingDelay = null
+        ?string $loadingDelay = null,
+        ?string $href = null
     ) {
         parent::__construct(
             $rounded = true,
@@ -28,7 +29,8 @@ class CircleButton extends Button
             $icon,
             $rightIcon = null,
             $spinner,
-            $loadingDelay
+            $loadingDelay,
+            $href
         );
     }
 
