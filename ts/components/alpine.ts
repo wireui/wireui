@@ -14,7 +14,15 @@ export interface Component {
   $watch: (name: string, callback: CallableFunction) => void
   $nextTick: (callback: CallableFunction) => void
   $dispatch: (name: string, value: any) => void
+  $cleanup: (callback: CallableFunction) => void
   init?(): void
+  _x_cleanups?: CallableFunction[]
 }
 
-export const baseComponent = {} as Component
+export const baseComponent = {
+  $cleanup (callback) {
+    if (!this._x_cleanups) this._x_cleanups = []
+
+    this._x_cleanups.push(callback)
+  }
+} as Component
