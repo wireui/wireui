@@ -4,9 +4,11 @@ import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, P
 import { makeTimes, Time } from './makeTimes'
 import { convertStandardTimeToMilitary } from '@/utils/time'
 import { baseComponent } from '@/components/alpine'
+import { positioning } from '@/components/modules/positioning'
 
 export default (options: InitOptions): DateTimePicker => ({
   ...baseComponent,
+  ...positioning,
   $refs: {} as Refs,
   model: options.model,
   config: options.config,
@@ -40,10 +42,6 @@ export default (options: InitOptions): DateTimePicker => ({
   year: 0,
   minDate: null,
   maxDate: null,
-  position: {
-    x: 'right',
-    y: 'bottom'
-  },
 
   get dates () {
     return [...this.previousDates, ...this.currentDates, ...this.nextDates]
@@ -52,15 +50,13 @@ export default (options: InitOptions): DateTimePicker => ({
   init () {
     this.initComponent()
 
-    window.addEventListener('scroll', () => {
-      this.syncPopoverPosition()
-    })
-
     this.$watch('popover', popover => {
       if (popover) {
-        this.$nextTick(() => {
-          this.syncPopoverPosition()
-        })
+        this.watchScroll()
+
+        this.$nextTick(() => this.syncPopoverPosition())
+      } else {
+        this.removeWatchScroll()
       }
 
       if (popover && !this.currentDates.length) {
@@ -99,22 +95,6 @@ export default (options: InitOptions): DateTimePicker => ({
     this.localeDateConfig = this.getLocaleDateConfig()
     this.syncInput()
     this.syncCalendar()
-  },
-  syncPopoverPosition () {
-    const rect = this.$root.getBoundingClientRect()
-    const popover = this.$refs.popover
-
-    if (popover.clientHeight + rect.top + rect.height > window.innerHeight) {
-      this.position.y = 'top'
-    } else {
-      this.position.y = 'bottom'
-    }
-
-    if (popover.clientWidth + rect.right + rect.width > window.innerWidth) {
-      this.position.x = 'right'
-    } else {
-      this.position.x = 'left'
-    }
   },
   clearDate () {
     this.model = null

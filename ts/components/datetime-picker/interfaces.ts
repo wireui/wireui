@@ -1,6 +1,7 @@
 import { Dateable } from '@/utils/date'
 import { Component, Entangle } from '@/components/alpine'
 import { Time } from './makeTimes'
+import { Position, Positioning } from '@/components/modules/positioning'
 
 export interface InitOptions {
   model: Entangle
@@ -53,12 +54,7 @@ export type Refs = {
   popover: HTMLElement
 }
 
-export type Position = {
-  x: 'left' | 'right'
-  y: 'top' | 'bottom'
-}
-
-export interface DateTimePicker extends Component, InitOptions {
+export interface DateTimePicker extends Component, InitOptions, Positioning {
   $refs: Refs
   localTimezone: string
   localeDateConfig: LocaleDateConfig
@@ -83,7 +79,6 @@ export interface DateTimePicker extends Component, InitOptions {
 
   init (): void
   initComponent (): void
-  syncPopoverPosition (): void
   clearDate (): void
   togglePicker (): void
   closePicker (): void
