@@ -5,7 +5,7 @@ import notifications from './notifications'
 import maskable from './inputs/maskable'
 import currency from './inputs/currency'
 import select from './select'
-import timePicker from './timePicker'
+import timePicker from './time-picker'
 import datetimePicker from './datetime-picker'
 import colorPicker from './color-picker'
 

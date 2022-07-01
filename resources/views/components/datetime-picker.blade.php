@@ -23,7 +23,7 @@
     {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
+        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key', 'readonly']) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
@@ -33,8 +33,8 @@
         :prefix="$prefix"
         :prepend="$prepend"
         readonly
-        x-on:click="togglePicker"
-        x-bind:value="model ? getDisplayValue(): null">
+        x-on:click="toggle"
+        x-bind:value="model ? getDisplayValue() : null">
         @if (!$readonly && !$disabled)
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
@@ -56,7 +56,7 @@
                             :component="WireUi::component('icon')"
                             class="cursor-pointer w-5 h-5"
                             :name="$rightIcon"
-                            x-on:click="togglePicker"
+                            x-on:click="toggle"
                         />
                     </div>
                 </div>
@@ -64,7 +64,7 @@
         @endif
     </x-dynamic-component>
 
-    <x-wireui::parts.popover :has-label="(bool) $label" class="max-h-96 overflow-y-auto p-3 sm:w-72">
+    <x-wireui::parts.popover :margin="(bool) $label" class="max-h-96 overflow-y-auto p-3 sm:w-72">
         <div x-show="tab === 'date'" class="space-y-5">
             @unless ($withoutTips)
                 <div class="grid grid-cols-3 gap-x-2 text-center text-secondary-600">

@@ -1,5 +1,6 @@
 import { masker, Masker } from '@/utils/masker'
-import { baseComponent, Component, Entangle } from '../alpine'
+import { baseComponent, Component, Entangle } from '@/components/alpine'
+import { Positioning, positioning, PositioningRefs } from '@/components/modules/positioning'
 
 export type Color = {
   name: string
@@ -11,13 +12,12 @@ export type InitOptions = {
   colors?: Color[]
 }
 
-type Refs = {
+export type Refs = PositioningRefs & {
   input: HTMLInputElement
 }
 
-export interface ColorPicker extends Component {
+export interface ColorPicker extends Component, Positioning {
   $refs: Refs
-  state: boolean
   selected: string | null
   masker: Masker
   wireModel: Entangle
@@ -25,18 +25,14 @@ export interface ColorPicker extends Component {
   get colors (): Color[]
 
   init (): void
-
-  open: () => void
-  close: () => void
-  toggle: () => void
   select: (color: string) => void
   setColor (value: string | null): void
 }
 
 export default (options: InitOptions = {}): ColorPicker => ({
   ...baseComponent,
+  ...positioning,
   $refs: {} as Refs,
-  state: false,
   selected: null,
   masker: masker('!#XXXXXX', null),
   wireModel: options.wireModel ?? null,
@@ -48,6 +44,8 @@ export default (options: InitOptions = {}): ColorPicker => ({
   },
 
   init () {
+    this.initPositioningSystem()
+
     if (this.$refs.input.value) {
       this.setColor(this.$refs.input.value)
     }
@@ -59,9 +57,6 @@ export default (options: InitOptions = {}): ColorPicker => ({
       this.$watch('wireModel', (color: string | null) => this.setColor(color))
     }
   },
-  open () { this.state = true },
-  close () { this.state = false },
-  toggle () { this.state = !this.state },
   select (color) {
     this.selected = color
     this.close()

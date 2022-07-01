@@ -7,9 +7,11 @@ import dataGet from '@/utils/dataGet'
 import { notify } from '@/notifications'
 import { watchProps } from '@/alpine/magic/props'
 import { jsonParse } from '@/utils/helpers'
+import { positioning } from '@/components/modules/positioning'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
+  ...positioning,
   focusableSelector: 'li[tabindex="0"], input',
   $refs: {} as Refs,
   $props: {} as Props,
@@ -31,7 +33,6 @@ export default (initOptions: InitOptions): Select => ({
     placeholder: null,
     template: templates['default']()
   },
-  popover: false,
   search: '',
   wireModel: initOptions.wireModel,
   selected: undefined,
@@ -43,6 +44,7 @@ export default (initOptions: InitOptions): Select => ({
   },
   init () {
     this.syncProps()
+    this.initPositioningSystem()
 
     watchProps(this, this.syncProps.bind(this))
 
@@ -375,15 +377,12 @@ export default (initOptions: InitOptions): Select => ({
       return label.includes(search)
     })
   },
-  togglePopover () {
+  toggle () {
     if (this.config.readonly) return
 
     this.popover = !this.popover
 
     this.$refs.input.focus()
-  },
-  closePopover () {
-    this.popover = false
   },
   getValue () {
     try {
@@ -457,7 +456,7 @@ export default (initOptions: InitOptions): Select => ({
 
     this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: option }))
 
-    this.closePopover()
+    this.close()
   },
   unSelect (option) {
     if (this.config.readonly) return

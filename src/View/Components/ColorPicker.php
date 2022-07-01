@@ -9,6 +9,7 @@ class ColorPicker extends FormComponent
     public function __construct(
         public $rightIcon = 'color-swatch',
         public array|Collection $colors = [],
+        public ?string $label = null,
     ) {
     }
 

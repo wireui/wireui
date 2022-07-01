@@ -5,37 +5,44 @@ export type Position = {
   y: 'top' | 'bottom'
 }
 
-export type Refs = {
+export type PositioningRefs = {
   popover: HTMLElement
 }
 
-let syncPopoverPosition: any = null
-
 export interface Positioning extends Component {
-  $refs: Refs
+  popover: boolean
+  $refs: PositioningRefs
   position: Position
-  watchScroll (): void
-  removeWatchScroll (): void
+  initPositioningSystem (): void
   syncPopoverPosition (): void
+  open (): void
+  close (): void
+  toggle (): void
+  handleEscape (): void
 }
 
 export const positioning: Positioning = {
   ...baseComponent,
-  $refs: {} as Refs,
+  popover: false,
+  $refs: {} as PositioningRefs,
   position: {
     x: 'right',
     y: 'bottom'
   },
-  watchScroll () {
+  initPositioningSystem () {
     if (window.innerWidth < 640) return
 
-    syncPopoverPosition = this.syncPopoverPosition.bind(this)
-    window.addEventListener('scroll', syncPopoverPosition)
-  },
-  removeWatchScroll () {
-    if (window.innerWidth < 640) return
+    const callback = this.syncPopoverPosition.bind(this)
 
-    window.removeEventListener('scroll', syncPopoverPosition)
+    this.$watch('popover', popover => {
+      if (popover) {
+        window.addEventListener('scroll', callback)
+
+        this.$nextTick(() => this.syncPopoverPosition())
+      } else {
+        window.removeEventListener('scroll', callback)
+      }
+    })
   },
   syncPopoverPosition () {
     if (window.innerWidth < 640) return
@@ -55,5 +62,9 @@ export const positioning: Positioning = {
 
     this.position.y = height.after < popover.clientHeight ? 'top' : 'bottom'
     this.position.x = width.after < popover.clientWidth ? 'right' : 'left'
-  }
+  },
+  open () { this.popover = true },
+  close () { this.popover = false },
+  toggle () { this.popover = !this.popover },
+  handleEscape () { this.close() }
 }

@@ -1,7 +1,7 @@
 import { Dateable } from '@/utils/date'
 import { Component, Entangle } from '@/components/alpine'
 import { Time } from './makeTimes'
-import { Position, Positioning } from '@/components/modules/positioning'
+import { Position, Positioning, PositioningRefs } from '@/components/modules/positioning'
 
 export interface InitOptions {
   model: Entangle
@@ -51,9 +51,8 @@ export interface LocaleDateConfig {
   minute?: 'numeric' | '2-digit'
 }
 
-export type Refs = {
+export type Refs = PositioningRefs & {
   timesContainer: HTMLElement
-  popover: HTMLElement
 }
 
 export interface DateTimePicker extends Component, InitOptions, Positioning {
@@ -63,7 +62,6 @@ export interface DateTimePicker extends Component, InitOptions, Positioning {
   searchTime: string | null
   input: Dateable | null
   modelTime: string | null | undefined
-  popover: boolean
   tab: 'date' | 'time'
   monthsPicker: boolean
   previousDates: PreviousDate[]
@@ -82,9 +80,6 @@ export interface DateTimePicker extends Component, InitOptions, Positioning {
   init (): void
   initComponent (): void
   clearDate (): void
-  togglePicker (): void
-  closePicker (): void
-  handleEscape (): void
   syncCalendar (): void
   getPreviousDates (currentDate: Dateable): PreviousDate[]
   getCurrentDates (currentDate: Dateable): CurrentDate[]
