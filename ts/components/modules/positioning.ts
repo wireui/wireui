@@ -48,20 +48,13 @@ export const positioning: Positioning = {
     if (window.innerWidth < 640) return
 
     const rect = this.$root.getBoundingClientRect()
-    const popover = this.$refs.popover
+    const { clientHeight, clientWidth } = this.$refs.popover
 
-    const height = {
-      before: rect.top,
-      after: window.innerHeight - rect.bottom
-    }
+    const topHeightSpace = window.innerHeight - rect.bottom
+    const leftWidthSpace = rect.right
 
-    const width = {
-      before: rect.left,
-      after: window.innerWidth - rect.right - rect.width
-    }
-
-    this.position.y = height.after < popover.clientHeight ? 'top' : 'bottom'
-    this.position.x = width.after < popover.clientWidth ? 'right' : 'left'
+    this.position.y = topHeightSpace <= clientHeight ? 'top' : 'bottom'
+    this.position.x = leftWidthSpace >= clientWidth ? 'right' : 'left'
   },
   open () { this.popover = true },
   close () { this.popover = false },
