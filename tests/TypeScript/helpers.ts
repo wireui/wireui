@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import { Alpine as AlpineInterface, Component } from '@/components/alpine'
+import { Alpine as AlpineInterface, baseComponent, Component } from '@/components/alpine'
 
 export const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -7,7 +7,8 @@ export const sleep = (ms: number) => {
 
 export const mockAlpineComponent = (component: Component): Component => {
   component = Object.assign(component, {
-    $watch: jest.fn()
+    $watch: jest.fn(),
+    $cleanup: jest.fn(baseComponent.$cleanup)
   })
 
   if (component.init) {

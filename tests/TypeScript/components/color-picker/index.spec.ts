@@ -4,7 +4,10 @@ import { mockAlpineComponent } from '@tests/helpers'
 describe('Testing the color picker component', () => {
   function mockComponent (initOptions: InitOptions = {}): ColorPicker {
     const component = colorPicker(initOptions)
-    component.$refs = { input: document.createElement('input') }
+    component.$refs = {
+      input: document.createElement('input'),
+      popover: document.createElement('div')
+    }
 
     return mockAlpineComponent(component) as ColorPicker
   }
@@ -12,11 +15,11 @@ describe('Testing the color picker component', () => {
   it('should open the dropdown', () => {
     const component = mockComponent()
 
-    expect(component.state).toBeFalse()
+    expect(component.popover).toBeFalse()
 
     component.open()
 
-    expect(component.state).toBeTrue()
+    expect(component.popover).toBeTrue()
   })
 
   it('should close the dropdown', () => {
@@ -24,11 +27,11 @@ describe('Testing the color picker component', () => {
 
     component.open()
 
-    expect(component.state).toBeTrue()
+    expect(component.popover).toBeTrue()
 
     component.close()
 
-    expect(component.state).toBeFalse()
+    expect(component.popover).toBeFalse()
   })
 
   it('should toggle the dropdown', () => {
@@ -36,11 +39,11 @@ describe('Testing the color picker component', () => {
 
     component.toggle()
 
-    expect(component.state).toBeTrue()
+    expect(component.popover).toBeTrue()
 
     component.toggle()
 
-    expect(component.state).toBeFalse()
+    expect(component.popover).toBeFalse()
   })
 
   it('should select a color and close the dropdown', () => {
@@ -52,7 +55,7 @@ describe('Testing the color picker component', () => {
     component.select(color)
 
     expect(component.selected).toBe(color)
-    expect(component.state).toBeFalse()
+    expect(component.popover).toBeFalse()
   })
 
   it('should mask the value before selecting a color', () => {
@@ -65,11 +68,14 @@ describe('Testing the color picker component', () => {
 
   it('should fill the color from input element value', () => {
     let component = colorPicker()
-    component.$refs = { input: document.createElement('input') }
+    component.$refs = {
+      input: document.createElement('input'),
+      popover: document.createElement('div')
+    }
     component.$refs.input.value = '#000'
     component = mockAlpineComponent(component) as ColorPicker
 
-    expect(component.state).toBeFalse()
+    expect(component.popover).toBeFalse()
     expect(component.selected).toBe('#000')
   })
 
@@ -83,15 +89,17 @@ describe('Testing the color picker component', () => {
   it('should init the livewire watchers when the wire model is given', () => {
     const component = mockComponent({ wireModel: '#FFF' })
 
-    expect(component.$watch).toBeCalledTimes(2)
+    expect(component.$watch).toBeCalledTimes(3)
     expect(component.$watch).toBeCalledWith('selected', expect.any(Function))
     expect(component.$watch).toBeCalledWith('wireModel', expect.any(Function))
+    expect(component.$watch).toBeCalledWith('popover', expect.any(Function))
   })
 
   test('ensure that the livewire watches is not created when dont have a wire model', () => {
     const component = mockComponent()
 
-    expect(component.$watch).toBeCalledTimes(0)
+    expect(component.$watch).toBeCalledTimes(1)
+    expect(component.$watch).toBeCalledWith('popover', expect.any(Function))
   })
 
   it('should show colors from a custom provider', () => {

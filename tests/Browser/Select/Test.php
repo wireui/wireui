@@ -25,17 +25,15 @@ class Test extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model"]').click();
                 JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('Array Option 2'))
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('[name="wireui.select.options.model"]', 'Array Option 2'))
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelectorAll('ul li')[1].click();
+                    document.querySelectorAll('[name="wireui.select.options.model"] li')[1].click();
                 JS))
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@model', 'Array Option 2'))
+                ->tap(fn (Browser $browser) => $browser->openSelect('model'))
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('[name="wireui.select.options.model"]', 'Array Option 1'))
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelector('input[name="model"]').click();
-                JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('Array Option 1'))
-                ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelectorAll('ul li')[0].click();
+                    document.querySelectorAll('[name="wireui.select.options.model"] li')[0].click();
                 JS))
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@model', 'Array Option 1'));
         });
@@ -46,20 +44,16 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
+                ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('[name="wireui.select.options.model2"]', 'Label Option 2'))
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelector('input[name="model2"]').click();
-                JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('2'))
-                ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelectorAll('ul li')[1].click();
+                    document.querySelectorAll('[name="wireui.select.options.model2"] li')[1].click();
                 JS))
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@model2', '2'))
+                ->waitUsing(7, 100, fn () => $browser->assertInputValue('model2', '2'))
+                ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelector('input[name="model2"]').click();
-                JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('1'))
-                ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                    document.querySelectorAll('ul li')[0].click();
+                    document.querySelectorAll('[name="wireui.select.options.model2"] li')[0].click();
                 JS))
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@model2', '1'));
         });

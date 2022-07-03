@@ -1,32 +1,25 @@
-import { applyMask } from '../utils/masker'
-import { Entangle } from './alpine'
-
-export interface InitOptions {
-  model: Entangle
-  config: {
-    isLazy: boolean
-    interval: number
-    format: string
-    is12H: boolean
-    readonly: boolean
-    disabled: boolean
-  },
-}
-
-export interface TimePicker {
-  [index: string]: any
-}
+import { applyMask } from '@/utils/masker'
+import { convertStandardTimeToMilitary } from '@/utils/time'
+import { positioning } from '@/components/modules/positioning'
+import { InitOptions, TimePicker, Refs } from './interfaces'
+import { focusables } from '@/components/modules/focusables'
+import { makeTimes, Time } from '@/components/datetime-picker/makeTimes'
 
 export default (options: InitOptions): TimePicker => ({
+  ...positioning,
+  ...focusables,
+  focusableSelector: 'li, input',
+  $refs: {} as Refs,
   model: options.model,
   input: null,
   config: options.config,
   search: '',
-  showPicker: false,
   times: [],
   filteredTimes: [],
 
   init () {
+    this.initPositioningSystem()
+
     this.input = this.convertModelTime(this.model)
 
     this.$watch('model', value => {
@@ -43,22 +36,23 @@ export default (options: InitOptions): TimePicker => ({
 
     return applyMask(mask, value)
   },
-  openPicker () {
-    if (this.config.readonly || this.config.disabled) return
+  toggle () {
+    this.popover = !this.popover
 
-    this.fillTimes()
-    this.showPicker = true
+    if (!this.popover || this.config.readonly || this.config.disabled) return
+
+    if (this.times.length === 0) {
+      this.fillTimes()
+    }
+
     this.search = ''
     this.filteredTimes = this.times
 
-    if (window.innerWidth >= 1000) {
+    if (window.innerWidth >= 1024) {
       this.$nextTick(() => {
         this.$refs.search.focus()
       })
     }
-  },
-  closePicker () {
-    this.showPicker = false
   },
   clearInput () {
     this.input = null
@@ -71,34 +65,14 @@ export default (options: InitOptions): TimePicker => ({
     this.model = dateTime
   },
   fillTimes () {
-    if (this.times.length > 0) return
-
-    const times: string[] = []
-    let startTime = 0
-    const timePeriods = ['AM', 'PM']
-
-    for (let i = 0; startTime < 24 * 60; i++) {
-      const hour = Math.floor(startTime / 60)
-      let formatedHour = this.config.is12H ? Number(hour % 12) : hour.toString().padStart(2, '0')
-      const minutes = Number(startTime % 60).toString().padStart(2, '0')
-      const timePeriod = timePeriods[Math.floor(hour / 12)]
-
-      if (this.config.is12H && formatedHour === 0) { formatedHour = 12 }
-
-      let time = `${formatedHour}:${minutes}`
-
-      if (this.config.is12H) time += ` ${timePeriod}`
-
-      times.push(time)
-
-      startTime += this.config.interval
-    }
-
-    this.times = times
+    this.times = makeTimes({
+      time12H: this.config.is12H,
+      interval: this.config.interval
+    })
   },
   selectTime (time) {
-    this.input = time
-    this.closePicker()
+    this.input = this.config.is12H ? time.label : time.value
+    this.close()
     this.emitInput()
   },
   onInput (value) {
@@ -123,16 +97,35 @@ export default (options: InitOptions): TimePicker => ({
   onSearch (search) {
     const mask = this.config.is12H ? 'h:m' : 'H:m'
     this.search = applyMask(mask, search) ?? ''
-    this.filteredTimes = this.times.filter(time => time.includes(this.search))
+    this.filteredTimes = this.times.filter(time => time.label.includes(this.search))
 
-    if (this.filteredTimes.length === 0) {
-      if (!this.config.is12H) {
-        return this.filteredTimes.push(this.search)
-      }
+    if (this.filteredTimes.length > 0) return
 
-      this.filteredTimes.push(`${this.search} AM`)
-      this.filteredTimes.push(`${this.search} PM`)
+    this.filteredTimes = this.makeSearchTimes(this.search)
+  },
+  makeSearchTimes (search) {
+    const times: Time[] = []
+
+    if (!this.config.is12H) {
+      times.push({
+        value: search.padEnd(5, '0'),
+        label: search.padEnd(5, '0')
+      })
+
+      return times
     }
+
+    times.push({
+      value: convertStandardTimeToMilitary(`${search} AM`),
+      label: `${search} AM`
+    })
+
+    times.push({
+      value: convertStandardTimeToMilitary(`${search} PM`),
+      label: `${search} PM`
+    })
+
+    return times
   },
   emitInput () {
     let date = ''
@@ -181,6 +174,8 @@ export default (options: InitOptions): TimePicker => ({
 
     const time = this.getTimeFromDate(dateTime)
 
+    if (!time) return ''
+
     return this.config.is12H
       ? this.convertTo12Hours(time)
       : time
@@ -188,20 +183,15 @@ export default (options: InitOptions): TimePicker => ({
   hasDate (value) { return /\d{4}-\d{2}-\d{2}/.test(value) },
   hasTime (value) { return /\d{2}:\d{2}/.test(value) },
   getTimeFromDate (dateTime) {
-    if (!dateTime) return
+    if (!dateTime) return ''
 
     const separator = dateTime?.includes('T') ? 'T' : ' '
     const time = dateTime.split(separator).pop()
 
-    if (this.hasDate(time)) { return '' }
+    if (!time) return ''
+
+    if (this.hasDate(time)) return ''
 
     return time.slice(0, 5)
-  },
-  getFocusables () { return [...this.$el.querySelectorAll('li, input')] },
-  getFirstFocusable () { return this.getFocusables().shift() },
-  getLastFocusable () { return this.getFocusables().pop() },
-  getNextFocusable () { return this.getFocusables()[this.getNextFocusableIndex()] || this.getFirstFocusable() },
-  getPrevFocusable () { return this.getFocusables()[this.getPrevFocusableIndex()] || this.getLastFocusable() },
-  getNextFocusableIndex () { return (this.getFocusables().indexOf(document.activeElement) + 1) % (this.getFocusables().length + 1) },
-  getPrevFocusableIndex () { return Math.max(0, this.getFocusables().indexOf(document.activeElement)) - 1 }
+  }
 })
