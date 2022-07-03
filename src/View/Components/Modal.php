@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Modal extends Component
 {
     public function __construct(
+        public ?string $name = null,
         public ?string $zIndex = null,
         public ?string $maxWidth = null,
         public ?string $spacing = null,

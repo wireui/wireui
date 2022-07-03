@@ -1,4 +1,4 @@
-@php $model = $attributes->wire('model'); @endphp
+@php $name = $name ?? $attributes->wire('model')->value(); @endphp
 
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
     x-data="wireui_modal({
@@ -10,7 +10,7 @@
     x-on:keydown.escape.window="close"
     x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
-    x-on:open-wireui-modal:{{ Str::kebab((string)$model) }}.window="open"
+    x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
     x-cloak
