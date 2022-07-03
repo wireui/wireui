@@ -42,7 +42,6 @@ class AlertDialogTest extends BrowserTestCase
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
-                ->waitForLivewireToLoad()
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.livewire.emit('showDialog', {
                     icon: "{$icon}",
@@ -68,7 +67,6 @@ class AlertDialogTest extends BrowserTestCase
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad())
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     id: 'custom',
@@ -91,7 +89,6 @@ class AlertDialogTest extends BrowserTestCase
             $title = 'Autoclosing...';
 
             $this->visit($browser, Component::class)
-                ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad())
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                     window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
                 EOT))

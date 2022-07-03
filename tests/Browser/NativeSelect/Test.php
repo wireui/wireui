@@ -12,7 +12,6 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
-                ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->assertSelectHasOptions('model', ['Slot Option 1', 'Slot Option 2', 'Slot Option 3'])
                 ->select('model', 'Slot Option 2')
                 ->assertSelected('model', 'Slot Option 2')
