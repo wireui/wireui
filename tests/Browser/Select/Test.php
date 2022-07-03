@@ -33,7 +33,8 @@ class Test extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model"]').click();
                 JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('Array Option 1'))
+                ->waitForText('Array Option 1')
+                ->assertSee('Array Option 1')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelectorAll('ul li')[0].click();
                 JS))
@@ -57,7 +58,8 @@ class Test extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model2"]').click();
                 JS))
-                ->waitUsing(7, 100, fn () => $browser->assertSee('1'))
+                ->waitForText('1')
+                ->assertSee('1')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelectorAll('ul li')[0].click();
                 JS))
