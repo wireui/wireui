@@ -47,6 +47,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
+                ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad())
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model2"]').click();
                 JS))
