@@ -176,21 +176,27 @@
                 </div>
 
                 @isset ($beforeOptions)
-                    {{ $beforeOptions }}
+                    <li {{ $beforeOptions->attributes }}>
+                        {{ $beforeOptions }}
+                    </li>
                 @endisset
 
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                     <div x-transition x-html="renderOption(option)"></div>
                 </template>
 
-                <li class="py-2 px-3 text-secondary-500 cursor-pointer"
-                    x-show="displayOptions.length === 0"
-                    x-on:click="close">
-                    {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
-                </li>
+                @unless ($hideEmptyMessage)
+                    <li class="py-2 px-3 text-secondary-500 cursor-pointer"
+                        x-show="displayOptions.length === 0"
+                        x-on:click="close">
+                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                    </li>
+                @endunless
 
                 @isset ($afterOptions)
-                    {{ $afterOptions }}
+                    <div {{ $afterOptions->attributes }}>
+                        {{ $afterOptions }}
+                    </div>
                 @endisset
             </ul>
         </template>
