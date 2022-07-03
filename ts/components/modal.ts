@@ -1,54 +1,37 @@
-import { Entangle } from './alpine'
+import { baseComponent, Component, Entangle } from './alpine'
+import { focusables, Focusables } from './modules/focusables'
 
 export interface Options {
-  model: Entangle
+  model?: Entangle
+  show: boolean
 }
 
-export interface Modal {
-  [index: string]: any
-
+export interface Modal extends Component, Focusables {
   show: Entangle
 
   close (): void
-  focusables (): Element[]
-  firstFocusable (): Element
-  lastFocusable (): Element
-  nextFocusable (): Element
-  previousFocusable (): Element
-  nextFocusableIndex (): number
-  previousFocusableIndex (): number
+  open (): void
 }
 
 export default (options: Options): Modal => ({
-  show: options.model,
+  ...baseComponent,
+  ...focusables,
+  focusableSelector: 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])',
+  show: options.model || options.show,
 
   init () {
     this.$watch('show', value => {
-      value
-        ? document.body.classList.add('overflow-y-hidden')
-        : document.body.classList.remove('overflow-y-hidden')
+      const elements = [...document.querySelectorAll('body, [main-container]')]
+
+      elements.forEach(el => {
+        value
+          ? el.classList.add('!overflow-hidden')
+          : el.classList.remove('!overflow-hidden')
+      })
 
       this.$el.dispatchEvent(new Event(value ? 'open' : 'close'))
     })
   },
   close () { this.show = false },
-  focusables () {
-    const selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
-
-    return [...this.$el.querySelectorAll(selector)].filter(el => !el.hasAttribute('disabled'))
-  },
-  firstFocusable () { return this.focusables()[0] },
-  lastFocusable () { return this.focusables().slice(-1)[0] },
-  nextFocusable () { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-  previousFocusable () { return this.focusables()[this.previousFocusableIndex()] || this.lastFocusable() },
-  nextFocusableIndex () {
-    if (!document.activeElement) return -1
-
-    return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1)
-  },
-  previousFocusableIndex () {
-    if (!document.activeElement) return -1
-
-    return Math.max(0, this.focusables().indexOf(document.activeElement)) - 1
-  }
+  open () { this.show = true }
 })

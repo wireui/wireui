@@ -4,59 +4,38 @@ namespace WireUi\View\Components;
 
 class ModalCard extends Modal
 {
-    public string $shadow;
-
-    public string $divider;
-
-    public string $padding;
-
-    public string $rounded;
-
-    public ?string $title;
-
-    public ?string $header;
-
-    public ?string $footer;
-
-    public bool $fullscreen;
-
-    public bool $squared;
-
-    public bool $hideClose;
-
     public function __construct(
-        ?string $zIndex = null,
-        ?string $maxWidth = null,
-        ?string $spacing = null,
-        ?string $align = null,
-        string $padding = 'px-2 py-5 md:px-4',
-        string $rounded = 'rounded-xl',
-        string $shadow = 'shadow-md',
-        string $divider = 'divide-y divide-secondary-200',
-        ?string $title = null,
-        ?string $header = null,
-        ?string $footer = null,
-        bool $fullscreen = false,
-        bool $squared = false,
-        bool $hideClose = false,
-        $blur = null
+        public ?string $name = null,
+        public ?string $zIndex = null,
+        public ?string $maxWidth = null,
+        public ?string $spacing = null,
+        public ?string $align = null,
+        public string|bool|null $blur = null,
+        public bool $show = false,
+        public string $padding = 'px-2 py-5 md:px-4',
+        public string $rounded = 'rounded-xl',
+        public string $shadow = 'shadow-md',
+        public string $divider = 'divide-y divide-secondary-200',
+        public ?string $title = null,
+        public ?string $header = null,
+        public ?string $footer = null,
+        public bool $fullscreen = false,
+        public bool $squared = false,
+        public bool $hideClose = false,
     ) {
         if ($fullscreen) {
             $maxWidth = '';
         }
 
-        parent::__construct($zIndex, $maxWidth, $spacing, $align, $blur);
-
-        $this->padding    = $padding;
-        $this->rounded    = $rounded;
-        $this->shadow     = $shadow;
-        $this->divider    = $divider;
-        $this->title      = $title;
-        $this->header     = $header;
-        $this->footer     = $footer;
-        $this->fullscreen = $fullscreen;
-        $this->squared    = $squared;
-        $this->hideClose  = $hideClose;
+        parent::__construct(
+            name: $name,
+            zIndex: $zIndex,
+            maxWidth: $maxWidth,
+            spacing: $spacing,
+            align: $align,
+            blur: $blur,
+            show: $show
+        );
     }
 
     public function render()
