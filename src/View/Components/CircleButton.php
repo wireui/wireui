@@ -5,32 +5,34 @@ namespace WireUi\View\Components;
 class CircleButton extends Button
 {
     public function __construct(
-        bool $rounded = true,
-        bool $squared = false,
-        bool $outline = false,
-        bool $flat = false,
-        ?string $color = null,
-        ?string $size = null,
-        ?string $label = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $spinner = null,
-        ?string $loadingDelay = null,
-        ?string $href = null
+        public bool $rounded = true,
+        public bool $squared = false,
+        public bool $outline = false,
+        public bool $flat = false,
+        public bool $full = false,
+        public ?string $color = null,
+        public ?string $size = null,
+        public ?string $label = null,
+        public ?string $icon = null,
+        public ?string $rightIcon = null,
+        public ?string $spinner = null,
+        public ?string $loadingDelay = null,
+        public ?string $href = null
     ) {
         parent::__construct(
-            $rounded = true,
-            $squared = false,
-            $outline,
-            $flat,
-            $color,
-            $size,
-            $label,
-            $icon,
-            $rightIcon = null,
-            $spinner,
-            $loadingDelay,
-            $href
+            rounded: true,
+            squared: false,
+            outline: $outline,
+            flat: $flat,
+            full: false,
+            color: $color,
+            size: $size,
+            label: $label,
+            icon: $icon,
+            rightIcon: null,
+            spinner: $spinner,
+            loadingDelay: $loadingDelay,
+            href: $href
         );
     }
 
