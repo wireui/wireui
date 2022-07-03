@@ -2,14 +2,18 @@
 
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
     x-data="wireui_modal({
-        model: @entangle($attributes->wire('model'))
+        show: @js($show),
+        @if ($attributes->wire('model')->value())
+            model: @entangle($attributes->wire('model'))
+        @endif
     })"
     x-on:keydown.escape.window="close"
-    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="previousFocusable().focus()"
-    x-on:open-wireui-modal:{{ Str::kebab((string)$model) }}.window="show = true"
+    x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+    x-on:open-wireui-modal:{{ Str::kebab((string)$model) }}.window="open"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
+    x-cloak
     x-show="show">
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full
                 relative transform transition-all {{ $spacing }}"
