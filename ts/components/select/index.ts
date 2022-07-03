@@ -54,7 +54,7 @@ export default (initOptions: InitOptions): Select => ({
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
-    } else if (!this.hasWireModel && this.asyncData.api && this.getValue()) {
+    } else if (!this.hasWireModel && this.asyncData.api) {
       this.fetchSelected()
     }
 
@@ -289,7 +289,16 @@ export default (initOptions: InitOptions): Select => ({
       })
   },
   fetchSelected () {
-    fetch(this.makeRequest({ selected: this.getValue() }))
+    const selected = this.getValue()
+
+    if (selected.length === 0) {
+      this.selected = undefined
+      this.selectedOptions = []
+
+      return
+    }
+
+    fetch(this.makeRequest({ selected }))
       .then(response => response.json())
       .then(rawOptions => {
         this.selected = undefined
