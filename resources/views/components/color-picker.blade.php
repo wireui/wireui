@@ -1,27 +1,30 @@
 <div x-data="wireui_color_picker({
+    colorNameAsValue: @boolean($colorNameAsValue),
+
     @if ($attributes->wire('model')->value())
+        wireModifiers: @js($attributes->wireModifiers()),
         wireModel: @entangle($attributes->wire('model')),
     @endif
 
     @if ($colors)
         colors: @js($getColors())
     @endif
-})" class="relative">
+})" {{ $attributes->only(['class', 'wire:key'])->class('relative') }}>
     <x-dynamic-component
-        {{ $attributes }}
+        {{ $attributes->except(['class', 'wire:key'])->whereDoesntStartWith('wire:model') }}
         :component="WireUi::component('input')"
-        x-model="selected"
-        x-bind:class="{ 'pl-8': selected }"
+        x-model="{{ $colorNameAsValue ? 'selected.name' : 'selected.value' }}"
+        x-bind:class="{ 'pl-8': selected.value }"
         x-on:input="setColor($event.target.value)"
         x-ref="input"
         :label="$label"
         :prefix="null"
         :icon="null">
         <x-slot name="prefix">
-            <template x-if="selected">
+            <template x-if="selected.value">
                 <div
                     class="w-4 h-4 rounded shadow border"
-                    :style="{ 'background-color': selected }"
+                    :style="{ 'background-color': selected.value }"
                 ></div>
             </template>
         </x-slot>
@@ -65,7 +68,7 @@
                         dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400
                     "
                     :style="{ 'background-color': color.value }"
-                    x-on:click="select(color.value)"
+                    x-on:click="select(color)"
                     :title="color.name"
                     type="button">
                 </button>
