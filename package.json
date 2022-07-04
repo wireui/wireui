@@ -12,8 +12,10 @@
         "test": "jest"
     },
     "dependencies": {
+        "@types/lodash.debounce": "^4.0.7",
         "alpinejs": "^3.9.1",
         "dayjs": "^1.11.3",
+        "lodash.debounce": "^4.0.8",
         "lodash.kebabcase": "^4.1.1"
     },
     "devDependencies": {

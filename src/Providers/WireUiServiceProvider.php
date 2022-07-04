@@ -4,8 +4,10 @@ namespace WireUi\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\ComponentAttributeBag;
+use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
 
@@ -17,6 +19,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
         $this->registerTagCompiler();
+        $this->registerMacros();
     }
 
     public function register()
@@ -98,6 +101,25 @@ class WireUiServiceProvider extends ServiceProvider
             foreach (config('wireui.components') as $component) {
                 $blade->component($component['class'], $component['alias']);
             }
+        });
+    }
+
+    protected function registerMacros(): void
+    {
+        ComponentAttributeBag::macro('wireModifiers', function () {
+            /** @var ComponentAttributeBag $this */
+
+            /** @var WireDirective $model */
+            $model = $this->wire('model');
+
+            return [
+                'defer'    => $model->modifiers()->contains('defer'),
+                'lazy'     => $model->modifiers()->contains('lazy'),
+                'debounce' => [
+                    'exists' => $model->modifiers()->contains('debounce'),
+                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
+                ],
+            ];
         });
     }
 }

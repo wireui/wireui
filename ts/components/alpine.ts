@@ -1,5 +1,14 @@
 export type Entangle = any
 
+export type WireModifiers = {
+  defer: boolean
+  lazy: boolean
+  debounce: {
+    exists: boolean
+    delay: number
+  },
+}
+
 export interface Alpine {
   raw (data: any): any
   data (name: string, data: any): void

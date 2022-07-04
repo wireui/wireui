@@ -1,8 +1,10 @@
-import colorPicker, { ColorPicker, InitOptions } from '@/components/color-picker'
-import { mockAlpineComponent } from '@tests/helpers'
+import colorPicker, { Color, ColorPicker, InitOptions } from '@/components/color-picker'
+import { AlpineMock, mockAlpineComponent } from '@tests/helpers'
 
 describe('Testing the color picker component', () => {
-  function mockComponent (initOptions: InitOptions = {}): ColorPicker {
+  const nullColor = { value: null, name: null }
+
+  function mockComponent (initOptions: InitOptions = { colorNameAsValue: false }): ColorPicker {
     const component = colorPicker(initOptions)
     component.$refs = {
       input: document.createElement('input'),
@@ -47,23 +49,30 @@ describe('Testing the color picker component', () => {
   })
 
   it('should select a color and close the dropdown', () => {
-    const color = '#FFFFFF'
+    const color: Color = { value: '#FFFFFF', name: 'White' }
     const component = mockComponent()
 
-    expect(component.selected).toBeNull()
+    window.Alpine = AlpineMock
+    window.Alpine.store = jest.fn().mockReturnValue([color])
+
+    expect(component.selected).toMatchObject(nullColor)
 
     component.select(color)
 
-    expect(component.selected).toBe(color)
+    expect(component.selected).toMatchObject(color)
     expect(component.popover).toBeFalse()
   })
 
   it('should mask the value before selecting a color', () => {
+    const color: Color = { value: '#000000', name: 'Black' }
     const component = mockComponent()
+
+    window.Alpine = AlpineMock
+    window.Alpine.store = jest.fn().mockReturnValue([color])
 
     component.setColor('#000000ABCDEFG')
 
-    expect(component.selected).toBe('#000000')
+    expect(component.selected.value).toBe('#000000')
   })
 
   it('should fill the color from input element value', () => {
@@ -76,18 +85,18 @@ describe('Testing the color picker component', () => {
     component = mockAlpineComponent(component) as ColorPicker
 
     expect(component.popover).toBeFalse()
-    expect(component.selected).toBe('#000')
+    expect(component.selected.value).toBe('#000')
   })
 
   it('should fill the selected color from wire model value', () => {
-    const color = '#FFFFFF'
-    const component = mockComponent({ wireModel: color })
+    const color: Color = { value: '#FFFFFF', name: 'White' }
+    const component = mockComponent({ wireModel: color.value, colorNameAsValue: false })
 
-    expect(component.selected).toBe(color)
+    expect(component.selected.value).toBe(color.value)
   })
 
   it('should init the livewire watchers when the wire model is given', () => {
-    const component = mockComponent({ wireModel: '#FFF' })
+    const component = mockComponent({ wireModel: '#FFF', colorNameAsValue: false })
 
     expect(component.$watch).toBeCalledTimes(3)
     expect(component.$watch).toBeCalledWith('selected', expect.any(Function))
@@ -104,7 +113,7 @@ describe('Testing the color picker component', () => {
 
   it('should show colors from a custom provider', () => {
     const colors = [{ name: 'AAA', value: '#AAA' }]
-    const component = mockComponent({ colors })
+    const component = mockComponent({ colors, colorNameAsValue: false })
 
     expect(component.colors).toBe(colors)
   })
