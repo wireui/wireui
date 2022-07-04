@@ -117,7 +117,7 @@ class WireUiServiceProvider extends ServiceProvider
                 'lazy'     => $model->modifiers()->contains('lazy'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->get(1, '750'))->replace('ms', '')->toString(),
+                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
                 ],
             ];
         });

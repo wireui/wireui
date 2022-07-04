@@ -28,7 +28,7 @@ class WireModifiersTest extends UnitTestCase
                     'lazy'     => false,
                     'debounce' => [
                         'exists' => false,
-                        'delay'  => 750,
+                        'delay'  => '750',
                     ],
                 ],
             ],
@@ -39,7 +39,7 @@ class WireModifiersTest extends UnitTestCase
                     'lazy'     => true,
                     'debounce' => [
                         'exists' => false,
-                        'delay'  => 750,
+                        'delay'  => '750',
                     ],
                 ],
             ],
@@ -50,7 +50,7 @@ class WireModifiersTest extends UnitTestCase
                     'lazy'     => false,
                     'debounce' => [
                         'exists' => true,
-                        'delay'  => 750,
+                        'delay'  => '750',
                     ],
                 ],
             ],
@@ -61,7 +61,7 @@ class WireModifiersTest extends UnitTestCase
                     'lazy'     => false,
                     'debounce' => [
                         'exists' => true,
-                        'delay'  => 700,
+                        'delay'  => '700',
                     ],
                 ],
             ],
@@ -72,7 +72,7 @@ class WireModifiersTest extends UnitTestCase
                     'lazy'     => false,
                     'debounce' => [
                         'exists' => true,
-                        'delay'  => 700,
+                        'delay'  => '700',
                     ],
                 ],
             ],
