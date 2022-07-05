@@ -8,7 +8,7 @@
     :option="$option"
 >
     <div class="flex items-center gap-x-3">
-        <img src="{{ data_get($option, 'src', $src) }}" class="shrink-0 h-6 w-6 rounded-full">
+        <img src="{{ data_get($option, 'src', $src) }}" class="shrink-0 h-6 w-6 object-cover rounded-full">
 
         <span @class(['text-sm' => (bool) $description])>
             {{ $label }}
