@@ -1,6 +1,6 @@
 @props(['margin' => false, 'rootClass' => null])
 
-<div class="fixed inset-0 z-20 sm:z-10 sm:max-h-72 sm:absolute sm:inset-auto transition-all ease-linear duration-150 {{ $rootClass }}"
+<div class="fixed inset-0 z-20 sm:z-10 sm:absolute sm:inset-auto transition-all ease-linear duration-150 {{ $rootClass }}"
      :class="{
         'sm:left-0': position.x === 'left',
         'sm:right-0': position.x === 'right',
@@ -14,7 +14,7 @@
      x-on:click.outside="close"
      x-on:keydown.escape.window="handleEscape">
     <div class="flex items-end justify-center min-h-screen sm:h-auto sm:items-start"
-         style="min-height: -webkit-fill-available; min-height: fill-available;">
+         style="min-height: -webkit-fill-available; min-height: fill-available; min-height: 100%; min-height: -moz-available;">
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden
                     dark:bg-secondary-700 dark:bg-opacity-60"
              x-show="popover"
