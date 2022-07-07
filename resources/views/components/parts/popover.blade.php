@@ -13,8 +13,7 @@
      x-ref="popover"
      x-on:click.outside="close"
      x-on:keydown.escape.window="handleEscape">
-    <div class="flex items-end justify-center min-h-screen sm:h-auto sm:items-start"
-         style="min-height: -webkit-fill-available; min-height: fill-available; min-height: 100%; min-height: -moz-available;">
+    <div class="flex items-end justify-center min-h-screen sm:min-h-max sm:items-start">
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden
                     dark:bg-secondary-700 dark:bg-opacity-60"
              x-show="popover"
