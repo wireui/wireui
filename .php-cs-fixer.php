@@ -4,6 +4,7 @@ use PhpCsFixer\{Config, Finder};
 
 $rules = [
     '@PSR2'                       => true,
+    '@PSR12'                      => true,
     'group_import'                => true,
     'align_multiline_comment'     => false,
     'single_import_per_statement' => false,
