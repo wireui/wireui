@@ -110,7 +110,13 @@ class Select extends NativeSelect
                     unset($option[$this->optionDescription]);
                 }
 
-                return array_filter($option);
+                return array_filter($option, function ($value, $index) {
+                    if ($index === 'value') {
+                        return true;
+                    }
+
+                    return (bool) $value;
+                }, ARRAY_FILTER_USE_BOTH);
             })
             ->values()
             ->toJson();
