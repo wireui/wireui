@@ -55,6 +55,22 @@ class SelectTest extends UnitTestCase
     }
 
     /** @test */
+    public function it_should_make_the_json_for_array_keys_values()
+    {
+        $options = ['Option 1', 'Option 2'];
+
+        $select = new Select(options: $options, optionKeyValue: true);
+
+        $this->assertEquals(
+            json_encode([
+                ['label' => 'Option 1', 'value' => 0],
+                ['label' => 'Option 2', 'value' => 1],
+            ]),
+            $select->optionsToJson()
+        );
+    }
+
+    /** @test */
     public function it_should_parse_the_disabled_and_template_and_readonly()
     {
         $options = [
