@@ -1,6 +1,6 @@
 import store from '@/alpine/store/modal'
 
-describe('Testing the color picker store', () => {
+describe('Testing the modal store', () => {
   beforeEach(() => {
     store.current = null
     store.actives = []
