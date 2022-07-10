@@ -1,3 +1,6 @@
+import { ColorsStore } from '@/alpine/store/colorPicker'
+import { ModalStore } from '@/alpine/store/modal'
+
 export type Entangle = any
 
 export type WireModifiers = {
@@ -12,7 +15,8 @@ export type WireModifiers = {
 export interface Alpine {
   raw (data: any): any
   data (name: string, data: any): void
-  store (name: string, data?: any): any
+  store (name: 'wireui:color-picker', data?: ColorsStore): ColorsStore
+  store (name: 'wireui:modal', data?: ModalStore): ModalStore
   evaluate (scope: any, expression: string): any
   magic (name: string, callback: (el: HTMLElement) => any): void
 }
