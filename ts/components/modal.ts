@@ -17,6 +17,7 @@ export interface Modal extends Component, Focusables {
   close (): void
   open (): void
   toggleScroll (): void
+  handleEscape (): void
 }
 
 export default (options: Options): Modal => ({
@@ -28,21 +29,21 @@ export default (options: Options): Modal => ({
 
   init () {
     this.$watch('show', value => {
+      if (value) {
+        this.store.setCurrent(this.id)
+        this.toggleScroll()
+      } else {
+        this.toggleScroll()
+        this.store.remove(this.id)
+      }
+
       this.$el.dispatchEvent(new Event(value ? 'open' : 'close'))
     })
   },
-  close () {
-    this.show = false
-    this.toggleScroll()
-    this.store.remove(this.id)
-  },
-  open () {
-    this.show = true
-    this.store.setCurrent(this.id)
-    this.toggleScroll()
-  },
+  close () { this.show = false },
+  open () { this.show = true },
   toggleScroll () {
-    if (!this.store.isCurrent(this.id)) return
+    if (!this.store.isFirstest(this.id)) return
 
     const elements = [...document.querySelectorAll('body, [main-container]')]
 
@@ -57,5 +58,10 @@ export default (options: Options): Modal => ({
           && !el.hasAttribute('hidden')
           && this.$root.isSameNode(el.closest('[wireui-modal]'))
       }) as HTMLElement[]
+  },
+  handleEscape () {
+    if (this.store.isCurrent(this.id)) {
+      this.close()
+    }
   }
 })

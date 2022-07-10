@@ -7,7 +7,7 @@
             model: @entangle($attributes->wire('model'))
         @endif
     })"
-    x-on:keydown.escape.window="close"
+    x-on:keydown.escape.window="handleEscape"
     x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
     x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
