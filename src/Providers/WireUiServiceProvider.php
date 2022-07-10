@@ -80,8 +80,8 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::notify($expression);
         });
 
-        Blade::directive('wireUiScripts', static function (): string {
-            return WireUiDirectives::scripts();
+        Blade::directive('wireUiScripts', static function (string $attributes = '[]'): string {
+            return WireUiDirectives::scripts(true, json_decode($attributes, true));
         });
 
         Blade::directive('wireUiStyles', static function (): string {
