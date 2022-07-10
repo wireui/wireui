@@ -8,8 +8,8 @@
         @endif
     })"
     x-on:keydown.escape.window="handleEscape"
-    x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+    x-on:keydown.tab.prevent="handleTab"
+    x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"

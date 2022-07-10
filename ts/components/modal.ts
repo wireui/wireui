@@ -18,6 +18,8 @@ export interface Modal extends Component, Focusables {
   open (): void
   toggleScroll (): void
   handleEscape (): void
+  handleTab (event: KeyboardEvent): void
+  handleShiftTab (): void
 }
 
 export default (options: Options): Modal => ({
@@ -62,6 +64,16 @@ export default (options: Options): Modal => ({
   handleEscape () {
     if (this.store.isCurrent(this.id)) {
       this.close()
+    }
+  },
+  handleTab (event) {
+    if (this.store.isCurrent(this.id) && !event.shiftKey) {
+      this.getNextFocusable().focus()
+    }
+  },
+  handleShiftTab () {
+    if (this.store.isCurrent(this.id)) {
+      this.getPrevFocusable().focus()
     }
   }
 })
