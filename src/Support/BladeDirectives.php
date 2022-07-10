@@ -2,18 +2,21 @@
 
 namespace WireUi\Support;
 
+use Illuminate\View\ComponentAttributeBag;
 use WireUi\Actions\Minify;
 
 class BladeDirectives
 {
-    public function scripts(bool $absolute = true): string
+    public function scripts(bool $absolute = true, array $attributes = []): string
     {
         $route = route('wireui.assets.scripts', $parameters = [], $absolute);
         $this->getManifestVersion('wireui.js', $route);
 
+        $attributes = new ComponentAttributeBag($attributes);
+
         return <<<HTML
-        <script>{$this->hooksScript()}</script>
-        <script src="{$route}" defer></script>
+        <script {$attributes->toHtml()}>{$this->hooksScript()}</script>
+        <script src="{$route}" defer {$attributes->toHtml()}></script>
         HTML;
     }
 
