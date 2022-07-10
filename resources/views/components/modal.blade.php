@@ -7,14 +7,15 @@
             model: @entangle($attributes->wire('model'))
         @endif
     })"
-    x-on:keydown.escape.window="close"
-    x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+    x-on:keydown.escape.window="handleEscape"
+    x-on:keydown.tab.prevent="handleTab"
+    x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
     x-cloak
-    x-show="show">
+    x-show="show"
+    wireui-modal>
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full
                 relative transform transition-all {{ $spacing }}"
         style="min-height: -webkit-fill-available; min-height: fill-available;">
