@@ -21,7 +21,7 @@ export interface Modal extends Component, Focusables {
 
 export default (options: Options): Modal => ({
   ...focusables,
-  focusableSelector: 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])',
+  focusableSelector: 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\']), [contenteditable]',
   show: options.model || options.show,
   id: uuid(),
   store: window.Alpine.store('wireui:modal'),
@@ -49,5 +49,13 @@ export default (options: Options): Modal => ({
     this.show
       ? elements.forEach(el => el.classList.add('!overflow-hidden'))
       : elements.forEach(el => el.classList.remove('!overflow-hidden'))
+  },
+  getFocusables () {
+    return Array.from(this.$root.querySelectorAll(this.focusableSelector))
+      .filter(el => {
+        return !el.hasAttribute('disabled')
+          && !el.hasAttribute('hidden')
+          && this.$root.isSameNode(el.closest('[wireui-modal]'))
+      }) as HTMLElement[]
   }
 })

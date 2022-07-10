@@ -14,7 +14,8 @@
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
     x-cloak
-    x-show="show">
+    x-show="show"
+    wireui-modal>
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full
                 relative transform transition-all {{ $spacing }}"
         style="min-height: -webkit-fill-available; min-height: fill-available;">
