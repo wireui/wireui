@@ -81,7 +81,7 @@ class WireUiServiceProvider extends ServiceProvider
         });
 
         Blade::directive('wireUiScripts', static function (string $attributes = '[]'): string {
-            return WireUiDirectives::scripts(true, json_decode($attributes, true));
+            return "{!! WireUi::directives()->scripts(attributes: {$attributes}) !!}";
         });
 
         Blade::directive('wireUiStyles', static function (): string {
