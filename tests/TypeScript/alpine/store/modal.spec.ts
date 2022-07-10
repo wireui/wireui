@@ -44,4 +44,21 @@ describe('Testing the color picker store', () => {
     expect(store.current).toBe('test2')
     expect(store.actives).toContain('test2')
   })
+
+  it('should check if the modal id is the first modal active', () => {
+    store.setCurrent('test')
+    store.setCurrent('test2')
+
+    expect(store.isFirstest('test')).toBeTrue()
+    expect(store.isFirstest('test2')).toBeFalse()
+  })
+
+  it('should set the previous modal id when remove the current modal id', () => {
+    store.setCurrent('test')
+    store.setCurrent('test2')
+
+    store.remove('test2')
+
+    expect(store.isCurrent('test')).toBeTrue()
+  })
 })

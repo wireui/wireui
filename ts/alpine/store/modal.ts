@@ -3,8 +3,9 @@ export interface ModalStore {
   actives: string[]
 
   setCurrent (id: string): this
-  isCurrent (id: string): boolean
   remove (id: string): this
+  isCurrent (id: string): boolean
+  isFirstest (id: string): boolean
 }
 
 const store: ModalStore = {
@@ -17,9 +18,6 @@ const store: ModalStore = {
 
     return this
   },
-  isCurrent (id) {
-    return this.current === id
-  },
   remove (id) {
     if (this.current === id) {
       this.current = null
@@ -27,7 +25,17 @@ const store: ModalStore = {
 
     this.actives = this.actives.filter(active => active !== id)
 
+    if (this.current === null && this.actives.length) {
+      this.current = this.actives[this.actives.length - 1]
+    }
+
     return this
+  },
+  isCurrent (id) {
+    return this.current === id
+  },
+  isFirstest (id) {
+    return this.actives[0] === id
   }
 }
 
