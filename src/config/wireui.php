@@ -44,6 +44,10 @@ return [
         |
      */
     'components' => [
+        'alert' => [
+            'class' => Components\Alert::class,
+            'alias' => 'alert',
+        ],
         'icon' => [
             'class' => Components\Icon::class,
             'alias' => 'icon',
