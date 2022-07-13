@@ -22,7 +22,7 @@ class Dialog extends Modal
         ?string $description = null,
         ?string $blur = null
     ) {
-        parent::__construct($zIndex, $maxWidth, $spacing, $align, $blur);
+        parent::__construct('', $zIndex, $maxWidth, $spacing, $align, $blur);
 
         $this->title       = $title;
         $this->dialog      = Actions\Dialog::makeEventName($id);
