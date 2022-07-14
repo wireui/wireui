@@ -164,5 +164,9 @@ return [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
+        'skeleton' => [
+            'class' => Components\Skeleton::class,
+            'alias' => 'skeleton',
+        ],
     ],
 ];
