@@ -141,7 +141,7 @@
 
     <x-wireui::parts.popover :margin="(bool) $label" root-class="sm:w-full">
         <template x-if="asyncData.api || (config.searchable && options.length > 10)">
-            <div class="px-2 my-2" :wire:key="'search.options.'. $name">
+            <div class="px-2 my-2" :wire:key="'search.options.' . $name">
                 <x-dynamic-component
                     :component="WireUi::component('input')"
                     class="bg-slate-100"
