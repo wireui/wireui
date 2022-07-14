@@ -24,6 +24,8 @@ class NativeSelect extends FormComponent
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
         public ?string $optionDescription = null,
+        public ?string $emptyMessage = null,
+        public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
         Collection|array|null $options = null,

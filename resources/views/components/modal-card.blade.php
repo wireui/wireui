@@ -22,7 +22,8 @@
         @elseif(!$hideClose)
             <x-slot name="action">
                 <button class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
-                        x-on:click="close">
+                        x-on:click="close"
+                        tabindex="-1">
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         name="x"

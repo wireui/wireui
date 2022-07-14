@@ -1,54 +1,79 @@
-import { Entangle } from './alpine'
+import { ModalStore } from '@/alpine/store/modal'
+import { Component, Entangle } from '@/components/alpine'
+import { focusables, Focusables } from '@/components/modules/focusables'
+import uuid from '@/utils/uuid'
 
 export interface Options {
-  model: Entangle
+  model?: Entangle
+  show: boolean
 }
 
-export interface Modal {
-  [index: string]: any
-
+export interface Modal extends Component, Focusables {
   show: Entangle
+  id: string
+  store: ModalStore
 
+  init (): void
   close (): void
-  focusables (): Element[]
-  firstFocusable (): Element
-  lastFocusable (): Element
-  nextFocusable (): Element
-  previousFocusable (): Element
-  nextFocusableIndex (): number
-  previousFocusableIndex (): number
+  open (): void
+  toggleScroll (): void
+  handleEscape (): void
+  handleTab (event: KeyboardEvent): void
+  handleShiftTab (): void
 }
 
 export default (options: Options): Modal => ({
-  show: options.model,
+  ...focusables,
+  focusableSelector: 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\']), [contenteditable]',
+  show: options.model || options.show,
+  id: uuid(),
+  store: window.Alpine.store('wireui:modal'),
 
   init () {
     this.$watch('show', value => {
-      value
-        ? document.body.classList.add('overflow-y-hidden')
-        : document.body.classList.remove('overflow-y-hidden')
+      if (value) {
+        this.store.setCurrent(this.id)
+        this.toggleScroll()
+      } else {
+        this.toggleScroll()
+        this.store.remove(this.id)
+      }
 
       this.$el.dispatchEvent(new Event(value ? 'open' : 'close'))
     })
   },
   close () { this.show = false },
-  focusables () {
-    const selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+  open () { this.show = true },
+  toggleScroll () {
+    if (!this.store.isFirstest(this.id)) return
 
-    return [...this.$el.querySelectorAll(selector)].filter(el => !el.hasAttribute('disabled'))
+    const elements = [...document.querySelectorAll('body, [main-container]')]
+
+    this.show
+      ? elements.forEach(el => el.classList.add('!overflow-hidden'))
+      : elements.forEach(el => el.classList.remove('!overflow-hidden'))
   },
-  firstFocusable () { return this.focusables()[0] },
-  lastFocusable () { return this.focusables().slice(-1)[0] },
-  nextFocusable () { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
-  previousFocusable () { return this.focusables()[this.previousFocusableIndex()] || this.lastFocusable() },
-  nextFocusableIndex () {
-    if (!document.activeElement) return -1
-
-    return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1)
+  getFocusables () {
+    return Array.from(this.$root.querySelectorAll(this.focusableSelector))
+      .filter(el => {
+        return !el.hasAttribute('disabled')
+          && !el.hasAttribute('hidden')
+          && this.$root.isSameNode(el.closest('[wireui-modal]'))
+      }) as HTMLElement[]
   },
-  previousFocusableIndex () {
-    if (!document.activeElement) return -1
-
-    return Math.max(0, this.focusables().indexOf(document.activeElement)) - 1
+  handleEscape () {
+    if (this.store.isCurrent(this.id)) {
+      this.close()
+    }
+  },
+  handleTab (event) {
+    if (this.store.isCurrent(this.id) && !event.shiftKey) {
+      this.getNextFocusable().focus()
+    }
+  },
+  handleShiftTab () {
+    if (this.store.isCurrent(this.id)) {
+      this.getPrevFocusable().focus()
+    }
   }
 })

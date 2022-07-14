@@ -1,5 +1,9 @@
 import Alpine from 'alpinejs'
-import { Alpine as AlpineInterface, Component } from '@/components/alpine'
+import { Alpine as AlpineInterface, baseComponent, Component } from '@/components/alpine'
+
+export interface MockedAlpine extends AlpineInterface {
+  store (name: string, data?: any): any
+}
 
 export const sleep = (ms: number) => {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -7,7 +11,8 @@ export const sleep = (ms: number) => {
 
 export const mockAlpineComponent = (component: Component): Component => {
   component = Object.assign(component, {
-    $watch: jest.fn()
+    $watch: jest.fn(),
+    $cleanup: jest.fn(baseComponent.$cleanup)
   })
 
   if (component.init) {
@@ -17,7 +22,7 @@ export const mockAlpineComponent = (component: Component): Component => {
   return component
 }
 
-export const AlpineMock: AlpineInterface = {
+export const AlpineMock: MockedAlpine = {
   raw: jest.fn(Alpine.raw),
   data: jest.fn(Alpine.data),
   store: jest.fn(Alpine.store),

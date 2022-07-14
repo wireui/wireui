@@ -12,7 +12,7 @@ class DuskBrowserMacros extends Macros\DuskBrowserMacros
         return function (string $name) {
             /** @var Browser $this */
             return $this->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelector("input[name=\"{$name}\"]").click();
+                Alpine.evaluate(document.querySelector("input[name=\"{$name}\"]"), 'open')
             JS));
         };
     }

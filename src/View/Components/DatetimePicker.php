@@ -27,6 +27,10 @@ class DatetimePicker extends Input
 
     public ?string $displayFormat;
 
+    public string|int $minTime;
+
+    public string|int $maxTime;
+
     public ?Carbon $min;
 
     public ?Carbon $max;
@@ -55,8 +59,10 @@ class DatetimePicker extends Input
         ?string $icon = null,
         ?string $prefix = null,
         ?string $prepend = null,
+        string|int $minTime = 0,
+        string|int $maxTime = 24,
         $min = null,
-        $max = null
+        $max = null,
     ) {
         parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix = null, $prepend, $append = null);
 
@@ -70,6 +76,8 @@ class DatetimePicker extends Input
         $this->userTimezone    = $userTimezone;
         $this->parseFormat     = $parseFormat;
         $this->displayFormat   = $displayFormat;
+        $this->minTime         = $minTime;
+        $this->maxTime         = $maxTime;
         $this->min             = $min ? Carbon::parse($min) : null;
         $this->max             = $max ? Carbon::parse($max) : null;
     }

@@ -1,10 +1,15 @@
-import { applyMask } from '../../utils/masker'
-import { getLocalTimezone, date as parseDate } from '../../utils/date'
-import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate } from './interfaces'
+import { applyMask } from '@/utils/masker'
+import { getLocalTimezone, date as parseDate } from '@/utils/date'
+import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate, Refs } from './interfaces'
 import { makeTimes, Time } from './makeTimes'
-import { convertStandardTimeToMilitary } from '../../utils/time'
+import { convertStandardTimeToMilitary } from '@/utils/time'
+import { baseComponent } from '@/components/alpine'
+import { positioning } from '@/components/modules/positioning'
 
 export default (options: InitOptions): DateTimePicker => ({
+  ...baseComponent,
+  ...positioning,
+  $refs: {} as Refs,
   model: options.model,
   config: options.config,
   withoutTimezone: options.withoutTimezone,
@@ -25,7 +30,6 @@ export default (options: InitOptions): DateTimePicker => ({
   searchTime: null,
   input: null,
   modelTime: null,
-  popover: false,
   tab: 'date',
   monthsPicker: false,
   previousDates: [],
@@ -44,6 +48,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
   init () {
     this.initComponent()
+    this.initPositioningSystem()
 
     this.$watch('popover', popover => {
       if (popover && !this.currentDates.length) {
@@ -86,7 +91,7 @@ export default (options: InitOptions): DateTimePicker => ({
   clearDate () {
     this.model = null
   },
-  togglePicker () {
+  toggle () {
     if (this.config.readonly || this.config.disabled) return
 
     if (this.config.min && !this.minDate) {
@@ -108,7 +113,7 @@ export default (options: InitOptions): DateTimePicker => ({
     this.popover = !this.popover
     this.monthsPicker = false
   },
-  closePicker () {
+  close () {
     this.popover = false
     this.monthsPicker = false
   },
@@ -224,7 +229,13 @@ export default (options: InitOptions): DateTimePicker => ({
   fillTimes () {
     if (this.times.length > 0) return
 
-    const times = makeTimes(this.config.is12H, this.config.interval)
+    const times = makeTimes({
+      time12H: this.config.is12H,
+      interval: this.config.interval,
+      min: this.config.minTime,
+      max: this.config.maxTime
+    })
+
     this.times = times
     this.filteredTimes = times
   },
@@ -347,17 +358,17 @@ export default (options: InitOptions): DateTimePicker => ({
   },
   selectYesterday () {
     this.input = this.today().subDay()
-    this.closePicker()
+    this.close()
     this.emitInput()
   },
   selectToday () {
     this.input = this.today()
-    this.closePicker()
+    this.close()
     this.emitInput()
   },
   selectTomorrow () {
     this.input = this.today().addDay()
-    this.closePicker()
+    this.close()
     this.emitInput()
   },
   getLocaleDateConfig () {
@@ -440,8 +451,8 @@ export default (options: InitOptions): DateTimePicker => ({
         .timesContainer
         .querySelector(`button[name = 'times.${this.input?.getTime(this.userTimezone)}']`)
         ?.scrollIntoView({
-          behavior: 'instant',
-          block: 'nearest',
+          behavior: 'auto',
+          block: 'center',
           inline: 'center'
         })
     })

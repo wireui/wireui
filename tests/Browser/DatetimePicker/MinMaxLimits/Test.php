@@ -20,7 +20,6 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
             /** @var Browser|TestableLivewire $component */
             $component = $this->visit($browser, Component::class)
-                ->waitForLivewireToLoad()
                 ->click('[name="model"]')
                 ->tap(fn () => $browser->assertScript(<<<EOT
                     [...document.querySelectorAll('.picker-days button')]
@@ -49,7 +48,6 @@ class Test extends BrowserTestCase
         $this->browse(
             fn (Browser $browser) => $this
                 ->visit($browser, Component::class)
-                ->waitForLivewireToLoad()
                 ->click('[name="model"]')
                 ->tap(fn () => $this->selectDate($browser, $day))
                 ->waitUsing(7, 100, fn () => $browser->assertScript(

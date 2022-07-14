@@ -25,9 +25,11 @@
                     {{ $getOptionLabel($option) }}
                 </option>
             @empty
-                <option disabled>
-                    @lang('wireui::messages.empty_options')
-                </option>
+                @unless ($hideEmptyMessage)
+                    <option disabled>
+                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                    </option>
+                @endunless
             @endforelse
         @else {{ $slot }} @endif
     </select>

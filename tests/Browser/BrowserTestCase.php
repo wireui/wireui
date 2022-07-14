@@ -211,6 +211,7 @@ class BrowserTestCase extends Dusk\TestCase
 
     public function visit(Browser $browser, string $livewire): Browser|TestableLivewire
     {
-        return Livewire::visit($browser, $livewire);
+        return Livewire::visit($browser, $livewire)
+            ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad());
     }
 }
