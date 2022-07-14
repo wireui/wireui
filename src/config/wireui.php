@@ -44,6 +44,10 @@ return [
         |
      */
     'components' => [
+        'avatar' => [
+            'class' => Components\Avatar::class,
+            'alias' => 'avatar',
+        ],
         'icon' => [
             'class' => Components\Icon::class,
             'alias' => 'icon',
