@@ -79,7 +79,6 @@ class Test extends BrowserTestCase
         $this->browse(
             fn (Browser $browser) => $this
                 ->visit($browser, Component::class)
-                ->tap(fn () => $browser->waitForLivewireToLoad())
                 ->assertInputValue('dateAndTime', '25-12-2021 00:00')
                 ->click('[id="dateAndTime"] input')
                 ->tap(fn () => $this->selectDate($browser, 'dateAndTime', 11))

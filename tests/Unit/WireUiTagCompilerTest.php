@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Blade;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\{BladeDirectives, WireUiTagCompiler};
 
@@ -42,7 +43,7 @@ class WireUiTagCompilerTest extends UnitTestCase
     {
         $bladeDirectives = new BladeDirectives();
         $hooksScript     = $bladeDirectives->hooksScript();
-        $wireuiScript    = '<script src="/wireui/assets/scripts" defer></script>';
+        $wireuiScript    = '<script src="/wireui/assets/scripts" defer ></script>';
 
         if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
             $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
@@ -65,5 +66,27 @@ class WireUiTagCompilerTest extends UnitTestCase
         }
 
         $this->assertEquals($expected, $bladeDirectives->styles($absolute = false));
+    }
+
+    /**
+     * @dataProvider scriptsTagProvider
+     */
+    public function test_it_should_render_all_wireui_scripts_variation(string $text)
+    {
+        $html = Blade::render($text);
+
+        $this->assertStringContainsString('<script src="', $html);
+        $this->assertStringContainsString('/wireui/assets/scripts', $html);
+    }
+
+    public function scriptsTagProvider(): array
+    {
+        return [
+            ['@wireUiScripts'],
+            ['@wireUiScripts()'],
+            ['@wireUiScripts([])'],
+            ["@wireUiScripts(['foo' => 'bar'])"],
+            ['<wireui:scripts />'],
+        ];
     }
 }

@@ -10,56 +10,21 @@ abstract class BaseButton extends Component
 
     private array $smartAttributes = [];
 
-    public bool $rounded;
-
-    public bool $squared;
-
-    public bool $outline;
-
-    public bool $flat;
-
-    public ?string $color;
-
-    public ?string $size;
-
-    public ?string $label;
-
-    public ?string $icon;
-
-    public ?string $rightIcon;
-
-    public ?string $spinner;
-
-    public ?string $loadingDelay;
-
-    public ?string $href;
-
     public function __construct(
-        bool $rounded = false,
-        bool $squared = false,
-        bool $outline = false,
-        bool $flat = false,
-        ?string $color = null,
-        ?string $size = null,
-        ?string $label = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $spinner = null,
-        ?string $loadingDelay = null,
-        ?string $href = null
+        public bool $rounded = false,
+        public bool $squared = false,
+        public bool $outline = false,
+        public bool $flat = false,
+        public bool $full = false,
+        public ?string $color = null,
+        public ?string $size = null,
+        public ?string $label = null,
+        public ?string $icon = null,
+        public ?string $rightIcon = null,
+        public ?string $spinner = null,
+        public ?string $loadingDelay = null,
+        public ?string $href = null
     ) {
-        $this->rounded      = $rounded;
-        $this->squared      = $squared;
-        $this->outline      = $outline;
-        $this->flat         = $flat;
-        $this->color        = $color;
-        $this->size         = $size;
-        $this->label        = $label;
-        $this->icon         = $icon;
-        $this->rightIcon    = $rightIcon;
-        $this->spinner      = $spinner;
-        $this->loadingDelay = $loadingDelay;
-        $this->href         = $href;
     }
 
     public function render()
@@ -89,6 +54,7 @@ abstract class BaseButton extends Component
             'hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed',
             'rounded-full' => !$this->squared && $this->rounded,
             'rounded'      => !$this->squared && !$this->rounded,
+            'w-full'       => $this->full,
             $this->size($attributes),
             $this->color($attributes),
         ]);

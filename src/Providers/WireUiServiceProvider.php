@@ -4,8 +4,10 @@ namespace WireUi\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
+use Illuminate\View\ComponentAttributeBag;
+use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
 
@@ -17,6 +19,7 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeDirectives();
         $this->registerBladeComponents();
         $this->registerTagCompiler();
+        $this->registerMacros();
     }
 
     public function register()
@@ -28,11 +31,9 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerTagCompiler()
     {
-        if (method_exists($this->app['blade.compiler'], 'precompiler')) {
-            $this->app['blade.compiler']->precompiler(function ($string) {
-                return app(WireUiTagCompiler::class)->compile($string);
-            });
-        }
+        Blade::precompiler(static function (string $string): string {
+            return app(WireUiTagCompiler::class)->compile($string);
+        });
     }
 
     protected function registerConfig(): void
@@ -79,8 +80,12 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::notify($expression);
         });
 
-        Blade::directive('wireUiScripts', static function (): string {
-            return WireUiDirectives::scripts();
+        Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {
+            if (!$attributes) {
+                $attributes = '[]';
+            }
+
+            return "{!! WireUi::directives()->scripts(attributes: {$attributes}) !!}";
         });
 
         Blade::directive('wireUiStyles', static function (): string {
@@ -98,6 +103,25 @@ class WireUiServiceProvider extends ServiceProvider
             foreach (config('wireui.components') as $component) {
                 $blade->component($component['class'], $component['alias']);
             }
+        });
+    }
+
+    protected function registerMacros(): void
+    {
+        ComponentAttributeBag::macro('wireModifiers', function () {
+            /** @var ComponentAttributeBag $this */
+
+            /** @var WireDirective $model */
+            $model = $this->wire('model');
+
+            return [
+                'defer'    => $model->modifiers()->contains('defer'),
+                'lazy'     => $model->modifiers()->contains('lazy'),
+                'debounce' => [
+                    'exists' => $model->modifiers()->contains('debounce'),
+                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
+                ],
+            ];
         });
     }
 }

@@ -1,16 +1,21 @@
-@php $model = $attributes->wire('model'); @endphp
+@php $name = $name ?? $attributes->wire('model')->value(); @endphp
 
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
     x-data="wireui_modal({
-        model: @entangle($attributes->wire('model'))
+        show: @js($show),
+        @if ($attributes->wire('model')->value())
+            model: @entangle($attributes->wire('model'))
+        @endif
     })"
-    x-on:keydown.escape.window="close"
-    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="previousFocusable().focus()"
-    x-on:open-wireui-modal:{{ Str::kebab((string)$model) }}.window="show = true"
+    x-on:keydown.escape.window="handleEscape"
+    x-on:keydown.tab.prevent="handleTab"
+    x-on:keydown.shift.tab.prevent="handleShiftTab"
+    x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
     {{ $attributes->whereStartsWith(['x-on:', '@']) }}
     style="display: none"
-    x-show="show">
+    x-cloak
+    x-show="show"
+    wireui-modal>
     <div class="flex items-end {{ $align }} min-h-screen justify-center w-full
                 relative transform transition-all {{ $spacing }}"
         style="min-height: -webkit-fill-available; min-height: fill-available;">

@@ -1,5 +1,5 @@
 @if ($separator)
-    <div class="w-full my-2 border-t border-secondary-200 dark:border-secondary-600"></div>
+    <div class="w-full my-1 border-t border-secondary-200 dark:border-secondary-600"></div>
 @endif
 
 <a {{ $attributes->merge(['class' => $getClasses()]) }}>

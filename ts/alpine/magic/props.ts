@@ -13,6 +13,8 @@ export function watchProps (component: Component, callback: CallableFunction): v
   const observer = new MutationObserver(() => callback())
 
   observer.observe(component.$root, { attributes: true })
+
+  component.$cleanup(() => observer.disconnect())
 }
 
 export default props

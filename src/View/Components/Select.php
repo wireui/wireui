@@ -21,6 +21,7 @@ class Select extends NativeSelect
         public ?string $optionLabel = null,
         public ?string $optionDescription = null,
         public ?string $emptyMessage = null,
+        public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
         public string|array|null $asyncData = null,
@@ -28,15 +29,17 @@ class Select extends NativeSelect
         Collection|array|null $options = null,
     ) {
         parent::__construct(
-            $label,
-            $hint,
-            $placeholder,
-            $optionValue,
-            $optionLabel,
-            $optionDescription,
-            $flipOptions,
-            $optionKeyValue,
-            $options,
+            label: $label,
+            hint: $hint,
+            placeholder: $placeholder,
+            optionValue: $optionValue,
+            optionLabel: $optionLabel,
+            optionDescription: $optionDescription,
+            emptyMessage: $emptyMessage,
+            hideEmptyMessage: $hideEmptyMessage,
+            flipOptions: $flipOptions,
+            optionKeyValue: $optionKeyValue,
+            options: $options,
         );
 
         if (gettype($template) === 'string') {
@@ -107,7 +110,13 @@ class Select extends NativeSelect
                     unset($option[$this->optionDescription]);
                 }
 
-                return array_filter($option);
+                return array_filter($option, function ($value, $index) {
+                    if ($index === 'value') {
+                        return true;
+                    }
+
+                    return (bool) $value;
+                }, ARRAY_FILTER_USE_BOTH);
             })
             ->values()
             ->toJson();

@@ -126,11 +126,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_input_element()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire $testable */
-            $testable = $this->visit($browser, Component::class);
-
-            $testable
-                ->waitForLivewireToLoad()
+            $this->visit($browser, Component::class)
                 ->assertInputValue('color-picker', '#123');
         });
     }
@@ -139,11 +135,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_wire_model()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire $testable */
-            $testable = $this->visit($browser, Component::class);
-
-            $testable
-                ->waitForLivewireToLoad()
+            $this->visit($browser, Component::class)
                 ->assertInputValue('color-picker-wire', '#001');
         });
     }

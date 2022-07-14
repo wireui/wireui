@@ -1,4 +1,5 @@
-import { Entangle } from '../alpine'
+import { Entangle } from '@/components/alpine'
+import { PositioningRefs } from '@/components/modules/positioning'
 import { Template, TemplateName } from './templates'
 
 export type Option = {
@@ -53,7 +54,7 @@ export type Props = Config & {
   template: TemplateConfig
 }
 
-export type Refs = {
+export type Refs = PositioningRefs & {
   json: HTMLElement
   search?: HTMLInputElement
   input: HTMLInputElement
