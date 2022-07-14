@@ -28,7 +28,7 @@
                 :has-error="$name && $errors->has($name)"
                 :disabled="$disabled"
                 x-on:click="toggle"
-                wire:key="select.label.{{ $name }}">
+                :wire:key="'select.label.'.$name">
             />
         @endif
 
