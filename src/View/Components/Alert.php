@@ -42,31 +42,31 @@ class Alert extends Component
     public function __construct(
         ?string $padding = 'p-4',
         ?string $rounded = 'rounded-md',
+        ?string $icon = null,
+        ?string $heading = null,
+        ?string $text = null,
+        ?string $actions = null,
         bool $border = false,
         bool $shadow = false,
         bool $info = false,
         bool $warning = false,
         bool $success = false,
         bool $danger = false,
-        ?string $icon = null,
-        ?string $heading = null,
-        ?string $text = null,
-        ?string $actions = null,
         bool $dismiss = false,
         ?string $alertClasses = '',
     ) {
         $this->padding = $padding;
         $this->rounded = $rounded;
+        $this->icon = $icon;
+        $this->heading = $heading;
+        $this->text = $text;
+        $this->actions = $actions;
         $this->border = $border;
         $this->shadow = $shadow;
         $this->info = $this->setInfoAlert($info);
         $this->warning = $this->setWarningAlert($warning);
         $this->success = $this->setSuccessAlert($success);
         $this->danger = $this->setDangerAlert($danger);
-        $this->icon = $icon;
-        $this->heading = $heading;
-        $this->text = $text;
-        $this->actions = $actions;
         $this->dismiss = $dismiss;
         $this->alertClasses = $this->setAlertClasses($alertClasses);
     }
@@ -74,6 +74,7 @@ class Alert extends Component
     public function setInfoAlert($info): string
     {
         if ($info) {
+            $this->icon = (!$this->icon) ? 'information-circle' : $this->icon;
             $this->backgroundColor = 'bg-blue-50 dark:bg-blue-200';
             $this->subjectColor = 'text-blue-700 dark:text-blue-800';
             return true;
@@ -85,6 +86,7 @@ class Alert extends Component
     public function setWarningAlert($warning): string
     {
         if ($warning) {
+            $this->icon = (!$this->icon) ? 'exclamation' : $this->icon;
             $this->backgroundColor = 'bg-yellow-50 dark:bg-yellow-200';
             $this->subjectColor = 'text-yellow-700 dark:text-yellow-800';
             return true;
@@ -96,6 +98,7 @@ class Alert extends Component
     public function setSuccessAlert($success): string
     {
         if ($success) {
+            $this->icon = (!$this->icon) ? 'check-circle' : $this->icon;
             $this->backgroundColor = 'bg-green-50 dark:bg-green-200';
             $this->subjectColor = 'text-green-700 dark:text-green-800';
             return true;
@@ -107,6 +110,7 @@ class Alert extends Component
     public function setDangerAlert($danger): string
     {
         if ($danger) {
+            $this->icon = (!$this->icon) ? 'x-circle' : $this->icon;
             $this->backgroundColor = 'bg-red-50 dark:bg-red-200';
             $this->subjectColor = 'text-red-700 dark:text-red-800';
             return true;
@@ -121,13 +125,14 @@ class Alert extends Component
             ->append(" {$this->rounded}")
             ->append(" {$this->padding}")
             ->append(" {$this->backgroundColor}")
-            ->append(" {$alertClasses}")
+            ->append(" {$this->subjectColor}")
             ->when($this->border, function ($classes) {
                 return $classes->append(' border border-gray-300 dark:border-secondary-600');
             })
             ->when($this->shadow, function ($classes) {
                 return $classes->append(' shadow-md');
-            });
+            })
+            ->append(" {$alertClasses}");
     }
 
     public function render()
