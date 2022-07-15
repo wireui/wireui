@@ -25,6 +25,7 @@ export default (initOptions: InitOptions): Select => ({
     hasSlot: false,
     searchable: false,
     multiselect: false,
+    clearable: false,
     readonly: false,
     disabled: false,
     optionValue: null,
@@ -186,6 +187,7 @@ export default (initOptions: InitOptions): Select => ({
       hasSlot: props.hasSlot,
       searchable: props.searchable,
       multiselect: props.multiselect,
+      clearable: props.clearable,
       readonly: props.readonly,
       disabled: props.disabled,
       placeholder: props.placeholder,
@@ -461,6 +463,10 @@ export default (initOptions: InitOptions): Select => ({
       return this.selectedOptions.push(option)
     }
 
+    if (!this.config.clearable && this.selected?.value === option.value) {
+      return this.close()
+    }
+
     this.selected = option.value === this.selected?.value ? undefined : option
 
     this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: option }))
@@ -468,7 +474,7 @@ export default (initOptions: InitOptions): Select => ({
     this.close()
   },
   unSelect (option) {
-    if (this.config.readonly) return
+    if (this.config.readonly || !this.config.clearable) return
 
     if (this.config.multiselect) {
       const index = this.selectedOptions.findIndex(({ value }) => value === option.value)

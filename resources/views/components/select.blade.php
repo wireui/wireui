@@ -12,6 +12,7 @@
         hasSlot:     @boolean($slot->isNotEmpty()),
         multiselect: @boolean($multiselect),
         searchable:  @boolean($searchable),
+        clearable:   @boolean($clearable),
         readonly:    @boolean($readonly || $disabled),
         placeholder: @js($placeholder),
         template:    @js($template),

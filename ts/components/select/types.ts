@@ -40,6 +40,7 @@ export type Config = {
   hasSlot: boolean
   searchable: boolean
   multiselect: boolean
+  clearable: boolean
   readonly: boolean
   disabled: boolean
   placeholder: string | null

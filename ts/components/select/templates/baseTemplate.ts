@@ -7,13 +7,13 @@ export default (slot: string) => `
         'cursor-pointer focus:bg-primary-100 focus:text-primary-800 hover:text-white dark:focus:bg-secondary-700': !option.readonly,
         'opacity-60 cursor-not-allowed': option.disabled,
         'font-semibold': isSelected(option),
-        'hover:bg-negative-500 dark:hover:text-secondary-100': !option.readonly && isSelected(option),
-        'hover:bg-primary-500 dark:hover:bg-secondary-700': !option.readonly && !isSelected(option),
+        'hover:bg-negative-500 dark:hover:text-secondary-100': config.clearable && !option.readonly && isSelected(option),
+        'hover:bg-primary-500 dark:hover:bg-secondary-700': !config.clearable || !option.readonly && !isSelected(option),
     }"
     :tabindex="!option.readonly && '0'"
     onclick="this.blur()"
-    x-on:click="!option.readonly && select(option)"
-    x-on:keydown.enter="!option.readonly && select(option)">
+    x-on:click="select(option)"
+    x-on:keydown.enter="select(option)">
     ${slot}
 
     <div class="flex-shrink-0">
