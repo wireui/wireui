@@ -181,49 +181,47 @@
             </div>
         </template>
 
-        <template x-if="popover">
-            <ul class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
-                tabindex="-1"
-                x-ref="optionsContainer"
-                name="wireui.select.options.{{ $name }}"
-                x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-                x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-                x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
-                x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
-                <div class="w-full h-0.5 rounded-full relative overflow-hidden"
-                    :class="{
-                        'bg-gray-200 dark:bg-gray-700': asyncData.fetching
-                    }">
-                    <div class="bg-primary-500 h-0.5 rounded-full absolute animate-linear-progress"
-                        style="width: 30%"
-                        x-show="asyncData.fetching">
-                    </div>
+        <ul class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
+            tabindex="-1"
+            x-ref="optionsContainer"
+            name="wireui.select.options.{{ $name }}"
+            x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
+            x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
+            x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+            x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()">
+            <div class="w-full h-0.5 rounded-full relative overflow-hidden"
+                :class="{
+                    'bg-gray-200 dark:bg-gray-700': asyncData.fetching
+                }">
+                <div class="bg-primary-500 h-0.5 rounded-full absolute animate-linear-progress"
+                    style="width: 30%"
+                    x-show="asyncData.fetching">
                 </div>
+            </div>
 
-                @isset ($beforeOptions)
-                    <li {{ $beforeOptions->attributes }}>
-                        {{ $beforeOptions }}
-                    </li>
-                @endisset
+            @isset ($beforeOptions)
+                <li {{ $beforeOptions->attributes }}>
+                    {{ $beforeOptions }}
+                </li>
+            @endisset
 
-                <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                    <div x-transition x-html="renderOption(option)"></div>
-                </template>
+            <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
+                <div x-transition x-html="renderOption(option)"></div>
+            </template>
 
-                @unless ($hideEmptyMessage)
-                    <li class="py-2 px-3 text-secondary-500 cursor-pointer"
-                        x-show="displayOptions.length === 0"
-                        x-on:click="close">
-                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
-                    </li>
-                @endunless
+            @unless ($hideEmptyMessage)
+                <li class="py-2 px-3 text-secondary-500 cursor-pointer"
+                    x-show="displayOptions.length === 0"
+                    x-on:click="close">
+                    {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                </li>
+            @endunless
 
-                @isset ($afterOptions)
-                    <div {{ $afterOptions->attributes }}>
-                        {{ $afterOptions }}
-                    </div>
-                @endisset
-            </ul>
-        </template>
+            @isset ($afterOptions)
+                <div {{ $afterOptions->attributes }}>
+                    {{ $afterOptions }}
+                </div>
+            @endisset
+        </ul>
     </x-wireui::parts.popover>
 </div>
