@@ -45,15 +45,31 @@
             x-bind:value="getSelectedValue"
             readonly
             :name="$name"
-            :icon="$icon"
-            {{ $attributes->except(['class'])->whereDoesntStartWith(['wire:model', 'type', 'wire:key']) }}>
+            {{ $attributes
+                ->except(['class'])
+                ->class(['pl-8' => $icon])
+                ->whereDoesntStartWith(['wire:model', 'type', 'wire:key'])
+            }}>
             <x-slot name="prepend">
                 <div :class="{
                     'pointer-events-none': config.readonly,
                     'cursor-pointer': !config.readonly,
                 }">
                     <template x-if="!config.multiselect">
-                        <div class="absolute left-0 inset-y-0 pl-3.5 w-[calc(100%-3.5rem)] flex items-center" x-on:click="toggle">
+                        <div @class([
+                                'absolute left-0 inset-y-0 w-[calc(100%-3.5rem)] flex items-center',
+                                'pl-2.5' =>  $icon,
+                                'pl-3.5' => !$icon,
+                            ])
+                            x-on:click="toggle">
+                            @if ($icon)
+                                <x-dynamic-component
+                                    :component="WireUi::component('icon')"
+                                    :name="$icon"
+                                    class="h-5 w-5 mr-1 text-gray-400 dark:text-gray-600"
+                                />
+                            @endif
+
                             <span
                                 class="truncate text-secondary-700 dark:text-secondary-400 text-sm"
                                 x-show="!isEmpty()"
@@ -65,6 +81,14 @@
                     <template x-if="config.multiselect">
                         <div class="absolute left-0 inset-y-0 pl-3 pr-14 w-full flex items-center overflow-hidden" x-on:click="toggle">
                             <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
+                                @if ($icon)
+                                    <x-dynamic-component
+                                        :component="WireUi::component('icon')"
+                                        :name="$icon"
+                                        class="h-5 w-5 text-gray-400 dark:text-gray-600"
+                                    />
+                                @endif
+
                                 @if (!$withoutItemsCount)
                                     <span
                                         class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
