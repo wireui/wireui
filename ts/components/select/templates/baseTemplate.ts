@@ -12,8 +12,8 @@ export default (slot: string) => `
     }"
     :tabindex="!option.readonly && '0'"
     onclick="this.blur()"
-    x-on:click="select(option)"
-    x-on:keydown.enter="select(option)">
+    x-on:click="!option.readonly && select(option)"
+    x-on:keydown.enter="!option.readonly && select(option)">
     ${slot}
 
     <div class="flex-shrink-0">

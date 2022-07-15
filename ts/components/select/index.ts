@@ -449,7 +449,7 @@ export default (initOptions: InitOptions): Select => ({
     return option.value === this.selected?.value
   },
   select (option) {
-    if (this.config.readonly) return
+    if (this.config.readonly || option.disabled || option.readonly) return
 
     this.search = ''
 
