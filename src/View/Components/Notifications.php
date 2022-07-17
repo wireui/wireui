@@ -15,7 +15,6 @@ class Notifications extends Component
         public string $zIndex = 'z-50',
         public ?string $position = self::TOP_RIGHT,
     ) {
-        $this->zIndex   = $zIndex;
         $this->position = $this->getPosition($position);
     }
 
