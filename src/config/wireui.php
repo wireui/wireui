@@ -164,5 +164,9 @@ return [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
+        'badge' => [
+            'class' => Components\Badge::class,
+            'alias' => 'badge',
+        ],
     ],
 ];
