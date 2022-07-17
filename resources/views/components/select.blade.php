@@ -38,6 +38,7 @@
             class="cursor-pointer overflow-hidden !text-transparent !dark:text-transparent"
             x-ref="input"
             x-on:click="toggle"
+            x-on:focus="toggle"
             x-on:keydown.enter.stop.prevent="toggle"
             x-on:keydown.space.stop.prevent="toggle"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
