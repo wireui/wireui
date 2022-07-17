@@ -1,5 +1,5 @@
 <div class="fixed {{ $zIndex }} inset-0 flex items-end justify-center px-4 py-6
-            pointer-events-none sm:p-5 sm:pt-4 sm:items-start sm:justify-end"
+            pointer-events-none sm:p-5 sm:pt-4 {{ $position }}"
      x-data="wireui_notifications"
      x-on:wireui:notification.window="addNotification($event.detail)"
      x-on:wireui:confirm-notification.window="addConfirmNotification($event.detail)"
