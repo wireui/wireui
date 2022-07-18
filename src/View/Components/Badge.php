@@ -21,6 +21,8 @@ class Badge extends Component
 
     public bool $icon = false;
 
+    public bool $pulse = false;
+
     public ?string $padding;
 
     public ?string $shadow;
@@ -33,6 +35,10 @@ class Badge extends Component
 
     public ?string $badgeClasses = '';
 
+    public string $pulseColor = 'bg-slate-500';
+
+    public string $pulsePingColor = 'bg-slate-400';
+
     public function __construct(
         bool $info = false,
         bool $warning = false,
@@ -41,10 +47,11 @@ class Badge extends Component
         bool $close = false,
         bool $square = false,
         bool $icon = false,
+        bool $pulse = false,
         ?string $padding = 'px-2.5 py-0.5',
         ?string $shadow = '',
         ?string $rounded = 'rounded-full',
-        ?string $color = 'bg-gray-100 text-gray-800',
+        ?string $color = 'bg-slate-100 text-slate-800',
         ?string $name = null,
         ?string $badgeClasses = '',
     ) {
@@ -55,17 +62,19 @@ class Badge extends Component
         $this->close = $close;
         $this->square = $square;
         $this->icon = $icon;
+        $this->pulse = $pulse;
         $this->padding = $padding;
         $this->shadow = $shadow;
         $this->rounded = $rounded;
         $this->color = $color;
         $this->name = $name;
         $this->badgeClasses = $this->setBadgeClasses($badgeClasses);
+        $this->setPulse($pulse);
     }
 
     public function setBadgeClasses(?string $badgeClasses): string
     {
-        return Str::of('inline-flex items-center text-xs font-medium')
+        return Str::of('relative inline-flex items-center text-xs font-medium')
             ->append(" {$this->padding}")
             ->append(" {$this->shadow}")
             ->append(" {$this->rounded}")
@@ -77,18 +86,40 @@ class Badge extends Component
                 return $string->replace('px-2.5 py-0.5', 'p-1.5');
             })
             ->when($this->info, function ($string) {
-                return $string->replace('bg-gray-100 text-gray-800', 'bg-blue-100 text-blue-800');
+                return $string->replace('bg-slate-100 text-slate-800', 'bg-info-100 text-info-800');
             })
             ->when($this->warning, function ($string) {
-                return $string->replace('bg-gray-100 text-gray-800', 'bg-yellow-100 text-yellow-800');
+                return $string->replace('bg-slate-100 text-slate-800', 'bg-warning-100 text-warning-800');
             })
             ->when($this->success, function ($string) {
-                return $string->replace('bg-gray-100 text-gray-800', 'bg-green-100 text-green-800');
+                return $string->replace('bg-slate-100 text-slate-800', 'bg-positive-100 text-positive-800');
             })
             ->when($this->danger, function ($string) {
-                return $string->replace('bg-gray-100 text-gray-800', 'bg-red-100 text-red-800');
+                return $string->replace('bg-slate-100 text-slate-800', 'bg-negative-100 text-negative-800');
             })
             ->append(" {$badgeClasses}");
+    }
+
+    public function setPulse($pulse)
+    {
+        if ($pulse) {
+            if ($this->info) {
+                $this->pulseColor = 'bg-info-500';
+                $this->pulsePingColor = 'bg-info-400';
+            }
+            if ($this->warning) {
+                $this->pulseColor = 'bg-warning-500';
+                $this->pulsePingColor = 'bg-warning-400';
+            }
+            if ($this->success) {
+                $this->pulseColor = 'bg-positive-500';
+                $this->pulsePingColor = 'bg-positive-400';
+            }
+            if ($this->danger) {
+                $this->pulseColor = 'bg-negative-500';
+                $this->pulsePingColor = 'bg-negative-400';
+            }
+        }
     }
 
     public function render()
