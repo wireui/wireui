@@ -388,6 +388,11 @@ export default (initOptions: InitOptions): Select => ({
       return label.includes(search)
     })
   },
+  closeIfNotFocused () {
+    if (!this.$root.contains(document.activeElement) && this.popover) {
+      this.close()
+    }
+  },
   toggle () {
     if (this.config.readonly) return
 

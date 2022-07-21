@@ -39,6 +39,7 @@
             x-ref="input"
             x-on:click="toggle"
             x-on:focus="open"
+            x-on:blur.debounce.750ms="closeIfNotFocused"
             x-on:keydown.enter.stop.prevent="toggle"
             x-on:keydown.space.stop.prevent="toggle"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
