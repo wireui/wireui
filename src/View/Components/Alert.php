@@ -7,71 +7,34 @@ use Illuminate\View\Component;
 
 class Alert extends Component
 {
-    public ?string $padding;
-
-    public ?string $rounded;
-
-    public bool $border;
-
-    public bool $shadow;
-
-    public bool $info;
-
-    public bool $warning;
-
-    public bool $success;
-
-    public bool $danger;
-
-    public ?string $icon;
-
-    public ?string $heading;
-
-    public ?string $text;
-
-    public ?string $actions;
-
-    public bool $dismiss;
-
-    public ?string $alertClasses = '';
-
     public string $backgroundColor = 'bg-gray-50 dark:bg-secondary-700';
 
     public string $subjectColor = 'text-gray-700 dark:text-gray-400';
 
     public function __construct(
-        ?string $padding = 'p-4',
-        ?string $rounded = 'rounded-md',
-        ?string $icon = null,
-        ?string $heading = null,
-        ?string $text = null,
-        ?string $actions = null,
-        bool $border = false,
-        bool $shadow = false,
-        bool $info = false,
-        bool $warning = false,
-        bool $success = false,
-        bool $danger = false,
-        bool $dismiss = false,
-        ?string $alertClasses = '',
+        public ?string $padding = 'p-4',
+        public ?string $rounded = 'rounded-md',
+        public ?string $icon = null,
+        public ?string $heading = null,
+        public ?string $text = null,
+        public ?string $actions = null,
+        public bool $border = false,
+        public bool $shadow = false,
+        public bool $info = false,
+        public bool $warning = false,
+        public bool $positive = false,
+        public bool $negative = false,
+        public bool $dismiss = false,
+        public ?string $alertClasses = '',
     ) {
-        $this->padding = $padding;
-        $this->rounded = $rounded;
-        $this->icon = $icon;
-        $this->heading = $heading;
-        $this->text = $text;
-        $this->actions = $actions;
-        $this->border = $border;
-        $this->shadow = $shadow;
-        $this->info = $this->setInfoAlert($info);
-        $this->warning = $this->setWarningAlert($warning);
-        $this->success = $this->setSuccessAlert($success);
-        $this->danger = $this->setDangerAlert($danger);
-        $this->dismiss = $dismiss;
-        $this->alertClasses = $this->setAlertClasses($alertClasses);
+        $this->info = $this->getInfoAlert($info);
+        $this->warning = $this->getWarningAlert($warning);
+        $this->positive = $this->getPositiveAlert($positive);
+        $this->negative = $this->getNegativeAlert($negative);
+        $this->alertClasses = $this->getAlertClasses($alertClasses);
     }
 
-    public function setInfoAlert($info): string
+    public function getInfoAlert($info): string
     {
         if ($info) {
             $this->icon = (!$this->icon) ? 'information-circle' : $this->icon;
@@ -83,7 +46,7 @@ class Alert extends Component
         return false;
     }
 
-    public function setWarningAlert($warning): string
+    public function getWarningAlert($warning): string
     {
         if ($warning) {
             $this->icon = (!$this->icon) ? 'exclamation' : $this->icon;
@@ -95,7 +58,7 @@ class Alert extends Component
         return false;
     }
 
-    public function setSuccessAlert($success): string
+    public function getPositiveAlert($success): string
     {
         if ($success) {
             $this->icon = (!$this->icon) ? 'check-circle' : $this->icon;
@@ -107,7 +70,7 @@ class Alert extends Component
         return false;
     }
 
-    public function setDangerAlert($danger): string
+    public function getNegativeAlert($danger): string
     {
         if ($danger) {
             $this->icon = (!$this->icon) ? 'x-circle' : $this->icon;
@@ -119,20 +82,17 @@ class Alert extends Component
         return false;
     }
 
-    public function setAlertClasses(?string $alertClasses): string
+    public function getAlertClasses(?string $alertClasses): string
     {
-        return Str::of('')
-            ->append(" {$this->rounded}")
-            ->append(" {$this->padding}")
-            ->append(" {$this->backgroundColor}")
-            ->append(" {$this->subjectColor}")
-            ->when($this->border, function ($classes) {
-                return $classes->append(' border border-gray-300 dark:border-secondary-600');
-            })
-            ->when($this->shadow, function ($classes) {
-                return $classes->append(' shadow-md');
-            })
-            ->append(" {$alertClasses}");
+        return $this->classes([
+            $this->rounded,
+            $this->padding,
+            $this->backgroundColor,
+            $this->subjectColor,
+            'border border-gray-300 dark:border-secondary-600' => $this->border,
+            'shadow-md' =>  $this->shadow,
+            $alertClasses
+        ]);
     }
 
     public function render()
