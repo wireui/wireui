@@ -34,6 +34,9 @@
         </x-slot>
     </x-input>
 
+    // test it_should_change_the_input_type_when_clicking_on_the_view_password_icon
+    <x-input name="show-password" label="Show Password" is-password />
+
     // test it_should_see_prefix_and_suffix_instead_append_or_prepend_slots
     // test it_should_set_model_value_to_livewire
     <x-input dusk="input" wire:model="model" label="Model Input" />

@@ -54,6 +54,22 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
+    public function it_should_change_the_input_type_when_clicking_on_the_view_password_icon()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->assertSee('Show Password')
+                ->assertAttribute('input[name="show-password"]', 'type', 'password')
+                ->assertInputValue('show-password', '')
+                ->type('show-password', 'secret')
+                ->assertDontSee('secret')
+                ->click('div.block > svg')
+                ->assertAttribute('input[name="show-password"]', 'type', 'text')
+                ->assertInputValue('show-password', 'secret');
+        });
+    }
+
+    /** @test */
     public function it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
