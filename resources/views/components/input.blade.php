@@ -57,7 +57,7 @@
         @if ($isPassword || $suffix || $rightIcon || ($hasError && !$append))
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center
                 {{ $isPassword ? '' : 'pointer-events-none' }}
-                {{ $hasError && !$isPassword ? 'text-negative-500' : 'text-secondary-400' }}">
+                {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
                 @if ($isPassword)
                     <div
                         x-on:click="toggle()"
