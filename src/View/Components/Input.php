@@ -30,6 +30,8 @@ class Input extends FormComponent
 
     public bool $errorless;
 
+    public bool $isPassword;
+
     public function __construct(
         bool $borderless = false,
         bool $shadowless = false,
@@ -42,7 +44,8 @@ class Input extends FormComponent
         ?string $suffix = null,
         ?string $prepend = null,
         ?string $append = null,
-        bool $errorless = false
+        bool $errorless = false,
+        bool $isPassword = false
     ) {
         $this->borderless = $borderless;
         $this->shadowless = $shadowless;
@@ -56,6 +59,7 @@ class Input extends FormComponent
         $this->prepend    = $prepend;
         $this->append     = $append;
         $this->errorless  = $errorless;
+        $this->isPassword = $isPassword;
     }
 
     protected function getView(): string

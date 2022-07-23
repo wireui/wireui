@@ -2,7 +2,8 @@
     $hasError = !$errorless && $name && $errors->has($name);
 @endphp
 
-<div class="@if($disabled) opacity-60 @endif">
+<div @if($isPassword) x-data="wireui_show_password" @endif
+    class="@if($disabled) opacity-60 @endif">
     @if ($label || $cornerHint)
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
             @if ($label)
@@ -33,10 +34,10 @@
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         :name="$icon"
-                        class="h-5 w-5"
+                        class="w-5 h-5"
                     />
                 @elseif($prefix)
-                    <span class="pl-1 flex items-center self-center">
+                    <span class="flex items-center self-center pl-1">
                         {{ $prefix }}
                     </span>
                 @endif
@@ -50,26 +51,51 @@
             ])->merge([
                 'type'         => 'text',
                 'autocomplete' => 'off',
-            ]) }} />
+            ]) }}
+            @if($isPassword) :type="type()" @endif />
 
-        @if ($suffix || $rightIcon || ($hasError && !$append))
-            <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center pointer-events-none
-                {{ $hasError ? 'text-negative-500' : 'text-secondary-400' }}">
-                @if ($rightIcon)
+        @if ($isPassword || $suffix || $rightIcon || ($hasError && !$append))
+            <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center
+                {{ $isPassword ? '' : 'pointer-events-none' }}
+                {{ $hasError && !$isPassword ? 'text-negative-500' : 'text-secondary-400' }}">
+                @if ($isPassword)
+                    <div
+                        x-on:click="toggle()"
+                        class="text-gray-700 cursor-pointer"
+                        :class="{'block': !status, 'hidden': status }"
+                    >
+                        <x-dynamic-component
+                            :component="WireUi::component('icon')"
+                            name="eye-off"
+                            class="w-5 h-5"
+                        />
+                    </div>
+                    <div
+                        x-on:click="toggle()"
+                        class="text-gray-700 cursor-pointer"
+                        :class="{'hidden': !status, 'block': status }"
+                    >
+                        <x-dynamic-component
+                            :component="WireUi::component('icon')"
+                            name="eye"
+                            class="w-5 h-5"
+                        />
+                    </div>
+                @elseif ($rightIcon)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         :name="$rightIcon"
-                        class="h-5 w-5"
+                        class="w-5 h-5"
                     />
                 @elseif ($suffix)
-                    <span class="pr-1 flex items-center justify-center">
+                    <span class="flex items-center justify-center pr-1">
                         {{ $suffix }}
                     </span>
                 @elseif ($hasError)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         name="exclamation-circle"
-                        class="h-5 w-5"
+                        class="w-5 h-5"
                     />
                 @endif
             </div>
