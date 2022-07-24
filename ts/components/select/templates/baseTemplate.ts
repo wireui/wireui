@@ -11,7 +11,6 @@ export default (slot: string) => `
         'hover:bg-primary-500 dark:hover:bg-secondary-700': !config.clearable || !option.readonly && !isSelected(option),
     }"
     :tabindex="!option.readonly && '0'"
-    onclick="this.blur()"
     x-on:click="!option.readonly && select(option)"
     x-on:keydown.enter="!option.readonly && select(option)"
     select-option>
