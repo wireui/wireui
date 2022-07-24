@@ -12,7 +12,7 @@ class Option extends Component
         public mixed $value = null,
         public ?string $label = null,
         public ?string $description = null,
-        public mixed $option = null
+        public mixed $option = []
     ) {
     }
 
@@ -21,17 +21,27 @@ class Option extends Component
         return view('wireui::components.select.option');
     }
 
-    public function jsonOption(): string
+    public function toArray(): array
     {
-        return collect((array) $this->option)
-            ->merge([
-                'label'       => $this->label,
-                'value'       => $this->value,
-                'disabled'    => $this->disabled,
-                'readonly'    => $this->readonly || $this->disabled,
-                'description' => $this->description,
-            ])
-            ->filter()
-            ->toJson();
+        $option = array_merge((array) $this->option, [
+            'label'       => $this->label,
+            'value'       => $this->value,
+            'disabled'    => $this->disabled,
+            'readonly'    => $this->readonly || $this->disabled,
+            'description' => $this->description,
+        ]);
+
+        return array_filter($option, function ($value, $index) {
+            if (in_array($index, ['label', 'value', 'description'])) {
+                return true;
+            }
+
+            return (bool) $value;
+        }, ARRAY_FILTER_USE_BOTH);
+    }
+
+    public function toJson(): string
+    {
+        return json_encode($this->toArray());
     }
 }
