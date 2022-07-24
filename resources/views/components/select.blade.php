@@ -183,7 +183,7 @@
             </div>
         </template>
 
-        <ul class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
+        <div class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
             tabindex="-1"
             x-ref="optionsContainer"
             name="wireui.select.options.{{ $name }}"
@@ -202,21 +202,23 @@
             </div>
 
             @isset ($beforeOptions)
-                <li {{ $beforeOptions->attributes }}>
+                <div {{ $beforeOptions->attributes }}>
                     {{ $beforeOptions }}
-                </li>
+                </div>
             @endisset
 
-            <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                <div x-transition x-html="renderOption(option)"></div>
-            </template>
+            <ul wire:ignore>
+                <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
+                    <li tabindex="-1" x-html="renderOption(option)"></li>
+                </template>
+            </ul>
 
             @unless ($hideEmptyMessage)
-                <li class="py-2 px-3 text-secondary-500 cursor-pointer"
+                <div class="py-2 px-3 text-secondary-500 cursor-pointer"
                     x-show="displayOptions.length === 0"
                     x-on:click="close">
                     {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
-                </li>
+                </div>
             @endunless
 
             @isset ($afterOptions)
@@ -224,6 +226,6 @@
                     {{ $afterOptions }}
                 </div>
             @endisset
-        </ul>
+        </div>
     </x-wireui::parts.popover>
 </div>

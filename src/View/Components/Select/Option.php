@@ -32,8 +32,8 @@ class Option extends Component
         ]);
 
         return array_filter($option, function ($value, $index) {
-            if (in_array($index, ['label', 'value', 'description'])) {
-                return true;
+            if (in_array($index, ['label', 'value'])) {
+                return $value !== null;
             }
 
             return (bool) $value;
