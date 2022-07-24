@@ -2,8 +2,6 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\Str;
-
 class Avatar extends Component
 {
     public function __construct(
