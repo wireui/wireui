@@ -22,8 +22,12 @@ class BladeDirectives
 
     public function hooksScript(): string
     {
+        $app_url = \config('app.url') ?? '/';
         $scripts = <<<JS
             window.Wireui = {
+                config: {
+                    basePath: `${app_url}`
+                },
                 hook(hook, callback) {
                     window.addEventListener(`wireui:\${hook}`, () => callback())
                 },
