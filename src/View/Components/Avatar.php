@@ -18,9 +18,8 @@ class Avatar extends Component
         public ?string $src = null,
         public ?string $border = 'border border-gray-200 dark:border-secondary-400',
         public ?string $avatarClasses = null,
-        public ?string $content = null,
     ) {
-        $this->avatarClasses = $this->getAvatarClasses($avatarClasses);
+        $this->avatarClasses = $this->getAvatarClasses();
     }
 
     public function render()
