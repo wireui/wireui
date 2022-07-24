@@ -2,7 +2,7 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
@@ -11,6 +11,9 @@ use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
 
+/**
+ * @property Application $app
+ */
 class WireUiServiceProvider extends ServiceProvider
 {
     public function boot()
@@ -55,19 +58,10 @@ class WireUiServiceProvider extends ServiceProvider
             'wireui.resources'
         );
 
-        if (is_dir(resource_path('lang'))) {
-            $this->publishes(
-                ["{$rootDir}/resources/lang" => resource_path('lang/vendor/wireui')],
-                'wireui.lang'
-            );
-        }
-
-        if (is_dir(base_path('lang'))) {
-            $this->publishes(
-                ["{$rootDir}/src/lang" => $this->app->langPath('vendor/wireui')],
-                'wireui.lang'
-            );
-        }
+        $this->publishes(
+            ["{$rootDir}/src/lang" => $this->app->langPath('vendor/wireui')],
+            'wireui.lang'
+        );
     }
 
     protected function registerBladeDirectives(): void

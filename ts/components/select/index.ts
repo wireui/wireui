@@ -12,7 +12,7 @@ import { positioning } from '@/components/modules/positioning'
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
   ...positioning,
-  focusableSelector: 'li[tabindex="0"], input',
+  focusableSelector: 'div[tabindex="0"][select-option], input',
   $refs: {} as Refs,
   $props: {} as Props,
   asyncData: {
