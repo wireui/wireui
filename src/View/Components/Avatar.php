@@ -32,18 +32,17 @@ class Avatar extends Component
     {
         return $this->classes([
             'items-center justify-center overflow-hidden bg-gray-100 dark:bg-secondary-600',
-            'inline-flex' => $this->label,
-            'inline-block' => !$this->label,
-            'w-6 h-6' => $this->xs,
-            'w-8 h-8' => $this->sm,
-            'w-10 h-10' => $this->md,
-            'w-12 h-12' => $this->lg,
-            'w-14 h-14' => $this->xl,
+            'inline-flex'   => $this->label,
+            'inline-block'  => !$this->label,
+            'w-6 h-6'       => $this->xs,
+            'w-8 h-8'       => $this->sm,
+            'w-10 h-10'     => $this->md,
+            'w-12 h-12'     => $this->lg,
+            'w-14 h-14'     => $this->xl,
             'w-full h-full' => $this->full,
-            'rounded-md' => $this->squared,
-            'rounded-full' => !$this->squared,
+            'rounded-md'    => $this->squared,
+            'rounded-full'  => !$this->squared,
             $this->border,
-            $avatarClasses
         ]);
     }
 }
