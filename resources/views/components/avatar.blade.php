@@ -1,5 +1,4 @@
-<span class="{{ $avatarClasses }}">
-
+<span {{ $attributes->class($avatarClasses) }}>
     {{ $label }}
 
     <img src="{{ $src }}"/>
