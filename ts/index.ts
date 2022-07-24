@@ -45,7 +45,7 @@ const wireui = {
   confirmDialog: showConfirmDialog,
   dataGet,
   config: {
-    basePath: "",
+    basePath: window.Wireui?.config?.basePath ?? "",
   },
 };
 

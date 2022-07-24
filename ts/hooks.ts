@@ -1,5 +1,7 @@
 export interface WireUiHooks {
-  hook (hook: string, callback: CallableFunction): void,
-  dispatchHook (hook: string): void
+  hook(hook: string, callback: CallableFunction): void;
+  dispatchHook(hook: string): void;
+  config: {
+    basePath?: string;
+  };
 }
-
