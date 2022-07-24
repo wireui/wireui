@@ -100,27 +100,29 @@
                                     </span>
                                 @endif
 
-                                <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
-                                    <span class="
-                                            inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                            border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
-                                            dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
-                                        ">
-                                        <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
+                                <div wire:ignore class="flex flex-nowrap items-center gap-1">
+                                    <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
+                                        <span class="
+                                                inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
+                                                border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                                                dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                                            ">
+                                            <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
 
-                                        <button
-                                            class="shrink-0 h-4 w-4 flex items-center text-secondary-400 justify-center hover:text-secondary-500"
-                                            x-on:click.stop="unSelect(option)"
-                                            tabindex="-1"
-                                            type="button">
-                                            <x-dynamic-component
-                                                :component="WireUi::component('icon')"
-                                                class="h-3 w-3"
-                                                name="x"
-                                            />
-                                        </button>
-                                    </span>
-                                </template>
+                                            <button
+                                                class="shrink-0 h-4 w-4 flex items-center text-secondary-400 justify-center hover:text-secondary-500"
+                                                x-on:click.stop="unSelect(option)"
+                                                tabindex="-1"
+                                                type="button">
+                                                <x-dynamic-component
+                                                    :component="WireUi::component('icon')"
+                                                    class="h-3 w-3"
+                                                    name="x"
+                                                />
+                                            </button>
+                                        </span>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </template>
