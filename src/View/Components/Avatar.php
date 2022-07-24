@@ -28,7 +28,7 @@ class Avatar extends Component
         return 'wireui::components.avatar';
     }
 
-    public function getAvatarClasses(?string $avatarClasses): string
+    public function getAvatarClasses(): string
     {
         return $this->classes([
             'items-center justify-center overflow-hidden bg-gray-100 dark:bg-secondary-600',
