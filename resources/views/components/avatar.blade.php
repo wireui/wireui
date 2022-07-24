@@ -1,7 +1,9 @@
 <span {{ $attributes->class($avatarClasses) }}>
     {{ $label }}
 
-    <img src="{{ $src }}"/>
+    @if ($src)
+        <img src="{{ $src }}" />
+    @endif
 
     @if (!$src && !$label)
         <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
