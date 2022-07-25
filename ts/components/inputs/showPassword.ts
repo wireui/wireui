@@ -1,11 +1,11 @@
-export interface Ahh {
+export interface ShowPassword {
   status: boolean
 
   type (): string
   toggle (): void
 }
 
-export default (): Ahh => ({
+export default (): ShowPassword => ({
   status: false,
 
   type () {
