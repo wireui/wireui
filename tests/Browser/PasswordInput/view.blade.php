@@ -1,11 +1,11 @@
 <div>
-    <h1>Input test</h1>
+    <h1>Password Input test</h1>
 
     // test it_should_see_label_and_corner_hint
-    <x-input label="Input 1" corner-hint="Corner 1" />
+    <x-inputs.password label="Input 1" corner-hint="Corner 1" />
 
     // test it_should_see_hint_prefix_and_suffix
-    <x-input
+    <x-inputs.password
         label="Input 1"
         corner-hint="Corner 1"
         hint="Hint 1"
@@ -14,7 +14,7 @@
     />
 
     // test it_should_see_append_and_prepend_slots
-    <x-input>
+    <x-inputs.password>
         <x-slot name="prepend">
             <a>prepend</a>
         </x-slot>
@@ -22,10 +22,10 @@
         <x-slot name="append">
             <a>append</a>
         </x-slot>
-    </x-input>
+    </x-inputs.password>
 
     // test it_should_see_prefix_and_suffix_instead_append_or_prepend_slots
-    <x-input prefix="prefix 2" suffix="suffix 2">
+    <x-inputs.password prefix="prefix 2" suffix="suffix 2">
         <x-slot name="prepend">
             <a>prepend 2</a>
         </x-slot>
@@ -33,12 +33,12 @@
         <x-slot name="append">
             <a>append 2</a>
         </x-slot>
-    </x-input>
+    </x-inputs.password>
 
     // test it_should_set_model_value_to_livewire
-    <x-input dusk="input" wire:model="model" label="Model Input" />
-    <span dusk="model-value">{{ $model }}</span>
+    <x-inputs.password dusk="input" wire:model="password" label="Model Input" />
+    <span dusk="password-value">{{ $password }}</span>
 
-    // test it_should_dont_see_the_input_error_message
-    <x-input wire:model="errorless" label="Test error less" :errorless="true" />
+    // test it_should_change_the_input_type_when_clicking_on_the_view_password_icon
+    <x-inputs.password wire:key="show-password" name="show-password" label="Show Password" />
 </div>

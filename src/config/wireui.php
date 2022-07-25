@@ -88,6 +88,10 @@ return [
             'class' => Components\Inputs\CurrencyInput::class,
             'alias' => 'inputs.currency',
         ],
+        'inputs.password' => [
+            'class' => Components\Inputs\PasswordInput::class,
+            'alias' => 'inputs.password',
+        ],
         'button' => [
             'class' => Components\Button::class,
             'alias' => 'button',
