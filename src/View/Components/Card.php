@@ -20,18 +20,18 @@ class Card extends Component
         public ?string $headerClasses = '',
         public ?string $footerClasses = '',
     ) {
-        $padding    ??= config('wireui.card.padding');
-        $shadow     ??= config('wireui.card.shadow');
-        $rounded    ??= config('wireui.card.rounded');
-        $color      ??= config('wireui.card.color');
+        $padding ??= config('wireui.card.padding');
+        $shadow  ??= config('wireui.card.shadow');
+        $rounded ??= config('wireui.card.rounded');
+        $color   ??= config('wireui.card.color');
 
-        $this->padding          = $padding;
-        $this->shadow           = $shadow;
-        $this->rounded          = $rounded;
-        $this->color            = $color;
-        $this->cardClasses      = $this->setCardClasses($cardClasses);
-        $this->headerClasses    = $this->setHeaderClasses($headerClasses);
-        $this->footerClasses    = $this->setFooterClasses($footerClasses);
+        $this->padding       = $padding;
+        $this->shadow        = $shadow;
+        $this->rounded       = $rounded;
+        $this->color         = $color;
+        $this->cardClasses   = $this->setCardClasses($cardClasses);
+        $this->headerClasses = $this->setHeaderClasses($headerClasses);
+        $this->footerClasses = $this->setFooterClasses($footerClasses);
     }
 
     public function setCardClasses(?string $cardClasses): string
