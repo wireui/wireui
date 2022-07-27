@@ -1,5 +1,5 @@
 import resolveConfig from 'tailwindcss/resolveConfig'
-import { TailwindConfig } from 'tailwindcss/tailwind-config'
+import { Config } from 'tailwindcss'
 import tailwindConfig from '@/../tailwind.config.js'
 import { Color } from '@/components/color-picker'
 
@@ -13,7 +13,8 @@ const excludeColors = [
 ]
 
 export const makeColors = (): Color[] => {
-  const config = resolveConfig(tailwindConfig as unknown as TailwindConfig)
+  const config = resolveConfig(tailwindConfig as unknown as Config) as Config
+
   const rawColors = config?.theme?.colors ?? {}
 
   const colors = Object.entries(rawColors).flatMap(([name, values]) => {
