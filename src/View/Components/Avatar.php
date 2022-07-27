@@ -17,6 +17,7 @@ class Avatar extends Component
         public ?string $border = 'border border-gray-200 dark:border-secondary-500',
         public ?string $avatarClasses = null,
     ) {
+        $this->size ??= $this->getSize();
         $this->avatarClasses = $this->getAvatarClasses();
     }
 
@@ -33,13 +34,19 @@ class Avatar extends Component
             'bg-gray-500 dark:bg-secondary-600' => $this->label,
             'rounded-md'                        => $this->squared,
             'rounded-full'                      => !$this->squared,
-            'w-6 h-6 text-2xs'                  => $this->xs,
-            'w-8 h-8 text-sm'                   => $this->sm,
-            'w-10 h-10 text-md'                 => $this->md || $this->shouldUseDefault(),
-            'w-12 h-12 text-lg'                 => $this->lg,
-            'w-14 h-14 text-xl'                 => $this->xl,
             $this->border,
             $this->size,
+        ]);
+    }
+
+    private function getSize(): string
+    {
+        return $this->classes([
+            'w-6 h-6 text-2xs'  => $this->xs,
+            'w-8 h-8 text-sm'   => $this->sm,
+            'w-10 h-10 text-md' => $this->md || $this->shouldUseDefault(),
+            'w-12 h-12 text-lg' => $this->lg,
+            'w-14 h-14 text-xl' => $this->xl,
         ]);
     }
 

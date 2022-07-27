@@ -10,6 +10,7 @@
                 'shrink-0 object-cover object-center',
                 'rounded-sm'   =>  $squared,
                 'rounded-full' => !$squared,
+                $size,
             ])
             src="{{ $src }}"
         />
