@@ -12,6 +12,14 @@ export type WireModifiers = {
   },
 }
 
+export interface DirectiveParameters {
+  value: string;
+  modifiers: string[];
+  expression: string;
+  original: string;
+  type: string;
+}
+
 export interface Alpine {
   raw (data: any): any
   data (name: string, data: any): void
@@ -19,6 +27,7 @@ export interface Alpine {
   store (name: 'wireui:modal', data?: ModalStore): ModalStore
   evaluate (scope: any, expression: string): any
   magic (name: string, callback: (el: HTMLElement) => any): void
+  directive (name: string, callback: (el: HTMLElement, content: DirectiveParameters) => any): void
 }
 
 export interface Component {

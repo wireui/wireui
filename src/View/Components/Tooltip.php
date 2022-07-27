@@ -12,7 +12,7 @@ class Tooltip extends Component
 
     private array $placements = ['top', 'top-start', 'top-end', 'right', 'right-start', 'right-end', 'bottom', 'bottom-start', 'bottom-end', 'left', 'left-start', 'left-end'];
 
-    private array $animations = ['shift-away', 'shift-away-subtle', 'shift-away-extreme', 'scale', 'scale-subtle', 'scale-extreme', 'shift-toward', 'shift-toward-subtle', 'shift-toward-extreme', 'perspective', 'perspective-subtle', 'perspective-extreme'];
+    private array $animations = ['fade', 'shift-away', 'shift-away-subtle', 'shift-away-extreme', 'scale', 'scale-subtle', 'scale-extreme', 'shift-toward', 'shift-toward-subtle', 'shift-toward-extreme', 'perspective', 'perspective-subtle', 'perspective-extreme'];
 
     public function __construct(
         public bool $arrow = true,

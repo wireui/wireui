@@ -1,0 +1,12 @@
+import tippy from "tippy.js"
+import { DirectiveParameters } from "@/components/alpine"
+
+export const tooltip = function (el: HTMLElement, content: DirectiveParameters) {
+  tippy(el, {
+    content: content.expression,
+    animation: 'scale',
+    theme: 'translucent',
+  })
+}
+
+export default tooltip
