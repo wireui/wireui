@@ -30,12 +30,10 @@ class Avatar extends Component
     {
         return $this->classes([
             'shrink-0 inline-flex items-center justify-center overflow-hidden',
-            'bg-gray-100 dark:bg-secondary-600' => !$this->label,
-            'bg-gray-500 dark:bg-secondary-600' => $this->label,
-            'rounded-md'                        => $this->squared,
-            'rounded-full'                      => !$this->squared,
-            $this->border,
-            $this->size,
+            "bg-gray-500 dark:bg-gray-600 {$this->size}" => $this->label || !$this->src,
+            'rounded-md'                                 => $this->squared,
+            'rounded-full'                               => !$this->squared,
+            $this->border
         ]);
     }
 
