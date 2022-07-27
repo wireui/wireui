@@ -164,5 +164,9 @@ return [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
+        'tooltip' => [
+            'class' => Components\Tooltip::class,
+            'alias' => 'tooltip',
+        ],
     ],
 ];
