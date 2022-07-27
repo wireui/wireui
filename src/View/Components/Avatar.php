@@ -10,11 +10,11 @@ class Avatar extends Component
         public bool $md = false,
         public bool $lg = false,
         public bool $xl = false,
-        public bool $full = false,
         public bool $squared = false,
+        public ?string $size = null,
         public ?string $label = null,
         public ?string $src = null,
-        public ?string $border = 'border border-gray-200 dark:border-secondary-400',
+        public ?string $border = 'border border-gray-200 dark:border-secondary-500',
         public ?string $avatarClasses = null,
     ) {
         $this->avatarClasses = $this->getAvatarClasses();
@@ -22,24 +22,29 @@ class Avatar extends Component
 
     public function render()
     {
-        return 'wireui::components.avatar';
+        return view('wireui::components.avatar');
     }
 
     public function getAvatarClasses(): string
     {
         return $this->classes([
-            'items-center justify-center overflow-hidden bg-gray-100 dark:bg-secondary-600',
-            'inline-flex'   => $this->label,
-            'inline-block'  => !$this->label,
-            'w-6 h-6'       => $this->xs,
-            'w-8 h-8'       => $this->sm,
-            'w-10 h-10'     => $this->md,
-            'w-12 h-12'     => $this->lg,
-            'w-14 h-14'     => $this->xl,
-            'w-full h-full' => $this->full,
-            'rounded-md'    => $this->squared,
-            'rounded-full'  => !$this->squared,
+            'shrink-0 inline-flex items-center justify-center overflow-hidden',
+            'bg-gray-100 dark:bg-secondary-600' => !$this->label,
+            'bg-gray-500 dark:bg-secondary-600' => $this->label,
+            'rounded-md'                        => $this->squared,
+            'rounded-full'                      => !$this->squared,
+            'w-6 h-6 text-2xs'                  => $this->xs,
+            'w-8 h-8 text-sm'                   => $this->sm,
+            'w-10 h-10 text-md'                 => $this->md || $this->shouldUseDefault(),
+            'w-12 h-12 text-lg'                 => $this->lg,
+            'w-14 h-14 text-xl'                 => $this->xl,
             $this->border,
+            $this->size,
         ]);
+    }
+
+    private function shouldUseDefault(): bool
+    {
+        return !$this->xs && !$this->sm && !$this->lg && !$this->xl;
     }
 }
