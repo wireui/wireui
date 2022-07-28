@@ -5,7 +5,7 @@ use Tests\Unit\{LivewireComponent, UnitTestCase};
 use WireUi\Actions\Notification;
 
 it('should emit a notification event', function () {
-    $event  = 'wireui:notification';
+    $event = 'wireui:notification';
     $params = [
         'options' => [
             'title' => 'WireUI is awesome!',
@@ -29,7 +29,7 @@ it('should emit a notification event', function () {
 });
 
 it('should emit a confirm notification event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-notification';
+    $event = 'wireui:confirm-notification';
     $params = [
         'options'     => ['title' => 'Sure Delete?', 'icon' => $icon],
         'componentId' => 'fake-id',

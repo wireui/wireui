@@ -17,7 +17,7 @@ class Component extends \Livewire\Component
 
     protected array $messages = [
         'model.required'     => 'input cant be empty',
-        'errorless.required' => 'input is required'
+        'errorless.required' => 'input is required',
     ];
 
     public function render()

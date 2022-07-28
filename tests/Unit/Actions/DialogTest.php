@@ -24,7 +24,7 @@ it('should create the dialog event name to a custom dialog', function () {
 });
 
 it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:dialog';
+    $event = 'wireui:dialog';
     $params = [
         'options' => [
             'title' => 'WireUI is awesome!',
@@ -57,7 +57,7 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
 ]);
 
 it('should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-dialog';
+    $event = 'wireui:confirm-dialog';
     $params = [
         'options'     => ['title' => 'User created!', 'icon' => $icon],
         'componentId' => 'fake-id',

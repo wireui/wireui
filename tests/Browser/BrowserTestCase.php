@@ -60,7 +60,7 @@ class BrowserTestCase extends Dusk\TestCase
             Route::get('/livewire-dusk/{component}', function (string $component) {
                 $class = urldecode($component);
 
-                return app()->call(new $class);
+                return app()->call(new $class());
             })->middleware('web');
 
             Route::get('/api/options', function () {

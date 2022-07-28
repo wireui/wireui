@@ -3,7 +3,6 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class ConfirmDialogTest extends BrowserTestCase

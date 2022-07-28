@@ -5,7 +5,7 @@ use Tests\Unit\{LivewireComponent, UnitTestCase};
 use WireUi\Actions\Dialog;
 
 it('should emit a dialog event when the method dialog is called with a non empty array', function () {
-    $event  = 'wireui:dialog';
+    $event = 'wireui:dialog';
     $params = [
         'options'     => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
@@ -32,7 +32,7 @@ it('should emit a dialog event when the method dialog is called with a non empty
 });
 
 it('should emit a notification event when the method notification is called with a non empty array', function () {
-    $event  = 'wireui:notification';
+    $event = 'wireui:notification';
     $params = [
         'options'     => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
