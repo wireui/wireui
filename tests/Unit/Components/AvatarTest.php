@@ -53,7 +53,7 @@ it('can render the avatar custom size', function () {
 it('can render the default avatar size', function () {
     $html = Blade::render('<x-avatar />');
 
-    expect($html)->toContain('w-10 h-10 text-md');
+    expect($html)->toContain('w-10 h-10 text-base');
 });
 
 it('should get the correct size classes', function (string $size, string $expected) {
@@ -63,7 +63,7 @@ it('should get the correct size classes', function (string $size, string $expect
 })->with([
     ['xs', 'w-6 h-6 text-2xs'],
     ['sm', 'w-8 h-8 text-sm'],
-    ['md', 'w-10 h-10 text-md'],
+    ['md', 'w-10 h-10 text-base'],
     ['lg', 'w-12 h-12 text-lg'],
     ['xl', 'w-14 h-14 text-xl'],
 ]);
