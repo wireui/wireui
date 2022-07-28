@@ -8,6 +8,8 @@ on:
   pull_request:
     types: [ready_for_review, synchronize, opened]
 
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,6 +30,7 @@ jobs:
         with:
           node-version: "16.x"
       - run: yarn install --frozen-lockfile
+      - run: yarn build
       - run: yarn test
 
       - name: Setup PHP, with composer and extensions
