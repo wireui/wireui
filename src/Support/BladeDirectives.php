@@ -46,7 +46,7 @@ class BladeDirectives
 
     public function getManifestVersion(string $file, ?string &$route = null): ?string
     {
-        $manifestPath = __DIR__ . '/../dist/mix-manifest.json';
+        $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';
 
         if (!file_exists($manifestPath)) {
             return null;
