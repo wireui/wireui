@@ -180,7 +180,7 @@
                     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                     shadowless
                     right-icon="search"
-                    :placeholder="trans('wireui::messages.searchHere')"
+                    :placeholder="trans('wireui::messages.search_here')"
                 />
             </div>
         </template>
