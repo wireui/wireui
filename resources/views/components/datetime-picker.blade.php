@@ -72,21 +72,21 @@
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectYesterday"
-                        :label="__('wireui::messages.datePicker.yesterday')"
+                        :label="trans('wireui::messages.datePicker.yesterday')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectToday"
-                        :label="__('wireui::messages.datePicker.today')"
+                        :label="trans('wireui::messages.datePicker.today')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectTomorrow"
-                        :label="__('wireui::messages.datePicker.tomorrow')"
+                        :label="trans('wireui::messages.datePicker.tomorrow')"
                     />
                 </div>
             @endunless
@@ -177,7 +177,7 @@
             <x-dynamic-component
                 :component="WireUi::component('input')"
                 id="search.{{ $attributes->wire('model')->value() }}"
-                :label="__('wireui::messages.selectTime')"
+                :label="trans('wireui::messages.selectTime')"
                 x-model="searchTime"
                 x-bind:placeholder="getSearchPlaceholder"
                 x-ref="searchTime"

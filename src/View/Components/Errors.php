@@ -23,7 +23,7 @@ class Errors extends Component
             $only = array_map(fn (string $name) => trim($name), $only);
         }
 
-        $this->title = $title ?? __('wireui::messages.errors.title');
+        $this->title = $title ?? trans('wireui::messages.errors.title');
         $this->only  = $only;
     }
 

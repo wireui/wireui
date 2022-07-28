@@ -219,7 +219,7 @@
                 <div class="py-2 px-3 text-secondary-500 cursor-pointer"
                     x-show="displayOptions.length === 0"
                     x-on:click="close">
-                    {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                    {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                 </div>
             @endunless
 
