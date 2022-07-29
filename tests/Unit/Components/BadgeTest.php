@@ -8,12 +8,6 @@ it('should render the badge slot', function () {
     expect($html)->toContain('<b>Badge From Slot</b>');
 });
 
-it('should render the large badge', function () {
-    $html = Blade::render('<x-badge lg title="Badge From Slot"/>');
-
-    expect($html)->toContain('h-4 w-4');
-});
-
 it('should render the badge square', function () {
     $html = Blade::render('<x-badge square title="Badge From Slot" />');
 
