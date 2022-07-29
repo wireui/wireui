@@ -46,7 +46,7 @@
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
             x-bind:placeholder="getPlaceholder"
             x-bind:value="getSelectedValue"
-            readonly
+            inputmode="none"
             :name="$name"
             {{ $attributes
                 ->except(['class'])
