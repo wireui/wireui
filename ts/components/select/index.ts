@@ -156,6 +156,10 @@ export default (initOptions: InitOptions): Select => ({
       const textContent = mutations[0]?.target?.textContent ?? '[]'
 
       this.options = jsonParse(textContent, [])
+
+      if (this.hasWireModel) {
+        this.syncSelectedFromWireModel()
+      }
     })
 
     observer.observe(this.$refs.json, {
@@ -214,6 +218,10 @@ export default (initOptions: InitOptions): Select => ({
 
       return option
     })
+
+    if (this.hasWireModel) {
+      this.syncSelectedFromWireModel()
+    }
   },
   makeRequest (params = {}) {
     const { api, method } = this.asyncData
