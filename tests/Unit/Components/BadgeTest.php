@@ -8,6 +8,12 @@ it('should render the badge slot', function () {
     expect($html)->toContain('<b>Badge From Slot</b>');
 });
 
+it('should render the large badge', function () {
+    $html = Blade::render('<x-badge lg title="Badge From Slot"/>');
+
+    expect($html)->toContain('h-4 w-4');
+});
+
 it('should render the badge square', function () {
     $html = Blade::render('<x-badge square title="Badge From Slot" />');
 
@@ -21,9 +27,9 @@ it('should render the badge with icon', function () {
 });
 
 it('should render the badge with pulse', function () {
-    $html = Blade::render('<x-badge pulse title="Badge From Slot"/>');
+    $html = Blade::render('<x-badge lg pulse title="Badge From Slot"/>');
 
-    expect($html)->toContain('animate-ping');
+    expect($html)->toContain('<span class="animate-ping');
 });
 
 it('should render the badge with info', function () {
