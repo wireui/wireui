@@ -1,5 +1,5 @@
 export default (slot: string) => `
-<li class="
+<div class="
         py-2 px-3 focus:outline-none all-colors ease-in-out duration-150 relative group
         text-secondary-600 dark:text-secondary-400 flex items-center justify-between
     "
@@ -11,9 +11,9 @@ export default (slot: string) => `
         'hover:bg-primary-500 dark:hover:bg-secondary-700': !config.clearable || !option.readonly && !isSelected(option),
     }"
     :tabindex="!option.readonly && '0'"
-    onclick="this.blur()"
     x-on:click="!option.readonly && select(option)"
-    x-on:keydown.enter="!option.readonly && select(option)">
+    x-on:keydown.enter="!option.readonly && select(option)"
+    select-option>
     ${slot}
 
     <div class="flex-shrink-0">
@@ -25,4 +25,4 @@ export default (slot: string) => `
             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
         </svg>
     </div>
-</li>`
+</div>`

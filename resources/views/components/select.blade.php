@@ -38,6 +38,8 @@
             class="cursor-pointer overflow-hidden !text-transparent !dark:text-transparent"
             x-ref="input"
             x-on:click="toggle"
+            x-on:focus="open"
+            x-on:blur.debounce.750ms="closeIfNotFocused"
             x-on:keydown.enter.stop.prevent="toggle"
             x-on:keydown.space.stop.prevent="toggle"
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
@@ -98,27 +100,29 @@
                                     </span>
                                 @endif
 
-                                <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
-                                    <span class="
-                                            inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                            border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
-                                            dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
-                                        ">
-                                        <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
+                                <div wire:ignore class="flex flex-nowrap items-center gap-1">
+                                    <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
+                                        <span class="
+                                                inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
+                                                border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                                                dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                                            ">
+                                            <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
 
-                                        <button
-                                            class="shrink-0 h-4 w-4 flex items-center text-secondary-400 justify-center hover:text-secondary-500"
-                                            x-on:click.stop="unSelect(option)"
-                                            tabindex="-1"
-                                            type="button">
-                                            <x-dynamic-component
-                                                :component="WireUi::component('icon')"
-                                                class="h-3 w-3"
-                                                name="x"
-                                            />
-                                        </button>
-                                    </span>
-                                </template>
+                                            <button
+                                                class="shrink-0 h-4 w-4 flex items-center text-secondary-400 justify-center hover:text-secondary-500"
+                                                x-on:click.stop="unSelect(option)"
+                                                tabindex="-1"
+                                                type="button">
+                                                <x-dynamic-component
+                                                    :component="WireUi::component('icon')"
+                                                    class="h-3 w-3"
+                                                    name="x"
+                                                />
+                                            </button>
+                                        </span>
+                                    </template>
+                                </div>
                             </div>
                         </div>
                     </template>
@@ -181,7 +185,7 @@
             </div>
         </template>
 
-        <ul class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
+        <div class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
             tabindex="-1"
             x-ref="optionsContainer"
             name="wireui.select.options.{{ $name }}"
@@ -200,21 +204,23 @@
             </div>
 
             @isset ($beforeOptions)
-                <li {{ $beforeOptions->attributes }}>
+                <div {{ $beforeOptions->attributes }}>
                     {{ $beforeOptions }}
-                </li>
+                </div>
             @endisset
 
-            <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                <div x-transition x-html="renderOption(option)"></div>
-            </template>
+            <ul wire:ignore>
+                <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
+                    <li tabindex="-1" x-html="renderOption(option)"></li>
+                </template>
+            </ul>
 
             @unless ($hideEmptyMessage)
-                <li class="py-2 px-3 text-secondary-500 cursor-pointer"
+                <div class="py-2 px-3 text-secondary-500 cursor-pointer"
                     x-show="displayOptions.length === 0"
                     x-on:click="close">
                     {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
-                </li>
+                </div>
             @endunless
 
             @isset ($afterOptions)
@@ -222,6 +228,6 @@
                     {{ $afterOptions }}
                 </div>
             @endisset
-        </ul>
+        </div>
     </x-wireui::parts.popover>
 </div>
