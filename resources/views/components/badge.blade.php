@@ -1,4 +1,4 @@
-<span class="{{ $badgeClasses }}">
+<span {{ $attributes->class($badgeClasses) }}>
     @if($pulse)
         <span class="flex absolute h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 {{ $pulsePingColor }}"></span>
