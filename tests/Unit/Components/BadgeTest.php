@@ -23,7 +23,7 @@ it('should render the badge square', function () {
 it('should render the badge with icon', function () {
     $html = Blade::render('<x-badge icon>icon</x-badge>');
 
-    expect($html)->toContain('p-1.5');
+    expect($html)->toContain('<svg class=');
 });
 
 it('should render the badge with pulse', function () {
