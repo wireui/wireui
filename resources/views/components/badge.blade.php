@@ -10,8 +10,8 @@
 
     @if ($pulse)
         <span class="flex relative h-2 w-2 mr-2">
-            <span class="{{ $pulsePingColor }}"></span>
-            <span class="{{ $pulseColor }}"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 {{ $pulsePingColor }}"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 {{ $pulseColor }}"></span>
         </span>
     @endif
 

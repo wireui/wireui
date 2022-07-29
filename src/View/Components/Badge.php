@@ -22,14 +22,8 @@ class Badge extends BaseBadge
 
     private function setPulseAttributes($pulseColor, $pingColor)
     {
-        $this->pulseColor = $this->classes([
-            'relative inline-flex rounded-full h-2 w-2',
-            $pulseColor,
-        ]);
-        $this->pulsePingColor = $this->classes([
-            'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75',
-            $pingColor
-        ]);
+        $this->pulseColor = $pulseColor;
+        $this->pulsePingColor = $pingColor;
     }
 
     public function getSize(bool $lg): void
