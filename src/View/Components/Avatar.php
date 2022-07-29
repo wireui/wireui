@@ -41,11 +41,11 @@ class Avatar extends Component
     private function getSize(): string
     {
         return $this->classes([
-            'w-6 h-6 text-2xs'  => $this->xs,
-            'w-8 h-8 text-sm'   => $this->sm,
-            'w-10 h-10 text-md' => $this->md || $this->shouldUseDefault(),
-            'w-12 h-12 text-lg' => $this->lg,
-            'w-14 h-14 text-xl' => $this->xl,
+            'w-6 h-6 text-2xs'    => $this->xs,
+            'w-8 h-8 text-sm'     => $this->sm,
+            'w-10 h-10 text-base' => $this->md || $this->shouldUseDefault(),
+            'w-12 h-12 text-lg'   => $this->lg,
+            'w-14 h-14 text-xl'   => $this->xl,
         ]);
     }
 
