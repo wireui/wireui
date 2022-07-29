@@ -47,11 +47,12 @@ class Badge extends BaseBadge
             $this->shadow,
             $this->rounded,
             $this->color,
-            'rounded' => $this->square,
-            'rounded-full' => !$this->square,
-            'p-1.5' => $this->icon,
+            $badgeClasses,
+            'rounded'       => $this->square,
+            'rounded-full'  => !$this->square,
+            'p-1.5'         => $this->icon,
             'px-2.5 py-0.5' => !$this->icon,
-            $badgeClasses
+            
         ]);
     }
 }
