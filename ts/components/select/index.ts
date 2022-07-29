@@ -1,3 +1,4 @@
+import { stringify } from 'qs'
 import { focusables } from '@/components/modules/focusables'
 import { Select } from './interfaces'
 import { templates } from './templates'
@@ -228,28 +229,16 @@ export default (initOptions: InitOptions): Select => ({
 
     const url = new URL(api ?? '')
 
+    url.search = ''
+
     const parameters = Object.assign(
       params,
       window.Alpine.raw(this.asyncData.params),
       ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
     )
 
-    url.search = ''
-
     if (method === 'GET') {
-      const urlSearchParams = new URLSearchParams()
-
-      for (const [key, value] of Object.entries(parameters)) {
-        if (Array.isArray(value)) {
-          value.forEach(v => urlSearchParams.append(`${key}[]`, String(v)))
-
-          continue
-        }
-
-        urlSearchParams.append(key, String(value))
-      }
-
-      url.search = urlSearchParams.toString()
+      url.search = stringify(parameters)
     }
 
     const request = new Request(url, {
