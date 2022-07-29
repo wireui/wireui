@@ -8,7 +8,7 @@
 
     <span>{{ $title ?? $slot }}</span>
 
-    @if($dismissible)
+    @if ($dismissible)
         {{ $dismissible }}
     @endif
 </span>
