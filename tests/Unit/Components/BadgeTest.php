@@ -20,12 +20,6 @@ it('should render the badge square', function () {
     expect($html)->toContain('rounded');
 });
 
-it('should render the badge with icon', function () {
-    $html = Blade::render('<x-badge icon>icon</x-badge>');
-
-    expect($html)->toContain('<svg class=');
-});
-
 it('should render the badge with pulse', function () {
     $html = Blade::render('<x-badge pulse title="Badge From Slot"/>');
 
