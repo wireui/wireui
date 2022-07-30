@@ -1,7 +1,7 @@
 <div x-data="wireui_show_password" {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:key'])->except(['type', 'right-icon', 'rightIcon', 'suffix', 'append']) }}
+        {{ $attributes->whereDoesntStartWith(['wire:key'])->except($except) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
