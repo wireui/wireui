@@ -6,7 +6,7 @@ use WireUi\View\Components\Input;
 
 class PasswordInput extends Input
 {
-    public array $except = ['type', 'right-icon', 'rightIcon', 'suffix', 'append'];
+    public $except = ['type', 'right-icon', 'rightIcon', 'suffix', 'append'];
 
     public function __construct(
         bool $borderless = false,
