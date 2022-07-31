@@ -3,7 +3,7 @@
         type="number"
         x-ref="inputNumber"
         x-on:input.debounce="checkStatus()"
-        class="text-center no-spin"
+        class="text-center no-arrow"
         :component="WireUi::component('input')"
         {{ $attributes->whereDoesntStartWith(['wire:key'])->except($except) }}
         :borderless="$borderless"
