@@ -16,31 +16,53 @@
     >
         <x-slot name="prepend">
             <div class="absolute inset-y-0 left-0 flex items-center p-0.5">
-                <x-button
-                    x-on:click="minus()"
-                    x-on:keydown.enter="minus()"
-                    class="h-full rounded-l-md"
-                    icon="minus"
-                    primary
-                    flat
-                    squared
-                    ::disabled="minusStatus"
-                />
+                @unless ($disabled)
+                    <x-button
+                        x-on:click="minus()"
+                        x-on:keydown.enter="minus()"
+                        class="h-full rounded-l-md"
+                        icon="minus"
+                        primary
+                        flat
+                        squared
+                        ::disabled="minusStatus"
+                    />
+                @else
+                    <x-button
+                        class="h-full rounded-l-md"
+                        icon="minus"
+                        primary
+                        flat
+                        squared
+                        disabled
+                    />
+                @endunless
             </div>
         </x-slot>
 
         <x-slot name="append">
             <div class="absolute inset-y-0 right-0 flex items-center p-0.5">
-                <x-button
-                    x-on:click="plus()"
-                    x-on:keydown.enter="plus()"
-                    class="h-full rounded-r-md"
-                    icon="plus"
-                    primary
-                    flat
-                    squared
-                    ::disabled="plusStatus"
-                />
+                @unless ($disabled)
+                    <x-button
+                        x-on:click="plus()"
+                        x-on:keydown.enter="plus()"
+                        class="h-full rounded-r-md"
+                        icon="plus"
+                        primary
+                        flat
+                        squared
+                        ::disabled="plusStatus"
+                    />
+                @else
+                    <x-button
+                        class="h-full rounded-r-md"
+                        icon="plus"
+                        primary
+                        flat
+                        squared
+                        disabled
+                    />
+                @endunless
             </div>
         </x-slot>
     </x-dynamic-component>
