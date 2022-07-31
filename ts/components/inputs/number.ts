@@ -28,8 +28,12 @@ export default (): Number => ({
     this.checkStatus()
   },
   checkStatus() {
-    this.plusStatus = Number(this.$refs.inputNumber.value) >= Number(this.$refs.inputNumber.max)
+    let max = this.$refs.inputNumber.max
+    let min = this.$refs.inputNumber.min
+    let value = this.$refs.inputNumber.value
 
-    this.minusStatus = Number(this.$refs.inputNumber.value) <= Number(this.$refs.inputNumber.min)
+    this.plusStatus = max ? Number(value) >= Number(max) : false
+
+    this.minusStatus = min ? Number(value) <= Number(min) : false
   }
 })
