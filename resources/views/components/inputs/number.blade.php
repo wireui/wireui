@@ -2,6 +2,7 @@
     <x-dynamic-component
         type="number"
         x-ref="inputNumber"
+        x-on:input.debounce="checkStatus()"
         class="text-center no-spin"
         :component="WireUi::component('input')"
         {{ $attributes->whereDoesntStartWith(['wire:key'])->except($except) }}
@@ -23,6 +24,7 @@
                     primary
                     flat
                     squared
+                    ::disabled="minusStatus"
                 />
             </div>
         </x-slot>
@@ -37,6 +39,7 @@
                     primary
                     flat
                     squared
+                    ::disabled="plusStatus"
                 />
             </div>
         </x-slot>
