@@ -1,6 +1,6 @@
 <div x-data="wireui_inputs_number({
     @if ($attributes->wire('model')->value())
-        wireModel: @entangle($attributes->wire('model')),
+        wireModel: @entangle($attributes->wire('model')).defer,
     @endif
 })" {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
