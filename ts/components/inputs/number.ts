@@ -1,3 +1,5 @@
+import { Entangle } from "@/components/alpine"
+
 export type Refs = {
   inputNumber: HTMLInputElement
 }
@@ -6,17 +8,23 @@ export interface Number {
   $refs: Refs,
   plusStatus: boolean,
   minusStatus: boolean,
+  wireModel?: Entangle,
 
+  init(): void
   plus(): void
   minus(): void
   checkStatus(): void
 }
 
-export default (): Number => ({
+export default (params): Number => ({
   $refs: {} as Refs,
   plusStatus: false,
   minusStatus: false,
+  wireModel: params.wireModel,
 
+  init() {
+    this.checkStatus()
+  },
   plus() {
     this.$refs.inputNumber.stepUp()
 
@@ -30,10 +38,10 @@ export default (): Number => ({
   checkStatus() {
     let max = this.$refs.inputNumber.max
     let min = this.$refs.inputNumber.min
-    let value = this.$refs.inputNumber.value
+    this.wireModel = this.$refs.inputNumber.value
 
-    this.plusStatus = max ? Number(value) >= Number(max) : false
+    this.plusStatus = max ? Number(this.wireModel) >= Number(max) : false
 
-    this.minusStatus = min ? Number(value) <= Number(min) : false
+    this.minusStatus = min ? Number(this.wireModel) <= Number(min) : false
   }
 })
