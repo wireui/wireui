@@ -5,8 +5,10 @@
     x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
     x-on:keydown.escape.window="handleEscape"
     style="display: none">
-    <div class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center"
-        style="min-height: -webkit-fill-available; min-height: fill-available;">
+    <div
+        class="flex items-end {{ $align }} sm:pt-16 min-h-screen justify-center"
+        style="min-height: -webkit-fill-available; min-height: fill-available; min-height: -moz-available;"
+    >
         <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
             {{ $dialog }}-backdrop @if ($blur) {{ $blur }} @endif dark:bg-secondary-700 dark:bg-opacity-60"
             x-show="show"

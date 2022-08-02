@@ -16,9 +16,10 @@
     x-cloak
     x-show="show"
     wireui-modal>
-    <div class="flex items-end {{ $align }} min-h-screen justify-center w-full
-                relative transform transition-all {{ $spacing }}"
-        style="min-height: -webkit-fill-available; min-height: fill-available;">
+    <div
+        class="flex items-end {{ $align }} min-h-screen justify-center w-full relative transform transition-all {{ $spacing }}"
+        style="min-height: -webkit-fill-available; min-height: fill-available; min-height: -moz-available;"
+    >
         <div @class([
                 'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
                 'dark:bg-opacity-60 transform transition-opacity',
