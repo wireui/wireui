@@ -56,10 +56,9 @@ export type Props = Config & {
 }
 
 export type Refs = PositioningRefs & {
-  json: HTMLElement
   search?: HTMLInputElement
   input: HTMLInputElement
+  json: HTMLElement
   slot: HTMLElement
-  route: HTMLElement
   optionsContainer?: HTMLElement
 }

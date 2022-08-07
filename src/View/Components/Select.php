@@ -81,7 +81,7 @@ class Select extends NativeSelect
         return data_get($option, $this->optionLabel);
     }
 
-    public function optionsToJson(): string
+    public function optionsToArray(): array
     {
         return $this->options
             ->map(function ($rawOption, $index): array {
@@ -119,6 +119,6 @@ class Select extends NativeSelect
                 }, ARRAY_FILTER_USE_BOTH);
             })
             ->values()
-            ->toJson();
+            ->toArray();
     }
 }

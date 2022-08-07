@@ -17,8 +17,14 @@
         placeholder: @js($placeholder),
         template:    @js($template),
     }">
-    <div hidden x-ref="json">{{ $optionsToJson() }}</div>
+    <div hidden x-ref="json">@js($optionsToArray())</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
+
+    @if (app()->runningUnitTests())
+        <div dusk="select.{{ $name }}">
+            {!! json_encode($optionsToArray()) !!}
+        </div>
+    @endif
 
     <div class="relative">
         @if ($label)

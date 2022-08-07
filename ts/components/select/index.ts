@@ -45,12 +45,11 @@ export default (initOptions: InitOptions): Select => ({
     return this.wireModel !== undefined
   },
   init () {
+    this.initWatchers()
     this.syncProps()
     this.initPositioningSystem()
 
     watchProps(this, this.syncProps.bind(this))
-
-    this.initWatchers()
 
     if (!this.asyncData.api) {
       this.config.hasSlot
@@ -63,6 +62,8 @@ export default (initOptions: InitOptions): Select => ({
     this.hasWireModel
       ? this.initWireModel()
       : this.fillSelectedFromInputValue()
+
+    this.initDeferredWatchers()
   },
   initWatchers () {
     this.$watch('popover', (state: boolean) => {
@@ -92,12 +93,11 @@ export default (initOptions: InitOptions): Select => ({
     this.$watch('options', (options: Options) => {
       this.displayOptions = options
     })
-
-    if (this.asyncData.api) {
-      this.$watch('asyncData.api', () => {
-        this.options = []
-      })
-    }
+  },
+  initDeferredWatchers () {
+    this.$watch('asyncData.api', () => (this.options = []))
+    this.$watch('asyncData.params', () => (this.options = []))
+    this.$watch('asyncData.method', () => (this.options = []))
   },
   initWireModel () {
     this.syncSelectedFromWireModel()
@@ -151,22 +151,16 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   initOptionsObserver () {
-    this.options = jsonParse(this.$refs.json.innerText, [])
+    this.syncJsonOptions()
 
-    const observer = new MutationObserver(mutations => {
-      const textContent = mutations[0]?.target?.textContent ?? '[]'
-
-      this.options = jsonParse(textContent, [])
-
-      if (this.hasWireModel) {
-        this.syncSelectedFromWireModel()
-      }
-    })
+    const observer = new MutationObserver(this.syncJsonOptions.bind(this))
 
     observer.observe(this.$refs.json, {
       subtree: true,
       characterData: true
     })
+
+    this.$cleanup(() => observer.disconnect())
   },
   initSlotObserver () {
     this.syncSlotOptions()
@@ -202,9 +196,19 @@ export default (initOptions: InitOptions): Select => ({
       template: templates[template.name](template.config)
     }
 
-    this.asyncData.api = props.asyncData.api
-    this.asyncData.method = props.asyncData.method
-    this.asyncData.params = props.asyncData.params
+    this.asyncData = {
+      ...this.asyncData,
+      api: props.asyncData.api,
+      method: props.asyncData.method,
+      params: props.asyncData.params
+    }
+  },
+  syncJsonOptions () {
+    this.options = window.Alpine.evaluate(this, this.$refs.json.innerText)
+
+    if (this.hasWireModel) {
+      this.syncSelectedFromWireModel()
+    }
   },
   syncSlotOptions () {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')

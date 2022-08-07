@@ -17,10 +17,12 @@ export interface Select extends Focusables, Positioning {
   get hasWireModel (): boolean
   init (): void
   initWatchers (): void
+  initDeferredWatchers (): void
   initWireModel (): void
   initOptionsObserver (): void
   initSlotObserver (): void
   syncProps (): void
+  syncJsonOptions (): void
   syncSlotOptions (): void
   makeRequest (params: any): Request
   fetchOptions (): void
