@@ -214,10 +214,11 @@ export default (initOptions: InitOptions): Select => ({
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
 
     this.options = Array.from(elements).flatMap(element => {
-      const json = element.querySelector('[name="wireui.select.json"]')?.textContent
-      const option: Option = jsonParse(json, false)
+      const base64 = element.querySelector('[name="wireui.select.option.data"]')?.textContent
 
-      if (!option) return []
+      if (!base64) return []
+
+      const option: Option = window.Alpine.evaluate(this, base64)
 
       option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
 
