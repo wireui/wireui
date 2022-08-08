@@ -10,6 +10,7 @@ export type Option = {
   html?: string
   disabled?: boolean
   readonly?: boolean
+  isSelected?: boolean
 }
 
 export type TemplateConfig = {
@@ -61,4 +62,5 @@ export type Refs = PositioningRefs & {
   json: HTMLElement
   slot: HTMLElement
   optionsContainer?: HTMLElement
+  listing: Element
 }
