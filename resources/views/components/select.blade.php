@@ -17,8 +17,14 @@
         placeholder: @js($placeholder),
         template:    @js($template),
     }">
-    <div hidden x-ref="json">{{ $optionsToJson() }}</div>
+    <div hidden x-ref="json">@js($optionsToArray())</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
+
+    @if (app()->runningUnitTests())
+        <div dusk="select.{{ $name }}">
+            {!! json_encode($optionsToArray()) !!}
+        </div>
+    @endif
 
     <div class="relative">
         @if ($label)
@@ -209,9 +215,13 @@
                 </div>
             @endisset
 
-            <ul wire:ignore>
+            <ul x-ref="listing" wire:ignore>
                 <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
-                    <li tabindex="-1" x-html="renderOption(option)"></li>
+                    <li tabindex="-1" :index="index">
+                        <div class="px-2 py-0.5">
+                            <div class="h-8 w-full animate-pulse bg-slate-200 dark:bg-slate-600 rounded"></div>
+                        </div>
+                    </li>
                 </template>
             </ul>
 

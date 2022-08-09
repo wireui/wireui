@@ -10,6 +10,7 @@ export type Option = {
   html?: string
   disabled?: boolean
   readonly?: boolean
+  isSelected?: boolean
 }
 
 export type TemplateConfig = {
@@ -56,10 +57,10 @@ export type Props = Config & {
 }
 
 export type Refs = PositioningRefs & {
-  json: HTMLElement
   search?: HTMLInputElement
   input: HTMLInputElement
+  json: HTMLElement
   slot: HTMLElement
-  route: HTMLElement
   optionsContainer?: HTMLElement
+  listing: Element
 }

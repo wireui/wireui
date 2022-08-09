@@ -30,11 +30,11 @@ class SelectTest extends UnitTestCase
         );
 
         $this->assertEquals(
-            json_encode([
+            [
                 ['value' => '1', 'label' => 'Option 1'],
                 ['value' => '2', 'label' => 'Option 2'],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 
@@ -46,11 +46,11 @@ class SelectTest extends UnitTestCase
         $select = new Select(options: $options);
 
         $this->assertEquals(
-            json_encode([
+            [
                 ['label' => 'Option 1', 'value' => 'Option 1'],
                 ['label' => 'Option 2', 'value' => 'Option 2'],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 
@@ -62,11 +62,11 @@ class SelectTest extends UnitTestCase
         $select = new Select(options: $options, optionKeyValue: true);
 
         $this->assertEquals(
-            json_encode([
+            [
                 ['label' => 'Option 1', 'value' => 0],
                 ['label' => 'Option 2', 'value' => 1],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 
@@ -86,12 +86,12 @@ class SelectTest extends UnitTestCase
         );
 
         $this->assertEquals(
-            json_encode([
+            [
                 ['value' => '1', 'disabled' => true, 'label' => 'Option 1', 'readonly' => true],
                 ['value' => '2', 'readonly' => true, 'label' => 'Option 2'],
                 ['value' => '3', 'template' => 'option-template', 'label' => 'Option 3'],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 
@@ -107,14 +107,14 @@ class SelectTest extends UnitTestCase
         );
 
         $this->assertEquals(
-            json_encode([
+            [
                 [
                     'value'       => 'wireui',
                     'description' => 'The wireui is amazing',
                     'label'       => 'WireUI',
                 ],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 
@@ -131,14 +131,14 @@ class SelectTest extends UnitTestCase
         );
 
         $this->assertEquals(
-            json_encode([
+            [
                 [
                     'value'       => 'wireui',
                     'label'       => 'WireUI',
                     'description' => 'The wireui is amazing',
                 ],
-            ]),
-            $select->optionsToJson()
+            ],
+            $select->optionsToArray()
         );
     }
 }
