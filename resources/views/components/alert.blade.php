@@ -1,7 +1,6 @@
 <div class="{{ $alertClasses }}">
     <div class="flex">
-
-        @if($icon)
+        @if ($icon)
             <div class="flex-shrink-0">
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
