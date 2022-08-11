@@ -103,7 +103,9 @@ export default (initOptions: InitOptions): Select => ({
         }
 
         this.$nextTick(() => {
-          setTimeout(() => this.$refs.search?.focus(), 100)
+          if (window.innerWidth >= 1024) {
+            setTimeout(() => this.$refs.search?.focus(), 100)
+          }
         })
 
         this.$nextTick(() => this.initRenderObserver())
