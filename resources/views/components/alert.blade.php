@@ -1,4 +1,4 @@
-<div class="{{ $alertClasses }}">
+<div {{ $attributes->class($alertClasses) }}>
     <div class="flex">
         @if ($icon)
             <div class="flex-shrink-0">
