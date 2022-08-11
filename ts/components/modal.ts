@@ -1,6 +1,7 @@
 import { ModalStore } from '@/alpine/store/modal'
 import { Component, Entangle } from '@/components/alpine'
 import { focusables, Focusables } from '@/components/modules/focusables'
+import toggleScrollbar from '@/utils/scrollbar'
 import uuid from '@/utils/uuid'
 
 export interface Options {
@@ -47,11 +48,7 @@ export default (options: Options): Modal => ({
   toggleScroll () {
     if (!this.store.isFirstest(this.id)) return
 
-    const elements = [...document.querySelectorAll('body, [main-container]')]
-
-    this.show
-      ? elements.forEach(el => el.classList.add('!overflow-hidden'))
-      : elements.forEach(el => el.classList.remove('!overflow-hidden'))
+    toggleScrollbar(this.show)
   },
   getFocusables () {
     return Array.from(this.$root.querySelectorAll(this.focusableSelector))

@@ -20,7 +20,8 @@ export default (initOptions: InitOptions): Select => ({
     api: null,
     method: 'GET',
     fetching: false,
-    params: {}
+    params: {},
+    alwaysFetch: false
   },
   config: {
     hasSlot: false,
@@ -98,15 +99,23 @@ export default (initOptions: InitOptions): Select => ({
   initWatchers () {
     this.$watch('popover', (state: boolean) => {
       if (state) {
-        if (this.asyncData.api && this.options.length === 0) {
+        if (this.asyncData.api && (this.asyncData?.alwaysFetch || this.options.length === 0)) {
           this.fetchOptions()
         }
 
         this.$nextTick(() => {
-          setTimeout(() => this.$refs.search?.focus(), 100)
+          if (window.innerWidth >= 1024) {
+            setTimeout(() => this.$refs.search?.focus(), 100)
+          }
         })
 
         this.$nextTick(() => this.initRenderObserver())
+      }
+
+      if (this.asyncData.alwaysFetch && !state) {
+        this.$nextTick(() => {
+          setTimeout(() => (this.options = []), 150)
+        })
       }
 
       this.$refs.input.dispatchEvent(new Event(state ? 'open' : 'close'))
@@ -234,7 +243,8 @@ export default (initOptions: InitOptions): Select => ({
       ...this.asyncData,
       api: props.asyncData.api,
       method: props.asyncData.method,
-      params: props.asyncData.params
+      params: props.asyncData.params,
+      alwaysFetch: props.asyncData.alwaysFetch
     }
   },
   syncJsonOptions () {

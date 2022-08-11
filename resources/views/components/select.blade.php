@@ -5,19 +5,19 @@
         @endif
     })"
     x-props="{
-        asyncData:    @js($asyncData),
-        optionValue:  @js($optionValue),
-        optionLabel:  @js($optionLabel),
-        optionDescription: @js($optionDescription),
+        asyncData:    @toJs($asyncData),
+        optionValue:  @toJs($optionValue),
+        optionLabel:  @toJs($optionLabel),
+        optionDescription: @toJs($optionDescription),
         hasSlot:     @boolean($slot->isNotEmpty()),
         multiselect: @boolean($multiselect),
         searchable:  @boolean($searchable),
         clearable:   @boolean($clearable),
         readonly:    @boolean($readonly || $disabled),
-        placeholder: @js($placeholder),
-        template:    @js($template),
+        placeholder: @toJs($placeholder),
+        template:    @toJs($template),
     }">
-    <div hidden x-ref="json">@js($optionsToArray())</div>
+    <div hidden x-ref="json">@toJs($optionsToArray())</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
 
     @if (app()->runningUnitTests())
@@ -53,6 +53,8 @@
             x-bind:placeholder="getPlaceholder"
             x-bind:value="getSelectedValue"
             inputmode="none"
+            readonly
+            autocomplete="disabled"
             :name="$name"
             {{ $attributes
                 ->except(['class'])
@@ -226,7 +228,7 @@
             </ul>
 
             @unless ($hideEmptyMessage)
-                <div class="py-2 px-3 text-secondary-500 cursor-pointer"
+                <div class="py-12 px-3 sm:py-2 sm:px-3 text-center sm:text-left text-secondary-500 cursor-pointer"
                     x-show="displayOptions.length === 0"
                     x-on:click="close">
                     {{ $emptyMessage ?? __('wireui::messages.empty_options') }}

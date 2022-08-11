@@ -20,17 +20,15 @@ export type TemplateConfig = {
 
 export type Options = Option[]
 
-export type AsyncData = {
-  api: string | null
-  method: string
-  params: any
-  fetching: boolean
-}
-
 export type AsyncDataConfig = {
   api: string | null
   method: string
   params: any
+  alwaysFetch: boolean
+}
+
+export type AsyncData = AsyncDataConfig & {
+  fetching: boolean
 }
 
 export type InitOptions = {

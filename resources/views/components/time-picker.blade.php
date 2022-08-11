@@ -2,8 +2,8 @@
         model: @entangle($attributes->wire('model')),
         config: {
             isLazy:   @boolean($attributes->wire('model')->hasModifier('lazy')),
-            interval: @js($interval),
-            format:   @js($format),
+            interval: @toJs($interval),
+            format:   @toJs($format),
             is12H:    @boolean($format == '12'),
             readonly: @boolean($readonly),
             disabled: @boolean($disabled),
