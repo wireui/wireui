@@ -2,7 +2,7 @@
 
 <div class="fixed inset-0 overflow-y-auto {{ $zIndex }}"
     x-data="wireui_modal({
-        show: @js($show),
+        show: @toJs($show),
         @if ($attributes->wire('model')->value())
             model: @entangle($attributes->wire('model'))
         @endif

@@ -5,19 +5,19 @@
         @endif
     })"
     x-props="{
-        asyncData:    @js($asyncData),
-        optionValue:  @js($optionValue),
-        optionLabel:  @js($optionLabel),
-        optionDescription: @js($optionDescription),
+        asyncData:    @toJs($asyncData),
+        optionValue:  @toJs($optionValue),
+        optionLabel:  @toJs($optionLabel),
+        optionDescription: @toJs($optionDescription),
         hasSlot:     @boolean($slot->isNotEmpty()),
         multiselect: @boolean($multiselect),
         searchable:  @boolean($searchable),
         clearable:   @boolean($clearable),
         readonly:    @boolean($readonly || $disabled),
-        placeholder: @js($placeholder),
-        template:    @js($template),
+        placeholder: @toJs($placeholder),
+        template:    @toJs($template),
     }">
-    <div hidden x-ref="json">@js($optionsToArray())</div>
+    <div hidden x-ref="json">@toJs($optionsToArray())</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
 
     @if (app()->runningUnitTests())
