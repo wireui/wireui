@@ -24,7 +24,7 @@
             @endif
         </div>
 
-        @if($dismissible)
+        @if ($dismissible)
             {{ $dismissible }}
         @endif
     </div>
