@@ -1,23 +1,18 @@
-import resolveConfig from 'tailwindcss/resolveConfig'
-import { Config } from 'tailwindcss'
-import tailwindConfig from '@/../tailwind.config.js'
 import { Color } from '@/components/color-picker'
+import { default as tailwindColors } from 'tailwindcss/colors'
 
 const excludeColors = [
-  'primary',
-  'secondary',
-  'positive',
-  'negative',
-  'warning',
-  'info'
+  'lightBlue',
+  'warmGray',
+  'trueGray',
+  'coolGray',
+  'blueGray'
 ]
 
 export const makeColors = (): Color[] => {
-  const config = resolveConfig(tailwindConfig as unknown as Config) as Config
+  excludeColors.forEach(color => delete tailwindColors[color])
 
-  const rawColors = config?.theme?.colors ?? {}
-
-  const colors = Object.entries(rawColors).flatMap(([name, values]) => {
+  const colors = Object.entries(tailwindColors).flatMap(([name, values]) => {
     if (typeof values === 'string' || excludeColors.includes(name)) {
       return []
     }
