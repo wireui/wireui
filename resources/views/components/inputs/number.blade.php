@@ -5,11 +5,15 @@
 })" {{ $attributes->only('wire:key') }}>
     <x-dynamic-component
         type="number"
+        inputmode="numeric"
+        {{ $attributes
+            ->class('appearance-number-none')
+            ->whereDoesntStartWith('wire:key')
+            ->except($except) }}
         x-ref="inputNumber"
         x-on:input.debounce="checkStatus()"
         class="text-center no-arrow"
         :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:key'])->except($except) }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
