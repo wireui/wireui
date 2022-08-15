@@ -38,7 +38,7 @@
                 @else
                     <x-dynamic-component
                         :component="WireUi::component('button')"
-                        x-on:click="minus()"
+                        x-hold.click.delay.repeat.100ms="minus"
                         x-on:keydown.enter="minus()"
                         class="h-full rounded-l-md"
                         icon="minus"
@@ -68,7 +68,7 @@
                 @else
                     <x-dynamic-component
                         :component="WireUi::component('button')"
-                        x-on:click="plus()"
+                        x-hold.click.delay.repeat.100ms="plus"
                         x-on:keydown.enter="plus()"
                         class="h-full rounded-r-md"
                         icon="plus"
