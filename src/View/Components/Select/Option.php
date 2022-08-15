@@ -39,9 +39,4 @@ class Option extends Component
             return (bool) $value;
         }, ARRAY_FILTER_USE_BOTH);
     }
-
-    public function toJson(): string
-    {
-        return json_encode($this->toArray());
-    }
 }

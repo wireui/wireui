@@ -24,6 +24,7 @@ class Select extends NativeSelect
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
+        public bool $alwaysFetch = false,
         public string|array|null $asyncData = null,
         public string|array|null $template = null,
         Collection|array|null $options = null,
@@ -48,9 +49,10 @@ class Select extends NativeSelect
 
         if (gettype($asyncData) === 'string' || $asyncData === null) {
             $this->asyncData = [
-                'api'    => $asyncData,
-                'method' => 'GET',
-                'params' => [],
+                'api'         => $asyncData,
+                'method'      => 'GET',
+                'params'      => [],
+                'alwaysFetch' => $this->alwaysFetch,
             ];
         }
 
@@ -81,7 +83,7 @@ class Select extends NativeSelect
         return data_get($option, $this->optionLabel);
     }
 
-    public function optionsToJson(): string
+    public function optionsToArray(): array
     {
         return $this->options
             ->map(function ($rawOption, $index): array {
@@ -119,6 +121,6 @@ class Select extends NativeSelect
                 }, ARRAY_FILTER_USE_BOTH);
             })
             ->values()
-            ->toJson();
+            ->toArray();
     }
 }

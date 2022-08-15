@@ -10,6 +10,7 @@ export type Option = {
   html?: string
   disabled?: boolean
   readonly?: boolean
+  isSelected?: boolean
 }
 
 export type TemplateConfig = {
@@ -19,17 +20,15 @@ export type TemplateConfig = {
 
 export type Options = Option[]
 
-export type AsyncData = {
-  api: string | null
-  method: string
-  params: any
-  fetching: boolean
-}
-
 export type AsyncDataConfig = {
   api: string | null
   method: string
   params: any
+  alwaysFetch: boolean
+}
+
+export type AsyncData = AsyncDataConfig & {
+  fetching: boolean
 }
 
 export type InitOptions = {
@@ -56,10 +55,10 @@ export type Props = Config & {
 }
 
 export type Refs = PositioningRefs & {
-  json: HTMLElement
   search?: HTMLInputElement
   input: HTMLInputElement
+  json: HTMLElement
   slot: HTMLElement
-  route: HTMLElement
   optionsContainer?: HTMLElement
+  listing: Element
 }
