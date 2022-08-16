@@ -299,6 +299,7 @@ export default (initOptions: InitOptions): Select => ({
 
     request.headers.set('Content-Type', 'application/json')
     request.headers.set('Accept', 'application/json')
+    request.headers.set('X-Requested-With', 'XMLHttpRequest')
 
     const csrfToken = document.head.querySelector('[name="csrf-token"]')?.getAttribute('content')
 
