@@ -13,14 +13,14 @@
         suffix="Suffix 1"
     />
 
-    // test it_should_see_prepend_slot_and_not_see_append_slots
+    // test it_should_not_see_prepend_and_append_slots
     <x-inputs.password>
         <x-slot name="prepend">
-            <a>prepend</a>
+            <a>prepend 1</a>
         </x-slot>
 
         <x-slot name="append">
-            <a>append</a>
+            <a>append 1</a>
         </x-slot>
     </x-inputs.password>
 

@@ -26,11 +26,13 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
-    public function it_should_see_prepend_slot_and_not_see_append_slots()
+    public function it_should_not_see_prepend_and_append_slots()
     {
         Livewire::test(Component::class)
-            ->assertSeeHtml('<a>prepend</a>')
-            ->assertDontSeeHtml('<a>append</a>');
+            ->assertSee('prepend 1')
+            ->assertDontSee('append 1')
+            ->assertDontSeeHtml('<a>prepend 1</a>')
+            ->assertDontSeeHtml('<a>append 1</a>');
     }
 
     /** @test */
