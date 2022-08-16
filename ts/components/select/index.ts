@@ -1,3 +1,4 @@
+import { stringify } from 'qs'
 import { focusables } from '@/components/modules/focusables'
 import { Select } from './interfaces'
 import { templates } from './templates'
@@ -156,6 +157,10 @@ export default (initOptions: InitOptions): Select => ({
       const textContent = mutations[0]?.target?.textContent ?? '[]'
 
       this.options = jsonParse(textContent, [])
+
+      if (this.hasWireModel) {
+        this.syncSelectedFromWireModel()
+      }
     })
 
     observer.observe(this.$refs.json, {
@@ -214,11 +219,17 @@ export default (initOptions: InitOptions): Select => ({
 
       return option
     })
+
+    if (this.hasWireModel) {
+      this.syncSelectedFromWireModel()
+    }
   },
   makeRequest (params = {}) {
     const { api, method } = this.asyncData
 
     const url = new URL(api ?? '')
+
+    url.search = ''
 
     const parameters = Object.assign(
       params,
@@ -226,22 +237,8 @@ export default (initOptions: InitOptions): Select => ({
       ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
     )
 
-    url.search = ''
-
     if (method === 'GET') {
-      const urlSearchParams = new URLSearchParams()
-
-      for (const [key, value] of Object.entries(parameters)) {
-        if (Array.isArray(value)) {
-          value.forEach(v => urlSearchParams.append(`${key}[]`, String(v)))
-
-          continue
-        }
-
-        urlSearchParams.append(key, String(value))
-      }
-
-      url.search = urlSearchParams.toString()
+      url.search = stringify(parameters)
     }
 
     const request = new Request(url, {
