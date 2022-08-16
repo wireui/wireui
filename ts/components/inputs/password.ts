@@ -1,14 +1,14 @@
-export interface ShowPassword {
+export interface Password {
   status: boolean
 
-  type (): string
+  get type (): string
   toggle (): void
 }
 
-export default (): ShowPassword => ({
+export default (): Password => ({
   status: false,
 
-  type () {
+  get type () {
     return this.status ? 'text' : 'password'
   },
   toggle () {
