@@ -1,7 +1,15 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: bug
+assignees: PH7-Jack
+
+---
 
 <!-- 
   
-   NOTE: Your issue can be closed if you don't provide the required informations 
+   NOTE: Your issue can be closed if you don't provide the required information 
   
 -->
 
