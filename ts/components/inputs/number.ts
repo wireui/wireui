@@ -1,47 +1,39 @@
-import { Entangle } from "@/components/alpine"
+import { Entangle } from '@/components/alpine'
 
 export type Refs = {
-  inputNumber: HTMLInputElement
+  input: HTMLInputElement
 }
 
 export interface Number {
   $refs: Refs,
-  plusStatus: boolean,
-  minusStatus: boolean,
   wireModel?: Entangle,
 
-  init(): void
   plus(): void
   minus(): void
-  checkStatus(): void
+  get disablePlus(): boolean
+  get disableMinus(): boolean
 }
 
 export default (params): Number => ({
   $refs: {} as Refs,
-  plusStatus: false,
-  minusStatus: false,
   wireModel: params.wireModel,
 
-  init() {
-    this.checkStatus()
-  },
   plus() {
-    this.$refs.inputNumber.stepUp()
-
-    this.checkStatus()
+    this.$refs.input.stepUp()
   },
   minus() {
-    this.$refs.inputNumber.stepDown()
-
-    this.checkStatus()
+    this.$refs.input.stepDown()
   },
-  checkStatus() {
-    let max = this.$refs.inputNumber.max
-    let min = this.$refs.inputNumber.min
-    this.wireModel = this.$refs.inputNumber.value
+  get disablePlus() {
+    const max = this.$refs.input.max
+    this.wireModel = this.$refs.input.value
 
-    this.plusStatus = max ? Number(this.wireModel) >= Number(max) : false
+    return max ? Number(this.wireModel) >= Number(max) : false
+  },
+  get disableMinus() {
+    const min = this.$refs.input.min
+    this.wireModel = this.$refs.input.value
 
-    this.minusStatus = min ? Number(this.wireModel) <= Number(min) : false
+    return min ? Number(this.wireModel) <= Number(min) : false
   }
 })

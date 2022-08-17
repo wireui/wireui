@@ -10,8 +10,7 @@
             ->class('appearance-number-none')
             ->whereDoesntStartWith('wire:key')
             ->except($except) }}
-        x-ref="inputNumber"
-        x-on:input.debounce="checkStatus()"
+        x-ref="input"
         class="text-center no-arrow"
         :component="WireUi::component('input')"
         :borderless="$borderless"
@@ -45,7 +44,7 @@
                         primary
                         flat
                         squared
-                        ::disabled="minusStatus"
+                        ::disabled="disableMinus"
                     >
                     </x-dynamic-component>
                 @endif
@@ -75,7 +74,7 @@
                         primary
                         flat
                         squared
-                        ::disabled="plusStatus"
+                        ::disabled="disablePlus"
                     >
                     </x-dynamic-component>
                 @endif
