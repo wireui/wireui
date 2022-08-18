@@ -280,13 +280,13 @@ export default (initOptions: InitOptions): Select => ({
 
     const url = new URL(api ?? '')
 
-    url.search = ''
-
     const parameters = Object.assign(
       params,
       window.Alpine.raw(this.asyncData.params),
       ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
     )
+
+    url.search = ''
 
     if (method === 'GET') {
       url.search = stringify(parameters)
