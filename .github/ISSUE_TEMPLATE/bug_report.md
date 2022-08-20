@@ -29,13 +29,17 @@ A clear and concise description of what you expected to happen.
 **Screenshots or Videos**
 If applicable, add screenshots or videos to help explain your problem.
 
-**Desktop (If applicable, please complete the following information):**
- - OS: [e.g. iOS]
- - Browser: [e.g. chrome, safari]
+**Dependencies**
  - WireUI Version: 1.X
  - Laravel Version: 9.X
  - Alpine.js Version: 3.X
  - Livewire Version: 2.X
+ - Lang: en_US
+
+**Desktop (If applicable, please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser: [e.g. chrome, safari]
+ - Version [e.g. 22]
 
 **Smartphone (If applicable, please complete the following information):**
  - Device: [e.g. iPhone6]
