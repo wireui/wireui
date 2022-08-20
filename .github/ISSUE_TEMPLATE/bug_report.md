@@ -30,10 +30,10 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots or videos to help explain your problem.
 
 **Dependencies**
- - WireUI Version: 1.X
- - Laravel Version: 9.X
- - Alpine.js Version: 3.X
- - Livewire Version: 2.X
+ - WireUI Version: 1.X.X
+ - Laravel Version: 9.X.X
+ - Alpine.js Version: 3.X.X
+ - Livewire Version: 2.X.X
  - Lang: en_US
 
 **Desktop (If applicable, please complete the following information):**
