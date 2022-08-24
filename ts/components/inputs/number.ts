@@ -2,7 +2,7 @@ export type Refs = {
   input: HTMLInputElement
 }
 
-export interface Number {
+export interface InputNumber {
   $refs: Refs,
   min: string | null,
   max: string | null,
@@ -17,7 +17,7 @@ export interface Number {
   get disableMinus(): boolean
 }
 
-export default (params): Number => ({
+export default (params): InputNumber => ({
   $refs: {} as Refs,
   min: null,
   max: null,
@@ -25,15 +25,15 @@ export default (params): Number => ({
   disabled: params.disabled,
   readonly: params.readonly,
 
-  init() {
+  init () {
     this.min = this.$refs.input.min
 
     this.max = this.$refs.input.max
 
     this.value = this.$refs.input.value
   },
-  plus() {
-    if (this.disabled || this.readonly) return;
+  plus () {
+    if (this.disabled || this.readonly) return
 
     this.$refs.input.stepUp()
 
@@ -41,8 +41,8 @@ export default (params): Number => ({
 
     this.$refs.input.dispatchEvent(new Event('input'))
   },
-  minus() {
-    if (this.disabled || this.readonly) return;
+  minus () {
+    if (this.disabled || this.readonly) return
 
     this.$refs.input.stepDown()
 
@@ -50,12 +50,12 @@ export default (params): Number => ({
 
     this.$refs.input.dispatchEvent(new Event('input'))
   },
-  get disablePlus() {
+  get disablePlus () {
     if (this.disabled) return true
 
     return this.max ? Number(this.value) >= Number(this.max) : false
   },
-  get disableMinus() {
+  get disableMinus () {
     if (this.disabled) return true
 
     return this.min ? Number(this.value) <= Number(this.min) : false
