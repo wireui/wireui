@@ -1,13 +1,16 @@
-import { Entangle } from '@/components/alpine'
-
 export type Refs = {
   input: HTMLInputElement
 }
 
 export interface Number {
   $refs: Refs,
-  wireModel?: Entangle,
+  min: string | null,
+  max: string | null,
+  value: string | null,
+  disabled: boolean,
+  readonly: boolean,
 
+  init(): void
   plus(): void
   minus(): void
   get disablePlus(): boolean
@@ -16,24 +19,45 @@ export interface Number {
 
 export default (params): Number => ({
   $refs: {} as Refs,
-  wireModel: params.wireModel,
+  min: null,
+  max: null,
+  value: null,
+  disabled: params.disabled,
+  readonly: params.readonly,
 
+  init() {
+    this.min = this.$refs.input.min
+
+    this.max = this.$refs.input.max
+
+    this.value = this.$refs.input.value
+  },
   plus() {
+    if (this.disabled || this.readonly) return;
+
     this.$refs.input.stepUp()
+
+    this.value = this.$refs.input.value
+
+    this.$refs.input.dispatchEvent(new Event('input'))
   },
   minus() {
+    if (this.disabled || this.readonly) return;
+
     this.$refs.input.stepDown()
+
+    this.value = this.$refs.input.value
+
+    this.$refs.input.dispatchEvent(new Event('input'))
   },
   get disablePlus() {
-    const max = this.$refs.input.max
-    this.wireModel = this.$refs.input.value
+    if (this.disabled) return true
 
-    return max ? Number(this.wireModel) >= Number(max) : false
+    return this.max ? Number(this.value) >= Number(this.max) : false
   },
   get disableMinus() {
-    const min = this.$refs.input.min
-    this.wireModel = this.$refs.input.value
+    if (this.disabled) return true
 
-    return min ? Number(this.wireModel) <= Number(min) : false
+    return this.min ? Number(this.value) <= Number(this.min) : false
   }
 })
