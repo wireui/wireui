@@ -280,13 +280,13 @@ export default (initOptions: InitOptions): Select => ({
 
     const url = new URL(api ?? '')
 
-    url.search = ''
-
     const parameters = Object.assign(
       params,
       window.Alpine.raw(this.asyncData.params),
       ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
     )
+
+    url.search = ''
 
     if (method === 'GET') {
       url.search = stringify(parameters)
@@ -299,6 +299,7 @@ export default (initOptions: InitOptions): Select => ({
 
     request.headers.set('Content-Type', 'application/json')
     request.headers.set('Accept', 'application/json')
+    request.headers.set('X-Requested-With', 'XMLHttpRequest')
 
     const csrfToken = document.head.querySelector('[name="csrf-token"]')?.getAttribute('content')
 
