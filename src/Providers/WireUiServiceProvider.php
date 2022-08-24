@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\LivewireBladeDirectives;
 use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
@@ -88,6 +89,10 @@ class WireUiServiceProvider extends ServiceProvider
 
         Blade::directive('boolean', static function ($value): string {
             return WireUiDirectives::boolean($value);
+        });
+
+        Blade::directive('toJs', static function ($expression): string {
+            return LivewireBladeDirectives::js($expression);
         });
     }
 

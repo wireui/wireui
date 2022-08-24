@@ -59,6 +59,26 @@ class NativeSelectTest extends UnitTestCase
         ];
     }
 
+    public function test_it_should_allow_using_option_key_value_with_option_label()
+    {
+        $option = [
+            'label'       => 'label',
+            'description' => 'description',
+        ];
+
+        $component = new NativeSelect(
+            optionKeyValue: true,
+            optionLabel: 'label',
+            options: [
+                'value' => $option,
+            ]
+        );
+
+        $this->assertSame('value', $component->getOptionValue('value', $option));
+        $this->assertSame('label - description', $component->getOptionLabel($option));
+        $this->assertSame('description', $component->getOptionDescription($option));
+    }
+
     /** @test */
     public function it_should_flip_the_component_options_when_the_flip_options_is_true()
     {

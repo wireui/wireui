@@ -2,8 +2,8 @@
 
 return [
     'selectTime'    => 'Zeit auswählen',
-    'empty_options' => 'leere Optionen',
-    'searchHere'    => 'Hier suchen',
+    'empty_options' => 'Keine Ergebnisse',
+    'searchHere'    => 'Suche',
     'datePicker'    => [
         'months'    => "['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']",
         'days'      => "['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa']",
@@ -12,6 +12,6 @@ return [
         'yesterday' => 'Gestern',
     ],
     'errors' => [
-        'title' => 'Es sind Fehler {errors} aufgetreten',
+        'title' => 'Es sind {errors} Fehler aufgetreten',
     ],
 ];

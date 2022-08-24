@@ -14,6 +14,7 @@ export interface Positioning extends Component {
   $refs: PositioningRefs
   position: Position
   initPositioningSystem (): void
+  toggleEventListener (callback: any): void
   syncPopoverPosition (): void
   open (): void
   close (): void
@@ -34,19 +35,22 @@ export const positioning: Positioning = {
 
     const callback = this.syncPopoverPosition.bind(this)
 
-    this.$watch('popover', popover => {
-      if (popover) {
-        window.addEventListener('scroll', callback)
-
-        this.$nextTick(() => this.syncPopoverPosition())
-      } else {
-        window.removeEventListener('scroll', callback)
+    this.$watch('popover', () => {
+      if (window.innerWidth >= 640) {
+        this.toggleEventListener(callback)
       }
     })
   },
-  syncPopoverPosition () {
-    if (window.innerWidth < 640) return
+  toggleEventListener (callback) {
+    if (this.popover) {
+      window.addEventListener('scroll', callback)
 
+      this.$nextTick(() => this.syncPopoverPosition())
+    } else {
+      window.removeEventListener('scroll', callback)
+    }
+  },
+  syncPopoverPosition () {
     const rect = this.$root.getBoundingClientRect()
     const { clientHeight, clientWidth } = this.$refs.popover
 
