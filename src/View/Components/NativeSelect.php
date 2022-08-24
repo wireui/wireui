@@ -2,8 +2,8 @@
 
 namespace WireUi\View\Components;
 
-use Exception;
 use Illuminate\Support\Collection;
+use InvalidArgumentException;
 
 class NativeSelect extends FormComponent
 {
@@ -41,24 +41,24 @@ class NativeSelect extends FormComponent
     /**
      * Validate if the select options is set correctly.
      * @return void
-     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function validateConfig(): void
     {
-        if (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel)) {
-            throw new Exception('The {option-value} and {option-label} attributes must be set together.');
+        if (!$this->optionKeyValue && (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel))) {
+            throw new InvalidArgumentException('The {option-value} and {option-label} attributes must be set together.');
         }
 
         if ($this->flipOptions && ($this->optionValue || $this->optionLabel)) {
-            throw new Exception('The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.');
+            throw new InvalidArgumentException('The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.');
         }
 
         if (
-            !($this->optionValue && $this->optionLabel)
+            (!$this->optionValue && (!$this->optionLabel || ($this->optionKeyValue && !$this->optionLabel)))
             && $this->options->isNotEmpty()
             && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 'Inform the {option-value} and {option-label} to use array, model, or object option.'
                     . ' <x-select [...] option-value="id" option-label="name" />'
             );
@@ -69,7 +69,7 @@ class NativeSelect extends FormComponent
             && $this->options->isNotEmpty()
             && in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
-            throw new Exception(
+            throw new InvalidArgumentException(
                 'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
                     . implode(', ', self::PRIMITIVE_VALUES)
             );
