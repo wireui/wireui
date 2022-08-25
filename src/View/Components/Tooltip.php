@@ -15,12 +15,12 @@ class Tooltip extends Component
     private array $animations = ['fade', 'shift-away', 'shift-away-subtle', 'shift-away-extreme', 'scale', 'scale-subtle', 'scale-extreme', 'shift-toward', 'shift-toward-subtle', 'shift-toward-extreme', 'perspective', 'perspective-subtle', 'perspective-extreme'];
 
     public function __construct(
+        public string $theme = '',
         public bool $arrow = true,
         public ?int $timeout = 2000,
         public ?string $message = null,
         public string $placement = 'top',
-        public string $animation = 'scale',
-        public string $theme = 'translucent',
+        public string $animation = 'fade',
         public string $trigger = 'mouseenter focus',
     ) {
         $this->theme     = $this->getTheme($theme);
@@ -36,7 +36,7 @@ class Tooltip extends Component
 
     private function getTheme(string $theme): string
     {
-        return collect($this->themes)->contains($theme) ? $theme : 'translucent';
+        return collect($this->themes)->contains($theme) ? $theme : config('wireui.tooltip.theme', '');
     }
 
     private function getPlacement(string $placement): string
@@ -46,7 +46,7 @@ class Tooltip extends Component
 
     private function getAnimation(string $animation): string
     {
-        return collect($this->animations)->contains($animation) ? $animation : 'scale';
+        return collect($this->animations)->contains($animation) ? $animation : config('wireui.tooltip.animation', 'fade');
     }
 
     private function getTrigger(string $trigger): string
