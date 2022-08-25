@@ -1,11 +1,11 @@
 <div x-data="wireui_tooltip({
-    'message': @js($message),
-    'placement': @js($placement),
+    'message': @toJs($message),
+    'placement': @toJs($placement),
     'arrow': @boolean($arrow),
-    'animation': @js($animation),
-    'theme': @js($theme),
-    'trigger': @js($trigger),
-    'timeout': @js($timeout),
+    'animation': @toJs($animation),
+    'theme': @toJs($theme),
+    'trigger': @toJs($trigger),
+    'timeout': @toJs($timeout),
 })">
     @unless($message)
         <div class="hidden" x-ref="tooltip">
