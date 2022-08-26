@@ -30,7 +30,6 @@ export interface Select extends Focusables, Positioning {
   syncSelectedFromWireModel (): void
   mustSyncWireModel (): boolean
   searchOptions (search: string): Options
-  closeIfNotFocused (): void
   getValue (): any[]
   getSelectedValue (): any
   getSelectedDysplayText (): string

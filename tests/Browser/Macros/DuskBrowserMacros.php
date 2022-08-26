@@ -22,7 +22,7 @@ class DuskBrowserMacros extends Macros\DuskBrowserMacros
         return function (string $name, int $index) {
             /** @var Browser $this */
             return $this->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelectorAll("div[name=\"wireui.select.options.{$name}\"] [select-option]")[{$index}].click();
+                document.querySelectorAll("ul[name=\"wireui.select.options.{$name}\"] li")[{$index}].click();
             JS));
         };
     }

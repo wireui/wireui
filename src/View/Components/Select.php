@@ -111,7 +111,7 @@ class Select extends NativeSelect
                 }
 
                 return array_filter($option, function ($value, $index) {
-                    if (in_array($index, ['label', 'value'])) {
+                    if ($index === 'value') {
                         return true;
                     }
 

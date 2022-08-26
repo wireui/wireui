@@ -7,28 +7,49 @@ use Illuminate\Support\{Str, Stringable};
 
 class Card extends Component
 {
-    public function __construct(
-        public ?string $padding = null,
-        public ?string $shadow = null,
-        public ?string $rounded = null,
-        public ?string $color = null,
-        public ?string $title = null,
-        public ?string $action = null,
-        public ?string $header = null,
-        public ?string $footer = null,
-        public ?string $cardClasses = '',
-        public ?string $headerClasses = '',
-        public ?string $footerClasses = '',
-    ) {
-        $padding ??= config('wireui.card.padding');
-        $shadow  ??= config('wireui.card.shadow');
-        $rounded ??= config('wireui.card.rounded');
-        $color   ??= config('wireui.card.color');
+    public ?string $padding;
 
+    public ?string $shadow;
+
+    public ?string $rounded;
+
+    public ?string $color;
+
+    public ?string $title;
+
+    public ?string $action;
+
+    public ?string $header;
+
+    public ?string $footer;
+
+    public ?string $cardClasses = '';
+
+    public ?string $headerClasses = '';
+
+    public ?string $footerClasses = '';
+
+    public function __construct(
+        ?string $padding = 'px-2 py-5 md:px-4',
+        ?string $shadow = 'shadow-md',
+        ?string $rounded = 'rounded-lg',
+        ?string $color = 'bg-white dark:bg-secondary-800',
+        ?string $title = null,
+        ?string $action = null,
+        ?string $header = null,
+        ?string $footer = null,
+        ?string $cardClasses = '',
+        ?string $headerClasses = '',
+        ?string $footerClasses = '',
+    ) {
         $this->padding       = $padding;
         $this->shadow        = $shadow;
         $this->rounded       = $rounded;
         $this->color         = $color;
+        $this->title         = $title;
+        $this->action        = $action;
+        $this->header        = $header;
+        $this->footer        = $footer;
         $this->cardClasses   = $this->setCardClasses($cardClasses);
         $this->headerClasses = $this->setHeaderClasses($headerClasses);
         $this->footerClasses = $this->setFooterClasses($footerClasses);
