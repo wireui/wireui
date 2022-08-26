@@ -59,6 +59,10 @@ return [
         |
      */
     'components' => [
+        'alert' => [
+            'class' => Components\Alert::class,
+            'alias' => 'alert',
+        ],
         'avatar' => [
             'class' => Components\Avatar::class,
             'alias' => 'avatar',
