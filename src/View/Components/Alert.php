@@ -2,8 +2,57 @@
 
 namespace WireUi\View\Components;
 
-class Alert extends BaseAlert
+use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
+use Illuminate\View\Component;
+
+class Alert extends Component
 {
+    public string $backgroundColor = 'bg-gray-50 dark:bg-secondary-700';
+
+    public string $subjectColor = 'text-gray-700 dark:text-gray-400';
+
+    public function __construct(
+        public ?string $padding = 'p-4',
+        public ?string $rounded = 'rounded-md',
+        public ?string $icon = null,
+        public ?string $title = null,
+        public ?string $message = null,
+        public ?string $actions = null,
+        public ?string $dismissible = null,
+        public bool $border = false,
+        public bool $shadow = false,
+        public bool $info = false,
+        public bool $warning = false,
+        public bool $positive = false,
+        public bool $negative = false,
+        public ?string $alertClasses = '',
+    ) {
+        $this->getDefaultStyle();
+        $this->alertClasses = $this->getAlertClasses($alertClasses);
+    }
+
+    public function render()
+    {
+        return view('wireui::components.alert');
+    }
+
+    public function getAlertClasses(?string $alertClasses): string
+    {
+        return Str::of('')
+            ->append(" {$this->rounded}")
+            ->append(" {$this->padding}")
+            ->append(" {$this->backgroundColor}")
+            ->append(" {$this->subjectColor}")
+            ->when($this->border, function (Stringable $stringable) {
+                return $stringable->append(' border border-gray-300 dark:border-secondary-600');
+            })
+            ->when($this->shadow, function (Stringable $stringable) {
+                return $stringable->append(' shadow-md');
+            })
+            ->append(" {$alertClasses}");
+    }
+
     public function getDefaultStyle()
     {
         if ($this->info) {
