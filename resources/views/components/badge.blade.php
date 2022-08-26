@@ -17,6 +17,14 @@
 
     <span>{{ $title ?? $slot }}</span>
 
+    @if ($rightIcon)
+        <x-dynamic-component
+            :component="WireUi::component('icon')"
+            :name="$rightIcon"
+            class="ml-1 {{ $iconSize }}"
+        />
+    @endif
+
     @isset ($dismissible)
         {{ $dismissible }}
     @endif

@@ -26,11 +26,25 @@ class Badge extends BaseBadge
         $this->pulsePingColor = $pingColor;
     }
 
-    public function getSize(bool $lg): void
+    public function getSize(bool $sm, bool $md, bool $lg): void
     {
-        if ($lg) {
+        if (!$sm && !$md && !$lg) {
+            $sm = true;
+        }
+
+        if ($sm) {
+            $this->badgeSize = 'text-xs';
+            $this->iconSize = 'h-3 w-3';
+        }
+
+        if ($md) {
             $this->badgeSize = 'text-sm';
             $this->iconSize = 'h-4 w-4';
+        }
+
+        if ($lg) {
+            $this->badgeSize = 'text-md';
+            $this->iconSize = 'h-6 w-6';
         }
     }
 

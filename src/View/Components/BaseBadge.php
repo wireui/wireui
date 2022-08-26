@@ -4,9 +4,9 @@ namespace WireUi\View\Components;
 
 abstract class BaseBadge extends Component
 {
-    public string $pulseColor = 'bg-slate-500';
+    public string $pulseColor = 'bg-secondary-500';
 
-    public string $pulsePingColor = 'bg-slate-400';
+    public string $pulsePingColor = 'bg-secondary-400';
 
     public string $badgeSize = 'text-xs';
 
@@ -18,6 +18,8 @@ abstract class BaseBadge extends Component
         public bool $positive = false,
         public bool $negative = false,
         public bool $square = false,
+        public bool $sm = false,
+        public bool $md = false,
         public bool $lg = false,
         public bool $pulse = false,
         public ?string $padding = '',
@@ -26,10 +28,11 @@ abstract class BaseBadge extends Component
         public ?string $color = 'bg-slate-100 text-slate-800',
         public ?string $title = null,
         public ?string $icon = null,
+        public ?string $rightIcon = null,
         public ?string $badgeClasses = null,
     ) {
         $this->getPulse();
-        $this->getSize($lg);
+        $this->getSize($sm, $md, $lg);
         $this->badgeClasses = $this->getBadgeClasses($badgeClasses);
     }
 
@@ -40,7 +43,7 @@ abstract class BaseBadge extends Component
 
     abstract public function getPulse(): void;
 
-    abstract public function getSize(bool $lg): void;
+    abstract public function getSize(bool $sm, bool $md, bool $lg): void;
 
     abstract public function getBadgeClasses(?string $badgeClasses): string;
 }
