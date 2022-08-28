@@ -111,6 +111,10 @@ return [
             'class' => Components\Inputs\NumberInput::class,
             'alias' => 'inputs.number',
         ],
+        'inputs.password' => [
+            'class' => Components\Inputs\PasswordInput::class,
+            'alias' => 'inputs.password',
+        ],
         'button' => [
             'class' => Components\Button::class,
             'alias' => 'button',
