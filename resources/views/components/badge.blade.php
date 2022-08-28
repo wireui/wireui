@@ -25,7 +25,4 @@
         />
     @endif
 
-    @isset ($dismissible)
-        {{ $dismissible }}
-    @endif
 </span>
