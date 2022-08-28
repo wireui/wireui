@@ -107,6 +107,10 @@ return [
             'class' => Components\Inputs\CurrencyInput::class,
             'alias' => 'inputs.currency',
         ],
+        'inputs.number' => [
+            'class' => Components\Inputs\NumberInput::class,
+            'alias' => 'inputs.number',
+        ],
         'inputs.password' => [
             'class' => Components\Inputs\PasswordInput::class,
             'alias' => 'inputs.password',

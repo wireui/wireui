@@ -45,6 +45,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms')({ strategy: 'class' }),
     require('./js/tailwindcss/plugins/hideScrollbar'),
-    require('./js/tailwindcss/plugins/softScrollbar')
+    require('./js/tailwindcss/plugins/softScrollbar'),
+    require('./js/tailwindcss/plugins/appearance-none')
   ]
 }

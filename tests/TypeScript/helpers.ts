@@ -27,5 +27,6 @@ export const AlpineMock: MockedAlpine = {
   data: jest.fn(Alpine.data),
   store: jest.fn(Alpine.store),
   magic: jest.fn(Alpine.magic),
-  evaluate: jest.fn(Alpine.evaluate)
+  evaluate: jest.fn(Alpine.evaluate),
+  directive: jest.fn(Alpine.directive)
 }

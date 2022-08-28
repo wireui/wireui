@@ -7,6 +7,7 @@ import './directives/confirm'
 import './browserSupport'
 import './alpine/store'
 import './alpine/magic'
+import './alpine/directives'
 import './components'
 import './global'
 
