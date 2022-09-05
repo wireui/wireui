@@ -187,9 +187,13 @@ return [
             'class' => Components\ModalCard::class,
             'alias' => 'modal.card',
         ],
+        'modal.slider' => [
+            'class' => Components\ModalSlider::class,
+            'alias' => 'modal.slider',
+        ],
         'dialog' => [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
-        ],
+        ]
     ],
 ];
