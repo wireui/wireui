@@ -28,7 +28,7 @@
         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-on:mouseenter="pauseTimeout"
         x-on:mouseleave="resumeTimeout">
-        <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl overflow-hidden space-y-4 p-4"
+        <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl space-y-4 p-4"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
                 'sm:p-0':         style === 'inline',
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3"
+            <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3 rounded-b-xl"
                 :class="{
                     'sm:grid-cols-2 sm:gap-y-0': style === 'center',
                     'sm:p-4 sm:bg-secondary-100 sm:dark:bg-secondary-800 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',

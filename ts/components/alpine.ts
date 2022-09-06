@@ -12,12 +12,21 @@ export type WireModifiers = {
   },
 }
 
+export interface DirectiveUtilities {
+  // eslint-disable-next-line no-use-before-define
+  Alpine: Alpine
+  effect: () => void
+  cleanup: (callback: CallableFunction) => void
+  evaluate: (expression: string) => unknown
+  evaluateLater: (expression: string) => (result: unknown) => void
+}
+
 export interface DirectiveParameters {
-  value: string;
-  modifiers: string[];
-  expression: string;
-  original: string;
-  type: string;
+  value: string
+  modifiers: string[]
+  expression: string
+  original: string
+  type: string
 }
 
 export interface Alpine {
@@ -27,7 +36,7 @@ export interface Alpine {
   store (name: 'wireui:modal', data?: ModalStore): ModalStore
   evaluate (scope: any, expression: string): any
   magic (name: string, callback: (el: HTMLElement) => any): void
-  directive (name: string, callback: (el: HTMLElement, content: DirectiveParameters) => any): void
+  directive(name: string, handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void): void;
 }
 
 export interface Component {

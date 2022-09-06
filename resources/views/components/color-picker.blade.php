@@ -38,7 +38,8 @@
                     flat
                     squared
                     x-on:click="toggle"
-                    trigger>
+                    trigger
+                    :disabled="$disabled">
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         class="
