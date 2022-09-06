@@ -49,14 +49,14 @@
                     x-transition:leave-start="translate-x-0"
                     x-transition:leave-end="translate-x-full"
                 >
-                    <div class="flex h-full flex-col divide-y divide-secondary-200 bg-white shadow-xl">
+                    <div class="flex h-full flex-col divide-y divide-secondary-200 dark:divide-secondary-500 bg-white dark:bg-secondary-800 shadow-xl">
                         <div class="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
                             <div class="px-4 sm:px-6 pb-6 border-b dark:border-0">
                                 <div class="flex items-start justify-between">
                                     @isset($header)
                                         {{ $header }}
                                     @else
-                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">{{ $title }}</h2>
+                                        <h2 class="text-lg font-medium text-gray-900 dark:text-secondary-400" id="slide-over-title">{{ $title }}</h2>
                                         <div class="ml-3 flex h-7 items-center">
                                             <button class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                                                     x-on:click="close"
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
 
-                            <div class="relative mt-2 flex-1 px-4 sm:px-6 {{ $spacing }}">
+                            <div class="relative mt-2 flex-1 px-4 sm:px-6 dark:text-secondary-400 {{ $spacing }}">
                                 {{ $slot }}
                             </div>
 
