@@ -1,7 +1,7 @@
-import tippy from "tippy.js"
+import tippy from 'tippy.js'
 
 export const tooltip = el => (message, timeout = null) => {
-  let instance = tippy(el as Element, {
+  const instance = tippy(el as Element, {
     content: message,
     trigger: 'manual'
   })

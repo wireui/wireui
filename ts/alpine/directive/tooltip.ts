@@ -1,5 +1,5 @@
-import tippy from "tippy.js"
-import { DirectiveParameters } from "@/components/alpine"
+import tippy from 'tippy.js'
+import { DirectiveParameters } from '@/components/alpine'
 
 export const tooltip = function (el: Node, content: DirectiveParameters) {
   tippy(el as Element, {

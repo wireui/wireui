@@ -1,5 +1,5 @@
-import { isNull } from 'lodash';
-import tippy, { Instance, Placement } from 'tippy.js';
+import { isNull } from 'lodash'
+import tippy, { Instance, Placement } from 'tippy.js'
 
 export type Refs = {
   content: HTMLDivElement
@@ -34,8 +34,8 @@ export default (params): Tooltip => ({
   timeout: params.timeout,
   instance: {} as Instance,
 
-  init() {
-    let content = this.$refs.content.firstElementChild as Element;
+  init () {
+    const content = this.$refs.content.firstElementChild as Element
 
     this.instance = tippy(content, {
       content: this.message ?? this.$refs.tooltip.innerHTML,
@@ -44,16 +44,16 @@ export default (params): Tooltip => ({
       arrow: this.arrow,
       animation: this.animation,
       theme: this.theme,
-      trigger: this.trigger,
-    });
+      trigger: this.trigger
+    })
   },
-  dispatch() {
+  dispatch () {
     isNull(this.timeout) ? this.toggle() : this.closeInTime()
   },
-  toggle() {
+  toggle () {
     this.instance.state.isMounted ? this.instance.hide() : this.instance.show()
   },
-  closeInTime() {
+  closeInTime () {
     this.instance.show()
 
     setTimeout(() => { this.instance.hide() }, this.timeout ?? 2000)
