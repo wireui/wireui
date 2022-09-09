@@ -28,6 +28,7 @@ class Select extends NativeSelect
         public string|array|null $asyncData = null,
         public string|array|null $template = null,
         Collection|array|null $options = null,
+        public ?int $minItemsForSearch = 11,
     ) {
         parent::__construct(
             label: $label,
