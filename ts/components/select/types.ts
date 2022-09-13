@@ -25,7 +25,7 @@ export type AsyncDataConfig = {
   method: string
   params: any
   alwaysFetch: boolean,
-  credentials?: "include" | "omit" | "same-origin"
+  credentials?: 'include' | 'omit' | 'same-origin'
 }
 
 export type AsyncData = AsyncDataConfig & {
