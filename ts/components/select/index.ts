@@ -279,8 +279,6 @@ export default (initOptions: InitOptions): Select => ({
   makeRequest (params = {}) {
     const { api, method, credentials } = this.asyncData
 
-    console.log(this.asyncData);
-
     const url = new URL(api ?? '')
 
     const parameters = Object.assign(
