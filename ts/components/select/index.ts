@@ -296,7 +296,7 @@ export default (initOptions: InitOptions): Select => ({
     const request = new Request(url, {
       method,
       body: method === 'POST' ? JSON.stringify(parameters) : undefined,
-      credentials: credentials ?? 'omit'
+      credentials
     })
 
     request.headers.set('Content-Type', 'application/json')
