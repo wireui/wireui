@@ -11,5 +11,8 @@ Route::name('wireui.')->prefix('/wireui')->group(function () {
     Route::get('button', ButtonController::class)->name('render.button');
 
     Route::get('assets/scripts', [WireUiAssetsController::class, 'scripts'])->name('assets.scripts');
+
     Route::get('assets/styles', [WireUiAssetsController::class, 'styles'])->name('assets.styles');
+
+    Route::get('assets/external-styles', [WireUiAssetsController::class, 'externalStyles'])->name('assets.external_styles');
 });

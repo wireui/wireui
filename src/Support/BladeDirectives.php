@@ -44,6 +44,14 @@ class BladeDirectives
         return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
     }
 
+    public function externalStyles(bool $absolute = true): string
+    {
+        $route = route('wireui.assets.external_styles', $parameters = [], $absolute);
+        $this->getManifestVersion('wireui-external.css', $route);
+
+        return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
+    }
+
     public function getManifestVersion(string $file, ?string &$route = null): ?string
     {
         $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';

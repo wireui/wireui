@@ -8,6 +8,7 @@ it('can pretend to be a file', function () {
 
     expect($controller->scripts()->getContent())->not()->toBeNull();
     expect($controller->styles()->getContent())->not()->toBeNull();
+    expect($controller->externalStyles()->getContent())->not()->toBeNull();
 });
 
 it('should make a request to the wireui scripts', function () {
@@ -20,6 +21,13 @@ it('should make a request to the wireui scripts', function () {
 it('should make a request to the wireui styles', function () {
     /** @var UnitTestCase $this */
     $this->get(route('wireui.assets.styles'))
+        ->assertOk()
+        ->assertHeader('Content-Type', 'text/css; charset=utf-8');
+});
+
+it('should make a request to the wireui external styles', function () {
+    /** @var UnitTestCase $this */
+    $this->get(route('wireui.assets.external_styles'))
         ->assertOk()
         ->assertHeader('Content-Type', 'text/css; charset=utf-8');
 });

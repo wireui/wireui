@@ -87,6 +87,10 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::styles();
         });
 
+        Blade::directive('wireUiExternalStyles', static function (): string {
+            return WireUiDirectives::externalStyles();
+        });
+
         Blade::directive('boolean', static function ($value): string {
             return WireUiDirectives::boolean($value);
         });

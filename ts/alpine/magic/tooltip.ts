@@ -3,6 +3,8 @@ import tippy from 'tippy.js'
 export const tooltip = el => (message, timeout = null) => {
   const instance = tippy(el as Element, {
     content: message,
+    animation: 'scale',
+    theme: 'translucent',
     trigger: 'manual'
   })
 

@@ -36,7 +36,7 @@ class Tooltip extends Component
 
     private function getTheme(string $theme): string
     {
-        return collect($this->themes)->contains($theme) ? $theme : config('wireui.tooltip.theme', '');
+        return collect($this->themes)->contains($theme) ? $theme : config('wireui.tooltip.theme', 'translucent');
     }
 
     private function getPlacement(string $placement): string
@@ -46,7 +46,7 @@ class Tooltip extends Component
 
     private function getAnimation(string $animation): string
     {
-        return collect($this->animations)->contains($animation) ? $animation : config('wireui.tooltip.animation', 'fade');
+        return collect($this->animations)->contains($animation) ? $animation : config('wireui.tooltip.animation', 'scale');
     }
 
     private function getTrigger(string $trigger): string

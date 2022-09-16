@@ -56,8 +56,8 @@ return [
     |
     */
     'tooltip' => [
-        'theme'     => env('WIREUI_TOOLTIP_THEME', ''),
-        'animation' => env('WIREUI_TOOLTIP_ANIMATION', 'fade'),
+        'theme'     => env('WIREUI_TOOLTIP_THEME', 'translucent'),
+        'animation' => env('WIREUI_TOOLTIP_ANIMATION', 'scale'),
     ],
 
     /*
