@@ -40,8 +40,8 @@
     <x-badge outline label="Label" right-icon="home" />
     <x-badge outline primary label="primary" right-icon="home" />
     <x-badge outline secondary label="secondary" right-icon="home" />
-    <x-badge outline disabled positive label="positive" right-icon="home" />
-    <x-badge outline disabled negative label="negative" right-icon="home" />
+    <x-badge outline positive label="positive" right-icon="home" />
+    <x-badge outline negative label="negative" right-icon="home" />
     <x-badge outline warning label="warning" right-icon="home" />
     <x-badge outline info label="info" right-icon="home" />
     <x-badge outline dark label="dark" right-icon="home" />
