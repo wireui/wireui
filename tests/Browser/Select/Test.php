@@ -144,4 +144,14 @@ class Test extends BrowserTestCase
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@asyncModel', 2));
         });
     }
+
+    /** @test */
+    public function it_should_load_from_the_api_with_nested_data()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->openSelect('asyncModelNestedData')
+                ->waitUsing(7, 100, fn () => $browser->assertSee('Tommy'));
+        });
+    }
 }
