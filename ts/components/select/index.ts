@@ -19,6 +19,7 @@ export default (initOptions: InitOptions): Select => ({
   asyncData: {
     api: null,
     method: 'GET',
+    optionsPath: null,
     fetching: false,
     params: {},
     alwaysFetch: false
@@ -139,6 +140,7 @@ export default (initOptions: InitOptions): Select => ({
   },
   initDeferredWatchers () {
     this.$watch('asyncData.api', () => (this.options = []))
+    this.$watch('asyncData.optionsPath', () => (this.options = []))
     this.$watch('asyncData.params', () => (this.options = []))
     this.$watch('asyncData.method', () => (this.options = []))
   },
@@ -243,6 +245,7 @@ export default (initOptions: InitOptions): Select => ({
       ...this.asyncData,
       api: props.asyncData.api,
       method: props.asyncData.method,
+      optionsPath: props.asyncData.optionsPath,
       params: props.asyncData.params,
       alwaysFetch: props.asyncData.alwaysFetch
     }
@@ -324,7 +327,8 @@ export default (initOptions: InitOptions): Select => ({
 
         return response.json()
       })
-      .then((rawOptions: any[]) => {
+      .then((json: any) => {
+        const rawOptions: any[] = dataGet(json, this.asyncData.optionsPath)
         if (!Array.isArray(rawOptions)) return
 
         this.setOptions(
