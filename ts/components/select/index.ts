@@ -43,10 +43,10 @@ export default (initOptions: InitOptions): Select => ({
   selectedOptions: [],
   displayOptions: [],
   options: [],
-  get hasWireModel() {
+  get hasWireModel () {
     return this.wireModel !== undefined
   },
-  init() {
+  init () {
     this.initWatchers()
     this.syncProps()
     this.initPositioningSystem()
@@ -69,7 +69,7 @@ export default (initOptions: InitOptions): Select => ({
 
     this.syncSelectedOptions(true)
   },
-  initRenderObserver() {
+  initRenderObserver () {
     const config = {
       root: this.$refs.optionsContainer,
       rootMargin: '20px',
@@ -97,7 +97,7 @@ export default (initOptions: InitOptions): Select => ({
         observer.observe(li)
       })
   },
-  initWatchers() {
+  initWatchers () {
     this.$watch('popover', (state: boolean) => {
       if (state) {
         if (this.asyncData.api && (this.asyncData?.alwaysFetch || this.options.length === 0)) {
@@ -138,13 +138,13 @@ export default (initOptions: InitOptions): Select => ({
       this.displayOptions = options
     })
   },
-  initDeferredWatchers() {
+  initDeferredWatchers () {
     this.$watch('asyncData.api', () => (this.options = []))
     this.$watch('asyncData.params', () => (this.options = []))
     this.$watch('asyncData.method', () => (this.options = []))
     this.$watch('asyncData.optionsPath', () => (this.options = []))
   },
-  initWireModel() {
+  initWireModel () {
     this.syncSelectedFromWireModel()
 
     if (this.hasWireModel && this.config.multiselect) {
@@ -195,7 +195,7 @@ export default (initOptions: InitOptions): Select => ({
       }
     }
   },
-  initOptionsObserver() {
+  initOptionsObserver () {
     this.syncJsonOptions()
 
     const observer = new MutationObserver(this.syncJsonOptions.bind(this))
@@ -207,7 +207,7 @@ export default (initOptions: InitOptions): Select => ({
 
     this.$cleanup(() => observer.disconnect())
   },
-  initSlotObserver() {
+  initSlotObserver () {
     this.syncSlotOptions()
 
     const element = this.$refs.slot
@@ -219,7 +219,7 @@ export default (initOptions: InitOptions): Select => ({
       subtree: true
     })
   },
-  syncProps() {
+  syncProps () {
     const props = this.$props
 
     const template = {
@@ -250,14 +250,14 @@ export default (initOptions: InitOptions): Select => ({
       alwaysFetch: props.asyncData.alwaysFetch
     }
   },
-  syncJsonOptions() {
+  syncJsonOptions () {
     this.setOptions(window.Alpine.evaluate(this, this.$refs.json.innerText))
 
     if (this.hasWireModel) {
       this.syncSelectedFromWireModel()
     }
   },
-  syncSlotOptions() {
+  syncSlotOptions () {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
 
     const options = Array.from(elements).flatMap(element => {
@@ -278,7 +278,7 @@ export default (initOptions: InitOptions): Select => ({
       this.syncSelectedFromWireModel()
     }
   },
-  makeRequest(params = {}) {
+  makeRequest (params = {}) {
     const {api, method} = this.asyncData
 
     const url = new URL(api ?? '')
@@ -312,7 +312,7 @@ export default (initOptions: InitOptions): Select => ({
 
     return request
   },
-  fetchOptions() {
+  fetchOptions () {
     if (!this.asyncData.api) return
 
     this.asyncData.fetching = true
@@ -324,10 +324,11 @@ export default (initOptions: InitOptions): Select => ({
             throw new Error(data.message ?? 'Failed to fetch options')
           })
         }
+
         return response.json()
       })
       .then((json: any) => {
-        let rawOptions: any[] = dataGet(json, this.asyncData.optionsPath)
+        const rawOptions: any[] = dataGet(json, this.asyncData.optionsPath)
         if (!Array.isArray(rawOptions)) return
 
         this.setOptions(
@@ -336,17 +337,17 @@ export default (initOptions: InitOptions): Select => ({
 
         this.$nextTick(() => this.initRenderObserver())
       }).catch((message: Error) => {
-      notify({
-        title: String(message.message),
-        description: 'Try to reload the page',
-        icon: 'error',
-        timeout: 2500
+        notify({
+          title: String(message.message),
+          description: 'Try to reload the page',
+          icon: 'error',
+          timeout: 2500
+        })
+      }).finally(() => {
+        this.asyncData.fetching = false
       })
-    }).finally(() => {
-      this.asyncData.fetching = false
-    })
   },
-  fetchSelected() {
+  fetchSelected () {
     const selected = this.getValue()
 
     if (selected.length === 0) {
@@ -370,10 +371,10 @@ export default (initOptions: InitOptions): Select => ({
 
         this.selected = this.mapOption(rawOptions[0])
       }).catch(error => {
-      reportError(error)
-    })
+        reportError(error)
+      })
   },
-  mapOption(rawOption) {
+  mapOption (rawOption) {
     const option: Option = {
       ...rawOption,
       label: dataGet(rawOption, this.config.optionLabel),
@@ -390,12 +391,12 @@ export default (initOptions: InitOptions): Select => ({
 
     return option
   },
-  setOptions(options) {
+  setOptions (options) {
     this.options = options
 
     this.syncSelectedOptions(true)
   },
-  syncSelectedOptions(isSelected) {
+  syncSelectedOptions (isSelected) {
     const options: Options = this.selectedOptions
 
     if (this.selected) options.push(this.selected)
@@ -408,7 +409,7 @@ export default (initOptions: InitOptions): Select => ({
       }
     })
   },
-  fillSelectedFromInputValue() {
+  fillSelectedFromInputValue () {
     this.selected = undefined
     this.selectedOptions = []
 
@@ -439,7 +440,7 @@ export default (initOptions: InitOptions): Select => ({
       reportError(error)
     }
   },
-  syncSelectedFromWireModel() {
+  syncSelectedFromWireModel () {
     if (this.config.multiselect) {
       if (!Array.isArray(this.wireModel)) {
         this.wireModel = [this.wireModel]
@@ -458,29 +459,29 @@ export default (initOptions: InitOptions): Select => ({
       this.selected = this.options.find(option => option.value === this.wireModel)
     }
   },
-  mustSyncWireModel() {
+  mustSyncWireModel () {
     return this.wireModel?.toString() !== this.selectedOptions.map(option => option.value).toString()
   },
-  searchOptions(search) {
+  searchOptions (search) {
     return this.options.filter(option => {
       const label = option.label.toLocaleLowerCase()
 
       return label.includes(search)
     })
   },
-  closeIfNotFocused() {
+  closeIfNotFocused () {
     if (!this.$root.contains(document.activeElement) && this.popover) {
       this.close()
     }
   },
-  toggle() {
+  toggle () {
     if (this.config.readonly) return
 
     this.popover = !this.popover
 
     this.$refs.input.focus()
   },
-  getValue() {
+  getValue () {
     try {
       const values = this.hasWireModel
         ? this.wireModel
@@ -495,7 +496,7 @@ export default (initOptions: InitOptions): Select => ({
       return []
     }
   },
-  getSelectedValue() {
+  getSelectedValue () {
     if (this.config.multiselect) {
       if (this.selectedOptions.length === 0) return null
 
@@ -504,7 +505,7 @@ export default (initOptions: InitOptions): Select => ({
 
     return this.selected?.value ?? ''
   },
-  getSelectedDysplayText() {
+  getSelectedDysplayText () {
     if (!this.selected || this.config.multiselect) return ''
     if (this.selected.html) return this.selected.html
     if (this.selected.template) {
@@ -521,19 +522,19 @@ export default (initOptions: InitOptions): Select => ({
 
     return this.selected.label ?? ''
   },
-  getPlaceholder() {
+  getPlaceholder () {
     if (this.config.multiselect && this.selectedOptions.length > 0) return ''
 
     return this.config.placeholder ?? ''
   },
-  isSelected(option) {
+  isSelected (option) {
     if (this.config.multiselect) {
       return this.selectedOptions.some(({value}) => value === option.value)
     }
 
     return option.value === this.selected?.value
   },
-  select(option) {
+  select (option) {
     if (this.config.readonly || option.disabled || option.readonly) return
 
     this.search = ''
@@ -568,7 +569,7 @@ export default (initOptions: InitOptions): Select => ({
 
     this.close()
   },
-  unSelect(option) {
+  unSelect (option) {
     if (this.config.readonly || !this.config.clearable) return
 
     const index = this.selectedOptions.findIndex(({value}) => value === option.value)
@@ -579,7 +580,7 @@ export default (initOptions: InitOptions): Select => ({
 
     this.$refs.input.dispatchEvent(new CustomEvent('un-selected', {detail: option}))
   },
-  clear() {
+  clear () {
     this.search = ''
 
     this.syncSelectedOptions(false)
@@ -590,14 +591,14 @@ export default (initOptions: InitOptions): Select => ({
 
     this.$refs.input.dispatchEvent(new Event('clear'))
   },
-  isEmpty() {
+  isEmpty () {
     if (this.config.multiselect) {
       return this.selectedOptions.length === 0
     }
 
     return this.selected === undefined
   },
-  renderOption(option) {
+  renderOption (option) {
     if (option.html) {
       return baseTemplate(option.html)
     }
