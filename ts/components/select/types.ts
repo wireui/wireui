@@ -25,6 +25,7 @@ export type AsyncDataConfig = {
   method: string
   params: any
   alwaysFetch: boolean
+  optionsPath: string | null
 }
 
 export type AsyncData = AsyncDataConfig & {
