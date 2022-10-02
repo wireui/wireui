@@ -247,7 +247,8 @@ export default (initOptions: InitOptions): Select => ({
       method: props.asyncData.method,
       optionsPath: props.asyncData.optionsPath,
       params: props.asyncData.params,
-      alwaysFetch: props.asyncData.alwaysFetch
+      alwaysFetch: props.asyncData.alwaysFetch,
+      credentials: props.asyncData.credentials
     }
   },
   syncJsonOptions () {
@@ -279,7 +280,7 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   makeRequest (params = {}) {
-    const { api, method } = this.asyncData
+    const { api, method, credentials } = this.asyncData
 
     const url = new URL(api ?? '')
 
@@ -297,7 +298,8 @@ export default (initOptions: InitOptions): Select => ({
 
     const request = new Request(url, {
       method,
-      body: method === 'POST' ? JSON.stringify(parameters) : undefined
+      body: method === 'POST' ? JSON.stringify(parameters) : undefined,
+      credentials
     })
 
     request.headers.set('Content-Type', 'application/json')
