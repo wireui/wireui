@@ -30,7 +30,7 @@ export interface Select extends Focusables, Positioning {
   fetchSelected (): void
   mapOption (option: any): Option
   setOptions (options: Options): void
-  syncSelectedOptions (isSelected: boolean): void
+  syncSelectedOptions (): void
   fillSelectedFromInputValue (): void
   syncSelectedFromWireModel (): void
   mustSyncWireModel (): boolean
@@ -38,7 +38,7 @@ export interface Select extends Focusables, Positioning {
   closeIfNotFocused (): void
   getValue (): any[]
   getSelectedValue (): any
-  getSelectedDysplayText (): string
+  getSelectedDisplayText (): string
   getPlaceholder (): string
   isSelected (option: Option): boolean
   select (option: Option): void
