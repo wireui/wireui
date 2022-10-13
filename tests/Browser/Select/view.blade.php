@@ -71,4 +71,15 @@
         option-label="name"
         wire:key="asyncModel"
     />
+
+    // test it_should_load_from_the_api_with_nested_data
+    <x-select
+        label="Select From Async data"
+        {{-- async-data="/api/options" --}}
+        :async-data="['api' => route('api.options.nested'), 'optionsPath' => 'data.nested']"
+        wire:model="asyncModelNestedData"
+        option-value="id"
+        option-label="name"
+        wire:key="asyncModelNestedData"
+    />
 </div>
