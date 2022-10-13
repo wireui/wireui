@@ -18,7 +18,7 @@
         // Possible Errors
         "no-extra-parens": ["error", "all", { "returnAssign": false }],
         "import/first": "off",
-        // "import/named": "error",
+        "import/named": "error",
         "import/namespace": "error",
         "import/default": "error",
         "import/export": "error",
