@@ -77,6 +77,22 @@ class BrowserTestCase extends Dusk\TestCase
                 })->values();
             })->name('api.options')->middleware('web');
 
+            Route::get('/api/options/nested', function () {
+                $data = collect([
+                    ['id' => 1, 'name' => 'Pedro'],
+                    ['id' => 2, 'name' => 'Keithy'],
+                    ['id' => 3, 'name' => 'Fernando'],
+                    ['id' => 4, 'name' => 'Andre'],
+                    ['id' => 5, 'name' => 'Tommy'],
+                ])->filter(function (array $option) {
+                    return str_contains(
+                        strtolower($option['name']),
+                        strtolower(request()->query('search'))
+                    );
+                })->values();
+                return ['data' => ['nested' => $data]];
+            })->name('api.options.nested')->middleware('web');
+
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
 
             app('config')->set('view.paths', [

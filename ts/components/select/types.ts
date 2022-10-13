@@ -23,8 +23,10 @@ export type Options = Option[]
 export type AsyncDataConfig = {
   api: string | null
   method: string
+  optionsPath: string | null
   params: any
-  alwaysFetch: boolean
+  alwaysFetch: boolean,
+  credentials?: RequestCredentials
 }
 
 export type AsyncData = AsyncDataConfig & {

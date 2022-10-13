@@ -19,6 +19,7 @@ export default (initOptions: InitOptions): Select => ({
   asyncData: {
     api: null,
     method: 'GET',
+    optionsPath: null,
     fetching: false,
     params: {},
     alwaysFetch: false
@@ -65,8 +66,6 @@ export default (initOptions: InitOptions): Select => ({
       : this.fillSelectedFromInputValue()
 
     this.initDeferredWatchers()
-
-    this.syncSelectedOptions(true)
   },
   initRenderObserver () {
     const config = {
@@ -139,6 +138,7 @@ export default (initOptions: InitOptions): Select => ({
   },
   initDeferredWatchers () {
     this.$watch('asyncData.api', () => (this.options = []))
+    this.$watch('asyncData.optionsPath', () => (this.options = []))
     this.$watch('asyncData.params', () => (this.options = []))
     this.$watch('asyncData.method', () => (this.options = []))
   },
@@ -146,9 +146,13 @@ export default (initOptions: InitOptions): Select => ({
     this.syncSelectedFromWireModel()
 
     if (this.hasWireModel && this.config.multiselect) {
-      this.$watch('selectedOptions', (options: Options) => {
+      this.$watch('selectedOptions', (options: Options, oldOptions: Options) => {
         if (this.mustSyncWireModel()) {
           this.wireModel = options.map((option: Option) => option.value)
+        }
+
+        if (JSON.stringify(options) !== JSON.stringify(oldOptions)) {
+          this.syncSelectedOptions()
         }
       })
 
@@ -170,8 +174,12 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     if (this.hasWireModel && !this.config.multiselect) {
-      this.$watch('selected', (option: Option | undefined) => {
+      this.$watch('selected', (option?: Option, oldOption?: Option) => {
         this.wireModel = option?.value ?? null
+
+        if (oldOption?.value !== option?.value) {
+          this.syncSelectedOptions()
+        }
       })
 
       this.$watch('wireModel', value => {
@@ -243,8 +251,10 @@ export default (initOptions: InitOptions): Select => ({
       ...this.asyncData,
       api: props.asyncData.api,
       method: props.asyncData.method,
+      optionsPath: props.asyncData.optionsPath,
       params: props.asyncData.params,
-      alwaysFetch: props.asyncData.alwaysFetch
+      alwaysFetch: props.asyncData.alwaysFetch,
+      credentials: props.asyncData.credentials
     }
   },
   syncJsonOptions () {
@@ -276,7 +286,7 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   makeRequest (params = {}) {
-    const { api, method } = this.asyncData
+    const { api, method, credentials } = this.asyncData
 
     const url = new URL(api ?? '')
 
@@ -294,7 +304,8 @@ export default (initOptions: InitOptions): Select => ({
 
     const request = new Request(url, {
       method,
-      body: method === 'POST' ? JSON.stringify(parameters) : undefined
+      body: method === 'POST' ? JSON.stringify(parameters) : undefined,
+      credentials
     })
 
     request.headers.set('Content-Type', 'application/json')
@@ -324,7 +335,8 @@ export default (initOptions: InitOptions): Select => ({
 
         return response.json()
       })
-      .then((rawOptions: any[]) => {
+      .then((json: any) => {
+        const rawOptions: any[] = dataGet(json, this.asyncData.optionsPath)
         if (!Array.isArray(rawOptions)) return
 
         this.setOptions(
@@ -390,18 +402,24 @@ export default (initOptions: InitOptions): Select => ({
   setOptions (options) {
     this.options = options
 
-    this.syncSelectedOptions(true)
+    this.syncSelectedOptions()
   },
-  syncSelectedOptions (isSelected) {
-    const options: Options = this.selectedOptions
+  syncSelectedOptions () {
+    this.options
+      .filter(option => option.isSelected)
+      .forEach(option => (option.isSelected = false))
 
-    if (this.selected) options.push(this.selected)
+    const options = [...this.selectedOptions]
+
+    if (this.selected && !this.config.multiselect) {
+      options.push(this.selected)
+    }
 
     options.forEach(option => {
       const index = this.options.findIndex(({ value }) => value === option.value)
 
-      if (~index && this.options[index]) {
-        this.options[index].isSelected = isSelected
+      if (this.options[index]) {
+        this.options[index].isSelected = true
       }
     })
   },
@@ -501,7 +519,7 @@ export default (initOptions: InitOptions): Select => ({
 
     return this.selected?.value ?? ''
   },
-  getSelectedDysplayText () {
+  getSelectedDisplayText () {
     if (!this.selected || this.config.multiselect) return ''
     if (this.selected.html) return this.selected.html
     if (this.selected.template) {
@@ -551,15 +569,9 @@ export default (initOptions: InitOptions): Select => ({
       return this.close()
     }
 
-    if (this.selected) {
-      this.selected.isSelected = false
-    }
-
-    this.selected = option.value === this.selected?.value ? undefined : option
-
-    this.selected
-      ? this.selected.isSelected = true
-      : option.isSelected = false
+    this.selected = option.value === this.selected?.value
+      ? undefined
+      : option
 
     this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: this.selected }))
 
@@ -579,7 +591,7 @@ export default (initOptions: InitOptions): Select => ({
   clear () {
     this.search = ''
 
-    this.syncSelectedOptions(false)
+    this.syncSelectedOptions()
 
     this.config.multiselect
       ? this.selectedOptions = []

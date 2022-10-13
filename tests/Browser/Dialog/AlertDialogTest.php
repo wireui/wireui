@@ -50,8 +50,7 @@ class AlertDialogTest extends BrowserTestCase
                 })
                 EOT))
                 ->waitForLivewire()
-                ->pause(200)
-                ->assertSee($title)
+                ->waitUsing(7, 100, fn () => $browser->assertSee($title))
                 ->assertSee($description);
         });
     }
