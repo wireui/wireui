@@ -1,5 +1,5 @@
-import { ColorsStore } from '@/alpine/store/colorPicker'
 import { ModalStore } from '@/alpine/store/modal'
+import { ColorsStore } from '@/alpine/store/colorPicker'
 
 export type Entangle = any
 
@@ -36,10 +36,7 @@ export interface Alpine {
   store (name: 'wireui:modal', data?: ModalStore): ModalStore
   evaluate (scope: any, expression: string): any
   magic (name: string, callback: (el: HTMLElement) => any): void
-  directive(
-    name: string,
-    handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void,
-  ): void;
+  directive(name: string, handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void): void
 }
 
 export interface Component {
