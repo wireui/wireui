@@ -24,6 +24,12 @@ class WireUiTagCompilerTest extends UnitTestCase
 
         $styles = $compiler->compile('<wireui:styles/>');
         $this->assertEquals(WireUiDirectives::styles(), $styles);
+
+        $external = $compiler->compile('<wireui:external />');
+        $this->assertEquals(WireUiDirectives::external(), $external);
+
+        $external = $compiler->compile('<wireui:external/>');
+        $this->assertEquals(WireUiDirectives::external(), $external);
     }
 
     /** @test */
@@ -66,6 +72,19 @@ class WireUiTagCompilerTest extends UnitTestCase
         }
 
         $this->assertEquals($expected, $bladeDirectives->styles($absolute = false));
+    }
+
+    /** @test */
+    public function it_should_match_rendered_external_styles_link()
+    {
+        $bladeDirectives = new BladeDirectives();
+        $expected        = '<link href="/wireui/assets/external" rel="stylesheet" type="text/css">';
+
+        if ($version = $bladeDirectives->getManifestVersion('external.css')) {
+            $expected = str_replace('assets/external', "assets/external?id={$version}", $expected);
+        }
+
+        $this->assertEquals($expected, $bladeDirectives->external($absolute = false));
     }
 
     /**
