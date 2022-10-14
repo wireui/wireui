@@ -6,56 +6,20 @@ use Illuminate\Support\{Str, Stringable};
 
 class Input extends FormComponent
 {
-    public bool $borderless;
-
-    public bool $shadowless;
-
-    public ?string $label;
-
-    public ?string $hint;
-
-    public ?string $cornerHint;
-
-    public ?string $icon;
-
-    public ?string $rightIcon;
-
-    public ?string $prefix;
-
-    public ?string $suffix;
-
-    public ?string $prepend;
-
-    public ?string $append;
-
-    public bool $errorless;
-
     public function __construct(
-        bool $borderless = false,
-        bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $prefix = null,
-        ?string $suffix = null,
-        ?string $prepend = null,
-        ?string $append = null,
-        bool $errorless = false
+        public bool $borderless = false,
+        public bool $shadowless = false,
+        public ?string $label = null,
+        public ?string $hint = null,
+        public ?string $cornerHint = null,
+        public ?string $icon = null,
+        public ?string $rightIcon = null,
+        public ?string $prefix = null,
+        public ?string $suffix = null,
+        public ?string $prepend = null,
+        public ?string $append = null,
+        public bool $errorless = false
     ) {
-        $this->borderless = $borderless;
-        $this->shadowless = $shadowless;
-        $this->label      = $label;
-        $this->hint       = $hint;
-        $this->cornerHint = $cornerHint;
-        $this->icon       = $icon;
-        $this->rightIcon  = $rightIcon;
-        $this->prefix     = $prefix;
-        $this->suffix     = $suffix;
-        $this->prepend    = $prepend;
-        $this->append     = $append;
-        $this->errorless  = $errorless;
     }
 
     protected function getView(): string
