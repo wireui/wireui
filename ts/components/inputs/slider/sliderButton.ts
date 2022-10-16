@@ -94,7 +94,7 @@ export default (params): InputRange => ({
   },
   get currentPosition () {
     return `${
-      (this.value ?? this.min - this.min) / (this.max - this.min) * 100
+      (Number(this.value) - this.min) / (this.max - this.min) * 100
     }%`
   },
   get wrapperStyle () {

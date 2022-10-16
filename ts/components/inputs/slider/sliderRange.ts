@@ -71,7 +71,7 @@ export default (params): InputRange => ({
   },
   get precision () {
     const precisions = [this.min, this.max, this.step].map((item) => {
-      const decimal = `${  item}`.split('.')[1]
+      const decimal = ('' + item).split('.')[1]
 
       return decimal ? decimal.length : 0
     })
@@ -96,7 +96,7 @@ export default (params): InputRange => ({
     if (this.showStops) this.initStops()
   },
   stopStyle(stop){
-    const stepWidth = 100 * stop.value / (this.max - this.min);
+    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min);
 
     return stop.value >= Number(this.minValue) && stop.value <= Number(this.maxValue)
       ? { left: `${stepWidth}%`, display: 'none' }
