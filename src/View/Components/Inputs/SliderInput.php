@@ -67,7 +67,7 @@ class SliderInput extends FormComponent
 
     public function getSliderClasses(?bool $disabled = null): string
     {
-        return Str::of('relative w-full align-middle bg-secondary-200 rounded')
+        return Str::of('relative w-full align-middle bg-secondary-200 rounded dark:bg-white')
             ->when(!$disabled, fn (Stringable $stringable) => $stringable->append(' cursor-pointer'))
             ->when($this->size === 'sm', fn (Stringable $stringable) => $stringable->append(' my-4 h-1.5'))
             ->when($this->size === 'md', fn (Stringable $stringable) => $stringable->append(' my-4.5 h-2'))
@@ -85,6 +85,14 @@ class SliderInput extends FormComponent
             ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' h-2.5'));
     }
 
+    public function getStopClasses(): string
+    {
+        return Str::of('absolute -translate-x-1/2 bg-white rounded-full dark:bg-secondary-400')
+            ->when($this->size === 'sm', fn (Stringable $stringable) => $stringable->append(' w-1.5 h-1.5'))
+            ->when($this->size === 'md', fn (Stringable $stringable) => $stringable->append(' w-2 h-2'))
+            ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' w-2.5 h-2.5'));
+    }
+
     public function getButtonGridClasses(): string
     {
         return <<<EOT
@@ -95,9 +103,15 @@ class SliderInput extends FormComponent
 
     public function getButtonClasses(?bool $disabled = null): string
     {
-        $enabledClasses = 'border-2 bg-white cursor-grab hover:scale-120';
+        $enabledClasses = <<<EOT
+            border-2 bg-white hover:bg-white dark:hover:bg-white
+            cursor-grab hover:scale-120
+        EOT;
 
-        $disabledClasses = 'border-2 bg-white ring-transparent cursor-not-allowed';
+        $disabledClasses = <<<EOT
+            border-2 bg-white hover:bg-white dark:hover:bg-white
+            ring-transparent cursor-not-allowed
+        EOT;
 
         return $disabled ? $disabledClasses : $enabledClasses;
     }

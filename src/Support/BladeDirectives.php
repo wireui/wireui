@@ -22,6 +22,8 @@ class BladeDirectives
 
     public function hooksScript(): string
     {
+        $config = json_encode(collect(config('wireui'))->forget('components')->toArray());
+
         $scripts = <<<JS
             window.Wireui = {
                 hook(hook, callback) {
@@ -29,7 +31,8 @@ class BladeDirectives
                 },
                 dispatchHook(hook) {
                     window.dispatchEvent(new Event(`wireui:\${hook}`))
-                }
+                },
+                config: $config
             }
         JS;
 
