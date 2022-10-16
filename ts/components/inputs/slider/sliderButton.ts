@@ -94,7 +94,7 @@ export default (params): InputRange => ({
   },
   get currentPosition () {
     const value = Number(this.value)
-    const showValue = value < this.min ? this.min : (value > this.max ? this.max : value)
+    const showValue = value < this.min ? this.min : value > this.max ? this.max : value
 
     return `${(showValue - this.min) / (this.max - this.min) * 100}%`
   },
@@ -117,7 +117,7 @@ export default (params): InputRange => ({
       this.instance = tippy(tooltip, {
         content: `${this.value}`,
         theme: window.Wireui.config.tooltip.theme,
-        animation: window.Wireui.config.tooltip.animation,
+        animation: window.Wireui.config.tooltip.animation
       })
     }
   },
@@ -226,13 +226,14 @@ export default (params): InputRange => ({
 
     const steps = Math.round(newPosition / lengthPerStep)
 
+    // eslint-disable-next-line no-mixed-operators
     const value = steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min
 
     this.value = parseFloat(value.toFixed(this.precision))
 
-    if(this.value > this.max) this.value = this.max
+    if (this.value > this.max) this.value = this.max
 
-    if(this.value < this.min) this.value = this.min
+    if (this.value < this.min) this.value = this.min
 
     this.emitChange()
   }
