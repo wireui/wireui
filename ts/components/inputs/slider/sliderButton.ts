@@ -93,9 +93,10 @@ export default (params): InputRange => ({
     return window.Alpine.evaluate(this.$refs.sliderComponent, 'hideTooltip')
   },
   get currentPosition () {
-    return `${
-      (Number(this.value) - this.min) / (this.max - this.min) * 100
-    }%`
+    const value = Number(this.value)
+    const showValue = value < this.min ? this.min : (value > this.max ? this.max : value)
+
+    return `${(showValue - this.min) / (this.max - this.min) * 100}%`
   },
   get wrapperStyle () {
     return { left: this.currentPosition }

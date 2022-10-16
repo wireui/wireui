@@ -61,10 +61,15 @@ export default (params): InputRange => ({
     return Math.max(Number(this.firstValue), Number(this.secondValue))
   },
   get barStart () {
-    return `${ 100 * (this.minValue - this.min) / (this.max - this.min) }%`
+    const minValue = this.minValue < this.min ? this.min : this.minValue
+
+    return `${ 100 * (minValue - this.min) / (this.max - this.min) }%`
   },
   get barSize () {
-    return `${ 100 * (this.maxValue - this.minValue) / (this.max - this.min) }%`
+    const minValue = this.minValue < this.min ? this.min : this.minValue
+    const maxValue = this.maxValue > this.max ? this.max : this.maxValue
+
+    return `${ 100 * (maxValue - minValue) / (this.max - this.min) }%`
   },
   get barStyle () {
     return { width: this.barSize, left: this.barStart }
@@ -94,6 +99,8 @@ export default (params): InputRange => ({
     this.secondValue = Number(secondValue ? secondValue : this.min)
 
     if (this.showStops) this.initStops()
+
+    this.setDataValueOrder()
   },
   stopStyle(stop){
     const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min);

@@ -49,7 +49,10 @@ export default (params): InputRange => ({
     return '0%'
   },
   get barSize () {
-    return `${(Number(this.value) - this.min) / (this.max - this.min) * 100}%`
+    const value = Number(this.value)
+    const showValue = value < this.min ? this.min : (value > this.max ? this.max : value)
+
+    return `${(showValue - this.min) / (this.max - this.min) * 100}%`
   },
   get barStyle () {
     return { width: this.barSize, left: this.barStart }
