@@ -11,9 +11,11 @@ export interface InputRange {
   max: number;
   step: number;
   value: number | null;
+  stops: object[];
   sliderSize: number;
   range: boolean;
   disabled: boolean;
+  showStops: boolean;
   hideTooltip: boolean;
 
   get barStart(): string;
@@ -21,6 +23,8 @@ export interface InputRange {
   get barStyle(): object;
   get precision(): number;
   init(): void;
+  stopStyle(stop: any): object;
+  initStops(): void;
   resetSize(): void;
   inputChange(): void;
   emitChange(input: string, value: number): void;
@@ -30,13 +34,15 @@ export interface InputRange {
 
 export default (params): InputRange => ({
   $refs: {} as Refs,
-  min: 1,
+  min: 0,
   max: 100,
   step: 1,
   value: null,
+  stops: [],
   sliderSize: 1,
   range: params.range,
   disabled: params.disabled,
+  showStops: params.showStops,
   hideTooltip: params.hideTooltip,
 
   get barStart () {
@@ -58,13 +64,29 @@ export default (params): InputRange => ({
     return Math.max.apply(null, precisions)
   },
   init () {
+    const value = this.$refs.input.value
+
     this.min = Number(this.$refs.input.min)
 
     this.max = Number(this.$refs.input.max)
 
     this.step = Number(this.$refs.input.step)
 
-    this.value = Number(this.$refs.input.value)
+    this.value = Number(value ? value : this.min)
+
+    if (this.showStops) this.initStops()
+  },
+  stopStyle(stop){
+    const stepWidth = 100 * stop.value / (this.max - this.min);
+
+    return stop.value <= Number(this.value)
+      ? { left: `${stepWidth}%`, display: 'none' }
+      : { left: `${stepWidth}%` }
+  },
+  initStops(){
+    for (let i = this.min + this.step; i < this.max; i += this.step) {
+      this.stops.push({ value: i })
+    }
   },
   resetSize () {
     if (this.$refs.slider) {
