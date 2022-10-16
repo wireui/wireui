@@ -44,26 +44,18 @@ class CircleBadge extends Badge
     public function sizes(): array
     {
         return [
-            '2xs'         => 'w-5 h-5',
-            'xs'          => 'w-7 h-7',
-            'sm'          => 'w-8 h-8',
-            self::DEFAULT => 'w-9 h-9',
-            'md'          => 'w-10 h-10',
-            'lg'          => 'w-12 h-12',
-            'xl'          => 'w-14 h-14',
+            self::DEFAULT => 'w-6 h-6',
+            'md'          => 'w-8 h-8',
+            'lg'          => 'w-10 h-10',
         ];
     }
 
     public function iconSizes(): array
     {
         return [
-            '2xs'         => 'w-2 h-2',
-            'xs'          => 'w-3 h-3',
-            'sm'          => 'w-3.5 h-3.5',
-            self::DEFAULT => 'w-4 h-4',
+            self::DEFAULT => 'w-3 h-3',
             'md'          => 'w-4 h-4',
             'lg'          => 'w-5 h-5',
-            'xl'          => 'w-6 h-6',
         ];
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\View\{Component, ComponentAttributeBag};
 
 abstract class BaseBadge extends Component
 {
-    protected const DEFAULT = 'default';
+    protected const DEFAULT = 'sm';
 
     private array $smartAttributes = [];
 
