@@ -41,16 +41,17 @@
                 <div
                     x-show="show"
                     x-on:click.self="close"
-                    class="pointer-events-auto relative w-screen {{ $maxWidth }}"
                     x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
                     x-transition:enter-start="translate-x-full"
                     x-transition:enter-end="translate-x-0"
                     x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
                     x-transition:leave-start="translate-x-0"
                     x-transition:leave-end="translate-x-full"
+                    class="pointer-events-auto relative w-screen {{ $maxWidth }}"
                 >
                     <div class="flex h-full flex-col divide-y divide-secondary-200 dark:divide-secondary-500 bg-white dark:bg-secondary-800 shadow-xl">
                         <div class="flex min-h-0 flex-1 flex-col overflow-y-scroll py-6">
+
                             <div class="px-4 sm:px-6 pb-6 border-b dark:border-0">
                                 <div class="flex items-start justify-between">
                                     @isset($header)
@@ -81,6 +82,7 @@
                         @isset($footer)
                             {{ $footer }}
                         @endisset
+
                     </div>
                 </div>
             </div>
