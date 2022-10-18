@@ -5,7 +5,7 @@
             :name="$icon"
             class="{{ $iconSize }} shrink-0"
         />
-    @elseif ($prepend)
+    @elseif (isset($prepend))
         {{ $prepend }}
     @endif
 
@@ -17,7 +17,7 @@
             :name="$rightIcon"
             class="{{ $iconSize }} shrink-0"
         />
-    @elseif ($append)
+    @elseif (isset($append))
         {{ $append }}
     @endif
 </span>
