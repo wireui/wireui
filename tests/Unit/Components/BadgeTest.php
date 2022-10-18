@@ -9,9 +9,9 @@ it('should render the badge slot', function () {
 });
 
 it('should render the badge default', function () {
-    $html = Blade::render('<x-badge label="default" />');
+    $html = Blade::render('<x-badge label="Default" />');
 
-    expect($html)->toContain('default')->toContain('text-slate-500');
+    expect($html)->toContain('Default')->toContain('text-slate-500');
 });
 
 it('should render the badge primary', function () {
@@ -63,29 +63,25 @@ it('should render the badge white', function () {
 });
 
 it('should render the badge with prepend', function () {
-    $html = <<<EOT
+    $html = Blade::render(<<<EOT
         <x-badge primary label="Prepend">
             <x-slot name="prepend">
                 <b>add prepend</b>
             </x-slot>
         </x-badge>
-    EOT;
-
-    $html = Blade::render($html);
+    EOT);
 
     expect($html)->toContain('Prepend')->toContain('<b>add prepend</b>');
 });
 
 it('should render the badge with append', function () {
-    $html = <<<EOT
+    $html = Blade::render(<<<EOT
         <x-badge primary label="Append">
             <x-slot name="append">
                 <b>add append</b>
             </x-slot>
         </x-badge>
-    EOT;
-
-    $html = Blade::render($html);
+    EOT);
 
     expect($html)->toContain('Append')->toContain('<b>add append</b>');
 });
