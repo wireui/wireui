@@ -61,3 +61,31 @@ it('should render the badge white', function () {
 
     expect($html)->toContain('white')->toContain('bg-white');
 });
+
+it('should render the badge with prepend', function () {
+    $html = <<<EOT
+        <x-badge primary label="Prepend">
+            <x-slot name="prepend">
+                <b>Add Prepend</b>
+            </x-slot>
+        </x-badge>
+    EOT;
+
+    $html = Blade::render($html);
+
+    expect($html)->toContain('Prepend')->toContain('<b>Add Prepend</b>');
+});
+
+it('should render the badge with append', function () {
+    $html = <<<EOT
+        <x-badge primary label="Append">
+            <x-slot name="append">
+                <b>Add Append</b>
+            </x-slot>
+        </x-badge>
+    EOT;
+
+    $html = Blade::render($html);
+
+    expect($html)->toContain('Append')->toContain('<b>Add Append</b>');
+});
