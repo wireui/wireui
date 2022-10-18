@@ -15,77 +15,77 @@ it('should render the badge default', function () {
 });
 
 it('should render the badge primary', function () {
-    $html = Blade::render('<x-badge label="primary" primary />');
+    $html = Blade::render('<x-badge label="Primary" primary />');
 
-    expect($html)->toContain('primary')->toContain('bg-primary-500');
+    expect($html)->toContain('Primary')->toContain('bg-primary-500');
 });
 
 it('should render the badge secondary', function () {
-    $html = Blade::render('<x-badge label="secondary" secondary />');
+    $html = Blade::render('<x-badge label="Secondary" secondary />');
 
-    expect($html)->toContain('secondary')->toContain('bg-secondary-500');
+    expect($html)->toContain('Secondary')->toContain('bg-secondary-500');
 });
 
 it('should render the badge positive', function () {
-    $html = Blade::render('<x-badge label="positive" positive />');
+    $html = Blade::render('<x-badge label="Positive" positive />');
 
-    expect($html)->toContain('positive')->toContain('bg-positive-500');
+    expect($html)->toContain('Positive')->toContain('bg-positive-500');
 });
 
 it('should render the badge negative', function () {
-    $html = Blade::render('<x-badge label="negative" negative />');
+    $html = Blade::render('<x-badge label="Negative" negative />');
 
-    expect($html)->toContain('negative')->toContain('bg-negative-500');
+    expect($html)->toContain('Negative')->toContain('bg-negative-500');
 });
 
 it('should render the badge warning', function () {
-    $html = Blade::render('<x-badge label="warning" warning />');
+    $html = Blade::render('<x-badge label="Warning" warning />');
 
-    expect($html)->toContain('warning')->toContain('bg-warning-500');
+    expect($html)->toContain('Warning')->toContain('bg-warning-500');
 });
 
 it('should render the badge info', function () {
-    $html = Blade::render('<x-badge label="info" info />');
+    $html = Blade::render('<x-badge label="Info" info />');
 
-    expect($html)->toContain('info')->toContain('bg-info-500');
+    expect($html)->toContain('Info')->toContain('bg-info-500');
 });
 
 it('should render the badge dark', function () {
-    $html = Blade::render('<x-badge label="dark" dark />');
+    $html = Blade::render('<x-badge label="Dark" dark />');
 
-    expect($html)->toContain('dark')->toContain('bg-gray-700');
+    expect($html)->toContain('Dark')->toContain('bg-gray-700');
 });
 
 it('should render the badge white', function () {
-    $html = Blade::render('<x-badge label="white" white />');
+    $html = Blade::render('<x-badge label="White" white />');
 
-    expect($html)->toContain('white')->toContain('bg-white');
+    expect($html)->toContain('White')->toContain('bg-white');
 });
 
 it('should render the badge with prepend', function () {
     $html = <<<EOT
         <x-badge primary label="Prepend">
             <x-slot name="prepend">
-                <b>Add Prepend</b>
+                <b>add prepend</b>
             </x-slot>
         </x-badge>
     EOT;
 
     $html = Blade::render($html);
 
-    expect($html)->toContain('Prepend')->toContain('<b>Add Prepend</b>');
+    expect($html)->toContain('Prepend')->toContain('<b>add prepend</b>');
 });
 
 it('should render the badge with append', function () {
     $html = <<<EOT
         <x-badge primary label="Append">
             <x-slot name="append">
-                <b>Add Append</b>
+                <b>add append</b>
             </x-slot>
         </x-badge>
     EOT;
 
     $html = Blade::render($html);
 
-    expect($html)->toContain('Append')->toContain('<b>Add Append</b>');
+    expect($html)->toContain('Append')->toContain('<b>add append</b>');
 });
