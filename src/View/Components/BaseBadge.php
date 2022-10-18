@@ -21,8 +21,6 @@ abstract class BaseBadge extends Component
         public ?string $label = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
-        public ?string $prepend = null,
-        public ?string $append = null,
     ) {
     }
 

@@ -15,8 +15,6 @@ class CircleBadge extends Badge
         public ?string $label = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
-        public ?string $prepend = null,
-        public ?string $append = null,
     ) {
         parent::__construct(
             rounded: true,
@@ -29,8 +27,6 @@ class CircleBadge extends Badge
             label: $label,
             icon: $icon,
             rightIcon: null,
-            prepend: null,
-            append: null,
         );
     }
 

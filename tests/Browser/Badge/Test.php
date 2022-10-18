@@ -12,11 +12,11 @@ class Test extends BrowserTestCase
     {
         Livewire::test(BadgeComponent::class)
             ->assertSee('Label')
-            ->assertSee('primary')
-            ->assertSee('secondary')
-            ->assertSee('positive')
-            ->assertSee('negative')
-            ->assertSee('info')
-            ->assertSee('dark');
+            ->assertSee('Primary')
+            ->assertSee('Secondary')
+            ->assertSee('Positive')
+            ->assertSee('Negative')
+            ->assertSee('Info')
+            ->assertSee('Dark');
     }
 }
