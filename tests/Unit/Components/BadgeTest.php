@@ -85,3 +85,48 @@ it('should render the badge with append', function () {
 
     expect($html)->toContain('Append')->toContain('<b>add append</b>');
 });
+
+it('should render the badge append slot', function () {
+    $html = Blade::render(<<<BLADE
+    <x-badge label="primary">
+        <x-slot name="append">
+            <b>append content</b>
+        </x-slot>
+    </x-badge>
+    BLADE);
+
+    expect($html)->toContain('<b>append content</b>');
+});
+
+it('should render the badge prepend slot', function () {
+    $html = Blade::render(<<<BLADE
+    <x-badge label="primary">
+        <x-slot name="prepend">
+            <b>prepend content</b>
+        </x-slot>
+    </x-badge>
+    BLADE);
+
+    expect($html)->toContain('<b>prepend content</b>');
+});
+
+it('should render the badge slots and label', function () {
+    $html = Blade::render(<<<BLADE
+    <x-badge>
+        <x-slot name="prepend">
+            <b>prepend content</b>
+        </x-slot>
+
+        <span>My Label</span>
+
+        <x-slot name="append">
+            <b>append content</b>
+        </x-slot>
+    </x-badge>
+    BLADE);
+
+    expect($html)
+        ->toContain('<b>append content</b>')
+        ->toContain('<span>My Label</span>')
+        ->toContain('<b>prepend content</b>');
+});

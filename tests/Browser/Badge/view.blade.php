@@ -45,4 +45,28 @@
     <x-badge outline right-icon="home" warning label="Warning" />
     <x-badge outline right-icon="home" info label="Info" />
     <x-badge outline right-icon="home" dark label="Dark" />
+
+    <x-badge label="primary">
+        <x-slot name="prepend">
+            <b>prepend content</b>
+        </x-slot>
+    </x-badge>
+
+    <x-badge label="primary">
+        <x-slot name="prepend">
+            <b>prepend content</b>
+        </x-slot>
+
+        My Label
+
+        <x-slot name="append">
+            <b>append content</b>
+        </x-slot>
+    </x-badge>
+
+    <x-badge label="primary">
+        <x-slot name="append">
+            <b>append content</b>
+        </x-slot>
+    </x-badge>
 </div>
