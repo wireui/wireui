@@ -2,13 +2,12 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\{Component, ComponentAttributeBag};
+use Closure;
+use Illuminate\View\ComponentAttributeBag;
 
 abstract class BaseButton extends Component
 {
-    protected const DEFAULT = 'default';
-
-    private array $smartAttributes = [];
+    protected array $smartAttributes = [];
 
     public function __construct(
         public bool $rounded = false,
@@ -27,7 +26,7 @@ abstract class BaseButton extends Component
     ) {
     }
 
-    public function render()
+    public function render(): Closure
     {
         return function (array $data) {
             return view('wireui::components.button', $this->mergeData($data))->render();
@@ -92,35 +91,6 @@ abstract class BaseButton extends Component
         }
 
         return $this->defaultColors();
-    }
-
-    /**
-     * Will find the correct modifier, like sizes, xs, sm given as a component attribute
-     * This function will return "default" if no matches are found
-     * e.g. The sizes modifiers are: $sizes ['xs' => '...', ...]
-     *      <x-button xs ... /> will return "xs"
-     *      <x-button ... /> will return "default"
-     */
-    private function findModifier(ComponentAttributeBag $attributes, array $modifiers): string
-    {
-        $keys      = collect($modifiers)->keys()->except(self::DEFAULT)->toArray();
-        $modifiers = $attributes->only($keys)->getAttributes();
-        $modifier  = collect($modifiers)->filter()->keys()->first();
-
-        // store the modifier to remove from attributes bag
-        if ($modifier && !in_array($modifier, $this->smartAttributes)) {
-            $this->smartAttributes[] = $modifier;
-        }
-
-        return $modifier ?? self::DEFAULT;
-    }
-
-    /** Finds the correct modifier css classes on attributes */
-    public function modifierClasses(ComponentAttributeBag $attributes, array $modifiers): string
-    {
-        $modifier = $this->findModifier($attributes, $modifiers);
-
-        return $modifiers[$modifier];
     }
 
     abstract public function outlineColors(): array;

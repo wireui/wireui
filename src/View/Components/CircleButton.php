@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Closure;
+
 class CircleButton extends Button
 {
     public function __construct(
@@ -36,7 +38,7 @@ class CircleButton extends Button
         );
     }
 
-    public function render()
+    public function render(): Closure
     {
         return function (array $data) {
             return view('wireui::components.circle-button', $this->mergeData($data))->render();

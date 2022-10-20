@@ -52,7 +52,7 @@ class Badge extends BaseBadge
             'warning'     => 'text-warning-600 bg-warning-100 dark:bg-slate-700',
             'info'        => 'text-info-600 bg-info-100 dark:bg-slate-700',
             'dark'        => 'text-slate-900 bg-slate-200 dark:text-slate-400 dark:bg-slate-700',
-            'white'       => 'text-white bg-slate-100 dark:text-slate-300 dark:bg-slate-700',
+            'white'       => 'text-slate-500 bg-white dark:text-slate-300 dark:bg-slate-700',
             'black'       => 'text-black bg-slate-100 dark:text-slate-300 dark:bg-slate-700',
             'slate'       => 'text-slate-600 bg-slate-100 dark:text-slate-400 dark:bg-slate-700',
             'gray'        => 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-slate-700',
@@ -119,8 +119,8 @@ class Badge extends BaseBadge
     {
         return [
             self::DEFAULT => 'gap-x-1 text-xs font-semibold px-2.5 py-0.5',
-            'md'          => 'gap-x-1 text-sm font-bold px-2.5 py-0.5',
-            'lg'          => 'gap-x-1 text-base font-extrabold px-2.5 py-0.5',
+            'md'          => 'gap-x-1 text-sm font-semibold px-2.5 py-0.5',
+            'lg'          => 'gap-x-1 text-base font-semibold px-2.5 py-0.5',
         ];
     }
 
