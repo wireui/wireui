@@ -7,7 +7,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 abstract class BaseButton extends Component
 {
-    private array $smartAttributes = [];
+    protected array $smartAttributes = [];
 
     public function __construct(
         public bool $rounded = false,
