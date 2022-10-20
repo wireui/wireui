@@ -31,7 +31,7 @@
         <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl space-y-4 p-4"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
-                'sm:p-0':         style === 'inline',
+                'sm:p-0 sm:pt-1': style === 'inline',
             }">
             <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
                 style="height: 2px; width: 100%;"
