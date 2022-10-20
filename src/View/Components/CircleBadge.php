@@ -2,19 +2,17 @@
 
 namespace WireUi\View\Components;
 
+use Closure;
+
 class CircleBadge extends Badge
 {
     public function __construct(
-        public bool $rounded = false,
-        public bool $squared = false,
         public bool $outline = false,
         public bool $flat = false,
-        public bool $full = false,
         public ?string $color = null,
         public ?string $size = null,
         public ?string $label = null,
         public ?string $icon = null,
-        public ?string $rightIcon = null,
     ) {
         parent::__construct(
             rounded: true,
@@ -30,7 +28,7 @@ class CircleBadge extends Badge
         );
     }
 
-    public function render()
+    public function render(): Closure
     {
         return function (array $data) {
             return view('wireui::components.circle-badge', $this->mergeData($data))->render();
