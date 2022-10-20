@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Closure;
 use Illuminate\View\ComponentAttributeBag;
 
-abstract class BaseButton extends Component
+abstract class BaseBadge extends Component
 {
     protected array $smartAttributes = [];
 
@@ -20,16 +20,13 @@ abstract class BaseButton extends Component
         public ?string $label = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
-        public ?string $spinner = null,
-        public ?string $loadingDelay = null,
-        public ?string $href = null
     ) {
     }
 
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.button', $this->mergeData($data))->render();
+            return view('wireui::components.badge', $this->mergeData($data))->render();
         };
     }
 
@@ -39,7 +36,6 @@ abstract class BaseButton extends Component
         $attributes         = $data['attributes'];
         $attributes         = $this->mergeClasses($attributes);
         $data['iconSize']   = $this->iconSize($attributes);
-        $data['disabled']   = (bool) $attributes->get('disabled');
         $data['attributes'] = $attributes->except($this->smartAttributes);
 
         return $data;
@@ -49,8 +45,6 @@ abstract class BaseButton extends Component
     {
         return $attributes->class([
             'outline-none inline-flex justify-center items-center group',
-            'transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2',
-            'hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed',
             'rounded-full' => !$this->squared && $this->rounded,
             'rounded'      => !$this->squared && !$this->rounded,
             'w-full'       => $this->full,

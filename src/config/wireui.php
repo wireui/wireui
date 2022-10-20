@@ -115,6 +115,14 @@ return [
             'class' => Components\Inputs\PasswordInput::class,
             'alias' => 'inputs.password',
         ],
+        'badge' => [
+            'class' => Components\Badge::class,
+            'alias' => 'badge',
+        ],
+        'badge.circle' => [
+            'class' => Components\CircleBadge::class,
+            'alias' => 'badge.circle',
+        ],
         'button' => [
             'class' => Components\Button::class,
             'alias' => 'button',

@@ -44,8 +44,8 @@ class Button extends BaseButton
 
             'dark' => <<<EOT
                 ring-slate-600 text-slate-600 border border-slate-600 hover:bg-slate-200
-                dark:ring-offset-slate-800 dark:hover:bg-slate-700 dark:text-slate-500
-                dark:border-slate-400 dark:text-slate-400
+                dark:ring-offset-slate-800 dark:hover:bg-slate-700 dark:text-slate-400
+                dark:border-slate-400
             EOT,
 
             'white' => <<<EOT
