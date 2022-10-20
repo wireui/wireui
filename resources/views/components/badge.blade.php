@@ -6,7 +6,7 @@
             class="{{ $iconSize }} shrink-0"
         />
     @elseif (isset($prepend))
-        {{ $prepend }}
+        <div {{ $prepend->attributes }}>{{ $prepend }}</div>
     @endif
 
     {{ $label ?? $slot }}
@@ -18,6 +18,6 @@
             class="{{ $iconSize }} shrink-0"
         />
     @elseif (isset($append))
-        {{ $append }}
+        <div {{ $append->attributes }}>{{ $append }}</div>
     @endif
 </span>
