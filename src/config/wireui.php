@@ -41,10 +41,23 @@ return [
         |
     */
     'card' => [
-        'padding'   => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
-        'shadow'    => env('WIREUI_CARD_SHADOW', 'shadow-md'),
-        'rounded'   => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
-        'color'     => env('WIREUI_CARD_COLOR', 'bg-white dark:bg-secondary-800'),
+        'padding' => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
+        'shadow'  => env('WIREUI_CARD_SHADOW', 'shadow-md'),
+        'rounded' => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
+        'color'   => env('WIREUI_CARD_COLOR', 'bg-white dark:bg-secondary-800'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tooltip
+    |--------------------------------------------------------------------------
+    |
+    | The default tooltip preferences
+    |
+    */
+    'tooltip' => [
+        'theme'     => env('WIREUI_TOOLTIP_THEME', 'translucent'),
+        'animation' => env('WIREUI_TOOLTIP_ANIMATION', 'scale'),
     ],
 
     /*
@@ -114,6 +127,10 @@ return [
         'inputs.password' => [
             'class' => Components\Inputs\PasswordInput::class,
             'alias' => 'inputs.password',
+        ],
+        'inputs.slider' => [
+            'class' => Components\Inputs\SliderInput::class,
+            'alias' => 'inputs.slider',
         ],
         'badge' => [
             'class' => Components\Badge::class,
