@@ -76,7 +76,7 @@ export default (params): InputRange => ({
   },
   get precision () {
     const precisions = [this.min, this.max, this.step].map((item) => {
-      const decimal = ('' + item).split('.')[1]
+      const decimal = `${  item}`.split('.')[1]
 
       return decimal ? decimal.length : 0
     })
@@ -84,9 +84,9 @@ export default (params): InputRange => ({
     return Math.max.apply(null, precisions)
   },
   init () {
-    const firstValue = this.$refs.input1.value;
+    const firstValue = this.$refs.input1.value
 
-    const secondValue = this.$refs.input2.value;
+    const secondValue = this.$refs.input2.value
 
     this.min = Number(this.$refs.input1.min)
 
@@ -102,14 +102,14 @@ export default (params): InputRange => ({
 
     this.setDataValueOrder()
   },
-  stopStyle(stop){
-    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min);
+  stopStyle (stop) {
+    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min)
 
     return stop.value >= Number(this.minValue) && stop.value <= Number(this.maxValue)
       ? { left: `${stepWidth}%`, display: 'none' }
       : { left: `${stepWidth}%` }
   },
-  initStops(){
+  initStops () {
     for (let i = this.min + this.step; i < this.max; i += this.step) {
       this.stops.push({ value: i })
     }
@@ -172,8 +172,9 @@ export default (params): InputRange => ({
     }
   },
   setPosition (newPosition) {
-    let button
+    let button = ''
 
+    // eslint-disable-next-line no-mixed-operators
     const targetValue = this.min + newPosition * (this.max - this.min) / 100
 
     if (Math.abs(this.minValue - targetValue) < Math.abs(this.maxValue - targetValue)) {

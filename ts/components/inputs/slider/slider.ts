@@ -50,7 +50,7 @@ export default (params): InputRange => ({
   },
   get barSize () {
     const value = Number(this.value)
-    const showValue = value < this.min ? this.min : (value > this.max ? this.max : value)
+    const showValue = value < this.min ? this.min : value > this.max ? this.max : value
 
     return `${(showValue - this.min) / (this.max - this.min) * 100}%`
   },
@@ -59,7 +59,7 @@ export default (params): InputRange => ({
   },
   get precision () {
     const precisions = [this.min, this.max, this.step].map((item) => {
-      const decimal = ('' + item).split('.')[1]
+      const decimal = `${  item}`.split('.')[1]
 
       return decimal ? decimal.length : 0
     })
@@ -79,14 +79,14 @@ export default (params): InputRange => ({
 
     if (this.showStops) this.initStops()
   },
-  stopStyle(stop){
-    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min);
+  stopStyle (stop) {
+    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min)
 
     return stop.value <= Number(this.value)
       ? { left: `${stepWidth}%`, display: 'none' }
       : { left: `${stepWidth}%` }
   },
-  initStops(){
+  initStops () {
     for (let i = this.min + this.step; i < this.max; i += this.step) {
       this.stops.push({ value: i })
     }
