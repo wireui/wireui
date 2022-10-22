@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Badge;
+namespace Tests\Browser\SliderInput;
 
 use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
