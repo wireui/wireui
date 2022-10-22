@@ -7,7 +7,7 @@
     disabled: @boolean($disabled),
     showStops: @boolean($showStops),
     hideTooltip: @boolean($hideTooltip),
-})" {{ $attributes->only('wire:key') }}>
+})" {{ $attributes->only(['class', 'wire:key']) }}>
 
     @if ($label || $cornerHint)
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
@@ -31,7 +31,13 @@
         </div>
     @endif
 
-    <input x-on:change="inputChange" x-ref="input" {{ $attributes->class('hidden')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input"
+        {{ $attributes
+            ->except(['class', 'wire:key'])
+            ->class('hidden')
+            ->merge($formatDataSlider($attributes))
+        }}
+    />
 
     <div x-ref="slider" x-on:click="sliderClick" class="{{ $getSliderClasses($disabled) }}">
 
