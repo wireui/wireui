@@ -49,14 +49,14 @@ export default (params): InputRange => ({
     return '0%'
   },
   get barSize () {
-    return `${(this.value ?? this.min - this.min) / (this.max - this.min) * 100}%`
+    return `${(Number(this.value) - this.min) / (this.max - this.min) * 100}%`
   },
   get barStyle () {
     return { width: this.barSize, left: this.barStart }
   },
   get precision () {
     const precisions = [this.min, this.max, this.step].map((item) => {
-      const decimal = `${  item}`.split('.')[1]
+      const decimal = ('' + item).split('.')[1]
 
       return decimal ? decimal.length : 0
     })
@@ -77,7 +77,7 @@ export default (params): InputRange => ({
     if (this.showStops) this.initStops()
   },
   stopStyle(stop){
-    const stepWidth = 100 * stop.value / (this.max - this.min);
+    const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min);
 
     return stop.value <= Number(this.value)
       ? { left: `${stepWidth}%`, display: 'none' }
