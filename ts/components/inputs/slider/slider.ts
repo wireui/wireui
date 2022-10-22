@@ -39,67 +39,68 @@ export default (params): InputRange => ({
   disabled: params.disabled,
   hideTooltip: params.hideTooltip,
 
-  get barStart() {
-    return "0%";
+  get barStart () {
+    return '0%'
   },
-  get barSize() {
-    return `${((this.value ?? this.min - this.min) / (this.max - this.min)) * 100}%`;
+  get barSize () {
+    return `${(this.value ?? this.min - this.min) / (this.max - this.min) * 100}%`
   },
-  get barStyle() {
-    return { width: this.barSize, left: this.barStart };
+  get barStyle () {
+    return { width: this.barSize, left: this.barStart }
   },
-  get precision() {
-    let precisions = [this.min, this.max, this.step].map((item) => {
-      let decimal = ("" + item).split(".")[1];
-      return decimal ? decimal.length : 0;
-    });
+  get precision () {
+    const precisions = [this.min, this.max, this.step].map((item) => {
+      const decimal = `${  item}`.split('.')[1]
 
-    return Math.max.apply(null, precisions);
+      return decimal ? decimal.length : 0
+    })
+
+    return Math.max.apply(null, precisions)
   },
-  init() {
-    this.min = Number(this.$refs.input.min);
+  init () {
+    this.min = Number(this.$refs.input.min)
 
-    this.max = Number(this.$refs.input.max);
+    this.max = Number(this.$refs.input.max)
 
-    this.step = Number(this.$refs.input.step);
+    this.step = Number(this.$refs.input.step)
 
-    this.value = Number(this.$refs.input.value);
+    this.value = Number(this.$refs.input.value)
   },
-  resetSize() {
+  resetSize () {
     if (this.$refs.slider) {
-      this.sliderSize = this.$refs.slider["clientWidth"];
+      this.sliderSize = this.$refs.slider['clientWidth']
     }
   },
-  inputChange() {
-    if (this.disabled) return;
+  inputChange () {
+    if (this.disabled) return
 
-    this.value = Number(this.$refs.input.value);
+    this.value = Number(this.$refs.input.value)
 
-    window.Alpine.evaluate(this.$refs['button'].firstElementChild, `setValue = ${this.value}`);
+    window.Alpine.evaluate(this.$refs['button'].firstElementChild, `setValue = ${this.value}`)
   },
-  emitChange(input, value) {
-    if (this.disabled) return;
+  emitChange (input, value) {
+    if (this.disabled) return
 
-    if (isNaN(value) || value === null) return;
+    if (isNaN(value) || value === null) return
 
-    this.value = value;
+    this.value = value
 
-    this.$refs[input].value = this.value.toString();
+    this.$refs[input].value = this.value.toString()
 
-    this.$refs[input].dispatchEvent(new Event("input"));
+    this.$refs[input].dispatchEvent(new Event('input'))
   },
-  setPosition(newPosition) {
-    window.Alpine.evaluate(this.$refs['button'].firstElementChild, `setPosition('${newPosition}')`);
+  setPosition (newPosition) {
+    window.Alpine.evaluate(this.$refs['button'].firstElementChild, `setPosition('${newPosition}')`)
   },
-  sliderClick(event) {
-    if (this.disabled) return;
+  sliderClick (event) {
+    if (this.disabled) return
 
-    this.resetSize();
+    this.resetSize()
 
-    const sliderOffsetLeft = this.$refs.slider.getBoundingClientRect().left;
+    const sliderOffsetLeft = this.$refs.slider.getBoundingClientRect().left
 
-    const newPosition = ((event.clientX - sliderOffsetLeft) / this.sliderSize) * 100;
+    const newPosition = (event.clientX - sliderOffsetLeft) / this.sliderSize * 100
 
-    this.setPosition(newPosition);
+    this.setPosition(newPosition)
   }
-});
+})

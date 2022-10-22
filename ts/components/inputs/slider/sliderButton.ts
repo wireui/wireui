@@ -1,4 +1,5 @@
-import tippy, { Instance } from "tippy.js";
+// eslint-disable-next-line import/named
+import tippy, { Instance } from 'tippy.js'
 
 export type Refs = {
   input: HTMLInputElement;
@@ -64,167 +65,167 @@ export default (params): InputRange => ({
   newPosition: null,
   instance: {} as Instance,
 
-  set setValue(value) {
-    this.value = value;
+  set setValue (value) {
+    this.value = value
   },
-  get max() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "max");
+  get max () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'max')
   },
-  get min() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "min");
+  get min () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'min')
   },
-  get step() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "step");
+  get step () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'step')
   },
-  get range() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "range");
+  get range () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'range')
   },
-  get disabled() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "disabled");
+  get disabled () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'disabled')
   },
-  get precision() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "precision");
+  get precision () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'precision')
   },
-  get sliderSize() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "sliderSize");
+  get sliderSize () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'sliderSize')
   },
-  get hideTooltipParent() {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, "hideTooltip");
+  get hideTooltipParent () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'hideTooltip')
   },
-  get currentPosition() {
+  get currentPosition () {
     return `${
-      ((this.value ?? this.min - this.min) / (this.max - this.min)) * 100
-    }%`;
+      (this.value ?? this.min - this.min) / (this.max - this.min) * 100
+    }%`
   },
-  get wrapperStyle() {
-    return { left: this.currentPosition };
+  get wrapperStyle () {
+    return { left: this.currentPosition }
   },
-  get buttonStyle() {
-    return this.dragging ? { cursor: "grabbing", transform: "scale(1.2)" } : {};
+  get buttonStyle () {
+    return this.dragging ? { cursor: 'grabbing', transform: 'scale(1.2)' } : {}
   },
-  init() {
-    this.value = Number(this.$refs[this.input].value);
+  init () {
+    this.value = Number(this.$refs[this.input].value)
 
     if (!this.hideTooltipParent) {
-      const button = this.input.replace("input", "button");
+      const button = this.input.replace('input', 'button')
 
-      const tooltip = this.$refs[button].firstElementChild.firstElementChild as Element;
+      const tooltip = this.$refs[button].firstElementChild.firstElementChild as Element
 
-      this.instance = tippy(tooltip, { content: `${this.value}` });
+      this.instance = tippy(tooltip, { content: `${this.value}` })
     }
   },
-  resetSize() {
-    window.Alpine.evaluate(this.$refs.sliderComponent, "resetSize()");
+  resetSize () {
+    window.Alpine.evaluate(this.$refs.sliderComponent, 'resetSize()')
   },
-  emitChange() {
+  emitChange () {
     window.Alpine.evaluate(
       this.$refs.sliderComponent,
       `emitChange('${this.input}', '${this.value}')`
-    );
+    )
   },
-  setDataValueOrder() {
+  setDataValueOrder () {
     if (this.range) {
-      window.Alpine.evaluate(this.$refs.sliderComponent, "setDataValueOrder()");
+      window.Alpine.evaluate(this.$refs.sliderComponent, 'setDataValueOrder()')
     }
   },
-  showTooltip() {
-    if (this.hideTooltipParent) return;
+  showTooltip () {
+    if (this.hideTooltipParent) return
 
-    this.instance.setContent(`${this.value}`);
+    this.instance.setContent(`${this.value}`)
 
-    this.instance.show();
+    this.instance.show()
   },
-  hideTooltip() {
-    if (this.hideTooltipParent) return;
+  hideTooltip () {
+    if (this.hideTooltipParent) return
 
-    this.instance.hide();
+    this.instance.hide()
   },
-  buttonEnter() {
-    this.hovering = true;
+  buttonEnter () {
+    this.hovering = true
 
-    this.showTooltip();
+    this.showTooltip()
   },
-  buttonLeave() {
-    this.hovering = false;
+  buttonLeave () {
+    this.hovering = false
 
-    this.hideTooltip();
+    this.hideTooltip()
   },
-  buttonDown(event) {
-    if (this.disabled) return;
+  buttonDown (event) {
+    if (this.disabled) return
 
-    event.preventDefault();
+    event.preventDefault()
 
-    this.onDragStart(event);
+    this.onDragStart(event)
   },
-  onDragStart(event) {
-    this.dragging = true;
-    this.isClick = true;
+  onDragStart (event) {
+    this.dragging = true
+    this.isClick = true
 
-    if (event.type === "touchstart") {
-      event.clientY = event.touches[0].clientY;
-      event.clientX = event.touches[0].clientX;
+    if (event.type === 'touchstart') {
+      event.clientY = event.touches[0].clientY
+      event.clientX = event.touches[0].clientX
     }
 
-    this.startX = event.clientX;
+    this.startX = event.clientX
 
-    this.startPosition = parseFloat(this.currentPosition);
+    this.startPosition = parseFloat(this.currentPosition)
 
-    this.newPosition = this.startPosition;
+    this.newPosition = this.startPosition
   },
-  onDragging(event) {
+  onDragging (event) {
     if (this.dragging) {
-      this.isClick = false;
+      this.isClick = false
 
-      this.showTooltip();
+      this.showTooltip()
 
-      this.resetSize();
+      this.resetSize()
 
-      let diff = 0;
+      let diff = 0
 
-      if (event.type === "touchmove") {
-        event.clientY = event.touches[0].clientY;
-        event.clientX = event.touches[0].clientX;
+      if (event.type === 'touchmove') {
+        event.clientY = event.touches[0].clientY
+        event.clientX = event.touches[0].clientX
       }
 
-      this.currentX = event.clientX;
+      this.currentX = event.clientX
 
-      diff = ((this.currentX - this.startX) / this.sliderSize) * 100;
+      diff = (this.currentX - this.startX) / this.sliderSize * 100
 
-      this.newPosition = this.startPosition + diff;
+      this.newPosition = this.startPosition + diff
 
-      this.setPosition(this.newPosition);
+      this.setPosition(this.newPosition)
     }
   },
-  onDragEnd() {
+  onDragEnd () {
     if (this.dragging) {
-      this.dragging = false;
+      this.dragging = false
 
-      this.hideTooltip();
+      this.hideTooltip()
 
       if (!this.isClick) {
-        this.setPosition(Number(this.newPosition));
+        this.setPosition(Number(this.newPosition))
 
-        this.setDataValueOrder();
+        this.setDataValueOrder()
       }
     }
   },
-  setPosition(newPosition) {
-    if (this.disabled) return;
+  setPosition (newPosition) {
+    if (this.disabled) return
 
-    if (newPosition === null || isNaN(newPosition)) return;
+    if (newPosition === null || isNaN(newPosition)) return
 
-    newPosition = newPosition < 0 ? 0 : newPosition;
+    newPosition = newPosition < 0 ? 0 : newPosition
 
-    newPosition = newPosition > 100 ? 100 : newPosition;
+    newPosition = newPosition > 100 ? 100 : newPosition
 
-    const lengthPerStep = 100 / ((this.max - this.min) / this.step);
+    const lengthPerStep = 100 / ((this.max - this.min) / this.step)
 
-    const steps = Math.round(newPosition / lengthPerStep);
+    const steps = Math.round(newPosition / lengthPerStep)
 
-    let value = steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min;
+    const value = steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min
 
-    this.value = parseFloat(value.toFixed(this.precision));
+    this.value = parseFloat(value.toFixed(this.precision))
 
-    this.emitChange();
+    this.emitChange()
   }
-});
+})
