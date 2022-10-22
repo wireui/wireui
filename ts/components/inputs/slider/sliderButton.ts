@@ -23,8 +23,8 @@ export interface InputRange {
   instance: Instance;
 
   set setValue(value: number);
-  get max(): number;
   get min(): number;
+  get max(): number;
   get step(): number;
   get range(): boolean;
   get disabled(): boolean;
@@ -68,11 +68,11 @@ export default (params): InputRange => ({
   set setValue (value) {
     this.value = value
   },
-  get max () {
-    return window.Alpine.evaluate(this.$refs.sliderComponent, 'max')
-  },
   get min () {
     return window.Alpine.evaluate(this.$refs.sliderComponent, 'min')
+  },
+  get max () {
+    return window.Alpine.evaluate(this.$refs.sliderComponent, 'max')
   },
   get step () {
     return window.Alpine.evaluate(this.$refs.sliderComponent, 'step')
@@ -104,24 +104,27 @@ export default (params): InputRange => ({
     return this.dragging ? { cursor: 'grabbing', transform: 'scale(1.2)' } : {}
   },
   init () {
-    this.value = Number(this.$refs[this.input].value)
+    const value = this.$refs[this.input].value
+
+    this.value = Number(value ? value : this.min)
 
     if (!this.hideTooltipParent) {
       const button = this.input.replace('input', 'button')
 
       const tooltip = this.$refs[button].firstElementChild.firstElementChild as Element
 
-      this.instance = tippy(tooltip, { content: `${this.value}` })
+      this.instance = tippy(tooltip, {
+        content: `${this.value}`,
+        theme: window.Wireui.config.tooltip.theme,
+        animation: window.Wireui.config.tooltip.animation,
+      })
     }
   },
   resetSize () {
     window.Alpine.evaluate(this.$refs.sliderComponent, 'resetSize()')
   },
   emitChange () {
-    window.Alpine.evaluate(
-      this.$refs.sliderComponent,
-      `emitChange('${this.input}', '${this.value}')`
-    )
+    window.Alpine.evaluate(this.$refs.sliderComponent, `emitChange('${this.input}', '${this.value}')`)
   },
   setDataValueOrder () {
     if (this.range) {
@@ -225,6 +228,10 @@ export default (params): InputRange => ({
     const value = steps * lengthPerStep * (this.max - this.min) * 0.01 + this.min
 
     this.value = parseFloat(value.toFixed(this.precision))
+
+    if(this.value > this.max) this.value = this.max
+
+    if(this.value < this.min) this.value = this.min
 
     this.emitChange()
   }

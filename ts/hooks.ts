@@ -1,5 +1,6 @@
 export interface WireUiHooks {
   hook (hook: string, callback: CallableFunction): void,
-  dispatchHook (hook: string): void
+  dispatchHook (hook: string): void,
+  config: any
 }
 

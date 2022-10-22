@@ -12,11 +12,13 @@ export interface InputRange {
   min: number;
   max: number;
   step: number;
+  stops: object[];
   firstValue: number | null;
   secondValue: number | null;
   sliderSize: number;
   range: boolean;
   disabled: boolean;
+  showStops: boolean;
   hideTooltip: boolean;
 
   get minValue(): number;
@@ -26,6 +28,8 @@ export interface InputRange {
   get barStyle(): object;
   get precision(): number;
   init(): void;
+  stopStyle(stop: any): object;
+  initStops(): void;
   resetSize(): void;
   inputChange(event: any): void;
   setDataValueOrder(): void;
@@ -38,14 +42,16 @@ export interface InputRange {
 
 export default (params): InputRange => ({
   $refs: {} as Refs,
-  min: 1,
+  min: 0,
   max: 100,
   step: 1,
+  stops: [],
   firstValue: null,
   secondValue: null,
   sliderSize: 1,
   range: params.range,
   disabled: params.disabled,
+  showStops: params.showStops,
   hideTooltip: params.hideTooltip,
 
   get minValue () {
@@ -73,15 +79,33 @@ export default (params): InputRange => ({
     return Math.max.apply(null, precisions)
   },
   init () {
+    const firstValue = this.$refs.input1.value;
+
+    const secondValue = this.$refs.input2.value;
+
     this.min = Number(this.$refs.input1.min)
 
     this.max = Number(this.$refs.input1.max)
 
     this.step = Number(this.$refs.input1.step)
 
-    this.firstValue = Number(this.$refs.input1.value)
+    this.firstValue = Number(firstValue ? firstValue : this.min)
 
-    this.secondValue = Number(this.$refs.input2.value)
+    this.secondValue = Number(secondValue ? secondValue : this.min)
+
+    if (this.showStops) this.initStops()
+  },
+  stopStyle(stop){
+    const stepWidth = 100 * stop.value / (this.max - this.min);
+
+    return stop.value >= Number(this.minValue) && stop.value <= Number(this.maxValue)
+      ? { left: `${stepWidth}%`, display: 'none' }
+      : { left: `${stepWidth}%` }
+  },
+  initStops(){
+    for (let i = this.min + this.step; i < this.max; i += this.step) {
+      this.stops.push({ value: i })
+    }
   },
   resetSize () {
     if (this.$refs.slider) {
