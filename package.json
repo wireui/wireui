@@ -18,7 +18,8 @@
         "dayjs": "^1.11.5",
         "lodash.debounce": "^4.0.8",
         "lodash.kebabcase": "^4.1.1",
-        "qs": "^6.11.0"
+        "qs": "^6.11.0",
+        "tippy.js": "^6.3.7"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
