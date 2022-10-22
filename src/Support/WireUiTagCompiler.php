@@ -14,7 +14,7 @@ class WireUiTagCompiler extends ComponentTagCompiler
 
     protected function compileWireUiSelfClosingTags($value)
     {
-        $pattern = '/<\s*wireui\:(scripts|styles)\s*\/?>/';
+        $pattern = '/<\s*wireui\:(scripts|styles|external)\s*\/?>/';
 
         return preg_replace_callback($pattern, function (array $matches) {
             $element = '<script>throw new Error("Wrong <wireui:scripts /> usage. It should be <wireui:scripts />")</script>';
@@ -25,6 +25,10 @@ class WireUiTagCompiler extends ComponentTagCompiler
 
             if ($matches[1] === 'styles') {
                 $element = WireUiDirectives::styles();
+            }
+
+            if ($matches[1] === 'external') {
+                $element = WireUiDirectives::external();
             }
 
             return $element;
