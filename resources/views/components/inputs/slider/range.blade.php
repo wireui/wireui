@@ -34,9 +34,9 @@
         </div>
     @endif
 
-    <input x-on:change="inputChange" x-ref="input1" {{ $min->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input1" {{ $min->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
-    <input x-on:change="inputChange" x-ref="input2" {{ $max->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input2" {{ $max->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
     <div x-ref="slider" x-on:click="sliderClick" class="{{ $getSliderClasses($disabled) }}">
 

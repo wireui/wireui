@@ -31,7 +31,7 @@
         </div>
     @endif
 
-    <input x-on:change="inputChange" x-ref="input" {{ $attributes->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input" {{ $attributes->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
     <div x-ref="slider" x-on:click="sliderClick" class="{{ $getSliderClasses($disabled) }}">
 
