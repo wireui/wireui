@@ -19,4 +19,9 @@ class WireUiAssetsController extends Controller
     {
         return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.css', $mimeType = 'text/css');
     }
+
+    public function external(): Response|BinaryFileResponse
+    {
+        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/external.css', $mimeType = 'text/css');
+    }
 }
