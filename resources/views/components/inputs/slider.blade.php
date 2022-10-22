@@ -5,6 +5,7 @@
 <div x-ref="sliderComponent" x-data="wireui_inputs_slider({
     range: @boolean($range),
     disabled: @boolean($disabled),
+    showStops: @boolean($showStops),
     hideTooltip: @boolean($hideTooltip),
 })" {{ $attributes->only('wire:key') }}>
 
@@ -30,7 +31,7 @@
         </div>
     @endif
 
-    <input x-on:change="inputChange" x-ref="input" {{ $attributes->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input" {{ $attributes->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
     <div x-ref="slider" x-on:click="sliderClick" class="{{ $getSliderClasses($disabled) }}">
 
@@ -64,6 +65,15 @@
                 />
             </div>
         </div>
+
+        @if ($showStops)
+            <template x-for="stop in stops">
+                <div
+                    class="{{ $getStopClasses() }}"
+                    x-bind:style="stopStyle(stop)"
+                ></div>
+            </template>
+        @endif
     </div>
 
     @if (!$hasError && $hint)

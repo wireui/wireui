@@ -7,6 +7,7 @@
 <div x-ref="sliderComponent" x-data="wireui_inputs_slider_range({
     range: @boolean($range),
     disabled: @boolean($disabled),
+    showStops: @boolean($showStops),
     hideTooltip: @boolean($hideTooltip),
 })" {{ $attributes->only('wire:key') }}>
 
@@ -32,9 +33,9 @@
         </div>
     @endif
 
-    <input x-on:change="inputChange" x-ref="input1" {{ $min->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input1" {{ $min->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
-    <input x-on:change="inputChange" x-ref="input2" {{ $max->class('')->merge($formatDataSlider($attributes)) }} />
+    <input x-on:change="inputChange" x-ref="input2" {{ $max->class('hidden')->merge($formatDataSlider($attributes)) }} />
 
     <div x-ref="slider" x-on:click="sliderClick" class="{{ $getSliderClasses($disabled) }}">
 
@@ -63,7 +64,7 @@
                     :class="$getButtonClasses($disabled)"
                     :size="$buttonSizes()"
                     x-bind:style="buttonStyle"
-                    x-text="value"
+                    {{-- x-text="value" --}}
                     outline
                 />
             </div>
@@ -79,7 +80,6 @@
                 <x-dynamic-component
                     tabindex="0"
                     :component="WireUi::component('button.circle')"
-                    x-on:click.stop.prevent="console.log('click')"
                     x-on:mouseenter="buttonEnter"
                     x-on:mouseleave="buttonLeave"
                     x-on:mousedown="buttonDown"
@@ -93,11 +93,20 @@
                     :class="$getButtonClasses($disabled)"
                     :size="$buttonSizes()"
                     x-bind:style="buttonStyle"
-                    x-text="value"
+                    {{-- x-text="value" --}}
                     outline
                 />
             </div>
         </div>
+
+        @if ($showStops)
+            <template x-for="stop in stops">
+                <div
+                    class="{{ $getStopClasses() }}"
+                    x-bind:style="stopStyle(stop)"
+                ></div>
+            </template>
+        @endif
     </div>
 
     @if (!$hasError && $hint)
