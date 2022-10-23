@@ -28,6 +28,7 @@
             :class="$getButtonClasses($disabled)"
             :size="$buttonSizes()"
             x-bind:style="buttonStyle"
+            {{-- x-text="value" --}}
             outline
         />
     </div>

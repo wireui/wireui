@@ -10,7 +10,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_render_badges_without_errors(): void
     {
-        Livewire::test(BadgeComponent::class)
+        Livewire::test(Component::class)
             ->assertSee('Label')
             ->assertSee('Primary')
             ->assertSee('Secondary')

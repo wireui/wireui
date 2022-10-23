@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Browser\Badge;
+namespace Tests\Browser\SliderInput;
 
 use Illuminate\Support\Facades\View;
 
-class BadgeComponent extends \Livewire\Component
+class Component extends \Livewire\Component
 {
     public function render()
     {
