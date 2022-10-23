@@ -30,7 +30,7 @@ class Toggle extends Checkbox
                     bg-secondary-200 peer-checked:bg-primary-600 peer-focus:ring-primary-600
                     group-focus:ring-primary-600 dark:group-focus:ring-secondary-600
                     dark:peer-focus:ring-secondary-600 dark:peer-focus:ring-offset-secondary-800
-                    dark:bg-secondary-600 dark:peer-checked:bg-secondary-700
+                    dark:bg-secondary-600 dark:peer-checked:bg-primary-700
                 ');
             },
             function (Stringable $stringable) {
