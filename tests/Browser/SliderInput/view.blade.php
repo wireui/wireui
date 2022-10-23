@@ -11,5 +11,5 @@
     <x-inputs.slider md name="test3" label="Test 3" step="5" hide-tooltip />
 
     // test it_should_4
-    <x-inputs.slider lg name="test4" label="Test 4" step="20" show-stops />
+    <x-inputs.slider lg name="test4" label="Test 4" value="40" step="20" show-stops />
 </div>
