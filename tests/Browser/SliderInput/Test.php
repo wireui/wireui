@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 class Test extends BrowserTestCase
 {
     /** @test */
-    public function it_should_1(): void
+    public function it_should_render_an_input_slider_with_the_default_min_and_max_values(): void
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -31,7 +31,7 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
-    public function it_should_2(): void
+    public function it_should_render_an_input_slider_with_the_custom_min_and_max_values(): void
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -54,7 +54,7 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
-    public function it_should_3(): void
+    public function it_should_render_an_input_slider_without_tooltip(): void
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -75,7 +75,7 @@ class Test extends BrowserTestCase
     }
 
     /** @test */
-    public function it_should_4(): void
+    public function it_should_render_an_input_slider_with_stops(): void
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
