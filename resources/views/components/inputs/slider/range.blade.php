@@ -1,8 +1,5 @@
 @php
     $hasError = !$errorless && $name && $errors->has($name);
-
-    $min = $formatDataSliderRange($attributes, 'min');
-    $max = $formatDataSliderRange($attributes, 'max');
 @endphp
 
 <div x-ref="sliderComponent" x-data="wireui_inputs_slider_range({
@@ -35,18 +32,20 @@
     @endif
 
     <input x-on:change="inputChange" x-ref="input1"
-        {{ $min
-            ->except(['class', 'wire:key'])
+        {{ $attributes
+            ->except(['class', 'wire:key', 'id', 'name'])
             ->class('hidden')
             ->merge($formatDataSlider($attributes))
+            ->merge($formatDataSliderRange($min)->getAttributes())
         }}
     />
 
     <input x-on:change="inputChange" x-ref="input2"
-        {{ $max
-            ->except(['class', 'wire:key'])
+        {{ $attributes
+            ->except(['class', 'wire:key', 'id', 'name'])
             ->class('hidden')
             ->merge($formatDataSlider($attributes))
+            ->merge($formatDataSliderRange($max)->getAttributes())
         }}
     />
 

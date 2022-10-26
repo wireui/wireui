@@ -2,16 +2,12 @@
 
 namespace WireUi\View\Components\Inputs;
 
-use Exception;
-use Illuminate\Support\{Collection, Str, Stringable};
-use Illuminate\View\ComponentAttributeBag;
+use Illuminate\Support\{Str, Stringable};
+use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use WireUi\View\Components\FormComponent;
 
 class SliderInput extends FormComponent
 {
-    protected Collection $names;
-    protected Collection $values;
-
     protected string $size = 'sm';
 
     public function __construct(
@@ -24,14 +20,9 @@ class SliderInput extends FormComponent
         public ?string $label = null,
         public ?string $hint = null,
         public ?string $cornerHint = null,
-        Collection|array|null $names = null,
-        Collection|array|null $values = null,
     ) {
         $this->size = $this->md ? 'md' : $this->size;
         $this->size = $this->lg ? 'lg' : $this->size;
-
-        $this->names = collect($names)->values();
-        $this->values = collect($values)->values();
     }
 
     protected function getView(): string
@@ -41,53 +32,9 @@ class SliderInput extends FormComponent
             : 'wireui::components.inputs.slider.index';
     }
 
-    private function validateConfig(): void
+    public function formatDataSliderRange(ComponentSlot $data): ComponentAttributeBag
     {
-        if ($this->names->isNotEmpty() && $this->names->count() !== 2) {
-            throw new Exception('The names array must contain exactly two items.');
-        }
-
-        if ($this->values->isNotEmpty() && $this->values->count() !== 2) {
-            throw new Exception('The values array must contain exactly two items.');
-        }
-    }
-
-    public function formatDataSliderRange(ComponentAttributeBag $attributes, string $type)
-    {
-        $this->validateConfig();
-
-        $copy = clone $attributes;
-
-        $model = $copy->wire('model');
-
-        if (is_string($model->directive) && is_bool($model->value) && $this->names->isEmpty()) {
-            throw new Exception('When using a boolean model, you must provide a values array or assign their value.');
-        }
-
-        if (is_bool($model->value) && is_bool($copy->get('name')) && $this->names->isEmpty()) {
-            throw new Exception('The {values} attribute is required when using boolean values.');
-        }
-
-        if ($this->names->isNotEmpty()) {
-            $modelName = $valueName = $type === 'min' ? "{$this->names->get(0)}" : "{$this->names->get(1)}";
-        } else {
-            $modelName = "{$model->value}_{$type}";
-            $valueName = "{$copy->get('name')}_{$type}";
-        }
-
-        if (is_string($model->directive)) {
-            $copy->offsetSet($model->directive, $modelName);
-        }
-
-        if (is_string($copy->get('name'))) {
-            $copy->offsetSet('name', $valueName);
-        }
-
-        if(!is_string($model->directive) && $this->values->isNotEmpty()) {
-            $copy->offsetSet('value', $type === 'min' ? $this->values->get(0) : $this->values->get(1));
-        }
-
-        return $copy;
+        return $this->mergeAttributes((array) $data)['attributes'];
     }
 
     public function formatDataSlider(ComponentAttributeBag $attributes): array
