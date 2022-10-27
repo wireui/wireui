@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\View\ComponentAttributeBag;
+use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use WireUi\View\Components\Inputs\SliderInput;
 
 it('should return the view as the chosen type', function () {
@@ -21,6 +21,30 @@ it('should return the view as the chosen type', function () {
     $method->setAccessible(true);
 
     expect($method->invokeArgs($class, []))->toBe('wireui::components.inputs.slider.range');
+});
+
+it('should format the data for the input number when using range', function () {
+    $class = new SliderInput();
+
+    $min = new ComponentSlot('', ['wire:model' => 'value.0']);
+
+    expect($class->formatDataSliderRange($min)->getAttributes())->toBe([
+        'wire:model' => 'value.0',
+        'name'       => 'value.0',
+        'id'         => md5('value.0'),
+        'disabled'   => null,
+        'readonly'   => null,
+    ]);
+
+    $max = new ComponentSlot('', ['wire:model' => 'value.1']);
+
+    expect($class->formatDataSliderRange($max)->getAttributes())->toBe([
+        'wire:model' => 'value.1',
+        'name'       => 'value.1',
+        'id'         => md5('value.1'),
+        'disabled'   => null,
+        'readonly'   => null,
+    ]);
 });
 
 it('should format the data for the input number', function () {
@@ -94,7 +118,6 @@ it('should return the bar classes according to the data passed', function () {
         ->toBe('absolute rounded-l bg-primary-600 h-2.5');
 });
 
-
 it('should return the stop classes according to the data passed', function () {
     $class = new SliderInput();
 
@@ -112,7 +135,7 @@ it('should return the stop classes according to the data passed', function () {
         ->toBe('absolute -translate-x-1/2 bg-white rounded-full dark:bg-secondary-400 w-2.5 h-2.5');
 });
 
-it('should return the button grid classes', function(){
+it('should return the button grid classes', function () {
     $class = new SliderInput();
 
     expect($class->getButtonGridClasses())
@@ -138,7 +161,7 @@ it('should return the button classes according to the data passed', function () 
         EOT);
 });
 
-it('should return the button color', function(){
+it('should return the button color', function () {
     $class = new SliderInput();
 
     expect($class->buttonError())->toBe('primary');
@@ -148,7 +171,7 @@ it('should return the button color', function(){
     expect($class->buttonError(false, true))->toBe('negative');
 });
 
-it('should return the button size', function(){
+it('should return the button size', function () {
     $class = new SliderInput();
 
     expect($class->buttonSizes())->toBe('2xs');
