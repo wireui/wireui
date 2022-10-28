@@ -1,10 +1,22 @@
-@props(['show-stops' => false])
+@props([
+    'stops' => [],
+    'has-error' => false,
+    'show-stops' => false,
+])
 
-@if ($showStops)
+@if ($stops->isNotEmpty() || $showStops)
     <template x-for="stop in stops">
-        <div
-            class="{{ $getStopClasses() }}"
-            x-bind:style="stopStyle(stop)"
-        ></div>
+        <div>
+            <div
+                class="{{ $getStopClasses() }}"
+                x-bind:style="stopStyle(stop, true)"
+            ></div>
+
+            <div
+                x-text="stop.label"
+                class="{{ $getStopLabelClasses($hasError) }}"
+                x-bind:style="stopStyle(stop)"
+            ></div>
+        </div>
     </template>
 @endif

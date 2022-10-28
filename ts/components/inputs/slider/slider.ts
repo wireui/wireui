@@ -11,8 +11,8 @@ export interface InputRange {
   max: number;
   step: number;
   value: number | null;
-  stops: object[];
   sliderSize: number;
+  stops: object[];
   range: boolean;
   disabled: boolean;
   showStops: boolean;
@@ -23,7 +23,7 @@ export interface InputRange {
   get barStyle(): object;
   get precision(): number;
   init(): void;
-  stopStyle(stop: any): object;
+  stopStyle(stop: any, remove: boolean): object;
   initStops(): void;
   resetSize(): void;
   inputChange(): void;
@@ -38,8 +38,8 @@ export default (params): InputRange => ({
   max: 100,
   step: 1,
   value: null,
-  stops: [],
   sliderSize: 1,
+  stops: params.stops,
   range: params.range,
   disabled: params.disabled,
   showStops: params.showStops,
@@ -77,12 +77,12 @@ export default (params): InputRange => ({
 
     this.value = Number(value ? value : this.min)
 
-    if (this.showStops) this.initStops()
+    if (this.showStops && this.stops.length === 0) this.initStops()
   },
-  stopStyle (stop) {
+  stopStyle (stop, remove = false) {
     const stepWidth = 100 * (stop.value - this.min) / (this.max - this.min)
 
-    return stop.value <= Number(this.value)
+    return stop.value <= Number(this.value) && remove
       ? { left: `${stepWidth}%`, display: 'none' }
       : { left: `${stepWidth}%` }
   },

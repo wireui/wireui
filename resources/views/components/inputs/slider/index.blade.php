@@ -3,6 +3,7 @@
 @endphp
 
 <div x-ref="sliderComponent" x-data="wireui_inputs_slider({
+    stops: @toJs($stops),
     range: @boolean($range),
     disabled: @boolean($disabled),
     showStops: @boolean($showStops),
@@ -51,6 +52,8 @@
         ])
 
         @include('wireui::components.inputs.slider.stops', [
+            'stops' => $stops,
+            'has-error' => $hasError,
             'show-stops' => $showStops,
         ])
     </div>

@@ -2,7 +2,7 @@
 
 namespace WireUi\View\Components\Inputs;
 
-use Illuminate\Support\{Str, Stringable};
+use Illuminate\Support\{Collection, Str, Stringable};
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use WireUi\View\Components\FormComponent;
 
@@ -20,9 +20,12 @@ class SliderInput extends FormComponent
         public ?string $label = null,
         public ?string $hint = null,
         public ?string $cornerHint = null,
+        public Collection|array|null $stops = null,
     ) {
         $this->size = $this->md ? 'md' : $this->size;
         $this->size = $this->lg ? 'lg' : $this->size;
+
+        $this->formatStops();
     }
 
     protected function getView(): string
@@ -30,6 +33,13 @@ class SliderInput extends FormComponent
         return $this->range
             ? 'wireui::components.inputs.slider.range'
             : 'wireui::components.inputs.slider.index';
+    }
+
+    protected function formatStops(): void
+    {
+        $this->stops = collect($this->stops)->map(
+            fn ($item, $key) => is_array($item) ? $item : ['value' => $item, 'label' => is_string($key) ? $key : null]
+        )->values();
     }
 
     public function formatDataSliderRange(ComponentSlot $data): ComponentAttributeBag
@@ -53,7 +63,8 @@ class SliderInput extends FormComponent
             ->when(!$disabled, fn (Stringable $stringable) => $stringable->append(' cursor-pointer'))
             ->when($this->size === 'sm', fn (Stringable $stringable) => $stringable->append(' my-4 h-1.5'))
             ->when($this->size === 'md', fn (Stringable $stringable) => $stringable->append(' my-4.5 h-2'))
-            ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' my-5 h-2.5'));
+            ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' my-5 h-2.5'))
+            ->when($this->stops->pluck('label')->filter()->isNotEmpty(), fn (Stringable $stringable) => $stringable->append(' mb-8'));
     }
 
     public function getBarClasses(?bool $disabled = null, bool $hasError = false): string
@@ -75,11 +86,21 @@ class SliderInput extends FormComponent
             ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' w-2.5 h-2.5'));
     }
 
+    public function getStopLabelClasses(bool $hasError = false): string
+    {
+        return Str::of('absolute -translate-x-1/2 text-xs')
+            ->when($this->size === 'sm', fn (Stringable $stringable) => $stringable->append(' mt-4'))
+            ->when($this->size === 'md', fn (Stringable $stringable) => $stringable->append(' mt-5'))
+            ->when($this->size === 'lg', fn (Stringable $stringable) => $stringable->append(' mt-6'))
+            ->when($hasError, fn (Stringable $stringable) => $stringable->append(' text-negative-600'))
+            ->when(!$hasError, fn (Stringable $stringable) => $stringable->append(' text-gray-700 dark:text-gray-400'));
+    }
+
     public function getButtonGridClasses(): string
     {
         return <<<EOT
             absolute leading-normal text-center -translate-x-1/2
-            bg-transparent select-none w-9 h-9 -top-4
+            bg-transparent select-none w-9 h-9 -top-4 z-10
         EOT;
     }
 
