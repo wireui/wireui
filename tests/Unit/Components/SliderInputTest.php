@@ -141,7 +141,7 @@ it('should return the button grid classes', function () {
     expect($class->getButtonGridClasses())
         ->toBe(<<<EOT
             absolute leading-normal text-center -translate-x-1/2
-            bg-transparent select-none w-9 h-9 -top-4
+            bg-transparent select-none w-9 h-9 -top-4 z-10
         EOT);
 });
 
