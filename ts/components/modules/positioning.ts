@@ -17,16 +17,6 @@ export interface Positioning extends Component {
   handleEscape (): void
 }
 
-export const applyStyles = (element: HTMLElement) => {
-  return function ({ x = 0, y = 0, strategy = 'absolute' }) {
-    Object.assign(element.style, {
-      position: strategy,
-      left: `${x}px`,
-      top: `${y}px`
-    })
-  }
-}
-
 export const positioning: Positioning = {
   ...baseComponent,
   popover: false,
