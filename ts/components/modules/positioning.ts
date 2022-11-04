@@ -1,9 +1,5 @@
 import { baseComponent, Component } from '../alpine'
-
-export type Position = {
-  x: 'left' | 'right'
-  y: 'top' | 'bottom'
-}
+import { computePosition, autoPlacement, shift, offset, autoUpdate } from '@floating-ui/dom'
 
 export type PositioningRefs = {
   popover: HTMLElement
@@ -12,9 +8,8 @@ export type PositioningRefs = {
 export interface Positioning extends Component {
   popover: boolean
   $refs: PositioningRefs
-  position: Position
+  cleanupPosition: CallableFunction | null
   initPositioningSystem (): void
-  toggleEventListener (callback: any): void
   syncPopoverPosition (): void
   open (): void
   close (): void
@@ -26,39 +21,43 @@ export const positioning: Positioning = {
   ...baseComponent,
   popover: false,
   $refs: {} as PositioningRefs,
-  position: {
-    x: 'right',
-    y: 'bottom'
-  },
+  cleanupPosition: null,
   initPositioningSystem () {
-    if (window.innerWidth < 640) return
+    this.$watch('popover', (state) => {
+      if (!state && this.cleanupPosition) {
+        this.cleanupPosition()
+      }
 
-    const callback = this.syncPopoverPosition.bind(this)
+      if (window.innerWidth < 640) {
+        return this.$refs.popover.removeAttribute('style')
+      }
 
-    this.$watch('popover', () => {
-      if (window.innerWidth >= 640) {
-        this.toggleEventListener(callback)
+      if (state) {
+        this.$nextTick(() => this.syncPopoverPosition())
       }
     })
   },
-  toggleEventListener (callback) {
-    if (this.popover) {
-      window.addEventListener('scroll', callback)
-
-      this.$nextTick(() => this.syncPopoverPosition())
-    } else {
-      window.removeEventListener('scroll', callback)
-    }
-  },
   syncPopoverPosition () {
-    const rect = this.$root.getBoundingClientRect()
-    const { clientHeight, clientWidth } = this.$refs.popover
-
-    const topHeightSpace = window.innerHeight - rect.bottom
-    const leftWidthSpace = rect.right
-
-    this.position.y = topHeightSpace <= clientHeight ? 'top' : 'bottom'
-    this.position.x = leftWidthSpace >= clientWidth ? 'right' : 'left'
+    this.cleanupPosition = autoUpdate(this.$root, this.$refs.popover, () => {
+      computePosition(this.$root, this.$refs.popover, {
+        placement: 'bottom',
+        middleware: [
+          autoPlacement({
+            autoAlignment: true,
+            allowedPlacements: ['top', 'top-end', 'top-start', 'bottom', 'bottom-end', 'bottom-start'],
+            padding: 5
+          }),
+          offset(3),
+          shift()
+        ]
+      }).then(({ x, y }) => {
+        return Object.assign(this.$refs.popover.style, {
+          position: 'absolute',
+          left: `${x}px`,
+          top: `${y}px`
+        })
+      })
+    })
   },
   open () { this.popover = true },
   close () { this.popover = false },
