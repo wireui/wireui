@@ -1,7 +1,7 @@
 import { Dateable } from '@/utils/date'
 import { Component, Entangle } from '@/components/alpine'
 import { Time } from './makeTimes'
-import { Position, Positioning, PositioningRefs } from '@/components/modules/positioning'
+import { Positioning, PositioningRefs } from '@/components/modules/positioning'
 
 export interface InitOptions {
   model: Entangle
@@ -73,7 +73,6 @@ export interface DateTimePicker extends Component, InitOptions, Positioning {
   year: number
   minDate: Dateable | null
   maxDate: Dateable | null
-  position: Position
 
   get dates (): iDate[]
 
