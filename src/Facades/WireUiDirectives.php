@@ -12,6 +12,7 @@ use WireUi\Support\BladeDirectives;
  * @method static string confirmAction(string $expression)
  * @method static string notify(string $expression)
  * @method static string boolean(string $value)
+ * @method static string entangleable(string $property, mixed $value = null)
  */
 class WireUiDirectives extends Facade
 {
