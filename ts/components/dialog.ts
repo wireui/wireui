@@ -24,8 +24,18 @@ export interface ParseOptions {
   componentId: string
 }
 
+type Refs = {
+  accept: HTMLDivElement
+  reject: HTMLDivElement
+  iconContainer: HTMLDivElement
+  title: HTMLHeadingElement
+  description: HTMLParagraphElement
+  progressbar: HTMLDivElement
+}
+
 export interface DialogComponent {
   [index: string]: any
+  $refs: Refs
 
   show: boolean
   style: Style | null
@@ -45,12 +55,14 @@ export interface DialogComponent {
   startCloseTimeout (): void
   accept (): void
   reject (): void
+  disableButtons (): void
   handleEscape (): void
   pauseTimeout (): void
   resumeTimeout (): void
 }
 
 export default (options: InitOptions): DialogComponent => ({
+  $refs: {} as Refs,
   show: false,
   style: null,
   dialog: null,
@@ -76,8 +88,8 @@ export default (options: InitOptions): DialogComponent => ({
     this.dialog = options
     this.style = options.style
 
-    if (this.$refs.title) { this.$refs.title.innerHTML = null }
-    if (this.$refs.description) { this.$refs.description.innerHTML = null }
+    if (this.$refs.title) { this.$refs.title.innerHTML = '' }
+    if (this.$refs.description) { this.$refs.description.innerHTML = '' }
 
     if (options.icon) {
       this.fillIconBackground(options.icon)
@@ -187,12 +199,18 @@ export default (options: InitOptions): DialogComponent => ({
     )
   },
   accept () {
+    this.disableButtons()
     this.close()
     this.dialog?.accept?.execute()
   },
   reject () {
+    this.disableButtons()
     this.close()
     this.dialog?.reject?.execute()
+  },
+  disableButtons () {
+    this.$refs.accept.firstElementChild?.setAttribute('disabled', 'disabled')
+    this.$refs.reject.firstElementChild?.setAttribute('disabled', 'disabled')
   },
   handleEscape () {
     if (this.show) this.dismiss()

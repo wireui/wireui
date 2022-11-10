@@ -27,6 +27,29 @@ class ConfirmDialogTest extends BrowserTestCase
         });
     }
 
+    /** @test */
+    public function it_should_prevent_twice_calls_on_accept_and_reject_action()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
+
+                ->waitForText($title = 'This is a title')
+                ->assertSee($title)
+
+                ->waitForText($action = 'Confirm it')
+                ->assertSee($action)
+
+                ->press('Confirm it')
+                ->assertScript(<<<JS
+                    document.querySelector('[x-ref="accept"]').firstElementChild.hasAttribute('disabled');
+                    document.querySelector('[x-ref="reject"]').firstElementChild.hasAttribute('disabled');
+                JS)
+                ->press('Decline')
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@events', 'accepted'));
+        });
+    }
+
     private function showConfirmDialog(Browser $browser): void
     {
         $browser->script("
