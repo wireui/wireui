@@ -94,6 +94,10 @@ class WireUiServiceProvider extends ServiceProvider
         Blade::directive('toJs', static function ($expression): string {
             return LivewireBladeDirectives::js($expression);
         });
+
+        Blade::directive('entangleable', static function ($value): string {
+            return WireUiDirectives::entangleable($value);
+        });
     }
 
     protected function registerBladeComponents(): void

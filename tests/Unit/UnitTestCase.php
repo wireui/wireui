@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase;
@@ -10,6 +11,8 @@ use WireUi\Providers\WireUiServiceProvider;
 
 class UnitTestCase extends TestCase
 {
+    use InteractsWithViews;
+
     protected function setUp(): void
     {
         parent::setUp();

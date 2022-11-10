@@ -2,6 +2,7 @@
 
 namespace WireUi\Support;
 
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Actions\Minify;
 
@@ -75,5 +76,15 @@ class BladeDirectives
     public function boolean(string $value): string
     {
         return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
+    }
+
+    public function entangleable(string $expression): ?string
+    {
+        $fallback = (string) Str::of($expression)->after(',')->trim();
+        $property = (string) Str::of($expression)->before(',')->trim();
+
+        return <<<EOT
+        <?php if (!isset(\$_instance->id)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
+        EOT;
     }
 }
