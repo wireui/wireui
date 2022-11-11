@@ -40,7 +40,7 @@ class IconsControllerTest extends UnitTestCase
 
     public function mapIcons(string $style): Collection
     {
-        $files = (new Finder())->files()->in(__DIR__ . "/../../../resources/views/components/icons/{$style}");
+        $files = (new Finder())->files()->in(__DIR__ . "/../../../src/resources/views/components/icons/{$style}");
 
         return collect($files)->map(fn (SplFileInfo $file) => [
             'style' => $style,

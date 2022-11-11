@@ -42,15 +42,15 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerConfig(): void
     {
-        $rootDir = __DIR__ . '/../..';
+        $rootDir = __DIR__ . '/../../src';
 
         $this->loadViewsFrom("{$rootDir}/resources/views", 'wireui');
-        $this->loadTranslationsFrom("{$rootDir}/src/lang", 'wireui');
-        $this->mergeConfigFrom("{$rootDir}/src/config/wireui.php", 'wireui');
+        $this->loadTranslationsFrom("{$rootDir}/lang", 'wireui');
+        $this->mergeConfigFrom("{$rootDir}/config/wireui.php", 'wireui');
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
 
         $this->publishes(
-            ["{$rootDir}/src/config/wireui.php" => config_path('wireui.php')],
+            ["{$rootDir}/config/wireui.php" => config_path('wireui.php')],
             'wireui.config'
         );
 
@@ -60,7 +60,7 @@ class WireUiServiceProvider extends ServiceProvider
         );
 
         $this->publishes(
-            ["{$rootDir}/src/lang" => $this->app->langPath('vendor/wireui')],
+            ["{$rootDir}/lang" => $this->app->langPath('vendor/wireui')],
             'wireui.lang'
         );
     }
