@@ -18,26 +18,17 @@ Wire UI is a library of components and resources to empower your Laravel and Liv
 
 Starting a new project with Livewire can be time-consuming when you have to create all the components from scratch. Wire UI helps to skip this step and get you straight to the development phase.
 
----
-
-If you are looking for the version with support to tailwind v2, please check out [Support Tailwind v2](https://deprecated.livewire-wireui.com)
-
----
-
-<div align="center">
-    <p>
-        <img  src="resources/images/features.png" alt="Wire UI Features"/>
-    </p>
-</div>
 
 🔥 You get with Wire UI:
 
 - Form and UI components
 - Notifications
 - Confirmation notifications
+- Card, modals, avatar, buttons, badges, dropdowns, and more
 - All Heroicons
+- All Phosphor icons
 
-🌱 Wire UI is in active development. Track all changes in the project [Changelog].
+🌱 WireUI is in active development. Track all changes in the project [Changelog].
 
 <br/>
 
@@ -55,11 +46,11 @@ There will you see all the latest news about features, ideas, discussions and mo
 
 <br/>
 
-<h2> 💡 Philosophy</h2>
+<h2>💡 Philosophy</h2>
 
 WireUI is and will always be FREE to anyone who would like to use it.
 
-This project is created [Pedro Henrique], and it is maintained by the author with the help of the community.
+This project is created [Pedro Oliveira], and it is maintained by the author with the help of the community.
 
 All contributions are welcome!
 
@@ -70,8 +61,8 @@ All contributions are welcome!
 MIT
 
 [TALL stack]: https://tallstack.dev
-[Changelog]: https://livewire-wireui.com/docs/changelog
+[Changelog]: https://github.com/wireui/wireui/releases
 [Get Started]: https://livewire-wireui.com/docs/get-started
 [Documentation]: https://livewire-wireui.com
 [@ph7jack]: https://twitter.com/ph7jack
-[Pedro Henrique]: https://github.com/PH7-Jack
+[Pedro Oliveira]: https://github.com/PH7-Jack
