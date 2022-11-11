@@ -10,9 +10,12 @@
     <a href="https://twitter.com/ph7jack"><img alt="Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FPH7-Jack%2Fwireui"></a>
     </a>
 </p>
+
 <p align="center">
     <a href="https://livewire-wireui.com" target="_blank">📚 Documentation</a>
 </p>
+
+# V2 Warning: This is a work in progress. Please use the V1 version for now.
 
 Wire UI is a library of components and resources to empower your Laravel and Livewire application development.
 
