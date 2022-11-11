@@ -23,7 +23,7 @@
         withoutTime:   @boolean($withoutTime),
     }"
     {{ $attributes
-        ->only(['class', 'wire:key'])
+        ->only('wire:key')
         ->class('relative')
         ->merge(['wire:key' => "datepicker::{$name}"]) }}
 >

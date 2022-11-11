@@ -1,4 +1,5 @@
-<div x-data="wireui_timepicker({
+<div
+    x-data="wireui_timepicker({
         model: @entangle($attributes->wire('model')),
         config: {
             isLazy:   @boolean($attributes->wire('model')->hasModifier('lazy')),
@@ -9,12 +10,11 @@
             disabled: @boolean($disabled),
         },
     })"
-    x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-    x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-    x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
-    x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
-    class="w-full relative"
-    {{ $attributes->only('wire:key') }}>
+    {{ $attributes
+        ->only('wire:key')
+        ->class('w-full relative')
+        ->merge(['wire:key' => "timepicker::{$name}"]) }}
+>
     <div class="relative">
         <x-dynamic-component
             :component="WireUi::component('input')"
@@ -35,7 +35,7 @@
                     <div @class([
                         'flex items-center gap-x-2 my-auto',
                         'text-negative-400 dark:text-negative-600' => $name && $errors->has($name),
-                        'text-secondary-400'                       => $name && $errors->has($name),
+                        'text-secondary-400'                         => $name && $errors->has($name),
                     ])>
                         <x-dynamic-component
                             :component="WireUi::component('icon')"
@@ -59,7 +59,14 @@
         </x-dynamic-component>
     </div>
 
-    <x-wireui::parts.popover :margin="(bool) $label" class="p-2.5">
+    <x-wireui::parts.popover
+        class="p-2.5"
+        :margin="(bool) $label"
+        x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
+        x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
+        x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+        x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
+    >
         <x-dynamic-component
             :component="WireUi::component('input')"
             :label="trans('wireui::messages.selectTime')"
