@@ -3,7 +3,6 @@
     <coverage>
         <include>
             <directory suffix=".php">src/</directory>
-            <directory suffix=".blade.php">resources/views/</directory>
         </include>
     </coverage>
     <testsuites>
