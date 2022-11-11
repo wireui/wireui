@@ -3,7 +3,7 @@ const path = require('path')
 
 mix.ts('ts/index.ts', 'dist/wireui.js')
   .setPublicPath('dist')
-  .postCss('resources/css/wireui.css', 'dist', [require('tailwindcss')])
+  .postCss('src/resources/css/wireui.css', 'dist', [require('tailwindcss')])
   .alias({
     '@': path.join(__dirname, 'ts')
   })
