@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c74213803de78fa98f24b76ab9346da",
+    "content-hash": "055ef166b5576c1efe217778cc483123",
     "packages": [
         {
             "name": "brick/math",
@@ -4468,6 +4468,77 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "wireui/heroicons",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wireui/heroicons.git",
+                "reference": "bbd1387c899068f5b2d01882b9aaf0ce5ffc7d40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wireui/heroicons/zipball/bbd1387c899068f5b2d01882b9aaf0ce5ffc7d40",
+                "reference": "bbd1387c899068f5b2d01882b9aaf0ce5ffc7d40",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^9.16",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.11.0",
+                "mockery/mockery": "^1.5",
+                "nunomaduro/larastan": "^2.2.0",
+                "orchestra/testbench": "^7.7.0",
+                "pestphp/pest": "^1.22.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "WireUi\\Heroicons\\HeroiconsServiceProvider"
+                    ]
+                },
+                "aliases": []
+            },
+            "autoload": {
+                "psr-4": {
+                    "WireUi\\Heroicons\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PH7-Jack",
+                    "email": "pedrolivertwd@gmail.com"
+                }
+            ],
+            "description": "The Tailwind Heroicons for laravel blade by WireUI",
+            "keywords": [
+                "blade components",
+                "blade heroicons",
+                "laravel components",
+                "livewire icons",
+                "livewire icons components",
+                "wireui"
+            ],
+            "support": {
+                "issues": "https://github.com/wireui/heroicons/issues",
+                "source": "https://github.com/wireui/heroicons/tree/v2.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/PH7-Jack",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-03T01:43:50+00:00"
         }
     ],
     "packages-dev": [
