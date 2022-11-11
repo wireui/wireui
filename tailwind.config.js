@@ -3,9 +3,8 @@ const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './ts/**/*.ts',
-    './js/**/*.js',
-    './resources/views/**/*.blade.php',
+    './ts/**/*.{ts,js}',
+    './src/resources/views/**/*.blade.php',
     './src/**/*.php'
   ],
   darkMode: 'class',
