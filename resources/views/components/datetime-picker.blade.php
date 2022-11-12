@@ -1,5 +1,8 @@
-<div x-data="wireui_datetime_picker({
-        model: @entangle($attributes->wire('model')),
+<div
+    x-data="wireui_datetime_picker({
+        model: @entangleable($attributes->wire('model')),
+    })"
+    x-props="{
         config: {
             interval: @toJs($interval),
             is12H:    @boolean($timeFormat == '12'),
@@ -18,9 +21,12 @@
         weekDays:      @lang('wireui::messages.datePicker.days'),
         monthNames:    @lang('wireui::messages.datePicker.months'),
         withoutTime:   @boolean($withoutTime),
-    })"
-    class="relative"
-    {{ $attributes->only('wire:key') }}>
+    }"
+    {{ $attributes
+        ->only('wire:key')
+        ->class('relative')
+        ->merge(['wire:key' => "datepicker::{$name}"]) }}
+>
     <x-dynamic-component
         :component="WireUi::component('input')"
         {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key', 'readonly']) }}
@@ -133,8 +139,8 @@
                             :component="WireUi::component('button')"
                             class="text-secondary-400 dark:border-0 dark:hover:bg-secondary-700 uppercase"
                             x-on:click="selectMonth(index)"
-                            xs
                             x-text="monthName"
+                            xs
                         />
                     </template>
                 </div>
@@ -148,7 +154,8 @@
 
                     <template
                         x-for="date in dates"
-                        :key="`week-date.${date.day}.${date.month}`">
+                        :key="`date.${date.day}.${date.month}`"
+                    >
                         <div class="flex justify-center picker-days">
                             <button class="text-sm w-7 h-6 focus:outline-none rounded-md focus:ring-2 focus:ring-ofsset-2 focus:ring-primary-600
                                          hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400
@@ -186,7 +193,7 @@
 
             <div x-ref="timesContainer"
                  class="mt-1 w-full max-h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times">
-                <template x-for="time in filteredTimes">
+                <template x-for="time in filteredTimes" :key="time.value">
                     <button class="group rounded-md focus:outline-none focus:bg-primary-100 dark:focus:bg-secondary-700
                                    relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100 cursor-pointer select-none
                                    hover:text-white hover:bg-primary-600 dark:hover:bg-secondary-700 dark:text-secondary-400"

@@ -1,26 +1,37 @@
 import { applyMask } from '@/utils/masker'
 import { getLocalTimezone, date as parseDate } from '@/utils/date'
-import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate, Refs } from './interfaces'
+import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate, Props, Refs } from './interfaces'
 import { makeTimes, Time } from './makeTimes'
 import { convertStandardTimeToMilitary } from '@/utils/time'
 import { baseComponent } from '@/components/alpine'
 import { positioning } from '@/components/modules/positioning'
+import { watchProps } from '@/alpine/magic/props'
 
 export default (options: InitOptions): DateTimePicker => ({
   ...baseComponent,
   ...positioning,
   $refs: {} as Refs,
+  $props: {} as Props,
   model: options.model,
-  config: options.config,
-  withoutTimezone: options.withoutTimezone,
-  timezone: options.timezone,
-  userTimezone: options.userTimezone,
+  config: {
+    interval: 10,
+    is12H: false,
+    readonly: false,
+    disabled: false,
+    min: undefined,
+    max: undefined,
+    minTime: undefined,
+    maxTime: undefined
+  },
+  withoutTimezone: false,
+  timezone: '',
+  userTimezone: '',
   localTimezone: getLocalTimezone(),
-  parseFormat: options.parseFormat ?? 'YYYY-MM-DDTHH:mm:ss.SSSZ',
-  displayFormat: options.displayFormat,
-  weekDays: options.weekDays,
-  monthNames: options.monthNames,
-  withoutTime: options.withoutTime,
+  parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
+  displayFormat: '',
+  weekDays: [],
+  monthNames: [],
+  withoutTime: false,
   localeDateConfig: {
     year: undefined,
     month: undefined,
@@ -47,11 +58,13 @@ export default (options: InitOptions): DateTimePicker => ({
   },
 
   init () {
+    watchProps(this, this.syncProps.bind(this))
+    this.syncProps()
     this.initComponent()
     this.initPositioningSystem()
 
     this.$watch('popover', popover => {
-      if (popover && !this.currentDates.length) {
+      if (popover) {
         this.syncPickerDates()
 
         if (!this.withoutTime) {
@@ -76,7 +89,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.$watch('model', () => {
       this.syncInput()
-      this.syncPickerDates(true)
+      this.syncPickerDates()
     })
   },
   initComponent () {
@@ -88,13 +101,44 @@ export default (options: InitOptions): DateTimePicker => ({
     this.syncInput()
     this.syncCalendar()
   },
-  clearDate () {
-    this.model = null
-  },
-  toggle () {
-    if (this.config.readonly || this.config.disabled) return
+  syncProps () {
+    const props = this.$props
 
-    if (this.config.min && !this.minDate) {
+    this.config = {
+      interval: props.config.interval,
+      is12H: props.config.is12H,
+      readonly: props.config.readonly,
+      disabled: props.config.disabled,
+      min: props.config.min,
+      max: props.config.max,
+      minTime: props.config.minTime,
+      maxTime: props.config.maxTime
+    }
+
+    this.withoutTimezone = props.withoutTimezone
+    this.timezone = props.timezone
+    this.userTimezone = props.userTimezone
+    this.parseFormat = props.parseFormat
+    this.displayFormat = props.displayFormat
+    this.weekDays = props.weekDays
+    this.monthNames = props.monthNames
+    this.withoutTime = props.withoutTime
+
+    if (!this.userTimezone) {
+      this.userTimezone = getLocalTimezone()
+    }
+
+    this.syncDateLimits()
+
+    if (this.popover) {
+      this.syncPickerDates()
+    }
+  },
+  syncDateLimits () {
+    this.minDate = null
+    this.maxDate = null
+
+    if (this.config.min) {
       this.minDate = parseDate(this.config.min, this.timezone)
 
       if (!this.withoutTimezone) {
@@ -102,13 +146,21 @@ export default (options: InitOptions): DateTimePicker => ({
       }
     }
 
-    if (this.config.max && !this.maxDate) {
+    if (this.config.max) {
       this.maxDate = parseDate(this.config.max, this.timezone)
 
       if (!this.withoutTimezone) {
         this.maxDate.setTimezone(this.userTimezone)
       }
     }
+  },
+  clearDate () {
+    this.model = null
+  },
+  toggle () {
+    if (this.config.readonly || this.config.disabled) return
+
+    this.syncDateLimits()
 
     this.popover = !this.popover
     this.monthsPicker = false
@@ -167,7 +219,6 @@ export default (options: InitOptions): DateTimePicker => ({
 
       date.isSelected = this.isSelected(date)
       date.isDisabled = this.isDateDisabled(date)
-
       dates.push(date)
     }
 
@@ -186,7 +237,6 @@ export default (options: InitOptions): DateTimePicker => ({
       }
 
       date.isDisabled = this.isDateDisabled(date)
-
       dates.push(date)
     }
 
@@ -205,17 +255,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     return false
   },
-  mustSyncDate () {
-    if (!this.currentDates.length) return true
-
-    const inputDate = this.input?.format('YYYY-MM', this.localTimezone)
-    const calendarDate = `${this.year}-${String(this.month + 1).padStart(2, '0')}`
-
-    return inputDate !== calendarDate
-  },
-  syncPickerDates (forceSync = false) {
-    if (!this.mustSyncDate() && !forceSync) return
-
+  syncPickerDates () {
     this.syncCalendar()
     this.fillPickerDates()
   },

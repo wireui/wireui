@@ -1,10 +1,13 @@
 import { Dateable } from '@/utils/date'
 import { Component, Entangle } from '@/components/alpine'
 import { Time } from './makeTimes'
-import { Position, Positioning, PositioningRefs } from '@/components/modules/positioning'
+import { Positioning, PositioningRefs } from '@/components/modules/positioning'
 
 export interface InitOptions {
   model: Entangle
+}
+
+export interface Props {
   config: {
     interval: number
     is12H: boolean
@@ -12,8 +15,8 @@ export interface InitOptions {
     disabled: boolean
     min?: string | null
     max?: string | null
-    minTime: string | number
-    maxTime: string | number
+    minTime?: string | number
+    maxTime?: string | number
   }
   withoutTimezone: boolean
   timezone: string
@@ -55,8 +58,9 @@ export type Refs = PositioningRefs & {
   timesContainer: HTMLElement
 }
 
-export interface DateTimePicker extends Component, InitOptions, Positioning {
+export interface DateTimePicker extends Component, InitOptions, Props, Positioning {
   $refs: Refs
+  $props: Props,
   localTimezone: string
   localeDateConfig: LocaleDateConfig
   searchTime: string | null
@@ -73,19 +77,19 @@ export interface DateTimePicker extends Component, InitOptions, Positioning {
   year: number
   minDate: Dateable | null
   maxDate: Dateable | null
-  position: Position
 
   get dates (): iDate[]
 
   init (): void
   initComponent (): void
+  syncProps (): void
+  syncDateLimits (): void
   clearDate (): void
   syncCalendar (): void
   getPreviousDates (currentDate: Dateable): PreviousDate[]
   getCurrentDates (currentDate: Dateable): CurrentDate[]
   getNextDates (currentDate: Dateable, datesLength: number): NextDate[]
   isDateDisabled (date: iDate): boolean
-  mustSyncDate (): boolean
   syncPickerDates (forceSync?: boolean): void
   fillPickerDates (): void
   fillTimes (): void
