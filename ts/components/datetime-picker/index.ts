@@ -335,7 +335,13 @@ export default (options: InitOptions): DateTimePicker => ({
     this.fillPickerDates()
   },
   emitInput () {
-    this.model = this.input?.format(this.parseFormat, this.timezone)
+    let date = this.input?.format(this.parseFormat, this.timezone)
+
+    if (date && !this.model && this.withoutTime && (!this.parseFormat || this.parseFormat.startsWith('YYYY-MM-DD'))) {
+      date = date.slice(0, 10)
+    }
+
+    this.model = date
   },
   syncInput () {
     if (this.model && this.input?.format(this.parseFormat) !== this.model) {
