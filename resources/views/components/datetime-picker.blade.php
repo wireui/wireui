@@ -12,6 +12,7 @@
             max: @toJs($max ? $max->format('Y-m-d\TH:i') : null),
             minTime: @toJs($minTime),
             maxTime: @toJs($maxTime),
+            disabledDays: @toJs($disabledDays),
         },
         withoutTimezone: @boolean($withoutTimezone),
         timezone:      @toJs($timezone),

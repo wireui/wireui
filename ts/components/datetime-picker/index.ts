@@ -21,7 +21,8 @@ export default (options: InitOptions): DateTimePicker => ({
     min: undefined,
     max: undefined,
     minTime: undefined,
-    maxTime: undefined
+    maxTime: undefined,
+    disabledDays: []
   },
   withoutTimezone: false,
   timezone: '',
@@ -112,7 +113,8 @@ export default (options: InitOptions): DateTimePicker => ({
       min: props.config.min,
       max: props.config.max,
       minTime: props.config.minTime,
-      maxTime: props.config.maxTime
+      maxTime: props.config.maxTime,
+      disabledDays: props.config.disabledDays
     }
 
     this.withoutTimezone = props.withoutTimezone
@@ -245,12 +247,29 @@ export default (options: InitOptions): DateTimePicker => ({
   isDateDisabled (date) {
     const compareDate = `${date.year}-${date.month + 1}-${date.day}`
 
+    // verify date is in range
+
     if (!this.minDate?.isSame(compareDate, 'date') && this.minDate?.isAfter(compareDate)) {
       return true
     }
 
     if (!this.maxDate?.isSame(compareDate, 'date') && this.maxDate?.isBefore(compareDate)) {
       return true
+    }
+
+    // check if date is disabled by day of week or specific date
+
+    const parsedDate = parseDate(compareDate, this.localTimezone)
+
+    for (const disabledDay of this.config.disabledDays) {
+      const disabledDate = parseDate(disabledDay, this.localTimezone).format('YYYY-MM-DD')
+      if (disabledDate === compareDate) {
+        return true
+      }
+
+      if (parsedDate.getDayOfWeek() === disabledDay) {
+        return true
+      }
     }
 
     return false
