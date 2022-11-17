@@ -91,7 +91,7 @@ class Component extends \Livewire\Component
                     without-time
                     label="Date"
                     display-format="DD-MM-YYYY"
-                    first-day="1"
+                    first-day-of-week="1"
                 />
                 <span dusk="firstDayOfWeekMonday">{{ \$firstDayOfWeekMonday }}</span>
             </div>
@@ -104,7 +104,7 @@ class Component extends \Livewire\Component
                     without-time
                     label="Date"
                     display-format="DD-MM-YYYY"
-                    first-day="3"
+                    first-day-of-week="3"
                 />
                 <span dusk="firstDayOfWeekWednesday">{{ \$firstDayOfWeekWednesday }}</span>
             </div>

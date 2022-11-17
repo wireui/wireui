@@ -4,11 +4,11 @@
     })"
     x-props="{
         config: {
-            interval: @toJs($interval),
-            is12H:    @boolean($timeFormat == '12'),
-            firstDay: @toJs($firstDay),
-            readonly: @boolean($readonly),
-            disabled: @boolean($disabled),
+            interval:       @toJs($interval),
+            is12H:          @boolean($timeFormat == '12'),
+            firstDayOfWeek: @toJs($firstDayOfWeek),
+            readonly:       @boolean($readonly),
+            disabled:       @boolean($disabled),
             min: @toJs($min ? $min->format('Y-m-d\TH:i') : null),
             max: @toJs($max ? $max->format('Y-m-d\TH:i') : null),
             minTime: @toJs($minTime),

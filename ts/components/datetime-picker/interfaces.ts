@@ -11,7 +11,7 @@ export interface Props {
   config: {
     interval: number
     is12H: boolean
-    firstDay: number
+    firstDayOfWeek: number
     readonly: boolean
     disabled: boolean
     min?: string | null
