@@ -26,7 +26,7 @@
                         tabindex="-1">
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
-                        name="x"
+                        name="x-mark"
                         class="w-5 h-5"
                     />
                 </button>

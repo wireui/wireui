@@ -41,7 +41,7 @@
                             :component="WireUi::component('icon')"
                             class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                             x-cloak
-                            name="x"
+                            name="x-mark"
                             x-show="!config.readonly && !config.disabled && input"
                             x-on:click="clearInput"
                         />
