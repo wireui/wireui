@@ -16,6 +16,7 @@ export default (options: InitOptions): DateTimePicker => ({
   config: {
     interval: 10,
     is12H: false,
+    firstDay: 1,
     readonly: false,
     disabled: false,
     min: undefined,
@@ -107,6 +108,7 @@ export default (options: InitOptions): DateTimePicker => ({
     this.config = {
       interval: props.config.interval,
       is12H: props.config.is12H,
+      firstDay: props.config.firstDay,
       readonly: props.config.readonly,
       disabled: props.config.disabled,
       min: props.config.min,
@@ -182,11 +184,12 @@ export default (options: InitOptions): DateTimePicker => ({
   },
   getPreviousDates (currentDate) {
     const dayOfWeek = currentDate.getDayOfWeek()
+    const daysOffset = dayOfWeek - this.config.firstDay + (dayOfWeek < this.config.firstDay ? 7 : 0)
     const previousDate = currentDate.clone().subMonth()
     const monthDays = previousDate.getMonthDays()
     const dates: PreviousDate[] = []
 
-    for (let day = 0; day < dayOfWeek; day++) {
+    for (let day = 0; day < daysOffset; day++) {
       const date: PreviousDate = {
         year: previousDate.getYear(),
         month: previousDate.getMonth(),

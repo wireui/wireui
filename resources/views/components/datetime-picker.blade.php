@@ -6,6 +6,7 @@
         config: {
             interval: @toJs($interval),
             is12H:    @boolean($timeFormat == '12'),
+            firstDay: @toJs($firstDay),
             readonly: @boolean($readonly),
             disabled: @boolean($disabled),
             min: @toJs($min ? $min->format('Y-m-d\TH:i') : null),
@@ -18,8 +19,8 @@
         userTimezone:  @toJs($userTimezone ?? ''),
         parseFormat:   @toJs($parseFormat ?? ''),
         displayFormat: @toJs($displayFormat ?? ''),
-        weekDays:      @lang('wireui::messages.datePicker.days'),
-        monthNames:    @lang('wireui::messages.datePicker.months'),
+        weekDays:      @toJs($weekDays),
+        monthNames:    @toJs($monthNames),
         withoutTime:   @boolean($withoutTime),
     }"
     {{ $attributes

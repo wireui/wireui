@@ -6,8 +6,8 @@ return [
     'loading'       => 'Loading...',
     'searchHere'    => 'Cari',
     'datePicker'    => [
-        'months'    => "['Januari', 'Februari', 'Mar', 'April', 'Mei', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember']",
-        'days'      => "['Ahd', 'Isn', 'Sel', 'Rab', 'Kha', 'Jum', 'Sab']",
+        'months'    => ['Januari', 'Februari', 'Mar', 'April', 'Mei', 'Jun', 'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'],
+        'days'      => ['Ahd', 'Isn', 'Sel', 'Rab', 'Kha', 'Jum', 'Sab'],
         'tomorrow'  => 'Esok',
         'today'     => 'Hari Ini',
         'yesterday' => 'Semalam',

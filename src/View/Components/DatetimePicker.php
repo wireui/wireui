@@ -19,6 +19,8 @@ class DatetimePicker extends Input
 
     public string $timeFormat;
 
+    public int $firstDay;
+
     public string $timezone;
 
     public ?string $userTimezone;
@@ -26,6 +28,10 @@ class DatetimePicker extends Input
     public ?string $parseFormat;
 
     public ?string $displayFormat;
+
+    public array $weekDays;
+
+    public array $monthNames;
 
     public string|int $minTime;
 
@@ -48,6 +54,7 @@ class DatetimePicker extends Input
         bool $withoutTime = false,
         int $interval = TimePicker::INTERVAL,
         string $timeFormat = TimePicker::DEFAULT_FORMAT,
+        int $firstDay = 0,
         ?string $parseFormat = null,
         ?string $displayFormat = null,
         ?string $rightIcon = 'calendar',
@@ -73,9 +80,12 @@ class DatetimePicker extends Input
         $this->timeFormat      = $timeFormat;
         $this->interval        = $interval;
         $this->timezone        = $timezone ?? config('app.timezone', 'UTC');
+        $this->firstDay        = $firstDay;
         $this->userTimezone    = $userTimezone;
         $this->parseFormat     = $parseFormat;
         $this->displayFormat   = $displayFormat;
+        $this->weekDays        = $this->parseWeekDays();
+        $this->monthNames      = __('wireui::messages.datePicker.months');
         $this->minTime         = $minTime;
         $this->maxTime         = $maxTime;
         $this->min             = $min ? Carbon::parse($min) : null;
@@ -85,5 +95,15 @@ class DatetimePicker extends Input
     protected function getView(): string
     {
         return 'wireui::components.datetime-picker';
+    }
+
+    protected function parseWeekDays(): array {
+        $weekdays = __('wireui::messages.datePicker.days');
+
+        for ($i=0; $i < $this->firstDay; $i++) {
+            $weekdays[] = array_shift($weekdays);
+        }
+
+        return $weekdays;
     }
 }
