@@ -40,7 +40,7 @@ class DatetimePicker extends Input
     /**
      * @param Carbon|DateTimeInterface|string|int|null $min
      * @param Carbon|DateTimeInterface|string|int|null $max
-     * @param array<int|string>|null $disabledDays
+     * @param array<int|Carbon|DateTimeInterface|string>|null $disabledDays
      */
     public function __construct(
         bool $clearable = true,
@@ -87,7 +87,7 @@ class DatetimePicker extends Input
 
         $this->disabledDays    = $disabledDays ?? [];
         foreach ($this->disabledDays as $key => $day) {
-            if (is_numeric($day)) {
+            if (is_numeric($day) && $day >= 0 && $day <= 6) {
                 continue;
             }
 
