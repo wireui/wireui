@@ -14,6 +14,10 @@ class Component extends \Livewire\Component
 
     public ?string $dateAndTime = '2021-12-25 00:00';
 
+    public ?string $firstDayOfWeekMonday = '2021-12-25';
+
+    public ?string $firstDayOfWeekWednesday = '2021-12-25';
+
     public function render()
     {
         return <<<BLADE
@@ -77,6 +81,32 @@ class Component extends \Livewire\Component
                     display-format="DD-MM-YYYY HH:mm"
                 />
                 <span dusk="dateAndTime">{{ \$dateAndTime }}</span>
+            </div>
+
+            // test it_should_change_first_day_of_week_to_monday
+            <div id="firstDayOfWeekMonday">
+                <x-datetime-picker
+                    wire:model="firstDayOfWeekMonday"
+                    without-timezone
+                    without-time
+                    label="Date"
+                    display-format="DD-MM-YYYY"
+                    first-day="1"
+                />
+                <span dusk="firstDayOfWeekMonday">{{ \$firstDayOfWeekMonday }}</span>
+            </div>
+
+            // test it_should_change_first_day_of_week_to_wednesday
+            <div id="firstDayOfWeekWednesday">
+                <x-datetime-picker
+                    wire:model="firstDayOfWeekWednesday"
+                    without-timezone
+                    without-time
+                    label="Date"
+                    display-format="DD-MM-YYYY"
+                    first-day="3"
+                />
+                <span dusk="firstDayOfWeekWednesday">{{ \$firstDayOfWeekWednesday }}</span>
             </div>
         </div>
         BLADE;
