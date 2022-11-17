@@ -17,7 +17,7 @@ use WireUi\Support\WireUiTagCompiler;
  */
 class WireUiServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         $this->registerConfig();
         $this->registerBladeDirectives();
@@ -26,14 +26,25 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerMacros();
     }
 
-    public function register()
+    public function register(): void
+    {
+        $this->registerSingleton();
+        $this->setupHeroiconsComponent();
+    }
+
+    private function registerSingleton(): void
     {
         $this->app->singleton('WireUi', WireUi::class);
         $loader = AliasLoader::getInstance();
         $loader->alias('WireUi', WireUi::class);
     }
 
-    protected function registerTagCompiler()
+    private function setupHeroiconsComponent(): void
+    {
+        config()->set('wireui.heroicons.alias', 'icons.heroicons');
+    }
+
+    protected function registerTagCompiler(): void
     {
         Blade::precompiler(static function (string $string): string {
             return app(WireUiTagCompiler::class)->compile($string);
