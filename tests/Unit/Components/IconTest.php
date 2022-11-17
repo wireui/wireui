@@ -1,16 +1,24 @@
 <?php
 
+use Illuminate\Support\Facades\Blade;
+use Tests\Unit\UnitTestCase;
 use WireUi\View\Components\Icon;
 
-it('should get the correct icon style', function ($expected, $name, $style, $solid, $outline) {
-    $component = new Icon($name, $style, $solid, $outline);
+it('should render the heroicons', function (string $variant, string $name) {
+    /** @var UnitTestCase $this */
 
-    $parsedStyle = $this->invokeMethod($component, 'getStyle');
+    $component = new Icon($name, $variant);
 
-    expect($parsedStyle)->toBe($expected);
+    $html = Blade::renderComponent($component);
+
+    expect(trim($html))
+        ->toStartWith('<svg')
+        ->toEndWith('</svg>');
 })->with([
-    ['solid', 'home', 'solid', false, false],
-    ['solid', 'home', null, true, false],
-    ['outline', 'home', null, false, true],
-    ['outline', 'home', null, false, false],
+    ['solid', 'home'],
+    ['solid', 'user'],
+    ['outline', 'pencil'],
+    ['outline', 'x-mark'],
+    ['mini', 'check'],
+    ['mini', 'arrow-down'],
 ]);
