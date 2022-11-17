@@ -39,14 +39,16 @@ class Test extends BrowserTestCase
     public function datesProvider(): array
     {
         return [
-            ['disabled' => true,  'day' => 13,  'model' => '',                     'input' => ''],
-            ['disabled' => false, 'day' => 14,  'model' => '2021-12-14T10:30:00Z', 'input' => '12/14/2021, 10:30 AM'],
+            ['disabled' => true,  'day' => 9,   'model' => '',                     'input' => ''],
+            ['disabled' => false, 'day' => 13,  'model' => '2021-06-13T10:30:00Z', 'input' => '6/13/2021, 10:30 AM'],
+            ['disabled' => true,  'day' => 14,  'model' => '',                     'input' => ''],
             ['disabled' => true,  'day' => 15,  'model' => '',                     'input' => ''],
-            ['disabled' => false, 'day' => 16,  'model' => '2021-12-16T10:30:00Z', 'input' => '12/16/2021, 10:30 AM'],
-            ['disabled' => false, 'day' => 17,  'model' => '2021-12-17T10:30:00Z', 'input' => '12/17/2021, 10:30 AM'],
-            ['disabled' => false, 'day' => 18,  'model' => '2021-12-18T10:30:00Z', 'input' => '12/18/2021, 10:30 AM'],
-            ['disabled' => false, 'day' => 19,  'model' => '2021-12-19T10:30:00Z', 'input' => '12/19/2021, 10:30 AM'],
-            ['disabled' => true,  'day' => 20,  'model' => '',                     'input' => ''],
+            ['disabled' => false, 'day' => 16,  'model' => '2021-06-16T10:30:00Z', 'input' => '6/16/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 17,  'model' => '2021-06-17T10:30:00Z', 'input' => '6/17/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 18,  'model' => '2021-06-18T10:30:00Z', 'input' => '6/18/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 19,  'model' => '2021-06-19T10:30:00Z', 'input' => '6/19/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 20,  'model' => '2021-06-20T10:30:00Z', 'input' => '6/20/2021, 10:30 AM'],
+            ['disabled' => true,  'day' => 21,  'model' => '',                     'input' => ''],
         ];
     }
 

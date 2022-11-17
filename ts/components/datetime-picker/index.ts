@@ -262,7 +262,7 @@ export default (options: InitOptions): DateTimePicker => ({
     const parsedDate = parseDate(compareDate, this.localTimezone)
 
     for (const disabledDay of this.config.disabledDays) {
-      const disabledDate = parseDate(disabledDay, this.localTimezone).format('YYYY-MM-DD')
+      const disabledDate = parseDate(disabledDay, this.localTimezone).format('YYYY-M-D')
       if (disabledDate === compareDate) {
         return true
       }
