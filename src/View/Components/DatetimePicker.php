@@ -84,19 +84,24 @@ class DatetimePicker extends Input
         $this->maxTime         = $maxTime;
         $this->min             = $min ? Carbon::parse($min) : null;
         $this->max             = $max ? Carbon::parse($max) : null;
-
-        $this->disabledDays    = $disabledDays ?? [];
-        foreach ($this->disabledDays as $key => $day) {
-            if (is_numeric($day) && $day >= 0 && $day <= 6) {
-                continue;
-            }
-
-            $this->disabledDays[$key] = Carbon::parse($day);
-        }
+        $this->disabledDays    = $this->parseDisabledDays($disabledDays ?? []);
     }
 
     protected function getView(): string
     {
         return 'wireui::components.datetime-picker';
+    }
+
+    protected function parseDisabledDays(array $disabledDays): array
+    {
+        foreach ($disabledDays as $key => $day) {
+            if (is_numeric($day) && $day >= 0 && $day <= 6) {
+                continue;
+            }
+
+            $disabledDays[$key] = Carbon::parse($day);
+        }
+
+        return $disabledDays;
     }
 }
