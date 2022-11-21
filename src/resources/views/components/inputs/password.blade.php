@@ -18,7 +18,7 @@
                     <x-dynamic-component
                         x-show="!status"
                         :component="WireUi::component('icon')"
-                        name="eye-off"
+                        name="eye-slash"
                         class="w-5 h-5"
                     />
                     <x-dynamic-component

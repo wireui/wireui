@@ -1,61 +1,21 @@
 <?php
 
-namespace Tests\Unit\Controllers;
+use function Pest\Laravel\getJson;
 
-use Illuminate\Support\{Collection, Str};
-use Symfony\Component\Finder\{Finder, SplFileInfo};
-use Tests\Unit\UnitTestCase;
+test('it should fetch an icon', function () {
+    getJson(route('wireui.icons', ['variant' => 'outline', 'icon' => 'user']))
+        ->assertStatus(200)
+        ->assertHeader('Content-Type', 'image/svg+xml; charset=utf-8')
+        ->assertHeader('Cache-Control', 'max-age=31536000, only-if-cached, public')
+        ->assertSee('<svg', escape: false);
+});
 
-class IconsControllerTest extends UnitTestCase
-{
-    public function test_it_should_assert_icon_is_found()
-    {
-        $this->getJson(route('wireui.icons', ['style' => 'outline', 'icon' => 'user']))
-            ->assertStatus(200)
-            ->assertHeader('Content-Type', 'image/svg+xml; charset=utf-8')
-            ->assertHeader('Cache-Control', 'max-age=31536000, only-if-cached, public')
-            ->assertSee('<svg', escape: false);
-    }
-
-    /**
-     * @test
-     * @dataProvider iconsProvider
-     */
-    public function test_it_should_ensure_($style, $icon)
-    {
-        $this->getJson(route('wireui.icons', ['style' => $style, 'icon' => $icon]))
-            ->assertStatus(200)
-            ->assertHeader('Content-Type', 'image/svg+xml; charset=utf-8')
-            ->assertHeader('Cache-Control', 'max-age=31536000, only-if-cached, public')
-            ->assertSee('<svg', escape: false);
-    }
-
-    public function iconsProvider(): array
-    {
-        return collect([
-            $this->mapIcons('solid'),
-            $this->mapIcons('outline'),
-        ])->collapse()->toArray();
-    }
-
-    public function mapIcons(string $style): Collection
-    {
-        $files = (new Finder())->files()->in(__DIR__ . "/../../../src/resources/views/components/icons/{$style}");
-
-        return collect($files)->map(fn (SplFileInfo $file) => [
-            'style' => $style,
-            'icon'  => Str::before($file->getFilename(), '.blade.php'),
+test('it should return an 404 response when an icon is not found', function () {
+    getJson(route('wireui.icons', ['variant' => 'outline', 'icon' => 'invalid-icon-name']))
+        ->assertStatus(404)
+        ->assertHeader('Content-Type', 'application/json')
+        ->assertHeader('Cache-Control', 'no-cache, private')
+        ->assertExactJson([
+            'message' => 'Icon "invalid-icon-name" for variant "outline" was not found.',
         ]);
-    }
-
-    public function test_it_should_assert_icon_is_not_found()
-    {
-        $this->getJson(route('wireui.icons', ['style' => 'outline', 'icon' => 'invalid-icon-name']))
-            ->assertStatus(404)
-            ->assertHeader('Content-Type', 'application/json')
-            ->assertHeader('Cache-Control', 'no-cache, private')
-            ->assertExactJson([
-                'message' => 'Icon "invalid-icon-name" not found.',
-            ]);
-    }
-}
+});

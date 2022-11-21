@@ -125,7 +125,7 @@
                                                 <x-dynamic-component
                                                     :component="WireUi::component('icon')"
                                                     class="h-3 w-3"
-                                                    name="x"
+                                                    name="x-mark"
                                                 />
                                             </button>
                                         </span>
@@ -149,7 +149,7 @@
                             <x-dynamic-component
                                 :component="WireUi::component('icon')"
                                 class="w-4 h-4 text-secondary-400 hover:text-negative-400"
-                                name="x"
+                                name="x-mark"
                             />
                         </button>
                     @endif
@@ -187,7 +187,7 @@
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                     shadowless
-                    right-icon="search"
+                    right-icon="magnifying-glass"
                     :placeholder="trans('wireui::messages.searchHere')"
                 />
             </div>

@@ -12,7 +12,7 @@ class Select extends NativeSelect
         public bool $searchable = true,
         public bool $multiselect = false,
         public bool $withoutItemsCount = false,
-        public string $rightIcon = 'selector',
+        public string $rightIcon = 'chevron-up-down',
         public ?string $icon = null,
         public ?string $label = null,
         public ?string $hint = null,

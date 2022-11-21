@@ -106,7 +106,7 @@
                                 <x-dynamic-component
                                         :component="WireUi::component('icon')"
                                         class="h-5 w-5"
-                                        name="x"
+                                        name="x-mark"
                                 />
                             </button>
                         </div>

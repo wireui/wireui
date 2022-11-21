@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 class ColorPicker extends FormComponent
 {
     public function __construct(
-        public $rightIcon = 'color-swatch',
+        public $rightIcon = 'swatch',
         public array|Collection $colors = [],
         public ?string $label = null,
         public bool $colorNameAsValue = false,

@@ -13,7 +13,7 @@ return [
         |
     */
     'icons' => [
-        'style' => env('WIREUI_ICONS_STYLE', 'outline'),
+        'variant' => 'outline',
     ],
 
     /*

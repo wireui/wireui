@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase;
 use ReflectionClass;
+use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\Providers\WireUiServiceProvider;
 
 class UnitTestCase extends TestCase
@@ -30,6 +31,7 @@ class UnitTestCase extends TestCase
         return [
             LivewireServiceProvider::class,
             WireUiServiceProvider::class,
+            HeroiconsServiceProvider::class,
         ];
     }
 
