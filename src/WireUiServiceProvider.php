@@ -9,6 +9,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\{LivewireBladeDirectives, WireDirective};
 use WireUi\Facades\{WireUi, WireUiDirectives};
+use WireUi\View\Attribute;
 use WireUi\View\Compilers\WireUiTagCompiler;
 
 /** @property Application $app */
@@ -161,6 +162,16 @@ class WireUiServiceProvider extends ServiceProvider
                     'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
                 ],
             ];
+        });
+
+        ComponentAttributeBag::macro('attribute', function (string $name) {
+            /** @var ComponentAttributeBag $this */
+            $attributes = $this->whereStartsWith($name);
+
+            return new Attribute(
+                directive: array_key_first($attributes->getAttributes()),
+                value: $attributes->first()
+            );
         });
 
         return $this;
