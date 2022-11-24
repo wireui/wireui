@@ -1,6 +1,6 @@
 <?php
 
-use WireUi\Support\Buttons\Sizes;
+use WireUi\Support\Buttons\{Colors, Sizes};
 use WireUi\View\Components;
 
 return [
@@ -55,11 +55,20 @@ return [
         |
         | The default button preferences, like colors, styles, sizes, etc.
         |
+        | Style: solid | flat | outline
         | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
+        | Color: All keys of WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
         |
     */
     'button' => [
-        'size'  => 'md',
+        'style'  => 'solid',
+        'size'   => 'md',
+        'color'  => null,
+        'colors' => [
+            'solid'   => Colors\Solid::class,
+            'flat'    => Colors\Flat::class,
+            'outline' => Colors\Outline::class,
+        ],
         'sizes' => [
             'base' => Sizes\Base::class,
             'icon' => Sizes\Icon::class,
@@ -72,7 +81,14 @@ return [
         |--------------------------------------------------------------------------
     */
     'buttons_mini' => [
-        'size'  => 'md',
+        'style'  => 'solid',
+        'size'   => 'md',
+        'color'  => null,
+        'colors' => [
+            'solid'   => Colors\Solid::class,
+            'flat'    => Colors\Flat::class,
+            'outline' => Colors\Outline::class,
+        ],
         'sizes' => [
             'base' => Sizes\Mini\Base::class,
             'icon' => Sizes\Mini\Icon::class,
