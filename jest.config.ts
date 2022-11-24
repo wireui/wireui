@@ -3,8 +3,8 @@
  * https://jestjs.io/docs/configuration
  */
 
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
-module.exports = {
+/** @returns {import('ts-jest/dist/types').InitialOptionsTsJest} */
+export default {
   clearMocks: true,
   collectCoverage: false,
   collectCoverageFrom: ['<rootDir>/ts/**/*.ts'],
