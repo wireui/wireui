@@ -68,6 +68,7 @@ class DuskCommand extends Command
     private function replaceCwd($file)
     {
         $cwd = getcwd();
+
         if ($cwd === false) {
             return $file;
         }

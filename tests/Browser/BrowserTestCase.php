@@ -8,7 +8,6 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
-use function Livewire\str;
 use Livewire\Testing\TestableLivewire;
 use Livewire\{Component, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
@@ -18,6 +17,8 @@ use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\Providers\WireUiServiceProvider;
+
+use function Livewire\str;
 
 /** @link https://github.com/livewire/livewire/blob/master/tests/Browser/TestCase.php */
 class BrowserTestCase extends Dusk\TestCase
@@ -91,6 +92,7 @@ class BrowserTestCase extends Dusk\TestCase
                         strtolower(request()->query('search'))
                     );
                 })->values();
+
                 return ['data' => ['nested' => $data]];
             })->name('api.options.nested')->middleware('web');
 

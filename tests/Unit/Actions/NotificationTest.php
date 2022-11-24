@@ -73,7 +73,7 @@ it('should emit the simple notification event', function (string $method) {
         ->with($event, [
             'options' => [
                 'icon'        => $method,
-                'title'       => $title = 'WireUI is awesome!',
+                'title'       => $title       = 'WireUI is awesome!',
                 'description' => $description = 'WireUI is easy to use.',
             ],
             'componentId' => 'fake-id',

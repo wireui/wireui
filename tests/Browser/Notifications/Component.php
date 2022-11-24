@@ -38,7 +38,7 @@ class Component extends \Livewire\Component
     public function showSimpleNotification(): void
     {
         $this->notification()->success(
-            $title = 'Success title',
+            $title       = 'Success title',
             $description = 'Success description',
         );
     }

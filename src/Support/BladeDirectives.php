@@ -65,17 +65,17 @@ class BladeDirectives
 
     public function confirmAction(string $expression): string
     {
-        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$_instance->id }}')\"";
     }
 
     public function notify(string $expression): string
     {
-        return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$_instance->id }}')\"";
     }
 
     public function boolean(string $value): string
     {
-        return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
+        return "<?= json_encode(filter_var({$value}, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
     public function entangleable(string $expression): ?string
