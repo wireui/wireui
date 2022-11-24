@@ -4,7 +4,7 @@ namespace WireUi;
 
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\{ServiceProvider, Str};
+use Illuminate\Support\{Arr, ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\{LivewireBladeDirectives, WireDirective};
@@ -132,6 +132,21 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function registerMacros(): self
     {
+        Arr::macro('toRecursiveCssClasses', function ($classList): string {
+            $classList = Arr::wrap($classList);
+            $classes   = [];
+
+            foreach ($classList as $class => $constraint) {
+                if (is_numeric($class)) {
+                    $classes[] = Arr::toCssClasses($constraint);
+                } elseif ($constraint) {
+                    $classes[] = $class;
+                }
+            }
+
+            return implode(' ', $classes);
+        });
+
         ComponentAttributeBag::macro('wireModifiers', function () {
             /** @var ComponentAttributeBag $this */
 
