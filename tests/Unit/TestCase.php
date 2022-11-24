@@ -5,17 +5,25 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\TestCase;
+use Orchestra\Testbench;
 use ReflectionClass;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
 
-class UnitTestCase extends TestCase
+class TestCase extends Testbench\TestCase
 {
     use InteractsWithViews;
 
     protected function setUp(): void
     {
+        $this->afterApplicationCreated(function () {
+            $this->makeACleanSlate();
+        });
+
+        $this->beforeApplicationDestroyed(function () {
+            $this->makeACleanSlate();
+        });
+
         parent::setUp();
 
         Route::middleware('web')->group(base_path('src/routes.php'));
@@ -33,6 +41,11 @@ class UnitTestCase extends TestCase
             WireUiServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];
+    }
+
+    public function makeACleanSlate(): void
+    {
+        $this->artisan('view:clear');
     }
 
     /** Call protected/private method of a class */

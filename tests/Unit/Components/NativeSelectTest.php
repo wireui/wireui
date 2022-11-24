@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Components;
 
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\View\Components\NativeSelect;
 
-class NativeSelectTest extends UnitTestCase
+class NativeSelectTest extends TestCase
 {
     /**
      * @test

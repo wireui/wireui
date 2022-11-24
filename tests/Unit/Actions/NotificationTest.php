@@ -1,7 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, UnitTestCase};
+use Tests\Unit\{LivewireComponent, TestCase};
 use WireUi\Actions\Notification;
 
 it('should emit a notification event', function () {
@@ -14,7 +14,7 @@ it('should emit a notification event', function () {
         'componentId' => 'fake-id',
     ];
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();
@@ -35,7 +35,7 @@ it('should emit a confirm notification event', function (?string $icon, string $
         'componentId' => 'fake-id',
     ];
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();
@@ -61,7 +61,7 @@ it('should emit a confirm notification event', function (?string $icon, string $
 it('should emit the simple notification event', function (string $method) {
     $event = 'wireui:notification';
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();

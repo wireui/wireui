@@ -4,10 +4,10 @@ namespace Tests\Unit\WireUiServiceProvider;
 
 use Illuminate\Config\Repository;
 use Illuminate\View\Compilers\BladeCompiler;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\View\Components\Input;
 
-class RegisterComponentsAsAliasTest extends UnitTestCase
+class RegisterComponentsAsAliasTest extends TestCase
 {
     protected function getEnvironmentSetUp($app): void
     {

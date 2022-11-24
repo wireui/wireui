@@ -3,7 +3,7 @@
 namespace Tests\Unit\View\Components;
 
 use Illuminate\View\ComponentAttributeBag;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\View\Components\FormComponent;
 
 class TestFormComponent extends FormComponent
@@ -21,7 +21,7 @@ class TestFormComponent extends FormComponent
     }
 }
 
-class FormComponentTest extends UnitTestCase
+class FormComponentTest extends TestCase
 {
     /** @test */
     public function it_should_inject_the_shared_attributes_from_class_and_from_the_attributes_bag()

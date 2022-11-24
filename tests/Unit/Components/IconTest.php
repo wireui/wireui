@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Blade;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\View\Components\Icon;
 
 it('should render the heroicons', function (string $variant, string $name) {
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $component = new Icon($name, $variant);
 
     $html = Blade::renderComponent($component);

@@ -4,10 +4,10 @@ namespace Tests\Unit\Controllers;
 
 use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\Response;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\Http\Controllers\ButtonController;
 
-class ButtonControllerTest extends UnitTestCase
+class ButtonControllerTest extends TestCase
 {
     public function test_it_should_render_the_button_with_attributes()
     {

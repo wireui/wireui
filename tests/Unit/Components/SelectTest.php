@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Components;
 
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 use WireUi\View\Components\Select;
 
-class SelectTest extends UnitTestCase
+class SelectTest extends TestCase
 {
     /** @test */
     public function it_should_throw_an_error_if_async_data_and_options_is_set_together()

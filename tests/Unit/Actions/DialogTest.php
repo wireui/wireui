@@ -1,7 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, UnitTestCase};
+use Tests\Unit\{LivewireComponent, TestCase};
 use WireUi\Actions\Dialog;
 
 it('should create the default dialog event name')
@@ -17,7 +17,7 @@ it('should create the dialog event name to a custom dialog', function () {
 
     $dialog->id('foo');
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $event = $this->invokeMethod($dialog, 'getEventName');
 
     $this->assertSame('dialog:foo', $event);
@@ -33,7 +33,7 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
         'componentId' => 'fake-id',
     ];
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();
@@ -63,7 +63,7 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
         'componentId' => 'fake-id',
     ];
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();
@@ -89,7 +89,7 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
 it('should emit the simple dialog event', function (string $method) {
     $event = 'wireui:dialog';
 
-    /** @var UnitTestCase $this */
+    /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
         ->onlyMethods(['dispatchBrowserEvent'])
         ->getMock();
