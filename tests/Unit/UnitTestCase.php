@@ -44,4 +44,14 @@ class UnitTestCase extends TestCase
 
         return $method->invokeArgs($object, $parameters);
     }
+
+    /** Get protected/private property value of a class */
+    public function invokeProperty(mixed $object, string $property)
+    {
+        $reflection = new ReflectionClass(get_class($object));
+        $property   = $reflection->getProperty($property);
+        $property->setAccessible(true);
+
+        return $property->getValue($object);
+    }
 }
