@@ -6,7 +6,6 @@ use WireUi\View\Components\Icon;
 
 it('should render the heroicons', function (string $variant, string $name) {
     /** @var UnitTestCase $this */
-
     $component = new Icon($name, $variant);
 
     $html = Blade::renderComponent($component);

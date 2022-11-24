@@ -101,8 +101,8 @@ class Test extends BrowserTestCase
     private function selectDate(Browser $browser, string $id, int $date): array
     {
         return $browser->script(<<<EOT
-            [...document.querySelectorAll('[id="$id"] .picker-days button')]
-                .find(day => day.innerText == $date)
+            [...document.querySelectorAll('[id="{$id}"] .picker-days button')]
+                .find(day => day.innerText == {$date})
                 .click()
         EOT);
     }
