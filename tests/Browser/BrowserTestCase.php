@@ -16,7 +16,7 @@ use Symfony\Component\Finder\SplFileInfo;
 use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Heroicons\HeroiconsServiceProvider;
-use WireUi\Providers\WireUiServiceProvider;
+use WireUi\WireUiServiceProvider;
 
 use function Livewire\str;
 

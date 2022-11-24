@@ -8,7 +8,7 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase;
 use ReflectionClass;
 use WireUi\Heroicons\HeroiconsServiceProvider;
-use WireUi\Providers\WireUiServiceProvider;
+use WireUi\WireUiServiceProvider;
 
 class UnitTestCase extends TestCase
 {
@@ -18,7 +18,7 @@ class UnitTestCase extends TestCase
     {
         parent::setUp();
 
-        Route::middleware('web')->group(base_path('src/routes/web.php'));
+        Route::middleware('web')->group(base_path('src/routes.php'));
     }
 
     protected function getEnvironmentSetUp($app)
