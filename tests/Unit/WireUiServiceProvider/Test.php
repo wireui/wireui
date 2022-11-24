@@ -33,8 +33,8 @@ test('the root dir function should create the correct path', function () {
     /** @var TestCase $this */
     $provider = new WireUiServiceProvider(new Application());
 
-    expect($this->invokeMethod($provider, 'rootDir', ['config.php']))->toEndWith('/src/config.php');
-    expect($this->invokeMethod($provider, 'rootDir', ['resources/views']))->toEndWith('/src/resources/views');
+    expect($this->invokeMethod($provider, 'srcDir', ['config.php']))->toEndWith('/src/config.php');
+    expect($this->invokeMethod($provider, 'srcDir', ['resources/views']))->toEndWith('/src/resources/views');
 });
 
 it('should add the publish groups', function () {
