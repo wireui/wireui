@@ -175,9 +175,9 @@ return [
             'class' => Components\Button::class,
             'alias' => 'button',
         ],
-        'button.circle' => [
-            'class' => Components\CircleButton::class,
-            'alias' => 'button.circle',
+        'buttons.mini' => [
+            'class' => Components\Buttons\Mini::class,
+            'alias' => 'buttons.mini',
         ],
         'dropdown' => [
             'class' => Components\Dropdown::class,
