@@ -1,5 +1,6 @@
 <?php
 
+use WireUi\Support\Buttons\Sizes;
 use WireUi\View\Components;
 
 return [
@@ -45,6 +46,37 @@ return [
         'shadow'  => env('WIREUI_CARD_SHADOW', 'shadow-md'),
         'rounded' => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
         'color'   => env('WIREUI_CARD_COLOR', 'bg-white dark:bg-secondary-800'),
+    ],
+
+    /*
+        |--------------------------------------------------------------------------
+        | Button
+        |--------------------------------------------------------------------------
+        |
+        | The default button preferences, like colors, styles, sizes, etc.
+        |
+        | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
+        |
+    */
+    'button' => [
+        'size'  => 'md',
+        'sizes' => [
+            'base' => Sizes\Base::class,
+            'icon' => Sizes\Icon::class,
+        ],
+    ],
+
+    /*
+        |--------------------------------------------------------------------------
+        | Mini Button
+        |--------------------------------------------------------------------------
+    */
+    'buttons_mini' => [
+        'size'  => 'md',
+        'sizes' => [
+            'base' => Sizes\Mini\Base::class,
+            'icon' => Sizes\Mini\Icon::class,
+        ],
     ],
 
     /*
