@@ -6,14 +6,14 @@ abstract class ColorPack
 {
     public function get(?string $color): Color
     {
-        if (!$color) {
+        if (!$color || $color === 'default') {
             return $this->default();
         }
 
         return data_get(
             target: $this->all(),
             key: $color,
-            default: $color
+            default: new Color($color)
         );
     }
 

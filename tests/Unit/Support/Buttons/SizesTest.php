@@ -11,6 +11,14 @@ it('should return the default size', function () {
     expect((new Icon())->default())->toBe(
         (new Icon())->get(config('wireui.button.size'))
     );
+
+    expect((new Base())->get('default'))->toBe(
+        (new Base())->get(config('wireui.button.size'))
+    );
+
+    expect((new Icon())->get('default'))->toBe(
+        (new Icon())->get(config('wireui.button.size'))
+    );
 });
 
 it('should return the default mini size', function () {

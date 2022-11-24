@@ -6,7 +6,7 @@ abstract class SizePack
 {
     public function get(?string $size): string
     {
-        if (!$size) {
+        if (!$size || $size === 'default') {
             return $this->default();
         }
 

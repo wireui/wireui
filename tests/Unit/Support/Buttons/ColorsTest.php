@@ -6,6 +6,10 @@ it('should return the a default color', function () {
     expect((new Flat())->default())->toBeTruthy();
     expect((new Outline())->default())->toBeTruthy();
     expect((new Solid())->default())->toBeTruthy();
+
+    expect((new Flat())->get('default'))->toBeTruthy();
+    expect((new Outline())->get('default'))->toBeTruthy();
+    expect((new Solid())->get('default'))->toBeTruthy();
 });
 
 it('should return the all colors', function () {
