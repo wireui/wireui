@@ -4,7 +4,8 @@ namespace Tests\Unit;
 
 use Illuminate\Support\Facades\Blade;
 use WireUi\Facades\WireUiDirectives;
-use WireUi\Support\{BladeDirectives, WireUiTagCompiler};
+use WireUi\Support\BladeDirectives;
+use WireUi\View\Compilers\WireUiTagCompiler;
 
 class WireUiTagCompilerTest extends UnitTestCase
 {
