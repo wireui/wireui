@@ -4,14 +4,11 @@ namespace WireUi\View\Components;
 
 use WireUi\Support\Buttons\Colors\{Color, ColorPack};
 use WireUi\Support\Buttons\Sizes\SizePack;
-use WireUi\Traits\HasModifiers;
 use WireUi\View\Attribute;
 use WireUi\View\Components\Buttons\Base;
 
 class Button extends Base
 {
-    use HasModifiers;
-
     public function __construct(
         public bool $disabledOnWireLoading = true,
         public bool $block = false,

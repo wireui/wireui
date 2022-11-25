@@ -5,10 +5,12 @@ namespace WireUi\View\Components\Buttons;
 use Closure;
 use Illuminate\View\Component;
 use WireUi\Traits\Buttons\HasSpinner;
+use WireUi\Traits\HasModifiers;
 
 abstract class Base extends Component
 {
     use HasSpinner;
+    use HasModifiers;
 
     public function __construct(
         public bool $disabledOnWireLoading = true,
