@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Components;
+namespace Tests\Unit\Views\Components;
 
 use Tests\Unit\TestCase;
 use WireUi\View\Components\NativeSelect;
