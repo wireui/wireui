@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench;
@@ -26,12 +27,12 @@ class TestCase extends Testbench\TestCase
 
         parent::setUp();
 
-        Route::middleware('web')->group(base_path('src/routes.php'));
+        Route::middleware('web')->group($this->srcDir('routes.php'));
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function srcDir(string $path): string
     {
-        $app->setBasePath(__DIR__ . '/../..');
+        return __DIR__ . "/../../src/{$path}";
     }
 
     protected function getPackageProviders($app)
@@ -45,7 +46,7 @@ class TestCase extends Testbench\TestCase
 
     public function makeACleanSlate(): void
     {
-        $this->artisan('view:clear');
+        Artisan::call('view:clear');
     }
 
     /** Call protected/private method of a class */
