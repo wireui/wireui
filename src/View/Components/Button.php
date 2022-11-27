@@ -17,6 +17,8 @@ class Button extends Base
         public ?string $label = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
+        public ?string $iconSize = null,
+        public ?string $variant = null,
         public ?string $color = null,
         public ?string $size = null,
     ) {
@@ -25,6 +27,7 @@ class Button extends Base
             label: $label,
             icon: $icon,
             rightIcon: $rightIcon,
+            iconSize: $iconSize,
         );
     }
 
@@ -57,6 +60,10 @@ class Button extends Base
 
     protected function setupIconSize(): self
     {
+        if ($this->iconSize) {
+            return $this;
+        }
+
         /** @var SizePack $sizePack */
         $sizePack = resolve($this->config('sizes.icon'));
 
@@ -94,11 +101,10 @@ class Button extends Base
     {
         $colors = $this->config('colors');
 
-        $style = $this->getMatchModifier(array_keys($colors));
+        $this->variant ??= $this->getMatchModifier(array_keys($colors));
+        $this->variant ??= $this->config('variant');
 
-        $style ??= $this->config('style');
-
-        return resolve($colors[$style]);
+        return resolve($colors[$this->variant]);
     }
 
     protected function getCurrentColor(): string
