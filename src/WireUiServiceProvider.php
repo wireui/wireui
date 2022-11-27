@@ -73,7 +73,7 @@ class WireUiServiceProvider extends ServiceProvider
 
     protected function setupHeroiconsComponent(): self
     {
-        config()->set('wireui.heroicons.alias', 'icons.heroicons');
+        config()->set('wireui.heroicons.alias', 'heroicons');
 
         return $this;
     }
