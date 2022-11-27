@@ -79,12 +79,16 @@ it('should return if the attribute exists', function ($attribute) {
     [null],
 ]);
 
-it('should get the attribute params', function () {
+it('should get the attribute params', function (string $directive, array $params) {
     /** @var TestCase $this */
     $attribute = new Attribute(
-        directive: 'foo:baz,bar',
+        directive: $directive,
         value: true,
     );
 
-    expect($attribute->params()->toArray())->toBe(['baz', 'bar']);
-});
+    expect($attribute->params()->toArray())->toBe($params);
+})->with([
+    'with-2-params' => ['foo:baz,bar', ['baz', 'bar']],
+    'with-1-param'  => ['foo:baz', ['baz']],
+    'empty-params'  => ['foo', []],
+]);
