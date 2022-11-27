@@ -13,6 +13,8 @@ class Mini extends Button
         public bool $squared = false,
         public ?string $label = null,
         public ?string $icon = null,
+        public ?string $iconSize = null,
+        public ?string $variant = null,
         public ?string $color = null,
         public ?string $size = null,
     ) {
@@ -24,6 +26,8 @@ class Mini extends Button
             label: $label,
             icon: $icon,
             rightIcon: null,
+            iconSize: $iconSize,
+            variant: $variant,
             color: $color,
             size: $size,
         );
