@@ -55,16 +55,16 @@ return [
         |
         | The default button preferences, like colors, styles, sizes, etc.
         |
-        | Style: solid | flat | outline
+        | Variant: solid | flat | outline
         | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
-        | Color: All keys of WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
+        | Color: All keys of variants WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
         |
     */
     'button' => [
-        'style'  => 'solid',
-        'size'   => 'md',
-        'color'  => null,
-        'colors' => [
+        'variant' => 'solid',
+        'size'    => 'md',
+        'color'   => null,
+        'colors'  => [
             'solid'   => Colors\Solid::class,
             'flat'    => Colors\Flat::class,
             'outline' => Colors\Outline::class,
@@ -81,10 +81,10 @@ return [
         |--------------------------------------------------------------------------
     */
     'buttons_mini' => [
-        'style'  => 'solid',
-        'size'   => 'md',
-        'color'  => null,
-        'colors' => [
+        'variant' => 'solid',
+        'size'    => 'md',
+        'color'   => null,
+        'colors'  => [
             'solid'   => Colors\Solid::class,
             'flat'    => Colors\Flat::class,
             'outline' => Colors\Outline::class,
