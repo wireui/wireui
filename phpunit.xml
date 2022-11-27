@@ -4,7 +4,13 @@
         <include>
             <directory suffix=".php">src/</directory>
         </include>
+
+        <exclude>
+            <directory suffix=".blade.php">src/resources/views/</directory>
+            <directory suffix=".php">src/lang/</directory>
+        </exclude>
     </coverage>
+
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
@@ -13,6 +19,7 @@
             <directory suffix="Test.php">./tests/Browser</directory>
         </testsuite>
     </testsuites>
+
     <php>
         <env name="DB_CONNECTION" value="testing" />
         <env name="APP_KEY" value="base64:k41qv6M3iCm985CMRBFNPUgsxU2GUXQsBNNBTSGeraU=" />
