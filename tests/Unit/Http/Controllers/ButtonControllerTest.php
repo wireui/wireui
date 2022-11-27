@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Unit\TestCase;
@@ -48,78 +49,136 @@ class ButtonControllerTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider validationProvider
-     */
-    public function test_the_button_attributes_validation(array $attributes, $errors)
+    /** @dataProvider validationProvider */
+    public function test_the_button_attributes_validation(string $attribute, string $rule)
     {
-        $this->getJson(route('wireui.render.button', $attributes))
+        $this->getJson(route('wireui.render.button', [$attribute => ['invalid-value']]))
             ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
-            ->assertJsonValidationErrors($errors);
+            ->assertJsonValidationErrors([
+                $attribute => __("validation.{$rule}", ['attribute' => Str::of($attribute)->headline()->lower()]),
+            ]);
     }
 
     public function validationProvider(): array
     {
         return [
+            'label' => [
+                'attribute' => 'label',
+                'rule'      => 'string',
+            ],
+            'variant' => [
+                'attribute' => 'variant',
+                'rule'      => 'string',
+            ],
             'color' => [
-                'attributes' => [
-                    'color' => 'invalid-color',
-                ],
-                'errors' => ['color' => 'validation.in'],
+                'attribute' => 'color',
+                'rule'      => 'string',
             ],
             'size' => [
-                'attributes' => [
-                    'size' => 'invalid-size',
-                ],
-                'errors' => ['size' => 'validation.in'],
-            ],
-            'iconSize' => [
-                'attributes' => [
-                    'iconSize' => 'invalid-iconSize',
-                ],
-                'errors' => ['iconSize' => 'validation.in'],
-            ],
-            'label' => [
-                'attributes' => [
-                    'label' => ['invalid-type'],
-                ],
-                'errors' => ['label' => 'string'],
-            ],
-            'rightIcon' => [
-                'attributes' => [
-                    'rightIcon' => ['invalid-type'],
-                ],
-                'errors' => ['rightIcon' => 'string'],
+                'attribute' => 'size',
+                'rule'      => 'string',
             ],
             'icon' => [
-                'attributes' => [
-                    'icon' => ['invalid-type'],
-                ],
-                'errors' => ['icon' => 'string'],
+                'attribute' => 'icon',
+                'rule'      => 'string',
+            ],
+            'rightIcon' => [
+                'attribute' => 'rightIcon',
+                'rule'      => 'string',
+            ],
+            'iconSize' => [
+                'attribute' => 'iconSize',
+                'rule'      => 'string',
             ],
             'rounded' => [
-                'attributes' => [
-                    'rounded' => ['invalid-type'],
-                ],
-                'errors' => ['rounded' => 'boolean'],
+                'attribute' => 'rounded',
+                'rule'      => 'boolean',
             ],
             'squared' => [
-                'attributes' => [
-                    'squared' => ['invalid-type'],
-                ],
-                'errors' => ['squared' => 'boolean'],
+                'attribute' => 'squared',
+                'rule'      => 'boolean',
             ],
             'bordered' => [
-                'attributes' => [
-                    'bordered' => ['invalid-type'],
-                ],
-                'errors' => ['bordered' => 'boolean'],
+                'attribute' => 'bordered',
+                'rule'      => 'boolean',
+            ],
+            'solid' => [
+                'attribute' => 'solid',
+                'rule'      => 'boolean',
+            ],
+            'outline' => [
+                'attribute' => 'outline',
+                'rule'      => 'boolean',
             ],
             'flat' => [
-                'attributes' => [
-                    'flat' => ['invalid-type'],
-                ],
-                'errors' => ['flat' => 'boolean'],
+                'attribute' => 'flat',
+                'rule'      => 'boolean',
+            ],
+        ];
+    }
+
+    /** @dataProvider valuesProvider */
+    public function test_the_button_attributes(string $attribute, string|bool $value)
+    {
+        $this->getJson(route('wireui.render.button', [$attribute => $value]))
+            ->assertStatus(Response::HTTP_OK)
+            ->assertSessionHasNoErrors();
+    }
+
+    public function valuesProvider(): array
+    {
+        return [
+            'label' => [
+                'attribute' => 'label',
+                'value'     => 'My Label',
+            ],
+            'variant' => [
+                'attribute' => 'variant',
+                'value'     => 'solid',
+            ],
+            'color' => [
+                'attribute' => 'color',
+                'value'     => 'primary',
+            ],
+            'size' => [
+                'attribute' => 'size',
+                'value'     => 'xl',
+            ],
+            'icon' => [
+                'attribute' => 'icon',
+                'value'     => 'home',
+            ],
+            'rightIcon' => [
+                'attribute' => 'rightIcon',
+                'value'     => 'user',
+            ],
+            'iconSize' => [
+                'attribute' => 'iconSize',
+                'value'     => 'sm',
+            ],
+            'rounded' => [
+                'attribute' => 'rounded',
+                'value'     => true,
+            ],
+            'squared' => [
+                'attribute' => 'squared',
+                'value'     => false,
+            ],
+            'bordered' => [
+                'attribute' => 'bordered',
+                'value'     => true,
+            ],
+            'solid' => [
+                'attribute' => 'solid',
+                'value'     => false,
+            ],
+            'outline' => [
+                'attribute' => 'outline',
+                'value'     => true,
+            ],
+            'flat' => [
+                'attribute' => 'flat',
+                'value'     => false,
             ],
         ];
     }
