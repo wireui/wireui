@@ -27,7 +27,7 @@ export default (options: InitOptions): DateTimePicker => ({
   timezone: '',
   userTimezone: '',
   localTimezone: getLocalTimezone(),
-  parseFormat: 'YYYY-MM-DDTHH:mm:ss.SSSZ',
+  parseFormat: '',
   displayFormat: '',
   weekDays: [],
   monthNames: [],
@@ -334,10 +334,10 @@ export default (options: InitOptions): DateTimePicker => ({
     this.monthsPicker = false
     this.fillPickerDates()
   },
-  emitInput () {
+  syncWireModel () {
     let date = this.input?.format(this.parseFormat, this.timezone)
 
-    if (date && !this.model && this.withoutTime && (!this.parseFormat || this.parseFormat.startsWith('YYYY-MM-DD'))) {
+    if (date && this.withoutTime && !this.parseFormat) {
       date = date.slice(0, 10)
     }
 
@@ -379,7 +379,7 @@ export default (options: InitOptions): DateTimePicker => ({
       this.fillPickerDates()
     }
 
-    this.emitInput()
+    this.syncWireModel()
 
     !this.withoutTime
       ? this.tab = 'time'
@@ -396,7 +396,7 @@ export default (options: InitOptions): DateTimePicker => ({
       this.input?.setTimezone(this.timezone)
     }
 
-    this.emitInput()
+    this.syncWireModel()
     this.popover = false
   },
   today () {
@@ -405,17 +405,17 @@ export default (options: InitOptions): DateTimePicker => ({
   selectYesterday () {
     this.input = this.today().subDay()
     this.close()
-    this.emitInput()
+    this.syncWireModel()
   },
   selectToday () {
     this.input = this.today()
     this.close()
-    this.emitInput()
+    this.syncWireModel()
   },
   selectTomorrow () {
     this.input = this.today().addDay()
     this.close()
-    this.emitInput()
+    this.syncWireModel()
   },
   getLocaleDateConfig () {
     const config: LocaleDateConfig = {
