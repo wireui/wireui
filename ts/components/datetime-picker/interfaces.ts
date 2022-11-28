@@ -99,7 +99,7 @@ export interface DateTimePicker extends Component, InitOptions, Props, Positioni
   isSelected (date: CurrentDate): boolean
   isToday (day: number): boolean
   selectMonth (month: number): void
-  emitInput (): void
+  syncWireModel (): void
   syncInput (): void
   selectDate (date: iDate): void
   selectTime (time: Time): void
