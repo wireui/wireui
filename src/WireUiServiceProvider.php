@@ -164,13 +164,18 @@ class WireUiServiceProvider extends ServiceProvider
             ];
         });
 
-        ComponentAttributeBag::macro('attribute', function (string $name) {
+        ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
-            $attributes = $this->whereStartsWith($name);
+
+            $attributes = collect($this->whereStartsWith($name)->getAttributes());
+
+            if ($attributes->isEmpty()) {
+                return null;
+            }
 
             return new Attribute(
-                directive: array_key_first($attributes->getAttributes()),
-                value: $attributes->first()
+                directive: $attributes->keys()->first(),
+                expression: $attributes->first(),
             );
         });
 
