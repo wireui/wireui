@@ -10,10 +10,10 @@ trait HasSpinner
 {
     protected function getSpinner(): ?ComponentAttributeBag
     {
-        /** @var Attribute $spinner */
+        /** @var Attribute|null $spinner */
         $spinner = $this->attributes->attribute('spinner');
 
-        if (!$spinner->exists()) {
+        if (!$spinner) {
             return null;
         }
 
