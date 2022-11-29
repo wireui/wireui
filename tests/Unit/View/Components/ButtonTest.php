@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Blade;
-use WireUi\Support\Buttons\Colors\{ColorPack, Solid};
+use WireUi\Support\Buttons\Colors\{ColorPack, Flat, Outline, Solid};
 use WireUi\Support\Buttons\Sizes;
 
 it('should render a button with as a link')
@@ -159,22 +159,53 @@ it('should render icons with custom sizes', function () {
         );
 });
 
-it('should render a button with two differents colors when interacting', function () {
-    expect('<x-button primary hover:yellow focus:green />')
+it('should render a button with two different colors when interacting', function (string $code) {
+    expect($code)
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
             (new Solid())->get('yellow')->hover,
             (new Solid())->get('green')->focus
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus
         );
-});
+})->with([
+    ['<x-button primary hover:yellow focus:green />'],
+    ['<x-button primary hover="yellow" focus="green" />'],
+]);
 
-it('should render a button with one different color when interacting', function () {
-    expect('<x-button primary interaction:green />')
+it('should render a button with one different color when interacting', function (string $code) {
+    expect($code)
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
             (new Solid())->get('green')->hover,
             (new Solid())->get('green')->focus
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus
         );
-});
+})->with([
+    ['<x-button primary interaction:green />'],
+    ['<x-button primary interaction="green" />'],
+]);
+
+it('should render a button with two different colors and variants when interacting', function (string $code) {
+    expect($code)
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            (new Flat())->get('yellow')->hover,
+            (new Outline())->get('green')->focus
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus
+        );
+})->with([
+    ['<x-button primary hover:flat="yellow" focus:outline="green" />'],
+    ['<x-button primary hover:flat.yellow focus:outline.green />'],
+]);

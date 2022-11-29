@@ -138,14 +138,29 @@ class Button extends Base
         array $modifiers,
         string $event,
     ): Color {
-        /** @var Attribute $attribute */
+        /** @var Attribute|null $attribute */
         $attribute = $this->attributes->attribute($event);
 
-        if (!$attribute->exists()) {
+        if (!$attribute) {
             return $color;
         }
 
-        $modifierColor = $attribute->params()->first() ?? $attribute->value();
+        $variant       = $attribute->value();
+        $modifierColor = $variant ?? $attribute->expression();
+        $hasExpression = is_string($attribute->expression());
+        $hasModifiers  = $attribute->modifiers()->isNotEmpty();
+
+        if ($hasExpression) {
+            $modifierColor = $attribute->expression();
+        }
+
+        if ($hasModifiers) {
+            $modifierColor = $attribute->modifiers()->first();
+        }
+
+        if ($variant && ($hasExpression || $hasModifiers)) {
+            $colorPack = resolve($this->config("colors.{$variant}"));
+        }
 
         foreach ($modifiers as $modifier) {
             $color->{$modifier} = $colorPack->get($modifierColor)->{$modifier};
