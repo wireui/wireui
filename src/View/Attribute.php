@@ -4,20 +4,42 @@ namespace WireUi\View;
 
 use Illuminate\Support\{Collection, Str};
 
-class Attribute
+final class Attribute
 {
-    public function __construct(
-        private ?string $directive,
-        private mixed $value = null,
-    ) {
-    }
+    private readonly string $directive;
 
-    public function hasModifier(string $modifier): bool
+    private readonly mixed $expression;
+
+    private readonly ?string $name;
+
+    private readonly ?string $value;
+
+    private readonly Collection $modifiers;
+
+    public function __construct(string $directive, mixed $expression = null)
     {
-        return $this->modifiers()->contains($modifier);
+        $this->directive  = $directive;
+        $this->expression = $expression;
+        $this->name       = $this->extractName();
+        $this->value      = $this->extractValue();
+        $this->modifiers  = $this->extractModifiers();
     }
 
-    public function modifiers(): Collection
+    private function extractName(): ?string
+    {
+        return Str::of($this->directive)->before(':')->before('.');
+    }
+
+    private function extractValue(): ?string
+    {
+        if (!str_contains($this->directive, ':')) {
+            return null;
+        }
+
+        return Str::of($this->directive)->after(':')->before('.');
+    }
+
+    private function extractModifiers(): Collection
     {
         return Str::of($this->directive)
             ->explode('.')
@@ -27,36 +49,33 @@ class Attribute
             ->values();
     }
 
-    public function params(): Collection
+    public function hasModifier(string $modifier): bool
     {
-        if (!str_contains($this->directive, ':')) {
-            return collect();
-        }
-
-        return Str::of($this->directive)
-            ->after(':')
-            ->explode(',')
-            ->filter()
-            ->values();
+        return $this->modifiers()->contains($modifier);
     }
 
-    public function directive(): ?string
+    public function directive(): string
     {
         return $this->directive;
     }
 
-    public function name(): ?string
+    public function expression(): mixed
     {
-        return Str::of($this->directive)->before(':')->before('.');
+        return $this->expression;
     }
 
-    public function value(): mixed
+    public function name(): ?string
+    {
+        return $this->name;
+    }
+
+    public function value(): ?string
     {
         return $this->value;
     }
 
-    public function exists(): bool
+    public function modifiers(): Collection
     {
-        return (bool) $this->name();
+        return $this->modifiers;
     }
 }

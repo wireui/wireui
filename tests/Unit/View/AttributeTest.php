@@ -1,10 +1,8 @@
 <?php
 
-use Tests\Unit\TestCase;
 use WireUi\View\Attribute;
 
 it('should get the attribute directive', function (?string $directive) {
-    /** @var TestCase $this */
     $attribute = new Attribute($directive);
 
     expect($attribute->directive())->toBe($directive);
@@ -14,12 +12,10 @@ it('should get the attribute directive', function (?string $directive) {
     ['spinner.lazy..bar'],
     ['spinner.lazy.foo.'],
     [''],
-    [null, null],
     ['.foo'],
 ]);
 
-it('should get the attribute name', function (?string $directive, ?string $name) {
-    /** @var TestCase $this */
+it('should get the attribute name', function (string $directive, string $name) {
     $attribute = new Attribute($directive);
 
     expect($attribute->name())->toBe($name);
@@ -30,34 +26,43 @@ it('should get the attribute name', function (?string $directive, ?string $name)
     ['spinner.lazy.foo.', 'spinner'],
     ['spinner:lazy,foo.', 'spinner'],
     ['', ''],
-    [null, ''],
     ['.foo', ''],
 ]);
 
-it('should get the attribute value', function ($value) {
-    /** @var TestCase $this */
-    $attribute = new Attribute('value', $value);
+it('should get the attribute expression', function ($expression) {
+    $attribute = new Attribute('directive', $expression);
 
-    expect($attribute->value())->toBe($value);
+    expect($attribute->expression())->toBe($expression);
 })->with([
-    [true],
-    [false],
-    [0],
-    [1],
+    ['true'],
+    ['false'],
+    ['0'],
+    ['1'],
     ['abc'],
     [null],
 ]);
 
+it('should get the attribute value', function (string $directive, ?string $value) {
+    $attribute = new Attribute($directive);
+
+    expect($attribute->value())->toBe($value);
+})->with([
+    ['spinner:lazy', 'lazy'],
+    ['spinner:lazy.foo', 'lazy'],
+    ['spinner.lazy..bar', null],
+    ['spinner:bar.lazy.foo.', 'bar'],
+    ['', null],
+    ['.foo', null],
+]);
+
 it('should return true if the attribute has a modifier', function () {
-    /** @var TestCase $this */
-    $attribute = new Attribute('spinner.lazy', true);
+    $attribute = new Attribute('spinner.lazy');
 
     expect($attribute->hasModifier('lazy'))->toBeTrue();
     expect($attribute->hasModifier('lazily'))->toBeFalse();
 });
 
 it('should get filtered the attribute modifiers', function (string $attribute, array $modifiers) {
-    /** @var TestCase $this */
     $attribute = new Attribute($attribute, true);
 
     expect($attribute->modifiers()->toArray())->toBe($modifiers);
@@ -66,29 +71,6 @@ it('should get filtered the attribute modifiers', function (string $attribute, a
     ['spinner.lazy.lazy', ['lazy']],
     ['spinner.lazy..bar', ['lazy', 'bar']],
     ['spinner.lazy.foo.', ['lazy', 'foo']],
+    ['spinner:fast.lazy.foo', ['lazy', 'foo']],
 ]);
 
-it('should return if the attribute exists', function ($attribute) {
-    /** @var TestCase $this */
-    $attribute = new Attribute($attribute, true);
-
-    expect($attribute->exists())->toBeFalse();
-})->with([
-    [''],
-    [false],
-    [null],
-]);
-
-it('should get the attribute params', function (string $directive, array $params) {
-    /** @var TestCase $this */
-    $attribute = new Attribute(
-        directive: $directive,
-        value: true,
-    );
-
-    expect($attribute->params()->toArray())->toBe($params);
-})->with([
-    'with-2-params' => ['foo:baz,bar', ['baz', 'bar']],
-    'with-1-param'  => ['foo:baz', ['baz']],
-    'empty-params'  => ['foo', []],
-]);
