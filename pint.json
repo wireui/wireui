@@ -64,7 +64,7 @@
         "constant_case": {
             "case": "lower"
         },
-        "control_structure_braces": false,
+        "control_structure_braces": true,
         "date_time_immutable": false,
         "declare_equal_normalize": {
             "space": "single"
@@ -94,6 +94,7 @@
         "magic_method_casing": true,
         "multiline_whitespace_before_semicolons": true,
         "native_function_casing": true,
+        "new_with_braces": true,
         "no_extra_blank_lines": true,
         "no_multiline_whitespace_around_double_arrow": true,
         "no_short_bool_cast": true,
@@ -104,6 +105,7 @@
         "no_useless_return": true,
         "not_operator_with_space": false,
         "not_operator_with_successor_space": false,
+        "no_multiple_statements_per_line": true,
         "ordered_imports": {
             "imports_order": [
                 "const",
