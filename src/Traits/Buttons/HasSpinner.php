@@ -17,7 +17,7 @@ trait HasSpinner
             return null;
         }
 
-        $target  = $spinner->value();
+        $target  = $spinner->expression();
         $loading = 'wire:loading.delay';
 
         if ($delay = $spinner->modifiers()->first()) {
