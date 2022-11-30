@@ -146,20 +146,19 @@ class Button extends Base
         }
 
         $variant       = $attribute->value();
-        $modifierColor = $variant ?? $attribute->expression();
-        $hasExpression = is_string($attribute->expression());
+        $modifierColor = $attribute->expression();
         $hasModifiers  = $attribute->modifiers()->isNotEmpty();
-
-        if ($hasExpression) {
-            $modifierColor = $attribute->expression();
-        }
 
         if ($hasModifiers) {
             $modifierColor = $attribute->modifiers()->first();
         }
 
-        if ($variant && ($hasExpression || $hasModifiers)) {
+        if ($variant) {
             $colorPack = resolve($this->config("colors.{$variant}"));
+        }
+
+        if (!is_string($modifierColor)) {
+            $modifierColor = $this->color;
         }
 
         foreach ($modifiers as $modifier) {

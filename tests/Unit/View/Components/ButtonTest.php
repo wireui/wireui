@@ -159,8 +159,8 @@ it('should render icons with custom sizes', function () {
         );
 });
 
-it('should render a button with two different colors when interacting', function (string $code) {
-    expect($code)
+it('should render a button with two different colors on "hover" or "focus"', function () {
+    expect('<x-button primary hover="yellow" focus="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
@@ -171,13 +171,10 @@ it('should render a button with two different colors when interacting', function
             (new Solid())->get('primary')->hover,
             (new Solid())->get('primary')->focus
         );
-})->with([
-    ['<x-button primary hover:yellow focus:green />'],
-    ['<x-button primary hover="yellow" focus="green" />'],
-]);
+});
 
-it('should render a button with one different color when interacting', function (string $code) {
-    expect($code)
+it('should render a button with one different color on "interaction"', function () {
+    expect('<x-button primary interaction="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
@@ -188,10 +185,7 @@ it('should render a button with one different color when interacting', function 
             (new Solid())->get('primary')->hover,
             (new Solid())->get('primary')->focus
         );
-})->with([
-    ['<x-button primary interaction:green />'],
-    ['<x-button primary interaction="green" />'],
-]);
+});
 
 it('should render a button with two different colors and variants when interacting', function (string $code) {
     expect($code)
@@ -209,3 +203,31 @@ it('should render a button with two different colors and variants when interacti
     ['<x-button primary hover:flat="yellow" focus:outline="green" />'],
     ['<x-button primary hover:flat.yellow focus:outline.green />'],
 ]);
+
+it('should change the button variant but keep the same color on "hover" or "focus"', function () {
+    expect('<x-button primary hover:flat focus:outline />')
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            (new Flat())->get('primary')->hover,
+            (new Outline())->get('primary')->focus
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus
+        );
+});
+
+it('should change the button variant but keep the same color on "interaction"', function () {
+    expect('<x-button primary interaction:flat />')
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            (new Flat())->get('primary')->hover,
+            (new Flat())->get('primary')->focus
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus
+        );
+});
