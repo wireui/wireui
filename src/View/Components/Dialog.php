@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use WireUi\Actions;
 
 class Dialog extends Modal
@@ -29,7 +30,7 @@ class Dialog extends Modal
         $this->description = $description;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.dialog');
     }

@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Modal extends Component
@@ -28,7 +29,7 @@ class Modal extends Component
         $this->blur     = $this->getBlur($blur);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.modal');
     }

@@ -26,16 +26,6 @@ class Card extends Component
         return Arr::toCssClasses(['w-full flex flex-col', $this->shadow, $this->rounded, $this->color]);
     }
 
-    public function getHeaderClasses(): string
-    {
-        return 'px-4 py-2.5 flex justify-between items-center border-b dark:border-0';
-    }
-
-    public function getTitleClasses(): string
-    {
-        return 'font-medium whitespace-normal text-md text-secondary-700 dark:text-secondary-400';
-    }
-
     public function getMainClasses(): string
     {
         return Arr::toCssClasses(['text-secondary-700 rounded-b-xl grow dark:text-secondary-400', $this->padding]);
