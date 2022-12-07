@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\Arr;
+
 class Avatar extends Component
 {
     public function __construct(
@@ -28,7 +30,7 @@ class Avatar extends Component
 
     public function getAvatarClasses(): string
     {
-        return $this->classes([
+        return Arr::toCssClasses([
             'shrink-0 inline-flex items-center justify-center overflow-hidden',
             'bg-gray-500 dark:bg-gray-600' => $this->label,
             'rounded-md'                   => $this->squared,
@@ -40,7 +42,7 @@ class Avatar extends Component
 
     private function getSize(): string
     {
-        return $this->classes([
+        return Arr::toCssClasses([
             'w-6 h-6 text-2xs'    => $this->xs,
             'w-8 h-8 text-sm'     => $this->sm,
             'w-10 h-10 text-base' => $this->md || $this->shouldUseDefault(),

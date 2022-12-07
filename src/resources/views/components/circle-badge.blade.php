@@ -1,4 +1,4 @@
-<span {{ $attributes->merge() }}>
+<span {{ $attributes }}>
     @if ($icon)
         <x-dynamic-component
             :component="WireUi::component('icon')"

@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\Arr;
+
 class Notifications extends Component
 {
     public const TOP_LEFT      = 'top-left';
@@ -25,7 +27,7 @@ class Notifications extends Component
 
     public function getPosition(?string $position): string
     {
-        return $this->classes([
+        return Arr::toCssClasses([
             'sm:items-start sm:justify-start'  => $position === self::TOP_LEFT,
             'sm:items-start sm:justify-center' => $position === self::TOP_CENTER,
             'sm:items-start sm:justify-end'    => $position === self::TOP_RIGHT,
