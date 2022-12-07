@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests\Browser\ColorPicker;
+namespace Tests\Browser\ColorPicker\DebounceTest;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
 
-class DebounceTest extends BrowserTestCase
+class Test extends BrowserTestCase
 {
     /** @test */
     public function it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, DebounceComponent::class)
+            $this->visit($browser, Component::class)
                 ->type('color', 'F')
                 ->pause(100)
                 ->append('color', 'F')

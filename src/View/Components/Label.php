@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Label extends Component
@@ -12,7 +13,7 @@ class Label extends Component
     ) {
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.label');
     }

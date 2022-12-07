@@ -23,15 +23,12 @@ class CircleButton extends Button
     ) {
         parent::__construct(
             rounded: true,
-            squared: false,
             outline: $outline,
             flat: $flat,
-            full: false,
             color: $color,
             size: $size,
             label: $label,
             icon: $icon,
-            rightIcon: null,
             spinner: $spinner,
             loadingDelay: $loadingDelay,
             href: $href

@@ -29,44 +29,56 @@ class Input extends FormComponent
 
     public function getInputClasses(bool $hasError = false): string
     {
-        $defaultClasses = Arr::toCssClasses([
+        return Arr::toCssClasses([
             $this->getDefaultClasses(),
-            'pl-8' => $this->prefix || $this->icon,
-            'pr-8' => $hasError     || $this->suffix || $this->rightIcon,
+            'pl-8'                          => $this->prefix || $this->icon,
+            'pr-8'                          => $hasError     || $this->suffix || $this->rightIcon,
+            $this->getErrorClasses()        => $hasError,
+            $this->getDefaultColorClasses() => !$hasError,
         ]);
-
-        if ($hasError) {
-            return "{$this->getErrorClasses()} {$defaultClasses}";
-        }
-
-        return "{$this->getDefaultColorClasses()} {$defaultClasses}";
     }
 
     protected function getErrorClasses(): string
     {
-        return Arr::toCssClasses([
-            'text-negative-900 dark:text-negative-600 placeholder-negative-300 dark:placeholder-negative-500',
-            'border border-negative-300 focus:ring-negative-500 focus:border-negative-500' => !$this->borderless,
-            'dark:bg-secondary-800 dark:border-negative-600'                               => !$this->borderless,
-        ]);
+        $default = <<<EOT
+            text-negative-900 dark:text-negative-600 placeholder-negative-300
+            dark:placeholder-negative-500
+        EOT;
+
+        $withBorder = <<<EOT
+            border border-negative-300 focus:ring-negative-500 focus:border-negative-500
+            dark:bg-secondary-800 dark:border-negative-600
+        EOT;
+
+        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
     }
 
     protected function getDefaultColorClasses(): string
     {
-        return Arr::toCssClasses([
-            'placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400',
-            'dark:placeholder-secondary-500',
-            'border border-secondary-300 focus:ring-primary-500 focus:border-primary-500' => !$this->borderless,
-            'dark:border-secondary-600'                                                   => !$this->borderless,
-        ]);
+        $default = <<<EOT
+            placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400
+            dark:placeholder-secondary-500
+        EOT;
+
+        $withBorder = <<<EOT
+            border border-secondary-300 focus:ring-primary-500 focus:border-primary-500
+            dark:border-secondary-600
+        EOT;
+
+        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
     }
 
     protected function getDefaultClasses(): string
     {
-        return Arr::toCssClasses([
-            'form-input block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none',
-            'shadow-sm'                                                          => !$this->shadowless,
-            'border-transparent focus:border-transparent focus:ring-transparent' => $this->borderless,
-        ]);
+        $default = <<<EOT
+            form-input block w-full sm:text-sm rounded-md transition
+            ease-in-out duration-100 focus:outline-none
+        EOT;
+
+        $withShadow = 'shadow-sm';
+
+        $withoutBorder = 'border-transparent focus:border-transparent focus:ring-transparent';
+
+        return Arr::toCssClasses([$default, $withShadow => !$this->shadowless, $withoutBorder => $this->borderless]);
     }
 }

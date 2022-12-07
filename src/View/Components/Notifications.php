@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 
 class Notifications extends Component
@@ -20,7 +21,7 @@ class Notifications extends Component
         $this->position = $this->getPosition($position);
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.notifications');
     }

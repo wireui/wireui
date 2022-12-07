@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 
 class Avatar extends Component
@@ -23,7 +24,7 @@ class Avatar extends Component
         $this->avatarClasses = $this->getAvatarClasses();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.avatar');
     }

@@ -6,7 +6,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 abstract class FormComponent extends Component
 {
-    public function render()
+    public function render(): mixed
     {
         return function (array $data) {
             return view($this->getView(), $this->mergeAttributes($data))->render();

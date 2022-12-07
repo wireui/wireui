@@ -11,12 +11,8 @@ class Test extends BrowserTestCase
      * @test
      * @dataProvider datesProvider
      */
-    public function it_should_select_only_the_dates_inside_a_range_min_and_max(
-        bool $disabled,
-        int $day,
-        string $model,
-        string $input
-    ) {
+    public function it_should_select_only_the_dates_inside_a_range_min_and_max(bool $disabled, int $day, string $model, string $input)
+    {
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
             /** @var Browser|TestableLivewire $component */
             $component = $this->visit($browser, Component::class)
@@ -40,11 +36,8 @@ class Test extends BrowserTestCase
      * @test
      * @dataProvider timesProvider
      */
-    public function it_should_select_only_times_inside_the_limit(
-        int $day,
-        string $time,
-        bool $exists
-    ) {
+    public function it_should_select_only_times_inside_the_limit(int $day, string $time, bool $exists)
+    {
         $this->browse(
             fn (Browser $browser) => $this
                 ->visit($browser, Component::class)
