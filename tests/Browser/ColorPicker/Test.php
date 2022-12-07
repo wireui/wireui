@@ -4,8 +4,8 @@ namespace Tests\Browser\ColorPicker;
 
 use Laravel\Dusk\Browser;
 use Livewire\Livewire;
-use Tests\Browser\BrowserTestCase;
 use Livewire\Testing\TestableLivewire;
+use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
