@@ -16,7 +16,16 @@ module.exports = {
         positive: colors.emerald,
         negative: colors.red,
         warning: colors.amber,
-        info: colors.blue
+        info: colors.blue,
+
+        /** background colors used in ring-offset-color */
+        background: {
+          white: colors.white,
+          dark: colors.slate[800]
+        }
+      },
+      opacity: {
+        '15': '.15'
       },
       fontSize: {
         '3xs': '0.5rem',

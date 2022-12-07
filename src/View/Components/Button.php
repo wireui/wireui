@@ -77,6 +77,7 @@ class Button extends Base
         $this->attributes = $this->attributes->class([
             'outline-none inline-flex justify-center items-center group hover:shadow-sm',
             'transition-all ease-in-out duration-200 focus:ring-2 focus:ring-offset-2',
+            'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
             'disabled:opacity-80 disabled:cursor-not-allowed',
             'rounded-full' => $this->shouldBePill(),
             'rounded'      => $this->shouldBeRounded(),
