@@ -6,10 +6,10 @@ describe('Test the make times function', () => {
 
     expect(times.length).toEqual(144)
 
-    expect(times[0].label).toBe('0:00 AM')
+    expect(times[0].label).toBe('12:00 AM')
     expect(times[0].value).toBe('00:00')
 
-    expect(times[1].label).toBe('0:10 AM')
+    expect(times[1].label).toBe('12:10 AM')
     expect(times[1].value).toBe('00:10')
 
     expect(times[20].label).toBe('3:20 AM')

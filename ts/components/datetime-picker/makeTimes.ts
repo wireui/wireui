@@ -40,7 +40,7 @@ const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
 
       if (displayHour === 0) displayHour = 12
 
-      time.label = `${Number(displayHour % 12)}:${minutes} ${timePeriods[Math.floor(Number(hours) / 12)]}`
+      time.label = `${displayHour}:${minutes} ${timePeriods[Math.floor(Number(hours) / 12)]}`
     }
 
     times.push(time)
