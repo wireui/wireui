@@ -18,8 +18,8 @@ const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
   const [minHours = 0, minMinutes = 0] = min.toString().split(':')
   const [maxHours = 0, maxMinutes = 0] = max.toString().split(':')
 
-  let currentTime = (Number(minHours) * 60) + Number(minMinutes)
-  const maxTime = (Number(maxHours) * 60) + Number(maxMinutes)
+  let currentTime = Number(minHours) * 60 + Number(minMinutes) // eslint-disable-line
+  const maxTime = Number(maxHours) * 60 + Number(maxMinutes)// eslint-disable-line
 
   const times: Time[] = []
   const timePeriods = ['AM', 'PM']
