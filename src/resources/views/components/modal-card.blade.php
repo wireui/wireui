@@ -21,7 +21,7 @@
                 {{ $header }}
             @endslot
         @elseif(!$hideClose)
-            <x-slot name="action">
+            @slot('action', null, $action->attributes->getAttributes())
                 <button class="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-200 text-secondary-300"
                         x-on:click="close"
                         tabindex="-1">
@@ -31,7 +31,7 @@
                         class="w-5 h-5"
                     />
                 </button>
-            </x-slot>
+            @endslot
         @endif
 
         {{ $slot }}
