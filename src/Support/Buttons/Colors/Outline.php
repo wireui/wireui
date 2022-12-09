@@ -54,7 +54,7 @@ class Outline extends ColorPack
             'positive' => new Color(
                 base: [
                     'text-positive-600 border border-positive-600',
-                    'dark:text-positive-500/90 dark:border-positive-500/80'
+                    'dark:text-positive-500/90 dark:border-positive-500/80',
                 ],
                 hover: [
                     "{$this->hover} hover:text-positive-700 hover:bg-positive-400",
@@ -199,6 +199,17 @@ class Outline extends ColorPack
                     'dark:focus:text-orange-500 dark:focus:bg-orange-600 dark:focus:ring-orange-700',
                 ],
             ),
+            'yellow' => new Color(
+                base: 'text-yellow-600 border border-yellow-600',
+                hover: [
+                    "{$this->hover} hover:text-yellow-700 hover:bg-yellow-400",
+                    'dark:hover:text-yellow-500 dark:hover:bg-yellow-600',
+                ],
+                focus: [
+                    "{$this->focus} focus:text-yellow-700 focus:bg-yellow-400 focus:ring-yellow-600",
+                    'dark:focus:text-yellow-500 dark:focus:bg-yellow-600 dark:focus:ring-yellow-700',
+                ],
+            ),
             'amber' => new Color(
                 base: 'text-amber-600 border border-amber-600',
                 hover: [
@@ -235,7 +246,7 @@ class Outline extends ColorPack
             'emerald' => new Color(
                 base: [
                     'text-emerald-600 border border-emerald-600',
-                    'dark:text-emerald-500/90 dark:border-emerald-500/80'
+                    'dark:text-emerald-500/90 dark:border-emerald-500/80',
                 ],
                 hover: [
                     "{$this->hover} hover:text-emerald-700 hover:bg-emerald-400",
@@ -249,7 +260,7 @@ class Outline extends ColorPack
             'teal' => new Color(
                 base: [
                     'text-teal-600 border border-teal-600',
-                    'dark:text-teal-500/90 dark:border-teal-500/80'
+                    'dark:text-teal-500/90 dark:border-teal-500/80',
                 ],
                 hover: [
                     "{$this->hover} hover:text-teal-700 hover:bg-teal-400",

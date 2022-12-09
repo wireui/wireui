@@ -145,6 +145,14 @@ class Solid extends ColorPack
                     'dark:focus:bg-orange-600 dark:focus:ring-orange-600',
                 ],
             ),
+            'yellow' => new Color(
+                base: "{$this->base} bg-yellow-500 dark:bg-yellow-700",
+                hover: "{$this->hover} hover:bg-yellow-600 dark:hover:bg-yellow-600",
+                focus: [
+                    "{$this->focus} focus:bg-yellow-600 focus:ring-yellow-600",
+                    'dark:focus:bg-yellow-600 dark:focus:ring-yellow-600',
+                ],
+            ),
             'amber' => new Color(
                 base: "{$this->base} bg-amber-500 dark:bg-amber-700",
                 hover: "{$this->hover} hover:bg-amber-600 dark:hover:bg-amber-600",

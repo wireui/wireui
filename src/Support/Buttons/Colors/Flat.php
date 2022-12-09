@@ -192,6 +192,17 @@ class Flat extends ColorPack
                     'dark:focus:text-orange-500 dark:focus:bg-orange-600 dark:focus:ring-orange-700',
                 ],
             ),
+            'yellow' => new Color(
+                base: 'text-yellow-600',
+                hover: [
+                    "{$this->hover} hover:text-yellow-700 hover:bg-yellow-400",
+                    'dark:hover:text-yellow-500 dark:hover:bg-yellow-600',
+                ],
+                focus: [
+                    "{$this->focus} focus:text-yellow-700 focus:bg-yellow-400 focus:ring-yellow-600",
+                    'dark:focus:text-yellow-500 dark:focus:bg-yellow-600 dark:focus:ring-yellow-700',
+                ],
+            ),
             'amber' => new Color(
                 base: 'text-amber-600',
                 hover: [
