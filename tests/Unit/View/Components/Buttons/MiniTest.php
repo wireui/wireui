@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Blade;
-use WireUi\Support\Buttons\Colors\{ColorPack, Solid};
+use WireUi\Support\Buttons\Colors\{ColorPack, Flat, Outline, Solid};
 use WireUi\Support\Buttons\Sizes\Mini;
 
 it('should render a button with as a link')
@@ -19,7 +19,7 @@ it('should render a spinner')
     ->render()
     ->toContain(
         '<svg class="animate-spin',
-        'wire:loading.delay="true"'
+        'wire:loading.delay="true"',
     );
 
 it('should render a spinner with a custom delay')
@@ -43,7 +43,7 @@ it('should have a disabling state on livewire loading')
     ->render()
     ->toContain(
         'wire:loading.attr="disabled"',
-        'wire:loading.class="!cursor-wait"'
+        'wire:loading.class="!cursor-wait"',
     );
 
 it('should without disabling on livewire loading')
@@ -51,7 +51,7 @@ it('should without disabling on livewire loading')
     ->render()
     ->not()->toContain(
         'wire:loading.attr="disabled"',
-        'wire:loading.class="!cursor-wait"'
+        'wire:loading.class="!cursor-wait"',
     );
 
 it('should have by default a button type')
@@ -114,7 +114,7 @@ it('should pass the attributes bag to the button')
     ->toContain(
         'foo="bar"',
         'disabled="disabled"',
-        'aria-label="test"'
+        'aria-label="test"',
     );
 
 it('should render a button with a label')
@@ -126,7 +126,7 @@ it('should render a button with an icon with default size', function () {
     expect('<x-buttons.mini icon="home" />')
         ->render()
         ->toContain(
-            Blade::render('<x-heroicons::outline.home class="w-4 h-4 shrink-0" />')
+            Blade::render('<x-heroicons::outline.home class="w-4 h-4 shrink-0" />'),
         );
 });
 
@@ -136,7 +136,7 @@ it('should render with a icon with different size', function (string $size) {
     expect("<x-buttons.mini {$size} icon=\"home\" />")
         ->render()
         ->toContain(
-            Blade::render("<x-heroicons::outline.home class=\"{$css} shrink-0\" />")
+            Blade::render("<x-heroicons::outline.home class=\"{$css} shrink-0\" />"),
         );
 })->with('buttons::sizes');
 
@@ -145,26 +145,79 @@ it('should render a icon with custom size', function () {
         ->render()
         ->toContain(
             'my-padding',
-            Blade::render('<x-heroicons::outline.home class="my-custom icon-size shrink-0" />')
+            Blade::render('<x-heroicons::outline.home class="my-custom icon-size shrink-0" />'),
         );
 });
 
-it('should render a button with two differents colors when interacting', function () {
-    expect('<x-buttons.mini primary hover:yellow focus:green />')
+it('should render a button with two different colors on "hover" or "focus"', function () {
+    expect('<x-buttons.mini primary hover="yellow" focus="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
             (new Solid())->get('yellow')->hover,
-            (new Solid())->get('green')->focus
+            ...(new Solid())->get('green')->focus,
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            (new Solid())->get('primary')->focus,
         );
 });
 
-it('should render a button with one different color when interacting', function () {
-    expect('<x-buttons.mini primary interaction:green />')
+it('should render a button with one different color on "interaction"', function () {
+    expect('<x-buttons.mini primary interaction="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
             (new Solid())->get('green')->hover,
-            (new Solid())->get('green')->focus
+            ...(new Solid())->get('green')->focus,
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            ...(new Solid())->get('primary')->focus,
+        );
+});
+
+it('should render a button with two different colors and variants when interacting', function (string $code) {
+    expect($code)
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            ...(new Flat())->get('yellow')->hover,
+            ...(new Outline())->get('green')->focus,
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            ...(new Solid())->get('primary')->focus,
+        );
+})->with([
+    ['<x-buttons.mini primary hover:flat="yellow" focus:outline="green" />'],
+    ['<x-buttons.mini primary hover:flat.yellow focus:outline.green />'],
+]);
+
+it('should change the button variant but keep the same color on "hover" or "focus"', function () {
+    expect('<x-buttons.mini primary hover:flat focus:outline />')
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            ...(new Flat())->get('primary')->hover,
+            ...(new Outline())->get('primary')->focus,
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            ...(new Solid())->get('primary')->focus,
+        );
+});
+
+it('should change the button variant but keep the same color on "interaction"', function () {
+    expect('<x-buttons.mini primary interaction:flat />')
+        ->render()
+        ->toContain(
+            (new Solid())->get('primary')->base,
+            ...(new Flat())->get('primary')->hover,
+            ...(new Flat())->get('primary')->focus,
+        )
+        ->not()->toContain(
+            (new Solid())->get('primary')->hover,
+            ...(new Solid())->get('primary')->focus,
         );
 });
