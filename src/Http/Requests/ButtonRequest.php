@@ -22,6 +22,7 @@ class ButtonRequest extends FormRequest
             'solid'     => 'sometimes|boolean',
             'outline'   => 'sometimes|boolean',
             'flat'      => 'sometimes|boolean',
+            'light'     => 'sometimes|boolean',
         ];
     }
 }
