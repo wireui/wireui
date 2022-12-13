@@ -13,7 +13,7 @@ class Modal extends Component
         public ?string $spacing = null,
         public ?string $align = null,
         public string|bool|null $blur = null,
-        public bool $show = false
+        public bool $show = false,
     ) {
         $zIndex   ??= config('wireui.modal.zIndex');
         $maxWidth ??= config('wireui.modal.maxWidth');
@@ -46,7 +46,7 @@ class Modal extends Component
             'xl'    => 'backdrop-blur-xl',
             '2xl'   => 'backdrop-blur-2xl',
             '3xl'   => 'backdrop-blur-3xl',
-            default => 'backdrop-blur'
+            default => 'backdrop-blur',
         };
     }
 
@@ -63,7 +63,7 @@ class Modal extends Component
             '5xl'   => 'sm:max-w-5xl',
             '6xl'   => 'sm:max-w-6xl',
             '7xl'   => 'sm:max-w-7xl',
-            default => $maxWidth
+            default => $maxWidth,
         };
     }
 
@@ -73,7 +73,7 @@ class Modal extends Component
             'start'  => 'sm:items-start',
             'center' => 'sm:items-center',
             'end'    => 'sm:items-end',
-            default  => $align
+            default  => $align,
         };
     }
 }

@@ -23,7 +23,7 @@ class Radio extends FormComponent
         bool $lg = false,
         ?string $label = null,
         ?string $leftLabel = null,
-        ?string $description = null
+        ?string $description = null,
     ) {
         $this->sm          = !$md && !$lg;
         $this->md          = $md;

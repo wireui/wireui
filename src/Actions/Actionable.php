@@ -13,7 +13,7 @@ abstract class Actionable
     public const QUESTION = 'question';
 
     public function __construct(
-        protected Component $component
+        protected Component $component,
     ) {
     }
 }

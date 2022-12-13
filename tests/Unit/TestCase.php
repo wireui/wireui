@@ -3,8 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Artisan, Route};
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench;
 use ReflectionClass;

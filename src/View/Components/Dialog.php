@@ -20,7 +20,7 @@ class Dialog extends Modal
         ?string $id = null,
         ?string $title = null,
         ?string $description = null,
-        ?string $blur = null
+        ?string $blur = null,
     ) {
         parent::__construct('', $zIndex, $maxWidth, $spacing, $align, $blur);
 

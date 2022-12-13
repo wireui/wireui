@@ -42,7 +42,7 @@ class Input extends FormComponent
         ?string $suffix = null,
         ?string $prepend = null,
         ?string $append = null,
-        bool $errorless = false
+        bool $errorless = false,
     ) {
         $this->borderless = $borderless;
         $this->shadowless = $shadowless;

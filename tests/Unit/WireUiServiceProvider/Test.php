@@ -64,7 +64,7 @@ it('should register the blade components', function () {
     $bladeCompiler = resolve(BladeCompiler::class);
 
     expect($bladeCompiler->getClassComponentAliases())->toMatchArray(
-        collect(config('wireui.components'))->pluck('class', 'alias')->toArray()
+        collect(config('wireui.components'))->pluck('class', 'alias')->toArray(),
     );
 });
 

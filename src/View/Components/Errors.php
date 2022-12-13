@@ -16,7 +16,7 @@ class Errors extends Component
      */
     public function __construct(
         ?string $title = null,
-        $only = []
+        $only = [],
     ) {
         if (is_string($only)) {
             $only = explode('|', $only);

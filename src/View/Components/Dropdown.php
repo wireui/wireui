@@ -13,7 +13,7 @@ class Dropdown extends Component
         public string $height = 'max-h-60',
         public string $align = self::DEFAULT_ALIGN,
         public bool $persistent = false,
-        public ?string $trigger = null
+        public ?string $trigger = null,
     ) {
     }
 

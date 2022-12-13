@@ -78,7 +78,7 @@ class Dialog extends Actionable
     public function simpleDialog(
         string $icon,
         string $title,
-        ?string $description = null
+        ?string $description = null,
     ): self {
         $options = [
             'icon'        => $icon,

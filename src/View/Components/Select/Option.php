@@ -12,7 +12,7 @@ class Option extends Component
         public mixed $value = null,
         public ?string $label = null,
         public ?string $description = null,
-        public mixed $option = []
+        public mixed $option = [],
     ) {
     }
 

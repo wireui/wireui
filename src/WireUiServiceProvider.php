@@ -48,15 +48,15 @@ class WireUiServiceProvider extends ServiceProvider
 
         $this->publishes(
             [$this->srcDir('config.php') => $this->app->configPath('wireui.php')],
-            'wireui.config'
+            'wireui.config',
         );
         $this->publishes(
             [$this->srcDir('resources/views') => $this->app->resourcePath('views/vendor/wireui')],
-            'wireui.views'
+            'wireui.views',
         );
         $this->publishes(
             [$this->srcDir('lang') => $this->app->langPath('vendor/wireui')],
-            'wireui.lang'
+            'wireui.lang',
         );
 
         return $this;
@@ -166,7 +166,6 @@ class WireUiServiceProvider extends ServiceProvider
 
         ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
-
             $attributes = collect($this->whereStartsWith($name)->getAttributes());
 
             if ($attributes->isEmpty()) {

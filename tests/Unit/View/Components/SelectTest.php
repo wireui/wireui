@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Views\Components;
+namespace Tests\Unit\View\Components;
 
 use Tests\Unit\TestCase;
 use WireUi\View\Components\Select;
@@ -26,7 +26,7 @@ class SelectTest extends TestCase
         $select = new Select(
             optionLabel: 'name',
             optionValue: 'value',
-            options: $options
+            options: $options,
         );
 
         $this->assertEquals(
@@ -34,7 +34,7 @@ class SelectTest extends TestCase
                 ['value' => '1', 'label' => 'Option 1'],
                 ['value' => '2', 'label' => 'Option 2'],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 
@@ -50,7 +50,7 @@ class SelectTest extends TestCase
                 ['label' => 'Option 1', 'value' => 'Option 1'],
                 ['label' => 'Option 2', 'value' => 'Option 2'],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 
@@ -66,7 +66,7 @@ class SelectTest extends TestCase
                 ['label' => 'Option 1', 'value' => 0],
                 ['label' => 'Option 2', 'value' => 1],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 
@@ -82,7 +82,7 @@ class SelectTest extends TestCase
         $select = new Select(
             optionLabel: 'name',
             optionValue: 'value',
-            options: $options
+            options: $options,
         );
 
         $this->assertEquals(
@@ -91,7 +91,7 @@ class SelectTest extends TestCase
                 ['value' => '2', 'readonly' => true, 'label' => 'Option 2'],
                 ['value' => '3', 'template' => 'option-template', 'label' => 'Option 3'],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 
@@ -103,7 +103,7 @@ class SelectTest extends TestCase
             optionValue: 'value',
             options: [
                 ['name' => 'WireUI', 'value' => 'wireui', 'description' => 'The wireui is amazing'],
-            ]
+            ],
         );
 
         $this->assertEquals(
@@ -114,7 +114,7 @@ class SelectTest extends TestCase
                     'label'       => 'WireUI',
                 ],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 
@@ -127,7 +127,7 @@ class SelectTest extends TestCase
             optionDescription: 'info',
             options: [
                 ['name' => 'WireUI', 'value' => 'wireui', 'info' => 'The wireui is amazing'],
-            ]
+            ],
         );
 
         $this->assertEquals(
@@ -138,7 +138,7 @@ class SelectTest extends TestCase
                     'description' => 'The wireui is amazing',
                 ],
             ],
-            $select->optionsToArray()
+            $select->optionsToArray(),
         );
     }
 }

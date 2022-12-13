@@ -18,7 +18,7 @@ class RegisterComponentsAsAliasTest extends TestCase
 
         $config->set('wireui', array_merge(
             require __DIR__ . '/../../../src/config.php',
-            $config->get('wireui', [])
+            $config->get('wireui', []),
         ));
 
         $config->set('wireui.components.input.alias', 'form.input');

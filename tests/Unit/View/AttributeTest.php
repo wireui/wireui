@@ -73,4 +73,3 @@ it('should get filtered the attribute modifiers', function (string $attribute, a
     ['spinner.lazy.foo.', ['lazy', 'foo']],
     ['spinner:fast.lazy.foo', ['lazy', 'foo']],
 ]);
-

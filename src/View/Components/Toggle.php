@@ -39,7 +39,7 @@ class Toggle extends Checkbox
                     group-focus:ring-negative-600 dark:group-focus:ring-negative-700
                     dark:peer-focus:ring-negative-700 dark:peer-focus:ring-offset-secondary-800
                 ');
-            }
+            },
         );
     }
 

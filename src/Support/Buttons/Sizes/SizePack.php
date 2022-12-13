@@ -13,7 +13,7 @@ abstract class SizePack
         return data_get(
             target: $this->all(),
             key: $size,
-            default: $size
+            default: $size,
         );
     }
 

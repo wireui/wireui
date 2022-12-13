@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Views\Components;
+namespace Tests\Unit\View\Components;
 
 use Tests\Unit\TestCase;
 use WireUi\View\Components\NativeSelect;
@@ -71,7 +71,7 @@ class NativeSelectTest extends TestCase
             optionLabel: 'label',
             options: [
                 'value' => $option,
-            ]
+            ],
         );
 
         $this->assertSame('value', $component->getOptionValue('value', $option));
@@ -87,7 +87,7 @@ class NativeSelectTest extends TestCase
             options: [
                 'A' => 'Option 1',
                 'B' => 'Option 2',
-            ]
+            ],
         );
 
         $this->assertEquals(
@@ -95,7 +95,7 @@ class NativeSelectTest extends TestCase
                 'Option 1' => 'A',
                 'Option 2' => 'B',
             ],
-            $component->options->toArray()
+            $component->options->toArray(),
         );
     }
 
@@ -107,7 +107,7 @@ class NativeSelectTest extends TestCase
             options: [
                 'A' => 'Option 1',
                 'B' => 'Option 2',
-            ]
+            ],
         );
 
         $this->assertEquals('A', $component->getOptionValue('A', $component->options->first()));
@@ -121,7 +121,7 @@ class NativeSelectTest extends TestCase
             options: [
                 'A' => 'Option 1',
                 'B' => 'Option 2',
-            ]
+            ],
         );
 
         $this->assertEquals('Option 1', $component->getOptionValue('A', $component->options->first()));
@@ -136,7 +136,7 @@ class NativeSelectTest extends TestCase
             options: [
                 ['id' => 1, 'name' => 'Option 1'],
                 ['id' => 2, 'name' => 'Option 2'],
-            ]
+            ],
         );
 
         $this->assertEquals(1, $component->getOptionValue(0, $component->options->first()));
@@ -149,7 +149,7 @@ class NativeSelectTest extends TestCase
             options: [
                 'A' => 'Option 1',
                 'B' => 'Option 2',
-            ]
+            ],
         );
 
         $this->assertEquals('Option 1', $component->getOptionLabel($component->options->first()));
@@ -164,7 +164,7 @@ class NativeSelectTest extends TestCase
             options: [
                 ['id' => 1, 'name' => 'Option 1'],
                 ['id' => 2, 'name' => 'Option 2'],
-            ]
+            ],
         );
 
         $this->assertEquals('Option 1', $component->getOptionLabel($component->options->first()));

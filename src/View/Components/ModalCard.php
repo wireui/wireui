@@ -34,7 +34,7 @@ class ModalCard extends Modal
             spacing: $spacing,
             align: $align,
             blur: $blur,
-            show: $show
+            show: $show,
         );
     }
 
