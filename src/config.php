@@ -68,6 +68,7 @@ return [
             'solid'   => Colors\Solid::class,
             'flat'    => Colors\Flat::class,
             'outline' => Colors\Outline::class,
+            'light'   => Colors\Light::class,
         ],
         'sizes' => [
             'base' => Sizes\Base::class,
@@ -88,6 +89,7 @@ return [
             'solid'   => Colors\Solid::class,
             'flat'    => Colors\Flat::class,
             'outline' => Colors\Outline::class,
+            'light'   => Colors\Light::class,
         ],
         'sizes' => [
             'base' => Sizes\Mini\Base::class,
