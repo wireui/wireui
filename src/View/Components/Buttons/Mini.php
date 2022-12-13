@@ -38,9 +38,9 @@ class Mini extends Button
         return config("wireui.buttons_mini.{$path}");
     }
 
-    protected function proccessData(array &$data): array
+    protected function processData(array &$data): array
     {
-        $data = array_merge(parent::proccessData($data), [
+        $data = array_merge(parent::processData($data), [
             'wireLoadingAttribute' => null,
         ]);
 
@@ -60,7 +60,7 @@ class Mini extends Button
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.buttons.mini', $this->proccessData($data))->render();
+            return view('wireui::components.buttons.mini', $this->processData($data))->render();
         };
     }
 }

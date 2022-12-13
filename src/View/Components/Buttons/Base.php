@@ -49,7 +49,7 @@ abstract class Base extends Component
         return 'button';
     }
 
-    protected function proccessData(array &$data): array
+    protected function processData(array &$data): array
     {
         $this->ensureButtonType();
         $this->ensureDisabledStateOnWireLoading();
@@ -71,7 +71,7 @@ abstract class Base extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.button', $this->proccessData($data))->render();
+            return view('wireui::components.button', $this->processData($data))->render();
         };
     }
 }
