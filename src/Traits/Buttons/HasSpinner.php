@@ -20,7 +20,7 @@ trait HasSpinner
         $target  = $spinner->expression();
         $loading = 'wire:loading.delay';
 
-        if ($delay = $spinner->modifiers()->first()) {
+        if ($delay = $spinner->modifiers()->last()) {
             $loading .= ".{$delay}";
         }
 
