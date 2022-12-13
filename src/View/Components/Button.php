@@ -52,7 +52,7 @@ class Button extends Base
         $this->size ??= $this->config('size');
 
         $this->attributes = $this->attributes->class(
-            $sizePack->get($this->size)
+            $sizePack->get($this->size),
         );
 
         return $this;
