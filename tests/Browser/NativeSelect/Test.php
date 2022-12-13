@@ -20,6 +20,7 @@ class Test extends BrowserTestCase
                 ->assertSelected('model', '')
                 ->click('@validate')
                 ->waitUsing(7, 100, fn () => $browser->assertSeeNothingIn('@value'))
+                ->waitForText('select a value')
                 ->assertSee('select a value');
         });
     }
