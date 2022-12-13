@@ -117,10 +117,6 @@ return [
             'class' => Components\Icon::class,
             'alias' => 'icon',
         ],
-        'icon.spinner' => [
-            'class' => Components\Icons\Spinner::class,
-            'alias' => 'icon.spinner',
-        ],
         'color-picker' => [
             'class' => Components\ColorPicker::class,
             'alias' => 'color-picker',
