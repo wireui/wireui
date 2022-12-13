@@ -48,6 +48,9 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           composer update --no-interaction --no-suggest
 
+      - name: Check Composer configuration
+        run: composer validate --strict
+
       - name: Setup dusk/chrome
         run: vendor/bin/dusk-updater detect --auto-update
 
