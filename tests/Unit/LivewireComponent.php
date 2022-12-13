@@ -11,9 +11,7 @@ class LivewireComponent extends Component
 
     public function __construct()
     {
-        parent::__construct();
-
-        $this->id = 'fake-id';
+        parent::__construct(id: 'fake-id');
     }
 
     public function render(): string
