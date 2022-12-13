@@ -13,11 +13,11 @@ class Toggle extends Checkbox
 
     public function backgroundClasses(bool $hasError): string
     {
-        $size = Arr::toCssClasses([
-            'h-4 w-7'  => $this->size === 'sm',
-            'h-5 w-9'  => $this->size === 'md',
-            'h-6 w-10' => $this->size === 'lg',
-        ]);
+        $size = match ($this->size) {
+            'sm' => 'h-4 w-7',
+            'md' => 'h-5 w-9',
+            'lg' => 'h-6 w-10',
+        };
 
         $default = <<<EOT
             block rounded-full cursor-pointer transition ease-in-out duration-100
@@ -38,7 +38,12 @@ class Toggle extends Checkbox
             dark:bg-secondary-600 dark:peer-checked:bg-secondary-700
         EOT;
 
-        return Arr::toCssClasses([$size, $default, $withError => $hasError, $withoutError => !$hasError]);
+        return Arr::toCssClasses([
+            $size,
+            $default,
+            $withError    => $hasError,
+            $withoutError => !$hasError,
+        ]);
     }
 
     public function circleClasses(): string
@@ -50,11 +55,12 @@ class Toggle extends Checkbox
             checked:text-white dark:bg-secondary-200
         EOT;
 
-        return Arr::toCssClasses([
-            $classes,
-            'checked:translate-x-3 w-3 h-3'                => $this->size === 'sm',
-            'checked:translate-x-3.5 left-0.5 w-3.5 h-3.5' => $this->size === 'md',
-            'checked:translate-x-4 left-0.5 w-4 h-4'       => $this->size === 'lg',
-        ]);
+        $size = match ($this->size) {
+            'sm' => 'checked:translate-x-3 w-3 h-3',
+            'md' => 'checked:translate-x-3.5 left-0.5 w-3.5 h-3.5',
+            'lg' => 'checked:translate-x-4 left-0.5 w-4 h-4',
+        };
+
+        return Arr::toCssClasses([$size, $classes]);
     }
 }

@@ -79,6 +79,10 @@ class Input extends FormComponent
 
         $withoutBorder = 'border-transparent focus:border-transparent focus:ring-transparent';
 
-        return Arr::toCssClasses([$default, $withShadow => !$this->shadowless, $withoutBorder => $this->borderless]);
+        return Arr::toCssClasses([
+            $default,
+            $withShadow    => !$this->shadowless,
+            $withoutBorder => $this->borderless,
+        ]);
     }
 }

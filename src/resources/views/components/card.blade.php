@@ -1,5 +1,5 @@
 <div {{ $attributes->class($getCardClasses()) }}>
-    @if (isset($header))
+    @isset($record)
         <div {{ $header->attributes }}>
             {{ $header }}
         </div>
@@ -9,21 +9,21 @@
                 {{ $title }}
             </h3>
 
-            @if (isset($action))
+            @isset($action)
                 <div {{ $action->attributes }}>
                     {{ $action }}
                 </div>
-            @endif
+            @endisset
         </div>
-    @endif
+    @endisset
 
     <div {{ $attributes->class($getMainClasses()) }}>
         {{ $slot }}
     </div>
 
-    @if (isset($footer))
+    @isset($footer)
         <div {{ $footer->attributes->class($getFooterClasses()) }}>
             {{ $footer }}
         </div>
-    @endif
+    @endisset
 </div>

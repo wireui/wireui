@@ -15,25 +15,37 @@ class Card extends Component
         public ?string $rounded = null,
         public ?string $color = null,
     ) {
-        $this->padding = $padding ??= config('wireui.card.padding');
-        $this->shadow  = $shadow  ??= config('wireui.card.shadow');
-        $this->rounded = $rounded ??= config('wireui.card.rounded');
-        $this->color   = $color   ??= config('wireui.card.color');
+        $this->padding ??= config('wireui.card.padding');
+        $this->shadow  ??= config('wireui.card.shadow');
+        $this->rounded ??= config('wireui.card.rounded');
+        $this->color   ??= config('wireui.card.color');
     }
 
     public function getCardClasses(): string
     {
-        return Arr::toCssClasses(['w-full flex flex-col', $this->shadow, $this->rounded, $this->color]);
+        return Arr::toCssClasses([
+            'w-full flex flex-col',
+            $this->shadow,
+            $this->rounded,
+            $this->color,
+        ]);
     }
 
     public function getMainClasses(): string
     {
-        return Arr::toCssClasses(['text-secondary-700 rounded-b-xl grow dark:text-secondary-400', $this->padding]);
+        $default = 'text-secondary-700 rounded-b-xl grow dark:text-secondary-400';
+
+        return Arr::toCssClasses([$default, $this->padding]);
     }
 
     public function getFooterClasses(): string
     {
-        return Arr::toCssClasses(['px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600', $this->rounded]);
+        $default = <<<EOT
+            px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t
+            dark:bg-secondary-800 dark:border-secondary-600
+        EOT;
+
+        return Arr::toCssClasses([$default, $this->rounded]);
     }
 
     public function render(): View

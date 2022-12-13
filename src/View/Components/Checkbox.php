@@ -15,8 +15,11 @@ class Checkbox extends FormComponent
         public ?string $leftLabel = null,
         public ?string $description = null
     ) {
-        $this->size = $this->md ? 'md' : $this->size;
-        $this->size = $this->lg ? 'lg' : $this->size;
+        $this->size = match (true) {
+            $this->md => 'md',
+            $this->lg => 'lg',
+            default   => $this->size,
+        };
     }
 
     protected function getView(): string
@@ -42,14 +45,19 @@ class Checkbox extends FormComponent
             dark:focus:ring-offset-secondary-800
         EOT;
 
-        return Arr::toCssClasses([$default, $withError => $hasError, $withoutError => !$hasError]);
+        return Arr::toCssClasses([
+            $default,
+            $withError    => $hasError,
+            $withoutError => !$hasError,
+        ]);
     }
 
     private function size(): string
     {
-        return Arr::toCssClasses([
-            'w-5 h-5' => $this->size === 'md',
-            'w-6 h-6' => $this->size === 'lg',
-        ]);
+        return match ($this->size) {
+            'md'    => 'w-5 h-5',
+            'lg'    => 'w-6 h-6',
+            default => '',
+        };
     }
 }
