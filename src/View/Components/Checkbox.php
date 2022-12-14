@@ -2,35 +2,24 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\{Str, Stringable};
+use Illuminate\Support\Arr;
 
 class Checkbox extends FormComponent
 {
-    public bool $sm;
-
-    public bool $md;
-
-    public bool $lg;
-
-    public ?string $label;
-
-    public ?string $leftLabel;
-
-    public ?string $description;
+    protected string $size = 'sm';
 
     public function __construct(
-        bool $md = false,
-        bool $lg = false,
-        ?string $label = null,
-        ?string $leftLabel = null,
-        ?string $description = null
+        public bool $md = false,
+        public bool $lg = false,
+        public ?string $label = null,
+        public ?string $leftLabel = null,
+        public ?string $description = null
     ) {
-        $this->sm          = !$md && !$lg;
-        $this->md          = $md;
-        $this->lg          = $lg;
-        $this->label       = $label;
-        $this->leftLabel   = $leftLabel;
-        $this->description = $description;
+        $this->size = match (true) {
+            $this->md => 'md',
+            $this->lg => 'lg',
+            default   => $this->size,
+        };
     }
 
     protected function getView(): string
@@ -40,32 +29,35 @@ class Checkbox extends FormComponent
 
     public function getClasses(bool $hasError): string
     {
-        return Str::of("form-checkbox rounded transition ease-in-out duration-100 {$this->size()}")->unless(
-            $hasError,
-            function (Stringable $stringable) {
-                return $stringable->append('
-                    border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-400
-                    dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600
-                    dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600
-                    dark:focus:ring-offset-secondary-800
-                ');
-            },
-            function (Stringable $stringable) {
-                return $stringable->append('
-                    focus:ring-negative-500 ring-negative-500 border-negative-400 text-negative-600
-                    focus:border-negative-400 dark:focus:border-negative-600 dark:ring-negative-600
-                    dark:border-negative-600 dark:bg-negative-700 dark:checked:bg-negative-700
-                    dark:focus:ring-offset-secondary-800 dark:checked:border-negative-700
-                ');
-            },
-        );
+        $default = "form-checkbox rounded transition ease-in-out duration-100 {$this->size()}";
+
+        $withError = <<<EOT
+            focus:ring-negative-500 ring-negative-500 border-negative-400 text-negative-600
+            focus:border-negative-400 dark:focus:border-negative-600 dark:ring-negative-600
+            dark:border-negative-600 dark:bg-negative-700 dark:checked:bg-negative-700
+            dark:focus:ring-offset-secondary-800 dark:checked:border-negative-700
+        EOT;
+
+        $withoutError = <<<EOT
+            border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-400
+            dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600
+            dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600
+            dark:focus:ring-offset-secondary-800
+        EOT;
+
+        return Arr::toCssClasses([
+            $default,
+            $withError    => $hasError,
+            $withoutError => !$hasError,
+        ]);
     }
 
     private function size(): string
     {
-        return $this->classes([
-            'w-5 h-5' => $this->md,
-            'w-6 h-6' => $this->lg,
-        ]);
+        return match ($this->size) {
+            'md'    => 'w-5 h-5',
+            'lg'    => 'w-6 h-6',
+            default => '',
+        };
     }
 }

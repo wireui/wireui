@@ -15,7 +15,13 @@ class NumberInput extends Input
         ?string $hint = null,
         ?string $cornerHint = null,
     ) {
-        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint);
+        parent::__construct(
+            borderless: $borderless,
+            shadowless: $shadowless,
+            label: $label,
+            hint: $hint,
+            cornerHint: $cornerHint,
+        );
     }
 
     protected function getView(): string

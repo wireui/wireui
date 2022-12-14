@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
+
 class ModalCard extends Modal
 {
     public function __construct(
@@ -12,25 +14,19 @@ class ModalCard extends Modal
         public ?string $align = null,
         public string|bool|null $blur = null,
         public bool $show = false,
-        public string $padding = 'px-2 py-5 md:px-4',
-        public string $rounded = 'rounded-xl',
-        public string $shadow = 'shadow-md',
-        public string $divider = 'divide-y divide-secondary-200',
         public ?string $title = null,
-        public ?string $header = null,
-        public ?string $footer = null,
+        public ?string $padding = null,
+        public ?string $shadow = null,
+        public ?string $rounded = null,
+        public ?string $color = null,
         public bool $fullscreen = false,
         public bool $squared = false,
         public bool $hideClose = false,
     ) {
-        if ($fullscreen) {
-            $maxWidth = '';
-        }
-
         parent::__construct(
             name: $name,
             zIndex: $zIndex,
-            maxWidth: $maxWidth,
+            maxWidth: $fullscreen ? '' : $maxWidth,
             spacing: $spacing,
             align: $align,
             blur: $blur,
@@ -38,7 +34,7 @@ class ModalCard extends Modal
         );
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.modal-card');
     }

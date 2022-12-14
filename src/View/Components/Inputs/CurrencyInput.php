@@ -6,19 +6,12 @@ use WireUi\View\Components\Input;
 
 class CurrencyInput extends Input
 {
-    public string $thousands;
-
-    public string $decimal;
-
-    public int $precision;
-
-    public bool $emitFormatted;
-
     public function __construct(
-        string $thousands = ',',
-        string $decimal = '.',
-        int $precision = 2,
-        bool $emitFormatted = false,
+        public string $thousands = ',',
+        public string $decimal = '.',
+        public int $precision = 2,
+        public bool $emitFormatted = false,
+
         bool $borderless = false,
         bool $shadowless = false,
         ?string $label = null,
@@ -31,12 +24,19 @@ class CurrencyInput extends Input
         ?string $prepend = null,
         ?string $append = null
     ) {
-        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix, $prepend, $append);
-
-        $this->thousands     = $thousands;
-        $this->decimal       = $decimal;
-        $this->precision     = $precision;
-        $this->emitFormatted = $emitFormatted;
+        parent::__construct(
+            borderless: $borderless,
+            shadowless: $shadowless,
+            label: $label,
+            hint: $hint,
+            cornerHint: $cornerHint,
+            icon: $icon,
+            rightIcon: $rightIcon,
+            prefix: $prefix,
+            suffix: $suffix,
+            prepend: $prepend,
+            append: $append,
+        );
     }
 
     protected function getView(): string

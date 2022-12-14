@@ -12,16 +12,17 @@
         :title="$title"
         :rounded="$squared || $fullscreen ? '' : $rounded"
         :card-classes="$fullscreen ? 'min-h-screen' : ''"
+        :color="$color"
         :shadow="$shadow"
         :padding="$padding"
-        :divider="$divider">
-        @if ($header)
-            <x-slot name="header">
+    >
+        @if (isset($header))
+            @slot('header', null, $header->attributes->getAttributes())
                 {{ $header }}
-            </x-slot>
+            @endslot
         @elseif(!$hideClose)
-            <x-slot name="action">
-                <button class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
+            @slot('action')
+                <button class="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-200 text-secondary-300"
                         x-on:click="close"
                         tabindex="-1">
                     <x-dynamic-component
@@ -30,15 +31,15 @@
                         class="w-5 h-5"
                     />
                 </button>
-            </x-slot>
+            @endslot
         @endif
 
         {{ $slot }}
 
-        @isset($footer)
-            <x-slot name="footer">
+        @if(isset($footer))
+            @slot('footer', null, $footer->attributes->getAttributes())
                 {{ $footer }}
-            </x-slot>
-        @endisset
+            @endslot
+        @endif
     </x-dynamic-component>
 </x-dynamic-component>

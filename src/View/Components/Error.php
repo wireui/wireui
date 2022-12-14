@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Error extends Component
@@ -13,7 +14,7 @@ class Error extends Component
         $this->name = $name;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.error');
     }

@@ -4,25 +4,25 @@ use WireUi\View\Components;
 
 return [
     /*
-        |--------------------------------------------------------------------------
-        | Icons
-        |--------------------------------------------------------------------------
-        |
-        | The icons config will be used in icon component as default
-        | https://heroicons.com
-        |
+    |--------------------------------------------------------------------------
+    | Icons
+    |--------------------------------------------------------------------------
+    |
+    | The icons config will be used in icon component as default
+    | https://heroicons.com
+    |
     */
     'icons' => [
         'variant' => 'outline',
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Modal
-        |--------------------------------------------------------------------------
-        |
-        | The default modal preferences
-        |
+    |--------------------------------------------------------------------------
+    | Modal
+    |--------------------------------------------------------------------------
+    |
+    | The default modal preferences
+    |
     */
     'modal' => [
         'zIndex'   => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
@@ -33,30 +33,30 @@ return [
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Card
-        |--------------------------------------------------------------------------
-        |
-        | The default card preferences
-        |
+    |--------------------------------------------------------------------------
+    | Card
+    |--------------------------------------------------------------------------
+    |
+    | The default card preferences
+    |
     */
     'card' => [
-        'padding' => env('WIREUI_CARD_PADDING', 'px-2 py-5 md:px-4'),
-        'shadow'  => env('WIREUI_CARD_SHADOW', 'shadow-md'),
-        'rounded' => env('WIREUI_CARD_ROUNDED', 'rounded-lg'),
-        'color'   => env('WIREUI_CARD_COLOR', 'bg-white dark:bg-secondary-800'),
+        'padding' => 'px-2 py-5 md:px-4',
+        'shadow'  => 'shadow-md',
+        'rounded' => 'rounded-lg',
+        'color'   => 'bg-white dark:bg-secondary-800',
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Components
-        |--------------------------------------------------------------------------
-        |
-        | List with WireUI components.
-        | Change the alias to call the component with a different name.
-        | Extend the component and replace your changes in this file.
-        | Remove the component from this file if you don't want to use.
-        |
+    |--------------------------------------------------------------------------
+    | Components
+    |--------------------------------------------------------------------------
+    |
+    | List with WireUI components.
+    | Change the alias to call the component with a different name.
+    | Extend the component and replace your changes in this file.
+    | Remove the component from this file if you don't want to use.
+    |
      */
     'components' => [
         'avatar' => [

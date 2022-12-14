@@ -9,13 +9,10 @@ class TimePicker extends Input
     public const FORMAT_24H     = '24';
     public const DEFAULT_FORMAT = self::FORMAT_12H;
 
-    public int $interval;
-
-    public string $format;
-
     public function __construct(
-        int $interval = self::INTERVAL,
-        string $format = self::DEFAULT_FORMAT,
+        public int $interval = self::INTERVAL,
+        public string $format = self::DEFAULT_FORMAT,
+
         bool $borderless = false,
         bool $shadowless = false,
         ?string $label = null,
@@ -25,10 +22,16 @@ class TimePicker extends Input
         ?string $prefix = null,
         ?string $prepend = null
     ) {
-        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon = null, $prefix, $suffix = null, $prepend, $append = null);
-
-        $this->interval = $interval;
-        $this->format   = $format;
+        parent::__construct(
+            borderless: $borderless,
+            shadowless: $shadowless,
+            label: $label,
+            hint: $hint,
+            cornerHint: $cornerHint,
+            icon: $icon,
+            prefix: $prefix,
+            prepend: $prepend,
+        );
     }
 
     protected function getView(): string
