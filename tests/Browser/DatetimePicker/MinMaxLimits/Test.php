@@ -45,8 +45,8 @@ class Test extends BrowserTestCase
                 ->tap(fn () => $this->selectDate($browser, $day))
                 ->waitUsing(7, 100, fn () => $browser->assertScript(
                     "!!document.querySelector('[name=\"times.{$time}\"]')",
-                    $exists
-                ))
+                    $exists,
+                )),
         );
     }
 

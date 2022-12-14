@@ -18,7 +18,7 @@ class Input extends FormComponent
         public ?string $suffix = null,
         public ?string $prepend = null,
         public ?string $append = null,
-        public bool $errorless = false
+        public bool $errorless = false,
     ) {
     }
 
