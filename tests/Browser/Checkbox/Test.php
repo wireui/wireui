@@ -21,7 +21,7 @@ class Test extends BrowserTestCase
                 ->assertNotChecked('checkbox')
                 ->waitForTextIn('@checkbox', 'false')
                 ->click('@validate')
-                ->waitForText('accept it')
+                ->waitForText('accept it'),
         );
     }
 }

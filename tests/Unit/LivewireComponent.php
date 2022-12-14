@@ -2,15 +2,20 @@
 
 namespace Tests\Unit;
 
-use Tests\Browser\Button\ButtonComponent;
+use Livewire\Component;
 use WireUi\Traits\Actions;
 
-class LivewireComponent extends ButtonComponent
+class LivewireComponent extends Component
 {
     use Actions;
 
     public function __construct()
     {
-        $this->id = 'fake-id';
+        parent::__construct(id: 'fake-id');
+    }
+
+    public function render(): string
+    {
+        return 'test';
     }
 }

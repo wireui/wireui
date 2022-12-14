@@ -18,7 +18,7 @@ class Test extends BrowserTestCase
                 ->clear('currency')
                 ->pause(100)
                 ->type('currency', '12.5')
-                ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '12.5'))
+                ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '12.5')),
         );
     }
 
@@ -30,7 +30,7 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->clear('currency')
                 ->click('@button.change.currency')
-                ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '12,345.67'))
+                ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '12,345.67')),
         );
     }
 
@@ -46,7 +46,7 @@ class Test extends BrowserTestCase
                     return $browser
                         ->assertSeeIn('@formattedCurrency', '123,456')
                         ->assertInputValue('formattedCurrency', '123,456');
-                })
+                }),
         );
     }
 
@@ -58,7 +58,7 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('brazilCurrency', '123.456,99')
                 ->append('brazilCurrency', '66')
-                ->assertInputValue('brazilCurrency', '12.345.699,66')
+                ->assertInputValue('brazilCurrency', '12.345.699,66'),
         );
     }
 }

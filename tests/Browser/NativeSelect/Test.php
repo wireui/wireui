@@ -19,8 +19,9 @@ class Test extends BrowserTestCase
                 ->select('model', '')
                 ->assertSelected('model', '')
                 ->click('@validate')
-                ->tap(fn () => $browser->waitForLivewire())
-                ->waitUsing(7, 100, fn () => $browser->assertSeeNothingIn('@value')->assertSee('select a value'));
+                ->waitUsing(7, 100, fn () => $browser->assertSeeNothingIn('@value'))
+                ->waitForText('select a value')
+                ->assertSee('select a value');
         });
     }
 

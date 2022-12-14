@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use WireUi\Support\SafeEval;
 
-class SafeEvalTest extends UnitTestCase
+class SafeEvalTest extends TestCase
 {
     /** @test */
     public function it_should_assert_directives_regex_matches()

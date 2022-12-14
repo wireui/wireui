@@ -14,7 +14,7 @@ class AlertDialogTest extends BrowserTestCase
     public function it_should_show_simple_alert_dialog_from_js(
         string $icon,
         string $title,
-        string $description
+        string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
@@ -38,7 +38,7 @@ class AlertDialogTest extends BrowserTestCase
     public function it_should_show_simple_alert_dialog_from_livewire_component(
         string $icon,
         string $title,
-        string $description
+        string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
@@ -62,7 +62,7 @@ class AlertDialogTest extends BrowserTestCase
     public function it_should_show_custom_simple_alert_dialog(
         string $icon,
         string $title,
-        string $description
+        string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)

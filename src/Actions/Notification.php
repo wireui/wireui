@@ -58,7 +58,7 @@ class Notification extends Actionable
     public function simpleNotification(
         string $icon,
         string $title,
-        ?string $description = null
+        ?string $description = null,
     ): self {
         $options = [
             'icon'        => $icon,

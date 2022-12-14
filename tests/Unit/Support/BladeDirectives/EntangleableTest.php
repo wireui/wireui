@@ -4,9 +4,9 @@ namespace Tests\Unit\Support\BladeDirectives;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\View\ComponentAttributeBag;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 
-class EntangleableTest extends UnitTestCase
+class EntangleableTest extends TestCase
 {
     /** @dataProvider fallbackValuesProvider */
     public function test_it_should_render_the_default_value_when_livewire_instance_doest_exists(

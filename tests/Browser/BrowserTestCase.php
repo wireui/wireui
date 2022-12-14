@@ -16,7 +16,7 @@ use Symfony\Component\Finder\SplFileInfo;
 use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Heroicons\HeroiconsServiceProvider;
-use WireUi\Providers\WireUiServiceProvider;
+use WireUi\WireUiServiceProvider;
 
 use function Livewire\str;
 
@@ -62,7 +62,7 @@ class BrowserTestCase extends Dusk\TestCase
             Route::get('/livewire-dusk/{component}', function (string $component) {
                 $class = urldecode($component);
 
-                return app()->call(new $class);
+                return app()->call(new $class());
             })->middleware('web');
 
             Route::get('/api/options', function () {
@@ -74,7 +74,7 @@ class BrowserTestCase extends Dusk\TestCase
                 ])->filter(function (array $option) {
                     return str_contains(
                         strtolower($option['name']),
-                        strtolower(request()->query('search'))
+                        strtolower(request()->query('search')),
                     );
                 })->values();
             })->name('api.options')->middleware('web');
@@ -89,7 +89,7 @@ class BrowserTestCase extends Dusk\TestCase
                 ])->filter(function (array $option) {
                     return str_contains(
                         strtolower($option['name']),
-                        strtolower(request()->query('search'))
+                        strtolower(request()->query('search')),
                     );
                 })->values();
 
@@ -178,14 +178,14 @@ class BrowserTestCase extends Dusk\TestCase
         return static::$useSafari
             ? RemoteWebDriver::create(
                 'http://localhost:9515',
-                DesiredCapabilities::safari()
+                DesiredCapabilities::safari(),
             )
             : RemoteWebDriver::create(
                 'http://localhost:9515',
                 DesiredCapabilities::chrome()->setCapability(
                     ChromeOptions::CAPABILITY,
-                    $options
-                )
+                    $options,
+                ),
             );
     }
 

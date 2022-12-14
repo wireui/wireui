@@ -20,7 +20,7 @@ class TimePicker extends Input
         ?string $cornerHint = null,
         ?string $icon = null,
         ?string $prefix = null,
-        ?string $prepend = null
+        ?string $prepend = null,
     ) {
         parent::__construct(
             borderless: $borderless,

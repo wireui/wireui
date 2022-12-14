@@ -17,7 +17,7 @@ class Test extends BrowserTestCase
                 ->click('[id="withoutTimezone"]')
                 ->tap(fn () => $this->selectDate($browser, 'withoutTimezone', 5))
                 ->waitForTextIn('@withoutTimezone', '2021-05-05T02:48:00Z')
-                ->assertInputValue('withoutTimezone', '2021-05-05 02:48')
+                ->assertInputValue('withoutTimezone', '2021-05-05 02:48'),
         );
     }
 
@@ -35,7 +35,7 @@ class Test extends BrowserTestCase
                 ->click('[id="utcTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'utcTimezone', 31))
                 ->waitForTextIn('@utcTimezone', '2021-08-01T00:30:00Z')
-                ->assertInputValue('utcTimezone', '2021-07-31 21:30')
+                ->assertInputValue('utcTimezone', '2021-07-31 21:30'),
         );
     }
 
@@ -52,7 +52,7 @@ class Test extends BrowserTestCase
                 ->click('[id="tokyoTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'tokyoTimezone', 31))
                 ->waitForTextIn('@tokyoTimezone', '2021-08-01T10:00:00+09:00')
-                ->assertInputValue('tokyoTimezone', '2021-07-31 22:00')
+                ->assertInputValue('tokyoTimezone', '2021-07-31 22:00'),
         );
     }
 
@@ -69,7 +69,7 @@ class Test extends BrowserTestCase
                 ->click('[id="customFormat"] input')
                 ->tap(fn () => $this->selectDate($browser, 'customFormat', 10))
                 ->waitForTextIn('@customFormat', '10-2021-09 59:13')
-                ->assertInputValue('customFormat', '10-2021-09 59:13')
+                ->assertInputValue('customFormat', '10-2021-09 59:13'),
         );
     }
 
@@ -94,7 +94,7 @@ class Test extends BrowserTestCase
                         .click()
                 EOT))
                 ->waitForTextIn('@dateAndTime', '2021-12-11T05:50:00Z')
-                ->assertInputValue('dateAndTime', '11-12-2021 05:50')
+                ->assertInputValue('dateAndTime', '11-12-2021 05:50'),
         );
     }
 

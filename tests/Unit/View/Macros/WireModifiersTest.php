@@ -3,9 +3,9 @@
 namespace Tests\Unit\View\Macros;
 
 use Illuminate\View\ComponentAttributeBag;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\TestCase;
 
-class WireModifiersTest extends UnitTestCase
+class WireModifiersTest extends TestCase
 {
     /**
      * @test

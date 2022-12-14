@@ -32,7 +32,7 @@ class NativeSelect extends FormComponent
     ) {
         $this->options = collect($options)->when(
             $flipOptions,
-            fn (Collection $collection) => $collection->flip()
+            fn (Collection $collection) => $collection->flip(),
         );
 
         $this->validateConfig();
@@ -62,7 +62,7 @@ class NativeSelect extends FormComponent
         ) {
             throw new InvalidArgumentException(
                 'Inform the {option-value} and {option-label} to use array, model, or object option.'
-                    . ' <x-select [...] option-value="id" option-label="name" />'
+                    . ' <x-select [...] option-value="id" option-label="name" />',
             );
         }
 
@@ -73,7 +73,7 @@ class NativeSelect extends FormComponent
         ) {
             throw new InvalidArgumentException(
                 'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
-                    . implode(', ', self::PRIMITIVE_VALUES)
+                    . implode(', ', self::PRIMITIVE_VALUES),
             );
         }
     }

@@ -22,7 +22,7 @@ class CurrencyInput extends Input
         ?string $prefix = null,
         ?string $suffix = null,
         ?string $prepend = null,
-        ?string $append = null
+        ?string $append = null,
     ) {
         parent::__construct(
             borderless: $borderless,
