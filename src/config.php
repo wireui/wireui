@@ -49,16 +49,16 @@ return [
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Button
-        |--------------------------------------------------------------------------
-        |
-        | The default button preferences, like colors, styles, sizes, etc.
-        |
-        | Variant: solid | flat | outline
-        | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
-        | Color: All keys of variants WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
-        |
+    |--------------------------------------------------------------------------
+    | Button
+    |--------------------------------------------------------------------------
+    |
+    | The default button preferences, like colors, styles, sizes, etc.
+    |
+    | Variant: solid | flat | outline
+    | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
+    | Color: All keys of variants WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
+    |
     */
     'button' => [
         'variant' => 'solid',
@@ -77,9 +77,9 @@ return [
     ],
 
     /*
-        |--------------------------------------------------------------------------
-        | Mini Button
-        |--------------------------------------------------------------------------
+    |--------------------------------------------------------------------------
+    | Mini Button
+    |--------------------------------------------------------------------------
     */
     'buttons_mini' => [
         'variant' => 'solid',
