@@ -1,23 +1,29 @@
-<div class="{{ $cardClasses }}">
-    @if ($header)
-        {{ $header }}
-    @elseif ($title || $action)
-        <div class="{{ $headerClasses }}">
-            <h3 class="font-medium whitespace-normal text-md text-secondary-700 dark:text-secondary-400">{{ $title }}</h3>
-
-            @if ($action)
-                {{ $action }}
-            @endif
+<div {{ $attributes->class($getCardClasses()) }}>
+    @isset($record)
+        <div {{ $header->attributes }}>
+            {{ $header }}
         </div>
-    @endif
+    @elseif($title)
+        <div class="px-4 py-2.5 flex justify-between items-center border-b dark:border-0">
+            <h3 class="font-medium whitespace-normal text-md text-secondary-700 dark:text-secondary-400">
+                {{ $title }}
+            </h3>
 
-    <div {{ $attributes->merge(['class' => "{$padding} text-secondary-700 rounded-b-xl grow dark:text-secondary-400"]) }}>
+            @isset($action)
+                <div {{ $action->attributes }}>
+                    {{ $action }}
+                </div>
+            @endisset
+        </div>
+    @endisset
+
+    <div {{ $attributes->class($getMainClasses()) }}>
         {{ $slot }}
     </div>
 
-    @if ($footer)
-        <div class="{{ $footerClasses }}">
+    @isset($footer)
+        <div {{ $footer->attributes->class($getFooterClasses()) }}>
             {{ $footer }}
         </div>
-    @endif
+    @endisset
 </div>

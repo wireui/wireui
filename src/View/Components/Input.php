@@ -2,60 +2,24 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\{Str, Stringable};
+use Illuminate\Support\Arr;
 
 class Input extends FormComponent
 {
-    public bool $borderless;
-
-    public bool $shadowless;
-
-    public ?string $label;
-
-    public ?string $hint;
-
-    public ?string $cornerHint;
-
-    public ?string $icon;
-
-    public ?string $rightIcon;
-
-    public ?string $prefix;
-
-    public ?string $suffix;
-
-    public ?string $prepend;
-
-    public ?string $append;
-
-    public bool $errorless;
-
     public function __construct(
-        bool $borderless = false,
-        bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $prefix = null,
-        ?string $suffix = null,
-        ?string $prepend = null,
-        ?string $append = null,
-        bool $errorless = false,
+        public bool $borderless = false,
+        public bool $shadowless = false,
+        public ?string $label = null,
+        public ?string $hint = null,
+        public ?string $cornerHint = null,
+        public ?string $icon = null,
+        public ?string $rightIcon = null,
+        public ?string $prefix = null,
+        public ?string $suffix = null,
+        public ?string $prepend = null,
+        public ?string $append = null,
+        public bool $errorless = false
     ) {
-        $this->borderless = $borderless;
-        $this->shadowless = $shadowless;
-        $this->label      = $label;
-        $this->hint       = $hint;
-        $this->cornerHint = $cornerHint;
-        $this->icon       = $icon;
-        $this->rightIcon  = $rightIcon;
-        $this->prefix     = $prefix;
-        $this->suffix     = $suffix;
-        $this->prepend    = $prepend;
-        $this->append     = $append;
-        $this->errorless  = $errorless;
     }
 
     protected function getView(): string
@@ -65,50 +29,60 @@ class Input extends FormComponent
 
     public function getInputClasses(bool $hasError = false): string
     {
-        $defaultClasses = $this->getDefaultClasses();
-
-        if ($this->prefix || $this->icon) {
-            $defaultClasses .= ' pl-8';
-        }
-
-        if ($hasError || $this->suffix || $this->rightIcon) {
-            $defaultClasses .= ' pr-8';
-        }
-
-        if ($hasError) {
-            return "{$this->getErrorClasses()} {$defaultClasses}";
-        }
-
-        return "{$this->getDefaultColorClasses()} {$defaultClasses}";
+        return Arr::toCssClasses([
+            $this->getDefaultClasses(),
+            'pl-8'                          => $this->prefix || $this->icon,
+            'pr-8'                          => $hasError     || $this->suffix || $this->rightIcon,
+            $this->getErrorClasses()        => $hasError,
+            $this->getDefaultColorClasses() => !$hasError,
+        ]);
     }
 
     protected function getErrorClasses(): string
     {
-        return Str::of('text-negative-900 dark:text-negative-600 placeholder-negative-300 dark:placeholder-negative-500')
-            ->unless($this->borderless, function (Stringable $stringable) {
-                return $stringable
-                    ->append(' border border-negative-300 focus:ring-negative-500 focus:border-negative-500')
-                    ->append(' dark:bg-secondary-800 dark:border-negative-600');
-            });
+        $default = <<<EOT
+            text-negative-900 dark:text-negative-600 placeholder-negative-300
+            dark:placeholder-negative-500
+        EOT;
+
+        $withBorder = <<<EOT
+            border border-negative-300 focus:ring-negative-500 focus:border-negative-500
+            dark:bg-secondary-800 dark:border-negative-600
+        EOT;
+
+        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
     }
 
     protected function getDefaultColorClasses(): string
     {
-        return Str::of('placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400')
-            ->append(' dark:placeholder-secondary-500')
-            ->unless($this->borderless, function (Stringable $stringable) {
-                return $stringable
-                    ->append(' border border-secondary-300 focus:ring-primary-500 focus:border-primary-500')
-                    ->append(' dark:border-secondary-600');
-            });
+        $default = <<<EOT
+            placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400
+            dark:placeholder-secondary-500
+        EOT;
+
+        $withBorder = <<<EOT
+            border border-secondary-300 focus:ring-primary-500 focus:border-primary-500
+            dark:border-secondary-600
+        EOT;
+
+        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
     }
 
     protected function getDefaultClasses(): string
     {
-        return Str::of('form-input block w-full sm:text-sm rounded-md transition ease-in-out duration-100 focus:outline-none')
-            ->unless($this->shadowless, fn (Stringable $stringable) => $stringable->append(' shadow-sm'))
-            ->when($this->borderless, function (Stringable $stringable) {
-                return $stringable->append(' border-transparent focus:border-transparent focus:ring-transparent');
-            });
+        $default = <<<EOT
+            form-input block w-full sm:text-sm rounded-md transition
+            ease-in-out duration-100 focus:outline-none
+        EOT;
+
+        $withShadow = 'shadow-sm';
+
+        $withoutBorder = 'border-transparent focus:border-transparent focus:ring-transparent';
+
+        return Arr::toCssClasses([
+            $default,
+            $withShadow    => !$this->shadowless,
+            $withoutBorder => $this->borderless,
+        ]);
     }
 }

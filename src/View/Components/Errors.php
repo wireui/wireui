@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\ViewErrorBag;
 
 class Errors extends Component
@@ -27,7 +28,7 @@ class Errors extends Component
         $this->only  = $only;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.errors');
     }

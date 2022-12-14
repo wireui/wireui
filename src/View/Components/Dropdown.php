@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Dropdown extends Component
@@ -17,7 +18,7 @@ class Dropdown extends Component
     ) {
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.dropdown');
     }
