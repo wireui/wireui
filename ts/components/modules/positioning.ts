@@ -50,7 +50,7 @@ export const positioning: Positioning = {
   close () { this.popover = false },
   toggle () { this.popover = !this.popover },
   handleEscape () { this.close() },
-  updatePosition() {
+  updatePosition () {
     computePosition(this.$root, this.$refs.popover, {
       placement: 'bottom',
       middleware: [
