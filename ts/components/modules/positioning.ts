@@ -15,6 +15,7 @@ export interface Positioning extends Component {
   close (): void
   toggle (): void
   handleEscape (): void
+  updatePosition(): void
 }
 
 export const positioning: Positioning = {
@@ -38,29 +39,35 @@ export const positioning: Positioning = {
     })
   },
   syncPopoverPosition () {
-    this.cleanupPosition = autoUpdate(this.$root, this.$refs.popover, () => {
-      computePosition(this.$root, this.$refs.popover, {
-        placement: 'bottom',
-        middleware: [
-          autoPlacement({
-            autoAlignment: true,
-            allowedPlacements: ['top', 'top-end', 'top-start', 'bottom', 'bottom-end', 'bottom-start'],
-            padding: 5
-          }),
-          offset(3),
-          shift()
-        ]
-      }).then(({ x, y }) => {
-        return Object.assign(this.$refs.popover.style, {
-          position: 'absolute',
-          left: `${x}px`,
-          top: `${y}px`
-        })
-      })
-    })
+    this.cleanupPosition = autoUpdate(
+      this.$root,
+      this.$refs.popover,
+      () => this.updatePosition(),
+      { elementResize: false }
+    )
   },
   open () { this.popover = true },
   close () { this.popover = false },
   toggle () { this.popover = !this.popover },
-  handleEscape () { this.close() }
+  handleEscape () { this.close() },
+  updatePosition() {
+    computePosition(this.$root, this.$refs.popover, {
+      placement: 'bottom',
+      middleware: [
+        autoPlacement({
+          autoAlignment: true,
+          allowedPlacements: ['top', 'top-end', 'top-start', 'bottom', 'bottom-end', 'bottom-start'],
+          padding: 5
+        }),
+        offset(3),
+        shift()
+      ]
+    }).then(({ x, y }) => {
+      return Object.assign(this.$refs.popover.style, {
+        position: 'absolute',
+        left: `${x}px`,
+        top: `${y}px`
+      })
+    })
+  }
 }

@@ -7,7 +7,7 @@
     x-ref="popover"
     x-on:click.outside="close"
     x-on:keydown.escape.window="handleEscape">
-    <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden dark:bg-secondary-700 dark:bg-opacity-60"
+    <div class="fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden dark:bg-secondary-700 dark:bg-opacity-60"
         x-show="popover"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
