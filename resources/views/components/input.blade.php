@@ -4,7 +4,7 @@
 
 <div class="@if($disabled) opacity-60 @endif">
     @if ($label || $cornerHint)
-        <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between' }} mb-1">
+        <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between items-end' }} mb-1">
             @if ($label)
                 <x-dynamic-component
                     :component="WireUi::component('label')"
