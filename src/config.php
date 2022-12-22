@@ -46,6 +46,24 @@ return [
         'shadow'  => 'shadow-md',
         'rounded' => 'rounded-lg',
         'color'   => 'bg-white dark:bg-secondary-800',
+        'divider' => true,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Errors
+    |--------------------------------------------------------------------------
+    |
+    | The default errors preferences
+    |
+    */
+    'errors' => [
+        'icon'    => 'exclamation-circle',
+        'padding' => 'pl-1 mt-2 ml-5',
+        'shadow'  => 'shadow-md',
+        'rounded' => 'rounded-lg',
+        'color'   => 'bg-negative-50 dark:bg-secondary-800',
+        'divider' => true,
     ],
 
     /*
