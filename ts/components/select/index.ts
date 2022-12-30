@@ -258,32 +258,36 @@ export default (initOptions: InitOptions): Select => ({
     }
   },
   syncJsonOptions () {
-    this.setOptions(window.Alpine.evaluate(this, this.$refs.json.innerText))
+    setTimeout(() => {
+      this.setOptions(window.Alpine.evaluate(this, this.$refs.json.innerText))
 
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
+      if (this.hasWireModel) {
+        this.syncSelectedFromWireModel()
+      }
+    })
   },
   syncSlotOptions () {
-    const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
-
-    const options = Array.from(elements).flatMap(element => {
-      const base64 = element.querySelector('[name="wireui.select.option.data"]')?.textContent
-
-      if (!base64) return []
-
-      const option: Option = window.Alpine.evaluate(this, base64)
-
-      option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
-
-      return option
+    setTimeout(() => {
+      const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
+      
+      const options = Array.from(elements).flatMap(element => {
+        const base64 = element.querySelector('[name="wireui.select.option.data"]')?.textContent
+        
+        if (!base64) return []
+        
+        const option: Option = window.Alpine.evaluate(this, base64)
+        
+        option.html = element.querySelector('[name="wireui.select.slot"]')?.innerHTML
+        
+        return option
+      })
+      
+      this.setOptions(options)
+      
+      if (this.hasWireModel) {
+        this.syncSelectedFromWireModel()
+      }
     })
-
-    this.setOptions(options)
-
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
   },
   makeRequest (params = {}) {
     const { api, method, credentials } = this.asyncData
