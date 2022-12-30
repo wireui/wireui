@@ -218,7 +218,8 @@
             @endisset
 
             <ul x-ref="listing" wire:ignore>
-                <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
+                <template x-for="(option, index) in displayOptions"
+                          :key="`${index}.${option.value}${option.label || ''}`">
                     <li tabindex="-1" :index="index">
                         <div class="px-2 py-0.5">
                             <div class="h-8 w-full animate-pulse bg-slate-200 dark:bg-slate-600 rounded"></div>
