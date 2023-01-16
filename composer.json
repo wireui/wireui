@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.0|^8.1",
-        "laravel/framework": "^8.83|^9.16|^10.*",
+        "laravel/framework": "^8.83|^9.16|^10.0",
         "livewire/livewire": "^2.10"
     },
     "require-dev": {
