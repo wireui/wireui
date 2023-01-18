@@ -18,56 +18,62 @@ class Card extends Component
         public ?string $shadow = null,
         public ?string $rounded = null,
         public ?string $color = null,
-        public ?bool $divider = null,
+        public ?bool $undivided = null,
     ) {
-        $this->padding ??= config('wireui.card.padding');
-        $this->shadow  ??= config('wireui.card.shadow');
-        $this->rounded ??= config('wireui.card.rounded');
-        $this->color   ??= config('wireui.card.color');
-        $this->divider ??= config('wireui.card.divider');
+        $this->padding   ??= config('wireui.card.padding');
+        $this->shadow    ??= config('wireui.card.shadow');
+        $this->rounded   ??= config('wireui.card.rounded');
+        $this->color     ??= config('wireui.card.color');
+        $this->undivided ??= config('wireui.card.undivided');
     }
 
     public function getCardClasses(): string
     {
-        $default = 'w-full flex flex-col';
-
-        return Arr::toCssClasses([$default, $this->shadow, $this->rounded, $this->color]);
+        return Arr::toCssClasses([
+            'w-full flex flex-col',
+            $this->shadow,
+            $this->rounded,
+            $this->color,
+        ]);
     }
 
     public function getHeaderClasses(): string
     {
-        $default = 'px-4 py-2.5 flex justify-between items-center';
-
         $border = Arr::toCssClasses(['border-b', $this->borderColor]);
 
-        return Arr::toCssClasses([$default, $border => $this->divider]);
+        return Arr::toCssClasses([
+            'px-4 py-2.5 flex justify-between items-center',
+            $border => !$this->undivided,
+        ]);
     }
 
     public function getTitleClasses(): string
     {
-        $default = 'font-medium text-base whitespace-normal';
-
-        return Arr::toCssClasses([$default, $this->textColor]);
+        return Arr::toCssClasses([
+            'font-medium text-base whitespace-normal',
+            $this->textColor,
+        ]);
     }
 
     public function getMainClasses(): string
     {
-        $default = 'rounded-b-xl grow';
-
-        return Arr::toCssClasses([$default, $this->textColor, $this->padding]);
+        return Arr::toCssClasses([
+            'rounded-b-xl grow',
+            $this->textColor,
+            $this->padding,
+        ]);
     }
 
     public function getFooterClasses(): string
     {
-        $default = 'px-4 py-4 sm:px-6 rounded-t-none';
-
-        $footerColor = 'bg-secondary-50 dark:bg-secondary-800';
-
-        $default = Arr::toCssClasses([$default, $footerColor]);
-
         $border = Arr::toCssClasses(['border-t', $this->borderColor]);
 
-        return Arr::toCssClasses([$default, $this->rounded, $border => $this->divider]);
+        return Arr::toCssClasses([
+            'bg-secondary-50 dark:bg-secondary-800',
+            'px-4 py-4 sm:px-6 rounded-t-none',
+            $border => !$this->undivided,
+            $this->rounded,
+        ]);
     }
 
     public function render(): View
