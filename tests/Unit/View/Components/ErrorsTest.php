@@ -3,13 +3,13 @@
 use Illuminate\Support\{MessageBag, ViewErrorBag};
 use WireUi\View\Components\Errors;
 
-it('should 1', function () {
+it('should get the default title', function () {
     $errors = new Errors();
 
     expect($errors->title)->toBe(trans('wireui::messages.errors.title'));
 });
 
-it('should 2', function () {
+it('should treat variable only correctly', function () {
     $errors = new Errors(only: 'name1|name2|name3');
 
     expect($errors->only->toArray())->toBe(['name1', 'name2', 'name3']);
@@ -19,7 +19,7 @@ it('should 2', function () {
     expect($errors->only->toArray())->toBe(['name1', 'name2', 'name3']);
 });
 
-it('should 3', function () {
+it('should return error messages correctly', function () {
     $errors = new Errors();
 
     $errorBag = new ViewErrorBag();

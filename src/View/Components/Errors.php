@@ -31,9 +31,16 @@ class Errors extends Component
         $this->only = collect($this->only);
     }
 
+    public function count(ViewErrorBag $errors): int
+    {
+        return $this->getErrorMessages($errors)->count();
+    }
+
     public function getErrorMessages(ViewErrorBag $errors): Collection
     {
-        return collect($errors->getMessages())->except($this->only);
+        $messages = $errors->getMessages();
+
+        return $this->only->isNotEmpty() ? collect($messages)->only($this->only) : collect($messages);
     }
 
     public function render(): View

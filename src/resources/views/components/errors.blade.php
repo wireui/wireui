@@ -1,8 +1,8 @@
-@if ($errors->any())
+@if ((bool)$count($errors))
     <x-dynamic-component
         :component="WireUi::component('alert')"
         color="negative"
-        title="{{ str($title)->replace('{errors}', $errors->count()) }}"
+        title="{{ str($title)->replace('{errors}', $count($errors)) }}"
         :icon="$icon"
         :undivided="$undivided"
         :iconless="$iconless"
