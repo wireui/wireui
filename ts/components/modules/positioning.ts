@@ -27,13 +27,15 @@ export const positioning: Positioning = {
     this.$watch('popover', (state) => {
       if (!state && this.cleanupPosition) {
         this.cleanupPosition()
+
+        this.cleanupPosition = null
       }
 
       if (window.innerWidth < 640) {
         return this.$refs.popover.removeAttribute('style')
       }
 
-      if (state) {
+      if (state && !this.cleanupPosition) {
         this.$nextTick(() => this.syncPopoverPosition())
       }
     })
@@ -42,8 +44,7 @@ export const positioning: Positioning = {
     this.cleanupPosition = autoUpdate(
       this.$root,
       this.$refs.popover,
-      () => this.updatePosition(),
-      { elementResize: false }
+      () => this.updatePosition()
     )
   },
   open () { this.popover = true },

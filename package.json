@@ -12,7 +12,7 @@
         "test": "jest"
     },
     "dependencies": {
-        "@floating-ui/dom": "^1.0.6",
+        "@floating-ui/dom": "^1.1.0",
         "@types/lodash.debounce": "^4.0.7",
         "@wireui/alpinejs-hold-directive": "^1.0.1",
         "alpinejs": "^3.10.5",
