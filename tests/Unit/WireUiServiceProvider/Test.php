@@ -133,8 +133,8 @@ it('should get the attribute with modifiers', function (string $attribute, array
 
 it('should parse recursive array to css class', function () {
     expect(Arr::toRecursiveCssClasses([
-        'foo' => true,
-        'bar' => false,
+        'foo'  => true,
+        'bar'  => false,
         'baz',
         ['foo' => true, 'bar' => false, 'baz'],
     ]))->toBe('foo baz foo baz');

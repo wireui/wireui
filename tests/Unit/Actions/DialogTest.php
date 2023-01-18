@@ -26,7 +26,7 @@ it('should create the dialog event name to a custom dialog', function () {
 it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
     $event  = 'wireui:dialog';
     $params = [
-        'options' => [
+        'options'     => [
             'title' => 'WireUI is awesome!',
             'icon'  => $icon,
         ],
@@ -43,7 +43,7 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options' => [
+            'options'     => [
                 'title' => 'WireUI is awesome!',
                 'icon'  => $expectedIcon,
             ],
@@ -73,7 +73,7 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options' => [
+            'options'     => [
                 'title' => 'User created!',
                 'icon'  => $expectedIcon,
             ],
@@ -99,7 +99,7 @@ it('should emit the simple dialog event', function (string $method) {
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options' => [
+            'options'     => [
                 'title'       => 'Test Title!',
                 'icon'        => $method,
                 'description' => 'Test Description..',

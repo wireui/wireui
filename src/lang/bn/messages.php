@@ -12,7 +12,7 @@ return [
         'today'     => 'আজ',
         'yesterday' => 'গতকাল',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'আপনার জমা দেওয়ার ক্ষেত্রে {errors} ত্রুটি ছিল',
     ],
 ];

@@ -12,7 +12,7 @@ return [
         'today'     => 'Hari Ini',
         'yesterday' => 'Semalam',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'Terdapat ralat {errors} berlaku',
     ],
 ];

@@ -7,7 +7,7 @@ use WireUi\Actions\Notification;
 it('should emit a notification event', function () {
     $event  = 'wireui:notification';
     $params = [
-        'options' => [
+        'options'     => [
             'title' => 'WireUI is awesome!',
             'icon'  => Notification::SUCCESS,
         ],
@@ -45,7 +45,7 @@ it('should emit a confirm notification event', function (?string $icon, string $
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options' => [
+            'options'     => [
                 'title' => 'Sure Delete?',
                 'icon'  => $expectedIcon,
             ],
@@ -71,7 +71,7 @@ it('should emit the simple notification event', function (string $method) {
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options' => [
+            'options'     => [
                 'icon'        => $method,
                 'title'       => $title       = 'WireUI is awesome!',
                 'description' => $description = 'WireUI is easy to use.',

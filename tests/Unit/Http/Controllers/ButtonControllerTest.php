@@ -52,23 +52,23 @@ it('should validate the request', function (string $attribute, string $rule) {
             $attribute => __("validation.{$rule}", ['attribute' => Str::of($attribute)->headline()->lower()]),
         ]);
 })->with([
-    'label' => [
+    'label'     => [
         'attribute' => 'label',
         'rule'      => 'string',
     ],
-    'variant' => [
+    'variant'   => [
         'attribute' => 'variant',
         'rule'      => 'string',
     ],
-    'color' => [
+    'color'     => [
         'attribute' => 'color',
         'rule'      => 'string',
     ],
-    'size' => [
+    'size'      => [
         'attribute' => 'size',
         'rule'      => 'string',
     ],
-    'icon' => [
+    'icon'      => [
         'attribute' => 'icon',
         'rule'      => 'string',
     ],
@@ -76,31 +76,31 @@ it('should validate the request', function (string $attribute, string $rule) {
         'attribute' => 'rightIcon',
         'rule'      => 'string',
     ],
-    'iconSize' => [
+    'iconSize'  => [
         'attribute' => 'iconSize',
         'rule'      => 'string',
     ],
-    'rounded' => [
+    'rounded'   => [
         'attribute' => 'rounded',
         'rule'      => 'boolean',
     ],
-    'squared' => [
+    'squared'   => [
         'attribute' => 'squared',
         'rule'      => 'boolean',
     ],
-    'bordered' => [
+    'bordered'  => [
         'attribute' => 'bordered',
         'rule'      => 'boolean',
     ],
-    'solid' => [
+    'solid'     => [
         'attribute' => 'solid',
         'rule'      => 'boolean',
     ],
-    'outline' => [
+    'outline'   => [
         'attribute' => 'outline',
         'rule'      => 'boolean',
     ],
-    'flat' => [
+    'flat'      => [
         'attribute' => 'flat',
         'rule'      => 'boolean',
     ],
@@ -111,23 +111,23 @@ it('should render a button', function (string $attribute, string|bool $value) {
         ->assertStatus(Response::HTTP_OK)
         ->assertSessionHasNoErrors();
 })->with([
-    'label' => [
+    'label'     => [
         'attribute' => 'label',
         'value'     => 'My Label',
     ],
-    'variant' => [
+    'variant'   => [
         'attribute' => 'variant',
         'value'     => 'solid',
     ],
-    'color' => [
+    'color'     => [
         'attribute' => 'color',
         'value'     => 'primary',
     ],
-    'size' => [
+    'size'      => [
         'attribute' => 'size',
         'value'     => 'xl',
     ],
-    'icon' => [
+    'icon'      => [
         'attribute' => 'icon',
         'value'     => 'home',
     ],
@@ -135,35 +135,35 @@ it('should render a button', function (string $attribute, string|bool $value) {
         'attribute' => 'rightIcon',
         'value'     => 'user',
     ],
-    'iconSize' => [
+    'iconSize'  => [
         'attribute' => 'iconSize',
         'value'     => 'sm',
     ],
-    'rounded' => [
+    'rounded'   => [
         'attribute' => 'rounded',
         'value'     => true,
     ],
-    'squared' => [
+    'squared'   => [
         'attribute' => 'squared',
         'value'     => true,
     ],
-    'bordered' => [
+    'bordered'  => [
         'attribute' => 'bordered',
         'value'     => true,
     ],
-    'solid' => [
+    'solid'     => [
         'attribute' => 'solid',
         'value'     => true,
     ],
-    'outline' => [
+    'outline'   => [
         'attribute' => 'outline',
         'value'     => true,
     ],
-    'flat' => [
+    'flat'      => [
         'attribute' => 'flat',
         'value'     => true,
     ],
-    'light' => [
+    'light'     => [
         'attribute' => 'light',
         'value'     => true,
     ],

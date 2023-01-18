@@ -10,7 +10,7 @@ return [
         'today'     => '今天',
         'yesterday' => '昨天',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => '您提交的信息包含 {errors} 处错误',
     ],
 ];

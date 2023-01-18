@@ -12,7 +12,7 @@ return [
         'today'     => 'Hoje',
         'yesterday' => 'Ontem',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'Foram encontrados {errors} erros de validação',
     ],
 ];

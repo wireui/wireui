@@ -67,6 +67,7 @@ class Test extends BrowserTestCase
 
     /**
      * @test
+     *
      * @warn must use .defer if using model property as datetime, datetime cannot has empty hours
      * */
     public function it_should_select_time_using_model_property_datetime()

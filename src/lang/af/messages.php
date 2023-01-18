@@ -12,7 +12,7 @@ return [
         'today'     => 'Vandag',
         'yesterday' => 'Gister',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'Daar was {errors} foute met jou indiening',
     ],
 ];

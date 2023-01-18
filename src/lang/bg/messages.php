@@ -10,7 +10,7 @@ return [
         'today'     => 'Днес',
         'yesterday' => 'Вчера',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'Бяха открити {errors} грешки',
     ],
 ];

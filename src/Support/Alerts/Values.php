@@ -32,14 +32,14 @@ class Values extends DataPack
                 borderColor: 'border-negative-200 dark:border-negative-600',
                 backgroundColor: 'bg-negative-50 dark:bg-secondary-800',
             ),
-            'warning' => new Data(
+            'warning'  => new Data(
                 icon: 'exclamation-triangle',
                 iconColor: 'text-warning-400 dark:text-warning-600',
                 textColor: 'text-warning-800 dark:text-warning-600',
                 borderColor: 'border-warning-200 dark:border-warning-600',
                 backgroundColor: 'bg-warning-50 dark:bg-secondary-800',
             ),
-            'info' => new Data(
+            'info'     => new Data(
                 icon: 'information-circle',
                 iconColor: 'text-info-400 dark:text-info-600',
                 textColor: 'text-info-800 dark:text-info-600',

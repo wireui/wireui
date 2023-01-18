@@ -12,7 +12,7 @@ return [
         'today'     => 'Hari Ini',
         'yesterday' => 'Kemarin',
     ],
-    'errors' => [
+    'errors'        => [
         'title' => 'Ada kesalahan {errors} dengan kiriman Anda',
     ],
 ];

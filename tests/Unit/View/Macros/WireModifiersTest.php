@@ -9,6 +9,7 @@ class WireModifiersTest extends TestCase
 {
     /**
      * @test
+     *
      * @dataProvider modifiersProvider
      */
     public function it_should_parse_the_wire_modifiers(string $attribute, $expected)
