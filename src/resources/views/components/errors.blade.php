@@ -13,7 +13,7 @@
             @endslot
         @endif
 
-        <ul class="space-y-1 text-sm list-disc text-negative-700 dark:text-negative-600">
+        <ul class="space-y-1 list-disc text-negative-700 dark:text-negative-600">
             @foreach ($getErrorMessages($errors) as $message)
                 <li>{{ head($message) }}</li>
             @endforeach

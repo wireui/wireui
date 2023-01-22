@@ -30,13 +30,13 @@ it('should return header classes', function () {
 
     $slot = new HtmlString('');
 
-    $expect = 'flex items-center';
+    $expect = 'flex justify-between items-center';
 
     expect($alert->getHeaderClasses($this->values, $slot))->toBe($expect);
 
     $slot = new HtmlString('test');
 
-    $expect = 'border-b-2 border-primary-200 dark:border-primary-600 pb-3 flex items-center';
+    $expect = 'border-b-2 border-primary-200 dark:border-primary-600 flex justify-between items-center pb-3';
 
     expect($alert->getHeaderClasses($this->values, $slot))->toBe($expect);
 });
@@ -60,7 +60,7 @@ it('should return icon classes', function () {
 it('should return main classes', function () {
     $alert = new Alert();
 
-    $expect = 'text-primary-800 dark:text-primary-600 rounded-b-xl grow ml-5 pl-1 mt-2 ml-5';
+    $expect = 'text-primary-800 dark:text-primary-600 rounded-b-xl grow ml-5 text-sm pl-1 mt-2 ml-5';
 
     expect($alert->getMainClasses($this->values))->toBe($expect);
 });

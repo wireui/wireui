@@ -17,7 +17,7 @@
         </div>
     @endisset
 
-    <div {{ $attributes->except('class')->class($getMainClasses()) }}>
+    <div class="{{ $getMainClasses() }}">
         {{ $slot }}
     </div>
 

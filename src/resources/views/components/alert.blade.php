@@ -5,17 +5,19 @@
         </div>
     @elseif($title)
         <div class="{{ $getHeaderClasses($values, $slot) }}">
-            @if ($values['icon'] && !$iconless)
-                <x-dynamic-component
-                    :component="WireUi::component('icon')"
-                    class="{{ $getIconClasses($values) }}"
-                    :name="$values['icon']"
-                />
-            @endif
+            <div class="flex items-center">
+                @if ($values['icon'] && !$iconless)
+                    <x-dynamic-component
+                        :component="WireUi::component('icon')"
+                        class="{{ $getIconClasses($values) }}"
+                        :name="$values['icon']"
+                    />
+                @endif
 
-            <h3 class="{{ $getTitleClasses($values) }}">
-                {{ $title }}
-            </h3>
+                <h3 class="{{ $getTitleClasses($values) }}">
+                    {{ $title }}
+                </h3>
+            </div>
 
             @isset($action)
                 <div {{ $action->attributes }}>
@@ -26,7 +28,7 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        <div {{ $attributes->except('class')->class($getMainClasses($values)) }}>
+        <div class="{{ $getMainClasses($values) }}">
             {{ $slot }}
         </div>
     @endif
