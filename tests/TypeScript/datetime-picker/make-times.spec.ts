@@ -6,10 +6,10 @@ describe('Test the make times function', () => {
 
     expect(times.length).toEqual(144)
 
-    expect(times[0].label).toBe('0:00 AM')
+    expect(times[0].label).toBe('12:00 AM')
     expect(times[0].value).toBe('00:00')
 
-    expect(times[1].label).toBe('0:10 AM')
+    expect(times[1].label).toBe('12:10 AM')
     expect(times[1].value).toBe('00:10')
 
     expect(times[20].label).toBe('3:20 AM')
@@ -35,6 +35,24 @@ describe('Test the make times function', () => {
 
     expect(times[times.length - 1].label).toEqual('23:50')
     expect(times[times.length - 1].value).toEqual('23:50')
+  })
+
+  it('should calculate the time interval correctly', () => {
+    const times = makeTimes({ time12H: false, interval: 30, min: '08:13', max: '15:48' })
+
+    expect(times.length).toEqual(16)
+
+    expect(times[0].label).toEqual('08:13')
+    expect(times[0].value).toEqual('08:13')
+
+    expect(times[1].label).toEqual('08:43')
+    expect(times[1].value).toEqual('08:43')
+
+    expect(times[8].label).toEqual('12:13')
+    expect(times[8].value).toEqual('12:13')
+
+    expect(times[times.length - 1].label).toEqual('15:43')
+    expect(times[times.length - 1].value).toEqual('15:43')
   })
 })
 
