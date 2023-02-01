@@ -9,6 +9,7 @@ class NativeSelectTest extends TestCase
 {
     /**
      * @test
+     *
      * @dataProvider componentConfigProvider
      */
     public function it_should_validate_the_select_config_to_prevent_developers_errors(array $attributes, string $errorMessage)

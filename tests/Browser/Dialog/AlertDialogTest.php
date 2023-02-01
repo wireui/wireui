@@ -9,6 +9,7 @@ class AlertDialogTest extends BrowserTestCase
 {
     /**
      * @test
+     *
      * @dataProvider provideAlertMessages
      */
     public function it_should_show_simple_alert_dialog_from_js(
@@ -33,6 +34,7 @@ class AlertDialogTest extends BrowserTestCase
 
     /**
      * @test
+     *
      * @dataProvider provideAlertMessages
      */
     public function it_should_show_simple_alert_dialog_from_livewire_component(
@@ -57,6 +59,7 @@ class AlertDialogTest extends BrowserTestCase
 
     /**
      * @test
+     *
      * @dataProvider provideAlertMessages
      */
     public function it_should_show_custom_simple_alert_dialog(
