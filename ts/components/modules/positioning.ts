@@ -1,5 +1,5 @@
 import { baseComponent, Component } from '../alpine'
-import { computePosition, autoPlacement, shift, offset, autoUpdate } from '@floating-ui/dom'
+import { computePosition, offset, autoUpdate, flip } from '@floating-ui/dom'
 
 export type PositioningRefs = {
   popover: HTMLElement
@@ -15,6 +15,7 @@ export interface Positioning extends Component {
   close (): void
   toggle (): void
   handleEscape (): void
+  updatePosition(): void
 }
 
 export const positioning: Positioning = {
@@ -26,41 +27,43 @@ export const positioning: Positioning = {
     this.$watch('popover', (state) => {
       if (!state && this.cleanupPosition) {
         this.cleanupPosition()
+
+        this.cleanupPosition = null
       }
 
       if (window.innerWidth < 640) {
         return this.$refs.popover.removeAttribute('style')
       }
 
-      if (state) {
+      if (state && !this.cleanupPosition) {
         this.$nextTick(() => this.syncPopoverPosition())
       }
     })
   },
   syncPopoverPosition () {
-    this.cleanupPosition = autoUpdate(this.$root, this.$refs.popover, () => {
-      computePosition(this.$root, this.$refs.popover, {
-        placement: 'bottom',
-        middleware: [
-          autoPlacement({
-            autoAlignment: true,
-            allowedPlacements: ['top', 'top-end', 'top-start', 'bottom', 'bottom-end', 'bottom-start'],
-            padding: 5
-          }),
-          offset(3),
-          shift()
-        ]
-      }).then(({ x, y }) => {
-        return Object.assign(this.$refs.popover.style, {
-          position: 'absolute',
-          left: `${x}px`,
-          top: `${y}px`
-        })
-      })
-    })
+    this.cleanupPosition = autoUpdate(
+      this.$root,
+      this.$refs.popover,
+      () => this.updatePosition()
+    )
   },
   open () { this.popover = true },
   close () { this.popover = false },
   toggle () { this.popover = !this.popover },
-  handleEscape () { this.close() }
+  handleEscape () { this.close() },
+  updatePosition () {
+    computePosition(this.$root, this.$refs.popover, {
+      placement: 'bottom',
+      middleware: [
+        offset(4),
+        flip()
+      ]
+    }).then(({ x, y }) => {
+      return Object.assign(this.$refs.popover.style, {
+        position: 'absolute',
+        left: `${x}px`,
+        top: `${y}px`
+      })
+    })
+  }
 }
