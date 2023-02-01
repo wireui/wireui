@@ -1,5 +1,5 @@
 import { baseComponent, Component } from '../alpine'
-import { computePosition, autoPlacement, shift, offset, autoUpdate } from '@floating-ui/dom'
+import { computePosition, offset, autoUpdate, flip } from '@floating-ui/dom'
 
 export type PositioningRefs = {
   popover: HTMLElement
@@ -55,13 +55,8 @@ export const positioning: Positioning = {
     computePosition(this.$root, this.$refs.popover, {
       placement: 'bottom',
       middleware: [
-        autoPlacement({
-          autoAlignment: true,
-          allowedPlacements: ['top', 'top-end', 'top-start', 'bottom', 'bottom-end', 'bottom-start'],
-          padding: 5
-        }),
-        offset(3),
-        shift()
+        offset(4),
+        flip()
       ]
     }).then(({ x, y }) => {
       return Object.assign(this.$refs.popover.style, {
