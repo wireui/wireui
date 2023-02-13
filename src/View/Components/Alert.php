@@ -29,7 +29,7 @@ class Alert extends Component
 
     protected function setupData(array $data): array
     {
-        /** @var DataPack $dataPack */
+        /** @var ConfigPack $dataPack */
         $dataPack = resolve(config('wireui.alert.values'));
 
         $this->color ??= $this->getMatchModifier($dataPack->keys());

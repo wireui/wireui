@@ -1,9 +1,9 @@
 <?php
 
-use WireUi\Support\Alerts\{Data, Values};
+use WireUi\Support\Alerts\{Config, Values};
 
 it('should return a json string with the values passed', function () {
-    $data = new Data(
+    $data = new Config(
         icon: 'icon',
         iconColor: 'iconColor',
         textColor: 'textColor',

@@ -2,9 +2,9 @@
 
 namespace WireUi\Support\Alerts;
 
-abstract class DataPack
+abstract class ConfigPack
 {
-    public function get(?string $value): Data
+    public function get(?string $value): Config
     {
         if (!$value || $value === 'default') {
             return $this->default();
@@ -13,7 +13,7 @@ abstract class DataPack
         return data_get(
             target: $this->all(),
             key: $value,
-            default: new Data($value),
+            default: new Config($value),
         );
     }
 
@@ -23,8 +23,8 @@ abstract class DataPack
         return array_keys($this->all());
     }
 
-    abstract public function default(): Data;
+    abstract public function default(): Config;
 
-    /** @return array<string, Data> */
+    /** @return array<string, Config> */
     abstract public function all(): array;
 }

@@ -4,7 +4,7 @@ namespace WireUi\Support\Alerts;
 
 use Stringable;
 
-class Data implements Stringable
+class Config implements Stringable
 {
     public function __construct(
         public string $icon = '',
