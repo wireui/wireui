@@ -11,7 +11,7 @@ return [
         'today'     => 'Heute',
         'yesterday' => 'Gestern',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'Es sind {errors} Fehler aufgetreten',
     ],
 ];

@@ -10,7 +10,7 @@ return [
         'today'     => 'Oggi',
         'yesterday' => 'Ieri',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'Si sono verificati {errors} errori di validazione della form',
     ],
 ];

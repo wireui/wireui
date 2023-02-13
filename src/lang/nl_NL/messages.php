@@ -10,7 +10,7 @@ return [
         'today'     => 'Vandaag',
         'yesterday' => 'Gisteren',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'Er zaten {errors} fouten in uw inzending',
     ],
 ];

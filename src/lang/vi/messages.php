@@ -12,7 +12,7 @@ return [
         'today'     => 'Hôm nay',
         'yesterday' => 'Hôm qua',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'Có {errors} lỗi khi gửi',
     ],
 ];

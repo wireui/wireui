@@ -10,7 +10,7 @@ return [
         'today'     => 'Avui',
         'yesterday' => 'Ahir',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => "S'han trobat {errors} errors de validació",
     ],
 ];

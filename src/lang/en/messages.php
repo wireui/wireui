@@ -12,7 +12,7 @@ return [
         'today'     => 'Today',
         'yesterday' => 'Yesterday',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'There were {errors} errors with your submission',
     ],
 ];

@@ -11,7 +11,7 @@ return [
         'today'     => 'ئەمڕۆ',
         'yesterday' => 'دوێنێ',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => '{errors} هەڵە هەیە لەناردنی فۆرمەکەدا',
     ],
 ];

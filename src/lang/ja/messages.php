@@ -9,7 +9,7 @@ return [
         'today'     => '今日',
         'yesterday' => '前日',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'エラーが{errors}件見つかりました',
     ],
 ];

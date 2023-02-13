@@ -21,7 +21,7 @@ it('should emit a dialog event when the method dialog is called with a non empty
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options'     => [
+            'options' => [
                 'title' => 'WireUI is awesome!',
                 'icon'  => Dialog::INFO,
             ],

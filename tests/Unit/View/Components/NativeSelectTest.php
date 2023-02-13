@@ -22,16 +22,16 @@ class NativeSelectTest extends TestCase
     public function componentConfigProvider(): array
     {
         return [
-            'option-value and option-label are not set together: missing option-label'                 => [
+            'option-value and option-label are not set together: missing option-label' => [
                 'attributes'   => ['optionValue' => 'id'],
                 'errorMessage' => 'The {option-value} and {option-label} attributes must be set together.',
             ],
-            'option-value and option-label are not set together: missing option-value'                 => [
+            'option-value and option-label are not set together: missing option-value' => [
                 'attributes'   => ['optionLabel' => 'name'],
                 'errorMessage' => 'The {option-value} and {option-label} attributes must be set together.',
             ],
-            'flip-options cannot be used with option-value and option-label'                           => [
-                'attributes'   => [
+            'flip-options cannot be used with option-value and option-label' => [
+                'attributes' => [
                     'optionValue' => 'id',
                     'optionLabel' => 'name',
                     'flipOptions' => true,
@@ -39,7 +39,7 @@ class NativeSelectTest extends TestCase
                 'errorMessage' => 'The {flip-options} attribute cannot be used with {option-value} and {option-label} attributes.',
             ],
             'only primitive values can be used without a {option-value} and {option-label} attributes' => [
-                'attributes'   => [
+                'attributes' => [
                     'options' => [
                         ['id' => 1, 'name' => 'Option 1'],
                         ['id' => 2, 'name' => 'Option 2'],
@@ -48,8 +48,8 @@ class NativeSelectTest extends TestCase
                 'errorMessage' => 'Inform the {option-value} and {option-label} to use array, model, or object option.'
                     . ' <x-select [...] option-value="id" option-label="name" />',
             ],
-            'option-value and option-label cannot be used with primitive options'                      => [
-                'attributes'   => [
+            'option-value and option-label cannot be used with primitive options' => [
+                'attributes' => [
                     'optionValue' => 'id',
                     'optionLabel' => 'name',
                     'options'     => ['name', 'id', 'email'],

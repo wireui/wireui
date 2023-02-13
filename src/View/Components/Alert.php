@@ -60,7 +60,7 @@ class Alert extends Component
         return Arr::toCssClasses([
             $border => !$this->undivided && $slot->isNotEmpty(),
             'flex justify-between items-center',
-            'pb-3'  => $slot->isNotEmpty(),
+            'pb-3' => $slot->isNotEmpty(),
         ]);
     }
 

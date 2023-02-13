@@ -65,20 +65,20 @@ class Component extends \Livewire\Component
                 'method' => 'setValue',
                 'params' => 'Jetete',
             ],
-            'reject'      => [
+            'reject' => [
                 'label'  => 'Reject',
                 'method' => 'setValue',
                 'params' => 'Xablaw',
             ],
-            'onClose'     => [
+            'onClose' => [
                 'method' => 'addEvent',
                 'params' => 'onClose',
             ],
-            'onDismiss'   => [
+            'onDismiss' => [
                 'method' => 'addEvent',
                 'params' => 'onDismiss',
             ],
-            'onTimeout'   => [
+            'onTimeout' => [
                 'method' => 'addEvent',
                 'params' => 'onTimeout',
             ],

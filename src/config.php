@@ -13,7 +13,7 @@ return [
     | The default alert preferences
     |
     */
-    'alert'        => [
+    'alert' => [
         'padding'   => 'pl-1 mt-2 ml-5',
         'shadow'    => 'shadow-md',
         'rounded'   => 'rounded-lg',
@@ -34,7 +34,7 @@ return [
     | Color: All keys of variants WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
     |
     */
-    'button'       => [
+    'button' => [
         'variant' => 'solid',
         'size'    => 'md',
         'color'   => null,
@@ -44,7 +44,7 @@ return [
             'outline' => Colors\Outline::class,
             'light'   => Colors\Light::class,
         ],
-        'sizes'   => [
+        'sizes' => [
             'base' => Sizes\Base::class,
             'icon' => Sizes\Icon::class,
         ],
@@ -68,7 +68,7 @@ return [
             'outline' => Colors\Outline::class,
             'light'   => Colors\Light::class,
         ],
-        'sizes'   => [
+        'sizes' => [
             'base' => Sizes\Mini\Base::class,
             'icon' => Sizes\Mini\Icon::class,
         ],
@@ -82,7 +82,7 @@ return [
     | The default card preferences
     |
     */
-    'card'         => [
+    'card' => [
         'padding'   => 'px-2 py-5 md:px-4',
         'shadow'    => 'shadow-md',
         'rounded'   => 'rounded-lg',
@@ -99,7 +99,7 @@ return [
     | https://heroicons.com
     |
     */
-    'icons'        => [
+    'icons' => [
         'variant' => 'outline',
     ],
 
@@ -111,7 +111,7 @@ return [
     | The default modal preferences
     |
     */
-    'modal'        => [
+    'modal' => [
         'zIndex'   => 'z-50',
         'maxWidth' => '2xl',
         'spacing'  => 'p-4',
@@ -130,116 +130,116 @@ return [
     | Remove the component from this file if you don't want to use.
     |
      */
-    'components'   => [
-        'alert'              => [
+    'components' => [
+        'alert' => [
             'class' => Components\Alert::class,
             'alias' => 'alert',
         ],
-        'avatar'             => [
+        'avatar' => [
             'class' => Components\Avatar::class,
             'alias' => 'avatar',
         ],
-        'icon'               => [
+        'icon' => [
             'class' => Components\Icon::class,
             'alias' => 'icon',
         ],
-        'color-picker'       => [
+        'color-picker' => [
             'class' => Components\ColorPicker::class,
             'alias' => 'color-picker',
         ],
-        'input'              => [
+        'input' => [
             'class' => Components\Input::class,
             'alias' => 'input',
         ],
-        'textarea'           => [
+        'textarea' => [
             'class' => Components\Textarea::class,
             'alias' => 'textarea',
         ],
-        'label'              => [
+        'label' => [
             'class' => Components\Label::class,
             'alias' => 'label',
         ],
-        'error'              => [
+        'error' => [
             'class' => Components\Error::class,
             'alias' => 'error',
         ],
-        'errors'             => [
+        'errors' => [
             'class' => Components\Errors::class,
             'alias' => 'errors',
         ],
-        'inputs.maskable'    => [
+        'inputs.maskable' => [
             'class' => Components\Inputs\MaskableInput::class,
             'alias' => 'inputs.maskable',
         ],
-        'inputs.phone'       => [
+        'inputs.phone' => [
             'class' => Components\Inputs\PhoneInput::class,
             'alias' => 'inputs.phone',
         ],
-        'inputs.currency'    => [
+        'inputs.currency' => [
             'class' => Components\Inputs\CurrencyInput::class,
             'alias' => 'inputs.currency',
         ],
-        'inputs.number'      => [
+        'inputs.number' => [
             'class' => Components\Inputs\NumberInput::class,
             'alias' => 'inputs.number',
         ],
-        'inputs.password'    => [
+        'inputs.password' => [
             'class' => Components\Inputs\PasswordInput::class,
             'alias' => 'inputs.password',
         ],
-        'badge'              => [
+        'badge' => [
             'class' => Components\Badge::class,
             'alias' => 'badge',
         ],
-        'badge.circle'       => [
+        'badge.circle' => [
             'class' => Components\CircleBadge::class,
             'alias' => 'badge.circle',
         ],
-        'button'             => [
+        'button' => [
             'class' => Components\Button::class,
             'alias' => 'button',
         ],
-        'buttons.mini'       => [
+        'buttons.mini' => [
             'class' => Components\Buttons\Mini::class,
             'alias' => 'buttons.mini',
         ],
-        'dropdown'           => [
+        'dropdown' => [
             'class' => Components\Dropdown::class,
             'alias' => 'dropdown',
         ],
-        'dropdown.item'      => [
+        'dropdown.item' => [
             'class' => Components\Dropdown\DropdownItem::class,
             'alias' => 'dropdown.item',
         ],
-        'dropdown.header'    => [
+        'dropdown.header' => [
             'class' => Components\Dropdown\DropdownHeader::class,
             'alias' => 'dropdown.header',
         ],
-        'notifications'      => [
+        'notifications' => [
             'class' => Components\Notifications::class,
             'alias' => 'notifications',
         ],
-        'datetime-picker'    => [
+        'datetime-picker' => [
             'class' => Components\DatetimePicker::class,
             'alias' => 'datetime-picker',
         ],
-        'time-picker'        => [
+        'time-picker' => [
             'class' => Components\TimePicker::class,
             'alias' => 'time-picker',
         ],
-        'card'               => [
+        'card' => [
             'class' => Components\Card::class,
             'alias' => 'card',
         ],
-        'native-select'      => [
+        'native-select' => [
             'class' => Components\NativeSelect::class,
             'alias' => 'native-select',
         ],
-        'select'             => [
+        'select' => [
             'class' => Components\Select::class,
             'alias' => 'select',
         ],
-        'select.option'      => [
+        'select.option' => [
             'class' => Components\Select\Option::class,
             'alias' => 'select.option',
         ],
@@ -247,27 +247,27 @@ return [
             'class' => Components\Select\UserOption::class,
             'alias' => 'select.user-option',
         ],
-        'toggle'             => [
+        'toggle' => [
             'class' => Components\Toggle::class,
             'alias' => 'toggle',
         ],
-        'checkbox'           => [
+        'checkbox' => [
             'class' => Components\Checkbox::class,
             'alias' => 'checkbox',
         ],
-        'radio'              => [
+        'radio' => [
             'class' => Components\Radio::class,
             'alias' => 'radio',
         ],
-        'modal'              => [
+        'modal' => [
             'class' => Components\Modal::class,
             'alias' => 'modal',
         ],
-        'modal.card'         => [
+        'modal.card' => [
             'class' => Components\ModalCard::class,
             'alias' => 'modal.card',
         ],
-        'dialog'             => [
+        'dialog' => [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],

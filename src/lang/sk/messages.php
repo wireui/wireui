@@ -10,7 +10,7 @@ return [
         'today'     => 'Dnes',
         'yesterday' => 'Včera',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'Vo vašom podaní sa vyskytlo {errors} chýb',
     ],
 ];

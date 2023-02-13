@@ -10,7 +10,7 @@ return [
         'today'     => 'امروز',
         'yesterday' => 'دیروز',
     ],
-    'errors'        => [
+    'errors' => [
         'title' => 'ارسال شما {errors} خطا داشت',
     ],
 ];
