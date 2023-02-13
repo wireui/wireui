@@ -12,5 +12,5 @@
     // test it_should_select_time_using_model_property_datetime
     <button dusk="refresh" wire:click="$refresh">$refresh</button>
     <x-time-picker placeholder="12:00" wire:model.defer="user.birthday" label="Model Property" />
-    <span dusk="user.birthday">{{ optional($user->birthday)->format('H:i') }}</span>
+    <span dusk="user.birthday">{{ $user ??= $user->birthday->format('H:i') }}</span>
 </div>
