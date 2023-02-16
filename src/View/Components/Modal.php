@@ -3,6 +3,7 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 
 class Modal extends Component
@@ -16,22 +17,45 @@ class Modal extends Component
         public string|bool|null $blur = null,
         public bool $show = false,
     ) {
-        $zIndex   ??= config('wireui.modal.zIndex');
-        $maxWidth ??= config('wireui.modal.maxWidth');
-        $spacing  ??= config('wireui.modal.spacing');
-        $align    ??= config('wireui.modal.align');
         $blur     ??= config('wireui.modal.blur');
+        $align    ??= config('wireui.modal.align');
+        $zIndex   ??= config('wireui.modal.zIndex');
+        $spacing  ??= config('wireui.modal.spacing');
+        $maxWidth ??= config('wireui.modal.maxWidth');
 
         $this->zIndex   = $zIndex;
         $this->spacing  = $spacing;
-        $this->maxWidth = $this->getMaxWidth($maxWidth);
-        $this->align    = $this->getAlign($align);
         $this->blur     = $this->getBlur($blur);
+        $this->align    = $this->getAlign($align);
+        $this->maxWidth = $this->getMaxWidth($maxWidth);
     }
 
-    public function render(): View
+    public function getRootClasses(): string
     {
-        return view('wireui::components.modal');
+        return Arr::toCssClasses([
+            'fixed inset-0 overflow-y-auto',
+            $this->spacing,
+            $this->zIndex,
+        ]);
+    }
+
+    public function getBackgroundClasses(): string
+    {
+        return Arr::toCssClasses([
+            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
+            'dark:bg-opacity-60 transform transition-opacity',
+            $this->blur => (bool) $this->blur,
+
+        ]);
+    }
+
+    public function getModalClasses(): string
+    {
+        return Arr::toCssClasses([
+            'w-full min-h-full transform flex items-end justify-center mx-auto',
+            $this->maxWidth,
+            $this->align,
+        ]);
     }
 
     private function getBlur($blur): ?string
@@ -68,7 +92,7 @@ class Modal extends Component
         };
     }
 
-    public function getAlign(string $align): string
+    private function getAlign(string $align): string
     {
         return match ($align) {
             'start'  => 'sm:items-start',
@@ -76,5 +100,10 @@ class Modal extends Component
             'end'    => 'sm:items-end',
             default  => $align,
         };
+    }
+
+    public function render(): View
+    {
+        return view('wireui::components.modal');
     }
 }
