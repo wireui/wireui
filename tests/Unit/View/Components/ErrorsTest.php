@@ -3,7 +3,7 @@
 use Illuminate\Support\{MessageBag, Str, ViewErrorBag};
 use WireUi\View\Components\Errors;
 
-it('should get the default title', function () {
+it('should return empty class', function () {
     $errors = new Errors();
 
     expect($errors->icon)->toBe(null);
@@ -23,7 +23,7 @@ it('should treat variable only correctly', function () {
     expect($errors->only->toArray())->toBe(['name1', 'name2', 'name3']);
 });
 
-it('should return error messages correctly', function () {
+it('should return the errors number, error messages and title correctly', function () {
     $errors = new Errors();
 
     $errorBag = new ViewErrorBag();
