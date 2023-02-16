@@ -2,7 +2,7 @@
     <x-dynamic-component
         :component="WireUi::component('alert')"
         color="negative"
-        title="{{ str($title)->replace('{errors}', $count($errors)) }}"
+        title="{{ $getTitle($errors) }}"
         :icon="$icon"
         :undivided="$undivided"
         :iconless="$iconless"

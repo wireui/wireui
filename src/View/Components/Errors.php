@@ -3,7 +3,7 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\{Collection, ViewErrorBag};
+use Illuminate\Support\{Collection, Str, ViewErrorBag};
 use Illuminate\View\Component;
 
 class Errors extends Component
@@ -15,8 +15,6 @@ class Errors extends Component
         public ?bool $undivided = null,
         public ?bool $iconless = false,
     ) {
-        $this->title ??= trans('wireui::messages.errors.title');
-
         $this->initOnly();
     }
 
@@ -41,6 +39,13 @@ class Errors extends Component
         $messages = $errors->getMessages();
 
         return $this->only->isNotEmpty() ? collect($messages)->only($this->only) : collect($messages);
+    }
+
+    public function getTitle(ViewErrorBag $errors): string
+    {
+        $title = $this->title ?? trans_choice('wireui::messages.errors.title', $this->count($errors));
+
+        return Str::replace('{errors}', $this->count($errors), $title);
     }
 
     public function render(): View
