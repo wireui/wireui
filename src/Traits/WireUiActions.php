@@ -4,7 +4,7 @@ namespace WireUi\Traits;
 
 use WireUi\Actions\{Dialog, Notification};
 
-trait Actions
+trait WireUiActions
 {
     public function notification(array $options = []): Notification
     {

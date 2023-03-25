@@ -3,11 +3,11 @@
 namespace Tests\Browser\Dialog;
 
 use Illuminate\Support\Facades\View;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class Component extends \Livewire\Component
 {
-    use Actions;
+    use WireUiActions;
 
     public array $events = [];
 
