@@ -1,6 +1,8 @@
 <?php
 
-namespace WireUi\Support\Buttons\Sizes;
+namespace WireUi\Support\Buttons\Sizes\Common;
+
+use WireUi\Support\Buttons\Sizes\SizePack;
 
 class Base extends SizePack
 {

@@ -1,23 +1,22 @@
 <?php
 
-use WireUi\Support\Buttons\Sizes\Mini;
-use WireUi\Support\Buttons\Sizes\{Base, Icon};
+use WireUi\Support\Buttons\Sizes\{Common,Mini};
 
 it('should return the default size', function () {
-    expect((new Base())->default())->toBe(
-        (new Base())->get(config('wireui.button.size')),
+    expect((new Common\Base())->default())->toBe(
+        (new Common\Base())->get(config('wireui.button.size')),
     );
 
-    expect((new Icon())->default())->toBe(
-        (new Icon())->get(config('wireui.button.size')),
+    expect((new Common\Icon())->default())->toBe(
+        (new Common\Icon())->get(config('wireui.button.size')),
     );
 
-    expect((new Base())->get('default'))->toBe(
-        (new Base())->get(config('wireui.button.size')),
+    expect((new Common\Base())->get('default'))->toBe(
+        (new Common\Base())->get(config('wireui.button.size')),
     );
 
-    expect((new Icon())->get('default'))->toBe(
-        (new Icon())->get(config('wireui.button.size')),
+    expect((new Common\Icon())->get('default'))->toBe(
+        (new Common\Icon())->get(config('wireui.button.size')),
     );
 });
 

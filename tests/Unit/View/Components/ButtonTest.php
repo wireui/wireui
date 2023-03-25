@@ -89,13 +89,13 @@ it('should render all color classes from props', function (string $class, string
 it('should render all sizes classes from attributes', function (string $size) {
     expect("<x-button {$size} />")
         ->render()
-        ->toContain((new Sizes\Base())->get($size));
+        ->toContain((new Sizes\Common\Base())->get($size));
 })->with('buttons::sizes');
 
 it('should render all sizes classes from props', function (string $size) {
     expect("<x-button size=\"{$size}\" />")
         ->render()
-        ->toContain((new Sizes\Base())->get($size));
+        ->toContain((new Sizes\Common\Base())->get($size));
 })->with('buttons::sizes');
 
 it('should render a squared button')
@@ -139,7 +139,7 @@ it('should render a button with a label and icons with default sizes', function 
 });
 
 it('should render icons with different sizes', function (string $size) {
-    $css = (new Sizes\Icon())->get($size);
+    $css = (new Sizes\Common\Icon())->get($size);
 
     expect("<x-button {$size} icon=\"home\" right-icon=\"user\" />")
         ->render()

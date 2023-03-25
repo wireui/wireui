@@ -5,6 +5,7 @@ namespace WireUi\View\Components;
 use Closure;
 use Illuminate\Support\{Arr, HtmlString};
 use Illuminate\View\Component;
+use WireUi\Support\Alerts\ConfigPack;
 use WireUi\Traits\HasModifiers;
 
 class Alert extends Component

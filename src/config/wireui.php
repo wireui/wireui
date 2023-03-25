@@ -30,7 +30,7 @@ return [
     | The default button preferences, like colors, styles, sizes, etc.
     |
     | Variant: solid | flat | outline
-    | Size: All keys of WireUi\Support\Buttons\Sizes\Base::all()
+    | Size: All keys of WireUi\Support\Buttons\Sizes\Common\Base::all()
     | Color: All keys of variants WireUi\Support\Buttons\Colors\{ Solid | Flat | Outline }::all()
     |
     */
@@ -45,8 +45,8 @@ return [
             'light'   => Colors\Light::class,
         ],
         'sizes' => [
-            'base' => Sizes\Base::class,
-            'icon' => Sizes\Icon::class,
+            'base' => Sizes\Common\Base::class,
+            'icon' => Sizes\Common\Icon::class,
         ],
     ],
 

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 use WireUi\Support\Buttons\Colors\{ColorPack, Flat, Outline, Solid};
-use WireUi\Support\Buttons\Sizes\Base;
+use WireUi\Support\Buttons\Sizes\Common\Base;
 
 dataset('buttons::variant-color', function () {
     return collect([Solid::class, Outline::class, Flat::class])
