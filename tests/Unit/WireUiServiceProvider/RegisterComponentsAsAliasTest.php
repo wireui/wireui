@@ -17,7 +17,7 @@ class RegisterComponentsAsAliasTest extends TestCase
         $config = $app['config'];
 
         $config->set('wireui', array_merge(
-            require __DIR__ . '/../../../src/config.php',
+            require __DIR__ . '/../../../src/config/wireui.php',
             $config->get('wireui', []),
         ));
 

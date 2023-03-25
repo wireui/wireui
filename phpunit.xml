@@ -8,7 +8,7 @@
         <exclude>
             <directory suffix=".blade.php">src/resources/views/</directory>
             <directory suffix=".php">src/lang/</directory>
-            <file>src/config.php</file>
+            <file>src/config/wireui.php</file>
         </exclude>
     </coverage>
 

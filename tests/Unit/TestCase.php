@@ -26,7 +26,7 @@ class TestCase extends Testbench\TestCase
 
         parent::setUp();
 
-        Route::middleware('web')->group($this->srcDir('routes.php'));
+        Route::middleware('web')->group($this->srcDir('routes/web.php'));
     }
 
     protected function srcDir(string $path): string

@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^9.49",
+        "laravel/framework": "^9.0|^10.0",
         "livewire/livewire": "^2.11",
         "wireui/heroicons": "^2.3"
     },

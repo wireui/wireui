@@ -33,7 +33,7 @@ test('the root dir function should create the correct path', function () {
     /** @var TestCase $this */
     $provider = new WireUiServiceProvider(new Application());
 
-    expect($this->invokeMethod($provider, 'srcDir', ['config.php']))->toEndWith('/src/config.php');
+    expect($this->invokeMethod($provider, 'srcDir', ['config/wireui.php']))->toEndWith('/src/config/wireui.php');
     expect($this->invokeMethod($provider, 'srcDir', ['resources/views']))->toEndWith('/src/resources/views');
 });
 
