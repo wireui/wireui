@@ -17,14 +17,14 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
-        "phpunit/phpunit": "^9.5",
-        "orchestra/testbench": "^7.20",
-        "orchestra/testbench-dusk": "^7.20",
+        "phpunit/phpunit": "^9.0|^10.0",
+        "orchestra/testbench": "^7.0|^8.0",
+        "orchestra/testbench-dusk": "^7.0|^8.0",
         "psy/psysh": "^0.11.12",
-        "pestphp/pest": "^1.22",
-        "pestphp/pest-plugin-livewire": "^1.0",
-        "pestphp/pest-plugin-mock": "^1.0",
-        "pestphp/pest-plugin-laravel": "^1.4",
+        "pestphp/pest": "^1.0|^2.0",
+        "pestphp/pest-plugin-livewire": "^1.0|^2.0",
+        "pestphp/pest-plugin-mock": "^1.0|^2.0",
+        "pestphp/pest-plugin-laravel": "^1.0|^2.0",
         "laravel/pint": "^1.6"
     },
     "authors": [
