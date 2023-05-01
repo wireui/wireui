@@ -98,6 +98,58 @@ class Test extends BrowserTestCase
         );
     }
 
+    /** @test */
+    public function it_should_change_first_day_of_week_to_monday()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->assertInputValue('firstDayOfWeekMonday', '25-12-2021')
+                ->click('[id="firstDayOfWeekMonday"] input')
+                ->tap(fn() => $this->selectDate($browser, 'firstDayOfWeekMonday', 11))
+                ->tap(fn() => $browser->waitForLivewire())
+                ->waitForTextIn('@firstDayOfWeekMonday', '2021-12-11T00:00:00Z')
+                ->assertInputValue('firstDayOfWeekMonday', '11-12-2021')
+                ->click('[id="firstDayOfWeekMonday"] input')
+                ->tap(fn() => $browser->assertScript(<<<EOT
+                    document.querySelector('[id="firstDayOfWeekMonday"] [x-text="day"]')
+                        .innerText
+                        .trim()
+                        .toLowerCase()
+                EOT, 'mon'))
+                ->tap(fn() => $browser->assertScript(<<<EOT
+                    document.querySelector('[id="firstDayOfWeekMonday"] .picker-days')
+                        .innerText
+                        .trim()
+                EOT, '29'));
+        });
+    }
+
+    /** @test */
+    public function it_should_change_first_day_of_week_to_wednesday()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->assertInputValue('firstDayOfWeekWednesday', '25-12-2021')
+                ->click('[id="firstDayOfWeekWednesday"] input')
+                ->tap(fn() => $this->selectDate($browser, 'firstDayOfWeekWednesday', 11))
+                ->tap(fn() => $browser->waitForLivewire())
+                ->waitForTextIn('@firstDayOfWeekWednesday', '2021-12-11T00:00:00Z')
+                ->assertInputValue('firstDayOfWeekWednesday', '11-12-2021')
+                ->click('[id="firstDayOfWeekWednesday"] input')
+                ->tap(fn() => $browser->assertScript(<<<EOT
+                    document.querySelector('[id="firstDayOfWeekWednesday"] [x-text="day"]')
+                        .innerText
+                        .trim()
+                        .toLowerCase()
+                EOT, 'wed'))
+                ->tap(fn() => $browser->assertScript(<<<EOT
+                    document.querySelector('[id="firstDayOfWeekWednesday"] .picker-days')
+                        .innerText
+                        .trim()
+                EOT, '1'));
+        });
+    }
+
     private function selectDate(Browser $browser, string $id, int $date): array
     {
         return $browser->script(<<<EOT
