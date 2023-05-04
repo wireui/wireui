@@ -14,12 +14,12 @@ return [
     |
     */
     'alert' => [
-        'padding'   => 'pl-1 mt-2 ml-5',
-        'shadow'    => 'shadow-md',
-        'rounded'   => 'rounded-lg',
-        'color'     => null,
-        'values'    => Alerts\Values::class,
-        'undivided' => false,
+        'padding'    => 'pl-1 mt-2 ml-5',
+        'shadow'     => 'shadow-md',
+        'rounded'    => 'rounded-lg',
+        'color'      => null,
+        'values'     => Alerts\Values::class,
+        'borderless' => false,
     ],
 
     /*
@@ -83,11 +83,11 @@ return [
     |
     */
     'card' => [
-        'padding'   => 'px-2 py-5 md:px-4',
-        'shadow'    => 'shadow-md',
-        'rounded'   => 'rounded-lg',
-        'color'     => 'bg-white dark:bg-secondary-800',
-        'undivided' => false,
+        'padding'    => 'px-2 py-5 md:px-4',
+        'shadow'     => 'shadow-md',
+        'rounded'    => 'rounded-lg',
+        'color'      => 'bg-white dark:bg-secondary-800',
+        'borderless' => false,
     ],
 
     /*

@@ -8,8 +8,8 @@ it('should return empty class', function () {
 
     expect($errors->icon)->toBe(null);
     expect($errors->title)->toBe(null);
-    expect($errors->undivided)->toBe(null);
     expect($errors->iconless)->toBe(false);
+    expect($errors->borderless)->toBe(null);
     expect($errors->only->toArray())->toBe([]);
 });
 
