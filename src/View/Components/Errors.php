@@ -3,54 +3,53 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\ViewErrorBag;
+use Illuminate\Support\{Collection, Str, ViewErrorBag};
+use Illuminate\View\Component;
 
 class Errors extends Component
 {
-    public string $title;
-
-    public array $only;
-
-    /**
-     * @param string $title
-     * @param string|array|null $only
-     */
     public function __construct(
-        ?string $title = null,
-        $only = [],
+        public ?string $title = null,
+        public mixed $only = [],
+        public ?string $icon = null,
+        public ?bool $iconless = false,
+        public ?bool $borderless = null,
     ) {
-        if (is_string($only)) {
-            $only = explode('|', $only);
-            $only = array_map(fn (string $name) => trim($name), $only);
+        $this->initOnly();
+    }
+
+    protected function initOnly(): void
+    {
+        if (is_string($this->only)) {
+            $this->only = str($this->only)->explode('|');
+
+            $this->only->transform(fn (string $name) => trim($name));
         }
 
-        $this->title = $title ?? __('wireui::messages.errors.title');
-        $this->only  = $only;
+        $this->only = collect($this->only);
+    }
+
+    public function count(ViewErrorBag $errors): int
+    {
+        return $this->getErrorMessages($errors)->count();
+    }
+
+    public function getErrorMessages(ViewErrorBag $errors): Collection
+    {
+        $messages = $errors->getMessages();
+
+        return $this->only->isNotEmpty() ? collect($messages)->only($this->only) : collect($messages);
+    }
+
+    public function getTitle(ViewErrorBag $errors): string
+    {
+        $title = $this->title ?? trans_choice('wireui::messages.errors.title', $this->count($errors));
+
+        return Str::replace('{errors}', $this->count($errors), $title);
     }
 
     public function render(): View
     {
         return view('wireui::components.errors');
-    }
-
-    public function hasErrors(ViewErrorBag $errors): bool
-    {
-        return (bool) $this->count($errors);
-    }
-
-    public function count(ViewErrorBag $errors): int
-    {
-        return count($this->getErrorMessages($errors));
-    }
-
-    public function getErrorMessages(ViewErrorBag $errors): array
-    {
-        $messages = $errors->getMessages();
-
-        if (!$this->only) {
-            return $messages;
-        }
-
-        return array_filter($messages, fn ($name) => in_array($name, $this->only), ARRAY_FILTER_USE_KEY);
     }
 }

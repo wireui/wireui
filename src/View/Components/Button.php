@@ -127,11 +127,7 @@ class Button extends Base
     /**
      * Apply the color modifier to the button, like hover, and focus
      *
-     * @param ColorPack $colorPack
-     * @param Color $color
      * @param array<int, string> $modifiers
-     * @param string $event
-     * @return Color
      */
     protected function applyColorModifier(
         ColorPack $colorPack,

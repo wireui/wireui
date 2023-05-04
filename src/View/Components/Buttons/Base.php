@@ -42,9 +42,7 @@ abstract class Base extends Component
 
     protected function tag(): string
     {
-        return $this->attributes->missing('href')
-            ? 'button'
-            : 'a';
+        return $this->attributes->missing('href') ? 'button' : 'a';
     }
 
     protected function processData(array &$data): array
