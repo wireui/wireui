@@ -28,6 +28,11 @@ class Light extends ColorPack
     public function all(): array
     {
         return [
+            'none' => new Color(
+                base: '',
+                hover: '',
+                focus: '',
+            ),
             'primary' => new Color(
                 base: "{$this->base} text-primary-600 bg-primary-300 dark:bg-primary-600 dark:text-primary-400",
                 hover: [

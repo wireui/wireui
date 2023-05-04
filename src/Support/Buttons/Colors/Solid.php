@@ -25,6 +25,11 @@ class Solid extends ColorPack
     public function all(): array
     {
         return [
+            'none' => new Color(
+                base: '',
+                hover: '',
+                focus: '',
+            ),
             'primary' => new Color(
                 base: "{$this->base} bg-primary-500 dark:bg-primary-700",
                 hover: "{$this->hover} hover:bg-primary-600 dark:hover:bg-primary-600",
