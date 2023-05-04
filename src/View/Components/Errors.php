@@ -12,8 +12,8 @@ class Errors extends Component
         public ?string $title = null,
         public mixed $only = [],
         public ?string $icon = null,
-        public ?bool $undivided = null,
         public ?bool $iconless = false,
+        public ?bool $borderless = null,
     ) {
         $this->initOnly();
     }

@@ -9,7 +9,7 @@ it('should get the default settings', function () {
     expect($card->shadow)->toBe(config('wireui.card.shadow'));
     expect($card->rounded)->toBe(config('wireui.card.rounded'));
     expect($card->color)->toBe(config('wireui.card.color'));
-    expect($card->undivided)->toBe(config('wireui.card.undivided'));
+    expect($card->borderless)->toBe(config('wireui.card.borderless'));
 });
 
 it('should return card classes', function () {

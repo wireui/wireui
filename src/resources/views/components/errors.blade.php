@@ -4,8 +4,8 @@
         color="negative"
         title="{{ $getTitle($errors) }}"
         :icon="$icon"
-        :undivided="$undivided"
         :iconless="$iconless"
+        :borderless="$borderless"
     >
         @if(isset($action))
             @slot('action', null, $action->attributes->getAttributes())

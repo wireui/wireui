@@ -8,12 +8,12 @@ use WireUi\View\Components\Select;
 class SelectTest extends TestCase
 {
     /** @test */
-    // public function it_should_throw_an_error_if_async_data_and_options_is_set_together()
-    // {
-    //     $this->expectErrorMessage('The {async-data} attribute cannot be used with {options} attribute.');
+    public function it_should_throw_an_error_if_async_data_and_options_is_set_together()
+    {
+        $this->expectExceptionMessage('The {async-data} attribute cannot be used with {options} attribute.');
 
-    //     new Select(asyncData: 'http://example.com/api/options', options: ['name' => 'Option 1']);
-    // }
+        new Select(asyncData: 'http://example.com/api/options', options: ['name' => 'Option 1']);
+    }
 
     /** @test */
     public function it_should_make_the_mapped_json_from_the_options()

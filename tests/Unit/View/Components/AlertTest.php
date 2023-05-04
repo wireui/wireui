@@ -14,7 +14,7 @@ it('should get the default settings', function () {
     expect($alert->padding)->toBe(config('wireui.alert.padding'));
     expect($alert->shadow)->toBe(config('wireui.alert.shadow'));
     expect($alert->rounded)->toBe(config('wireui.alert.rounded'));
-    expect($alert->undivided)->toBe(config('wireui.alert.undivided'));
+    expect($alert->borderless)->toBe(config('wireui.alert.borderless'));
 });
 
 it('should return alert classes', function () {

@@ -18,13 +18,13 @@ class Alert extends Component
         public ?string $shadow = null,
         public ?string $rounded = null,
         public ?string $color = null,
-        public ?bool $undivided = null,
         public ?bool $iconless = false,
+        public ?bool $borderless = null,
     ) {
         $this->padding   ??= config('wireui.alert.padding');
         $this->shadow    ??= config('wireui.alert.shadow');
         $this->rounded   ??= config('wireui.alert.rounded');
-        $this->undivided ??= config('wireui.alert.undivided');
+        $this->borderless ??= config('wireui.alert.borderless');
     }
 
     protected function setupData(array $data): array
@@ -58,7 +58,7 @@ class Alert extends Component
         $border = Arr::toCssClasses(['border-b-2', $values['borderColor']]);
 
         return Arr::toCssClasses([
-            $border => !$this->undivided && $slot->isNotEmpty(),
+            $border => !$this->borderless && $slot->isNotEmpty(),
             'flex justify-between items-center',
             'pb-3' => $slot->isNotEmpty(),
         ]);
@@ -95,7 +95,7 @@ class Alert extends Component
 
         return Arr::toCssClasses([
             'mt-2 pt-2 rounded-t-none',
-            $border => !$this->undivided,
+            $border => !$this->borderless,
             $this->rounded,
         ]);
     }

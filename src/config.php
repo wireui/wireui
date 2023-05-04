@@ -19,7 +19,7 @@ return [
         'rounded'   => 'rounded-lg',
         'color'     => null,
         'values'    => Alerts\Values::class,
-        'undivided' => false,
+        'borderless' => false,
     ],
 
     /*
@@ -87,7 +87,7 @@ return [
         'shadow'    => 'shadow-md',
         'rounded'   => 'rounded-lg',
         'color'     => 'bg-white dark:bg-secondary-800',
-        'undivided' => false,
+        'borderless' => false,
     ],
 
     /*
