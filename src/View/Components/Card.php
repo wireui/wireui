@@ -20,10 +20,10 @@ class Card extends Component
         public ?string $color = null,
         public ?bool $borderless = null,
     ) {
-        $this->padding   ??= config('wireui.card.padding');
-        $this->shadow    ??= config('wireui.card.shadow');
-        $this->rounded   ??= config('wireui.card.rounded');
-        $this->color     ??= config('wireui.card.color');
+        $this->padding    ??= config('wireui.card.padding');
+        $this->shadow     ??= config('wireui.card.shadow');
+        $this->rounded    ??= config('wireui.card.rounded');
+        $this->color      ??= config('wireui.card.color');
         $this->borderless ??= config('wireui.card.borderless');
     }
 

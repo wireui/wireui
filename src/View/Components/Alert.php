@@ -21,9 +21,9 @@ class Alert extends Component
         public ?bool $iconless = false,
         public ?bool $borderless = null,
     ) {
-        $this->padding   ??= config('wireui.alert.padding');
-        $this->shadow    ??= config('wireui.alert.shadow');
-        $this->rounded   ??= config('wireui.alert.rounded');
+        $this->padding    ??= config('wireui.alert.padding');
+        $this->shadow     ??= config('wireui.alert.shadow');
+        $this->rounded    ??= config('wireui.alert.rounded');
         $this->borderless ??= config('wireui.alert.borderless');
     }
 
