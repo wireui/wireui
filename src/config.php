@@ -1,51 +1,25 @@
 <?php
 
+use WireUi\Support\Alerts;
 use WireUi\Support\Buttons\{Colors, Sizes};
 use WireUi\View\Components;
 
 return [
     /*
     |--------------------------------------------------------------------------
-    | Icons
+    | Alerts
     |--------------------------------------------------------------------------
     |
-    | The icons config will be used in icon component as default
-    | https://heroicons.com
+    | The default alert preferences
     |
     */
-    'icons' => [
-        'variant' => 'outline',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Modal
-    |--------------------------------------------------------------------------
-    |
-    | The default modal preferences
-    |
-    */
-    'modal' => [
-        'zIndex'   => env('WIREUI_MODAL_Z_INDEX', 'z-50'),
-        'maxWidth' => env('WIREUI_MODAL_MAX_WIDTH', '2xl'),
-        'spacing'  => env('WIREUI_MODAL_SPACING', 'p-4'),
-        'align'    => env('WIREUI_MODAL_ALIGN', 'start'),
-        'blur'     => env('WIREUI_MODAL_BLUR', false),
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Card
-    |--------------------------------------------------------------------------
-    |
-    | The default card preferences
-    |
-    */
-    'card' => [
-        'padding' => 'px-2 py-5 md:px-4',
-        'shadow'  => 'shadow-md',
-        'rounded' => 'rounded-lg',
-        'color'   => 'bg-white dark:bg-secondary-800',
+    'alert' => [
+        'padding'    => 'pl-1 mt-2 ml-5',
+        'shadow'     => 'shadow-md',
+        'rounded'    => 'rounded-lg',
+        'color'      => null,
+        'values'     => Alerts\Values::class,
+        'borderless' => false,
     ],
 
     /*
@@ -80,6 +54,9 @@ return [
     |--------------------------------------------------------------------------
     | Mini Button
     |--------------------------------------------------------------------------
+    |
+    | The default mini button preferences, like colors, styles, sizes, etc.
+    |
     */
     'buttons_mini' => [
         'variant' => 'solid',
@@ -99,6 +76,51 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Card
+    |--------------------------------------------------------------------------
+    |
+    | The default card preferences
+    |
+    */
+    'card' => [
+        'padding'    => 'px-2 py-5 md:px-4',
+        'shadow'     => 'shadow-md',
+        'rounded'    => 'rounded-lg',
+        'color'      => 'bg-white dark:bg-secondary-800',
+        'borderless' => false,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Icons
+    |--------------------------------------------------------------------------
+    |
+    | The icons config will be used in icon component as default
+    | https://heroicons.com
+    |
+    */
+    'icons' => [
+        'variant' => 'outline',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Modal
+    |--------------------------------------------------------------------------
+    |
+    | The default modal preferences
+    |
+    */
+    'modal' => [
+        'zIndex'   => 'z-50',
+        'maxWidth' => '2xl',
+        'spacing'  => 'p-4',
+        'align'    => 'start',
+        'blur'     => false,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Components
     |--------------------------------------------------------------------------
     |
@@ -109,6 +131,10 @@ return [
     |
      */
     'components' => [
+        'alert' => [
+            'class' => Components\Alert::class,
+            'alias' => 'alert',
+        ],
         'avatar' => [
             'class' => Components\Avatar::class,
             'alias' => 'avatar',

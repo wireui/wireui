@@ -13,6 +13,6 @@ return [
         'yesterday' => 'Ontem',
     ],
     'errors' => [
-        'title' => 'Foram encontrados {errors} erros de validação',
+        'title' => 'Foi encontrado um erro de validação|Foram encontrados {errors} erros de validação',
     ],
 ];
