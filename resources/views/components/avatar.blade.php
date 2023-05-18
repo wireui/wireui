@@ -1,4 +1,4 @@
-<div {{ $attributes->class($avatarClasses) }}>
+<div {{ $attributes->except('alt')->class($avatarClasses) }}>
     @if ($label)
         <span class="font-medium text-white dark:text-gray-200">
             {{ $label }}
@@ -13,6 +13,7 @@
                 $size,
             ])
             src="{{ $src }}"
+            @if ($attributes->has('alt')) alt="{{$attributes->get('alt')}}" @endif 
         />
     @endif
 
