@@ -8,7 +8,9 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
+
 use function Livewire\str;
+
 use Livewire\Testing\TestableLivewire;
 use Livewire\{Component, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
@@ -60,7 +62,7 @@ class BrowserTestCase extends Dusk\TestCase
             Route::get('/livewire-dusk/{component}', function (string $component) {
                 $class = urldecode($component);
 
-                return app()->call(new $class);
+                return app()->call(new $class());
             })->middleware('web');
 
             Route::get('/api/options', function () {
@@ -90,6 +92,7 @@ class BrowserTestCase extends Dusk\TestCase
                         strtolower(request()->query('search'))
                     );
                 })->values();
+
                 return ['data' => ['nested' => $data]];
             })->name('api.options.nested')->middleware('web');
 
