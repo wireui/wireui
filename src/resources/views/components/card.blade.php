@@ -17,9 +17,15 @@
         </div>
     @endisset
 
-    <div class="{{ $getMainClasses() }}">
-        {{ $slot }}
-    </div>
+    @if ($slot instanceof \Illuminate\View\ComponentSlot)
+        <div {{ $slot->attributes->class($getMainClasses()) }}>
+            {{ $slot }}
+        </div>
+    @else
+        <div class="{{ $getMainClasses() }}">
+            {{ $slot }}
+        </div>
+    @endif
 
     @isset($footer)
         <div {{ $footer->attributes->class($getFooterClasses()) }}>

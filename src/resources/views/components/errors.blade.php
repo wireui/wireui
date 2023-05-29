@@ -6,6 +6,7 @@
         :icon="$icon"
         :iconless="$iconless"
         :borderless="$borderless"
+        {{ $attributes }}
     >
         @if(isset($action))
             @slot('action', null, $action->attributes->getAttributes())

@@ -1,10 +1,8 @@
 <?php
 
-namespace WireUi;
+namespace WireUi\Support;
 
-use WireUi\Support\{BladeDirectives, ComponentResolver};
-
-class Wireui
+class WireUiSupport
 {
     public function component(string $name): string
     {

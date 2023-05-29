@@ -3,7 +3,7 @@ const plugin = require('tailwindcss/plugin')
 module.exports = plugin(function ({ addUtilities }) {
   const utility = {
     '.hide-scrollbar::-webkit-scrollbar': {
-      'display': 'none'
+      '@apply hidden': ''
     },
     '.hide-scrollbar': {
       '-ms-overflow-style': 'none',

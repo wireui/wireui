@@ -26,6 +26,11 @@ class Flat extends ColorPack
     public function all(): array
     {
         return [
+            'none' => new Color(
+                base: '',
+                hover: '',
+                focus: '',
+            ),
             'primary' => new Color(
                 base: 'text-primary-600',
                 hover: [

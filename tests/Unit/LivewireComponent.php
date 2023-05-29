@@ -3,11 +3,11 @@
 namespace Tests\Unit;
 
 use Livewire\Component;
-use WireUi\Traits\Actions;
+use WireUi\Traits\{Actions, WireUiActions};
 
 class LivewireComponent extends Component
 {
-    use Actions;
+    use WireUiActions;
 
     public function __construct()
     {
