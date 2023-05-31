@@ -1,4 +1,17 @@
 <div>
+
+    @dump($attributes)
+
+    @dump($color, $colorClasses)
+
+    @dump($size, $sizeClasses)
+
+    @dump($squared, $rounded, $roundedClasses)
+
+    @dump($id ?? 'id', $name ?? 'name')
+
+    @dump($getClasses(false))
+
     <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
         <div class="relative flex items-start">
             @if ($leftLabel)

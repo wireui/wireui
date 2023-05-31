@@ -1,7 +1,7 @@
 <?php
 
-use WireUi\Support\Alerts;
 use WireUi\Support\Buttons\{Colors, Sizes};
+use WireUi\Support\{Alerts, Checkbox};
 use WireUi\View\Components;
 
 return [
@@ -88,6 +88,23 @@ return [
         'rounded'    => 'rounded-lg',
         'color'      => 'bg-white dark:bg-secondary-800',
         'borderless' => false,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Checkbox
+    |--------------------------------------------------------------------------
+    |
+    | The default checkbox preferences
+    |
+    */
+    'checkbox' => [
+        'color'    => null,
+        'colors'   => Checkbox\Colors::class,
+        'size'     => null,
+        'sizes'    => Checkbox\Sizes::class,
+        'rounded'  => null,
+        'rounders' => Checkbox\Rounders::class,
     ],
 
     /*
