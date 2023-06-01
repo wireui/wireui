@@ -11,13 +11,13 @@ abstract class ComponentPack
         throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
     }
 
-    public function get(?string $attribute = null): mixed
+    public function get(?string $attribute = null): string
     {
         if (is_null($attribute)) {
             return $this->default();
         }
 
-        return data_get($this->all(), $attribute) ?? $this->default();
+        return convert_result(data_get($this->all(), $attribute) ?? $attribute);
     }
 
     public function keys(): array
@@ -27,7 +27,7 @@ abstract class ComponentPack
 
     abstract public function __toString(): string;
 
-    abstract protected function default(): mixed;
+    abstract protected function default(): string;
 
     abstract public function all(): array;
 }

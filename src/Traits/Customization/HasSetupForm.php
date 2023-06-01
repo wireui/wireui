@@ -1,14 +1,11 @@
 <?php
 
-namespace WireUi\View\Setup;
+namespace WireUi\Traits\Customization;
 
 trait HasSetupForm
 {
     private array $sharedAttributes = ['id', 'name', 'readonly', 'disabled'];
 
-    /**
-     * Setup form.
-     */
     protected function setupForm(array &$component): void
     {
         $model = $this->data->wire('model')->value();

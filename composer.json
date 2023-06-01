@@ -39,7 +39,10 @@
     "autoload": {
         "psr-4": {
             "WireUi\\": "src/"
-        }
+        },
+        "files": [
+            "src/Helpers/index.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

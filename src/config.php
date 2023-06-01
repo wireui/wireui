@@ -1,8 +1,9 @@
 <?php
 
+use WireUi\Support\Alerts;
 use WireUi\Support\Buttons\{Colors, Sizes};
-use WireUi\Support\{Alerts, Checkbox};
 use WireUi\View\Components;
+use WireUi\WireUi\Checkbox;
 
 return [
     /*
@@ -90,22 +91,26 @@ return [
         'borderless' => false,
     ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Checkbox
-    |--------------------------------------------------------------------------
-    |
-    | The default checkbox preferences
-    |
-    */
-    'checkbox' => [
-        'color'    => null,
-        'colors'   => Checkbox\Colors::class,
-        'size'     => null,
-        'sizes'    => Checkbox\Sizes::class,
-        'rounded'  => null,
-        'rounders' => Checkbox\Rounders::class,
-    ],
+    // /*
+    // |--------------------------------------------------------------------------
+    // | Checkbox
+    // |--------------------------------------------------------------------------
+    // |
+    // | The default checkbox preferences
+    // |
+    // */
+    // 'checkbox' => [
+    //     // 'color'    => null,
+    //     'colors' => Checkbox\Colors::class,
+    //     // 'size'     => null,
+    //     // 'sizes'    => Checkbox\Sizes::class,
+    //     // 'rounded'  => null,
+    //     'rounders' => Checkbox\Rounders::class,
+    // ],
+
+    // 'toggle' => [
+    //     'icon' => 'heroicon-o-check',
+    // ],
 
     /*
     |--------------------------------------------------------------------------

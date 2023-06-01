@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Support\Checkbox;
+namespace WireUi\WireUi\Checkbox;
 
 use WireUi\Support\ComponentPack;
 

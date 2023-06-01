@@ -12,8 +12,6 @@ abstract class BaseComponent extends Component
     /**
      * Attributes locked.
      */
-    // protected array $classes = [];
-
     protected ?string $config = null;
 
     private array $smartAttributes = [];
@@ -46,10 +44,19 @@ abstract class BaseComponent extends Component
 
         $this->data = $component['attributes'];
 
-        // dd($this, $this->data);
+        /**
+         * Customization methods.
+         */
+        if (method_exists($this, 'setupForm')) {
+            $this->setupForm($component);
+        }
 
         if (method_exists($this, 'setupSize')) {
             $this->setupSize($component);
+        }
+
+        if (method_exists($this, 'setupIcon')) {
+            $this->setupIcon($component);
         }
 
         if (method_exists($this, 'setupColor')) {
@@ -60,32 +67,15 @@ abstract class BaseComponent extends Component
             $this->setupRounded($component);
         }
 
-        if (method_exists($this, 'setupForm')) {
-            $this->setupForm($component);
+        /**
+         * Component specific methods.
+         */
+        if (method_exists($this, 'setupCheckbox')) {
+            $this->setupCheckbox($component);
         }
-
-        if (method_exists($this, 'setupCustom')) {
-            $this->setupCustom($component);
-        }
-
-        // return $this->finish($component);
-
-        // dd($this, $this->data);
 
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
     }
-
-    // private function finish(array $component)
-    // {
-    //     collect($this->classes)->each(function ($classes, $key) use (&$component) {
-    //         $this->{$key}    = $classes;
-    //         $component[$key] = $classes;
-    //     });
-
-    //     // dd($this->smartAttributes);
-
-    //     return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
-    // }
 
     /**
      * Auxiliary methods.
@@ -96,11 +86,6 @@ abstract class BaseComponent extends Component
             fn ($value) => $this->smartAttributes[] = $value,
         );
     }
-
-    // protected function custom(string $key, mixed $classes): void
-    // {
-    //     $this->classes[$key] = Arr::toCssClasses(Arr::wrap($classes));
-    // }
 
     protected function getMatchModifier(array $keys): ?string
     {
