@@ -25,7 +25,7 @@ trait HasSetupSize
         $sizes = config("wireui.{$this->config}.sizes");
 
         /** @var ComponentPack $sizePack */
-        $sizePack = $sizes ? resolve($sizes) : resolve_wireui($this->sizeResolve);
+        $sizePack = $sizes ? resolve($sizes) : resolve($this->sizeResolve);
 
         $this->size = $this->data->get('size') ?? $this->getMatchModifier($sizePack->keys());
 

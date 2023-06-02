@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 if (!function_exists('check_result')) {
@@ -25,20 +24,5 @@ if (!function_exists('convert_result')) {
     function convert_result(mixed $classes): mixed
     {
         return is_array($classes) ? json_encode($classes) : $classes;
-    }
-}
-
-if (!function_exists('resolve_wireui')) {
-    /*
-    |--------------------------------------------------------------------------
-    | Resolve a class from the WireUi namespace, if the class
-    | exists in the App namespace, it will be resolved from there.
-    |--------------------------------------------------------------------------
-    */
-    function resolve_wireui(string $class): mixed
-    {
-        $app = app_path(Str::replace('\\', '/', Str::replaceFirst('WireUi\\', '', $class)) . '.php');
-
-        return File::exists($app) ? resolve(Str::replaceFirst('WireUi', 'App', $class)) : resolve($class);
     }
 }

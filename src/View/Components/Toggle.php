@@ -9,15 +9,14 @@ use WireUi\WireUi\Toggle\{Colors, IconSizes, Rounders, Sizes};
 
 class Toggle extends BaseComponent
 {
-    use HasSetupIcon;
     use HasSetupSize;
+    use HasSetupIcon;
     use HasSetupColor;
     use HasSetupRounded;
     use HasSetupCheckbox;
 
     public function __construct()
     {
-        $this->setConfig('toggle');
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setRoundedResolve(Rounders::class);

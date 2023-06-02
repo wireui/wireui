@@ -17,7 +17,6 @@ class Checkbox extends BaseComponent
 
     public function __construct()
     {
-        $this->setConfig('checkbox');
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setRoundedResolve(Rounders::class);

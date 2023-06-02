@@ -3,9 +3,9 @@
 namespace WireUi\View\Components;
 
 use Closure;
-use Exception;
-use Illuminate\Support\Arr;
+use Illuminate\Support\{Arr, Str};
 use Illuminate\View\{Component, ComponentAttributeBag};
+use WireUi\Facades\WireUi;
 
 abstract class BaseComponent extends Component
 {
@@ -23,56 +23,64 @@ abstract class BaseComponent extends Component
      */
     abstract protected function getView(): string;
 
-    protected function setConfig(string $config): void
+    private function setConfig(): void
     {
-        $this->config = $config;
+        $this->config = WireUi::components()->resolveByAlias($this->componentName);
     }
 
     public function render(): Closure
     {
         return function (array $data) {
-            return view($this->getView(), $this->setupComponent($data))->render();
+            return view($this->getView(), $this->executeBaseComponent($data))->render();
         };
     }
 
     /**
      * Methods to setup the component.
      */
-    private function setupComponent(array $component): array
+    private function executeBaseComponent(array $component): array
     {
-        throw_if(!$this->config, new Exception('Component config is required.'));
+        $this->setConfig();
 
         $this->data = $component['attributes'];
 
-        /**
-         * Customization methods.
-         */
-        if (method_exists($this, 'setupForm')) {
-            $this->setupForm($component);
+        // dd(get_class_methods($this));
+
+        foreach (get_class_methods($this) as $method) {
+            if (Str::startsWith($method, 'setup')) {
+                $this->{$method}($component);
+            }
         }
 
-        if (method_exists($this, 'setupSize')) {
-            $this->setupSize($component);
-        }
+        // /**
+        //  * Customization methods.
+        //  */
+        // if (method_exists($this, 'setupForm')) {
+        //     $this->setupForm($component);
+        // }
 
-        if (method_exists($this, 'setupIcon')) {
-            $this->setupIcon($component);
-        }
+        // if (method_exists($this, 'setupSize')) {
+        //     $this->setupSize($component);
+        // }
 
-        if (method_exists($this, 'setupColor')) {
-            $this->setupColor($component);
-        }
+        // if (method_exists($this, 'setupIcon')) {
+        //     $this->setupIcon($component);
+        // }
 
-        if (method_exists($this, 'setupRounded')) {
-            $this->setupRounded($component);
-        }
+        // if (method_exists($this, 'setupColor')) {
+        //     $this->setupColor($component);
+        // }
 
-        /**
-         * Component specific methods.
-         */
-        if (method_exists($this, 'setupCheckbox')) {
-            $this->setupCheckbox($component);
-        }
+        // if (method_exists($this, 'setupRounded')) {
+        //     $this->setupRounded($component);
+        // }
+
+        // /**
+        //  * Component specific methods.
+        //  */
+        // if (method_exists($this, 'setupCheckbox')) {
+        //     $this->setupCheckbox($component);
+        // }
 
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
     }

@@ -25,7 +25,7 @@ trait HasSetupColor
         $colors = config("wireui.{$this->config}.colors");
 
         /** @var ComponentPack $colorPack */
-        $colorPack = $colors ? resolve($colors) : resolve_wireui($this->colorResolve);
+        $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
 
         $this->color = $this->data->get('color') ?? $this->getMatchModifier($colorPack->keys());
 

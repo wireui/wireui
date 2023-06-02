@@ -31,7 +31,7 @@ trait HasSetupIcon
         $icons = config("wireui.{$this->config}.icon-sizes");
 
         /** @var ComponentPack $iconPack */
-        $iconPack = $icons ? resolve($icons) : resolve_wireui($this->iconResolve);
+        $iconPack = $icons ? resolve($icons) : resolve($this->iconResolve);
 
         $this->icon = $this->getIcon();
 
