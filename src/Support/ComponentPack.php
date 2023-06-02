@@ -6,18 +6,25 @@ use Exception;
 
 abstract class ComponentPack
 {
-    protected function checkAttribute(string $attribute): void
+    private function checkAttribute(string $attribute): void
     {
         throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
     }
 
-    public function get(?string $attribute = null): string
+    private function getDefault(): mixed
+    {
+        $this->checkAttribute($this->default());
+
+        return $this->get($this->default());
+    }
+
+    public function get(mixed $attribute = null): mixed
     {
         if (is_null($attribute)) {
-            return $this->default();
+            return $this->getDefault();
         }
 
-        return convert_result(data_get($this->all(), $attribute) ?? $attribute);
+        return data_get($this->all(), $attribute) ?? $attribute;
     }
 
     public function keys(): array
@@ -25,9 +32,12 @@ abstract class ComponentPack
         return array_keys($this->all());
     }
 
-    abstract public function __toString(): string;
-
     abstract protected function default(): string;
 
     abstract public function all(): array;
+
+    public function __toString()
+    {
+        return static::class;
+    }
 }

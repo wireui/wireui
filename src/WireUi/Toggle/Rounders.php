@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Rounders extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'toggle rounded';
-    }
-
     protected function default(): string
     {
-        $rounded = config('wireui.toggle.rounded') ?? 'base';
-
-        $this->checkAttribute($rounded);
-
-        return $this->get($rounded);
+        return config('wireui.toggle.rounded') ?? 'base';
     }
 
     public function all(): array

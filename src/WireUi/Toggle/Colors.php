@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Colors extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'toggle color';
-    }
-
     protected function default(): string
     {
-        $color = config('wireui.toggle.color') ?? 'primary';
-
-        $this->checkAttribute($color);
-
-        return $this->get($color);
+        return config('wireui.toggle.color') ?? 'primary';
     }
 
     public function all(): array

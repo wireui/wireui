@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Rounders extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'checkbox rounded';
-    }
-
     protected function default(): string
     {
-        $rounded = config('wireui.checkbox.rounded') ?? 'base';
-
-        $this->checkAttribute($rounded);
-
-        return $this->get($rounded);
+        return config('wireui.checkbox.rounded') ?? 'base';
     }
 
     public function all(): array

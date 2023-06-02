@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class IconSizes extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'toggle icon size';
-    }
-
     protected function default(): string
     {
-        $icon = config('wireui.toggle.icon-size') ?? 'sm';
-
-        $this->checkAttribute($icon);
-
-        return $this->get($icon);
+        return config('wireui.toggle.icon-size') ?? 'sm';
     }
 
     public function all(): array

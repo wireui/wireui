@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Sizes extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'toggle size';
-    }
-
     protected function default(): string
     {
-        $size = config('wireui.toggle.size') ?? 'sm';
-
-        $this->checkAttribute($size);
-
-        return $this->get($size);
+        return config('wireui.toggle.size') ?? 'sm';
     }
 
     public function all(): array

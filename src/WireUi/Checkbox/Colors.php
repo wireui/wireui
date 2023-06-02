@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Colors extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'checkbox color';
-    }
-
     protected function default(): string
     {
-        $color = config('wireui.checkbox.color') ?? 'primary';
-
-        $this->checkAttribute($color);
-
-        return $this->get($color);
+        return config('wireui.checkbox.color') ?? 'primary';
     }
 
     public function all(): array

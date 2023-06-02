@@ -6,18 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Sizes extends ComponentPack
 {
-    public function __toString(): string
-    {
-        return 'checkbox size';
-    }
-
     protected function default(): string
     {
-        $size = config('wireui.checkbox.size') ?? 'sm';
-
-        $this->checkAttribute($size);
-
-        return $this->get($size);
+        return config('wireui.checkbox.size') ?? 'sm';
     }
 
     public function all(): array
