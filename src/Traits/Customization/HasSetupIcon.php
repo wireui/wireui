@@ -41,11 +41,11 @@ trait HasSetupIcon
 
         $this->rightIcon = $this->getRightIcon();
 
-        $this->getIconClasses($iconPack);
+        $this->iconClasses = $iconPack->get($this->iconSize);
 
         $this->setIconVariables($component);
 
-        $this->smart(['icon', 'iconless', 'iconSize', 'rightIcon', 'iconClasses']);
+        $this->smart(['icon', 'iconless', 'icon-size', 'iconSize', 'right-icon', 'rightIcon']);
     }
 
     private function getIcon(): mixed
@@ -68,12 +68,12 @@ trait HasSetupIcon
 
     private function getIconSize(): mixed
     {
-        if ($this->data->has('iconSize')) {
-            return $this->data->get('iconSize');
-        }
-
         if ($this->data->has('icon-size')) {
             return $this->data->get('icon-size');
+        }
+
+        if ($this->data->has('iconSize')) {
+            return $this->data->get('iconSize');
         }
 
         if (property_exists($this, 'size')) {
@@ -85,22 +85,15 @@ trait HasSetupIcon
 
     private function getRightIcon(): mixed
     {
-        if ($this->data->has('rightIcon')) {
-            return $this->data->get('rightIcon');
-        }
-
         if ($this->data->has('right-icon')) {
             return $this->data->get('right-icon');
         }
 
+        if ($this->data->has('rightIcon')) {
+            return $this->data->get('rightIcon');
+        }
+
         return config("wireui.{$this->config}.right-icon");
-    }
-
-    private function getIconClasses(mixed $iconPack): void
-    {
-        $this->iconClasses = $iconPack->get($this->iconSize);
-
-        $this->iconClasses = check_result($this->iconClasses);
     }
 
     private function setIconVariables(array &$component): void

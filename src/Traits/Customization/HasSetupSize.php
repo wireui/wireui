@@ -31,18 +31,11 @@ trait HasSetupSize
 
         $this->size ??= config("wireui.{$this->config}.size");
 
-        $this->getSizeClasses($sizePack);
+        $this->sizeClasses = $sizePack->get($this->size);
 
         $this->setSizeVariables($component);
 
         $this->smart([$this->size, 'size']);
-    }
-
-    private function getSizeClasses(mixed $sizePack): void
-    {
-        $this->sizeClasses = $sizePack->get($this->size);
-
-        $this->sizeClasses = check_result($this->sizeClasses);
     }
 
     private function setSizeVariables(array &$component): void

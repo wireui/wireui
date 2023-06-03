@@ -44,43 +44,11 @@ abstract class BaseComponent extends Component
 
         $this->data = $component['attributes'];
 
-        // dd(get_class_methods($this));
-
         foreach (get_class_methods($this) as $method) {
             if (Str::startsWith($method, 'setup')) {
                 $this->{$method}($component);
             }
         }
-
-        // /**
-        //  * Customization methods.
-        //  */
-        // if (method_exists($this, 'setupForm')) {
-        //     $this->setupForm($component);
-        // }
-
-        // if (method_exists($this, 'setupSize')) {
-        //     $this->setupSize($component);
-        // }
-
-        // if (method_exists($this, 'setupIcon')) {
-        //     $this->setupIcon($component);
-        // }
-
-        // if (method_exists($this, 'setupColor')) {
-        //     $this->setupColor($component);
-        // }
-
-        // if (method_exists($this, 'setupRounded')) {
-        //     $this->setupRounded($component);
-        // }
-
-        // /**
-        //  * Component specific methods.
-        //  */
-        // if (method_exists($this, 'setupCheckbox')) {
-        //     $this->setupCheckbox($component);
-        // }
 
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
     }

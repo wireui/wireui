@@ -31,18 +31,11 @@ trait HasSetupColor
 
         $this->color ??= config("wireui.{$this->config}.color");
 
-        $this->getColorClasses($colorPack);
+        $this->colorClasses = $colorPack->get($this->color);
 
         $this->setColorVariables($component);
 
         $this->smart([$this->color, 'color']);
-    }
-
-    private function getColorClasses(mixed $colorPack): void
-    {
-        $this->colorClasses = $colorPack->get($this->color);
-
-        $this->colorClasses = check_result($this->colorClasses);
     }
 
     private function setColorVariables(array &$component): void

@@ -134,11 +134,11 @@ return [
     |
     */
     'modal' => [
-        'zIndex'   => 'z-50',
-        'maxWidth' => '2xl',
-        'spacing'  => 'p-4',
-        'align'    => 'start',
-        'blur'     => false,
+        'z-index'   => 'z-50',
+        'max-width' => '2xl',
+        'spacing'   => 'p-4',
+        'align'     => 'start',
+        'blur'      => false,
     ],
 
     /*

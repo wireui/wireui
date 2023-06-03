@@ -49,8 +49,6 @@ trait HasSetupRounded
         } elseif (!$this->squared) {
             $this->roundedClasses = $roundedPack->get($this->rounded);
         }
-
-        $this->roundedClasses = check_result($this->roundedClasses);
     }
 
     private function setRoundedVariables(array &$component): void
