@@ -6,8 +6,23 @@ use Exception;
 
 abstract class ComponentPack
 {
-    private function checkAttribute(string $attribute): void
+    private function serializeAttribute(mixed $attribute): mixed
     {
+        if (is_bool($attribute) && $attribute === true) {
+            return '1';
+        }
+
+        if (is_bool($attribute) && $attribute === false) {
+            return '0';
+        }
+
+        return $attribute;
+    }
+
+    private function checkAttribute(mixed $attribute): void
+    {
+        $attribute = $this->serializeAttribute($attribute);
+
         throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
     }
 
@@ -24,6 +39,8 @@ abstract class ComponentPack
             return $this->getDefault();
         }
 
+        $attribute = $this->serializeAttribute($attribute);
+
         return data_get($this->all(), $attribute) ?? $attribute;
     }
 
@@ -32,7 +49,7 @@ abstract class ComponentPack
         return array_keys($this->all());
     }
 
-    abstract protected function default(): string;
+    abstract protected function default(): mixed;
 
     abstract public function all(): array;
 

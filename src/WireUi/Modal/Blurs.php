@@ -6,7 +6,7 @@ use WireUi\Support\ComponentPack;
 
 class Blurs extends ComponentPack
 {
-    protected function default(): string
+    protected function default(): mixed
     {
         return config('wireui.modal.blur') ?? 'none';
     }
@@ -14,8 +14,8 @@ class Blurs extends ComponentPack
     public function all(): array
     {
         return [
-            true   => 'backdrop-blur',
-            false  => 'backdrop-blur-none',
+            '1'    => 'backdrop-blur',
+            '0'    => 'backdrop-blur-none',
             'none' => 'backdrop-blur-none',
             'sm'   => 'backdrop-blur-sm',
             'base' => 'backdrop-blur',

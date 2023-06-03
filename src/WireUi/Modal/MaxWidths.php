@@ -6,7 +6,7 @@ use WireUi\Support\ComponentPack;
 
 class MaxWidths extends ComponentPack
 {
-    protected function default(): string
+    protected function default(): mixed
     {
         return config('wireui.modal.max-width') ?? '2xl';
     }
