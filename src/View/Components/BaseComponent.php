@@ -19,14 +19,22 @@ abstract class BaseComponent extends Component
     protected ComponentAttributeBag $data;
 
     /**
-     * Get view name, set config name and render the component.
+     * Verify if the component has a config or set a new one.
+     */
+    protected function setConfig(string $config): void
+    {
+        $this->config = $config;
+    }
+
+    private function checkConfig(): void
+    {
+        $this->config ??= WireUi::components()->resolveByAlias($this->componentName);
+    }
+
+    /**
+     * Get view name and render the component.
      */
     abstract protected function getView(): string;
-
-    private function setConfig(): void
-    {
-        $this->config = WireUi::components()->resolveByAlias($this->componentName);
-    }
 
     public function render(): Closure
     {
@@ -40,7 +48,7 @@ abstract class BaseComponent extends Component
      */
     private function executeBaseComponent(array $component): array
     {
-        $this->setConfig();
+        $this->checkConfig();
 
         $this->data = $component['attributes'];
 

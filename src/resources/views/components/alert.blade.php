@@ -1,20 +1,24 @@
-<div {{ $attributes->class($getAlertClasses($values)) }}>
+@php
+    $useIcon = $icon ?? $colorClasses['icon'];
+@endphp
+
+<div {{ $attributes->class($getAlertClasses()) }}>
     @isset($header)
         <div {{ $header->attributes }}>
             {{ $header }}
         </div>
     @elseif($title)
-        <div class="{{ $getHeaderClasses($values, $slot) }}">
+        <div class="{{ $getHeaderClasses($slot) }}">
             <div class="flex items-center">
-                @if ($values['icon'] && !$iconless)
+                @if ($useIcon && !$iconless)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
-                        class="{{ $getIconClasses($values) }}"
-                        :name="$values['icon']"
+                        class="{{ $getIconClasses() }}"
+                        :name="$useIcon"
                     />
                 @endif
 
-                <h3 class="{{ $getTitleClasses($values) }}">
+                <h3 class="{{ $getTitleClasses() }}">
                     {{ $title }}
                 </h3>
             </div>
@@ -28,13 +32,13 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        <div class="{{ $getMainClasses($values) }}">
+        <div class="{{ $getMainClasses() }}">
             {{ $slot }}
         </div>
     @endif
 
     @isset($footer)
-        <div {{ $footer->attributes->class($getFooterClasses($values)) }}>
+        <div {{ $footer->attributes->class($getFooterClasses()) }}>
             {{ $footer }}
         </div>
     @endisset

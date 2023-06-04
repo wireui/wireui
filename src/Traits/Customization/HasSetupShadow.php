@@ -7,41 +7,54 @@ use WireUi\Support\ComponentPack;
 
 trait HasSetupShadow
 {
-    // public mixed $color = null;
+    public mixed $shadow = null;
 
-    // public mixed $colorClasses = null;
+    public bool $shadowless = false;
 
-    // private mixed $colorResolve = null;
+    public mixed $shadowClasses = null;
 
-    // protected function setColorResolve(string $class): void
-    // {
-    //     $this->colorResolve = $class;
-    // }
+    private mixed $shadowResolve = null;
 
-    // protected function setupColor(array &$component): void
-    // {
-    //     throw_if(!$this->colorResolve, new Exception('You must define a color resolve.'));
+    protected function setShadowResolve(string $class): void
+    {
+        $this->shadowResolve = $class;
+    }
 
-    //     $colors = config("wireui.{$this->config}.colors");
+    protected function setupShadow(array &$component): void
+    {
+        throw_if(!$this->shadowResolve, new Exception('You must define a shadow resolve.'));
 
-    //     /** @var ComponentPack $colorPack */
-    //     $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
+        $shadows = config("wireui.{$this->config}.shadows");
 
-    //     $this->color = $this->data->get('color') ?? $this->getMatchModifier($colorPack->keys());
+        /** @var ComponentPack $shadowPack */
+        $shadowPack = $shadows ? resolve($shadows) : resolve($this->shadowResolve);
 
-    //     $this->color ??= config("wireui.{$this->config}.color");
+        $this->shadowless = $this->getShadowless();
 
-    //     $this->colorClasses = $colorPack->get($this->color);
+        $this->shadow = $this->data->get('shadow') ?? config("wireui.{$this->config}.shadow");
 
-    //     $this->setColorVariables($component);
+        $this->shadowClasses = $shadowPack->get($this->shadow);
 
-    //     $this->smart([$this->color, 'color']);
-    // }
+        $this->setShadowVariables($component);
 
-    // private function setColorVariables(array &$component): void
-    // {
-    //     $component['color'] = $this->color;
+        $this->smart(['shadow', 'shadowless']);
+    }
 
-    //     $component['colorClasses'] = $this->colorClasses;
-    // }
+    private function getShadowless(): bool
+    {
+        if ($this->data->has('shadowless')) {
+            return (bool) $this->data->get('shadowless');
+        }
+
+        return (bool) (config("wireui.{$this->config}.shadowless") ?? false);
+    }
+
+    private function setShadowVariables(array &$component): void
+    {
+        $component['shadow'] = $this->shadow;
+
+        $component['shadowless'] = $this->shadowless;
+
+        $component['shadowClasses'] = $this->shadowClasses;
+    }
 }

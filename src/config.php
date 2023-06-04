@@ -14,14 +14,14 @@ return [
     | The default alert preferences
     |
     */
-    'alert' => [
-        'padding'    => 'pl-1 mt-2 ml-5',
-        'shadow'     => 'shadow-md',
-        'rounded'    => 'rounded-lg',
-        'color'      => null,
-        'values'     => Alerts\Values::class,
-        'borderless' => false,
-    ],
+    // 'alert' => [
+    //     'padding'    => 'pl-1 mt-2 ml-5',
+    //     'shadow'     => 'shadow-md',
+    //     'rounded'    => 'rounded-lg',
+    //     'color'      => null,
+    //     'values'     => Alerts\Values::class,
+    //     'borderless' => false,
+    // ],
 
     /*
     |--------------------------------------------------------------------------

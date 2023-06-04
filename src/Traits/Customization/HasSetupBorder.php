@@ -7,41 +7,54 @@ use WireUi\Support\ComponentPack;
 
 trait HasSetupBorder
 {
-    // public mixed $color = null;
+    public mixed $border = null;
 
-    // public mixed $colorClasses = null;
+    public bool $borderless = false;
 
-    // private mixed $colorResolve = null;
+    public mixed $borderClasses = null;
 
-    // protected function setColorResolve(string $class): void
-    // {
-    //     $this->colorResolve = $class;
-    // }
+    private mixed $borderResolve = null;
 
-    // protected function setupColor(array &$component): void
-    // {
-    //     throw_if(!$this->colorResolve, new Exception('You must define a color resolve.'));
+    protected function setBorderResolve(string $class): void
+    {
+        $this->borderResolve = $class;
+    }
 
-    //     $colors = config("wireui.{$this->config}.colors");
+    protected function setupBorder(array &$component): void
+    {
+        throw_if(!$this->borderResolve, new Exception('You must define a border resolve.'));
 
-    //     /** @var ComponentPack $colorPack */
-    //     $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
+        $borders = config("wireui.{$this->config}.borders");
 
-    //     $this->color = $this->data->get('color') ?? $this->getMatchModifier($colorPack->keys());
+        /** @var ComponentPack $borderPack */
+        $borderPack = $borders ? resolve($borders) : resolve($this->borderResolve);
 
-    //     $this->color ??= config("wireui.{$this->config}.color");
+        $this->borderless = $this->getBorderless();
 
-    //     $this->colorClasses = $colorPack->get($this->color);
+        $this->border = $this->data->get('border') ?? config("wireui.{$this->config}.border");
 
-    //     $this->setColorVariables($component);
+        $this->borderClasses = $borderPack->get($this->border);
 
-    //     $this->smart([$this->color, 'color']);
-    // }
+        $this->setBorderVariables($component);
 
-    // private function setColorVariables(array &$component): void
-    // {
-    //     $component['color'] = $this->color;
+        $this->smart(['border', 'borderless']);
+    }
 
-    //     $component['colorClasses'] = $this->colorClasses;
-    // }
+    private function getBorderless(): bool
+    {
+        if ($this->data->has('borderless')) {
+            return (bool) $this->data->get('borderless');
+        }
+
+        return (bool) (config("wireui.{$this->config}.borderless") ?? false);
+    }
+
+    private function setBorderVariables(array &$component): void
+    {
+        $component['border'] = $this->border;
+
+        $component['borderless'] = $this->borderless;
+
+        $component['borderClasses'] = $this->borderClasses;
+    }
 }
