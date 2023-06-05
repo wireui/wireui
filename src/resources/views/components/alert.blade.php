@@ -32,9 +32,15 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        <div class="{{ $getMainClasses() }}">
-            {{ $slot }}
-        </div>
+        @if ($checkSlot($slot))
+            <div {{ $slot->attributes->class($getMainClasses()) }}>
+                {{ $slot }}
+            </div>
+        @else
+            <div class="{{ $getMainClasses() }}">
+                {{ $slot }}
+            </div>
+        @endif
     @endif
 
     @isset($footer)

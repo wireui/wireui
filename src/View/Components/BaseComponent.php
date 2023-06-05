@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Closure;
 use Illuminate\Support\{Arr, Str};
-use Illuminate\View\{Component, ComponentAttributeBag};
+use Illuminate\View\{Component, ComponentAttributeBag, ComponentSlot};
 use WireUi\Facades\WireUi;
 
 abstract class BaseComponent extends Component
@@ -64,6 +64,11 @@ abstract class BaseComponent extends Component
     /**
      * Auxiliary methods.
      */
+    public function checkSlot(mixed $slot): bool
+    {
+        return $slot instanceof ComponentSlot;
+    }
+
     protected function smart(mixed $attributes): void
     {
         collect(Arr::wrap($attributes))->filter()->each(

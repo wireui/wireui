@@ -2,32 +2,12 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str, ViewErrorBag};
-use Illuminate\View\Component;
+use WireUi\Traits\Components\HasSetupErrors;
 
-class Errors extends Component
+class Errors extends BaseComponent
 {
-    public function __construct(
-        public ?string $title = null,
-        public mixed $only = [],
-        public ?string $icon = null,
-        public ?bool $iconless = false,
-        public ?bool $borderless = null,
-    ) {
-        $this->initOnly();
-    }
-
-    protected function initOnly(): void
-    {
-        if (is_string($this->only)) {
-            $this->only = str($this->only)->explode('|');
-
-            $this->only->transform(fn (string $name) => trim($name));
-        }
-
-        $this->only = collect($this->only);
-    }
+    use HasSetupErrors;
 
     public function count(ViewErrorBag $errors): int
     {
@@ -48,8 +28,8 @@ class Errors extends Component
         return Str::replace('{errors}', $this->count($errors), $title);
     }
 
-    public function render(): View
+    public function getView(): string
     {
-        return view('wireui::components.errors');
+        return 'wireui::components.errors';
     }
 }
