@@ -26,16 +26,16 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node and run tests
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: "16.x"
-      - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn build
-      - run: yarn test
+      - run: npm install
+      - run: npm run lint
+      - run: npm run build
+      - run: npm run test
 
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
@@ -50,7 +50,7 @@ jobs:
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
