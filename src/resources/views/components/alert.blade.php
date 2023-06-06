@@ -1,8 +1,4 @@
-@php
-    $useIcon = $icon ?? $colorClasses['icon'];
-@endphp
-
-<div {{ $attributes->class($getAlertClasses()) }}>
+<div {{ $attributes->class($getRootClasses()) }}>
     @isset($header)
         <div {{ $header->attributes }}>
             {{ $header }}
@@ -10,11 +6,11 @@
     @elseif($title)
         <div class="{{ $getHeaderClasses($slot) }}">
             <div class="flex items-center">
-                @if ($useIcon && !$iconless)
+                @if ($getUseIcon() && !$iconless)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         class="{{ $getIconClasses() }}"
-                        :name="$useIcon"
+                        :name="$getUseIcon()"
                     />
                 @endif
 

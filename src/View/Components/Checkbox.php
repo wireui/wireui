@@ -24,7 +24,7 @@ class Checkbox extends BaseComponent
 
     public function getClasses(bool $hasError): string
     {
-        $default = 'cursor-pointer form-checkbox rounded transition ease-in-out duration-100';
+        $default = 'cursor-pointer form-checkbox transition ease-in-out duration-100';
 
         // dd($this->color, $this->colorClasses);
 
@@ -57,7 +57,12 @@ class Checkbox extends BaseComponent
         //     // $withoutError => !$hasError,
         // ]);
 
-        return Arr::toCssClasses([$default, $this->sizeClasses, $this->colorClasses, $this->roundedClasses]);
+        return Arr::toCssClasses([
+            $this->roundedClasses,
+            $this->colorClasses,
+            $this->sizeClasses,
+            $default,
+        ]);
     }
 
     protected function getView(): string

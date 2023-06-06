@@ -21,7 +21,7 @@ class Modal extends BaseComponent
         $this->setMaxWidthResolve(MaxWidths::class);
     }
 
-    public function getMainClasses(): string
+    public function getRootClasses(): string
     {
         return Arr::toCssClasses([
             'fixed inset-0 overflow-y-auto',
@@ -39,7 +39,7 @@ class Modal extends BaseComponent
         ]);
     }
 
-    public function getContainerClasses(): string
+    public function getMainClasses(): string
     {
         return Arr::toCssClasses([
             'w-full min-h-full transform flex items-end justify-center mx-auto',

@@ -1,6 +1,6 @@
 @php($name = $name ?? $attributes->wire('model')->value())
 
-<div class="{{ $getMainClasses() }}"
+<div class="{{ $getRootClasses() }}"
     x-data="wireui_modal({
         show: @toJs($show),
         @if ($attributes->wire('model')->value())
@@ -29,7 +29,7 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div class="{{ $getContainerClasses() }}"
+    <div class="{{ $getMainClasses() }}"
         x-show="show"
         x-on:click.self="close"
         x-transition:enter="ease-out duration-300"

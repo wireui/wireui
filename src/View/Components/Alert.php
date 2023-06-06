@@ -2,43 +2,49 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\{Arr, HtmlString};
+use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAlert;
-use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupShadow, HasSetupType};
-use WireUi\WireUi\Alert\{Borders, Colors, IconSizes, Rounders, Shadows, Types};
+use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow};
+use WireUi\WireUi\Alert\{Borders, Colors, IconSizes, Paddings, Rounders, Shadows};
 
 class Alert extends BaseComponent
 {
     use HasSetupIcon;
-    use HasSetupType;
     use HasSetupAlert;
     use HasSetupColor;
     use HasSetupBorder;
     use HasSetupShadow;
+    use HasSetupPadding;
     use HasSetupRounded;
 
     public function __construct()
     {
-        $this->setTypeResolve(Types::class);
         $this->setColorResolve(Colors::class);
         $this->setBorderResolve(Borders::class);
         $this->setShadowResolve(Shadows::class);
+        $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);
         $this->setIconSizeResolve(IconSizes::class);
     }
 
-    public function getAlertClasses(): string
+    public function getUseIcon(): mixed
+    {
+        return $this->icon ?? $this->colorClasses['icon'];
+    }
+
+    public function getRootClasses(): string
     {
         return Arr::toCssClasses([
             $this->shadowClasses => !$this->shadowless,
-            'w-full flex flex-col p-4 dark:border',
             $this->colorClasses['backgroundColor'],
             $this->colorClasses['borderColor'],
+            $this->borderClasses['root'],
+            'w-full flex flex-col p-4',
             $this->roundedClasses,
         ]);
     }
 
-    public function getHeaderClasses(HtmlString $slot): string
+    public function getHeaderClasses(mixed $slot): string
     {
         $border = Arr::toCssClasses([
             $this->colorClasses['borderColor'],
@@ -72,8 +78,8 @@ class Alert extends BaseComponent
     {
         return Arr::toCssClasses([
             $this->colorClasses['textColor'],
-            'rounded-b-xl grow ml-5 text-sm',
-            $this->typeClasses,
+            $this->paddingClasses,
+            'grow ml-5 text-sm',
         ]);
     }
 
@@ -86,8 +92,7 @@ class Alert extends BaseComponent
 
         return Arr::toCssClasses([
             $border => !$this->borderless,
-            'mt-2 pt-2 rounded-t-none',
-            $this->roundedClasses,
+            'mt-2 pt-2',
         ]);
     }
 

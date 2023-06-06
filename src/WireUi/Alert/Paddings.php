@@ -4,11 +4,11 @@ namespace WireUi\WireUi\Alert;
 
 use WireUi\Support\ComponentPack;
 
-class Types extends ComponentPack
+class Paddings extends ComponentPack
 {
     protected function default(): mixed
     {
-        return config('wireui.alert.type') ?? 'base';
+        return config('wireui.alert.padding') ?? 'base';
     }
 
     public function all(): array

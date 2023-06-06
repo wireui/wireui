@@ -14,10 +14,10 @@ class Sizes extends ComponentPack
     public function all(): array
     {
         return [
-            // 'xs' => [
-            //     'background' => 'h-4 w-7',
-            //     'circle' => 'checked:translate-x-3 w-3 h-3',
-            // ],
+            'xs' => [
+                'background' => 'h-4 w-7',
+                'circle'     => 'checked:translate-x-3 w-3 h-3',
+            ],
             'sm' => [
                 'background' => 'h-4 w-7',
                 'circle'     => 'checked:translate-x-3 w-3 h-3',
@@ -30,10 +30,10 @@ class Sizes extends ComponentPack
                 'background' => 'h-6 w-10',
                 'circle'     => 'checked:translate-x-4 left-0.5 w-4 h-4',
             ],
-            // 'xl' => [
-            //     'background' => 'h-4 w-7',
-            //     'circle' => 'checked:translate-x-3 w-3 h-3',
-            // ],
+            'xl' => [
+                'background' => 'h-4 w-7',
+                'circle'     => 'checked:translate-x-3 w-3 h-3',
+            ],
         ];
     }
 }

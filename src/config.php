@@ -1,28 +1,9 @@
 <?php
 
-use WireUi\Support\Alerts;
 use WireUi\Support\Buttons\{Colors, Sizes};
 use WireUi\View\Components;
-use WireUi\WireUi\Checkbox;
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Alerts
-    |--------------------------------------------------------------------------
-    |
-    | The default alert preferences
-    |
-    */
-    // 'alert' => [
-    //     'padding'    => 'pl-1 mt-2 ml-5',
-    //     'shadow'     => 'shadow-md',
-    //     'rounded'    => 'rounded-lg',
-    //     'color'      => null,
-    //     'values'     => Alerts\Values::class,
-    //     'borderless' => false,
-    // ],
-
     /*
     |--------------------------------------------------------------------------
     | Button
@@ -91,27 +72,6 @@ return [
         'borderless' => false,
     ],
 
-    // /*
-    // |--------------------------------------------------------------------------
-    // | Checkbox
-    // |--------------------------------------------------------------------------
-    // |
-    // | The default checkbox preferences
-    // |
-    // */
-    // 'checkbox' => [
-    //     // 'color'    => null,
-    //     'colors' => Checkbox\Colors::class,
-    //     // 'size'     => null,
-    //     // 'sizes'    => Checkbox\Sizes::class,
-    //     // 'rounded'  => null,
-    //     'rounders' => Checkbox\Rounders::class,
-    // ],
-
-    // 'toggle' => [
-    //     'icon' => 'heroicon-o-check',
-    // ],
-
     /*
     |--------------------------------------------------------------------------
     | Icons
@@ -123,22 +83,6 @@ return [
     */
     'icons' => [
         'variant' => 'outline',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Modal
-    |--------------------------------------------------------------------------
-    |
-    | The default modal preferences
-    |
-    */
-    'modal' => [
-        'z-index'   => 'z-50',
-        'max-width' => '2xl',
-        'spacing'   => 'p-4',
-        'align'     => 'start',
-        'blur'      => false,
     ],
 
     /*

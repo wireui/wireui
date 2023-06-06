@@ -15,8 +15,9 @@ class Borders extends ComponentPack
     {
         return [
             'base' => [
-                'header' => 'border-b-2',
-                'footer' => 'border-t-2',
+                'root'   => 'dark:border',
+                'header' => 'border-b',
+                'footer' => 'border-t',
             ],
         ];
     }

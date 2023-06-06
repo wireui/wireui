@@ -2,58 +2,66 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
+use WireUi\Traits\Components\HasSetupAvatar;
+use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
+use WireUi\WireUi\Avatar\{Colors, IconSizes, Rounders, Sizes};
 
-class Avatar extends Component
+class Avatar extends BaseComponent
 {
-    public function __construct(
-        public bool $xs = false,
-        public bool $sm = false,
-        public bool $md = false,
-        public bool $lg = false,
-        public bool $xl = false,
-        public bool $squared = false,
-        public ?string $size = null,
-        public ?string $label = null,
-        public ?string $src = null,
-        public ?string $border = 'border border-gray-200 dark:border-secondary-500',
-        public ?string $avatarClasses = null,
-    ) {
-        $this->size ??= $this->getSize();
-        $this->avatarClasses = $this->getAvatarClasses();
-    }
+    use HasSetupSize;
+    use HasSetupIcon;
+    use HasSetupColor;
+    use HasSetupAvatar;
+    use HasSetupRounded;
 
-    public function render(): View
+    public function __construct()
     {
-        return view('wireui::components.avatar');
+        $this->setSizeResolve(Sizes::class);
+        $this->setColorResolve(Colors::class);
+        $this->setRoundedResolve(Rounders::class);
+        $this->setIconSizeResolve(IconSizes::class);
     }
 
-    public function getAvatarClasses(): string
+    public function getRootClasses(): string
     {
         return Arr::toCssClasses([
             'shrink-0 inline-flex items-center justify-center overflow-hidden',
-            'bg-gray-500 dark:bg-gray-600' => $this->label,
-            'rounded-md'                   => $this->squared,
-            'rounded-full'                 => !$this->squared,
-            $this->size                    => $this->label || !$this->src,
-            $this->border,
+            $this->colorClasses['label'] => !$this->src,
+            $this->sizeClasses           => !$this->src,
+            $this->colorClasses['border'],
+            $this->roundedClasses,
+            $this->sizeClasses,
         ]);
     }
 
-    private function getSize(): string
+    public function getLabelClasses(): string
     {
         return Arr::toCssClasses([
-            'w-6 h-6 text-2xs'    => $this->xs,
-            'w-8 h-8 text-sm'     => $this->sm,
-            'w-10 h-10 text-base' => $this->md || $this->shouldUseDefault(),
-            'w-12 h-12 text-lg'   => $this->lg,
-            'w-14 h-14 text-xl'   => $this->xl,
+            'font-medium text-white dark:text-gray-200',
+            $this->iconClasses['label'],
         ]);
     }
 
-    private function shouldUseDefault(): bool
+    public function getImageClasses(): string
     {
-        return !$this->xs && !$this->sm && !$this->lg && !$this->xl;
+        return Arr::toCssClasses([
+            'shrink-0 object-cover object-center',
+            $this->roundedClasses,
+            $this->sizeClasses,
+        ]);
+    }
+
+    public function getIconClasses(): string
+    {
+        return Arr::toCssClasses([
+            'text-white dark:text-gray-200 shrink-0',
+            $this->iconClasses['icon'],
+        ]);
+    }
+
+    public function getView(): string
+    {
+        return 'wireui::components.avatar';
     }
 }
