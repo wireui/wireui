@@ -9,8 +9,8 @@ use WireUi\WireUi\Toggle\{Colors, IconSizes, Rounders, Sizes};
 
 class Toggle extends BaseComponent
 {
-    use HasSetupSize;
     use HasSetupIcon;
+    use HasSetupSize;
     use HasSetupColor;
     use HasSetupRounded;
     use HasSetupCheckbox;

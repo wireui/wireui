@@ -4,26 +4,25 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAlert;
-use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow};
-use WireUi\WireUi\Alert\{Borders, Colors, IconSizes, Paddings, Rounders, Shadows};
+use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
+use WireUi\WireUi\Alert\{IconSizes, Paddings, Rounders, Shadows, Variants};
 
 class Alert extends BaseComponent
 {
     use HasSetupIcon;
     use HasSetupAlert;
     use HasSetupColor;
-    // use HasSetupBorder;
     use HasSetupShadow;
     use HasSetupPadding;
     use HasSetupRounded;
+    use HasSetupVariant;
 
     public function __construct()
     {
-        $this->setColorResolve(Colors::class);
-        // $this->setBorderResolve(Borders::class);
         $this->setShadowResolve(Shadows::class);
         $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);
+        $this->setVariantResolve(Variants::class);
         $this->setIconSizeResolve(IconSizes::class);
     }
 
@@ -38,7 +37,6 @@ class Alert extends BaseComponent
             $this->shadowClasses => !$this->shadowless,
             $this->colorClasses['backgroundColor'],
             $this->colorClasses['borderColor'],
-            // $this->borderClasses['root'],
             'w-full flex flex-col p-4',
             $this->roundedClasses,
         ]);
@@ -46,13 +44,7 @@ class Alert extends BaseComponent
 
     public function getHeaderClasses(mixed $slot): string
     {
-        $border = Arr::toCssClasses([
-            $this->colorClasses['borderColor'],
-            // $this->borderClasses['header'],
-        ]);
-
         return Arr::toCssClasses([
-            // $border => !$this->borderless && $slot->isNotEmpty(),
             'flex justify-between items-center',
             'pb-3' => $slot->isNotEmpty(),
         ]);
@@ -85,15 +77,7 @@ class Alert extends BaseComponent
 
     public function getFooterClasses(): string
     {
-        $border = Arr::toCssClasses([
-            $this->colorClasses['borderColor'],
-            // $this->borderClasses['footer'],
-        ]);
-
-        return Arr::toCssClasses([
-            // $border => !$this->borderless,
-            'mt-2 pt-2',
-        ]);
+        return Arr::toCssClasses(['mt-2 pt-2']);
     }
 
     public function getView(): string

@@ -1,9 +1,9 @@
-<span {{ $attributes }}>
+<span {{ $attributes->class($getRootClasses()) }}>
     @if ($icon)
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$icon"
-            class="{{ $iconSize }} shrink-0"
+            class="{{ $getIconClasses() }}"
         />
     @else
         {{ $label ?? $slot }}

@@ -52,13 +52,28 @@ abstract class BaseComponent extends Component
 
         $this->data = $component['attributes'];
 
-        foreach (get_class_methods($this) as $method) {
-            if (Str::startsWith($method, 'setup')) {
-                $this->{$method}($component);
-            }
+        foreach ($this->getMethods() as $method) {
+            $this->{$method}($component);
         }
 
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
+    }
+
+    private function getMethods(): array
+    {
+        $methods = collect(get_class_methods($this))->filter(
+            fn ($method) => Str::startsWith($method, 'setup'),
+        )->values();
+
+        if ($methods->contains('setupSize') && $methods->contains('setupIcon')) {
+            $methods = $methods->reject('setupIcon')->push('setupIcon');
+        }
+
+        if ($methods->contains('setupVariant') && $methods->contains('setupColor')) {
+            $methods = $methods->reject('setupColor')->push('setupColor');
+        }
+
+        return $methods->values()->toArray();
     }
 
     /**

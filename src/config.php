@@ -157,9 +157,9 @@ return [
             'class' => Components\Badge::class,
             'alias' => 'badge',
         ],
-        'badge.circle' => [
-            'class' => Components\CircleBadge::class,
-            'alias' => 'badge.circle',
+        'badge-mini' => [
+            'class' => Components\BadgeMini::class,
+            'alias' => 'badge-mini',
         ],
         'button' => [
             'class' => Components\Button::class,

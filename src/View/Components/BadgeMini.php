@@ -5,9 +5,10 @@ namespace WireUi\View\Components;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupBadge;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize, HasSetupVariant};
-use WireUi\WireUi\Badge\{IconSizes, Rounders, Sizes, Variants};
+use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
+use WireUi\WireUi\BadgeMini\Sizes;
 
-class Badge extends BaseComponent
+class BadgeMini extends BaseComponent
 {
     use HasSetupIcon;
     use HasSetupSize;
@@ -28,7 +29,6 @@ class Badge extends BaseComponent
     {
         return Arr::toCssClasses([
             'outline-none inline-flex justify-center items-center group',
-            'w-full' => $this->full,
             $this->roundedClasses,
             $this->colorClasses,
             $this->sizeClasses,

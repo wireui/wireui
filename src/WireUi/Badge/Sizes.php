@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Checkbox;
+namespace WireUi\WireUi\Badge;
 
 use WireUi\Support\ComponentPack;
 
