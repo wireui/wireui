@@ -12,7 +12,7 @@ class Alert extends BaseComponent
     use HasSetupIcon;
     use HasSetupAlert;
     use HasSetupColor;
-    use HasSetupBorder;
+    // use HasSetupBorder;
     use HasSetupShadow;
     use HasSetupPadding;
     use HasSetupRounded;
@@ -20,7 +20,7 @@ class Alert extends BaseComponent
     public function __construct()
     {
         $this->setColorResolve(Colors::class);
-        $this->setBorderResolve(Borders::class);
+        // $this->setBorderResolve(Borders::class);
         $this->setShadowResolve(Shadows::class);
         $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);
@@ -38,7 +38,7 @@ class Alert extends BaseComponent
             $this->shadowClasses => !$this->shadowless,
             $this->colorClasses['backgroundColor'],
             $this->colorClasses['borderColor'],
-            $this->borderClasses['root'],
+            // $this->borderClasses['root'],
             'w-full flex flex-col p-4',
             $this->roundedClasses,
         ]);
@@ -48,11 +48,11 @@ class Alert extends BaseComponent
     {
         $border = Arr::toCssClasses([
             $this->colorClasses['borderColor'],
-            $this->borderClasses['header'],
+            // $this->borderClasses['header'],
         ]);
 
         return Arr::toCssClasses([
-            $border => !$this->borderless && $slot->isNotEmpty(),
+            // $border => !$this->borderless && $slot->isNotEmpty(),
             'flex justify-between items-center',
             'pb-3' => $slot->isNotEmpty(),
         ]);
@@ -79,7 +79,7 @@ class Alert extends BaseComponent
         return Arr::toCssClasses([
             $this->colorClasses['textColor'],
             $this->paddingClasses,
-            'grow ml-5 text-sm',
+            'grow text-sm',
         ]);
     }
 
@@ -87,11 +87,11 @@ class Alert extends BaseComponent
     {
         $border = Arr::toCssClasses([
             $this->colorClasses['borderColor'],
-            $this->borderClasses['footer'],
+            // $this->borderClasses['footer'],
         ]);
 
         return Arr::toCssClasses([
-            $border => !$this->borderless,
+            // $border => !$this->borderless,
             'mt-2 pt-2',
         ]);
     }

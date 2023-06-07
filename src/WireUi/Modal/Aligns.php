@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Aligns extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.modal.align') ?? 'start';
+        return 'start';
     }
 
     public function all(): array

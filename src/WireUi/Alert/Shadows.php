@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Shadows extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.alert.shadow') ?? 'md';
+        return 'md';
     }
 
     public function all(): array

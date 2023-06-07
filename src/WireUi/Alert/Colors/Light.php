@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\WireUi\Alert;
+namespace WireUi\WireUi\Alert\Colors;
 
 use WireUi\Support\ComponentPack;
 
-class Colors extends ComponentPack
+class Light extends ComponentPack
 {
     protected function default(): string
     {

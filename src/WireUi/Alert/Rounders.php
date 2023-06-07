@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Rounders extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.alert.rounded') ?? 'lg';
+        return 'lg';
     }
 
     public function all(): array

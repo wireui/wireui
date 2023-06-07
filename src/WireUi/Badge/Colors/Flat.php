@@ -8,7 +8,7 @@ class Flat extends ComponentPack
 {
     public function default(): string
     {
-        return config('wireui.button.color') ?? 'default';
+        return 'default';
     }
 
     public function all(): array

@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Colors extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.radio.color') ?? 'primary';
+        return 'primary';
     }
 
     public function all(): array

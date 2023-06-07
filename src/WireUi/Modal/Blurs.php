@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Blurs extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.modal.blur') ?? 'none';
+        return 'none';
     }
 
     public function all(): array

@@ -49,7 +49,7 @@ abstract class ComponentPack
         return array_keys($this->all());
     }
 
-    abstract protected function default(): mixed;
+    abstract protected function default(): string;
 
     abstract public function all(): array;
 

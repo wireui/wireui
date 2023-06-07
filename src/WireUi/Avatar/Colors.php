@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Colors extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.avatar.color') ?? 'secondary';
+        return 'secondary';
     }
 
     public function all(): array
@@ -16,27 +16,27 @@ class Colors extends ComponentPack
         return [
             'primary' => [
                 'label'  => 'bg-primary-500 dark:bg-primary-600',
-                'border' => 'border border-primary-200 dark:border-primary-500',
+                'border' => 'border-primary-200 dark:border-primary-500',
             ],
             'secondary' => [
                 'label'  => 'bg-secondary-500 dark:bg-secondary-600',
-                'border' => 'border border-secondary-200 dark:border-secondary-500',
+                'border' => 'border-secondary-200 dark:border-secondary-500',
             ],
             'positive' => [
                 'label'  => 'bg-positive-500 dark:bg-positive-600',
-                'border' => 'border border-positive-200 dark:border-positive-500',
+                'border' => 'border-positive-200 dark:border-positive-500',
             ],
             'negative' => [
                 'label'  => 'bg-negative-500 dark:bg-negative-600',
-                'border' => 'border border-negative-200 dark:border-negative-500',
+                'border' => 'border-negative-200 dark:border-negative-500',
             ],
             'warning' => [
                 'label'  => 'bg-warning-500 dark:bg-warning-600',
-                'border' => 'border border-warning-200 dark:border-warning-500',
+                'border' => 'border-warning-200 dark:border-warning-500',
             ],
             'info' => [
                 'label'  => 'bg-info-500 dark:bg-info-600',
-                'border' => 'border border-info-200 dark:border-info-500',
+                'border' => 'border-info-200 dark:border-info-500',
             ],
         ];
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\WireUi\Alert;
+namespace WireUi\WireUi\Avatar;
 
 use WireUi\Support\ComponentPack;
 
-class Paddings extends ComponentPack
+class Borders extends ComponentPack
 {
     protected function default(): string
     {
@@ -14,7 +14,7 @@ class Paddings extends ComponentPack
     public function all(): array
     {
         return [
-            'base' => 'pl-1 mt-2 ml-5',
+            'base' => 'border',
         ];
     }
 }

@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class Borders extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.input.border') ?? '';
+        return '';
     }
 
     public function all(): array

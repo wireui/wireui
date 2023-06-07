@@ -35,7 +35,7 @@ trait HasSetupColor
 
         $this->setColorVariables($component);
 
-        $this->smart([$this->color, 'color']);
+        $this->smart(['color', ...$colorPack->keys()]);
     }
 
     private function setColorVariables(array &$component): void

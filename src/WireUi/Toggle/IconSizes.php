@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 class IconSizes extends ComponentPack
 {
-    protected function default(): mixed
+    protected function default(): string
     {
-        return config('wireui.toggle.icon-size') ?? 'sm';
+        return 'sm';
     }
 
     public function all(): array

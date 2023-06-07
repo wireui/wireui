@@ -35,7 +35,7 @@ trait HasSetupSize
 
         $this->setSizeVariables($component);
 
-        $this->smart([$this->size, 'size']);
+        $this->smart(['size', ...$sizePack->keys()]);
     }
 
     private function setSizeVariables(array &$component): void
