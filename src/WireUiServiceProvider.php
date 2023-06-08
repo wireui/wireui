@@ -33,14 +33,14 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeComponents();
     }
 
-    protected function registerTagCompiler(): void
+    private function registerTagCompiler(): void
     {
         Blade::precompiler(static function (string $string): string {
             return app(WireUiTagCompiler::class)->compile($string);
         });
     }
 
-    protected function registerConfig(): void
+    private function registerConfig(): void
     {
         $this->loadRoutesFrom($this->srcDir('routes.php'));
 
@@ -66,7 +66,7 @@ class WireUiServiceProvider extends ServiceProvider
         );
     }
 
-    public function registerWireUI(): void
+    private function registerWireUI(): void
     {
         $this->app->singleton('WireUi', WireUi::class);
 
@@ -75,7 +75,7 @@ class WireUiServiceProvider extends ServiceProvider
         $loader->alias('WireUi', WireUi::class);
     }
 
-    protected function setupHeroiconsComponent(): void
+    private function setupHeroiconsComponent(): void
     {
         config()->set('wireui.heroicons.alias', 'heroicons');
     }
@@ -85,7 +85,7 @@ class WireUiServiceProvider extends ServiceProvider
         return __DIR__ . "/{$path}";
     }
 
-    protected function registerBladeComponents(): void
+    private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
             foreach (config('wireui.components') as $component) {

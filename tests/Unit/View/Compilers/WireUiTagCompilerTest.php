@@ -1,8 +1,9 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\View\Compilers;
 
 use Illuminate\Support\Facades\Blade;
+use Tests\Unit\TestCase;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\BladeDirectives;
 use WireUi\View\Compilers\WireUiTagCompiler;

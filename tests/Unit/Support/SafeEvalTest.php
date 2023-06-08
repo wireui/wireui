@@ -1,7 +1,8 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Support;
 
+use Tests\Unit\TestCase;
 use WireUi\Support\SafeEval;
 
 class SafeEvalTest extends TestCase

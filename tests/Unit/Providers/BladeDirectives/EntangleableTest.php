@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Support\BladeDirectives;
+namespace Tests\Unit\Providers\BladeDirectives;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\View\ComponentAttributeBag;
