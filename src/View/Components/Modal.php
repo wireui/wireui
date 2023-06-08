@@ -4,12 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupModal;
-use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth};
-use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths};
+use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
+use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
 class Modal extends BaseComponent
 {
     use HasSetupBlur;
+    use HasSetupType;
     use HasSetupAlign;
     use HasSetupModal;
     use HasSetupMaxWidth;
@@ -17,6 +18,7 @@ class Modal extends BaseComponent
     public function __construct()
     {
         $this->setBlurResolve(Blurs::class);
+        $this->setTypeResolve(Types::class);
         $this->setAlignResolve(Aligns::class);
         $this->setMaxWidthResolve(MaxWidths::class);
     }
@@ -24,9 +26,11 @@ class Modal extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
+            'soft-scrollbar' => $this->typeClasses['soft-scrollbar'] ?? false,
+            'hide-scrollbar' => $this->typeClasses['hide-scrollbar'] ?? false,
+            $this->spacing                                           ?? $this->typeClasses['spacing'],
+            $this->zIndex                                            ?? $this->typeClasses['z-index'],
             'fixed inset-0 overflow-y-auto',
-            $this->spacing,
-            $this->zIndex,
         ]);
     }
 

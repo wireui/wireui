@@ -38,7 +38,7 @@ trait HasSetupModal
             return $this->data->get('spacing');
         }
 
-        return config("wireui.{$this->config}.spacing", 'p-4');
+        return config("wireui.{$this->config}.spacing");
     }
 
     private function getZIndex(): mixed
@@ -51,7 +51,7 @@ trait HasSetupModal
             return $this->data->get('zIndex');
         }
 
-        return config("wireui.{$this->config}.z-index", 'z-50');
+        return config("wireui.{$this->config}.z-index");
     }
 
     private function setModalVariables(array &$component): void

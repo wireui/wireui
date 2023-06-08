@@ -45,6 +45,6 @@ class BadgeMini extends BaseComponent
 
     public function getView(): string
     {
-        return 'wireui::components.badge';
+        return 'wireui::components.badge-mini';
     }
 }
