@@ -2,14 +2,27 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Support\{Arr, Str};
+use Illuminate\Support\{Arr, Collection, Str};
 use Illuminate\View\ComponentAttributeBag;
+use Livewire\WireDirective;
 use WireUi\View\Attribute;
 
 class Macros
 {
     public static function register(): void
     {
+        Collection::macro('putEnd', function (mixed $value): Collection {
+            /** @var Collection $this */
+            return $this->reject($value)->push($value);
+        });
+
+        Collection::macro('containsAll', function (array $values): bool {
+            return collect($values)->every(function ($value) {
+                /** @var Collection $this */
+                return $this->contains($value);
+            });
+        });
+
         Arr::macro('toRecursiveCssClasses', function ($classList): string {
             $classList = Arr::wrap($classList);
             $classes   = [];
@@ -25,10 +38,22 @@ class Macros
             return implode(' ', $classes);
         });
 
-        ComponentAttributeBag::macro('wireModifiers', function () {
+        ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
+            $attributes = collect($this->whereStartsWith($name)->getAttributes());
 
-            /** @var WireDirective $model */
+            if ($attributes->isEmpty()) {
+                return null;
+            }
+
+            return new Attribute($attributes->keys()->first(), $attributes->first());
+        });
+
+        ComponentAttributeBag::macro('wireModifiers', function () {
+            /**
+             * @var WireDirective $model
+             * @var ComponentAttributeBag $this
+             */
             $model = $this->wire('model');
 
             return [
@@ -39,20 +64,6 @@ class Macros
                     'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
                 ],
             ];
-        });
-
-        ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
-            /** @var ComponentAttributeBag $this */
-            $attributes = collect($this->whereStartsWith($name)->getAttributes());
-
-            if ($attributes->isEmpty()) {
-                return null;
-            }
-
-            return new Attribute(
-                directive: $attributes->keys()->first(),
-                expression: $attributes->first(),
-            );
         });
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Unit\WireUiServiceProvider;
+namespace Tests\Unit\Providers;
 
 use Illuminate\Config\Repository;
 use Illuminate\View\Compilers\BladeCompiler;
 use Tests\Unit\TestCase;
 use WireUi\View\Components\Input;
 
-class RegisterComponentsAsAliasTest extends TestCase
+class RegisterBladeComponentsTest extends TestCase
 {
     protected function getEnvironmentSetUp($app): void
     {
