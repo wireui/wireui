@@ -1,8 +1,14 @@
 <div {{ $attributes->class($getRootClasses()) }}>
     @if ($label)
-        <span class="{{ $getLabelClasses() }}">
-            {{ $label }}
-        </span>
+        @if ($checkSlot($label))
+            <div {{ $label->attributes->class($getLabelClasses()) }}>
+                {{ $label }}
+            </div>
+        @else
+            <span class="{{ $getLabelClasses() }}">
+                {{ $label }}
+            </span>
+        @endif
     @elseif ($src)
         <img
             src="{{ $src }}"

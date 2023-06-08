@@ -14,6 +14,16 @@ class Errors extends BaseComponent
         return $this->getErrorMessages($errors)->count();
     }
 
+    public function getArray(mixed $title, ViewErrorBag $errors): array
+    {
+        return $this->checkSlot($title) ? [
+            'color' => 'negative',
+        ] : [
+            'title' => $this->getTitle($errors),
+            'color' => 'negative',
+        ];
+    }
+
     public function getErrorMessages(ViewErrorBag $errors): Collection
     {
         $messages = $errors->getMessages();

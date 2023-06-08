@@ -23,6 +23,6 @@ trait HasSetupAvatar
     {
         $component['src'] = $this->src;
 
-        $component['label'] = $this->label;
+        $component['label'] ??= $this->label;
     }
 }

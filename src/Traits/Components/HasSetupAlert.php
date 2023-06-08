@@ -17,6 +17,6 @@ trait HasSetupAlert
 
     private function setAlertVariables(array &$component): void
     {
-        $component['title'] = $this->title;
+        $component['title'] ??= $this->title;
     }
 }

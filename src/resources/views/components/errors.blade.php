@@ -1,10 +1,14 @@
 @if ((bool) $count($errors))
-    <x-dynamic-component :component="WireUi::component('alert')"
-        {{ $attributes->merge([
-            'title' => $getTitle($errors),
-            'color' => 'negative',
-        ]) }}
+    <x-dynamic-component
+        :component="WireUi::component('alert')"
+        {{ $attributes->merge($getArray($title, $errors)) }}
     >
+        @if($checkSlot($title))
+            @slot('title', null, $title->attributes->getAttributes())
+                {{ $title }}
+            @endslot
+        @endif
+
         @isset($action)
             @slot('action', null, $action->attributes->getAttributes())
                 {{ $action }}

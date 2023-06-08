@@ -36,6 +36,6 @@ trait HasSetupErrors
     {
         $component['only'] = $this->only;
 
-        $component['title'] = $this->title;
+        $component['title'] ??= $this->title;
     }
 }
