@@ -8,13 +8,13 @@ trait HasSetupBadge
 
     public mixed $label = null;
 
-    protected function setupAlert(array &$component): void
+    protected function setupBadge(array &$component): void
     {
         $this->full = $this->getFull();
 
         $this->label = $this->data->get('label');
 
-        $this->setAlertVariables($component);
+        $this->setBadgeVariables($component);
 
         $this->smart(['full', 'label']);
     }
@@ -28,7 +28,7 @@ trait HasSetupBadge
         return (bool) (config("wireui.{$this->config}.full") ?? false);
     }
 
-    private function setAlertVariables(array &$component): void
+    private function setBadgeVariables(array &$component): void
     {
         $component['full'] = $this->full;
 

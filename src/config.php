@@ -181,9 +181,9 @@ return [
             'class' => Components\Dropdown\DropdownHeader::class,
             'alias' => 'dropdown.header',
         ],
-        'notifications' => [
-            'class' => Components\Notifications::class,
-            'alias' => 'notifications',
+        'notification' => [
+            'class' => Components\Notification::class,
+            'alias' => 'notification',
         ],
         'datetime-picker' => [
             'class' => Components\DatetimePicker::class,

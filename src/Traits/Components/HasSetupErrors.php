@@ -8,7 +8,7 @@ trait HasSetupErrors
 
     public mixed $title = null;
 
-    protected function setupAlert(array &$component): void
+    protected function setupErrors(array &$component): void
     {
         $this->title = $this->data->get('title');
 
@@ -16,7 +16,7 @@ trait HasSetupErrors
 
         $this->processOnly();
 
-        $this->setAlertVariables($component);
+        $this->setErrorsVariables($component);
 
         $this->smart(['title', 'only']);
     }
@@ -32,7 +32,7 @@ trait HasSetupErrors
         $this->only = collect($this->only);
     }
 
-    private function setAlertVariables(array &$component): void
+    private function setErrorsVariables(array &$component): void
     {
         $component['only'] = $this->only;
 

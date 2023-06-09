@@ -8,18 +8,18 @@ trait HasSetupAvatar
 
     public mixed $label = null;
 
-    protected function setupAlert(array &$component): void
+    protected function setupAvatar(array &$component): void
     {
         $this->src = $this->data->get('src');
 
         $this->label = $this->data->get('label');
 
-        $this->setAlertVariables($component);
+        $this->setAvatarVariables($component);
 
         $this->smart(['src', 'label']);
     }
 
-    private function setAlertVariables(array &$component): void
+    private function setAvatarVariables(array &$component): void
     {
         $component['src'] = $this->src;
 
