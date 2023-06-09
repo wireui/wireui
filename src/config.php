@@ -64,13 +64,13 @@ return [
     | The default card preferences
     |
     */
-    'card' => [
-        'padding'    => 'px-2 py-5 md:px-4',
-        'shadow'     => 'shadow-md',
-        'rounded'    => 'rounded-lg',
-        'color'      => 'bg-white dark:bg-secondary-800',
-        'borderless' => false,
-    ],
+    // 'card' => [
+    //     'padding'    => 'px-2 py-5 md:px-4',
+    //     'shadow'     => 'shadow-md',
+    //     'rounded'    => 'rounded-lg',
+    //     'color'      => 'bg-white dark:bg-secondary-800',
+    //     'borderless' => false,
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -154,11 +154,11 @@ return [
             'alias' => 'inputs.password',
         ],
         'badge' => [
-            'class' => Components\Badge::class,
+            'class' => Components\Badge\Base::class,
             'alias' => 'badge',
         ],
         'badge-mini' => [
-            'class' => Components\BadgeMini::class,
+            'class' => Components\Badge\Mini::class,
             'alias' => 'badge-mini',
         ],
         'button' => [

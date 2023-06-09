@@ -1,13 +1,19 @@
-<div {{ $attributes->class($getCardClasses()) }}>
+<div {{ $attributes->class($getRootClasses()) }}>
     @isset($header)
         <div {{ $header->attributes }}>
             {{ $header }}
         </div>
     @elseif($title)
         <div class="{{ $getHeaderClasses() }}">
-            <h3 class="{{ $getTitleClasses() }}">
-                {{ $title }}
-            </h3>
+            @if ($checkSlot($title))
+                <div {{ $title->attributes->class($getTitleClasses()) }}>
+                    {{ $title }}
+                </div>
+            @else
+                <h3 class="{{ $getTitleClasses() }}">
+                    {{ $title }}
+                </h3>
+            @endif
 
             @isset($action)
                 <div {{ $action->attributes }}>
@@ -17,7 +23,7 @@
         </div>
     @endisset
 
-    @if ($slot instanceof \Illuminate\View\ComponentSlot)
+    @if ($checkSlot($slot))
         <div {{ $slot->attributes->class($getMainClasses()) }}>
             {{ $slot }}
         </div>

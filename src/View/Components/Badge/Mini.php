@@ -1,14 +1,15 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\View\Components\Badge;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupBadge;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\View\Components\BaseComponent;
+use WireUi\WireUi\Badge\Sizes\Mini as MiniSize;
 use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
-use WireUi\WireUi\BadgeMini\Sizes;
 
-class BadgeMini extends BaseComponent
+class Mini extends BaseComponent
 {
     use HasSetupIcon;
     use HasSetupSize;
@@ -19,7 +20,7 @@ class BadgeMini extends BaseComponent
 
     public function __construct()
     {
-        $this->setSizeResolve(Sizes::class);
+        $this->setSizeResolve(MiniSize::class);
         $this->setRoundedResolve(Rounders::class);
         $this->setVariantResolve(Variants::class);
         $this->setIconSizeResolve(IconSizes::class);
@@ -45,6 +46,6 @@ class BadgeMini extends BaseComponent
 
     public function getView(): string
     {
-        return 'wireui::components.badge-mini';
+        return 'wireui::components.badge.mini';
     }
 }
