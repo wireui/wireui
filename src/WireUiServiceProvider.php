@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
-use WireUi\Providers\{BladeDirectives, Macros};
+use WireUi\Providers\{BladeDirectives, CustomMacros};
 use WireUi\View\Compilers\WireUiTagCompiler;
 
-/** @property Application $app */
+/**
+ * @property Application $app
+ */
 class WireUiServiceProvider extends ServiceProvider
 {
     public function register(): void
@@ -24,7 +26,7 @@ class WireUiServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Macros::register();
+        CustomMacros::register();
 
         BladeDirectives::register();
 

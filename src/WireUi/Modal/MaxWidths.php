@@ -6,11 +6,17 @@ use WireUi\Support\ComponentPack;
 
 class MaxWidths extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     protected function default(): string
     {
         return '2xl';
     }
 
+    /**
+     * Get the available options.
+     */
     public function all(): array
     {
         return [

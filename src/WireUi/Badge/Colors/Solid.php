@@ -11,6 +11,9 @@ class Solid extends ComponentPack
         return 'default';
     }
 
+    /**
+     * Get the available options.
+     */
     public function all(): array
     {
         return [

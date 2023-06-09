@@ -7,8 +7,11 @@ use Illuminate\View\ComponentAttributeBag;
 use Livewire\WireDirective;
 use WireUi\View\Attribute;
 
-class Macros
+class CustomMacros
 {
+    /**
+     * Register the Custom Macros.
+     */
     public static function register(): void
     {
         Collection::macro('putEnd', function (mixed $value): Collection {

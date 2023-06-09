@@ -16,6 +16,9 @@ use WireUi\Support\BladeDirectives;
  */
 class WireUiDirectives extends Facade
 {
+    /**
+     * Get Facade Accessor.
+     */
     protected static function getFacadeAccessor(): string
     {
         return BladeDirectives::class;

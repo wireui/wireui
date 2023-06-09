@@ -20,7 +20,6 @@ class Dialog extends BaseComponent
 
     public function __construct()
     {
-        $this->setConfig('modal');
         $this->setBlurResolve(Blurs::class);
         $this->setTypeResolve(Types::class);
         $this->setAlignResolve(Aligns::class);

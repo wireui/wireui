@@ -6,11 +6,17 @@ use WireUi\Support\ComponentPack;
 
 class Outline extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     protected function default(): string
     {
         return 'primary';
     }
 
+    /**
+     * Get the available options.
+     */
     public function all(): array
     {
         return [

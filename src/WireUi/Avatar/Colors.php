@@ -6,11 +6,17 @@ use WireUi\Support\ComponentPack;
 
 class Colors extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     protected function default(): string
     {
         return 'secondary';
     }
 
+    /**
+     * Get the available options.
+     */
     public function all(): array
     {
         return [

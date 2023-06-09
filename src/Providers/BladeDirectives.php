@@ -8,6 +8,9 @@ use WireUi\Facades\WireUiDirectives;
 
 class BladeDirectives
 {
+    /**
+     * Register the Blade Directives.
+     */
     public static function register(): void
     {
         Blade::directive('toJs', static function ($expression): string {

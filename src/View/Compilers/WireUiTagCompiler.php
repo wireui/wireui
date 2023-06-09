@@ -7,12 +7,18 @@ use WireUi\Facades\WireUiDirectives;
 
 class WireUiTagCompiler extends ComponentTagCompiler
 {
+    /**
+     * Compile WireUi tags within the given string.
+     */
     public function compile($value)
     {
         return $this->compileWireUiSelfClosingTags($value);
     }
 
-    protected function compileWireUiSelfClosingTags($value)
+    /**
+     * Compile the WireUi self-closing tags within the given string.
+     */
+    private function compileWireUiSelfClosingTags($value)
     {
         $pattern = '/<\s*wireui\:(scripts|styles)\s*\/?>/';
 

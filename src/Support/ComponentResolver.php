@@ -2,8 +2,14 @@
 
 namespace WireUi\Support;
 
+use Illuminate\Support\Collection;
+use WireUi\View\Components;
+
 class ComponentResolver
 {
+    /**
+     * Get the component alias from the name.
+     */
     public function resolve(string $name): string
     {
         $components = config('wireui.components');
@@ -11,6 +17,9 @@ class ComponentResolver
         return $components[$name]['alias'];
     }
 
+    /**
+     * Get the component class from the name.
+     */
     public function resolveClass(string $name): string
     {
         $components = config('wireui.components');
@@ -18,10 +27,162 @@ class ComponentResolver
         return $components[$name]['class'];
     }
 
+    /**
+     * Get the component alias from the name.
+     */
     public function resolveByAlias(string $name): string
     {
         $components = config('wireui.components');
 
         return collect($components)->search(fn ($component) => $component['alias'] === $name);
+    }
+
+    /**
+     * Get default components.
+     */
+    public function defaultComponents(): Collection
+    {
+        return collect([
+            'alert' => [
+                'class' => Components\Alert::class,
+                'alias' => 'alert',
+            ],
+            'avatar' => [
+                'class' => Components\Avatar::class,
+                'alias' => 'avatar',
+            ],
+            'badge' => [
+                'class' => Components\Badge\Base::class,
+                'alias' => 'badge',
+            ],
+            'badge-mini' => [
+                'class' => Components\Badge\Mini::class,
+                'alias' => 'badge-mini',
+            ],
+            'button' => [
+                'class' => Components\Button::class,
+                'alias' => 'button',
+            ],
+            'button-mini' => [
+                'class' => Components\Buttons\Mini::class,
+                'alias' => 'button-mini',
+            ],
+            'card' => [
+                'class' => Components\Card::class,
+                'alias' => 'card',
+            ],
+            'checkbox' => [
+                'class' => Components\Checkbox::class,
+                'alias' => 'checkbox',
+            ],
+            'color-picker' => [
+                'class' => Components\ColorPicker::class,
+                'alias' => 'color-picker',
+            ],
+            'datetime-picker' => [
+                'class' => Components\DatetimePicker::class,
+                'alias' => 'datetime-picker',
+            ],
+            'dialog' => [
+                'class' => Components\Dialog::class,
+                'alias' => 'dialog',
+            ],
+            'dropdown' => [
+                'class' => Components\Dropdown::class,
+                'alias' => 'dropdown',
+            ],
+            'dropdown-item' => [
+                'class' => Components\Dropdown\DropdownItem::class,
+                'alias' => 'dropdown-item',
+            ],
+            'dropdown-header' => [
+                'class' => Components\Dropdown\DropdownHeader::class,
+                'alias' => 'dropdown-header',
+            ],
+            'error' => [
+                'class' => Components\Error::class,
+                'alias' => 'error',
+            ],
+            'errors' => [
+                'class' => Components\Errors::class,
+                'alias' => 'errors',
+            ],
+            'icon' => [
+                'class' => Components\Icon::class,
+                'alias' => 'icon',
+            ],
+            'input' => [
+                'class' => Components\Input::class,
+                'alias' => 'input',
+            ],
+            'input-currency' => [
+                'class' => Components\Inputs\CurrencyInput::class,
+                'alias' => 'input-currency',
+            ],
+            'input-maskable' => [
+                'class' => Components\Inputs\MaskableInput::class,
+                'alias' => 'input-maskable',
+            ],
+            'input-number' => [
+                'class' => Components\Inputs\NumberInput::class,
+                'alias' => 'input-number',
+            ],
+            'input-password' => [
+                'class' => Components\Inputs\PasswordInput::class,
+                'alias' => 'input-password',
+            ],
+            'input-phone' => [
+                'class' => Components\Inputs\PhoneInput::class,
+                'alias' => 'input-phone',
+            ],
+            'label' => [
+                'class' => Components\Label::class,
+                'alias' => 'label',
+            ],
+            'modal' => [
+                'class' => Components\Modal::class,
+                'alias' => 'modal',
+            ],
+            'modal-card' => [
+                'class' => Components\ModalCard::class,
+                'alias' => 'modal-card',
+            ],
+            'native-select' => [
+                'class' => Components\NativeSelect::class,
+                'alias' => 'native-select',
+            ],
+            'notification' => [
+                'class' => Components\Notification::class,
+                'alias' => 'notification',
+            ],
+            'radio' => [
+                'class' => Components\Radio::class,
+                'alias' => 'radio',
+            ],
+            'select' => [
+                'class' => Components\Select::class,
+                'alias' => 'select',
+            ],
+            'select-option' => [
+                'class' => Components\Select\Option::class,
+                'alias' => 'select-option',
+            ],
+            'select-user-option' => [
+                'class' => Components\Select\UserOption::class,
+                'alias' => 'select-user-option',
+            ],
+            'textarea' => [
+                'class' => Components\Textarea::class,
+                'alias' => 'textarea',
+            ],
+            'time-picker' => [
+                'class' => Components\TimePicker::class,
+                'alias' => 'time-picker',
+            ],
+            'toggle' => [
+                'class' => Components\Toggle::class,
+                'alias' => 'toggle',
+            ],
+        ]);
     }
 }
