@@ -139,6 +139,10 @@ class ComponentResolver
                 'class' => Components\Label::class,
                 'alias' => 'label',
             ],
+            'link' => [
+                'class' => Components\Link::class,
+                'alias' => 'link',
+            ],
             'modal' => [
                 'class' => Components\Modal::class,
                 'alias' => 'modal',

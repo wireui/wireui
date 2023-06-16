@@ -6,9 +6,12 @@ use WireUi\Support\ComponentPack;
 
 class Flat extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -17,7 +20,7 @@ class Flat extends ComponentPack
     public function all(): array
     {
         return [
-            'default'   => 'text-slate-500 bg-slate-100 dark:text-slate-400 dark:bg-slate-700',
+            'base'      => 'text-slate-500 bg-slate-100 dark:text-slate-400 dark:bg-slate-700',
             'primary'   => 'text-primary-600 bg-primary-100 dark:bg-slate-700',
             'secondary' => 'text-secondary-600 bg-secondary-100 dark:text-secondary-400 dark:bg-slate-700',
             'positive'  => 'text-positive-600 bg-positive-100 dark:bg-slate-700',

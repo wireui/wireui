@@ -54,7 +54,7 @@ class Alert extends BaseComponent
     {
         return Arr::toCssClasses([
             'font-semibold' => $slot->isNotEmpty(),
-            'font-normal' => $slot->isEmpty(),
+            'font-normal'   => $slot->isEmpty(),
             $this->colorClasses['textColor'],
             'text-sm whitespace-normal',
         ]);

@@ -6,9 +6,12 @@ use WireUi\Support\ComponentPack;
 
 class Solid extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -17,7 +20,7 @@ class Solid extends ComponentPack
     public function all(): array
     {
         return [
-            'default'   => 'text-slate-500 border dark:text-slate-400 dark:border-slate-500',
+            'base'      => 'text-slate-500 border dark:text-slate-400 dark:border-slate-500',
             'primary'   => 'text-white bg-primary-500 dark:bg-primary-700',
             'secondary' => 'text-white bg-secondary-500 dark:bg-secondary-700',
             'positive'  => 'text-white bg-positive-500 dark:bg-positive-700',

@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCard;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
-use WireUi\WireUi\Cards\{Colors, Paddings, Rounders, Shadows};
+use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
 
 class Card extends BaseComponent
 {

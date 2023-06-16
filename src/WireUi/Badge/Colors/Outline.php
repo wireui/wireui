@@ -6,9 +6,12 @@ use WireUi\Support\ComponentPack;
 
 class Outline extends ComponentPack
 {
+    /**
+     * Get the default option.
+     */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -17,7 +20,7 @@ class Outline extends ComponentPack
     public function all(): array
     {
         return [
-            'default'   => 'text-slate-500 border dark:text-slate-400 dark:border-slate-500',
+            'base'      => 'text-slate-500 border dark:text-slate-400 dark:border-slate-500',
             'primary'   => 'text-primary-500 border border-primary-500',
             'secondary' => 'text-secondary-600 border border-secondary-600 dark:text-secondary-400 dark:border-secondary-400',
             'positive'  => 'text-positive-500 border border-positive-500',
