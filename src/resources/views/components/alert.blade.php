@@ -15,11 +15,11 @@
                 @endif
 
                 @if ($checkSlot($title))
-                    <div {{ $title->attributes->class($getTitleClasses()) }}>
+                    <div {{ $title->attributes->class($getTitleClasses($slot)) }}>
                         {{ $title }}
                     </div>
                 @else
-                    <h3 class="{{ $getTitleClasses() }}">
+                    <h3 class="{{ $getTitleClasses($slot) }}">
                         {{ $title }}
                     </h3>
                 @endif

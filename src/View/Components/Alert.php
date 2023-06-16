@@ -50,11 +50,13 @@ class Alert extends BaseComponent
         ]);
     }
 
-    public function getTitleClasses(): string
+    public function getTitleClasses(mixed $slot): string
     {
         return Arr::toCssClasses([
-            'font-semibold text-sm whitespace-normal',
+            'font-semibold' => $slot->isNotEmpty(),
+            'font-normal' => $slot->isEmpty(),
             $this->colorClasses['textColor'],
+            'text-sm whitespace-normal',
         ]);
     }
 

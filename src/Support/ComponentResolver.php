@@ -63,9 +63,9 @@ class ComponentResolver
                 'class' => Components\Button::class,
                 'alias' => 'button',
             ],
-            'button-mini' => [
+            'buttons.mini' => [
                 'class' => Components\Buttons\Mini::class,
-                'alias' => 'button-mini',
+                'alias' => 'buttons.mini',
             ],
             'card' => [
                 'class' => Components\Card::class,
@@ -91,13 +91,13 @@ class ComponentResolver
                 'class' => Components\Dropdown::class,
                 'alias' => 'dropdown',
             ],
-            'dropdown-item' => [
+            'dropdown.item' => [
                 'class' => Components\Dropdown\DropdownItem::class,
-                'alias' => 'dropdown-item',
+                'alias' => 'dropdown.item',
             ],
-            'dropdown-header' => [
+            'dropdown.header' => [
                 'class' => Components\Dropdown\DropdownHeader::class,
-                'alias' => 'dropdown-header',
+                'alias' => 'dropdown.header',
             ],
             'error' => [
                 'class' => Components\Error::class,
@@ -115,25 +115,25 @@ class ComponentResolver
                 'class' => Components\Input::class,
                 'alias' => 'input',
             ],
-            'input-currency' => [
+            'inputs.currency' => [
                 'class' => Components\Inputs\CurrencyInput::class,
-                'alias' => 'input-currency',
+                'alias' => 'inputs.currency',
             ],
-            'input-maskable' => [
+            'inputs.maskable' => [
                 'class' => Components\Inputs\MaskableInput::class,
-                'alias' => 'input-maskable',
+                'alias' => 'inputs.maskable',
             ],
-            'input-number' => [
+            'inputs.number' => [
                 'class' => Components\Inputs\NumberInput::class,
-                'alias' => 'input-number',
+                'alias' => 'inputs.number',
             ],
-            'input-password' => [
+            'inputs.password' => [
                 'class' => Components\Inputs\PasswordInput::class,
-                'alias' => 'input-password',
+                'alias' => 'inputs.password',
             ],
-            'input-phone' => [
+            'inputs.phone' => [
                 'class' => Components\Inputs\PhoneInput::class,
-                'alias' => 'input-phone',
+                'alias' => 'inputs.phone',
             ],
             'label' => [
                 'class' => Components\Label::class,
@@ -143,17 +143,17 @@ class ComponentResolver
                 'class' => Components\Modal::class,
                 'alias' => 'modal',
             ],
-            'modal-card' => [
+            'modal.card' => [
                 'class' => Components\ModalCard::class,
-                'alias' => 'modal-card',
+                'alias' => 'modal.card',
             ],
             'native-select' => [
                 'class' => Components\NativeSelect::class,
                 'alias' => 'native-select',
             ],
-            'notification' => [
+            'notifications' => [
                 'class' => Components\Notification::class,
-                'alias' => 'notification',
+                'alias' => 'notifications',
             ],
             'radio' => [
                 'class' => Components\Radio::class,
@@ -163,13 +163,13 @@ class ComponentResolver
                 'class' => Components\Select::class,
                 'alias' => 'select',
             ],
-            'select-option' => [
+            'select.option' => [
                 'class' => Components\Select\Option::class,
-                'alias' => 'select-option',
+                'alias' => 'select.option',
             ],
-            'select-user-option' => [
+            'select.user-option' => [
                 'class' => Components\Select\UserOption::class,
-                'alias' => 'select-user-option',
+                'alias' => 'select.user-option',
             ],
             'textarea' => [
                 'class' => Components\Textarea::class,
