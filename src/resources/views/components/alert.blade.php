@@ -14,7 +14,7 @@
                     />
                 @endif
 
-                @if ($checkSlot($title))
+                @if (check_slot($title))
                     <div {{ $title->attributes->class($getTitleClasses($slot)) }}>
                         {{ $title }}
                     </div>
@@ -34,7 +34,7 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        @if ($checkSlot($slot))
+        @if (check_slot($slot))
             <div {{ $slot->attributes->class($getMainClasses()) }}>
                 {{ $slot }}
             </div>

@@ -5,7 +5,7 @@
         </div>
     @elseif($title)
         <div class="{{ $getHeaderClasses() }}">
-            @if ($checkSlot($title))
+            @if (check_slot($title))
                 <div {{ $title->attributes->class($getTitleClasses()) }}>
                     {{ $title }}
                 </div>
@@ -23,7 +23,7 @@
         </div>
     @endisset
 
-    @if ($checkSlot($slot))
+    @if (check_slot($slot))
         <div {{ $slot->attributes->class($getMainClasses()) }}>
             {{ $slot }}
         </div>

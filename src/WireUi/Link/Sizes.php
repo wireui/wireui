@@ -11,7 +11,7 @@ class Sizes extends ComponentPack
      */
     protected function default(): string
     {
-        return 'sm';
+        return 'md';
     }
 
     /**

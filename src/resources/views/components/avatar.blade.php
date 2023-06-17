@@ -1,6 +1,6 @@
 <div {{ $attributes->class($getRootClasses()) }}>
     @if ($label)
-        @if ($checkSlot($label))
+        @if (check_slot($label))
             <div {{ $label->attributes->class($getLabelClasses()) }}>
                 {{ $label }}
             </div>

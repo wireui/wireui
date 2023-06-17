@@ -3,7 +3,7 @@
         :component="WireUi::component('alert')"
         {{ $attributes->merge($getArray($title, $errors)) }}
     >
-        @if($checkSlot($title))
+        @if(check_slot($title))
             @slot('title', null, $title->attributes->getAttributes())
                 {{ $title }}
             @endslot
