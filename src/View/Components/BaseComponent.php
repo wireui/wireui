@@ -10,12 +10,18 @@ use WireUi\Facades\WireUi;
 abstract class BaseComponent extends Component
 {
     /**
-     * Attributes locked.
+     * Config name.
      */
     protected ?string $config = null;
 
+    /**
+     * Smart attributes to be removed from the attributes bag.
+     */
     private array $smartAttributes = [];
 
+    /**
+     * Component attributes.
+     */
     protected ComponentAttributeBag $data;
 
     /**
@@ -31,6 +37,9 @@ abstract class BaseComponent extends Component
      */
     abstract protected function getView(): string;
 
+    /**
+     * Render the component.
+     */
     public function render(): Closure
     {
         return function (array $data) {
@@ -54,6 +63,9 @@ abstract class BaseComponent extends Component
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
     }
 
+    /**
+     * Get all methods to setup the component.
+     */
     private function getMethods(): array
     {
         $methods = collect(get_class_methods($this))->filter(
@@ -72,7 +84,7 @@ abstract class BaseComponent extends Component
     }
 
     /**
-     * Auxiliary methods.
+     * Add smart attributes to be removed from the attributes bag.
      */
     protected function smart(mixed $attributes): void
     {
@@ -81,6 +93,9 @@ abstract class BaseComponent extends Component
         );
     }
 
+    /**
+     * Get the first attribute that matches the given keys.
+     */
     protected function getMatchModifier(array $keys): ?string
     {
         return array_key_first($this->attributes->only($keys)->getAttributes());
