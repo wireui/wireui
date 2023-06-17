@@ -156,7 +156,7 @@ class ComponentResolver
                 'alias' => 'native-select',
             ],
             'notifications' => [
-                'class' => Components\Notification::class,
+                'class' => Components\Notifications::class,
                 'alias' => 'notifications',
             ],
             'radio' => [

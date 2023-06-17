@@ -8,7 +8,7 @@ use WireUi\Traits\Components\HasSetupNotification;
 use WireUi\Traits\Customization\HasSetupPosition;
 use WireUi\WireUi\Notification\Positions;
 
-class Notification extends BaseComponent
+class Notifications extends BaseComponent
 {
     use HasSetupPosition;
     use HasSetupNotification;
