@@ -1,4 +1,4 @@
-<div {{ $attributes>except('alt')->class($avatarClasses) }}>
+<div {{ $attributes->except('alt')->class($avatarClasses) }}>
     @if ($label)
         <span class="font-medium text-white dark:text-gray-200">
             {{ $label }}
