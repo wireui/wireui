@@ -4,14 +4,14 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupNotification;
+use WireUi\Traits\Components\HasSetupNotifications;
 use WireUi\Traits\Customization\HasSetupPosition;
 use WireUi\WireUi\Notification\Positions;
 
 class Notifications extends BaseComponent
 {
     use HasSetupPosition;
-    use HasSetupNotification;
+    use HasSetupNotifications;
 
     public function __construct()
     {

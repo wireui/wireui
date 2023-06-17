@@ -2,7 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupNotification
+trait HasSetupNotifications
 {
     public mixed $zIndex = null;
 
