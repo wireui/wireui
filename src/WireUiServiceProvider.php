@@ -15,6 +15,9 @@ use WireUi\View\Compilers\WireUiTagCompiler;
  */
 class WireUiServiceProvider extends ServiceProvider
 {
+    /**
+     * Register any application services.
+     */
     public function register(): void
     {
         $this->registerConfig();
@@ -24,6 +27,9 @@ class WireUiServiceProvider extends ServiceProvider
         $this->setupHeroiconsComponent();
     }
 
+    /**
+     * Bootstrap any application services.
+     */
     public function boot(): void
     {
         CustomMacros::register();
@@ -35,6 +41,9 @@ class WireUiServiceProvider extends ServiceProvider
         $this->registerBladeComponents();
     }
 
+    /**
+     * Register WireUi Tag Compiler.
+     */
     private function registerTagCompiler(): void
     {
         Blade::precompiler(static function (string $string): string {
@@ -42,6 +51,9 @@ class WireUiServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Register WireUi Config, Lang, Views and Routes.
+     */
     private function registerConfig(): void
     {
         $this->loadRoutesFrom($this->srcDir('routes.php'));
@@ -68,6 +80,9 @@ class WireUiServiceProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Register WireUi Facade.
+     */
     private function registerWireUI(): void
     {
         $this->app->singleton('WireUi', WireUi::class);
@@ -77,16 +92,25 @@ class WireUiServiceProvider extends ServiceProvider
         $loader->alias('WireUi', WireUi::class);
     }
 
+    /**
+     * Setup Heroicons Component.
+     */
     private function setupHeroiconsComponent(): void
     {
         config()->set('wireui.heroicons.alias', 'heroicons');
     }
 
+    /**
+     * Get the path to the src directory.
+     */
     private function srcDir(string $path): string
     {
         return __DIR__ . "/{$path}";
     }
 
+    /**
+     * Register Blade Components.
+     */
     private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
