@@ -26,10 +26,10 @@ class Modal extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            'soft-scrollbar' => $this->typeClasses['soft-scrollbar'] ?? false,
-            'hide-scrollbar' => $this->typeClasses['hide-scrollbar'] ?? false,
-            $this->spacing                                           ?? $this->typeClasses['spacing'],
-            $this->zIndex                                            ?? $this->typeClasses['z-index'],
+            'soft-scrollbar' => data_get($this->typeClasses, 'soft-scrollbar', false),
+            'hide-scrollbar' => data_get($this->typeClasses, 'hide-scrollbar', false),
+            $this->spacing ?? data_get($this->typeClasses, 'spacing', 'p-4'),
+            $this->zIndex  ?? data_get($this->typeClasses, 'z-index', 'z-50'),
             'fixed inset-0 overflow-y-auto',
         ]);
     }

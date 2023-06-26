@@ -26,8 +26,8 @@ class Card extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
+            data_get($this->colorClasses, 'root', 'bg-white dark:bg-secondary-800'),
             $this->shadowClasses => !$this->shadowless,
-            $this->colorClasses['root'],
             $this->roundedClasses,
         ]);
     }
@@ -35,7 +35,7 @@ class Card extends BaseComponent
     public function getHeaderClasses(): string
     {
         $border = Arr::toCssClasses([
-            $this->colorClasses['border'],
+            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-600'),
             'border-b',
         ]);
 
@@ -48,15 +48,15 @@ class Card extends BaseComponent
     public function getTitleClasses(): string
     {
         return Arr::toCssClasses([
+            data_get($this->colorClasses, 'text', 'text-secondary-700 dark:text-secondary-400'),
             'font-medium text-base whitespace-normal',
-            $this->colorClasses['text'],
         ]);
     }
 
     public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            $this->colorClasses['text'],
+            data_get($this->colorClasses, 'text', 'text-secondary-700 dark:text-secondary-400'),
             $this->paddingClasses,
             'grow',
         ]);
@@ -65,12 +65,12 @@ class Card extends BaseComponent
     public function getFooterClasses(): string
     {
         $border = Arr::toCssClasses([
-            $this->colorClasses['border'],
+            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-600'),
             'border-t',
         ]);
 
         return Arr::toCssClasses([
-            $this->colorClasses['footer'],
+            data_get($this->colorClasses, 'footer', 'bg-secondary-50 dark:bg-secondary-800'),
             $border => !$this->borderless,
             'px-4 py-4 sm:px-6',
         ]);
