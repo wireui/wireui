@@ -29,6 +29,7 @@ class Card extends BaseComponent
             data_get($this->colorClasses, 'root', 'bg-white dark:bg-secondary-800'),
             $this->shadowClasses => !$this->shadowless,
             $this->roundedClasses,
+            'overflow-hidden',
         ]);
     }
 

@@ -25,7 +25,7 @@ trait HasSetupNotifications
             return $this->data->get('zIndex');
         }
 
-        return config("wireui.{$this->config}.z-index");
+        return config("wireui.{$this->config}.z-index", 'z-50');
     }
 
     private function setNotificationVariables(array &$component): void

@@ -11,6 +11,7 @@
     x-on:keydown.tab.prevent="handleTab"
     x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
+    x-on:close-wireui-modal:{{ Str::kebab($name) }}.window="close"
     {{ $attributes
         ->whereDoesntStartWith('wire:model')
         ->whereStartsWith(['x-on:', '@', 'wire:']) }}

@@ -2,72 +2,62 @@
 
 namespace WireUi\Actions;
 
-class Notification extends Actionable
+use Livewire\Component;
+use WireUi\Enum\Actions;
+
+class Notification
 {
-    public function send(array $options): self
+    private Component $component;
+
+    public function __construct(Component $component)
+    {
+        $this->component = $component;
+    }
+
+    public function success(string $title, ?string $description = null): void
+    {
+        $this->simpleNotification(Actions::SUCCESS->value, $title, $description);
+    }
+
+    public function error(string $title, ?string $description = null): void
+    {
+        $this->simpleNotification(Actions::ERROR->value, $title, $description);
+    }
+
+    public function info(string $title, ?string $description = null): void
+    {
+        $this->simpleNotification(Actions::INFO->value, $title, $description);
+    }
+
+    public function warning(string $title, ?string $description = null): void
+    {
+        $this->simpleNotification(Actions::WARNING->value, $title, $description);
+    }
+
+    public function simpleNotification(string $icon, string $title, ?string $description = null): void
+    {
+        $this->send([
+            'icon'        => $icon,
+            'title'       => $title,
+            'description' => $description,
+        ]);
+    }
+
+    public function send(array $options): void
     {
         $this->component->dispatchBrowserEvent('wireui:notification', [
             'options'     => $options,
             'componentId' => $this->component->id,
         ]);
-
-        return $this;
     }
 
-    /**
-     * @deprecated version v1.3.0
-     * use the `send()` method instead
-     */
-    public function notify(array $options): self
+    public function confirm(array $options): void
     {
-        return $this->send($options);
-    }
-
-    public function confirm(array $options): self
-    {
-        $options['icon'] ??= self::QUESTION;
+        $options['icon'] ??= Actions::QUESTION->value;
 
         $this->component->dispatchBrowserEvent('wireui:confirm-notification', [
             'options'     => $options,
             'componentId' => $this->component->id,
         ]);
-
-        return $this;
-    }
-
-    public function success(string $title, ?string $description = null): self
-    {
-        return $this->simpleNotification(self::SUCCESS, $title, $description);
-    }
-
-    public function error(string $title, ?string $description = null): self
-    {
-        return $this->simpleNotification(self::ERROR, $title, $description);
-    }
-
-    public function info(string $title, ?string $description = null): self
-    {
-        return $this->simpleNotification(self::INFO, $title, $description);
-    }
-
-    public function warning(string $title, ?string $description = null): self
-    {
-        return $this->simpleNotification(self::WARNING, $title, $description);
-    }
-
-    public function simpleNotification(
-        string $icon,
-        string $title,
-        ?string $description = null,
-    ): self {
-        $options = [
-            'icon'        => $icon,
-            'title'       => $title,
-            'description' => $description,
-        ];
-
-        $this->send($options);
-
-        return $this;
     }
 }

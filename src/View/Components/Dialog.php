@@ -2,9 +2,7 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Actions;
 use WireUi\Traits\Components\{HasSetupDialog, HasSetupModal};
 use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
 use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
@@ -26,62 +24,33 @@ class Dialog extends BaseComponent
         $this->setMaxWidthResolve(MaxWidths::class);
     }
 
-    // public string $dialog;
-
-    // public function __construct(
-    //     ?string $zIndex = null,
-    //     ?string $maxWidth = null,
-    //     ?string $spacing = null,
-    //     ?string $align = null,
-    //     ?string $id = null,
-    //     ?string $blur = null,
-
-    //     public ?string $title = null,
-    //     public ?string $description = null,
-    // ) {
-    //     parent::__construct(
-    //         name: '',
-    //         zIndex: $zIndex,
-    //         maxWidth: $maxWidth,
-    //         spacing: $spacing,
-    //         align: $align,
-    //         blur: $blur,
-    //     );
-
-    //     $this->dialog = Actions\Dialog::makeEventName($id);
-    // }
-
-    // public function render(): View
-    // {
-    //     return view('wireui::components.dialog');
-    // }
-
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
             'soft-scrollbar' => data_get($this->typeClasses, 'soft-scrollbar', false),
             'hide-scrollbar' => data_get($this->typeClasses, 'hide-scrollbar', false),
-            $this->spacing ?? data_get($this->typeClasses, 'spacing', 'p-4'),
-            $this->zIndex  ?? data_get($this->typeClasses, 'z-index', 'z-50'),
-            'fixed inset-0 overflow-y-auto',
+            $this->zIndex ?? data_get($this->typeClasses, 'z-index', 'z-50'),
+            'fixed inset-0 flex overflow-y-auto sm:pt-16 justify-center',
+            $this->alignClasses,
         ]);
     }
 
     public function getBackdropClasses(): string
     {
         return Arr::toCssClasses([
-            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
-            'dark:bg-opacity-60 transform transition-opacity',
+            'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
+            'dark:bg-secondary-700 dark:bg-opacity-60',
             $this->blurClasses => !$this->blurless,
+            "{$this->dialog}-backdrop",
         ]);
     }
 
     public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            'w-full min-h-full transform flex items-end justify-center mx-auto',
+            $this->spacing ?? data_get($this->typeClasses, 'spacing', 'p-4'),
+            'w-full transition-all',
             $this->maxWidthClasses,
-            $this->alignClasses,
         ]);
     }
 
