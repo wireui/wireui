@@ -271,5 +271,9 @@ return [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
+        'gravatar' => [
+            'class' => Components\Gravatar::class,
+            'alias' => 'gravatar',
+        ],
     ],
 ];

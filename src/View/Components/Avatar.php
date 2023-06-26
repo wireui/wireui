@@ -52,7 +52,7 @@ class Avatar extends Component
         ]);
     }
 
-    private function shouldUseDefault(): bool
+    protected function shouldUseDefault(): bool
     {
         return !$this->xs && !$this->sm && !$this->lg && !$this->xl;
     }
