@@ -275,9 +275,13 @@ return [
             'class' => Components\Gravatar::class,
             'alias' => 'gravatar',
         ],
-
+        'divider' => [
+            'class' => Components\Divider::class,
+            'alias' => 'divider',
+        ],
         'label.date' => [
             'class' => Components\LabelDate::class,
             'alias' => 'label.date',
-        ],    ],
+        ],
+    ],
 ];
