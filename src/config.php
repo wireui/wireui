@@ -275,5 +275,9 @@ return [
             'class' => Components\Gravatar::class,
             'alias' => 'gravatar',
         ],
-    ],
+
+        'label.date' => [
+            'class' => Components\LabelDate::class,
+            'alias' => 'label.date',
+        ],    ],
 ];
