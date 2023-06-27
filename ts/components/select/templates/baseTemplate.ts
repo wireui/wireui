@@ -6,9 +6,9 @@ export default (slot: string) => `
     :class="{
         'cursor-pointer focus:bg-primary-100 focus:text-primary-800 hover:text-white dark:focus:bg-secondary-700': !option.readonly,
         'opacity-60 cursor-not-allowed': option.disabled,
-        'font-semibold': option.isSelected,
-        'hover:bg-negative-500 dark:hover:text-secondary-100': config.clearable && !option.readonly && option.isSelected,
-        'hover:bg-primary-500 dark:hover:bg-secondary-700': !config.clearable || !option.readonly && !option.isSelected,
+        'font-semibold': selectedOptions.includes(option) || option.isSelected || selected === option,
+        'hover:bg-negative-500 dark:hover:text-secondary-100': config.clearable && !option.readonly && (selectedOptions.includes(option) || option.isSelected || selected === option),
+        'hover:bg-primary-500 dark:hover:bg-secondary-700': !config.clearable || !option.readonly && !(selectedOptions.includes(option) || option.isSelected || selected === option),
     }"
     :tabindex="!option.readonly && '0'"
     x-on:click="!option.readonly && select(option)"
@@ -16,7 +16,7 @@ export default (slot: string) => `
     select-option>
     ${slot}
 
-    <template x-if="option.isSelected">
+    <template x-if="selectedOptions.includes(option) || option.isSelected || selected === option">
         <div class="flex-shrink-0">
             <svg class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white"
                 xmlns="http://www.w3.org/2000/svg"
