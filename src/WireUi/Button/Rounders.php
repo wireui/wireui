@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Alert;
+namespace WireUi\WireUi\Button;
 
 use WireUi\Support\ComponentPack;
 
@@ -11,7 +11,7 @@ class Rounders extends ComponentPack
      */
     protected function default(): string
     {
-        return 'lg';
+        return 'base';
     }
 
     /**
@@ -27,7 +27,8 @@ class Rounders extends ComponentPack
             'lg'   => 'rounded-lg',
             'xl'   => 'rounded-xl',
             '2xl'  => 'rounded-2xl',
-            'full' => 'rounded-3xl',
+            '3xl'  => 'rounded-3xl',
+            'full' => 'rounded-full',
         ];
     }
 }

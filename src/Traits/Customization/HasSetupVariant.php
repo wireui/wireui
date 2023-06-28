@@ -29,9 +29,13 @@ trait HasSetupVariant
 
         $this->variant ??= config("wireui.{$this->config}.variant");
 
-        $variantClass = $variantPack->get($this->variant);
+        if (method_exists($this, 'setColorResolve')) {
+            $this->setColorResolve($variantPack->get($this->variant));
+        }
 
-        $this->setColorResolve($variantClass);
+        if (method_exists($this, 'setVariantPack')) {
+            $this->setVariantPack($variantPack);
+        }
 
         $this->setVariantVariables($component);
 

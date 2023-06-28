@@ -6,16 +6,34 @@ use Illuminate\Support\{Collection, Str};
 
 final class Attribute
 {
-    private readonly string $directive;
-
-    private readonly mixed $expression;
-
+    /**
+     * The attribute name.
+     */
     private readonly ?string $name;
 
+    /**
+     * The attribute value.
+     */
     private readonly ?string $value;
 
+    /**
+     * The attribute directive.
+     */
+    private readonly string $directive;
+
+    /**
+     * The attribute expression.
+     */
+    private readonly mixed $expression;
+
+    /**
+     * The attribute modifiers.
+     */
     private readonly Collection $modifiers;
 
+    /**
+     * Create a new attribute instance.
+     */
     public function __construct(string $directive, mixed $expression = null)
     {
         $this->directive  = $directive;
@@ -25,11 +43,65 @@ final class Attribute
         $this->modifiers  = $this->extractModifiers();
     }
 
+    /**
+     * Get the attribute name.
+     */
+    public function name(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Get the attribute value.
+     */
+    public function value(): ?string
+    {
+        return $this->value;
+    }
+
+    /**
+     * Get the attribute directive.
+     */
+    public function directive(): string
+    {
+        return $this->directive;
+    }
+
+    /**
+     * Get the attribute expression.
+     */
+    public function expression(): mixed
+    {
+        return $this->expression;
+    }
+
+    /**
+     * Get the attribute modifiers.
+     */
+    public function modifiers(): Collection
+    {
+        return $this->modifiers;
+    }
+
+    /**
+     * Check if the attribute has a modifier.
+     */
+    public function hasModifier(string $modifier): bool
+    {
+        return $this->modifiers()->contains($modifier);
+    }
+
+    /**
+     * Extract the attribute name.
+     */
     private function extractName(): ?string
     {
         return Str::of($this->directive)->before(':')->before('.');
     }
 
+    /**
+     * Extract the attribute value.
+     */
     private function extractValue(): ?string
     {
         if (!str_contains($this->directive, ':')) {
@@ -39,43 +111,11 @@ final class Attribute
         return Str::of($this->directive)->after(':')->before('.');
     }
 
+    /**
+     * Extract the attribute modifiers.
+     */
     private function extractModifiers(): Collection
     {
-        return Str::of($this->directive)
-            ->explode('.')
-            ->filter()
-            ->unique()
-            ->skip(1)
-            ->values();
-    }
-
-    public function hasModifier(string $modifier): bool
-    {
-        return $this->modifiers()->contains($modifier);
-    }
-
-    public function directive(): string
-    {
-        return $this->directive;
-    }
-
-    public function expression(): mixed
-    {
-        return $this->expression;
-    }
-
-    public function name(): ?string
-    {
-        return $this->name;
-    }
-
-    public function value(): ?string
-    {
-        return $this->value;
-    }
-
-    public function modifiers(): Collection
-    {
-        return $this->modifiers;
+        return Str::of($this->directive)->explode('.')->filter()->unique()->skip(1)->values();
     }
 }

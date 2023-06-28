@@ -60,12 +60,12 @@ class ComponentResolver
                 'alias' => 'badge-mini',
             ],
             'button' => [
-                'class' => Components\Button::class,
+                'class' => Components\Button\Base::class,
                 'alias' => 'button',
             ],
-            'buttons.mini' => [
-                'class' => Components\Buttons\Mini::class,
-                'alias' => 'buttons.mini',
+            'button-mini' => [
+                'class' => Components\Button\Mini::class,
+                'alias' => 'button-mini',
             ],
             'card' => [
                 'class' => Components\Card::class,

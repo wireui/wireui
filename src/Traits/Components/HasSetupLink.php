@@ -18,7 +18,7 @@ trait HasSetupLink
 
         $this->setLinkVariables($component);
 
-        $this->smart('label');
+        $this->smart(['tag', 'label']);
     }
 
     private function getTag(): string

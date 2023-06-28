@@ -22,7 +22,7 @@ trait HasSetupColor
     {
         throw_if(!$this->colorResolve, new Exception('You must define a color resolve.'));
 
-        $colors = config("wireui.{$this->config}.colors");
+        $colors = config($this->getColorConfigName());
 
         /** @var ComponentPack $colorPack */
         $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
@@ -33,9 +33,26 @@ trait HasSetupColor
 
         $this->colorClasses = $colorPack->get($this->color);
 
+        if (method_exists($this, 'setColorPack')) {
+            $this->setColorPack($colorPack);
+        }
+
         $this->setColorVariables($component);
 
         $this->smart(['color', ...$colorPack->keys()]);
+    }
+
+    private function getColorConfigName(string $variant = null): string
+    {
+        if ($variant) {
+            return "wireui.{$this->config}.colors.{$variant}";
+        }
+
+        if (property_exists($this, 'variant')) {
+            return "wireui.{$this->config}.colors.{$this->variant}";
+        }
+
+        return "wireui.{$this->config}.colors";
     }
 
     private function setColorVariables(array &$component): void

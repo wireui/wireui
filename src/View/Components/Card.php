@@ -29,7 +29,6 @@ class Card extends BaseComponent
             data_get($this->colorClasses, 'root', 'bg-white dark:bg-secondary-800'),
             $this->shadowClasses => !$this->shadowless,
             $this->roundedClasses,
-            'overflow-hidden',
         ]);
     }
 
@@ -72,8 +71,8 @@ class Card extends BaseComponent
 
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'footer', 'bg-secondary-50 dark:bg-secondary-800'),
+            'px-4 py-4 sm:px-6 bg-clip-content',
             $border => !$this->borderless,
-            'px-4 py-4 sm:px-6',
         ]);
     }
 

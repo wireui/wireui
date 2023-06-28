@@ -80,6 +80,10 @@ abstract class BaseComponent extends Component
             $methods = $methods->putEnd('setupColor');
         }
 
+        if ($methods->containsAll(['setupColor', 'setupStateColor'])) {
+            $methods = $methods->putEnd('setupStateColor');
+        }
+
         return $methods->values()->toArray();
     }
 

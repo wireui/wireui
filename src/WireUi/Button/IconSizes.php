@@ -1,16 +1,22 @@
 <?php
 
-namespace WireUi\Support\Buttons\Sizes\Mini;
+namespace WireUi\WireUi\Button;
 
-use WireUi\Support\Buttons\Sizes\SizePack;
+use WireUi\Support\ComponentPack;
 
-class Icon extends SizePack
+class IconSizes extends ComponentPack
 {
-    public function default(): string
+    /**
+     * Get the default option.
+     */
+    protected function default(): string
     {
-        return $this->get(config('wireui.button.size'));
+        return 'md';
     }
 
+    /**
+     * Get the available options.
+     */
     public function all(): array
     {
         return [
