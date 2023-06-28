@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAvatar;
-use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
 
 class Avatar extends BaseComponent
@@ -15,6 +15,7 @@ class Avatar extends BaseComponent
     use HasSetupAvatar;
     use HasSetupBorder;
     use HasSetupRounded;
+    use HasSetupIconSize;
 
     public function __construct()
     {
@@ -41,7 +42,7 @@ class Avatar extends BaseComponent
     public function getLabelClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->iconClasses, 'label', 'text-base'),
+            data_get($this->iconSizeClasses, 'label', 'text-base'),
             'font-medium text-white dark:text-gray-200',
         ]);
     }
@@ -58,7 +59,7 @@ class Avatar extends BaseComponent
     public function getIconClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->iconClasses, 'icon', 'w-7 h-7'),
+            data_get($this->iconSizeClasses, 'icon', 'w-7 h-7'),
             'text-white dark:text-gray-200 shrink-0',
         ]);
     }

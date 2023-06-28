@@ -2,7 +2,7 @@
 
     @dump($attributes, $size, $sizeClasses)
 
-    @dump($icon, $iconSize, $rightIcon, $iconClasses, $iconless)
+    @dump($icon, $rightIcon, $iconless)
 
     @dump($label, $leftLabel, $description)
 

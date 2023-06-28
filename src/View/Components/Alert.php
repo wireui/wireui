@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAlert;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
-use WireUi\WireUi\Alert\{IconSizes, Paddings, Rounders, Shadows, Variants};
+use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
 class Alert extends BaseComponent
 {
@@ -23,7 +23,6 @@ class Alert extends BaseComponent
         $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);
         $this->setVariantResolve(Variants::class);
-        $this->setIconSizeResolve(IconSizes::class);
     }
 
     public function getUseIcon(): mixed
@@ -64,7 +63,7 @@ class Alert extends BaseComponent
     {
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'iconColor', 'text-primary-800 dark:text-primary-200'),
-            $this->iconClasses,
+            'w-5 h-5 mr-3 shrink-0',
         ]);
     }
 

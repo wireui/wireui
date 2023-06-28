@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCheckbox;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Toggle\{Colors, IconSizes, Rounders, Sizes};
+use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
 
 class Toggle extends BaseComponent
 {
@@ -20,7 +20,6 @@ class Toggle extends BaseComponent
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setRoundedResolve(Rounders::class);
-        $this->setIconSizeResolve(IconSizes::class);
     }
 
     // public function backgroundClasses(bool $hasError): string

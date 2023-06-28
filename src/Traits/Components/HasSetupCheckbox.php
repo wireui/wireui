@@ -20,7 +20,7 @@ trait HasSetupCheckbox
 
         $this->setCheckboxVariables($component);
 
-        $this->smart(['label', 'leftLabel', 'description']);
+        $this->smart(['label', 'left-label', 'leftLabel', 'description']);
     }
 
     private function setCheckboxVariables(array &$component): void

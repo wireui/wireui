@@ -4,7 +4,7 @@ namespace WireUi\View\Components\Button;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupButton;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Button\Sizes\Mini as SizesMini;
 use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
@@ -18,6 +18,7 @@ class Mini extends BaseComponent
     use HasSetupRounded;
     use HasSetupSpinner;
     use HasSetupVariant;
+    use HasSetupIconSize;
     use HasSetupStateColor;
 
     public function __construct()
@@ -53,7 +54,7 @@ class Mini extends BaseComponent
     public function getIconClasses(): string
     {
         return Arr::toCssClasses([
-            $this->iconClasses,
+            $this->iconSizeClasses,
             'shrink-0',
         ]);
     }

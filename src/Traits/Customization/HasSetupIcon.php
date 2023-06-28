@@ -2,50 +2,25 @@
 
 namespace WireUi\Traits\Customization;
 
-use Exception;
-use WireUi\Support\ComponentPack;
-
 trait HasSetupIcon
 {
     public mixed $icon = null;
 
     public bool $iconless = false;
 
-    public mixed $iconSize = null;
-
     public mixed $rightIcon = null;
-
-    public mixed $iconClasses = null;
-
-    private mixed $iconResolve = null;
-
-    protected function setIconSizeResolve(string $class): void
-    {
-        $this->iconResolve = $class;
-    }
 
     protected function setupIcon(array &$component): void
     {
-        throw_if(!$this->iconResolve, new Exception('You must define a icon resolve.'));
-
-        $icons = config("wireui.{$this->config}.icon-sizes");
-
-        /** @var ComponentPack $iconPack */
-        $iconPack = $icons ? resolve($icons) : resolve($this->iconResolve);
-
         $this->icon = $this->getIcon();
 
         $this->iconless = $this->getIconless();
 
-        $this->iconSize = $this->getIconSize();
-
         $this->rightIcon = $this->getRightIcon();
-
-        $this->iconClasses = $iconPack->get($this->iconSize);
 
         $this->setIconVariables($component);
 
-        $this->smart(['icon', 'iconless', 'icon-size', 'iconSize', 'right-icon', 'rightIcon']);
+        $this->smart(['icon', 'iconless', 'right-icon', 'rightIcon']);
     }
 
     private function getIcon(): mixed
@@ -64,23 +39,6 @@ trait HasSetupIcon
         }
 
         return (bool) (config("wireui.{$this->config}.iconless") ?? false);
-    }
-
-    private function getIconSize(): mixed
-    {
-        if ($this->data->has('icon-size')) {
-            return $this->data->get('icon-size');
-        }
-
-        if ($this->data->has('iconSize')) {
-            return $this->data->get('iconSize');
-        }
-
-        if (property_exists($this, 'size')) {
-            return $this->size;
-        }
-
-        return config("wireui.{$this->config}.icon-size");
     }
 
     private function getRightIcon(): mixed
@@ -102,10 +60,6 @@ trait HasSetupIcon
 
         $component['iconless'] = $this->iconless;
 
-        $component['iconSize'] = $this->iconSize;
-
         $component['rightIcon'] = $this->rightIcon;
-
-        $component['iconClasses'] = $this->iconClasses;
     }
 }
