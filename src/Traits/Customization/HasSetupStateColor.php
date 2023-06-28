@@ -3,6 +3,7 @@
 namespace WireUi\Traits\Customization;
 
 use Exception;
+use Illuminate\Support\Arr;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
 
@@ -77,6 +78,10 @@ trait HasSetupStateColor
 
     private function setSetupColorVariables(array &$component): void
     {
+        $this->colorClasses = collect($this->colorClasses)->transform(function ($color) {
+            return Arr::toCssClasses($color);
+        })->toArray();
+
         $component['colorClasses'] = $this->colorClasses;
     }
 }

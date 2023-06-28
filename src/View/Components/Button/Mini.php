@@ -30,20 +30,20 @@ class Mini extends BaseComponent
 
     private function getDefaultClasses(): string
     {
-        return <<<EOT
-            outline-none inline-flex justify-center items-center group hover:shadow-sm
-            transition-all ease-in-out duration-200 focus:ring-2 focus:ring-offset-2
-            focus:ring-offset-background-white dark:focus:ring-offset-background-dark
-            disabled:opacity-80 disabled:cursor-not-allowed
-        EOT;
+        return Arr::toCssClasses([
+            'outline-none inline-flex justify-center items-center group hover:shadow-sm',
+            'transition-all ease-in-out duration-200 focus:ring-2 focus:ring-offset-2',
+            'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
+            'disabled:opacity-80 disabled:cursor-not-allowed',
+        ]);
     }
 
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            $this->colorClasses['base'],
-            $this->colorClasses['hover'],
-            $this->colorClasses['focus'],
+            data_get($this->colorClasses, 'base', ''),
+            data_get($this->colorClasses, 'hover', ''),
+            data_get($this->colorClasses, 'focus', ''),
             $this->getDefaultClasses(),
             $this->roundedClasses,
             $this->sizeClasses,

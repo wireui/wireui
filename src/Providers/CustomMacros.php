@@ -26,21 +26,6 @@ class CustomMacros
             });
         });
 
-        Arr::macro('toRecursiveCssClasses', function ($classList): string {
-            $classList = Arr::wrap($classList);
-            $classes   = [];
-
-            foreach ($classList as $class => $constraint) {
-                if (is_numeric($class)) {
-                    $classes[] = Arr::toCssClasses($constraint);
-                } elseif ($constraint) {
-                    $classes[] = $class;
-                }
-            }
-
-            return implode(' ', $classes);
-        });
-
         ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
             $attributes = collect($this->whereStartsWith($name)->getAttributes());

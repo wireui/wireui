@@ -130,12 +130,3 @@ it('should get the attribute with modifiers', function (string $attribute, array
     ['spinner.lazy..bar', ['lazy', 'bar']],
     ['spinner.lazy.foo.', ['lazy', 'foo']],
 ]);
-
-it('should parse recursive array to css class', function () {
-    expect(Arr::toRecursiveCssClasses([
-        'foo' => true,
-        'bar' => false,
-        'baz',
-        ['foo' => true, 'bar' => false, 'baz'],
-    ]))->toBe('foo baz foo baz');
-});
