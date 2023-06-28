@@ -16,11 +16,11 @@ class Errors extends BaseComponent
 
     public function getArray(mixed $title, ViewErrorBag $errors): array
     {
-        return $this->checkSlot($title) ? [
+        return check_slot($title) ? [
             'color' => 'negative',
         ] : [
-            'title' => $this->getTitle($errors),
             'color' => 'negative',
+            'title' => $this->getTitle($errors),
         ];
     }
 
