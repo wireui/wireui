@@ -6,10 +6,12 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait HasSetupSpinner
 {
-    public mixed $spinnerRemove = null;
+    public ?ComponentAttributeBag $spinnerRemove = null;
 
     protected function setupSpinner(array &$component): void
     {
+        $this->spinnerRemove = new ComponentAttributeBag();
+
         $this->setSpinnerVariables($component);
     }
 
@@ -32,13 +34,15 @@ trait HasSetupSpinner
 
         $loading = 'wire:loading.delay';
 
-        $this->spinnerRemove = 'wire:loading.remove';
+        $spinnerRemove = 'wire:loading.remove';
 
         if ($delay = $spinner->modifiers()->last()) {
             $loading .= ".{$delay}";
 
-            $this->spinnerRemove .= ".delay.{$delay}";
+            $spinnerRemove .= ".delay.{$delay}";
         }
+
+        $this->spinnerRemove->offsetSet($spinnerRemove, 'true');
 
         $attributes = new ComponentAttributeBag([$loading => 'true']);
 

@@ -3,7 +3,6 @@
 namespace WireUi\View\Components\Button;
 
 use Illuminate\Support\Arr;
-use Illuminate\View\ComponentAttributeBag;
 use WireUi\Traits\Components\HasSetupButton;
 use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
@@ -49,19 +48,6 @@ class Base extends BaseComponent
             'w-full' => $this->full,
             $this->roundedClasses,
             $this->sizeClasses,
-        ]);
-    }
-
-    public function getRightIconAttributes(): ComponentAttributeBag
-    {
-        $attributes = new ComponentAttributeBag();
-
-        $options = $this->spinnerRemove ? [$this->spinnerRemove => 'true'] : [];
-
-        return $attributes->merge([
-            ...$options,
-            'name' => $this->rightIcon,
-            'class' => $this->getIconClasses(),
         ]);
     }
 
