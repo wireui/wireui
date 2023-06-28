@@ -74,6 +74,8 @@ trait HasSetupStateColor
         foreach ($modifiers as $modifier) {
             $this->colorClasses[$modifier] = data_get($colorPack->get($modifierColor), $modifier);
         }
+
+        $this->smart($attribute->directive());
     }
 
     private function setSetupColorVariables(array &$component): void

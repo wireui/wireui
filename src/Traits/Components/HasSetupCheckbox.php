@@ -16,7 +16,7 @@ trait HasSetupCheckbox
 
         $this->description = $this->data->get('description');
 
-        $this->leftLabel = $this->data->get('leftLabel') ?? $this->data->get('left-label');
+        $this->leftLabel = $this->data->get('left-label') ?? $this->data->get('leftLabel');
 
         $this->setCheckboxVariables($component);
 

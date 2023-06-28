@@ -39,7 +39,7 @@ trait HasSetupVariant
 
         $this->setVariantVariables($component);
 
-        $this->smart('variant');
+        $this->smart(['variant', ...$variantPack->keys()]);
     }
 
     private function setVariantVariables(array &$component): void

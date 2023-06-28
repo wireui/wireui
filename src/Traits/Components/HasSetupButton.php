@@ -16,11 +16,11 @@ trait HasSetupButton
     {
         $this->tag = $this->getTag();
 
-        $this->full = $this->getFull();
-
         $this->label = $this->data->get('label');
 
         $this->loading = (bool) $this->data->get('loading');
+
+        $this->full = (bool) ($this->data->get('full') ?? false);
 
         $this->ensureLinkType();
 
@@ -34,15 +34,6 @@ trait HasSetupButton
     private function getTag(): string
     {
         return $this->data->missing('href') ? 'button' : 'a';
-    }
-
-    private function getFull(): bool
-    {
-        if ($this->data->has('full')) {
-            return (bool) $this->data->get('full');
-        }
-
-        return (bool) (config("wireui.{$this->config}.full") ?? false);
     }
 
     private function ensureLinkType(): void
