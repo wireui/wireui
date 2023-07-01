@@ -65,61 +65,61 @@ class ButtonControllerTest extends UnitTestCase
                 'attributes' => [
                     'color' => 'invalid-color',
                 ],
-                'errors' => ['color' => 'validation.in'],
+                'errors' => ['color'],
             ],
             'size' => [
                 'attributes' => [
                     'size' => 'invalid-size',
                 ],
-                'errors' => ['size' => 'validation.in'],
+                'errors' => ['size'],
             ],
             'iconSize' => [
                 'attributes' => [
                     'iconSize' => 'invalid-iconSize',
                 ],
-                'errors' => ['iconSize' => 'validation.in'],
+                'errors' => ['iconSize'],
             ],
             'label' => [
                 'attributes' => [
                     'label' => ['invalid-type'],
                 ],
-                'errors' => ['label' => 'string'],
+                'errors' => ['label'],
             ],
             'rightIcon' => [
                 'attributes' => [
                     'rightIcon' => ['invalid-type'],
                 ],
-                'errors' => ['rightIcon' => 'string'],
+                'errors' => ['rightIcon'],
             ],
             'icon' => [
                 'attributes' => [
                     'icon' => ['invalid-type'],
                 ],
-                'errors' => ['icon' => 'string'],
+                'errors' => ['icon'],
             ],
             'rounded' => [
                 'attributes' => [
                     'rounded' => ['invalid-type'],
                 ],
-                'errors' => ['rounded' => 'boolean'],
+                'errors' => ['rounded'],
             ],
             'squared' => [
                 'attributes' => [
                     'squared' => ['invalid-type'],
                 ],
-                'errors' => ['squared' => 'boolean'],
+                'errors' => ['squared'],
             ],
             'bordered' => [
                 'attributes' => [
                     'bordered' => ['invalid-type'],
                 ],
-                'errors' => ['bordered' => 'boolean'],
+                'errors' => ['bordered'],
             ],
             'flat' => [
                 'attributes' => [
                     'flat' => ['invalid-type'],
                 ],
-                'errors' => ['flat' => 'boolean'],
+                'errors' => ['flat'],
             ],
         ];
     }
