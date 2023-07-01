@@ -199,5 +199,9 @@ return [
             'class' => Components\Dialog::class,
             'alias' => 'dialog',
         ],
+        'trix' => [
+            'class' => Components\Trix::class,
+            'alias' => 'trix',
+        ],
     ],
 ];
