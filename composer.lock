@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "742b9fb62708907fd71ecbeb33604927",
+    "content-hash": "eb5cb73d2e08af227a4f9e2ae3079cad",
     "packages": [
         {
             "name": "brick/math",
@@ -1303,10 +1303,34 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "3.0.0",
+            "version": "v3.0.0-beta.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/livewire/livewire.git",
+                "reference": "19832b8687d8393b79666e850bfee6b5cc7d3c24"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://calebporzio-public.s3.amazonaws.com/next-main.zip"
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/19832b8687d8393b79666e850bfee6b5cc7d3c24",
+                "reference": "19832b8687d8393b79666e850bfee6b5cc7d3c24",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0|^10.0|^11.0",
+                "illuminate/support": "^9.0|^10.0|^11.0",
+                "illuminate/validation": "^9.0|^10.0|^11.0",
+                "league/mime-type-detection": "^1.9",
+                "php": "^8.1",
+                "symfony/http-kernel": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "calebporzio/sushi": "^2.1",
+                "laravel/framework": "^9.0|^10.0",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^7.0|^8.0",
+                "orchestra/testbench-dusk": "^7.0|^8.0",
+                "phpunit/phpunit": "^9.0",
+                "psy/psysh": "@stable"
             },
             "type": "library",
             "extra": {
@@ -1315,7 +1339,7 @@
                         "Livewire\\LivewireServiceProvider"
                     ],
                     "aliases": {
-                        "Livewire": "Livewire\\Livewire"
+                        "Livewire": "Livewire\\LivewireManager"
                     }
                 }
             },
@@ -1326,7 +1350,23 @@
                 "psr-4": {
                     "Livewire\\": "src/"
                 }
-            }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Caleb Porzio",
+                    "email": "calebporzio@gmail.com"
+                }
+            ],
+            "description": "A front-end framework for Laravel.",
+            "support": {
+                "issues": "https://github.com/livewire/livewire/issues",
+                "source": "https://github.com/livewire/livewire/tree/v3.0.0-beta.2"
+            },
+            "time": "2023-07-20T22:42:56+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6115,16 +6155,16 @@
         },
         {
             "name": "orchestra/dusk-updater",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/dusk-updater.git",
-                "reference": "439c3b3d0d7f26886c88d2433b6b14dfe91a3644"
+                "reference": "4cbcec60666d528da43b459b7d66e4c8272f3ff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/dusk-updater/zipball/439c3b3d0d7f26886c88d2433b6b14dfe91a3644",
-                "reference": "439c3b3d0d7f26886c88d2433b6b14dfe91a3644",
+                "url": "https://api.github.com/repos/orchestral/dusk-updater/zipball/4cbcec60666d528da43b459b7d66e4c8272f3ff1",
+                "reference": "4cbcec60666d528da43b459b7d66e4c8272f3ff1",
                 "shasum": ""
             },
             "require": {
@@ -6132,16 +6172,16 @@
                 "composer/semver": "^1.5 || ^3.0",
                 "ext-openssl": "*",
                 "ext-zip": "*",
-                "php": "^8.1",
+                "php": "^8.0",
                 "symfony/console": "^6.0",
                 "symfony/polyfill-ctype": "^1.9",
                 "symfony/process": "^6.0"
             },
             "require-dev": {
                 "laravel/dusk": "^7.6",
-                "laravel/pint": "^1.3",
-                "phpstan/phpstan": "^1.9.17",
-                "phpunit/phpunit": "^10.0.3"
+                "laravel/pint": "^1.4",
+                "phpstan/phpstan": "^1.10.7",
+                "phpunit/phpunit": "^9.6"
             },
             "bin": [
                 "dusk-updater"
@@ -6174,7 +6214,7 @@
             "description": "Updater for Laravel Dusk ChromeDriver binaries",
             "support": {
                 "issues": "https://github.com/orchestral/dusk-updater/issues",
-                "source": "https://github.com/orchestral/dusk-updater/tree/v2.0.1"
+                "source": "https://github.com/orchestral/dusk-updater/tree/v2.1.0"
             },
             "funding": [
                 {
@@ -6186,7 +6226,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2023-02-16T03:16:48+00:00"
+            "time": "2023-07-21T10:21:56+00:00"
         },
         {
             "name": "orchestra/testbench",
@@ -6392,16 +6432,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.9.1",
+            "version": "v2.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "9100913184cf8cc0877ec81f883451c421ad85de"
+                "reference": "cf5275293fe693ec2cf4dbadbadae01daaa08169"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/9100913184cf8cc0877ec81f883451c421ad85de",
-                "reference": "9100913184cf8cc0877ec81f883451c421ad85de",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/cf5275293fe693ec2cf4dbadbadae01daaa08169",
+                "reference": "cf5275293fe693ec2cf4dbadbadae01daaa08169",
                 "shasum": ""
             },
             "require": {
@@ -6477,7 +6517,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.9.1"
+                "source": "https://github.com/pestphp/pest/tree/v2.9.3"
             },
             "funding": [
                 {
@@ -6489,7 +6529,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-20T12:39:17+00:00"
+            "time": "2023-07-20T18:47:23+00:00"
         },
         {
             "name": "pestphp/pest-plugin",
@@ -9829,6 +9869,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "livewire/livewire": 10,
         "psy/psysh": 0
     },
     "prefer-stable": true,
