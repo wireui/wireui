@@ -15,7 +15,8 @@
             class="{{ $getImageClasses() }}"
         />
     @else
-        <x-icon
+        <x-dynamic-component
+            :component="WireUi::component('icon')"
             name="{{ $icon ?? 'user' }}"
             class="{{ $getIconClasses() }}"
             solid
