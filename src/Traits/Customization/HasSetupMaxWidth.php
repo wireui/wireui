@@ -20,7 +20,7 @@ trait HasSetupMaxWidth
 
     protected function setupMaxWidth(array &$component): void
     {
-        throw_if(!$this->maxWidthResolve, new Exception('You must define a max-width resolve.'));
+        throw_if(! $this->maxWidthResolve, new Exception('You must define a max-width resolve.'));
 
         $maxWidths = config("wireui.{$this->config}.max-widths");
 

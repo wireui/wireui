@@ -31,12 +31,12 @@ class Flat extends ComponentPack
     {
         return [
             'none' => [
-                'base'  => '',
+                'base' => '',
                 'hover' => '',
                 'focus' => '',
             ],
             'default' => [
-                'base'  => 'text-slate-500 dark:text-slate-400',
+                'base' => 'text-slate-500 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-600 hover:bg-slate-400",
                     'dark:hover:text-slate-300/90 dark:hover:bg-slate-600',
@@ -47,7 +47,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'primary' => [
-                'base'  => 'text-primary-600',
+                'base' => 'text-primary-600',
                 'hover' => [
                     "{$this->hover} hover:text-primary-700 hover:bg-primary-400",
                     'dark:hover:text-primary-500 dark:hover:bg-primary-600',
@@ -58,7 +58,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'secondary' => [
-                'base'  => 'text-secondary-600 dark:text-secondary-400',
+                'base' => 'text-secondary-600 dark:text-secondary-400',
                 'hover' => [
                     "{$this->hover} hover:text-secondary-700 hover:bg-secondary-400",
                     'dark:hover:text-secondary-300/90 dark:hover:bg-secondary-600',
@@ -69,7 +69,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'positive' => [
-                'base'  => 'text-positive-600 dark:text-positive-500/90',
+                'base' => 'text-positive-600 dark:text-positive-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-positive-700 hover:bg-positive-400",
                     'dark:hover:text-positive-500 dark:hover:bg-positive-600',
@@ -80,7 +80,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'negative' => [
-                'base'  => 'text-negative-600',
+                'base' => 'text-negative-600',
                 'hover' => [
                     "{$this->hover} hover:text-negative-700 hover:bg-negative-400",
                     'dark:hover:text-negative-500 dark:hover:bg-negative-600',
@@ -91,7 +91,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'warning' => [
-                'base'  => 'text-warning-600',
+                'base' => 'text-warning-600',
                 'hover' => [
                     "{$this->hover} hover:text-warning-700 hover:bg-warning-300",
                     'dark:hover:text-warning-500 dark:hover:bg-warning-600',
@@ -102,7 +102,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'info' => [
-                'base'  => 'text-info-600',
+                'base' => 'text-info-600',
                 'hover' => [
                     "{$this->hover} hover:text-info-700 hover:bg-info-400",
                     'dark:hover:text-info-500 dark:hover:bg-info-600',
@@ -113,7 +113,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'white' => [
-                'base'  => 'text-white dark:text-opacity-80',
+                'base' => 'text-white dark:text-opacity-80',
                 'hover' => [
                     "{$this->hover} hover:text-slate-100 hover:bg-slate-100",
                     'focus:ring-offset-background-dark',
@@ -125,7 +125,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'black' => [
-                'base'  => 'text-black',
+                'base' => 'text-black',
                 'hover' => [
                     "{$this->hover} hover:text-black hover:bg-black/10",
                     'dark:hover:text-black dark:hover:bg-black/20',
@@ -136,7 +136,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'slate' => [
-                'base'  => 'text-slate-600 dark:text-slate-400',
+                'base' => 'text-slate-600 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-700 hover:bg-slate-400",
                     'dark:hover:text-slate-300 dark:hover:bg-slate-600',
@@ -147,7 +147,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'gray' => [
-                'base'  => 'text-gray-600 dark:text-gray-400',
+                'base' => 'text-gray-600 dark:text-gray-400',
                 'hover' => [
                     "{$this->hover} hover:text-gray-700 hover:bg-gray-400",
                     'dark:hover:text-gray-300 dark:hover:bg-gray-600',
@@ -158,7 +158,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'zinc' => [
-                'base'  => 'text-zinc-600 dark:text-zinc-400',
+                'base' => 'text-zinc-600 dark:text-zinc-400',
                 'hover' => [
                     "{$this->hover} hover:text-zinc-700 hover:bg-zinc-400",
                     'dark:hover:text-zinc-300 dark:hover:bg-zinc-600',
@@ -169,7 +169,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'neutral' => [
-                'base'  => 'text-neutral-600 dark:text-neutral-400',
+                'base' => 'text-neutral-600 dark:text-neutral-400',
                 'hover' => [
                     "{$this->hover} hover:text-neutral-700 hover:bg-neutral-400",
                     'dark:hover:text-neutral-300/90 dark:hover:bg-neutral-600',
@@ -180,7 +180,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'stone' => [
-                'base'  => 'text-stone-600 dark:text-stone-400',
+                'base' => 'text-stone-600 dark:text-stone-400',
                 'hover' => [
                     "{$this->hover} hover:text-stone-700 hover:bg-stone-400",
                     'dark:hover:text-stone-300/90 dark:hover:bg-stone-600',
@@ -191,7 +191,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'red' => [
-                'base'  => 'text-red-600',
+                'base' => 'text-red-600',
                 'hover' => [
                     "{$this->hover} hover:text-red-700 hover:bg-red-400",
                     'dark:hover:text-red-500 dark:hover:bg-red-600',
@@ -202,7 +202,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'orange' => [
-                'base'  => 'text-orange-600',
+                'base' => 'text-orange-600',
                 'hover' => [
                     "{$this->hover} hover:text-orange-700 hover:bg-orange-400",
                     'dark:hover:text-orange-500 dark:hover:bg-orange-600',
@@ -213,7 +213,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'yellow' => [
-                'base'  => 'text-yellow-600',
+                'base' => 'text-yellow-600',
                 'hover' => [
                     "{$this->hover} hover:text-yellow-700 hover:bg-yellow-400",
                     'dark:hover:text-yellow-500 dark:hover:bg-yellow-600',
@@ -224,7 +224,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'amber' => [
-                'base'  => 'text-amber-600',
+                'base' => 'text-amber-600',
                 'hover' => [
                     "{$this->hover} hover:text-amber-700 hover:bg-amber-400",
                     'dark:hover:text-amber-500 dark:hover:bg-amber-600',
@@ -235,7 +235,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'lime' => [
-                'base'  => 'text-lime-600',
+                'base' => 'text-lime-600',
                 'hover' => [
                     "{$this->hover} hover:text-lime-700 hover:bg-lime-400",
                     'dark:hover:text-lime-500 dark:hover:bg-lime-600',
@@ -246,7 +246,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'green' => [
-                'base'  => 'text-green-600',
+                'base' => 'text-green-600',
                 'hover' => [
                     "{$this->hover} hover:text-green-700 hover:bg-green-400",
                     'dark:hover:text-green-500 dark:hover:bg-green-600',
@@ -257,7 +257,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'emerald' => [
-                'base'  => 'text-emerald-600 dark:text-emerald-500/90',
+                'base' => 'text-emerald-600 dark:text-emerald-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-emerald-700 hover:bg-emerald-400",
                     'dark:hover:text-emerald-500 dark:hover:bg-emerald-600',
@@ -268,7 +268,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'teal' => [
-                'base'  => 'text-teal-600 dark:text-teal-500/90',
+                'base' => 'text-teal-600 dark:text-teal-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-teal-700 hover:bg-teal-400",
                     'dark:hover:text-teal-500 dark:hover:bg-teal-600',
@@ -279,7 +279,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'cyan' => [
-                'base'  => 'text-cyan-600 dark:text-cyan-500/90',
+                'base' => 'text-cyan-600 dark:text-cyan-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-cyan-700 hover:bg-cyan-400",
                     'dark:hover:text-cyan-500 dark:hover:bg-cyan-600',
@@ -290,7 +290,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'sky' => [
-                'base'  => 'text-sky-600 dark:text-sky-500/90',
+                'base' => 'text-sky-600 dark:text-sky-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-sky-700 hover:bg-sky-400",
                     'dark:hover:text-sky-500 dark:hover:bg-sky-600',
@@ -301,7 +301,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'blue' => [
-                'base'  => 'text-blue-600',
+                'base' => 'text-blue-600',
                 'hover' => [
                     "{$this->hover} hover:text-blue-700 hover:bg-blue-400",
                     'dark:hover:text-blue-500 dark:hover:bg-blue-600',
@@ -312,7 +312,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'indigo' => [
-                'base'  => 'text-indigo-600',
+                'base' => 'text-indigo-600',
                 'hover' => [
                     "{$this->hover} hover:text-indigo-700 hover:bg-indigo-400",
                     'dark:hover:text-indigo-500 dark:hover:bg-indigo-600',
@@ -323,7 +323,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'violet' => [
-                'base'  => 'text-violet-600',
+                'base' => 'text-violet-600',
                 'hover' => [
                     "{$this->hover} hover:text-violet-700 hover:bg-violet-400",
                     'dark:hover:text-violet-500 dark:hover:bg-violet-600',
@@ -334,7 +334,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'purple' => [
-                'base'  => 'text-purple-600',
+                'base' => 'text-purple-600',
                 'hover' => [
                     "{$this->hover} hover:text-purple-700 hover:bg-purple-400",
                     'dark:hover:text-purple-500 dark:hover:bg-purple-600',
@@ -345,7 +345,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'fuchsia' => [
-                'base'  => 'text-fuchsia-600',
+                'base' => 'text-fuchsia-600',
                 'hover' => [
                     "{$this->hover} hover:text-fuchsia-700 hover:bg-fuchsia-400",
                     'dark:hover:text-fuchsia-500 dark:hover:bg-fuchsia-600',
@@ -356,7 +356,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'pink' => [
-                'base'  => 'text-pink-600',
+                'base' => 'text-pink-600',
                 'hover' => [
                     "{$this->hover} hover:text-pink-700 hover:bg-pink-400",
                     'dark:hover:text-pink-500 dark:hover:bg-pink-600',
@@ -367,7 +367,7 @@ class Flat extends ComponentPack
                 ],
             ],
             'rose' => [
-                'base'  => 'text-rose-600',
+                'base' => 'text-rose-600',
                 'hover' => [
                     "{$this->hover} hover:text-rose-700 hover:bg-rose-400",
                     'dark:hover:text-rose-500 dark:hover:bg-rose-600',

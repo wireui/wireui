@@ -18,7 +18,7 @@ class WireUiDocsServiceProvider extends ServiceProvider
     {
         $name = self::PACKAGE_NAME;
 
-        $this->mergeConfigFrom(__DIR__ . '/config.php', $name);
+        $this->mergeConfigFrom(__DIR__.'/config.php', $name);
     }
 
     /**
@@ -40,7 +40,7 @@ class WireUiDocsServiceProvider extends ServiceProvider
     {
         $this->loadViewComponentsAs('docs', [Code::class]);
 
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'docs');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'docs');
     }
 
     /**
@@ -51,7 +51,7 @@ class WireUiDocsServiceProvider extends ServiceProvider
         $name = self::PACKAGE_NAME;
 
         $this->publishes([
-            __DIR__ . '/config.php' => config_path("{$name}.php"),
+            __DIR__.'/config.php' => config_path("{$name}.php"),
         ], "{$name}.config");
     }
 

@@ -20,7 +20,7 @@ trait HasSetupSize
 
     protected function setupSize(array &$component): void
     {
-        throw_if(!$this->sizeResolve, new Exception('You must define a size resolve.'));
+        throw_if(! $this->sizeResolve, new Exception('You must define a size resolve.'));
 
         $sizes = config("wireui.{$this->config}.sizes");
 

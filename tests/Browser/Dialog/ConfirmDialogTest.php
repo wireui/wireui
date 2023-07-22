@@ -40,7 +40,7 @@ class ConfirmDialogTest extends BrowserTestCase
                 ->assertSee($action)
 
                 ->press('Confirm it')
-                ->assertScript(<<<JS
+                ->assertScript(<<<'JS'
                     document.querySelector('[x-ref="accept"]').firstElementChild.hasAttribute('disabled');
                     document.querySelector('[x-ref="reject"]').firstElementChild.hasAttribute('disabled');
                 JS)

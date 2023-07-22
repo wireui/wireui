@@ -25,7 +25,7 @@ trait HasSetupStateColor
 
     protected function setupStateColor(array &$component): void
     {
-        $verify = !method_exists($this, 'setupVariant') && !method_exists($this, 'setupColor');
+        $verify = ! method_exists($this, 'setupVariant') && ! method_exists($this, 'setupColor');
 
         throw_if($verify, new Exception('To use the state color, you must use variant and color setup traits.'));
 
@@ -67,7 +67,7 @@ trait HasSetupStateColor
             $colorPack = $colors ? resolve($colors) : resolve($this->variantPack->get($variant));
         }
 
-        if (!in_array($modifierColor, $colorPack->keys())) {
+        if (! in_array($modifierColor, $colorPack->keys())) {
             $modifierColor = $this->color;
         }
 

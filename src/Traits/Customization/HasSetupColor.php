@@ -20,7 +20,7 @@ trait HasSetupColor
 
     protected function setupColor(array &$component): void
     {
-        throw_if(!$this->colorResolve, new Exception('You must define a color resolve.'));
+        throw_if(! $this->colorResolve, new Exception('You must define a color resolve.'));
 
         $colors = config($this->getColorConfigName());
 

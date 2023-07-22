@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 /**
  * Get Livewire Component Attributes.
  */
-if (!function_exists('get_attributes')) {
+if (! function_exists('get_attributes')) {
     function get_attributes(mixed $component)
     {
         return get_object_vars($component);
@@ -15,7 +15,7 @@ if (!function_exists('get_attributes')) {
 /**
  * Serialize a Slot.
  */
-if (!function_exists('serialize_slot')) {
+if (! function_exists('serialize_slot')) {
     function serialize_slot(mixed $slot): string
     {
         $content = html_entity_decode($slot);

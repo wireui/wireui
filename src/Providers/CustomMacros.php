@@ -2,7 +2,8 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Support\{Arr, Collection, Str};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\WireDirective;
 use WireUi\View\Attribute;
@@ -45,11 +46,11 @@ class CustomMacros
             $model = $this->wire('model');
 
             return [
-                'defer'    => $model->modifiers()->contains('defer'),
-                'lazy'     => $model->modifiers()->contains('lazy'),
+                'defer' => $model->modifiers()->contains('defer'),
+                'lazy' => $model->modifiers()->contains('lazy'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
+                    'delay' => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
                 ],
             ];
         });

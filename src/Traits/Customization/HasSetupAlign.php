@@ -20,7 +20,7 @@ trait HasSetupAlign
 
     protected function setupAlign(array &$component): void
     {
-        throw_if(!$this->alignResolve, new Exception('You must define a align resolve.'));
+        throw_if(! $this->alignResolve, new Exception('You must define a align resolve.'));
 
         $aligns = config("wireui.{$this->config}.aligns");
 

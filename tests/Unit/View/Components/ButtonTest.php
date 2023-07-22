@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Blade;
-use WireUi\Support\Buttons\Colors\{ColorPack, Flat, Outline, Solid};
+use WireUi\Support\Buttons\Colors\ColorPack;
+use WireUi\Support\Buttons\Colors\Flat;
+use WireUi\Support\Buttons\Colors\Outline;
+use WireUi\Support\Buttons\Colors\Solid;
 use WireUi\Support\Buttons\Sizes;
 
 it('should render a button with as a link')

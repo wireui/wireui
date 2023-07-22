@@ -21,9 +21,9 @@ class Colors extends ComponentPack
     {
         return [
             'base' => [
-                'root'   => 'bg-white dark:bg-secondary-800',
+                'root' => 'bg-white dark:bg-secondary-800',
                 'footer' => 'bg-secondary-50 dark:bg-secondary-800',
-                'text'   => 'text-secondary-700 dark:text-secondary-400',
+                'text' => 'text-secondary-700 dark:text-secondary-400',
                 'border' => 'border-secondary-200 dark:border-secondary-600',
             ],
         ];

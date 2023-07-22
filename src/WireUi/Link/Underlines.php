@@ -21,8 +21,8 @@ class Underlines extends ComponentPack
     {
         return [
             'always' => 'underline',
-            'none'   => 'no-underline',
-            'hover'  => 'no-underline hover:underline',
+            'none' => 'no-underline',
+            'hover' => 'no-underline hover:underline',
         ];
     }
 }

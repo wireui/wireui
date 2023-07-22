@@ -63,7 +63,7 @@ it('should render the badge white', function () {
 });
 
 it('should render the badge with prepend', function () {
-    $html = Blade::render(<<<EOT
+    $html = Blade::render(<<<'EOT'
         <x-badge primary label="Prepend">
             <x-slot name="prepend">
                 <b>add prepend</b>
@@ -75,7 +75,7 @@ it('should render the badge with prepend', function () {
 });
 
 it('should render the badge with append', function () {
-    $html = Blade::render(<<<EOT
+    $html = Blade::render(<<<'EOT'
         <x-badge primary label="Append">
             <x-slot name="append">
                 <b>add append</b>
@@ -87,7 +87,7 @@ it('should render the badge with append', function () {
 });
 
 it('should render the badge append slot', function () {
-    $html = Blade::render(<<<BLADE
+    $html = Blade::render(<<<'BLADE'
     <x-badge label="primary">
         <x-slot name="append">
             <b>append content</b>
@@ -99,7 +99,7 @@ it('should render the badge append slot', function () {
 });
 
 it('should render the badge prepend slot', function () {
-    $html = Blade::render(<<<BLADE
+    $html = Blade::render(<<<'BLADE'
     <x-badge label="primary">
         <x-slot name="prepend">
             <b>prepend content</b>
@@ -111,7 +111,7 @@ it('should render the badge prepend slot', function () {
 });
 
 it('should render the badge slots and label', function () {
-    $html = Blade::render(<<<BLADE
+    $html = Blade::render(<<<'BLADE'
     <x-badge>
         <x-slot name="prepend">
             <b>prepend content</b>

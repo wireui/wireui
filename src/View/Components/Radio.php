@@ -4,8 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCheckbox;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupForm;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\WireUi\Radio\Colors;
+use WireUi\WireUi\Radio\Rounders;
+use WireUi\WireUi\Radio\Sizes;
 
 class Radio extends BaseComponent
 {

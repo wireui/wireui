@@ -2,7 +2,8 @@
 
 namespace WireUi\View;
 
-use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 final class Attribute
 {
@@ -36,11 +37,11 @@ final class Attribute
      */
     public function __construct(string $directive, mixed $expression = null)
     {
-        $this->directive  = $directive;
+        $this->directive = $directive;
         $this->expression = $expression;
-        $this->name       = $this->extractName();
-        $this->value      = $this->extractValue();
-        $this->modifiers  = $this->extractModifiers();
+        $this->name = $this->extractName();
+        $this->value = $this->extractValue();
+        $this->modifiers = $this->extractModifiers();
     }
 
     /**
@@ -104,7 +105,7 @@ final class Attribute
      */
     private function extractValue(): ?string
     {
-        if (!str_contains($this->directive, ':')) {
+        if (! str_contains($this->directive, ':')) {
             return null;
         }
 

@@ -4,10 +4,17 @@ namespace WireUi\View\Components\Badge;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupBadge;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupIcon;
+use WireUi\Traits\Customization\HasSetupIconSize;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\Traits\Customization\HasSetupVariant;
 use WireUi\View\Components\BaseComponent;
+use WireUi\WireUi\Badge\IconSizes;
+use WireUi\WireUi\Badge\Rounders;
 use WireUi\WireUi\Badge\Sizes\Base as BaseSize;
-use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
+use WireUi\WireUi\Badge\Variants;
 
 class Base extends BaseComponent
 {

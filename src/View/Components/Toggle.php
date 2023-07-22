@@ -4,8 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCheckbox;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupIcon;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\WireUi\Toggle\Colors;
+use WireUi\WireUi\Toggle\Rounders;
+use WireUi\WireUi\Toggle\Sizes;
 
 class Toggle extends BaseComponent
 {

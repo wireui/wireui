@@ -38,7 +38,7 @@ class BladeDirectives
         });
 
         Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {
-            if (!$attributes) {
+            if (! $attributes) {
                 $attributes = '[]';
             }
 

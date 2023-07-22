@@ -32,7 +32,7 @@ class ColorPicker extends FormComponent
                 }
 
                 return [
-                    'name'  => $index,
+                    'name' => $index,
                     'value' => $color,
                 ];
             })

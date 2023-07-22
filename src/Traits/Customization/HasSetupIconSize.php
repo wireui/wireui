@@ -20,7 +20,7 @@ trait HasSetupIconSize
 
     protected function setupIconSize(array &$component): void
     {
-        throw_if(!$this->iconSizeResolve, new Exception('You must define a icon size resolve.'));
+        throw_if(! $this->iconSizeResolve, new Exception('You must define a icon size resolve.'));
 
         $icons = config("wireui.{$this->config}.icon-sizes");
 

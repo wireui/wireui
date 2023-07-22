@@ -3,7 +3,9 @@
 namespace WireUi\WireUi\Badge;
 
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Badge\Colors\{Flat, Outline, Solid};
+use WireUi\WireUi\Badge\Colors\Flat;
+use WireUi\WireUi\Badge\Colors\Outline;
+use WireUi\WireUi\Badge\Colors\Solid;
 
 class Variants extends ComponentPack
 {
@@ -21,9 +23,9 @@ class Variants extends ComponentPack
     public function all(): array
     {
         return [
-            'flat'    => Flat::class,
+            'flat' => Flat::class,
             'outline' => Outline::class,
-            'solid'   => Solid::class,
+            'solid' => Solid::class,
         ];
     }
 }

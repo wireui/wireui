@@ -3,7 +3,8 @@
 namespace WireUi\Traits;
 
 use Illuminate\Support\Str;
-use WireUi\Actions\{Dialog, Notification};
+use WireUi\Actions\Dialog;
+use WireUi\Actions\Notification;
 
 trait WireUiActions
 {

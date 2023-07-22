@@ -1,15 +1,16 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
+use Tests\Unit\LivewireComponent;
+use Tests\Unit\TestCase;
 use WireUi\Actions\Notification;
 
 it('should emit a notification event', function () {
-    $event  = 'wireui:notification';
+    $event = 'wireui:notification';
     $params = [
         'options' => [
             'title' => 'WireUI is awesome!',
-            'icon'  => Notification::SUCCESS,
+            'icon' => Notification::SUCCESS,
         ],
         'componentId' => 'fake-id',
     ];
@@ -29,9 +30,9 @@ it('should emit a notification event', function () {
 });
 
 it('should emit a confirm notification event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-notification';
+    $event = 'wireui:confirm-notification';
     $params = [
-        'options'     => ['title' => 'Sure Delete?', 'icon' => $icon],
+        'options' => ['title' => 'Sure Delete?', 'icon' => $icon],
         'componentId' => 'fake-id',
     ];
 
@@ -47,7 +48,7 @@ it('should emit a confirm notification event', function (?string $icon, string $
         ->with($event, [
             'options' => [
                 'title' => 'Sure Delete?',
-                'icon'  => $expectedIcon,
+                'icon' => $expectedIcon,
             ],
             'componentId' => 'fake-id',
         ]);
@@ -72,8 +73,8 @@ it('should emit the simple notification event', function (string $method) {
         ->method('dispatchBrowserEvent')
         ->with($event, [
             'options' => [
-                'icon'        => $method,
-                'title'       => $title       = 'WireUI is awesome!',
+                'icon' => $method,
+                'title' => $title = 'WireUI is awesome!',
                 'description' => $description = 'WireUI is easy to use.',
             ],
             'componentId' => 'fake-id',

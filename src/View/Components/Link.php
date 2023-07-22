@@ -4,8 +4,12 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupLink;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupSize, HasSetupUnderline};
-use WireUi\WireUi\Link\{Colors, Sizes, Underlines};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\Traits\Customization\HasSetupUnderline;
+use WireUi\WireUi\Link\Colors;
+use WireUi\WireUi\Link\Sizes;
+use WireUi\WireUi\Link\Underlines;
 
 class Link extends BaseComponent
 {

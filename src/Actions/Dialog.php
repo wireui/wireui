@@ -51,7 +51,7 @@ class Dialog
     {
         $id = Str::kebab($dialogId);
 
-        return !empty($id) ? "dialog:{$id}" : 'dialog';
+        return ! empty($id) ? "dialog:{$id}" : 'dialog';
     }
 
     /**
@@ -92,8 +92,8 @@ class Dialog
     public function simpleDialog(string $icon, string $title, ?string $description = null): void
     {
         $this->show([
-            'icon'        => $icon,
-            'title'       => $title,
+            'icon' => $icon,
+            'title' => $title,
             'description' => $description,
         ]);
     }
@@ -106,7 +106,7 @@ class Dialog
         $options['icon'] ??= Actions::INFO->value;
 
         $this->component->dispatchBrowserEvent("wireui:{$this->getEventName()}", [
-            'options'     => $options,
+            'options' => $options,
             'componentId' => $this->component->id,
         ]);
     }
@@ -119,7 +119,7 @@ class Dialog
         $options['icon'] ??= Actions::QUESTION->value;
 
         $this->component->dispatchBrowserEvent("wireui:confirm-{$this->getEventName()}", [
-            'options'     => $options,
+            'options' => $options,
             'componentId' => $this->component->id,
         ]);
     }

@@ -29,7 +29,7 @@ abstract class ComponentPack
     {
         $attribute = $this->serializeAttribute($attribute);
 
-        throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
+        throw_if(! in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
     }
 
     /**

@@ -18,7 +18,7 @@ trait HasSetupVariant
 
     protected function setupVariant(array &$component): void
     {
-        throw_if(!$this->variantResolve, new Exception('You must define a variant resolve.'));
+        throw_if(! $this->variantResolve, new Exception('You must define a variant resolve.'));
 
         $variants = config("wireui.{$this->config}.variants");
 

@@ -14,7 +14,7 @@ class Component extends \Livewire\Component
 
     public function render()
     {
-        return View::file(__DIR__ . '/view.blade.php');
+        return View::file(__DIR__.'/view.blade.php');
     }
 
     public function validateToggle(): void

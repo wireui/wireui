@@ -3,8 +3,10 @@
 namespace WireUi\View\Components;
 
 use Closure;
-use Illuminate\Support\{Arr, Str};
-use Illuminate\View\{Component, ComponentAttributeBag};
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\View\Component;
+use Illuminate\View\ComponentAttributeBag;
 use WireUi\Facades\WireUi;
 
 abstract class BaseComponent extends Component

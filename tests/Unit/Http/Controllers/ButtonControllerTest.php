@@ -4,14 +4,13 @@ namespace Tests\Unit\Http\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
+use function Pest\Laravel\getJson;
 use Symfony\Component\HttpFoundation\Response;
 use WireUi\Http\Controllers\ButtonController;
 
-use function Pest\Laravel\getJson;
-
 it('should render the button with attributes', function () {
     getJson(route('wireui.render.button', [
-        'type'  => 'primary',
+        'type' => 'primary',
         'label' => 'Click me',
     ]))
         ->assertSee('<button', escape: false)
@@ -28,9 +27,9 @@ it('should ignore the malicious attributes', function () {
 
 it('should filter the attributes to keep safe', function () {
     $attributes = [
-        'color'  => 'primary',
+        'color' => 'primary',
         ':label' => "strtoupper('Click me')",
-        ':type'  => "config('app.name')",
+        ':type' => "config('app.name')",
     ];
 
     /** @var ButtonController $controller */
@@ -54,55 +53,55 @@ it('should validate the request', function (string $attribute, string $rule) {
 })->with([
     'label' => [
         'attribute' => 'label',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'variant' => [
         'attribute' => 'variant',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'color' => [
         'attribute' => 'color',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'size' => [
         'attribute' => 'size',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'icon' => [
         'attribute' => 'icon',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'rightIcon' => [
         'attribute' => 'rightIcon',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'iconSize' => [
         'attribute' => 'iconSize',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'rounded' => [
         'attribute' => 'rounded',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'squared' => [
         'attribute' => 'squared',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'bordered' => [
         'attribute' => 'bordered',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'solid' => [
         'attribute' => 'solid',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'outline' => [
         'attribute' => 'outline',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'flat' => [
         'attribute' => 'flat',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
 ]);
 
@@ -113,58 +112,58 @@ it('should render a button', function (string $attribute, string|bool $value) {
 })->with([
     'label' => [
         'attribute' => 'label',
-        'value'     => 'My Label',
+        'value' => 'My Label',
     ],
     'variant' => [
         'attribute' => 'variant',
-        'value'     => 'solid',
+        'value' => 'solid',
     ],
     'color' => [
         'attribute' => 'color',
-        'value'     => 'primary',
+        'value' => 'primary',
     ],
     'size' => [
         'attribute' => 'size',
-        'value'     => 'xl',
+        'value' => 'xl',
     ],
     'icon' => [
         'attribute' => 'icon',
-        'value'     => 'home',
+        'value' => 'home',
     ],
     'rightIcon' => [
         'attribute' => 'rightIcon',
-        'value'     => 'user',
+        'value' => 'user',
     ],
     'iconSize' => [
         'attribute' => 'iconSize',
-        'value'     => 'sm',
+        'value' => 'sm',
     ],
     'rounded' => [
         'attribute' => 'rounded',
-        'value'     => true,
+        'value' => true,
     ],
     'squared' => [
         'attribute' => 'squared',
-        'value'     => true,
+        'value' => true,
     ],
     'bordered' => [
         'attribute' => 'bordered',
-        'value'     => true,
+        'value' => true,
     ],
     'solid' => [
         'attribute' => 'solid',
-        'value'     => true,
+        'value' => true,
     ],
     'outline' => [
         'attribute' => 'outline',
-        'value'     => true,
+        'value' => true,
     ],
     'flat' => [
         'attribute' => 'flat',
-        'value'     => true,
+        'value' => true,
     ],
     'light' => [
         'attribute' => 'light',
-        'value'     => true,
+        'value' => true,
     ],
 ]);

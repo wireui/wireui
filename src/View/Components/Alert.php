@@ -4,8 +4,16 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAlert;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
-use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupIcon;
+use WireUi\Traits\Customization\HasSetupPadding;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupShadow;
+use WireUi\Traits\Customization\HasSetupVariant;
+use WireUi\WireUi\Alert\Paddings;
+use WireUi\WireUi\Alert\Rounders;
+use WireUi\WireUi\Alert\Shadows;
+use WireUi\WireUi\Alert\Variants;
 
 class Alert extends BaseComponent
 {
@@ -35,7 +43,7 @@ class Alert extends BaseComponent
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'backgroundColor', 'bg-primary-50 dark:bg-primary-900/70'),
             data_get($this->colorClasses, 'borderColor', ''),
-            $this->shadowClasses => !$this->shadowless,
+            $this->shadowClasses => ! $this->shadowless,
             'w-full flex flex-col p-4',
             $this->roundedClasses,
         ]);
@@ -54,7 +62,7 @@ class Alert extends BaseComponent
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'textColor', 'text-primary-800 dark:text-primary-200'),
             'font-semibold' => $slot->isNotEmpty(),
-            'font-normal'   => $slot->isEmpty(),
+            'font-normal' => $slot->isEmpty(),
             'text-sm whitespace-normal',
         ]);
     }

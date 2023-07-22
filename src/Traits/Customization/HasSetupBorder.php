@@ -22,7 +22,7 @@ trait HasSetupBorder
 
     protected function setupBorder(array &$component): void
     {
-        throw_if(!$this->borderResolve, new Exception('You must define a border resolve.'));
+        throw_if(! $this->borderResolve, new Exception('You must define a border resolve.'));
 
         $borders = config("wireui.{$this->config}.borders");
 

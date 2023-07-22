@@ -31,12 +31,12 @@ class Outline extends ComponentPack
     {
         return [
             'none' => [
-                'base'  => '',
+                'base' => '',
                 'hover' => '',
                 'focus' => '',
             ],
             'default' => [
-                'base'  => 'text-slate-500 border border-slate-300 dark:border-slate-500 dark:text-slate-400',
+                'base' => 'text-slate-500 border border-slate-300 dark:border-slate-500 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:bg-slate-300",
                     'dark:hover:text-slate-300/90 dark:hover:bg-slate-400',
@@ -47,7 +47,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'primary' => [
-                'base'  => 'text-primary-600 border border-primary-600',
+                'base' => 'text-primary-600 border border-primary-600',
                 'hover' => [
                     "{$this->hover} hover:text-primary-700 hover:bg-primary-400",
                     'dark:hover:text-primary-500 dark:hover:bg-primary-600',
@@ -86,7 +86,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'negative' => [
-                'base'  => 'text-negative-600 border border-negative-600',
+                'base' => 'text-negative-600 border border-negative-600',
                 'hover' => [
                     "{$this->hover} hover:text-negative-700 hover:bg-negative-400",
                     'dark:hover:text-negative-500 dark:hover:bg-negative-600',
@@ -97,7 +97,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'warning' => [
-                'base'  => 'text-warning-600 border border-warning-600',
+                'base' => 'text-warning-600 border border-warning-600',
                 'hover' => [
                     "{$this->hover} hover:text-warning-700 hover:bg-warning-400",
                     'dark:hover:text-warning-500 dark:hover:bg-warning-600',
@@ -108,7 +108,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'info' => [
-                'base'  => 'text-info-600 border border-info-600',
+                'base' => 'text-info-600 border border-info-600',
                 'hover' => [
                     "{$this->hover} hover:text-info-700 hover:bg-info-400",
                     'dark:hover:text-info-500 dark:hover:bg-info-600',
@@ -119,7 +119,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'white' => [
-                'base'  => 'text-white border border-white dark:border-white/80',
+                'base' => 'text-white border border-white dark:border-white/80',
                 'hover' => [
                     "{$this->hover} hover:text-white hover:bg-opacity-30 hover:bg-white",
                     'dark:hover:text-white dark:hover:bg-white',
@@ -131,7 +131,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'black' => [
-                'base'  => 'text-black border border-black dark:border-black',
+                'base' => 'text-black border border-black dark:border-black',
                 'hover' => [
                     "{$this->hover} hover:text-black hover:bg-black/10",
                     'dark:hover:text-black dark:hover:bg-black',
@@ -143,7 +143,7 @@ class Outline extends ComponentPack
             ],
 
             'slate' => [
-                'base'  => 'text-slate-600 border border-slate-600 dark:text-slate-400 dark:border-slate-400',
+                'base' => 'text-slate-600 border border-slate-600 dark:text-slate-400 dark:border-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-700 hover:bg-slate-400",
                     'dark:hover:text-slate-300 dark:hover:bg-slate-400',
@@ -154,7 +154,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'gray' => [
-                'base'  => 'text-gray-600 border border-gray-600 dark:text-gray-400 dark:border-gray-400',
+                'base' => 'text-gray-600 border border-gray-600 dark:text-gray-400 dark:border-gray-400',
                 'hover' => [
                     "{$this->hover} hover:text-gray-700 hover:bg-gray-400",
                     'dark:hover:text-gray-300 dark:hover:bg-gray-400',
@@ -165,7 +165,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'zinc' => [
-                'base'  => 'text-zinc-600 border border-zinc-600 dark:text-zinc-400 dark:border-zinc-400',
+                'base' => 'text-zinc-600 border border-zinc-600 dark:text-zinc-400 dark:border-zinc-400',
                 'hover' => [
                     "{$this->hover} hover:text-zinc-700 hover:bg-zinc-400",
                     'dark:hover:text-zinc-300 dark:hover:bg-zinc-400',
@@ -176,7 +176,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'neutral' => [
-                'base'  => 'text-neutral-600 border border-neutral-600 dark:text-neutral-400 dark:border-neutral-400',
+                'base' => 'text-neutral-600 border border-neutral-600 dark:text-neutral-400 dark:border-neutral-400',
                 'hover' => [
                     "{$this->hover} hover:text-neutral-700 hover:bg-neutral-400",
                     'dark:hover:text-neutral-300 dark:hover:bg-neutral-400',
@@ -187,7 +187,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'stone' => [
-                'base'  => 'text-stone-600 border border-stone-600 dark:text-stone-400 dark:border-stone-400',
+                'base' => 'text-stone-600 border border-stone-600 dark:text-stone-400 dark:border-stone-400',
                 'hover' => [
                     "{$this->hover} hover:text-stone-700 hover:bg-stone-400",
                     'dark:hover:text-stone-300 dark:hover:bg-stone-400',
@@ -198,7 +198,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'red' => [
-                'base'  => 'text-red-600 border border-red-600',
+                'base' => 'text-red-600 border border-red-600',
                 'hover' => [
                     "{$this->hover} hover:text-red-700 hover:bg-red-400",
                     'dark:hover:text-red-500 dark:hover:bg-red-600',
@@ -209,7 +209,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'orange' => [
-                'base'  => 'text-orange-600 border border-orange-600',
+                'base' => 'text-orange-600 border border-orange-600',
                 'hover' => [
                     "{$this->hover} hover:text-orange-700 hover:bg-orange-400",
                     'dark:hover:text-orange-500 dark:hover:bg-orange-600',
@@ -220,7 +220,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'yellow' => [
-                'base'  => 'text-yellow-600 border border-yellow-600',
+                'base' => 'text-yellow-600 border border-yellow-600',
                 'hover' => [
                     "{$this->hover} hover:text-yellow-700 hover:bg-yellow-400",
                     'dark:hover:text-yellow-500 dark:hover:bg-yellow-600',
@@ -231,7 +231,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'amber' => [
-                'base'  => 'text-amber-600 border border-amber-600',
+                'base' => 'text-amber-600 border border-amber-600',
                 'hover' => [
                     "{$this->hover} hover:text-amber-700 hover:bg-amber-400",
                     'dark:hover:text-amber-500 dark:hover:bg-amber-600',
@@ -242,7 +242,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'lime' => [
-                'base'  => 'text-lime-600 border border-lime-600',
+                'base' => 'text-lime-600 border border-lime-600',
                 'hover' => [
                     "{$this->hover} hover:text-lime-700 hover:bg-lime-400",
                     'dark:hover:text-lime-500 dark:hover:bg-lime-600',
@@ -253,7 +253,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'green' => [
-                'base'  => 'text-green-600 border border-green-600',
+                'base' => 'text-green-600 border border-green-600',
                 'hover' => [
                     "{$this->hover} hover:text-green-700 hover:bg-green-400",
                     'dark:hover:text-green-500 dark:hover:bg-green-600',
@@ -292,7 +292,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'cyan' => [
-                'base'  => 'text-cyan-600 border border-cyan-600',
+                'base' => 'text-cyan-600 border border-cyan-600',
                 'hover' => [
                     "{$this->hover} hover:text-cyan-700 hover:bg-cyan-400",
                     'dark:hover:text-cyan-500 dark:hover:bg-cyan-600',
@@ -303,7 +303,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'sky' => [
-                'base'  => 'text-sky-600 border border-sky-600',
+                'base' => 'text-sky-600 border border-sky-600',
                 'hover' => [
                     "{$this->hover} hover:text-sky-700 hover:bg-sky-400",
                     'dark:hover:text-sky-500 dark:hover:bg-sky-600',
@@ -314,7 +314,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'blue' => [
-                'base'  => 'text-blue-600 border border-blue-600',
+                'base' => 'text-blue-600 border border-blue-600',
                 'hover' => [
                     "{$this->hover} hover:text-blue-700 hover:bg-blue-400",
                     'dark:hover:text-blue-500 dark:hover:bg-blue-600',
@@ -325,7 +325,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'indigo' => [
-                'base'  => 'text-indigo-600 border border-indigo-600',
+                'base' => 'text-indigo-600 border border-indigo-600',
                 'hover' => [
                     "{$this->hover} hover:text-indigo-700 hover:bg-indigo-400",
                     'dark:hover:text-indigo-500 dark:hover:bg-indigo-600',
@@ -336,7 +336,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'violet' => [
-                'base'  => 'text-violet-600 border border-violet-600',
+                'base' => 'text-violet-600 border border-violet-600',
                 'hover' => [
                     "{$this->hover} hover:text-violet-700 hover:bg-violet-400",
                     'dark:hover:text-violet-500 dark:hover:bg-violet-600',
@@ -347,7 +347,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'purple' => [
-                'base'  => 'text-purple-600 border border-purple-600',
+                'base' => 'text-purple-600 border border-purple-600',
                 'hover' => [
                     "{$this->hover} hover:text-purple-700 hover:bg-purple-400",
                     'dark:hover:text-purple-500 dark:hover:bg-purple-600',
@@ -358,7 +358,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'fuchsia' => [
-                'base'  => 'text-fuchsia-600 border border-fuchsia-600',
+                'base' => 'text-fuchsia-600 border border-fuchsia-600',
                 'hover' => [
                     "{$this->hover} hover:text-fuchsia-700 hover:bg-fuchsia-400",
                     'dark:hover:text-fuchsia-500 dark:hover:bg-fuchsia-600',
@@ -369,7 +369,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'pink' => [
-                'base'  => 'text-pink-600 border border-pink-600',
+                'base' => 'text-pink-600 border border-pink-600',
                 'hover' => [
                     "{$this->hover} hover:text-pink-700 hover:bg-pink-400",
                     'dark:hover:text-pink-500 dark:hover:bg-pink-600',
@@ -380,7 +380,7 @@ class Outline extends ComponentPack
                 ],
             ],
             'rose' => [
-                'base'  => 'text-rose-600 border border-rose-600',
+                'base' => 'text-rose-600 border border-rose-600',
                 'hover' => [
                     "{$this->hover} hover:text-rose-700 hover:bg-rose-400",
                     'dark:hover:text-rose-500 dark:hover:bg-rose-600',

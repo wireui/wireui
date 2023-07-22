@@ -25,7 +25,7 @@ class Test extends BrowserTestCase
                 EOT, $disabled))
                 ->tap(fn () => $this->selectDate($browser, $day));
 
-            if (!$disabled) {
+            if (! $disabled) {
                 $component
                     ->waitForTextIn('@value', $model)
                     ->assertInputValue('model', $input);

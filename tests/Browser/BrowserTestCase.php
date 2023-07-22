@@ -5,11 +5,17 @@ namespace Tests\Browser;
 use Closure;
 use Exception;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
-use Illuminate\Support\Facades\{Artisan, File, Route};
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 use Laravel\Dusk\Browser;
+use Livewire\Component;
+use Livewire\Livewire;
+use Livewire\LivewireServiceProvider;
+use function Livewire\str;
 use Livewire\Testing\TestableLivewire;
-use Livewire\{Component, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
@@ -17,8 +23,6 @@ use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
-
-use function Livewire\str;
 
 /** @link https://github.com/livewire/livewire/blob/master/tests/Browser/TestCase.php */
 class BrowserTestCase extends Dusk\TestCase
@@ -51,7 +55,7 @@ class BrowserTestCase extends Dusk\TestCase
             // Autoload all Livewire components in this test suite.
             collect(File::allFiles(__DIR__))
                 ->map(function (SplFileInfo $file) {
-                    return 'Tests\\Browser\\' . str($file->getRelativePathname())->before('.php')->replace('/', '\\');
+                    return 'Tests\\Browser\\'.str($file->getRelativePathname())->before('.php')->replace('/', '\\');
                 })->filter(function (string $computedClassName) {
                     return class_exists($computedClassName)
                         && is_subclass_of($computedClassName, Component::class);
@@ -99,7 +103,7 @@ class BrowserTestCase extends Dusk\TestCase
             app('session')->put('_token', 'this-is-a-hack-because-something-about-validating-the-csrf-token-is-broken');
 
             app('config')->set('view.paths', [
-                __DIR__ . '/views',
+                __DIR__.'/views',
                 resource_path('views'),
             ]);
 
@@ -144,15 +148,15 @@ class BrowserTestCase extends Dusk\TestCase
     protected function getEnvironmentSetUp($app)
     {
         $app['config']->set('view.paths', [
-            __DIR__ . '/views',
+            __DIR__.'/views',
             resource_path('views'),
         ]);
         $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
+            'driver' => 'sqlite',
             'database' => ':memory:',
-            'prefix'   => '',
+            'prefix' => '',
         ]);
     }
 
@@ -163,12 +167,12 @@ class BrowserTestCase extends Dusk\TestCase
 
     protected function livewireClassesPath($path = '')
     {
-        return app_path('Http/Livewire' . ($path ? '/' . $path : ''));
+        return app_path('Http/Livewire'.($path ? '/'.$path : ''));
     }
 
     protected function livewireViewsPath($path = '')
     {
-        return resource_path('views') . '/livewire' . ($path ? '/' . $path : '');
+        return resource_path('views').'/livewire'.($path ? '/'.$path : '');
     }
 
     protected function driver(): RemoteWebDriver

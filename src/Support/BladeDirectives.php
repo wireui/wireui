@@ -59,13 +59,13 @@ class BladeDirectives
 
     public function hooksScript(): string
     {
-        $scripts = <<<JS
+        $scripts = <<<'JS'
             window.Wireui = {
                 hook(hook, callback) {
-                    window.addEventListener(`wireui:\${hook}`, () => callback())
+                    window.addEventListener(`wireui:${hook}`, () => callback())
                 },
                 dispatchHook(hook) {
-                    window.dispatchEvent(new Event(`wireui:\${hook}`))
+                    window.dispatchEvent(new Event(`wireui:${hook}`))
                 }
             }
         JS;
@@ -75,9 +75,9 @@ class BladeDirectives
 
     public function getManifestVersion(string $file, ?string &$route = null): ?string
     {
-        $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';
+        $manifestPath = dirname(__DIR__, 2).'/dist/mix-manifest.json';
 
-        if (!file_exists($manifestPath)) {
+        if (! file_exists($manifestPath)) {
             return null;
         }
 

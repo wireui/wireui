@@ -10,15 +10,15 @@ trait HasSetupForm
     {
         $model = $this->data->wire('model')->value();
 
-        if ($this->data->has('name') && !$model) {
+        if ($this->data->has('name') && ! $model) {
             $model = $this->data->get('name');
         }
 
-        if (!$this->data->has('name') && $model) {
+        if (! $this->data->has('name') && $model) {
             $this->data->offsetSet('name', $model);
         }
 
-        if (!$this->data->has('id') && $model) {
+        if (! $this->data->has('id') && $model) {
             $this->data->offsetSet('id', md5($model));
         }
 

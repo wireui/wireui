@@ -50,9 +50,9 @@ class Select extends NativeSelect
 
         if (gettype($asyncData) === 'string' || $asyncData === null) {
             $this->asyncData = [
-                'api'         => $asyncData,
-                'method'      => 'GET',
-                'params'      => [],
+                'api' => $asyncData,
+                'method' => 'GET',
+                'params' => [],
                 'alwaysFetch' => $this->alwaysFetch,
             ];
         }
@@ -89,11 +89,11 @@ class Select extends NativeSelect
         return $this->options
             ->map(function ($rawOption, $index): array {
                 $option = [
-                    'label'       => $this->getOptionLabel($rawOption),
-                    'value'       => $this->getOptionValue($index, $rawOption),
-                    'template'    => data_get($rawOption, 'template'),
-                    'disabled'    => data_get($rawOption, 'disabled'),
-                    'readonly'    => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                    'label' => $this->getOptionLabel($rawOption),
+                    'value' => $this->getOptionValue($index, $rawOption),
+                    'template' => data_get($rawOption, 'template'),
+                    'disabled' => data_get($rawOption, 'disabled'),
+                    'readonly' => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
                     'description' => $this->getOptionDescription($rawOption),
                 ];
 

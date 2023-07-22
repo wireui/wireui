@@ -12,8 +12,8 @@ class DatetimePicker extends Input
     public ?Carbon $max;
 
     /**
-     * @param Carbon|DateTimeInterface|string|int|null $min
-     * @param Carbon|DateTimeInterface|string|int|null $max
+     * @param  Carbon|DateTimeInterface|string|int|null  $min
+     * @param  Carbon|DateTimeInterface|string|int|null  $max
      */
     public function __construct(
         bool $borderless = false,

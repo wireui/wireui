@@ -28,7 +28,7 @@ trait HasSetupLink
 
     private function ensureLinkType(): void
     {
-        if (!$this->data->has('href') && !$this->data->has('type')) {
+        if (! $this->data->has('href') && ! $this->data->has('type')) {
             $this->data->offsetSet('type', 'button');
         }
     }

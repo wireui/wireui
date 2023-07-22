@@ -14,13 +14,13 @@ class Component extends \Livewire\Component
 
     protected array $messages = [
         'number.required' => 'input cant be empty',
-        'number.integer'  => 'input must be an integer',
-        'number.between'  => 'input must be within the specified range',
+        'number.integer' => 'input must be an integer',
+        'number.between' => 'input must be within the specified range',
     ];
 
     public function render()
     {
-        return View::file(__DIR__ . '/view.blade.php');
+        return View::file(__DIR__.'/view.blade.php');
     }
 
     public function validateInput(): void

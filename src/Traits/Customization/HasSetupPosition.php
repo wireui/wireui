@@ -20,7 +20,7 @@ trait HasSetupPosition
 
     protected function setupPosition(array &$component): void
     {
-        throw_if(!$this->positionResolve, new Exception('You must define a position resolve.'));
+        throw_if(! $this->positionResolve, new Exception('You must define a position resolve.'));
 
         $positions = config("wireui.{$this->config}.positions");
 

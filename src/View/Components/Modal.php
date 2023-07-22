@@ -4,8 +4,14 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupModal;
-use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
-use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
+use WireUi\Traits\Customization\HasSetupAlign;
+use WireUi\Traits\Customization\HasSetupBlur;
+use WireUi\Traits\Customization\HasSetupMaxWidth;
+use WireUi\Traits\Customization\HasSetupType;
+use WireUi\WireUi\Modal\Aligns;
+use WireUi\WireUi\Modal\Blurs;
+use WireUi\WireUi\Modal\MaxWidths;
+use WireUi\WireUi\Modal\Types;
 
 class Modal extends BaseComponent
 {
@@ -29,7 +35,7 @@ class Modal extends BaseComponent
             'soft-scrollbar' => data_get($this->typeClasses, 'soft-scrollbar', false),
             'hide-scrollbar' => data_get($this->typeClasses, 'hide-scrollbar', false),
             $this->spacing ?? data_get($this->typeClasses, 'spacing', 'p-4'),
-            $this->zIndex  ?? data_get($this->typeClasses, 'z-index', 'z-50'),
+            $this->zIndex ?? data_get($this->typeClasses, 'z-index', 'z-50'),
             'fixed inset-0 overflow-y-auto',
         ]);
     }
@@ -39,7 +45,7 @@ class Modal extends BaseComponent
         return Arr::toCssClasses([
             'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
             'dark:bg-opacity-60 transform transition-opacity',
-            $this->blurClasses => !$this->blurless,
+            $this->blurClasses => ! $this->blurless,
         ]);
     }
 

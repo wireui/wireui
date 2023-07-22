@@ -28,8 +28,8 @@ class FormComponentTest extends TestCase
     {
         $data = [
             'componentName' => 'TestFormComponent',
-            'attributes'    => new ComponentAttributeBag(['id' => 'test-id']),
-            'slot'          => null,
+            'attributes' => new ComponentAttributeBag(['id' => 'test-id']),
+            'slot' => null,
         ];
 
         $component = new TestFormComponent();

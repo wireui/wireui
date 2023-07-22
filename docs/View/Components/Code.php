@@ -3,7 +3,8 @@
 namespace WireUiDocs\View\Components;
 
 use Illuminate\Support\Str;
-use Torchlight\Blade\{BladeManager, CodeComponent};
+use Torchlight\Blade\BladeManager;
+use Torchlight\Blade\CodeComponent;
 use Torchlight\Torchlight;
 
 class Code extends CodeComponent
@@ -25,10 +26,10 @@ class Code extends CodeComponent
     ) {
         parent::__construct($language, $theme, $contents, $swap, $postProcessors, $torchlightId);
 
-        $this->noCopy  = $noCopy;
+        $this->noCopy = $noCopy;
         $this->options = $options;
 
-        if (!$lineNumbers) {
+        if (! $lineNumbers) {
             $this->options['lineNumbers'] = false;
         }
     }

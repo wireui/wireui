@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Support\{MessageBag, Str, ViewErrorBag};
+use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 use WireUi\View\Components\Errors;
 
 it('should return empty class', function () {

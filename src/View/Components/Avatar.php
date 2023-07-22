@@ -4,8 +4,17 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupAvatar;
-use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
+use WireUi\Traits\Customization\HasSetupBorder;
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupIcon;
+use WireUi\Traits\Customization\HasSetupIconSize;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\WireUi\Avatar\Borders;
+use WireUi\WireUi\Avatar\Colors;
+use WireUi\WireUi\Avatar\IconSizes;
+use WireUi\WireUi\Avatar\Rounders;
+use WireUi\WireUi\Avatar\Sizes;
 
 class Avatar extends BaseComponent
 {
@@ -29,11 +38,11 @@ class Avatar extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-500') => !$this->borderless,
-            data_get($this->colorClasses, 'label', 'bg-secondary-500 dark:bg-secondary-600')          => !$this->src,
+            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-500') => ! $this->borderless,
+            data_get($this->colorClasses, 'label', 'bg-secondary-500 dark:bg-secondary-600') => ! $this->src,
             'shrink-0 inline-flex items-center justify-center overflow-hidden',
-            $this->borderClasses => !$this->borderless,
-            $this->sizeClasses   => !$this->src,
+            $this->borderClasses => ! $this->borderless,
+            $this->sizeClasses => ! $this->src,
             $this->roundedClasses,
             $this->sizeClasses,
         ]);

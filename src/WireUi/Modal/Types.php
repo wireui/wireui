@@ -21,20 +21,20 @@ class Types extends ComponentPack
     {
         return [
             'base' => [
-                'z-index'        => 'z-50',
-                'spacing'        => 'p-4',
+                'z-index' => 'z-50',
+                'spacing' => 'p-4',
                 'soft-scrollbar' => false,
                 'hide-scrollbar' => false,
             ],
             'soft' => [
-                'z-index'        => 'z-50',
-                'spacing'        => 'p-4',
+                'z-index' => 'z-50',
+                'spacing' => 'p-4',
                 'soft-scrollbar' => true,
                 'hide-scrollbar' => false,
             ],
             'hide' => [
-                'z-index'        => 'z-50',
-                'spacing'        => 'p-4',
+                'z-index' => 'z-50',
+                'spacing' => 'p-4',
                 'soft-scrollbar' => false,
                 'hide-scrollbar' => true,
             ],

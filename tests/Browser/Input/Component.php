@@ -11,18 +11,18 @@ class Component extends \Livewire\Component
     public $errorless = null;
 
     protected array $rules = [
-        'model'     => 'required',
+        'model' => 'required',
         'errorless' => 'required',
     ];
 
     protected array $messages = [
-        'model.required'     => 'input cant be empty',
+        'model.required' => 'input cant be empty',
         'errorless.required' => 'input is required',
     ];
 
     public function render()
     {
-        return View::file(__DIR__ . '/view.blade.php');
+        return View::file(__DIR__.'/view.blade.php');
     }
 
     public function validateInput(): void

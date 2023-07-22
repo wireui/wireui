@@ -22,7 +22,7 @@ trait HasSetupBlur
 
     protected function setupBlur(array &$component): void
     {
-        throw_if(!$this->blurResolve, new Exception('You must define a blur resolve.'));
+        throw_if(! $this->blurResolve, new Exception('You must define a blur resolve.'));
 
         $blurs = config("wireui.{$this->config}.blurs");
 

@@ -22,7 +22,7 @@ trait HasSetupShadow
 
     protected function setupShadow(array &$component): void
     {
-        throw_if(!$this->shadowResolve, new Exception('You must define a shadow resolve.'));
+        throw_if(! $this->shadowResolve, new Exception('You must define a shadow resolve.'));
 
         $shadows = config("wireui.{$this->config}.shadows");
 

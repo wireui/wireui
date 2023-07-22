@@ -20,22 +20,22 @@ class Colors extends ComponentPack
     public function all(): array
     {
         return [
-            'primary' => <<<EOT
+            'primary' => <<<'EOT'
                 toggle primary
             EOT,
-            'secondary' => <<<EOT
+            'secondary' => <<<'EOT'
                 toggle secondary
             EOT,
-            'positive' => <<<EOT
+            'positive' => <<<'EOT'
                 toggle positive
             EOT,
-            'negative' => <<<EOT
+            'negative' => <<<'EOT'
                 toggle negative
             EOT,
-            'warning' => <<<EOT
+            'warning' => <<<'EOT'
                 toggle warning
             EOT,
-            'info' => <<<EOT
+            'info' => <<<'EOT'
                 toggle info
             EOT,
         ];

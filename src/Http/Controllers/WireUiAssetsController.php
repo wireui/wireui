@@ -12,11 +12,11 @@ class WireUiAssetsController extends Controller
 
     public function scripts(): Response|BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.js', 'application/javascript');
+        return $this->pretendResponseIsFile(__DIR__.'/../../../dist/wireui.js', 'application/javascript');
     }
 
     public function styles(): Response|BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.css', 'text/css');
+        return $this->pretendResponseIsFile(__DIR__.'/../../../dist/wireui.css', 'text/css');
     }
 }

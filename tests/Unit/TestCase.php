@@ -3,7 +3,8 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\{Artisan, Route};
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench;
 use ReflectionClass;
@@ -31,7 +32,7 @@ class TestCase extends Testbench\TestCase
 
     private function srcDir(string $path): string
     {
-        return __DIR__ . "/../../src/{$path}";
+        return __DIR__."/../../src/{$path}";
     }
 
     protected function getPackageProviders($app)

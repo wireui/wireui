@@ -1,8 +1,7 @@
 <?php
 
-use WireUi\Http\Controllers\WireUiAssetsController;
-
 use function Pest\Laravel\get;
+use WireUi\Http\Controllers\WireUiAssetsController;
 
 it('can pretend to be a file', function () {
     $controller = new WireUiAssetsController();

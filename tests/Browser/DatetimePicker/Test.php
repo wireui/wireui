@@ -86,7 +86,7 @@ class Test extends BrowserTestCase
                 ->waitForTextIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->assertInputValue('dateAndTime', '11-12-2021 00:00')
                 ->pause(1000)
-                ->tap(fn () => $browser->script(<<<EOT
+                ->tap(fn () => $browser->script(<<<'EOT'
                     console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
 
                     [...document.querySelectorAll('[id="dateAndTime"] .picker-times button')]

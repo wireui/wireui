@@ -17,7 +17,7 @@ it('should parse the colors', function (array|Collection $colors) {
     expect($parsedColors[0]['value'])->toBe('#123');
     expect($parsedColors[1]['value'])->toBe('#456');
 })->with([
-    'array'      => [['#123', '#456']],
+    'array' => [['#123', '#456']],
     'collection' => [
         collect([
             '#123',

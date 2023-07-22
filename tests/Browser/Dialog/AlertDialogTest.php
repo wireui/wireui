@@ -108,7 +108,7 @@ class AlertDialogTest extends BrowserTestCase
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $this->showDialog($browser))
                 ->pause(400)
-                ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+                ->tap(fn (Browser $browser) => $browser->script(<<<'EOT'
                     document.querySelector('button.dialog-button-close').click()
                 EOT))
                 ->waitForLivewire()
@@ -146,28 +146,28 @@ class AlertDialogTest extends BrowserTestCase
     {
         return [
             [
-                'icon'        => 'success',
-                'title'       => 'Account Created',
+                'icon' => 'success',
+                'title' => 'Account Created',
                 'description' => 'Your account was created',
             ],
             [
-                'icon'        => 'error',
-                'title'       => 'Permission Denied',
+                'icon' => 'error',
+                'title' => 'Permission Denied',
                 'description' => "You don't have suficiente permission",
             ],
             [
-                'icon'        => 'info',
-                'title'       => 'Today is a good day',
+                'icon' => 'info',
+                'title' => 'Today is a good day',
                 'description' => 'Wireui is very helpful',
             ],
             [
-                'icon'        => 'warning',
-                'title'       => 'It can be permanent',
+                'icon' => 'warning',
+                'title' => 'It can be permanent',
                 'description' => 'Wish delete this file?',
             ],
             [
-                'icon'        => 'question',
-                'title'       => 'Sure delete?',
+                'icon' => 'question',
+                'title' => 'Sure delete?',
                 'description' => 'This action is irreversible',
             ],
         ];

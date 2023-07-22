@@ -4,8 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCheckbox;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Checkbox\{Colors, Rounders, Sizes};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupForm;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\WireUi\Checkbox\Colors;
+use WireUi\WireUi\Checkbox\Rounders;
+use WireUi\WireUi\Checkbox\Sizes;
 
 class Checkbox extends BaseComponent
 {

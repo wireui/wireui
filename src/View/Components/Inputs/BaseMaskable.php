@@ -40,7 +40,7 @@ abstract class BaseMaskable extends Input
             append: $append,
         );
 
-        $this->mask = $this->formatMask(!$mask ? $this->getInputMask() : $mask);
+        $this->mask = $this->formatMask(! $mask ? $this->getInputMask() : $mask);
     }
 
     protected function getView(): string

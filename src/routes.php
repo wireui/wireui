@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use WireUi\Http\Controllers\{ButtonController, IconsController, WireUiAssetsController};
+use WireUi\Http\Controllers\ButtonController;
+use WireUi\Http\Controllers\IconsController;
+use WireUi\Http\Controllers\WireUiAssetsController;
 
 /**
  * WireUi Routes.

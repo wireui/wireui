@@ -22,7 +22,7 @@ trait HasSetupRounded
 
     protected function setupRounded(array &$component): void
     {
-        throw_if(!$this->roundedResolve, new Exception('You must define a rounded resolve.'));
+        throw_if(! $this->roundedResolve, new Exception('You must define a rounded resolve.'));
 
         $rounders = config("wireui.{$this->config}.rounders");
 
@@ -44,9 +44,9 @@ trait HasSetupRounded
     {
         if ($this->squared) {
             $this->roundedClasses = $roundedPack->get('none');
-        } elseif (!$this->squared && $this->rounded && is_bool($this->rounded)) {
+        } elseif (! $this->squared && $this->rounded && is_bool($this->rounded)) {
             $this->roundedClasses = $roundedPack->get('full');
-        } elseif (!$this->squared) {
+        } elseif (! $this->squared) {
             $this->roundedClasses = $roundedPack->get($this->rounded);
         }
     }

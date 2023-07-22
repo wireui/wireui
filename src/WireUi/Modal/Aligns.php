@@ -20,9 +20,9 @@ class Aligns extends ComponentPack
     public function all(): array
     {
         return [
-            'start'  => 'sm:items-start',
+            'start' => 'sm:items-start',
             'center' => 'sm:items-center',
-            'end'    => 'sm:items-end',
+            'end' => 'sm:items-end',
         ];
     }
 }

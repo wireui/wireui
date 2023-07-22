@@ -1,7 +1,8 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
+use Tests\Unit\LivewireComponent;
+use Tests\Unit\TestCase;
 use WireUi\Actions\Dialog;
 
 it('should create the default dialog event name')
@@ -24,11 +25,11 @@ it('should create the dialog event name to a custom dialog', function () {
 });
 
 it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:dialog';
+    $event = 'wireui:dialog';
     $params = [
         'options' => [
             'title' => 'WireUI is awesome!',
-            'icon'  => $icon,
+            'icon' => $icon,
         ],
         'componentId' => 'fake-id',
     ];
@@ -45,7 +46,7 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
-                'icon'  => $expectedIcon,
+                'icon' => $expectedIcon,
             ],
             'componentId' => 'fake-id',
         ]);
@@ -57,9 +58,9 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
 ]);
 
 it('should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-dialog';
+    $event = 'wireui:confirm-dialog';
     $params = [
-        'options'     => ['title' => 'User created!', 'icon' => $icon],
+        'options' => ['title' => 'User created!', 'icon' => $icon],
         'componentId' => 'fake-id',
     ];
 
@@ -75,7 +76,7 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
         ->with($event, [
             'options' => [
                 'title' => 'User created!',
-                'icon'  => $expectedIcon,
+                'icon' => $expectedIcon,
             ],
             'componentId' => 'fake-id',
         ]);
@@ -100,8 +101,8 @@ it('should emit the simple dialog event', function (string $method) {
         ->method('dispatchBrowserEvent')
         ->with($event, [
             'options' => [
-                'title'       => 'Test Title!',
-                'icon'        => $method,
+                'title' => 'Test Title!',
+                'icon' => $method,
                 'description' => 'Test Description..',
             ],
             'componentId' => 'fake-id',

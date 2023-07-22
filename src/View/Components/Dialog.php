@@ -3,9 +3,16 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupDialog, HasSetupModal};
-use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
-use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
+use WireUi\Traits\Components\HasSetupDialog;
+use WireUi\Traits\Components\HasSetupModal;
+use WireUi\Traits\Customization\HasSetupAlign;
+use WireUi\Traits\Customization\HasSetupBlur;
+use WireUi\Traits\Customization\HasSetupMaxWidth;
+use WireUi\Traits\Customization\HasSetupType;
+use WireUi\WireUi\Modal\Aligns;
+use WireUi\WireUi\Modal\Blurs;
+use WireUi\WireUi\Modal\MaxWidths;
+use WireUi\WireUi\Modal\Types;
 
 class Dialog extends BaseComponent
 {
@@ -40,7 +47,7 @@ class Dialog extends BaseComponent
         return Arr::toCssClasses([
             'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
             'dark:bg-secondary-700 dark:bg-opacity-60',
-            $this->blurClasses => !$this->blurless,
+            $this->blurClasses => ! $this->blurless,
             "{$this->dialog}-backdrop",
         ]);
     }

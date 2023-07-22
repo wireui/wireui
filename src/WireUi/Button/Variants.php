@@ -3,7 +3,10 @@
 namespace WireUi\WireUi\Button;
 
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Button\Colors\{Flat, Light, Outline, Solid};
+use WireUi\WireUi\Button\Colors\Flat;
+use WireUi\WireUi\Button\Colors\Light;
+use WireUi\WireUi\Button\Colors\Outline;
+use WireUi\WireUi\Button\Colors\Solid;
 
 class Variants extends ComponentPack
 {
@@ -21,10 +24,10 @@ class Variants extends ComponentPack
     public function all(): array
     {
         return [
-            'flat'    => Flat::class,
-            'light'   => Light::class,
+            'flat' => Flat::class,
+            'light' => Light::class,
             'outline' => Outline::class,
-            'solid'   => Solid::class,
+            'solid' => Solid::class,
         ];
     }
 }

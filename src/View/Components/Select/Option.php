@@ -25,10 +25,10 @@ class Option extends Component
     public function toArray(): array
     {
         $option = array_merge((array) $this->option, [
-            'label'       => $this->label,
-            'value'       => $this->value,
-            'disabled'    => $this->disabled,
-            'readonly'    => $this->readonly || $this->disabled,
+            'label' => $this->label,
+            'value' => $this->value,
+            'disabled' => $this->disabled,
+            'readonly' => $this->readonly || $this->disabled,
             'description' => $this->description,
         ]);
 

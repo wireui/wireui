@@ -2,7 +2,9 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\{Collection, Str, ViewErrorBag};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Illuminate\Support\ViewErrorBag;
 use WireUi\Traits\Components\HasSetupErrors;
 
 class Errors extends BaseComponent

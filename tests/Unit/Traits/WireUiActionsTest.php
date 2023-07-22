@@ -1,13 +1,14 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
+use Tests\Unit\LivewireComponent;
+use Tests\Unit\TestCase;
 use WireUi\Actions\Dialog;
 
 it('should emit a dialog event when the method dialog is called with a non empty array', function () {
-    $event  = 'wireui:dialog';
+    $event = 'wireui:dialog';
     $params = [
-        'options'     => ['title' => 'WireUI is awesome!'],
+        'options' => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
     ];
 
@@ -23,7 +24,7 @@ it('should emit a dialog event when the method dialog is called with a non empty
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
-                'icon'  => Dialog::INFO,
+                'icon' => Dialog::INFO,
             ],
             'componentId' => 'fake-id',
         ]);
@@ -32,9 +33,9 @@ it('should emit a dialog event when the method dialog is called with a non empty
 });
 
 it('should emit a notification event when the method notification is called with a non empty array', function () {
-    $event  = 'wireui:notification';
+    $event = 'wireui:notification';
     $params = [
-        'options'     => ['title' => 'WireUI is awesome!'],
+        'options' => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
     ];
 
@@ -48,7 +49,7 @@ it('should emit a notification event when the method notification is called with
         ->expects($this->once())
         ->method('dispatchBrowserEvent')
         ->with($event, [
-            'options'     => ['title' => 'WireUI is awesome!'],
+            'options' => ['title' => 'WireUI is awesome!'],
             'componentId' => 'fake-id',
         ]);
 

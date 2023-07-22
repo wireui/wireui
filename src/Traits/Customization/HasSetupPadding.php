@@ -20,7 +20,7 @@ trait HasSetupPadding
 
     protected function setupPadding(array &$component): void
     {
-        throw_if(!$this->paddingResolve, new Exception('You must define a padding resolve.'));
+        throw_if(! $this->paddingResolve, new Exception('You must define a padding resolve.'));
 
         $paddings = config("wireui.{$this->config}.paddings");
 

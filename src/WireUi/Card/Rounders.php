@@ -21,12 +21,12 @@ class Rounders extends ComponentPack
     {
         return [
             'none' => 'rounded-none',
-            'sm'   => 'rounded-sm',
+            'sm' => 'rounded-sm',
             'base' => 'rounded',
-            'md'   => 'rounded-md',
-            'lg'   => 'rounded-lg',
-            'xl'   => 'rounded-xl',
-            '2xl'  => 'rounded-2xl',
+            'md' => 'rounded-md',
+            'lg' => 'rounded-lg',
+            'xl' => 'rounded-xl',
+            '2xl' => 'rounded-2xl',
             'full' => 'rounded-3xl',
         ];
     }

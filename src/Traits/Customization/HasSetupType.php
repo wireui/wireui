@@ -20,7 +20,7 @@ trait HasSetupType
 
     protected function setupType(array &$component): void
     {
-        throw_if(!$this->typeResolve, new Exception('You must define a type resolve.'));
+        throw_if(! $this->typeResolve, new Exception('You must define a type resolve.'));
 
         $types = config("wireui.{$this->config}.types");
 

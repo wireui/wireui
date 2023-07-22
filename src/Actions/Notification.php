@@ -58,8 +58,8 @@ class Notification
     public function simpleNotification(string $icon, string $title, ?string $description = null): void
     {
         $this->send([
-            'icon'        => $icon,
-            'title'       => $title,
+            'icon' => $icon,
+            'title' => $title,
             'description' => $description,
         ]);
     }
@@ -70,7 +70,7 @@ class Notification
     public function send(array $options): void
     {
         $this->component->dispatchBrowserEvent('wireui:notification', [
-            'options'     => $options,
+            'options' => $options,
             'componentId' => $this->component->id,
         ]);
     }
@@ -83,7 +83,7 @@ class Notification
         $options['icon'] ??= Actions::QUESTION->value;
 
         $this->component->dispatchBrowserEvent('wireui:confirm-notification', [
-            'options'     => $options,
+            'options' => $options,
             'componentId' => $this->component->id,
         ]);
     }

@@ -3,7 +3,7 @@
 namespace Tests\Browser\Notifications;
 
 use Illuminate\Support\Facades\View;
-use WireUi\Traits\{Actions, WireUiActions};
+use WireUi\Traits\WireUiActions;
 
 class Component extends \Livewire\Component
 {
@@ -17,7 +17,7 @@ class Component extends \Livewire\Component
 
     public function render()
     {
-        return View::file(__DIR__ . '/view.blade.php');
+        return View::file(__DIR__.'/view.blade.php');
     }
 
     public function setValue($anyValue): void
@@ -38,7 +38,7 @@ class Component extends \Livewire\Component
     public function showSimpleNotification(): void
     {
         $this->notification()->success(
-            $title       = 'Success title',
+            $title = 'Success title',
             $description = 'Success description',
         );
     }
@@ -46,27 +46,27 @@ class Component extends \Livewire\Component
     public function showConfirmActionWithSingleCallback(): void
     {
         $this->notification()->confirm([
-            'title'       => 'Confirmation Notification',
+            'title' => 'Confirmation Notification',
             'description' => 'You need confirm it',
             'acceptLabel' => 'Confirm it',
-            'method'      => 'setValue',
-            'params'      => 'Confirmed',
+            'method' => 'setValue',
+            'params' => 'Confirmed',
         ]);
     }
 
     public function showConfirmActionWithMultipleCallbacksAndEvents()
     {
         $this->notification()->confirm([
-            'title'       => 'Confirm It Jetete',
+            'title' => 'Confirm It Jetete',
             'description' => 'Description can be null like title',
-            'timeout'     => 300,
-            'accept'      => [
-                'label'  => 'Accept',
+            'timeout' => 300,
+            'accept' => [
+                'label' => 'Accept',
                 'method' => 'setValue',
                 'params' => 'Jetete',
             ],
             'reject' => [
-                'label'  => 'Reject',
+                'label' => 'Reject',
                 'method' => 'setValue',
                 'params' => 'Xablaw',
             ],

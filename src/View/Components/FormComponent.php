@@ -29,15 +29,15 @@ abstract class FormComponent extends Component
         /** @var string|null $model */
         $model = $attributes->wire('model')->value();
 
-        if ($attributes->has('name') && !$model) {
+        if ($attributes->has('name') && ! $model) {
             $model = $attributes->get('name');
         }
 
-        if (!$attributes->has('name') && $model) {
+        if (! $attributes->has('name') && $model) {
             $attributes->offsetSet('name', $model);
         }
 
-        if (!$attributes->has('id') && $model) {
+        if (! $attributes->has('id') && $model) {
             $attributes->offsetSet('id', md5($model));
         }
 

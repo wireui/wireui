@@ -1,6 +1,8 @@
 <?php
 
-use WireUi\Support\Buttons\Colors\{Flat, Outline, Solid};
+use WireUi\Support\Buttons\Colors\Flat;
+use WireUi\Support\Buttons\Colors\Outline;
+use WireUi\Support\Buttons\Colors\Solid;
 
 it('should return the a default color', function () {
     expect((new Flat())->default())->toBeTruthy();

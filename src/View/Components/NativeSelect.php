@@ -45,7 +45,7 @@ class NativeSelect extends FormComponent
      */
     private function validateConfig(): void
     {
-        if (!$this->optionKeyValue && (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel))) {
+        if (! $this->optionKeyValue && (($this->optionValue && ! $this->optionLabel) || (! $this->optionValue && $this->optionLabel))) {
             throw new InvalidArgumentException('The {option-value} and {option-label} attributes must be set together.');
         }
 
@@ -54,13 +54,13 @@ class NativeSelect extends FormComponent
         }
 
         if (
-            (!$this->optionValue && (!$this->optionLabel || ($this->optionKeyValue && !$this->optionLabel)))
+            (! $this->optionValue && (! $this->optionLabel || ($this->optionKeyValue && ! $this->optionLabel)))
             && $this->options->isNotEmpty()
-            && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+            && ! in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
             throw new InvalidArgumentException(
                 'Inform the {option-value} and {option-label} to use array, model, or object option.'
-                    . ' <x-select [...] option-value="id" option-label="name" />',
+                    .' <x-select [...] option-value="id" option-label="name" />',
             );
         }
 
@@ -71,7 +71,7 @@ class NativeSelect extends FormComponent
         ) {
             throw new InvalidArgumentException(
                 'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
-                    . implode(', ', self::PRIMITIVE_VALUES),
+                    .implode(', ', self::PRIMITIVE_VALUES),
             );
         }
     }
@@ -83,7 +83,7 @@ class NativeSelect extends FormComponent
 
     public function defaultClasses(): string
     {
-        return <<<EOT
+        return <<<'EOT'
             form-select block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm
             rounded-md border bg-white focus:ring-1 focus:outline-none
             dark:bg-secondary-800 dark:border-secondary-600 dark:text-secondary-400
@@ -97,7 +97,7 @@ class NativeSelect extends FormComponent
 
     public function errorClasses(): string
     {
-        return <<<EOT
+        return <<<'EOT'
             border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500
             dark:border-negative-600 dark:text-negative-500
         EOT;

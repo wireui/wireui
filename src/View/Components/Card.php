@@ -4,8 +4,14 @@ namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupCard;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
-use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupPadding;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupShadow;
+use WireUi\WireUi\Card\Colors;
+use WireUi\WireUi\Card\Paddings;
+use WireUi\WireUi\Card\Rounders;
+use WireUi\WireUi\Card\Shadows;
 
 class Card extends BaseComponent
 {
@@ -27,7 +33,7 @@ class Card extends BaseComponent
     {
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'root', 'bg-white dark:bg-secondary-800'),
-            $this->shadowClasses => !$this->shadowless,
+            $this->shadowClasses => ! $this->shadowless,
             $this->roundedClasses,
         ]);
     }
@@ -41,7 +47,7 @@ class Card extends BaseComponent
 
         return Arr::toCssClasses([
             'px-4 py-2.5 flex justify-between items-center',
-            $border => !$this->borderless,
+            $border => ! $this->borderless,
         ]);
     }
 
@@ -72,7 +78,7 @@ class Card extends BaseComponent
         return Arr::toCssClasses([
             data_get($this->colorClasses, 'footer', 'bg-secondary-50 dark:bg-secondary-800'),
             'px-4 py-4 sm:px-6 bg-clip-content',
-            $border => !$this->borderless,
+            $border => ! $this->borderless,
         ]);
     }
 

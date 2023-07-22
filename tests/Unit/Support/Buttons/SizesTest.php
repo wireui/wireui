@@ -1,7 +1,8 @@
 <?php
 
+use WireUi\Support\Buttons\Sizes\Base;
+use WireUi\Support\Buttons\Sizes\Icon;
 use WireUi\Support\Buttons\Sizes\Mini;
-use WireUi\Support\Buttons\Sizes\{Base, Icon};
 
 it('should return the default size', function () {
     expect((new Base())->default())->toBe(

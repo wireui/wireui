@@ -109,9 +109,9 @@ class SelectTest extends TestCase
         $this->assertEquals(
             [
                 [
-                    'value'       => 'wireui',
+                    'value' => 'wireui',
                     'description' => 'The wireui is amazing',
-                    'label'       => 'WireUI',
+                    'label' => 'WireUI',
                 ],
             ],
             $select->optionsToArray(),
@@ -133,8 +133,8 @@ class SelectTest extends TestCase
         $this->assertEquals(
             [
                 [
-                    'value'       => 'wireui',
-                    'label'       => 'WireUI',
+                    'value' => 'wireui',
+                    'label' => 'WireUI',
                     'description' => 'The wireui is amazing',
                 ],
             ],

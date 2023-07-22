@@ -1,10 +1,14 @@
 <?php
 
-use Illuminate\Foundation\{AliasLoader, Application};
-use Illuminate\Support\Facades\{Blade, View};
-use Illuminate\Support\{Arr, ServiceProvider};
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
+use Illuminate\View\ComponentAttributeBag;
+use Illuminate\View\Factory;
+use Illuminate\View\FileViewFinder;
 use Tests\Unit\TestCase;
 use WireUi\Facades\WireUi;
 use WireUi\View\Attribute;
@@ -71,7 +75,7 @@ it('should register the blade components', function () {
 it('should register the icon component to wireui class', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
-    $aliases       = $bladeCompiler->getClassComponentAliases();
+    $aliases = $bladeCompiler->getClassComponentAliases();
 
     $this->assertArrayHasKey('icon', $aliases, 'The {icon} should be registered');
     $this->assertSame($aliases['icon'], Icon::class);
@@ -113,10 +117,10 @@ it('should register the attribute macro on ComponentAttributeBag', function () {
 it('should get the attribute with modifiers', function (string $attribute, array $modifiers) {
     /** @var ComponentAttributeBag $bag */
     $bag = new ComponentAttributeBag([
-        'name'     => 'foo',
+        'name' => 'foo',
         $attribute => true,
-        'docker'   => 'container',
-        'sail'     => 'laravel',
+        'docker' => 'container',
+        'sail' => 'laravel',
     ]);
 
     /** @var Attribute $attribute */

@@ -4,9 +4,12 @@ namespace WireUi\View\Components;
 
 class TimePicker extends Input
 {
-    public const INTERVAL       = 10;
-    public const FORMAT_12H     = '12';
-    public const FORMAT_24H     = '24';
+    public const INTERVAL = 10;
+
+    public const FORMAT_12H = '12';
+
+    public const FORMAT_24H = '24';
+
     public const DEFAULT_FORMAT = self::FORMAT_12H;
 
     public function __construct(

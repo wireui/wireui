@@ -20,7 +20,7 @@ trait HasSetupUnderline
 
     protected function setupUnderline(array &$component): void
     {
-        throw_if(!$this->underlineResolve, new Exception('You must define a underline resolve.'));
+        throw_if(! $this->underlineResolve, new Exception('You must define a underline resolve.'));
 
         $underlines = config("wireui.{$this->config}.underlines");
 

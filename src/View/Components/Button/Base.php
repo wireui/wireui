@@ -4,10 +4,19 @@ namespace WireUi\View\Components\Button;
 
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupButton;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Customization\HasSetupColor;
+use WireUi\Traits\Customization\HasSetupIcon;
+use WireUi\Traits\Customization\HasSetupIconSize;
+use WireUi\Traits\Customization\HasSetupRounded;
+use WireUi\Traits\Customization\HasSetupSize;
+use WireUi\Traits\Customization\HasSetupSpinner;
+use WireUi\Traits\Customization\HasSetupStateColor;
+use WireUi\Traits\Customization\HasSetupVariant;
 use WireUi\View\Components\BaseComponent;
+use WireUi\WireUi\Button\IconSizes;
+use WireUi\WireUi\Button\Rounders;
 use WireUi\WireUi\Button\Sizes\Base as SizesBase;
-use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
+use WireUi\WireUi\Button\Variants;
 
 class Base extends BaseComponent
 {

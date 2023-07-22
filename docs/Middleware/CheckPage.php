@@ -3,7 +3,9 @@
 namespace WireUiDocs\Middleware;
 
 use Closure;
-use Illuminate\Http\{RedirectResponse, Request, Response};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 
 class CheckPage
@@ -25,6 +27,6 @@ class CheckPage
      */
     private function hasPage(string $page): bool
     {
-        return File::exists(__DIR__ . "/../resources/views/docs/{$page}.blade.php");
+        return File::exists(__DIR__."/../resources/views/docs/{$page}.blade.php");
     }
 }

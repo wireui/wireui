@@ -23,11 +23,11 @@ class NativeSelectTest extends TestCase
     {
         return [
             'option-value and option-label are not set together: missing option-label' => [
-                'attributes'   => ['optionValue' => 'id'],
+                'attributes' => ['optionValue' => 'id'],
                 'errorMessage' => 'The {option-value} and {option-label} attributes must be set together.',
             ],
             'option-value and option-label are not set together: missing option-value' => [
-                'attributes'   => ['optionLabel' => 'name'],
+                'attributes' => ['optionLabel' => 'name'],
                 'errorMessage' => 'The {option-value} and {option-label} attributes must be set together.',
             ],
             'flip-options cannot be used with option-value and option-label' => [
@@ -46,16 +46,16 @@ class NativeSelectTest extends TestCase
                     ],
                 ],
                 'errorMessage' => 'Inform the {option-value} and {option-label} to use array, model, or object option.'
-                    . ' <x-select [...] option-value="id" option-label="name" />',
+                    .' <x-select [...] option-value="id" option-label="name" />',
             ],
             'option-value and option-label cannot be used with primitive options' => [
                 'attributes' => [
                     'optionValue' => 'id',
                     'optionLabel' => 'name',
-                    'options'     => ['name', 'id', 'email'],
+                    'options' => ['name', 'id', 'email'],
                 ],
                 'errorMessage' => 'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
-                    . implode(', ', NativeSelect::PRIMITIVE_VALUES),
+                    .implode(', ', NativeSelect::PRIMITIVE_VALUES),
             ],
         ];
     }
@@ -63,7 +63,7 @@ class NativeSelectTest extends TestCase
     public function test_it_should_allow_using_option_key_value_with_option_label()
     {
         $option = [
-            'label'       => 'label',
+            'label' => 'label',
             'description' => 'description',
         ];
 
