@@ -1,1 +1,6 @@
-/*! https://mths.be/cssesc v3.0.0 by @mathias */
+/*!
+ * clipboard.js v2.0.11
+ * https://clipboardjs.com/
+ *
+ * Licensed MIT © Zeno Rocha
+ */

@@ -13,7 +13,8 @@
         "php": "^8.2",
         "laravel/framework": "^10.0",
         "livewire/livewire": "^2.11",
-        "wireui/heroicons": "^2.3"
+        "wireui/heroicons": "^2.3",
+        "torchlight/torchlight-laravel": "^0.5.13"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
@@ -38,10 +39,12 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "WireUi\\": "src/"
+            "WireUi\\": "src/",
+            "WireUiDocs\\": "docs/"
         },
         "files": [
-            "src/helpers.php"
+            "src/helpers.php",
+            "docs/helpers.php"
         ]
     },
     "autoload-dev": {
@@ -62,7 +65,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WireUi\\WireUiServiceProvider"
+                "WireUi\\WireUiServiceProvider",
+                "WireUiDocs\\WireUiDocsServiceProvider"
             ],
             "aliases": []
         }
