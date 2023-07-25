@@ -74,7 +74,7 @@
                 @endif
             </div>
         @elseif ($append)
-            {{ $append }}
+            {!! $append !!}
         @endif
     </div>
 
