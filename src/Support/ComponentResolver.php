@@ -63,9 +63,9 @@ class ComponentResolver
                 'class' => Components\Button\Base::class,
                 'alias' => 'button',
             ],
-            'button-mini' => [
+            'mini-button' => [
                 'class' => Components\Button\Mini::class,
-                'alias' => 'button-mini',
+                'alias' => 'mini-button',
             ],
             'card' => [
                 'class' => Components\Card::class,
