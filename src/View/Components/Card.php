@@ -28,7 +28,7 @@ class Card extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'root', 'bg-white dark:bg-secondary-800'),
+            data_get($this->colorClasses, 'root', ''),
             $this->shadowClasses => !$this->shadowless,
             $this->roundedClasses,
         ]);
@@ -37,7 +37,7 @@ class Card extends BaseComponent
     public function getHeaderClasses(): string
     {
         $border = Arr::toCssClasses([
-            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-600'),
+            data_get($this->colorClasses, 'border', ''),
             'border-b',
         ]);
 
@@ -50,7 +50,7 @@ class Card extends BaseComponent
     public function getTitleClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'text', 'text-secondary-700 dark:text-secondary-400'),
+            data_get($this->colorClasses, 'text', ''),
             'font-medium text-base whitespace-normal',
         ]);
     }
@@ -58,7 +58,7 @@ class Card extends BaseComponent
     public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'text', 'text-secondary-700 dark:text-secondary-400'),
+            data_get($this->colorClasses, 'text', ''),
             $this->paddingClasses,
             'grow',
         ]);
@@ -67,12 +67,12 @@ class Card extends BaseComponent
     public function getFooterClasses(): string
     {
         $border = Arr::toCssClasses([
-            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-600'),
+            data_get($this->colorClasses, 'border', ''),
             'border-t',
         ]);
 
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'footer', 'bg-secondary-50 dark:bg-secondary-800'),
+            data_get($this->colorClasses, 'footer', ''),
             'px-4 py-4 sm:px-6 bg-clip-content',
             $border => !$this->borderless,
         ]);

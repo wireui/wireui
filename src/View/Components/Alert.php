@@ -32,8 +32,8 @@ class Alert extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'backgroundColor', 'bg-primary-50 dark:bg-primary-900/70'),
-            data_get($this->colorClasses, 'borderColor', ''),
+            data_get($this->colorClasses, 'background', ''),
+            data_get($this->colorClasses, 'border', ''),
             $this->shadowClasses => !$this->shadowless,
             'w-full flex flex-col p-4',
             $this->roundedClasses,
@@ -51,7 +51,7 @@ class Alert extends BaseComponent
     public function getTitleClasses(mixed $slot): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'textColor', 'text-primary-800 dark:text-primary-200'),
+            data_get($this->colorClasses, 'text', ''),
             'font-semibold' => $slot->isNotEmpty(),
             'font-normal'   => $slot->isEmpty(),
             'text-sm whitespace-normal',
@@ -61,7 +61,7 @@ class Alert extends BaseComponent
     public function getIconClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'iconColor', 'text-primary-800 dark:text-primary-200'),
+            data_get($this->colorClasses, 'iconColor', ''),
             'w-5 h-5 mr-3 shrink-0',
         ]);
     }
@@ -69,7 +69,7 @@ class Alert extends BaseComponent
     public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'textColor', 'text-primary-800 dark:text-primary-200'),
+            data_get($this->colorClasses, 'text', ''),
             $this->paddingClasses,
             'grow text-sm',
         ]);

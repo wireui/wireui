@@ -29,11 +29,11 @@ class Avatar extends BaseComponent
     public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            data_get($this->colorClasses, 'border', 'border-secondary-200 dark:border-secondary-500') => !$this->borderless,
-            data_get($this->colorClasses, 'label', 'bg-secondary-500 dark:bg-secondary-600')          => !$this->src,
             'shrink-0 inline-flex items-center justify-center overflow-hidden',
-            $this->borderClasses => !$this->borderless,
-            $this->sizeClasses   => !$this->src,
+            data_get($this->colorClasses, 'border', '') => !$this->borderless,
+            data_get($this->colorClasses, 'label', '')  => !$this->src,
+            $this->borderClasses                        => !$this->borderless,
+            $this->sizeClasses                          => !$this->src,
             $this->roundedClasses,
             $this->sizeClasses,
         ]);
