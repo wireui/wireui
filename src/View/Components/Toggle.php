@@ -3,8 +3,7 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupCheckbox;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
 
 class Toggle extends BaseComponent
@@ -13,10 +12,12 @@ class Toggle extends BaseComponent
     use HasSetupSize;
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupCheckbox;
 
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $label = null,
+        public ?string $leftLabel = null,
+        public ?string $description = null,
+    ) {
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setRoundedResolve(Rounders::class);

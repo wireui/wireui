@@ -3,8 +3,7 @@
 namespace WireUi\View\Components\Button;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupButton;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Button\Sizes\Mini as SizesMini;
 use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
@@ -14,15 +13,18 @@ class Mini extends BaseComponent
     use HasSetupIcon;
     use HasSetupSize;
     use HasSetupColor;
-    use HasSetupButton;
     use HasSetupRounded;
     use HasSetupSpinner;
     use HasSetupVariant;
     use HasSetupIconSize;
     use HasSetupStateColor;
 
-    public function __construct()
-    {
+    public ?string $tag = null;
+
+    public function __construct(
+        public bool $loading = true,
+        public ?string $label = null,
+    ) {
         $this->setSizeResolve(SizesMini::class);
         $this->setRoundedResolve(Rounders::class);
         $this->setVariantResolve(Variants::class);
@@ -62,5 +64,41 @@ class Mini extends BaseComponent
     public function getView(): string
     {
         return 'wireui::components.button.mini';
+    }
+
+    /**
+     * Setup to resolve the button type, tag and wire loading.
+     */
+    protected function setupButton(array &$component): void
+    {
+        $this->tag = $this->getTag();
+
+        $this->ensureLinkType();
+
+        $this->ensureWireLoading();
+
+        $component['tag'] = $this->tag;
+
+        $this->smart(['tag']);
+    }
+
+    private function getTag(): string
+    {
+        return $this->data->missing('href') ? 'button' : 'a';
+    }
+
+    private function ensureLinkType(): void
+    {
+        if (!$this->data->has('href') && !$this->data->has('type')) {
+            $this->data->offsetSet('type', 'button');
+        }
+    }
+
+    private function ensureWireLoading(): void
+    {
+        if ($this->loading) {
+            $this->data->offsetSet('wire:loading.attr', 'disabled');
+            $this->data->offsetSet('wire:loading.class', '!cursor-wait');
+        }
     }
 }

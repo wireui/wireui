@@ -3,22 +3,21 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupAlert;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
 use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
 class Alert extends BaseComponent
 {
     use HasSetupIcon;
-    use HasSetupAlert;
     use HasSetupColor;
     use HasSetupShadow;
     use HasSetupPadding;
     use HasSetupRounded;
     use HasSetupVariant;
 
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $title = null,
+    ) {
         $this->setShadowResolve(Shadows::class);
         $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);

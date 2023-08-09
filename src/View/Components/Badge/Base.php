@@ -3,8 +3,7 @@
 namespace WireUi\View\Components\Badge;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupBadge;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Badge\Sizes\Base as BaseSize;
 use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
@@ -13,14 +12,15 @@ class Base extends BaseComponent
 {
     use HasSetupIcon;
     use HasSetupSize;
-    use HasSetupBadge;
     use HasSetupColor;
     use HasSetupRounded;
     use HasSetupVariant;
     use HasSetupIconSize;
 
-    public function __construct()
-    {
+    public function __construct(
+        public bool $full = false,
+        public ?string $label = null,
+    ) {
         $this->setSizeResolve(BaseSize::class);
         $this->setRoundedResolve(Rounders::class);
         $this->setVariantResolve(Variants::class);

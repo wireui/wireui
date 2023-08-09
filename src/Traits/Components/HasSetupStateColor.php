@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Traits\Customization;
+namespace WireUi\Traits\Components;
 
 use Exception;
 use Illuminate\Support\Arr;

@@ -3,11 +3,26 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\{Collection, Str, ViewErrorBag};
-use WireUi\Traits\Components\HasSetupErrors;
 
 class Errors extends BaseComponent
 {
-    use HasSetupErrors;
+    public function __construct(
+        public mixed $only = [],
+        public ?string $title = null,
+    ) {
+        $this->initOnly();
+    }
+
+    private function initOnly(): void
+    {
+        if (is_string($this->only)) {
+            $this->only = str($this->only)->explode('|');
+
+            $this->only->transform(fn (string $name) => trim($name));
+        }
+
+        $this->only = collect($this->only);
+    }
 
     public function count(ViewErrorBag $errors): int
     {

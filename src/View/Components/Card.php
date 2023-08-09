@@ -3,24 +3,26 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupCard;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
 use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
 
 class Card extends BaseComponent
 {
-    use HasSetupCard;
     use HasSetupColor;
     use HasSetupShadow;
     use HasSetupPadding;
     use HasSetupRounded;
 
-    protected function __construct()
-    {
+    public function __construct(
+        public ?string $title = null,
+        public ?bool $borderless = null,
+    ) {
         $this->setColorResolve(Colors::class);
         $this->setShadowResolve(Shadows::class);
         $this->setPaddingResolve(Paddings::class);
         $this->setRoundedResolve(Rounders::class);
+
+        $this->borderless ??= config('wireui.card.borderless', false);
     }
 
     public function getRootClasses(): string

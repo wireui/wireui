@@ -3,8 +3,7 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupAvatar;
-use WireUi\Traits\Customization\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
 
 class Avatar extends BaseComponent
@@ -12,13 +11,14 @@ class Avatar extends BaseComponent
     use HasSetupSize;
     use HasSetupIcon;
     use HasSetupColor;
-    use HasSetupAvatar;
     use HasSetupBorder;
     use HasSetupRounded;
     use HasSetupIconSize;
 
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $src = null,
+        public ?string $label = null,
+    ) {
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setBorderResolve(Borders::class);

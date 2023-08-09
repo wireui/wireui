@@ -3,8 +3,8 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupDialog, HasSetupModal};
-use WireUi\Traits\Customization\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
+use WireUi\Actions\Dialog as DialogAction;
+use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
 use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
 class Dialog extends BaseComponent
@@ -12,16 +12,25 @@ class Dialog extends BaseComponent
     use HasSetupBlur;
     use HasSetupType;
     use HasSetupAlign;
-    use HasSetupModal;
-    use HasSetupDialog;
     use HasSetupMaxWidth;
 
-    public function __construct()
-    {
+    public string $dialog;
+
+    public function __construct(
+        ?string $id = null,
+        public ?string $title = null,
+        public ?string $zIndex = null,
+        public ?string $spacing = null,
+        public ?string $description = null,
+    ) {
         $this->setBlurResolve(Blurs::class);
         $this->setTypeResolve(Types::class);
         $this->setAlignResolve(Aligns::class);
         $this->setMaxWidthResolve(MaxWidths::class);
+
+        $this->dialog = DialogAction::makeEventName($id);
+        $this->zIndex  ??= config('wireui.modal.z-index');
+        $this->spacing ??= config('wireui.modal.spacing');
     }
 
     public function getRootClasses(): string

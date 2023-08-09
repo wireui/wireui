@@ -3,18 +3,19 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupNotifications;
-use WireUi\Traits\Customization\HasSetupPosition;
+use WireUi\Traits\Components\HasSetupPosition;
 use WireUi\WireUi\Notification\Positions;
 
 class Notifications extends BaseComponent
 {
     use HasSetupPosition;
-    use HasSetupNotifications;
 
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $zIndex = null,
+    ) {
         $this->setPositionResolve(Positions::class);
+
+        $this->zIndex ??= config('wireui.notifications.z-index', 'z-50');
     }
 
     public function getRootClasses(): string

@@ -3,8 +3,7 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupCheckbox;
-use WireUi\Traits\Customization\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
 
 class Radio extends BaseComponent
@@ -13,10 +12,12 @@ class Radio extends BaseComponent
     use HasSetupSize;
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupCheckbox;
 
-    public function __construct()
-    {
+    public function __construct(
+        public ?string $label = null,
+        public ?string $leftLabel = null,
+        public ?string $description = null,
+    ) {
         $this->setSizeResolve(Sizes::class);
         $this->setColorResolve(Colors::class);
         $this->setRoundedResolve(Rounders::class);
