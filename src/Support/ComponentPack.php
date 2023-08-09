@@ -11,11 +11,11 @@ abstract class ComponentPack
      */
     private function serializeAttribute(mixed $attribute): mixed
     {
-        if (is_bool($attribute) && $attribute === true) {
+        if (is_bool($attribute) && $attribute) {
             return '1';
         }
 
-        if (is_bool($attribute) && $attribute === false) {
+        if (is_bool($attribute) && !$attribute) {
             return '0';
         }
 

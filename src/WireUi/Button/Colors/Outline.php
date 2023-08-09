@@ -21,7 +21,7 @@ class Outline extends ComponentPack
      */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -35,7 +35,7 @@ class Outline extends ComponentPack
                 'hover' => '',
                 'focus' => '',
             ],
-            'default' => [
+            'base' => [
                 'base'  => 'text-slate-500 border border-slate-300 dark:border-slate-500 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:bg-slate-300",

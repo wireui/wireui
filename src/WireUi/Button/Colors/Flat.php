@@ -21,7 +21,7 @@ class Flat extends ComponentPack
      */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -35,7 +35,7 @@ class Flat extends ComponentPack
                 'hover' => '',
                 'focus' => '',
             ],
-            'default' => [
+            'base' => [
                 'base'  => 'text-slate-500 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-600 hover:bg-slate-400",

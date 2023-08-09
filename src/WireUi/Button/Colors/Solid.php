@@ -26,7 +26,7 @@ class Solid extends ComponentPack
      */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -40,7 +40,7 @@ class Solid extends ComponentPack
                 'hover' => '',
                 'focus' => '',
             ],
-            'default' => [
+            'base' => [
                 'base'  => 'border border-slate-300 text-slate-500 dark:border-slate-600 dark:text-slate-400',
                 'hover' => 'hover:text-slate-500 500 hover:bg-slate-100 dark:hover:text-slate-400 dark:hover:bg-slate-700',
                 'focus' => [

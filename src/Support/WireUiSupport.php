@@ -2,8 +2,6 @@
 
 namespace WireUi\Support;
 
-use Illuminate\Support\Collection;
-
 class WireUiSupport
 {
     /**
@@ -28,13 +26,5 @@ class WireUiSupport
     public function component(string $name): string
     {
         return (new static())->components()->resolve($name);
-    }
-
-    /**
-     * Get default components.
-     */
-    public function defaultComponents(): Collection
-    {
-        return (new static())->components()->defaultComponents();
     }
 }

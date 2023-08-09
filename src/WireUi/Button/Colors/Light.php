@@ -26,7 +26,7 @@ class Light extends ComponentPack
      */
     public function default(): string
     {
-        return 'default';
+        return 'base';
     }
 
     /**
@@ -40,7 +40,7 @@ class Light extends ComponentPack
                 'hover' => '',
                 'focus' => '',
             ],
-            'default' => [
+            'base' => [
                 'base'  => "{$this->base} text-slate-600 bg-slate-200 dark:bg-slate-600 dark:text-slate-400",
                 'hover' => [
                     "{$this->hover} hover:text-slate-800 hover:bg-slate-300",
