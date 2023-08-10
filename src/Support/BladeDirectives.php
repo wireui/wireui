@@ -4,7 +4,7 @@ namespace WireUi\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-use WireUi\Actions\Minify;
+use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class BladeDirectives
 {
@@ -70,7 +70,7 @@ class BladeDirectives
             }
         JS;
 
-        return Minify::execute($scripts);
+        return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
     }
 
     public function getManifestVersion(string $file, ?string &$route = null): ?string

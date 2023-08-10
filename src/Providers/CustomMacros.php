@@ -2,7 +2,7 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Support\{Arr, Collection, Str};
+use Illuminate\Support\{Collection, Str};
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\WireDirective;
 use WireUi\View\Attribute;

@@ -3,20 +3,18 @@
 namespace WireUi\Http\Controllers;
 
 use Illuminate\Http\Response;
-use Livewire\Controllers\CanPretendToBeAFile;
+use Livewire\Drawer\Utils;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class WireUiAssetsController extends Controller
 {
-    use CanPretendToBeAFile;
-
     public function scripts(): Response|BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.js', 'application/javascript');
+        return Utils::pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.js', 'application/javascript');
     }
 
     public function styles(): Response|BinaryFileResponse
     {
-        return $this->pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.css', 'text/css');
+        return Utils::pretendResponseIsFile(__DIR__ . '/../../../dist/wireui.css', 'text/css');
     }
 }

@@ -12,7 +12,7 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^10.0",
-        "livewire/livewire": "^2.11",
+        "livewire/livewire": "^3.0@beta",
         "wireui/heroicons": "^2.3"
     },
     "require-dev": {
@@ -21,8 +21,8 @@
         "orchestra/testbench": "^8.0",
         "orchestra/testbench-dusk": "^8.0",
         "psy/psysh": "^0.11.12",
-        "pestphp/pest": "^2.0",
-        "pestphp/pest-plugin-livewire": "^2.0",
+        "pestphp/pest": "^2.13",
+        "pestphp/pest-plugin-livewire": "^2.1",
         "pestphp/pest-plugin-mock": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "laravel/pint": "^1.6"
