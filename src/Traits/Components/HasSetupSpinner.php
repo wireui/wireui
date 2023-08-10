@@ -30,8 +30,19 @@ trait HasSetupSpinner
             return null;
         }
 
-        $target = $spinner->expression();
+        $attributes = $this->createAttributes($spinner);
 
+        if (is_string($target = $spinner->expression())) {
+            $attributes->offsetSet('wire:target', $target);
+        }
+
+        $this->data->offsetUnset($spinner->directive());
+
+        return $attributes;
+    }
+
+    private function createAttributes($spinner): ComponentAttributeBag
+    {
         $loading = 'wire:loading.delay';
 
         $spinnerRemove = 'wire:loading.remove';
@@ -44,14 +55,6 @@ trait HasSetupSpinner
 
         $this->spinnerRemove->offsetSet($spinnerRemove, 'true');
 
-        $attributes = new ComponentAttributeBag([$loading => 'true']);
-
-        if (is_string($target)) {
-            $attributes->offsetSet('wire:target', $target);
-        }
-
-        $this->data->offsetUnset($spinner->directive());
-
-        return $attributes;
+        return new ComponentAttributeBag([$loading => 'true']);
     }
 }

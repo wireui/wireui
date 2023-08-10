@@ -3,7 +3,7 @@
 namespace WireUi\View\Components\Button;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Button\Sizes\Mini as SizesMini;
 use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
@@ -13,6 +13,7 @@ class Mini extends BaseComponent
     use HasSetupIcon;
     use HasSetupSize;
     use HasSetupColor;
+    use HasSetupButton;
     use HasSetupRounded;
     use HasSetupSpinner;
     use HasSetupVariant;

@@ -3,13 +3,14 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupSize, HasSetupUnderline};
+use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize, HasSetupUnderline};
 use WireUi\WireUi\Link\{Colors, Sizes, Underlines};
 
 class Link extends BaseComponent
 {
     use HasSetupSize;
     use HasSetupColor;
+    use HasSetupButton;
     use HasSetupUnderline;
 
     public ?string $tag = null;
