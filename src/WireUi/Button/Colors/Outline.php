@@ -141,7 +141,6 @@ class Outline extends ComponentPack
                     'dark:focus:text-black dark:focus:bg-black dark:focus:ring-black',
                 ],
             ],
-
             'slate' => [
                 'base'  => 'text-slate-600 border border-slate-600 dark:text-slate-400 dark:border-slate-400',
                 'hover' => [
