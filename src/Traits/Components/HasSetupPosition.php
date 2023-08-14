@@ -11,7 +11,7 @@ trait HasSetupPosition
 
     public mixed $positionClasses = null;
 
-    private mixed $positionResolve = null;
+    protected mixed $positionResolve = null;
 
     protected function setPositionResolve(string $class): void
     {

@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\{Arr, Str};
 use Illuminate\View\{Component, ComponentAttributeBag};
 use WireUi\Facades\WireUi;
+use WireUi\Support\ComponentPack;
 
 abstract class BaseComponent extends Component
 {
@@ -107,6 +108,23 @@ abstract class BaseComponent extends Component
         $config = config("wireui.{$this->config}.{$snake}");
 
         return $callback ? $callback($config) : $config;
+    }
+
+    /**
+     * Get data modifier from the component or config.
+     */
+    protected function getDataModifier(mixed $options, string $attribute): mixed
+    {
+        /** @var ComponentPack $dataPack */
+        $dataPack = $options ? resolve($options) : resolve($this->{"{$attribute}Resolve"});
+
+        $value = $this->data->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
+
+        $this->smart([$attribute, ...$dataPack->keys()]);
+
+        $value ??= config("wireui.{$this->config}.{$attribute}");
+
+        return [$value, $dataPack];
     }
 
     /**

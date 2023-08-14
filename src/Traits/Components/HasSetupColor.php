@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupColor
 {
@@ -11,7 +10,7 @@ trait HasSetupColor
 
     public mixed $colorClasses = null;
 
-    private mixed $colorResolve = null;
+    protected mixed $colorResolve = null;
 
     protected function setColorResolve(string $class): void
     {
@@ -24,12 +23,7 @@ trait HasSetupColor
 
         $colors = config($this->getColorConfigName());
 
-        /** @var ComponentPack $colorPack */
-        $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
-
-        $this->color = $this->data->get('color') ?? $this->getMatchModifier($colorPack->keys());
-
-        $this->color ??= config("wireui.{$this->config}.color");
+        [$this->color, $colorPack] = $this->getDataModifier($colors, 'color');
 
         $this->colorClasses = $colorPack->get($this->color);
 
@@ -38,8 +32,6 @@ trait HasSetupColor
         }
 
         $this->setColorVariables($component);
-
-        $this->smart(['color', ...$colorPack->keys()]);
     }
 
     private function getColorConfigName(string $variant = null): string

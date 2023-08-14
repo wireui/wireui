@@ -13,7 +13,7 @@ trait HasSetupBorder
 
     public mixed $borderClasses = null;
 
-    private mixed $borderResolve = null;
+    protected mixed $borderResolve = null;
 
     protected function setBorderResolve(string $class): void
     {

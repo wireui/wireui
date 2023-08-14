@@ -13,7 +13,7 @@ trait HasSetupBlur
 
     public mixed $blurClasses = null;
 
-    private mixed $blurResolve = null;
+    protected mixed $blurResolve = null;
 
     protected function setBlurResolve(string $class): void
     {

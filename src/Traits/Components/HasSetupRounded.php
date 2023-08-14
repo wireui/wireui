@@ -13,7 +13,7 @@ trait HasSetupRounded
 
     public mixed $roundedClasses = null;
 
-    private mixed $roundedResolve = null;
+    protected mixed $roundedResolve = null;
 
     protected function setRoundedResolve(string $class): void
     {

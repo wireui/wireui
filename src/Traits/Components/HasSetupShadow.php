@@ -13,7 +13,7 @@ trait HasSetupShadow
 
     public mixed $shadowClasses = null;
 
-    private mixed $shadowResolve = null;
+    protected mixed $shadowResolve = null;
 
     protected function setShadowResolve(string $class): void
     {

@@ -11,7 +11,7 @@ trait HasSetupUnderline
 
     public mixed $underlineClasses = null;
 
-    private mixed $underlineResolve = null;
+    protected mixed $underlineResolve = null;
 
     protected function setUnderlineResolve(string $class): void
     {

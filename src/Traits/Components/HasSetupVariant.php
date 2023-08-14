@@ -3,13 +3,12 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupVariant
 {
     public mixed $variant = null;
 
-    private mixed $variantResolve = null;
+    protected mixed $variantResolve = null;
 
     protected function setVariantResolve(string $class): void
     {
@@ -22,12 +21,7 @@ trait HasSetupVariant
 
         $variants = config("wireui.{$this->config}.variants");
 
-        /** @var ComponentPack $variantPack */
-        $variantPack = $variants ? resolve($variants) : resolve($this->variantResolve);
-
-        $this->variant = $this->data->get('variant') ?? $this->getMatchModifier($variantPack->keys());
-
-        $this->variant ??= config("wireui.{$this->config}.variant");
+        [$this->variant, $variantPack] = $this->getDataModifier($variants, 'variant');
 
         if (method_exists($this, 'setColorResolve')) {
             $this->setColorResolve($variantPack->get($this->variant));
@@ -38,8 +32,6 @@ trait HasSetupVariant
         }
 
         $this->setVariantVariables($component);
-
-        $this->smart(['variant', ...$variantPack->keys()]);
     }
 
     private function setVariantVariables(array &$component): void

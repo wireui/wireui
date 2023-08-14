@@ -13,8 +13,6 @@ trait HasSetupButton
         $this->ensureWireLoading();
 
         $this->setButtonVariables($component);
-
-        $this->smart(['tag']);
     }
 
     private function setButtonVariables(array &$component): void
