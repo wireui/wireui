@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupPosition
 {
@@ -24,8 +23,7 @@ trait HasSetupPosition
 
         $positions = config("wireui.{$this->config}.positions");
 
-        /** @var ComponentPack $positionPack */
-        $positionPack = $positions ? resolve($positions) : resolve($this->positionResolve);
+        $positionPack = $this->getResolve($positions, 'position');
 
         $this->position = $this->getData('position');
 

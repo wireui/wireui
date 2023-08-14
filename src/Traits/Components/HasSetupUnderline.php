@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupUnderline
 {
@@ -24,8 +23,7 @@ trait HasSetupUnderline
 
         $underlines = config("wireui.{$this->config}.underlines");
 
-        /** @var ComponentPack $underlinePack */
-        $underlinePack = $underlines ? resolve($underlines) : resolve($this->underlineResolve);
+        $underlinePack = $this->getResolve($underlines, 'underline');
 
         $this->underline = $this->getData('underline');
 

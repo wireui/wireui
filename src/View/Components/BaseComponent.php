@@ -89,6 +89,14 @@ abstract class BaseComponent extends Component
     }
 
     /**
+     * Get the component pack to this attribute.
+     */
+    protected function getResolve(mixed $options, string $attribute): ComponentPack
+    {
+        return $options ? resolve($options) : resolve($this->{"{$attribute}Resolve"});
+    }
+
+    /**
      * Get data from the component or config.
      */
     protected function getData(string $attribute, callable $callback = null): mixed
@@ -115,8 +123,7 @@ abstract class BaseComponent extends Component
      */
     protected function getDataModifier(mixed $options, string $attribute): mixed
     {
-        /** @var ComponentPack $dataPack */
-        $dataPack = $options ? resolve($options) : resolve($this->{"{$attribute}Resolve"});
+        $dataPack = $this->getResolve(...func_get_args());
 
         $value = $this->data->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
 

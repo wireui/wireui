@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupBorder
 {
@@ -26,8 +25,7 @@ trait HasSetupBorder
 
         $borders = config("wireui.{$this->config}.borders");
 
-        /** @var ComponentPack $borderPack */
-        $borderPack = $borders ? resolve($borders) : resolve($this->borderResolve);
+        $borderPack = $this->getResolve($borders, 'border');
 
         $this->border = $this->getData('border');
 

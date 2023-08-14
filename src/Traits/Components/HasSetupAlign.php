@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupAlign
 {
@@ -24,8 +23,7 @@ trait HasSetupAlign
 
         $aligns = config("wireui.{$this->config}.aligns");
 
-        /** @var ComponentPack $alignPack */
-        $alignPack = $aligns ? resolve($aligns) : resolve($this->alignResolve);
+        $alignPack = $this->getResolve($aligns, 'align');
 
         $this->align = $this->getData('align');
 

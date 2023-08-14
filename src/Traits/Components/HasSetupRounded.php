@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupRounded
 {
@@ -26,8 +25,7 @@ trait HasSetupRounded
 
         $rounders = config("wireui.{$this->config}.rounders");
 
-        /** @var ComponentPack $roundedPack */
-        $roundedPack = $rounders ? resolve($rounders) : resolve($this->roundedResolve);
+        $roundedPack = $this->getResolve($rounders, 'rounded');
 
         $this->squared = $this->getData('squared');
 
@@ -38,15 +36,18 @@ trait HasSetupRounded
         $this->setRoundedVariables($component);
     }
 
+    /**
+     * Fix this function when squared is true in config.
+     */
     private function getRoundedClasses(mixed $roundedPack): void
     {
-        if ($this->squared) {
-            $this->roundedClasses = $roundedPack->get('none');
-        } elseif (!$this->squared && $this->rounded && is_bool($this->rounded)) {
-            $this->roundedClasses = $roundedPack->get('full');
-        } elseif (!$this->squared) {
-            $this->roundedClasses = $roundedPack->get($this->rounded);
-        }
+        $fullRounded = $this->rounded && is_bool($this->rounded);
+
+        $this->roundedClasses = match (true) {
+            $this->squared => $roundedPack->get('none'),
+            $fullRounded   => $roundedPack->get('full'),
+            default        => $roundedPack->get($this->rounded),
+        };
     }
 
     private function setRoundedVariables(array &$component): void

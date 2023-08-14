@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupIconSize
 {
@@ -22,16 +21,15 @@ trait HasSetupIconSize
     {
         throw_if(!$this->iconSizeResolve, new Exception('You must define a icon size resolve.'));
 
-        $icons = config("wireui.{$this->config}.icon-sizes");
+        $iconSizes = config("wireui.{$this->config}.icon-sizes");
 
-        /** @var ComponentPack $iconPack */
-        $iconPack = $icons ? resolve($icons) : resolve($this->iconSizeResolve);
+        $iconSizePack = $this->getResolve($iconSizes, 'iconSize');
 
         $this->iconSize = $this->getData('icon-size',
             fn ($config) => property_exists($this, 'size') && $this->size ? $this->size : $config,
         );
 
-        $this->iconSizeClasses = $iconPack->get($this->iconSize);
+        $this->iconSizeClasses = $iconSizePack->get($this->iconSize);
 
         $this->setIconSizeVariables($component);
     }

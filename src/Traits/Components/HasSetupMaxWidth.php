@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupMaxWidth
 {
@@ -24,8 +23,7 @@ trait HasSetupMaxWidth
 
         $maxWidths = config("wireui.{$this->config}.max-widths");
 
-        /** @var ComponentPack $maxWidthPack */
-        $maxWidthPack = $maxWidths ? resolve($maxWidths) : resolve($this->maxWidthResolve);
+        $maxWidthPack = $this->getResolve($maxWidths, 'maxWidth');
 
         $this->maxWidth = $this->getData('max-width');
 

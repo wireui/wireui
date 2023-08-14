@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupShadow
 {
@@ -26,8 +25,7 @@ trait HasSetupShadow
 
         $shadows = config("wireui.{$this->config}.shadows");
 
-        /** @var ComponentPack $shadowPack */
-        $shadowPack = $shadows ? resolve($shadows) : resolve($this->shadowResolve);
+        $shadowPack = $this->getResolve($shadows, 'shadow');
 
         $this->shadow = $this->getData('shadow');
 

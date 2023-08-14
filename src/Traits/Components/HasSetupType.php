@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupType
 {
@@ -24,8 +23,7 @@ trait HasSetupType
 
         $types = config("wireui.{$this->config}.types");
 
-        /** @var ComponentPack $typePack */
-        $typePack = $types ? resolve($types) : resolve($this->typeResolve);
+        $typePack = $this->getResolve($types, 'type');
 
         $this->type = $this->getData('type');
 

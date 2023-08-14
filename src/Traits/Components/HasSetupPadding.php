@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupPadding
 {
@@ -24,8 +23,7 @@ trait HasSetupPadding
 
         $paddings = config("wireui.{$this->config}.paddings");
 
-        /** @var ComponentPack $paddingPack */
-        $paddingPack = $paddings ? resolve($paddings) : resolve($this->paddingResolve);
+        $paddingPack = $this->getResolve($paddings, 'padding');
 
         $this->padding = $this->getData('padding');
 

@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Exception;
-use WireUi\Support\ComponentPack;
 
 trait HasSetupBlur
 {
@@ -26,8 +25,7 @@ trait HasSetupBlur
 
         $blurs = config("wireui.{$this->config}.blurs");
 
-        /** @var ComponentPack $blurPack */
-        $blurPack = $blurs ? resolve($blurs) : resolve($this->blurResolve);
+        $blurPack = $this->getResolve($blurs, 'blur');
 
         $this->blur = $this->getData('blur');
 
