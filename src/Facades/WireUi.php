@@ -14,17 +14,11 @@ use WireUi\View\Components;
  */
 class WireUi extends Facade
 {
-    /**
-     * Get Facade Accessor.
-     */
     protected static function getFacadeAccessor(): string
     {
         return WireUiSupport::class;
     }
 
-    /**
-     * Get default components.
-     */
     public static function defaultComponents(): Collection
     {
         return collect([

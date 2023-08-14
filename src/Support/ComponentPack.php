@@ -6,9 +6,6 @@ use Exception;
 
 abstract class ComponentPack
 {
-    /**
-     * Serialize attributes when they are boolean to be compatible with version 1.
-     */
     private function serializeAttribute(mixed $attribute): mixed
     {
         if (is_bool($attribute) && $attribute) {
@@ -22,9 +19,6 @@ abstract class ComponentPack
         return $attribute;
     }
 
-    /**
-     * Check if the attribute is valid.
-     */
     private function checkAttribute(mixed $attribute): void
     {
         $attribute = $this->serializeAttribute($attribute);
@@ -32,9 +26,6 @@ abstract class ComponentPack
         throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
     }
 
-    /**
-     * Get the value to default option.
-     */
     private function getDefault(): mixed
     {
         $this->checkAttribute($this->default());
@@ -42,9 +33,6 @@ abstract class ComponentPack
         return $this->get($this->default());
     }
 
-    /**
-     * Get the value of given attribute.
-     */
     public function get(mixed $attribute = null): mixed
     {
         if (is_null($attribute)) {
@@ -56,27 +44,15 @@ abstract class ComponentPack
         return data_get($this->all(), $attribute) ?? $attribute;
     }
 
-    /**
-     * Get all options.
-     */
     public function keys(): array
     {
         return array_keys($this->all());
     }
 
-    /**
-     * Return the default option.
-     */
     abstract protected function default(): string;
 
-    /**
-     * Return all options.
-     */
     abstract public function all(): array;
 
-    /**
-     * Return the class name.
-     */
     public function __toString()
     {
         return static::class;

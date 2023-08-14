@@ -9,9 +9,6 @@ use WireUi\View\Attribute;
 
 class CustomMacros
 {
-    /**
-     * Register the Custom Macros.
-     */
     public static function register(): void
     {
         Collection::macro('putEnd', function (mixed $value): Collection {

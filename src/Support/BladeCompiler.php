@@ -9,9 +9,6 @@ use Throwable;
 
 class BladeCompiler
 {
-    /**
-     * Custom Compile Blade HTML.
-     */
     public function compile(string $html, array $data = []): string
     {
         $safeHtml = (new SafeEval())->evaluate($html);
@@ -21,9 +18,6 @@ class BladeCompiler
         return $this->compileString($blade, $data);
     }
 
-    /**
-     * Custom Compile Blade String.
-     */
     private function compileString(string $blade, array $data): string
     {
         $data['__env'] = app(Factory::class);
