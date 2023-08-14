@@ -73,7 +73,7 @@ class BladeDirectives
         return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
     }
 
-    public function getManifestVersion(string $file, ?string &$route = null): ?string
+    public function getManifestVersion(string $file, string &$route = null): ?string
     {
         $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';
 

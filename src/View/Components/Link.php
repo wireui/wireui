@@ -37,30 +37,4 @@ class Link extends BaseComponent
     {
         return 'wireui::components.link';
     }
-
-    /**
-     * Setup to resolve the link type and tag.
-     */
-    protected function setupLink(array &$component): void
-    {
-        $this->tag = $this->getTag();
-
-        $this->ensureLinkType();
-
-        $component['tag'] = $this->tag;
-
-        $this->smart(['tag']);
-    }
-
-    private function getTag(): string
-    {
-        return $this->data->missing('href') ? 'button' : 'a';
-    }
-
-    private function ensureLinkType(): void
-    {
-        if (!$this->data->has('href') && !$this->data->has('type')) {
-            $this->data->offsetSet('type', 'button');
-        }
-    }
 }

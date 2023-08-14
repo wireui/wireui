@@ -27,13 +27,11 @@ trait HasSetupPadding
         /** @var ComponentPack $paddingPack */
         $paddingPack = $paddings ? resolve($paddings) : resolve($this->paddingResolve);
 
-        $this->padding = $this->data->get('padding') ?? config("wireui.{$this->config}.padding");
+        $this->padding = $this->getData('padding');
 
         $this->paddingClasses = $paddingPack->get($this->padding);
 
         $this->setPaddingVariables($component);
-
-        $this->smart('padding');
     }
 
     private function setPaddingVariables(array &$component): void

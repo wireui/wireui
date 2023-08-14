@@ -15,12 +15,12 @@ class TimePicker extends Input
 
         bool $borderless = false,
         bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $prefix = null,
-        ?string $prepend = null,
+        string $label = null,
+        string $hint = null,
+        string $cornerHint = null,
+        string $icon = null,
+        string $prefix = null,
+        string $prepend = null,
     ) {
         parent::__construct(
             borderless: $borderless,

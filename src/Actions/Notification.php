@@ -23,7 +23,7 @@ class Notification
     /**
      * Show a simple success notification.
      */
-    public function success(string $title, ?string $description = null): void
+    public function success(string $title, string $description = null): void
     {
         $this->simpleNotification(Actions::SUCCESS->value, $title, $description);
     }
@@ -31,7 +31,7 @@ class Notification
     /**
      * Show a simple error notification.
      */
-    public function error(string $title, ?string $description = null): void
+    public function error(string $title, string $description = null): void
     {
         $this->simpleNotification(Actions::ERROR->value, $title, $description);
     }
@@ -39,7 +39,7 @@ class Notification
     /**
      * Show a simple info notification.
      */
-    public function info(string $title, ?string $description = null): void
+    public function info(string $title, string $description = null): void
     {
         $this->simpleNotification(Actions::INFO->value, $title, $description);
     }
@@ -47,7 +47,7 @@ class Notification
     /**
      * Show a simple warning notification.
      */
-    public function warning(string $title, ?string $description = null): void
+    public function warning(string $title, string $description = null): void
     {
         $this->simpleNotification(Actions::WARNING->value, $title, $description);
     }
@@ -55,7 +55,7 @@ class Notification
     /**
      * Show a simple question notification.
      */
-    public function simpleNotification(string $icon, string $title, ?string $description = null): void
+    public function simpleNotification(string $icon, string $title, string $description = null): void
     {
         $this->send([
             'icon'        => $icon,

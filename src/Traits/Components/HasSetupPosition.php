@@ -27,13 +27,11 @@ trait HasSetupPosition
         /** @var ComponentPack $positionPack */
         $positionPack = $positions ? resolve($positions) : resolve($this->positionResolve);
 
-        $this->position = $this->data->get('position') ?? config("wireui.{$this->config}.position");
+        $this->position = $this->getData('position');
 
         $this->positionClasses = $positionPack->get($this->position);
 
         $this->setPositionVariables($component);
-
-        $this->smart('position');
     }
 
     private function setPositionVariables(array &$component): void

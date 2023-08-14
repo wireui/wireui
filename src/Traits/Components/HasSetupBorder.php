@@ -29,24 +29,13 @@ trait HasSetupBorder
         /** @var ComponentPack $borderPack */
         $borderPack = $borders ? resolve($borders) : resolve($this->borderResolve);
 
-        $this->borderless = $this->getBorderless();
+        $this->border = $this->getData('border');
 
-        $this->border = $this->data->get('border') ?? config("wireui.{$this->config}.border");
+        $this->borderless = (bool) ($this->getData('borderless') ?? false);
 
         $this->borderClasses = $borderPack->get($this->border);
 
         $this->setBorderVariables($component);
-
-        $this->smart(['border', 'borderless']);
-    }
-
-    private function getBorderless(): bool
-    {
-        if ($this->data->has('borderless')) {
-            return (bool) $this->data->get('borderless');
-        }
-
-        return (bool) (config("wireui.{$this->config}.borderless") ?? false);
     }
 
     private function setBorderVariables(array &$component): void

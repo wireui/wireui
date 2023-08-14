@@ -88,6 +88,28 @@ abstract class BaseComponent extends Component
     }
 
     /**
+     * Get data from the component or config.
+     */
+    protected function getData(string $attribute, callable $callback = null): mixed
+    {
+        if ($this->data->has($camel = Str::camel($attribute))) {
+            $this->smart($camel);
+
+            return $this->data->get($camel);
+        }
+
+        if ($this->data->has($snake = Str::snake($attribute, '-'))) {
+            $this->smart($snake);
+
+            return $this->data->get($snake);
+        }
+
+        $config = config("wireui.{$this->config}.{$snake}");
+
+        return $callback ? $callback($config) : $config;
+    }
+
+    /**
      * Add smart attributes to be removed from the attributes bag.
      */
     protected function smart(mixed $attributes): void

@@ -27,7 +27,7 @@ class Select extends NativeSelect
         public bool $alwaysFetch = false,
         public string|array|null $asyncData = null,
         public string|array|null $template = null,
-        Collection|array|null $options = null,
+        Collection|array $options = null,
         public ?int $minItemsForSearch = 11,
     ) {
         parent::__construct(

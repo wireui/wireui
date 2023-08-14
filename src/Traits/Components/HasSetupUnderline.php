@@ -27,13 +27,11 @@ trait HasSetupUnderline
         /** @var ComponentPack $underlinePack */
         $underlinePack = $underlines ? resolve($underlines) : resolve($this->underlineResolve);
 
-        $this->underline = $this->data->get('underline') ?? config("wireui.{$this->config}.underline");
+        $this->underline = $this->getData('underline');
 
         $this->underlineClasses = $underlinePack->get($this->underline);
 
         $this->setUnderlineVariables($component);
-
-        $this->smart('underline');
     }
 
     private function setUnderlineVariables(array &$component): void

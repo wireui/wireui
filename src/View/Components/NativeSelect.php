@@ -28,7 +28,7 @@ class NativeSelect extends FormComponent
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
-        Collection|array|null $options = null,
+        Collection|array $options = null,
     ) {
         $this->options = collect($options)->when(
             $flipOptions,

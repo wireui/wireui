@@ -27,13 +27,11 @@ trait HasSetupAlign
         /** @var ComponentPack $alignPack */
         $alignPack = $aligns ? resolve($aligns) : resolve($this->alignResolve);
 
-        $this->align = $this->data->get('align') ?? config("wireui.{$this->config}.align");
+        $this->align = $this->getData('align');
 
         $this->alignClasses = $alignPack->get($this->align);
 
         $this->setAlignVariables($component);
-
-        $this->smart('align');
     }
 
     private function setAlignVariables(array &$component): void

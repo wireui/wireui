@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Dropdown extends Component
+class Index extends Component
 {
     public const DEFAULT_ALIGN = 'right';
 
@@ -20,7 +20,7 @@ class Dropdown extends Component
 
     public function render(): View
     {
-        return view('wireui::components.dropdown');
+        return view('wireui::components.dropdown.index');
     }
 
     public function getAlign(): string

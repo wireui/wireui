@@ -47,7 +47,7 @@ class Dialog
     /**
      * Make the dialog event name.
      */
-    public static function makeEventName(?string $dialogId = null): string
+    public static function makeEventName(string $dialogId = null): string
     {
         $id = Str::kebab($dialogId);
 
@@ -57,7 +57,7 @@ class Dialog
     /**
      * Show a simple success dialog.
      */
-    public function success(string $title, ?string $description = null): void
+    public function success(string $title, string $description = null): void
     {
         $this->simpleDialog(Actions::SUCCESS->value, $title, $description);
     }
@@ -65,7 +65,7 @@ class Dialog
     /**
      * Show a simple error dialog.
      */
-    public function error(string $title, ?string $description = null): void
+    public function error(string $title, string $description = null): void
     {
         $this->simpleDialog(Actions::ERROR->value, $title, $description);
     }
@@ -73,7 +73,7 @@ class Dialog
     /**
      * Show a simple info dialog.
      */
-    public function info(string $title, ?string $description = null): void
+    public function info(string $title, string $description = null): void
     {
         $this->simpleDialog(Actions::INFO->value, $title, $description);
     }
@@ -81,7 +81,7 @@ class Dialog
     /**
      * Show a simple warning dialog.
      */
-    public function warning(string $title, ?string $description = null): void
+    public function warning(string $title, string $description = null): void
     {
         $this->simpleDialog(Actions::WARNING->value, $title, $description);
     }
@@ -89,7 +89,7 @@ class Dialog
     /**
      * Show a simple dialog.
      */
-    public function simpleDialog(string $icon, string $title, ?string $description = null): void
+    public function simpleDialog(string $icon, string $title, string $description = null): void
     {
         $this->show([
             'icon'        => $icon,

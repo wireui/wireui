@@ -40,9 +40,9 @@ class WireUi extends Facade
                 'class' => Components\Badge\Base::class,
                 'alias' => 'badge',
             ],
-            'badge-mini' => [
+            'mini-badge' => [
                 'class' => Components\Badge\Mini::class,
-                'alias' => 'badge-mini',
+                'alias' => 'mini-badge',
             ],
             'button' => [
                 'class' => Components\Button\Base::class,
@@ -73,16 +73,16 @@ class WireUi extends Facade
                 'alias' => 'dialog',
             ],
             'dropdown' => [
-                'class' => Components\Dropdown::class,
+                'class' => Components\Dropdown\Index::class,
                 'alias' => 'dropdown',
             ],
-            'dropdown.item' => [
-                'class' => Components\Dropdown\DropdownItem::class,
-                'alias' => 'dropdown.item',
+            'dropdown-item' => [
+                'class' => Components\Dropdown\Item::class,
+                'alias' => 'dropdown-item',
             ],
-            'dropdown.header' => [
-                'class' => Components\Dropdown\DropdownHeader::class,
-                'alias' => 'dropdown.header',
+            'dropdown-header' => [
+                'class' => Components\Dropdown\Header::class,
+                'alias' => 'dropdown-header',
             ],
             'error' => [
                 'class' => Components\Error::class,

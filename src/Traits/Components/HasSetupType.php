@@ -27,13 +27,11 @@ trait HasSetupType
         /** @var ComponentPack $typePack */
         $typePack = $types ? resolve($types) : resolve($this->typeResolve);
 
-        $this->type = $this->data->get('type') ?? config("wireui.{$this->config}.type");
+        $this->type = $this->getData('type');
 
         $this->typeClasses = $typePack->get($this->type);
 
         $this->setTypeVariables($component);
-
-        $this->smart('type');
     }
 
     private function setTypeVariables(array &$component): void

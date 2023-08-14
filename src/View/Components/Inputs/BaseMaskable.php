@@ -13,18 +13,18 @@ abstract class BaseMaskable extends Input
     public function __construct(
         public bool $emitFormatted = false,
 
-        ?string $mask = null,
+        string $mask = null,
         bool $borderless = false,
         bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $prefix = null,
-        ?string $suffix = null,
-        ?string $prepend = null,
-        ?string $append = null,
+        string $label = null,
+        string $hint = null,
+        string $cornerHint = null,
+        string $icon = null,
+        string $rightIcon = null,
+        string $prefix = null,
+        string $suffix = null,
+        string $prepend = null,
+        string $append = null,
     ) {
         parent::__construct(
             borderless: $borderless,

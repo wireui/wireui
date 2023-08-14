@@ -29,24 +29,13 @@ trait HasSetupShadow
         /** @var ComponentPack $shadowPack */
         $shadowPack = $shadows ? resolve($shadows) : resolve($this->shadowResolve);
 
-        $this->shadowless = $this->getShadowless();
+        $this->shadow = $this->getData('shadow');
 
-        $this->shadow = $this->data->get('shadow') ?? config("wireui.{$this->config}.shadow");
+        $this->shadowless = (bool) ($this->getData('shadowless') ?? false);
 
         $this->shadowClasses = $shadowPack->get($this->shadow);
 
         $this->setShadowVariables($component);
-
-        $this->smart(['shadow', 'shadowless']);
-    }
-
-    private function getShadowless(): bool
-    {
-        if ($this->data->has('shadowless')) {
-            return (bool) $this->data->get('shadowless');
-        }
-
-        return (bool) (config("wireui.{$this->config}.shadowless") ?? false);
     }
 
     private function setShadowVariables(array &$component): void

@@ -27,26 +27,11 @@ trait HasSetupMaxWidth
         /** @var ComponentPack $maxWidthPack */
         $maxWidthPack = $maxWidths ? resolve($maxWidths) : resolve($this->maxWidthResolve);
 
-        $this->maxWidth = $this->getMaxWidth();
+        $this->maxWidth = $this->getData('max-width');
 
         $this->maxWidthClasses = $maxWidthPack->get($this->maxWidth);
 
         $this->setMaxWidthVariables($component);
-
-        $this->smart(['max-width', 'maxWidth']);
-    }
-
-    private function getMaxWidth(): mixed
-    {
-        if ($this->data->has('max-width')) {
-            return $this->data->get('max-width');
-        }
-
-        if ($this->data->has('maxWidth')) {
-            return $this->data->get('maxWidth');
-        }
-
-        return config("wireui.{$this->config}.max-width");
     }
 
     private function setMaxWidthVariables(array &$component): void

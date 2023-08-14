@@ -29,24 +29,13 @@ trait HasSetupBlur
         /** @var ComponentPack $blurPack */
         $blurPack = $blurs ? resolve($blurs) : resolve($this->blurResolve);
 
-        $this->blurless = $this->getBlurless();
+        $this->blur = $this->getData('blur');
 
-        $this->blur = $this->data->get('blur') ?? config("wireui.{$this->config}.blur");
+        $this->blurless = (bool) ($this->getData('blurless') ?? false);
 
         $this->blurClasses = $blurPack->get($this->blur);
 
         $this->setBlurVariables($component);
-
-        $this->smart(['blur', 'blurless']);
-    }
-
-    private function getBlurless(): bool
-    {
-        if ($this->data->has('blurless')) {
-            return (bool) $this->data->get('blurless');
-        }
-
-        return (bool) (config("wireui.{$this->config}.blurless") ?? false);
     }
 
     private function setBlurVariables(array &$component): void
