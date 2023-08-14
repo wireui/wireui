@@ -6,32 +6,17 @@ use WireUi\Support\ComponentPack;
 
 class Light extends ComponentPack
 {
-    /**
-     * Common Base Classes
-     */
     protected string $base = 'bg-opacity-60 dark:bg-opacity-30';
 
-    /**
-     * Common Hover Classes
-     */
     protected string $hover = 'hover:bg-opacity-60 dark:hover:bg-opacity-30';
 
-    /**
-     * Common Focus Classes
-     */
     protected string $focus = 'focus:bg-opacity-60 dark:focus:bg-opacity-30';
 
-    /**
-     * Get the default option.
-     */
     public function default(): string
     {
         return 'base';
     }
 
-    /**
-     * Get the available options.
-     */
     public function all(): array
     {
         return [

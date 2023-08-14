@@ -6,32 +6,17 @@ use WireUi\Support\ComponentPack;
 
 class Solid extends ComponentPack
 {
-    /**
-     * Common Base Classes
-     */
     private string $base = 'text-white';
 
-    /**
-     * Common Hover Classes
-     */
     private string $hover = 'hover:text-white';
 
-    /**
-     * Common Focus Classes
-     */
     private string $focus = 'focus:text-white';
 
-    /**
-     * Get the default option.
-     */
     public function default(): string
     {
         return 'base';
     }
 
-    /**
-     * Get the available options.
-     */
     public function all(): array
     {
         return [

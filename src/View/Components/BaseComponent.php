@@ -10,37 +10,19 @@ use WireUi\Support\ComponentPack;
 
 abstract class BaseComponent extends Component
 {
-    /**
-     * Config name.
-     */
     protected ?string $config = null;
 
-    /**
-     * Smart attributes to be removed from the attributes bag.
-     */
     private array $smartAttributes = [];
 
-    /**
-     * Component attributes.
-     */
     protected ComponentAttributeBag $data;
 
-    /**
-     * Set the component config name.
-     */
     private function setConfig(): void
     {
         $this->config = WireUi::components()->resolveByAlias($this->componentName);
     }
 
-    /**
-     * Get view name and render the component.
-     */
     abstract protected function getView(): string;
 
-    /**
-     * Render the component.
-     */
     public function render(): Closure
     {
         return function (array $data) {
@@ -48,9 +30,6 @@ abstract class BaseComponent extends Component
         };
     }
 
-    /**
-     * Methods to setup the component.
-     */
     private function executeBaseComponent(array $component): array
     {
         $this->setConfig();
@@ -64,9 +43,6 @@ abstract class BaseComponent extends Component
         return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
     }
 
-    /**
-     * Get all methods to setup the component.
-     */
     private function getMethods(): array
     {
         $methods = collect(get_class_methods($this))->filter(
@@ -88,17 +64,11 @@ abstract class BaseComponent extends Component
         return $methods->values()->toArray();
     }
 
-    /**
-     * Get the component pack to this attribute.
-     */
     protected function getResolve(mixed $options, string $attribute): ComponentPack
     {
         return $options ? resolve($options) : resolve($this->{"{$attribute}Resolve"});
     }
 
-    /**
-     * Get data from the component or config.
-     */
     protected function getData(string $attribute, callable $callback = null): mixed
     {
         if ($this->data->has($camel = Str::camel($attribute))) {
@@ -118,9 +88,6 @@ abstract class BaseComponent extends Component
         return $callback ? $callback($config) : $config;
     }
 
-    /**
-     * Get data modifier from the component or config.
-     */
     protected function getDataModifier(mixed $options, string $attribute): mixed
     {
         $dataPack = $this->getResolve(...func_get_args());
@@ -134,9 +101,6 @@ abstract class BaseComponent extends Component
         return [$value, $dataPack];
     }
 
-    /**
-     * Add smart attributes to be removed from the attributes bag.
-     */
     protected function smart(mixed $attributes): void
     {
         collect(Arr::wrap($attributes))->filter()->each(
@@ -144,9 +108,6 @@ abstract class BaseComponent extends Component
         );
     }
 
-    /**
-     * Get the first attribute that matches the given keys.
-     */
     protected function getMatchModifier(array $keys): ?string
     {
         return array_key_first($this->attributes->only($keys)->getAttributes());

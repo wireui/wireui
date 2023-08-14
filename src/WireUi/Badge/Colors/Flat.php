@@ -6,17 +6,11 @@ use WireUi\Support\ComponentPack;
 
 class Flat extends ComponentPack
 {
-    /**
-     * Get the default option.
-     */
     public function default(): string
     {
         return 'base';
     }
 
-    /**
-     * Get the available options.
-     */
     public function all(): array
     {
         return [

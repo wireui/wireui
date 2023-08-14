@@ -6,17 +6,11 @@ use WireUi\Support\ComponentPack;
 
 class Shadows extends ComponentPack
 {
-    /**
-     * Get the default option.
-     */
     protected function default(): string
     {
         return 'md';
     }
 
-    /**
-     * Get the available options.
-     */
     public function all(): array
     {
         return [

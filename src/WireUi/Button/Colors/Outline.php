@@ -6,27 +6,15 @@ use WireUi\Support\ComponentPack;
 
 class Outline extends ComponentPack
 {
-    /**
-     * Common Hover Classes
-     */
     private string $hover = 'hover:bg-opacity-25 dark:hover:bg-opacity-15';
 
-    /**
-     * Common Focus Classes
-     */
     private string $focus = 'focus:bg-opacity-25 focus:border-transparent dark:focus:border-transparent dark:focus:bg-opacity-15';
 
-    /**
-     * Get the default option.
-     */
     public function default(): string
     {
         return 'base';
     }
 
-    /**
-     * Get the available options.
-     */
     public function all(): array
     {
         return [
