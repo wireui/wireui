@@ -27,9 +27,9 @@ trait HasSetupIconSize
         /** @var ComponentPack $iconSizePack */
         $iconSizePack = $iconSizes ? resolve($iconSizes) : resolve($this->iconSizeResolve);
 
-        $this->iconSize = $this->getData('icon-size',
-            fn ($config) => (property_exists($this, 'size') && $this->size) ? $this->size : $config,
-        );
+        $this->iconSize = $this->getData('icon-size', function ($config) {
+            return (property_exists($this, 'size') && $this->size) ? $this->size : $config;
+        });
 
         $this->iconSizeClasses = $iconSizePack->get($this->iconSize);
 
