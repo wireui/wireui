@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupPadding
 {
@@ -19,23 +20,17 @@ trait HasSetupPadding
 
     protected function setupPadding(array &$component): void
     {
-        throw_if(!$this->paddingResolve, new Exception('You must define a padding resolve.'));
+        throw_if(!$this->paddingResolve, new WireUiResolveException($this));
 
         $paddings = config("wireui.{$this->config}.paddings");
 
-        $paddingPack = $this->getResolve($paddings, 'padding');
+        /** @var ComponentPack $paddingPack */
+        $paddingPack = $paddings ? resolve($paddings) : resolve($this->paddingResolve);
 
         $this->padding = $this->getData('padding');
 
         $this->paddingClasses = $paddingPack->get($this->padding);
 
-        $this->setPaddingVariables($component);
-    }
-
-    private function setPaddingVariables(array &$component): void
-    {
-        $component['padding'] = $this->padding;
-
-        $component['paddingClasses'] = $this->paddingClasses;
+        $this->setVariables($component, ['padding', 'paddingClasses']);
     }
 }

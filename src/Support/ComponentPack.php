@@ -2,7 +2,7 @@
 
 namespace WireUi\Support;
 
-use Exception;
+use WireUi\Exceptions\WireUiAttributeException;
 
 abstract class ComponentPack
 {
@@ -23,7 +23,7 @@ abstract class ComponentPack
     {
         $attribute = $this->serializeAttribute($attribute);
 
-        throw_if(!in_array($attribute, $this->keys()), new Exception("Invalid {$this} provided."));
+        throw_if(!in_array($attribute, $this->keys()), new WireUiAttributeException($this));
     }
 
     private function getDefault(): mixed
@@ -52,9 +52,4 @@ abstract class ComponentPack
     abstract protected function default(): string;
 
     abstract public function all(): array;
-
-    public function __toString()
-    {
-        return static::class;
-    }
 }

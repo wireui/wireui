@@ -64,41 +64,39 @@ abstract class BaseComponent extends Component
         return $methods->values()->toArray();
     }
 
-    protected function getResolve(mixed $options, string $attribute): ComponentPack
-    {
-        return $options ? resolve($options) : resolve($this->{"{$attribute}Resolve"});
-    }
-
     protected function getData(string $attribute, callable $callback = null): mixed
     {
+        if ($this->data->has($kebab = Str::kebab($attribute))) {
+            $this->smart($kebab);
+
+            return $this->data->get($kebab);
+        }
+
         if ($this->data->has($camel = Str::camel($attribute))) {
             $this->smart($camel);
 
             return $this->data->get($camel);
         }
 
-        if ($this->data->has($snake = Str::snake($attribute, '-'))) {
-            $this->smart($snake);
-
-            return $this->data->get($snake);
-        }
-
-        $config = config("wireui.{$this->config}.{$snake}");
+        $config = config("wireui.{$this->config}.{$kebab}");
 
         return $callback ? $callback($config) : $config;
     }
 
-    protected function getDataModifier(mixed $options, string $attribute): mixed
+    protected function getDataModifier(string $attribute, ComponentPack $dataPack): mixed
     {
-        $dataPack = $this->getResolve(...func_get_args());
-
         $value = $this->data->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
 
         $this->smart([$attribute, ...$dataPack->keys()]);
 
-        $value ??= config("wireui.{$this->config}.{$attribute}");
+        return $value ?? config("wireui.{$this->config}.{$attribute}");
+    }
 
-        return [$value, $dataPack];
+    protected function setVariables(array &$component, array $variables): void
+    {
+        foreach ($variables as $variable) {
+            $component[$variable] = $this->{$variable};
+        }
     }
 
     protected function smart(mixed $attributes): void

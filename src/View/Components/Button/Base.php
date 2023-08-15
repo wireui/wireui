@@ -20,8 +20,6 @@ class Base extends BaseComponent
     use HasSetupIconSize;
     use HasSetupStateColor;
 
-    public ?string $tag = null;
-
     public function __construct(
         public bool $full = false,
         public bool $loading = true,

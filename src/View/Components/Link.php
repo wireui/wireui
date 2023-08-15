@@ -13,8 +13,6 @@ class Link extends BaseComponent
     use HasSetupButton;
     use HasSetupUnderline;
 
-    public ?string $tag = null;
-
     public function __construct(
         public ?string $label = null,
     ) {

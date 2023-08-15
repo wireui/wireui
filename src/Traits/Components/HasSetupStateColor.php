@@ -2,8 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
 use Illuminate\Support\Arr;
+use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
 
@@ -27,13 +27,22 @@ trait HasSetupStateColor
     {
         $verify = !method_exists($this, 'setupVariant') && !method_exists($this, 'setupColor');
 
-        throw_if($verify, new Exception('To use the state color, you must use variant and color setup traits.'));
+        throw_if($verify, new WireUiStateColorException($this));
 
         $this->applyColorModifier(['hover'], 'hover');
         $this->applyColorModifier(['focus'], 'focus');
         $this->applyColorModifier(['hover', 'focus'], 'interaction');
 
-        $this->setSetupColorVariables($component);
+        $this->serializeColorClasses();
+
+        $this->setVariables($component, ['colorClasses']);
+    }
+
+    private function serializeColorClasses(): void
+    {
+        $this->colorClasses = collect($this->colorClasses)->transform(function ($color) {
+            return Arr::toCssClasses($color);
+        })->toArray();
     }
 
     /**
@@ -76,14 +85,5 @@ trait HasSetupStateColor
         }
 
         $this->smart($attribute->directive());
-    }
-
-    private function setSetupColorVariables(array &$component): void
-    {
-        $this->colorClasses = collect($this->colorClasses)->transform(function ($color) {
-            return Arr::toCssClasses($color);
-        })->toArray();
-
-        $component['colorClasses'] = $this->colorClasses;
     }
 }

@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupSize
 {
@@ -19,21 +20,17 @@ trait HasSetupSize
 
     protected function setupSize(array &$component): void
     {
-        throw_if(!$this->sizeResolve, new Exception('You must define a size resolve.'));
+        throw_if(!$this->sizeResolve, new WireUiResolveException($this));
 
         $sizes = config("wireui.{$this->config}.sizes");
 
-        [$this->size, $sizePack] = $this->getDataModifier($sizes, 'size');
+        /** @var ComponentPack $sizePack */
+        $sizePack = $sizes ? resolve($sizes) : resolve($this->sizeResolve);
+
+        $this->size = $this->getDataModifier('size', $sizePack);
 
         $this->sizeClasses = $sizePack->get($this->size);
 
-        $this->setSizeVariables($component);
-    }
-
-    private function setSizeVariables(array &$component): void
-    {
-        $component['size'] = $this->size;
-
-        $component['sizeClasses'] = $this->sizeClasses;
+        $this->setVariables($component, ['size', 'sizeClasses']);
     }
 }

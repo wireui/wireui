@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupBlur
 {
@@ -21,11 +22,12 @@ trait HasSetupBlur
 
     protected function setupBlur(array &$component): void
     {
-        throw_if(!$this->blurResolve, new Exception('You must define a blur resolve.'));
+        throw_if(!$this->blurResolve, new WireUiResolveException($this));
 
         $blurs = config("wireui.{$this->config}.blurs");
 
-        $blurPack = $this->getResolve($blurs, 'blur');
+        /** @var ComponentPack $blurPack */
+        $blurPack = $blurs ? resolve($blurs) : resolve($this->blurResolve);
 
         $this->blur = $this->getData('blur');
 
@@ -33,15 +35,6 @@ trait HasSetupBlur
 
         $this->blurClasses = $blurPack->get($this->blur);
 
-        $this->setBlurVariables($component);
-    }
-
-    private function setBlurVariables(array &$component): void
-    {
-        $component['blur'] = $this->blur;
-
-        $component['blurless'] = $this->blurless;
-
-        $component['blurClasses'] = $this->blurClasses;
+        $this->setVariables($component, ['blur', 'blurless', 'blurClasses']);
     }
 }

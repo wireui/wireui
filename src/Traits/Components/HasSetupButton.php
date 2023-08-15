@@ -4,6 +4,8 @@ namespace WireUi\Traits\Components;
 
 trait HasSetupButton
 {
+    public mixed $tag = null;
+
     protected function setupButton(array &$component): void
     {
         $this->tag = $this->getTag();
@@ -12,12 +14,7 @@ trait HasSetupButton
 
         $this->ensureWireLoading();
 
-        $this->setButtonVariables($component);
-    }
-
-    private function setButtonVariables(array &$component): void
-    {
-        $component['tag'] = $this->tag;
+        $this->setVariables($component, ['tag']);
     }
 
     private function getTag(): string

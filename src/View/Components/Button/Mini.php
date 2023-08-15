@@ -20,8 +20,6 @@ class Mini extends BaseComponent
     use HasSetupIconSize;
     use HasSetupStateColor;
 
-    public ?string $tag = null;
-
     public function __construct(
         public bool $loading = true,
         public ?string $label = null,

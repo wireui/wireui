@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupAlign
 {
@@ -19,23 +20,17 @@ trait HasSetupAlign
 
     protected function setupAlign(array &$component): void
     {
-        throw_if(!$this->alignResolve, new Exception('You must define a align resolve.'));
+        throw_if(!$this->alignResolve, new WireUiResolveException($this));
 
         $aligns = config("wireui.{$this->config}.aligns");
 
-        $alignPack = $this->getResolve($aligns, 'align');
+        /** @var ComponentPack $alignPack */
+        $alignPack = $aligns ? resolve($aligns) : resolve($this->alignResolve);
 
         $this->align = $this->getData('align');
 
         $this->alignClasses = $alignPack->get($this->align);
 
-        $this->setAlignVariables($component);
-    }
-
-    private function setAlignVariables(array &$component): void
-    {
-        $component['align'] = $this->align;
-
-        $component['alignClasses'] = $this->alignClasses;
+        $this->setVariables($component, ['align', 'alignClasses']);
     }
 }

@@ -18,15 +18,6 @@ trait HasSetupIcon
 
         $this->iconless = (bool) ($this->getData('iconless') ?? false);
 
-        $this->setIconVariables($component);
-    }
-
-    private function setIconVariables(array &$component): void
-    {
-        $component['icon'] = $this->icon;
-
-        $component['iconless'] = $this->iconless;
-
-        $component['rightIcon'] = $this->rightIcon;
+        $this->setVariables($component, ['icon', 'iconless', 'rightIcon']);
     }
 }

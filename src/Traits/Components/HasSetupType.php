@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupType
 {
@@ -19,23 +20,17 @@ trait HasSetupType
 
     protected function setupType(array &$component): void
     {
-        throw_if(!$this->typeResolve, new Exception('You must define a type resolve.'));
+        throw_if(!$this->typeResolve, new WireUiResolveException($this));
 
         $types = config("wireui.{$this->config}.types");
 
-        $typePack = $this->getResolve($types, 'type');
+        /** @var ComponentPack $typePack */
+        $typePack = $types ? resolve($types) : resolve($this->typeResolve);
 
         $this->type = $this->getData('type');
 
         $this->typeClasses = $typePack->get($this->type);
 
-        $this->setTypeVariables($component);
-    }
-
-    private function setTypeVariables(array &$component): void
-    {
-        $component['type'] = $this->type;
-
-        $component['typeClasses'] = $this->typeClasses;
+        $this->setVariables($component, ['type', 'typeClasses']);
     }
 }

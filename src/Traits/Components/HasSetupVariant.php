@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupVariant
 {
@@ -17,11 +18,14 @@ trait HasSetupVariant
 
     protected function setupVariant(array &$component): void
     {
-        throw_if(!$this->variantResolve, new Exception('You must define a variant resolve.'));
+        throw_if(!$this->variantResolve, new WireUiResolveException($this));
 
         $variants = config("wireui.{$this->config}.variants");
 
-        [$this->variant, $variantPack] = $this->getDataModifier($variants, 'variant');
+        /** @var ComponentPack $variantPack */
+        $variantPack = $variants ? resolve($variants) : resolve($this->variantResolve);
+
+        $this->variant = $this->getDataModifier('variant', $variantPack);
 
         if (method_exists($this, 'setColorResolve')) {
             $this->setColorResolve($variantPack->get($this->variant));
@@ -31,11 +35,6 @@ trait HasSetupVariant
             $this->setVariantPack($variantPack);
         }
 
-        $this->setVariantVariables($component);
-    }
-
-    private function setVariantVariables(array &$component): void
-    {
-        $component['variant'] = $this->variant;
+        $this->setVariables($component, ['variant']);
     }
 }

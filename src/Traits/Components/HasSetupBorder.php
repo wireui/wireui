@@ -2,7 +2,8 @@
 
 namespace WireUi\Traits\Components;
 
-use Exception;
+use WireUi\Exceptions\WireUiResolveException;
+use WireUi\Support\ComponentPack;
 
 trait HasSetupBorder
 {
@@ -21,11 +22,12 @@ trait HasSetupBorder
 
     protected function setupBorder(array &$component): void
     {
-        throw_if(!$this->borderResolve, new Exception('You must define a border resolve.'));
+        throw_if(!$this->borderResolve, new WireUiResolveException($this));
 
         $borders = config("wireui.{$this->config}.borders");
 
-        $borderPack = $this->getResolve($borders, 'border');
+        /** @var ComponentPack $borderPack */
+        $borderPack = $borders ? resolve($borders) : resolve($this->borderResolve);
 
         $this->border = $this->getData('border');
 
@@ -33,15 +35,6 @@ trait HasSetupBorder
 
         $this->borderClasses = $borderPack->get($this->border);
 
-        $this->setBorderVariables($component);
-    }
-
-    private function setBorderVariables(array &$component): void
-    {
-        $component['border'] = $this->border;
-
-        $component['borderless'] = $this->borderless;
-
-        $component['borderClasses'] = $this->borderClasses;
+        $this->setVariables($component, ['border', 'borderless', 'borderClasses']);
     }
 }
