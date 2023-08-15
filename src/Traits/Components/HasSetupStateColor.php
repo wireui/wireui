@@ -25,9 +25,7 @@ trait HasSetupStateColor
 
     protected function setupStateColor(array &$component): void
     {
-        $verify = !method_exists($this, 'setupVariant') && !method_exists($this, 'setupColor');
-
-        throw_if($verify, new WireUiStateColorException($this));
+        throw_if(!$this->colorPack || !$this->variantPack, new WireUiStateColorException($this));
 
         $this->applyColorModifier(['hover'], 'hover');
         $this->applyColorModifier(['focus'], 'focus');
@@ -40,9 +38,9 @@ trait HasSetupStateColor
 
     private function serializeColorClasses(): void
     {
-        $this->colorClasses = collect($this->colorClasses)->transform(function ($color) {
-            return Arr::toCssClasses($color);
-        })->toArray();
+        $this->colorClasses = collect($this->colorClasses)->transform(
+            fn ($color) => Arr::toCssClasses($color),
+        )->toArray();
     }
 
     /**

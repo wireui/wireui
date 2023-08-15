@@ -11,7 +11,7 @@ trait HasSetupMaxWidth
 
     public mixed $maxWidthClasses = null;
 
-    protected mixed $maxWidthResolve = null;
+    private mixed $maxWidthResolve = null;
 
     protected function setMaxWidthResolve(string $class): void
     {

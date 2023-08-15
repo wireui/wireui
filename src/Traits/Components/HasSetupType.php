@@ -11,7 +11,7 @@ trait HasSetupType
 
     public mixed $typeClasses = null;
 
-    protected mixed $typeResolve = null;
+    private mixed $typeResolve = null;
 
     protected function setTypeResolve(string $class): void
     {

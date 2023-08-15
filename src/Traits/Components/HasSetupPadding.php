@@ -11,7 +11,7 @@ trait HasSetupPadding
 
     public mixed $paddingClasses = null;
 
-    protected mixed $paddingResolve = null;
+    private mixed $paddingResolve = null;
 
     protected function setPaddingResolve(string $class): void
     {

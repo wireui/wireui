@@ -11,7 +11,7 @@ trait HasSetupIconSize
 
     public mixed $iconSizeClasses = null;
 
-    protected mixed $iconSizeResolve = null;
+    private mixed $iconSizeResolve = null;
 
     protected function setIconSizeResolve(string $class): void
     {

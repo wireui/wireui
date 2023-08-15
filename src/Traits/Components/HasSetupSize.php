@@ -11,7 +11,7 @@ trait HasSetupSize
 
     public mixed $sizeClasses = null;
 
-    protected mixed $sizeResolve = null;
+    private mixed $sizeResolve = null;
 
     protected function setSizeResolve(string $class): void
     {

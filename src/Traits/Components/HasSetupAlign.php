@@ -11,7 +11,7 @@ trait HasSetupAlign
 
     public mixed $alignClasses = null;
 
-    protected mixed $alignResolve = null;
+    private mixed $alignResolve = null;
 
     protected function setAlignResolve(string $class): void
     {

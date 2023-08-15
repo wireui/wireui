@@ -11,7 +11,7 @@ trait HasSetupColor
 
     public mixed $colorClasses = null;
 
-    protected mixed $colorResolve = null;
+    private mixed $colorResolve = null;
 
     protected function setColorResolve(string $class): void
     {

@@ -9,7 +9,7 @@ trait HasSetupVariant
 {
     public mixed $variant = null;
 
-    protected mixed $variantResolve = null;
+    private mixed $variantResolve = null;
 
     protected function setVariantResolve(string $class): void
     {
