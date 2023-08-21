@@ -14,15 +14,21 @@ it('should emit a notification event', function () {
         'componentId' => 'fake-id',
     ];
 
+    $component = new LivewireComponent();
+
+    $method = method_exists($component, 'dispatchBrowserEvent')
+        ? 'dispatchBrowserEvent'
+        : 'dispatch';
+
     /** @var UnitTestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods([$method])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method($method)
         ->with($event, $params);
 
     $mock->notification()->send($params['options']);
@@ -35,15 +41,21 @@ it('should emit a confirm notification event', function (?string $icon, string $
         'componentId' => 'fake-id',
     ];
 
+    $component = new LivewireComponent();
+
+    $method = method_exists($component, 'dispatchBrowserEvent')
+        ? 'dispatchBrowserEvent'
+        : 'dispatch';
+
     /** @var UnitTestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods([$method])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method($method)
         ->with($event, [
             'options' => [
                 'title' => 'Sure Delete?',
@@ -61,15 +73,21 @@ it('should emit a confirm notification event', function (?string $icon, string $
 it('should emit the simple notification event', function (string $method) {
     $event = 'wireui:notification';
 
+    $component = new LivewireComponent();
+
+    $dispatchMethod = method_exists($component, 'dispatchBrowserEvent')
+        ? 'dispatchBrowserEvent'
+        : 'dispatch';
+
     /** @var UnitTestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods([$dispatchMethod])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method($dispatchMethod)
         ->with($event, [
             'options' => [
                 'icon'        => $method,

@@ -6,10 +6,16 @@ class Notification extends Actionable
 {
     public function send(array $options): self
     {
-        $this->component->dispatchBrowserEvent('wireui:notification', [
+        $event = 'wireui:notification';
+
+        $data = [
             'options'     => $options,
-            'componentId' => $this->component->id,
-        ]);
+            'componentId' => $this->component->getId(),
+        ];
+
+        method_exists($this->component, 'dispatchBrowserEvent')
+            ? $this->component->dispatchBrowserEvent($event, $data)
+            : $this->component->dispatch($event, $data);
 
         return $this;
     }
@@ -27,10 +33,16 @@ class Notification extends Actionable
     {
         $options['icon'] ??= self::QUESTION;
 
-        $this->component->dispatchBrowserEvent('wireui:confirm-notification', [
+        $event = 'wireui:confirm-notification';
+
+        $data = [
             'options'     => $options,
-            'componentId' => $this->component->id,
-        ]);
+            'componentId' => $this->component->getId(),
+        ];
+
+        method_exists($this->component, 'dispatchBrowserEvent')
+            ? $this->component->dispatchBrowserEvent($event, $data)
+            : $this->component->dispatch($event, $data);
 
         return $this;
     }

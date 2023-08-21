@@ -11,8 +11,8 @@
     ],
     "require": {
         "php": "^8.0|^8.1",
-        "laravel/framework": "^8.83|^9.16|^10.0",
-        "livewire/livewire": "^2.10"
+        "laravel/framework": "10.*",
+        "livewire/livewire": "^3.0@beta"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
@@ -22,12 +22,11 @@
         "psy/psysh": "@stable",
         "friendsofphp/php-cs-fixer": "^3.9",
         "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-livewire": "^1.0",
         "pestphp/pest-plugin-mock": "^1.0"
     },
     "authors": [
         {
-            "name": "Pedro Henrique",
+            "name": "Pedro Oliveira",
             "email": "pedrolivertwd@gmail.com"
         }
     ],

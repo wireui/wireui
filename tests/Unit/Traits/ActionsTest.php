@@ -11,15 +11,21 @@ it('should emit a dialog event when the method dialog is called with a non empty
         'componentId' => 'fake-id',
     ];
 
+    $component = new LivewireComponent();
+
+    $method = method_exists($component, 'dispatchBrowserEvent')
+        ? 'dispatchBrowserEvent'
+        : 'dispatch';
+
     /** @var UnitTestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods([$method])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method($method)
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
@@ -38,15 +44,21 @@ it('should emit a notification event when the method notification is called with
         'componentId' => 'fake-id',
     ];
 
+    $component = new LivewireComponent();
+
+    $method = method_exists($component, 'dispatchBrowserEvent')
+        ? 'dispatchBrowserEvent'
+        : 'dispatch';
+
     /** @var UnitTestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods([$method])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method($method)
         ->with($event, [
             'options'     => ['title' => 'WireUI is awesome!'],
             'componentId' => 'fake-id',

@@ -18,6 +18,7 @@ class Component extends \Livewire\Component
         return View::file(__DIR__ . '/view.blade.php');
     }
 
+    #[On('showDialog')]
     public function showDialog(array $options): void
     {
         $this->dialog()->show($options);

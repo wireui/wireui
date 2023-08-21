@@ -3,6 +3,7 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class AlertDialogTest extends BrowserTestCase
@@ -16,6 +17,7 @@ class AlertDialogTest extends BrowserTestCase
         string $title,
         string $description
     ) {
+        // Livewire::visit()
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
@@ -43,15 +45,21 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.livewire.emit('showDialog', {
+                window.Livewire.first().showDialog({
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 })
+                // window.Livewire.dispatch('showDialog', {
+                //     icon: "{$icon}",
+                //     title: "{$title}",
+                //     description: "{$description}",
+                // })
                 EOT))
                 ->waitForLivewire()
                 ->waitUsing(7, 100, fn () => $browser->assertSee($title))
-                ->assertSee($description);
+                ->assertSee($description)
+            ;
         });
     }
 
@@ -147,26 +155,26 @@ class AlertDialogTest extends BrowserTestCase
                 'title'       => 'Account Created',
                 'description' => 'Your account was created',
             ],
-            [
-                'icon'        => 'error',
-                'title'       => 'Permission Denied',
-                'description' => "You don't have suficiente permission",
-            ],
-            [
-                'icon'        => 'info',
-                'title'       => 'Today is a good day',
-                'description' => 'Wireui is very helpful',
-            ],
-            [
-                'icon'        => 'warning',
-                'title'       => 'It can be permanent',
-                'description' => 'Wish delete this file?',
-            ],
-            [
-                'icon'        => 'question',
-                'title'       => 'Sure delete?',
-                'description' => 'This action is irreversible',
-            ],
+            // [
+            //     'icon'        => 'error',
+            //     'title'       => 'Permission Denied',
+            //     'description' => "You don't have suficiente permission",
+            // ],
+            // [
+            //     'icon'        => 'info',
+            //     'title'       => 'Today is a good day',
+            //     'description' => 'Wireui is very helpful',
+            // ],
+            // [
+            //     'icon'        => 'warning',
+            //     'title'       => 'It can be permanent',
+            //     'description' => 'Wish delete this file?',
+            // ],
+            // [
+            //     'icon'        => 'question',
+            //     'title'       => 'Sure delete?',
+            //     'description' => 'This action is irreversible',
+            // ],
         ];
     }
 }

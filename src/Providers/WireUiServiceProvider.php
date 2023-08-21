@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
-use Livewire\LivewireBladeDirectives;
 use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
@@ -92,7 +91,17 @@ class WireUiServiceProvider extends ServiceProvider
         });
 
         Blade::directive('toJs', static function ($expression): string {
-            return LivewireBladeDirectives::js($expression);
+            return <<<EOT
+<?php
+    if (is_object({$expression}) || is_array({$expression})) {
+        echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))";
+    } elseif (is_string({$expression})) {
+        echo "'".str_replace("'", "\'", {$expression})."'";
+    } else {
+        echo json_encode({$expression});
+    }
+?>
+EOT;
         });
 
         Blade::directive('entangleable', static function ($value): string {

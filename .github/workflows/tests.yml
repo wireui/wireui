@@ -18,11 +18,13 @@ jobs:
       matrix:
         php: [8.0, 8.1]
         laravel: [8.*, 9.*, 10.*]
+        livewire: [2.*, 3.0@beta]
         exclude:
           - php: 8.0
             laravel: 10.*
+            livewire: 3.0@beta
 
-    name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}
+    name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }} / Livewire:${{ matrix.livewire }}
 
     steps:
       - name: Checkout
@@ -59,6 +61,7 @@ jobs:
       - name: Install Composer dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer require "livewire/livewire:${{ matrix.livewire }}" --no-interaction --no-update
           composer update --no-interaction --no-suggest
 
       - name: Setup dusk/chrome

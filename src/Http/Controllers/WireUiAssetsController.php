@@ -3,8 +3,8 @@
 namespace WireUi\Http\Controllers;
 
 use Illuminate\Http\Response;
-use Livewire\Controllers\CanPretendToBeAFile;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use WireUi\Traits\CanPretendToBeAFile;
 
 class WireUiAssetsController extends Controller
 {

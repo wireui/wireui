@@ -22,7 +22,7 @@ class UnitTestCase extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app->setBasePath(__DIR__ . '/../..');
+        $app->setBasePath(__DIR__ . '/../TempApplication');
     }
 
     protected function getPackageProviders($app)

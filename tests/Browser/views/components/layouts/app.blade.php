@@ -28,6 +28,12 @@
         function getElementByXPath(xPath) {
             return document.evaluate(xPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
         }
+
+        document.addEventListener('livewire:initialized', function () {
+            window.livewire = {
+                emit: window.Livewire.dispatch
+            }
+        })
     </script>
 </body>
 </html>
