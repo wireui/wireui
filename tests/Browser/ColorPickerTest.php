@@ -5,7 +5,6 @@ namespace Tests\Browser;
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
-use Livewire\Testing\TestableLivewire;
 
 class Component extends \Livewire\Component
 {
@@ -41,7 +40,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_toggle_the_colors_dropdown()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire|Testable $testable */
+            /** @var Browser|Testable $testable */
             $testable = $this->visit($browser, Component::class);
 
             $testable
@@ -60,7 +59,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_select_a_color()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire|Testable $testable */
+            /** @var Browser|Testable $testable */
             $testable = $this->visit($browser, Component::class);
 
             $testable
@@ -79,7 +78,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_select_the_color_more_than_one_time()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire|Testable $testable */
+            /** @var Browser|Testable $testable */
             $testable = $this->visit($browser, Component::class);
 
             $testable
@@ -110,7 +109,7 @@ class ColorPickerTest extends BrowserTestCase
     public function it_should_type_the_color_value()
     {
         $this->browse(function (Browser $browser) {
-            /** @var Browser|TestableLivewire|Testable $testable */
+            /** @var Browser|Testable $testable */
             $testable = $this->visit($browser, Component::class);
 
             $testable

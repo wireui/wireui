@@ -8,7 +8,9 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
+
 use function Livewire\str;
+
 use Livewire\{Component, Features\SupportTesting\Testable, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
@@ -31,11 +33,7 @@ class BrowserTestCase extends Dusk\TestCase
 
         Browser::$waitSeconds = 7;
 
-        $runningNewVersion = !method_exists(new LivewireComponent(), 'dispatchBrowserEvent');
-
-        $runningNewVersion
-            ? Browser::mixin(new \Livewire\Features\SupportTesting\DuskBrowserMacros())
-            : Browser::mixin(new \Livewire\Macros\DuskBrowserMacros());
+        Browser::mixin(new \Livewire\Features\SupportTesting\DuskBrowserMacros());
 
         $this->afterApplicationCreated(function () {
             $this->makeACleanSlate();
@@ -47,7 +45,7 @@ class BrowserTestCase extends Dusk\TestCase
 
         parent::setUp();
 
-        $this->tweakApplication(function () use ($runningNewVersion) {
+        $this->tweakApplication(function () {
             // Autoload all Livewire components in this test suite.
             collect(File::allFiles(__DIR__))
                 ->map(function (SplFileInfo $file) {
@@ -62,7 +60,7 @@ class BrowserTestCase extends Dusk\TestCase
             Route::get('/livewire-dusk/{component}', function (string $component) {
                 $class = urldecode($component);
 
-                return app()->call(new $class);
+                return app()->call(new $class());
             })->middleware('web');
 
             Route::get('/api/options', function () {
@@ -92,6 +90,7 @@ class BrowserTestCase extends Dusk\TestCase
                         strtolower(request()->query('search'))
                     );
                 })->values();
+
                 return ['data' => ['nested' => $data]];
             })->name('api.options.nested')->middleware('web');
 
@@ -104,10 +103,10 @@ class BrowserTestCase extends Dusk\TestCase
 
             config()->set('app.debug', true);
 
-            config()->set(
-                'livewire.using_new_version',
-                $runningNewVersion
-            );
+            // config()->set(
+            //     'livewire.using_new_version',
+            //     $runningNewVersion
+            // );
         });
     }
 
@@ -232,14 +231,9 @@ class BrowserTestCase extends Dusk\TestCase
         return $sh->getScopeVariables(false);
     }
 
-    /**
-     * @param Browser $browser
-     * @param  string  $livewire
-     * @return Browser|Testable
-     */
-    public function visit(Browser $browser, string $livewire, $queryString = '')
+    public function visit(Browser $browser, string $livewire, $queryString = ''): Browser|Testable
     {
-        $url = '/livewire-dusk/'.urlencode($livewire).$queryString;
+        $url = '/livewire-dusk/' . urlencode($livewire) . $queryString;
 
         return $browser->visit($url)->waitForLivewireToLoad();
         // return Livewire::visitWithDusk($browser, $livewire)

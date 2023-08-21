@@ -35,16 +35,10 @@ class Dialog extends Actionable
     {
         $options['icon'] ??= self::INFO;
 
-        $event = "wireui:{$this->getEventName()}";
-
-        $data = [
+        $this->component->dispatch("wireui:{$this->getEventName()}", [
             'options'     => $options,
             'componentId' => $this->component->getId(),
-        ];
-
-        method_exists($this->component, 'dispatchBrowserEvent')
-            ? $this->component->dispatchBrowserEvent($event, $data)
-            : $this->component->dispatch($event, $data);
+        ]);
 
         return $this;
     }
@@ -53,16 +47,10 @@ class Dialog extends Actionable
     {
         $options['icon'] ??= self::QUESTION;
 
-        $event = "wireui:confirm-{$this->getEventName()}";
-
-        $data = [
+        $this->component->dispatchBrowserEvent("wireui:confirm-{$this->getEventName()}", [
             'options'     => $options,
             'componentId' => $this->component->getId(),
-        ];
-
-        method_exists($this->component, 'dispatchBrowserEvent')
-            ? $this->component->dispatchBrowserEvent($event, $data)
-            : $this->component->dispatch($event, $data);
+        ]);
 
         return $this;
     }
