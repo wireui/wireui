@@ -38,7 +38,7 @@ class EntangleableTest extends UnitTestCase
     {
         $blade = "@entangleable('name', false)";
 
-        View::share('_instance', (object) ['id' => 'foo']);
+        View::share('__livewire', new LivewireComponent);
 
         $this->blade($blade)->assertSee("@entangle('name')", escape: false);
     }
@@ -53,7 +53,7 @@ class EntangleableTest extends UnitTestCase
             </div>
         BLADE;
 
-        View::share('_instance', (object) ['id' => 'foo']);
+        View::share('__livewire', new LivewireComponent);
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
         $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name')", escape: false);
@@ -69,7 +69,7 @@ class EntangleableTest extends UnitTestCase
             </div>
         BLADE;
 
-        View::share('_instance', (object) ['id' => 'foo']);
+        View::share('__livewire', new LivewireComponent);
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
         $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name').defer", escape: false);

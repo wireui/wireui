@@ -65,12 +65,12 @@ class BladeDirectives
 
     public function confirmAction(string $expression): string
     {
-        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function notify(string $expression): string
     {
-        return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.notify($expression, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function boolean(string $value): string
@@ -84,7 +84,7 @@ class BladeDirectives
         $property = (string) Str::of($expression)->before(',')->trim();
 
         return <<<EOT
-        <?php if (!isset(\$_instance->id)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
+        <?php if (!isset(\$__livewire)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
         EOT;
     }
 

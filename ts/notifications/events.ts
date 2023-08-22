@@ -1,5 +1,5 @@
 import { Options } from './options'
-import { LivewireOptions, LivewireEmitOptions, parseLivewire, parseLivewireEmit, parseRedirect } from './parses'
+import { LivewireOptions, LivewireDispatchOptions, parseLivewire, parseLivewireDispatch, parseRedirect } from './parses'
 
 export type Events = {
   onTimeout: CallableFunction
@@ -9,7 +9,7 @@ export type Events = {
 
 export interface EventOptions {
   method?: string
-  emit?: string
+  dispatch?: string
   to?: string
   params?: any
   url?: string
@@ -18,7 +18,7 @@ export interface EventOptions {
 export const parseEvent = (options: EventOptions, componentId?: string): CallableFunction => {
   if (options?.url) return parseRedirect(options.url)
   if (options?.method && componentId) return parseLivewire({ ...options, id: componentId } as LivewireOptions)
-  if (options?.emit) return parseLivewireEmit({ ...options } as LivewireEmitOptions)
+  if (options?.dispatch) return parseLivewireDispatch({ ...options } as LivewireDispatchOptions)
 
   return () => null
 }

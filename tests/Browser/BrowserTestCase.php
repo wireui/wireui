@@ -8,11 +8,11 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\{DuskBrowserMacros, Testable};
 
 use function Livewire\str;
 
 use Livewire\{Component, LivewireServiceProvider};
-use Livewire\Features\SupportTesting\Testable;
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
@@ -34,7 +34,7 @@ class BrowserTestCase extends Dusk\TestCase
 
         Browser::$waitSeconds = 7;
 
-        Browser::mixin(new \Livewire\Features\SupportTesting\DuskBrowserMacros());
+        Browser::mixin(new DuskBrowserMacros());
 
         $this->afterApplicationCreated(function () {
             $this->makeACleanSlate();
