@@ -5,7 +5,6 @@
     <livewire:styles />
     <wireui:styles />
     <wireui:scripts />
-
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -16,7 +15,6 @@
     {!! $slot !!}
 
     <livewire:scripts />
-
     @stack('scripts')
     <script>
         function getElementByXPath(xPath) {
