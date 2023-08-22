@@ -5,7 +5,7 @@
     <span dusk="phone">{{ $phone }}</span>
     <x-inputs.phone
         label="Phone"
-        wire:model="phone"
+        wire:model.live="phone"
         emit-formatted
    />
 
@@ -13,7 +13,7 @@
     <span dusk="customPhone">{{ $customPhone }}</span>
     <x-inputs.phone
         label="Custom Phone"
-        wire:model="customPhone"
+        wire:model.live="customPhone"
         mask="['(##) ####-####', '(##) #####-####']"
         emit-formatted
    />

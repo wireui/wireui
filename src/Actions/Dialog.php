@@ -47,7 +47,7 @@ class Dialog extends Actionable
     {
         $options['icon'] ??= self::QUESTION;
 
-        $this->component->dispatchBrowserEvent("wireui:confirm-{$this->getEventName()}", [
+        $this->component->dispatch("wireui:confirm-{$this->getEventName()}", [
             'options'     => $options,
             'componentId' => $this->component->getId(),
         ]);

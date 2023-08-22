@@ -6,7 +6,7 @@ class Notification extends Actionable
 {
     public function send(array $options): self
     {
-        $this->component->dispatchBrowserEvent('wireui:notification', [
+        $this->component->dispatch('wireui:notification', [
             'options'     => $options,
             'componentId' => $this->component->getId(),
         ]);
@@ -27,7 +27,7 @@ class Notification extends Actionable
     {
         $options['icon'] ??= self::QUESTION;
 
-        $this->component->dispatchBrowserEvent('wireui:confirm-notification', [
+        $this->component->dispatch('wireui:confirm-notification', [
             'options'     => $options,
             'componentId' => $this->component->getId(),
         ]);

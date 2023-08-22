@@ -44,7 +44,7 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce',
+                'attribute' => 'wire:model.live.debounce',
                 'expected'  => [
                     'defer'    => false,
                     'lazy'     => false,
@@ -55,7 +55,7 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce.700',
+                'attribute' => 'wire:model.live.debounce.700',
                 'expected'  => [
                     'defer'    => false,
                     'lazy'     => false,
@@ -66,7 +66,7 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce.700ms',
+                'attribute' => 'wire:model.live.debounce.700ms',
                 'expected'  => [
                     'defer'    => false,
                     'lazy'     => false,

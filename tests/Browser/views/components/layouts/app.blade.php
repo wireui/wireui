@@ -6,10 +6,6 @@
     <wireui:styles />
     <wireui:scripts />
 
-    @if(! config('livewire.using_new_version'))
-        <script src="//unpkg.com/alpinejs" defer></script>
-    @endif
-
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -19,21 +15,13 @@
 
     {!! $slot !!}
 
-    @if(! config('livewire.using_new_version'))
-        <livewire:scripts />
-    @endif
+    <livewire:scripts />
 
     @stack('scripts')
     <script>
         function getElementByXPath(xPath) {
             return document.evaluate(xPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
         }
-
-        document.addEventListener('livewire:initialized', function () {
-            window.livewire = {
-                emit: window.Livewire.dispatch
-            }
-        })
     </script>
 </body>
 </html>

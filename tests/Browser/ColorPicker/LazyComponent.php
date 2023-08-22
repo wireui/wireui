@@ -11,7 +11,7 @@ class LazyComponent extends \Livewire\Component
         return <<<HTML
         <div>
             <span dusk="model">{{ \$color }}</span>
-            <x-color-picker wire:model.lazy="color" />
+            <x-color-picker wire:model.blur="color" />
         </div>
         HTML;
     }

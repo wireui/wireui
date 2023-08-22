@@ -11,7 +11,8 @@ use Laravel\Dusk\Browser;
 
 use function Livewire\str;
 
-use Livewire\{Component, Features\SupportTesting\Testable, Livewire, LivewireServiceProvider};
+use Livewire\{Component, LivewireServiceProvider};
+use Livewire\Features\SupportTesting\Testable;
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
@@ -102,11 +103,6 @@ class BrowserTestCase extends Dusk\TestCase
             ]);
 
             config()->set('app.debug', true);
-
-            // config()->set(
-            //     'livewire.using_new_version',
-            //     $runningNewVersion
-            // );
         });
     }
 

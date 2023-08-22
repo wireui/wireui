@@ -11,6 +11,6 @@ class LivewireComponent extends ButtonComponent
 
     public function __construct()
     {
-        $this->id = 'fake-id';
+        $this->setId('fake-id');
     }
 }
