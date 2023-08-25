@@ -94,6 +94,10 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::toJs($expression);
         });
 
+        Blade::directive('modelable', static function ($value): string {
+            return WireUiDirectives::modelable($value);
+        });
+
         Blade::directive('entangleable', static function ($value): string {
             return WireUiDirectives::entangleable($value);
         });

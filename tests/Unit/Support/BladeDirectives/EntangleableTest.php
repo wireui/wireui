@@ -8,6 +8,21 @@ use Tests\Unit\UnitTestCase;
 
 class EntangleableTest extends UnitTestCase
 {
+    public function test_it_should_render_the_entangle_directive_from_the_string_attribute()
+    {
+        $blade = <<<'BLADE'
+            <div x-data="{
+                model: @entangleable('name'),
+            }">
+                ...
+            </div>
+        BLADE;
+
+        View::share('__livewire', new LivewireComponent());
+
+        $this->blade($blade)->assertSee("@entangle('name')", escape: false);
+    }
+
     public function test_it_should_render_the_entangle_directive_from_the_wire_model_attribute()
     {
         $blade = <<<'BLADE'

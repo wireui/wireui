@@ -78,10 +78,20 @@ class BladeDirectives
         return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
+    public function modelable(string $expression): ?string
+    {
+        $fallback = (string) Str::of($expression)->after(',')->trim();
+        $property = (string) Str::of($expression)->before(',')->trim();
+
+        return <<<EOT
+        <?php if (!isset(\$__livewire)): ?> @toJs({$fallback}) <?php else : ?> @entangleable({$property}) <?php endif; ?>
+        EOT;
+    }
+
     public function entangleable(string $expression): ?string
     {
         return <<<EOT
-        <?php if ({$expression}->hasModifier('blur')): ?> @entangle($expression).live <?php else : ?> @entangle($expression) <?php endif; ?>
+        <?php if ((object) ({$expression}) instanceof \Livewire\WireDirective && {$expression}->hasModifier('blur')): ?> @entangle($expression).live <?php else : ?> @entangle($expression) <?php endif; ?>
         EOT;
     }
 
