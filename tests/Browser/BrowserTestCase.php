@@ -8,7 +8,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
-use Livewire\Features\SupportTesting\{DuskBrowserMacros, Testable};
+use Livewire\Features\SupportTesting\Testable;
 
 use function Livewire\str;
 
@@ -16,6 +16,7 @@ use Livewire\{Component, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
+use Tests\Browser\Macros\DuskBrowserMacros;
 use Throwable;
 use WireUi\Providers\WireUiServiceProvider;
 

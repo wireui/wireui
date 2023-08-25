@@ -3,8 +3,9 @@
 namespace Tests\Browser\Macros;
 
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\DuskBrowserMacros as BaseDuskBrowserMacros;
 
-class DuskBrowserMacros
+class DuskBrowserMacros extends BaseDuskBrowserMacros
 {
     public function openSelect()
     {

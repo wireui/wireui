@@ -12,7 +12,6 @@ use WireUi\Support\BladeDirectives;
  * @method static string confirmAction(string $expression)
  * @method static string notify(string $expression)
  * @method static string boolean(string $value)
- * @method static string modelable(string $expression)
  * @method static string entangleable(string $expression)
  * @method static string toJs(mixed $expression)
  */
