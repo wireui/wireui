@@ -90,7 +90,7 @@ export default (options: InitOptions): TimePicker => ({
 
     this.input = this.maskInput(value)
 
-    if (!this.config.isLazy) {
+    if (!this.config.isBlur) {
       this.emitInput()
     }
   },

@@ -4,13 +4,13 @@ import { Entangle } from '../alpine'
 export interface Options {
   model: Entangle
   emitFormatted: boolean
-  isLazy: boolean
+  isBlur: boolean
   mask: string
 }
 
 export interface Config {
   emitFormatted: boolean
-  isLazy: boolean
+  isBlur: boolean
   mask: string
 }
 
@@ -33,7 +33,7 @@ export default (options: Options): Maskable => ({
   masker: masker(options.mask, null),
   config: {
     emitFormatted: options.emitFormatted,
-    isLazy: options.isLazy,
+    isBlur: options.isBlur,
     mask: options.mask
   },
 
@@ -47,7 +47,7 @@ export default (options: Options): Maskable => ({
   onInput (value: string | null) {
     this.input = this.masker.apply(value).value
 
-    if (!this.config.isLazy) {
+    if (!this.config.isBlur) {
       this.emitInput()
     }
   },
