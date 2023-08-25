@@ -1,6 +1,6 @@
 <div x-data="wireui_inputs_currency({
     isBlur: @boolean($attributes->wire('model')->hasModifier('blur')),
-    model:  @entangle($attributes->wire('model')),
+    model:  @entangleable($attributes->wire('model')),
     emitFormatted: @boolean($emitFormatted),
     thousands: '{{ $thousands }}',
     decimal:   '{{ $decimal }}',

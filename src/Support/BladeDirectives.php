@@ -80,11 +80,8 @@ class BladeDirectives
 
     public function entangleable(string $expression): ?string
     {
-        $fallback = (string) Str::of($expression)->after(',')->trim();
-        $property = (string) Str::of($expression)->before(',')->trim();
-
         return <<<EOT
-        <?php if (!isset(\$__livewire)): ?> @toJs({$fallback}) <?php elseif(!\$__livewire->getId()): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
+        <?php if ({$expression}->hasModifier('blur')): ?> @entangle($expression).live <?php else : ?> @entangle($expression) <?php endif; ?>
         EOT;
     }
 

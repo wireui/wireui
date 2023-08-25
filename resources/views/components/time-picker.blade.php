@@ -1,6 +1,6 @@
 <div
     x-data="wireui_timepicker({
-        model: @entangle($attributes->wire('model')),
+        model: @entangleable($attributes->wire('model')),
         config: {
             isBlur:   @boolean($attributes->wire('model')->hasModifier('blur')),
             interval: @toJs($interval),

@@ -1,6 +1,6 @@
 <div x-data="wireui_inputs_maskable({
     isBlur: @boolean($attributes->wire('model')->hasModifier('blur')),
-    model: @entangle($attributes->wire('model')),
+    model: @entangleable($attributes->wire('model')),
     emitFormatted: @boolean($emitFormatted),
     mask: {{ $mask }},
 })" {{ $attributes->only('wire:key') }}>

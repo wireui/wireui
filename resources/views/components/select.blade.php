@@ -1,7 +1,7 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
     x-data="wireui_select({
         @if ($attributes->wire('model')->value())
-            wireModel: @entangle($attributes->wire('model')),
+            wireModel: @entangleable($attributes->wire('model')),
         @endif
     })"
     x-props="{
