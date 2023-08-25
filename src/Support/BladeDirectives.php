@@ -97,13 +97,13 @@ class BladeDirectives
     public function toJs(mixed $expression): string
     {
         return <<<EOT
-        <?php if (is_object({$expression}) || is_array({$expression})): ?>
+        <?php if (is_object({$expression}) || is_array({$expression})) {
             echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))";
-        <?php elseif (is_string({$expression})): ?>
+        } elseif (is_string({$expression})) {
             echo "'".str_replace("'", "\'", {$expression})."'";
-        <?php else : ?>
+        } else {
             echo json_encode({$expression});
-        <?php endif; ?>
+        } ?>
         EOT;
     }
 }
