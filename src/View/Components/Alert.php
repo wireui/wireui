@@ -2,108 +2,86 @@
 
 namespace WireUi\View\Components;
 
-use Closure;
-use Illuminate\Support\{Arr, HtmlString};
-use Illuminate\View\Component;
-use WireUi\Traits\HasModifiers;
+use Illuminate\Support\Arr;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
+use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
-class Alert extends Component
+class Alert extends BaseComponent
 {
-    use HasModifiers;
+    use HasSetupIcon;
+    use HasSetupColor;
+    use HasSetupShadow;
+    use HasSetupPadding;
+    use HasSetupRounded;
+    use HasSetupVariant;
 
     public function __construct(
         public ?string $title = null,
-        public ?string $icon = null,
-        public ?string $padding = null,
-        public ?string $shadow = null,
-        public ?string $rounded = null,
-        public ?string $color = null,
-        public ?bool $iconless = false,
-        public ?bool $borderless = null,
     ) {
-        $this->padding    ??= config('wireui.alert.padding');
-        $this->shadow     ??= config('wireui.alert.shadow');
-        $this->rounded    ??= config('wireui.alert.rounded');
-        $this->borderless ??= config('wireui.alert.borderless');
+        $this->setShadowResolve(Shadows::class);
+        $this->setPaddingResolve(Paddings::class);
+        $this->setRoundedResolve(Rounders::class);
+        $this->setVariantResolve(Variants::class);
     }
 
-    protected function setupData(array $data): array
+    public function getUseIcon(): mixed
     {
-        /** @var ConfigPack $dataPack */
-        $dataPack = resolve(config('wireui.alert.values'));
-
-        $this->color ??= $this->getMatchModifier($dataPack->keys());
-        $this->color ??= config('wireui.alert.color');
-
-        $values = (array) json_decode($dataPack->get($this->color));
-
-        $values['icon'] = $this->icon ?? $values['icon'];
-
-        return array_merge($data, ['values' => $values]);
+        return $this->icon ?? data_get($this->colorClasses, 'icon', 'bell');
     }
 
-    public function getAlertClasses(array $values): string
+    public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            'w-full flex flex-col p-4 dark:border',
-            $values['backgroundColor'],
-            $values['borderColor'],
-            $this->rounded,
-            $this->shadow,
+            data_get($this->colorClasses, 'background', ''),
+            data_get($this->colorClasses, 'border', ''),
+            $this->shadowClasses => !$this->shadowless,
+            'w-full flex flex-col p-4',
+            $this->roundedClasses,
         ]);
     }
 
-    public function getHeaderClasses(array $values, HtmlString $slot): string
+    public function getHeaderClasses(mixed $slot): string
     {
-        $border = Arr::toCssClasses(['border-b-2', $values['borderColor']]);
-
         return Arr::toCssClasses([
-            $border => !$this->borderless && $slot->isNotEmpty(),
             'flex justify-between items-center',
             'pb-3' => $slot->isNotEmpty(),
         ]);
     }
 
-    public function getTitleClasses(array $values): string
+    public function getTitleClasses(mixed $slot): string
     {
         return Arr::toCssClasses([
-            'font-semibold text-sm whitespace-normal',
-            $values['textColor'],
+            data_get($this->colorClasses, 'text', ''),
+            'font-semibold' => $slot->isNotEmpty(),
+            'font-normal'   => $slot->isEmpty(),
+            'text-sm whitespace-normal',
         ]);
     }
 
-    public function getIconClasses(array $values): string
+    public function getIconClasses(): string
     {
         return Arr::toCssClasses([
+            data_get($this->colorClasses, 'iconColor', ''),
             'w-5 h-5 mr-3 shrink-0',
-            $values['iconColor'],
         ]);
     }
 
-    public function getMainClasses(array $values): string
+    public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            $values['textColor'],
-            'rounded-b-xl grow ml-5 text-sm',
-            $this->padding,
+            data_get($this->colorClasses, 'text', ''),
+            $this->paddingClasses,
+            'grow text-sm',
         ]);
     }
 
-    public function getFooterClasses(array $values): string
+    public function getFooterClasses(): string
     {
-        $border = Arr::toCssClasses(['border-t-2', $values['borderColor']]);
-
-        return Arr::toCssClasses([
-            'mt-2 pt-2 rounded-t-none',
-            $border => !$this->borderless,
-            $this->rounded,
-        ]);
+        return Arr::toCssClasses(['mt-2 pt-2']);
     }
 
-    public function render(): Closure
+    public function getView(): string
     {
-        return function (array $data) {
-            return view('wireui::components.alert', $this->setupData($data))->render();
-        };
+        return 'wireui::components.alert';
     }
 }

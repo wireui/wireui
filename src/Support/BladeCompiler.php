@@ -21,8 +21,11 @@ class BladeCompiler
     private function compileString(string $blade, array $data): string
     {
         $data['__env'] = app(Factory::class);
-        $obLevel       = ob_get_level();
+
+        $obLevel = ob_get_level();
+
         ob_start();
+
         extract($data, EXTR_SKIP);
 
         try {

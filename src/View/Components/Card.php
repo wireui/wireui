@@ -2,44 +2,44 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use Illuminate\View\Component;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
+use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
 
-class Card extends Component
+class Card extends BaseComponent
 {
-    protected string $textColor = 'text-secondary-700 dark:text-secondary-400';
-
-    protected string $borderColor = 'border-secondary-200 dark:border-secondary-600';
+    use HasSetupColor;
+    use HasSetupShadow;
+    use HasSetupPadding;
+    use HasSetupRounded;
 
     public function __construct(
         public ?string $title = null,
-        public ?string $padding = null,
-        public ?string $shadow = null,
-        public ?string $rounded = null,
-        public ?string $color = null,
         public ?bool $borderless = null,
     ) {
-        $this->padding    ??= config('wireui.card.padding');
-        $this->shadow     ??= config('wireui.card.shadow');
-        $this->rounded    ??= config('wireui.card.rounded');
-        $this->color      ??= config('wireui.card.color');
-        $this->borderless ??= config('wireui.card.borderless');
+        $this->setColorResolve(Colors::class);
+        $this->setShadowResolve(Shadows::class);
+        $this->setPaddingResolve(Paddings::class);
+        $this->setRoundedResolve(Rounders::class);
+
+        $this->borderless ??= config('wireui.card.borderless', false);
     }
 
-    public function getCardClasses(): string
+    public function getRootClasses(): string
     {
         return Arr::toCssClasses([
-            'w-full flex flex-col',
-            $this->shadow,
-            $this->rounded,
-            $this->color,
+            data_get($this->colorClasses, 'root', ''),
+            $this->shadowClasses => !$this->shadowless,
+            $this->roundedClasses,
         ]);
     }
 
     public function getHeaderClasses(): string
     {
-        $border = Arr::toCssClasses(['border-b', $this->borderColor]);
+        $border = Arr::toCssClasses([
+            data_get($this->colorClasses, 'border', ''),
+            'border-b',
+        ]);
 
         return Arr::toCssClasses([
             'px-4 py-2.5 flex justify-between items-center',
@@ -50,34 +50,36 @@ class Card extends Component
     public function getTitleClasses(): string
     {
         return Arr::toCssClasses([
+            data_get($this->colorClasses, 'text', ''),
             'font-medium text-base whitespace-normal',
-            $this->textColor,
         ]);
     }
 
     public function getMainClasses(): string
     {
         return Arr::toCssClasses([
-            'rounded-b-xl grow',
-            $this->textColor,
-            $this->padding,
+            data_get($this->colorClasses, 'text', ''),
+            $this->paddingClasses,
+            'grow',
         ]);
     }
 
     public function getFooterClasses(): string
     {
-        $border = Arr::toCssClasses(['border-t', $this->borderColor]);
+        $border = Arr::toCssClasses([
+            data_get($this->colorClasses, 'border', ''),
+            'border-t',
+        ]);
 
         return Arr::toCssClasses([
-            'bg-secondary-50 dark:bg-secondary-800',
-            'px-4 py-4 sm:px-6 rounded-t-none',
+            data_get($this->colorClasses, 'footer', ''),
+            'px-4 py-4 sm:px-6 bg-clip-content',
             $border => !$this->borderless,
-            $this->rounded,
         ]);
     }
 
-    public function render(): View
+    public function getView(): string
     {
-        return view('wireui::components.card');
+        return 'wireui::components.card';
     }
 }

@@ -18,10 +18,10 @@
 
             <div class="flex items-center h-5">
                 <input {{ $attributes->class([
-                    $getClasses($errors->has($name)),
-                ])->merge([
-                    'type'  => 'checkbox',
-                ]) }} />
+                        $getClasses($errors->has($name)),
+                    ])->merge([
+                        'type'  => 'checkbox',
+                    ]) }} />
             </div>
 
             @if ($label)
@@ -34,7 +34,7 @@
                         :has-error="$errors->has($name)"
                     />
                     @if($description)
-                        <div id="{{ $id }} . comments-description" class="text-gray-500">{{ $description }}</div>
+                        <div class="text-gray-500">{{ $description }}</div>
                     @endif
                 </div>
             @endif

@@ -1,31 +1,32 @@
-@if ((bool)$count($errors))
+@if ((bool) $count($errors))
     <x-dynamic-component
         :component="WireUi::component('alert')"
-        color="negative"
-        title="{{ $getTitle($errors) }}"
-        :icon="$icon"
-        :iconless="$iconless"
-        :borderless="$borderless"
+        {{ $attributes->merge($getArray($title, $errors)) }}
     >
-        @if(isset($action))
-            @slot('action', null, $action->attributes->getAttributes())
-                {{ $action }}
+        @if(check_slot($title))
+            @slot('title', null, $title->attributes->getAttributes())
+                {{ $title }}
             @endslot
         @endif
 
-        <ul class="space-y-1 list-disc text-negative-700 dark:text-negative-600">
+        @isset($action)
+            @slot('action', null, $action->attributes->getAttributes())
+                {{ $action }}
+            @endslot
+        @endisset
+
+        <ul class="space-y-1 list-disc">
             @foreach ($getErrorMessages($errors) as $message)
                 <li>{{ head($message) }}</li>
             @endforeach
         </ul>
 
-        @if(isset($footer))
+        @isset($footer)
             @slot('footer', null, $footer->attributes->getAttributes())
                 {{ $footer }}
             @endslot
-        @endif
+        @endisset
     </x-dynamic-component>
 @else
     <div class="hidden"></div>
 @endif
-

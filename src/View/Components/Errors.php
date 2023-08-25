@@ -2,23 +2,18 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str, ViewErrorBag};
-use Illuminate\View\Component;
 
-class Errors extends Component
+class Errors extends BaseComponent
 {
     public function __construct(
-        public ?string $title = null,
         public mixed $only = [],
-        public ?string $icon = null,
-        public ?bool $iconless = false,
-        public ?bool $borderless = null,
+        public ?string $title = null,
     ) {
         $this->initOnly();
     }
 
-    protected function initOnly(): void
+    private function initOnly(): void
     {
         if (is_string($this->only)) {
             $this->only = str($this->only)->explode('|');
@@ -32,6 +27,16 @@ class Errors extends Component
     public function count(ViewErrorBag $errors): int
     {
         return $this->getErrorMessages($errors)->count();
+    }
+
+    public function getArray(mixed $title, ViewErrorBag $errors): array
+    {
+        return check_slot($title) ? [
+            'color' => 'negative',
+        ] : [
+            'color' => 'negative',
+            'title' => $this->getTitle($errors),
+        ];
     }
 
     public function getErrorMessages(ViewErrorBag $errors): Collection
@@ -48,8 +53,8 @@ class Errors extends Component
         return Str::replace('{errors}', $this->count($errors), $title);
     }
 
-    public function render(): View
+    public function getView(): string
     {
-        return view('wireui::components.errors');
+        return 'wireui::components.errors';
     }
 }

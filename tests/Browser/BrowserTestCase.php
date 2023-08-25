@@ -8,7 +8,7 @@ use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
-use Livewire\Testing\TestableLivewire;
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
@@ -229,7 +229,7 @@ class BrowserTestCase extends Dusk\TestCase
         return $sh->getScopeVariables(false);
     }
 
-    public function visit(Browser $browser, string $livewire): Browser|TestableLivewire
+    public function visit(Browser $browser, string $livewire): Browser|Testable
     {
         return Livewire::visit($browser, $livewire)
             ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad());

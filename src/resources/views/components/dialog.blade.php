@@ -1,4 +1,4 @@
-<div class="fixed inset-0 flex items-end overflow-y-auto sm:pt-16 justify-center {{ $align }} {{ $zIndex }}"
+<div class="{{ $getRootClasses() }}"
     x-data="wireui_dialog({ id: '{{ $dialog }}' })"
     x-show="show"
     x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
@@ -6,8 +6,7 @@
     x-on:keydown.escape.window="handleEscape"
     style="display: none"
     x-cloak>
-    <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity
-        {{ $dialog }}-backdrop @if ($blur) {{ $blur }} @endif dark:bg-secondary-700 dark:bg-opacity-60"
+    <div class="{{ $getBackdropClasses() }}"
         x-show="show"
         x-on:click="dismiss"
         x-transition:enter="ease-out duration-300"
@@ -18,7 +17,7 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div class="w-full transition-all p-4 sm:max-w-lg"
+    <div class="{{ $getMainClasses() }}"
         x-show="show"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
