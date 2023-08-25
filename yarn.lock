@@ -2098,10 +2098,10 @@ alpinejs@^3.10.3:
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
-alpinejs@^3.11.1:
-  version "3.11.1"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.11.1.tgz#8675083411bb8a18e618a646cd64cb9bdf76a75e"
-  integrity sha512-0Y+4WKQcEZrvpfS98qeSOXCPXFPorULQ+1hc8lQrx+1HHzkUofD4HzjTfz+wimA5tSsGnpXz/SoF2P9saiXZCw==
+alpinejs@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.13.0.tgz#0334d5f9edb612be33f1f8a7eb3a579b53e4f04e"
+  integrity sha512-7FYR1Yz3evIjlJD1mZ3SYWSw+jlOmQGeQ1QiSufSQ6J84XMQFkzxm6OobiZ928SfqhGdoIp2SsABNsS4rXMMJw==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 

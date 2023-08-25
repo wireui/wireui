@@ -15,7 +15,7 @@
         "@floating-ui/dom": "^1.1.1",
         "@types/lodash.debounce": "^4.0.7",
         "@wireui/alpinejs-hold-directive": "^1.0.1",
-        "alpinejs": "^3.11.1",
+        "alpinejs": "^3.13.0",
         "dayjs": "^1.11.7",
         "lodash.debounce": "^4.0.8",
         "lodash.kebabcase": "^4.1.1",

@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <x-notifications />
     <x-dialog />
+    <x-notifications />
 
     {!! $slot !!}
 

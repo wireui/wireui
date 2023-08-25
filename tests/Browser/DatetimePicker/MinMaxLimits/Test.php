@@ -63,9 +63,9 @@ class Test extends BrowserTestCase
         return [
             ['disabled' => true,  'day' => 1,  'model' => '',                     'input' => ''],
             ['disabled' => true,  'day' => 7,  'model' => '',                     'input' => ''],
-            ['disabled' => false, 'day' => 8,  'model' => '2021-12-08T10:30:00Z', 'input' => '08/12/2021, 10:30'],
-            ['disabled' => false, 'day' => 16, 'model' => '2021-12-16T10:30:00Z', 'input' => '16/12/2021, 10:30'],
-            ['disabled' => false, 'day' => 22, 'model' => '2021-12-22T10:30:00Z', 'input' => '22/12/2021, 10:30'],
+            ['disabled' => false, 'day' => 8,  'model' => '2021-12-08T10:30:00Z', 'input' => '12/8/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 16, 'model' => '2021-12-16T10:30:00Z', 'input' => '12/16/2021, 10:30 AM'],
+            ['disabled' => false, 'day' => 22, 'model' => '2021-12-22T10:30:00Z', 'input' => '12/22/2021, 10:30 AM'],
             ['disabled' => true,  'day' => 23, 'model' => '',                     'input' => ''],
             ['disabled' => true,  'day' => 30, 'model' => '',                     'input' => ''],
         ];
