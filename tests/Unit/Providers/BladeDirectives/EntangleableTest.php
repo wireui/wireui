@@ -4,7 +4,7 @@ namespace Tests\Unit\Providers\BladeDirectives;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\View\ComponentAttributeBag;
-use Tests\Unit\TestCase;
+use Tests\Unit\{TestCase, TestComponent};
 
 class EntangleableTest extends TestCase
 {
@@ -18,7 +18,7 @@ class EntangleableTest extends TestCase
         $this->blade($blade)->assertSee($expected, escape: false);
     }
 
-    public function fallbackValuesProvider(): array
+    public static function fallbackValuesProvider(): array
     {
         return [
             ['null', '@toJs(null)'],
@@ -44,7 +44,7 @@ class EntangleableTest extends TestCase
             </div>
         BLADE;
 
-        View::share('__livewire', new LivewireComponent());
+        View::share('__livewire', new TestComponent());
 
         $this->blade($blade)->assertSee("@entangle('name')", escape: false);
     }
@@ -59,7 +59,7 @@ class EntangleableTest extends TestCase
             </div>
         BLADE;
 
-        View::share('__livewire', new LivewireComponent());
+        View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
         $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
@@ -75,7 +75,7 @@ class EntangleableTest extends TestCase
             </div>
         BLADE;
 
-        View::share('__livewire', new LivewireComponent());
+        View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model.live' => 'name']));
 
         $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
@@ -91,7 +91,7 @@ class EntangleableTest extends TestCase
             </div>
         BLADE;
 
-        View::share('__livewire', new LivewireComponent());
+        View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model.blur' => 'name']));
 
         $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model')).live", escape: false);

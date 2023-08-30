@@ -1,7 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
+use Tests\Unit\{TestCase, TestComponent};
 use WireUi\Actions\Dialog;
 use WireUi\Enum\Actions;
 
@@ -14,7 +14,7 @@ it('should create the dialog event name')
     ->toBe('dialog:foo');
 
 it('should create the dialog event name to a custom dialog', function () {
-    $dialog = new Dialog(new LivewireComponent());
+    $dialog = new Dialog(new TestComponent());
 
     $dialog->id('foo');
 
@@ -35,11 +35,11 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
@@ -65,11 +65,11 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
@@ -91,11 +91,11 @@ it('should emit the simple dialog event', function (string $method) {
     $event = 'wireui:dialog';
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')

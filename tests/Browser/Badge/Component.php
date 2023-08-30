@@ -4,7 +4,7 @@ namespace Tests\Browser\Badge;
 
 use Illuminate\Support\Facades\View;
 
-class BadgeComponent extends \Livewire\Component
+class Component extends \Livewire\Component
 {
     public function render()
     {

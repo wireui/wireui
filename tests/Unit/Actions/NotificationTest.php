@@ -1,8 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
-use WireUi\Actions\Notification;
+use Tests\Unit\{TestCase, TestComponent};
 use WireUi\Enum\Actions;
 
 it('should emit a notification event', function () {
@@ -16,11 +15,11 @@ it('should emit a notification event', function () {
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
@@ -37,11 +36,11 @@ it('should emit a confirm notification event', function (?string $icon, string $
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
@@ -63,11 +62,11 @@ it('should emit the simple notification event', function (string $method) {
     $event = 'wireui:notification';
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')

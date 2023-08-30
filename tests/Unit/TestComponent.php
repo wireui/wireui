@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use Livewire\Component;
 use WireUi\Traits\WireUiActions;
 
-class LivewireComponent extends Component
+class TestComponent extends Component
 {
     use WireUiActions;
 

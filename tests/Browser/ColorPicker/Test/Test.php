@@ -7,7 +7,7 @@ use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
-class ColorPickerTest extends BrowserTestCase
+class Test extends BrowserTestCase
 {
     /** @test */
     public function it_should_toggle_the_colors_dropdown()

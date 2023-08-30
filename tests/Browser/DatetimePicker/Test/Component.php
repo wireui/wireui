@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\DatetimePicker;
+namespace Tests\Browser\DatetimePicker\Test;
 
 use Illuminate\Support\Facades\View;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\DatetimePicker;
+namespace Tests\Browser\DatetimePicker\Test;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;

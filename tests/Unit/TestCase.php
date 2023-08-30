@@ -3,14 +3,14 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\{Artisan, Route};
+use Illuminate\Support\Facades\Artisan;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench;
+use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use ReflectionClass;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
 
-class TestCase extends Testbench\TestCase
+class TestCase extends TestbenchTestCase
 {
     use InteractsWithViews;
 

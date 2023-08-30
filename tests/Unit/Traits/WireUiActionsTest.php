@@ -1,7 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
+use Tests\Unit\{TestCase, TestComponent};
 use WireUi\Actions\Dialog;
 
 it('should emit a dialog event when the method dialog is called with a non empty array', function () {
@@ -12,11 +12,11 @@ it('should emit a dialog event when the method dialog is called with a non empty
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
@@ -39,11 +39,11 @@ it('should emit a notification event when the method notification is called with
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
+    $mock = $this->getMockBuilder(TestComponent::class)
         ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
         ->method('dispatch')
