@@ -111,7 +111,7 @@ export default (initOptions: InitOptions): Select => ({
         this.$nextTick(() => this.initRenderObserver())
       }
 
-      if (this.asyncData.alwaysFetch && !state) {
+      if (this.asyncData.api && this.asyncData.alwaysFetch && !state) {
         this.$nextTick(() => {
           setTimeout(() => (this.options = []), 150)
         })
@@ -225,7 +225,14 @@ export default (initOptions: InitOptions): Select => ({
       subtree: true
     })
   },
-  syncProps () {
+  shouldSyncProps (mutations: MutationRecord[] = []) {
+    return mutations.some(mutation => {
+      return mutation.attributeName === 'x-props'
+    })
+  },
+  syncProps (mutations: MutationRecord[] = []) {
+    if (mutations.length && !this.shouldSyncProps(mutations)) return
+
     const props = this.$props
 
     const template = {
