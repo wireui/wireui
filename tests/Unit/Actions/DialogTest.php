@@ -3,6 +3,7 @@
 use Mockery\Mock;
 use Tests\Unit\{LivewireComponent, TestCase};
 use WireUi\Actions\Dialog;
+use WireUi\Enum\Actions;
 
 it('should create the default dialog event name')
     ->and(Dialog::makeEventName())
@@ -53,7 +54,7 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
     $mock->dialog()->show($params['options']);
 })->with([
     ['home', 'home'],
-    [null, Dialog::INFO], // assert the default icon
+    [null, Actions::INFO], // assert the default icon
 ]);
 
 it('should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
@@ -83,7 +84,7 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
     $mock->dialog()->confirm($params['options']);
 })->with([
     ['home', 'home'],
-    [null, Dialog::QUESTION], // assert the default icon
+    [null, Actions::QUESTION], // assert the default icon
 ]);
 
 it('should emit the simple dialog event', function (string $method) {

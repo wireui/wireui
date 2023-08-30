@@ -4,6 +4,7 @@ namespace Tests\Browser\Notifications;
 
 use Illuminate\Support\Facades\View;
 use Livewire\Attributes\On;
+use WireUi\Traits\WireUiActions;
 
 class Component extends \Livewire\Component
 {

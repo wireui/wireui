@@ -12,7 +12,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(
             fn (Browser $browser) => $this
-                ->visit($browser, CheckComponent::class)
+                ->visit($browser, Component::class)
                 ->assertSee('Remember me')
                 ->check('checkbox')
                 ->assertChecked('checkbox')

@@ -3,13 +3,14 @@
 use Mockery\Mock;
 use Tests\Unit\{LivewireComponent, TestCase};
 use WireUi\Actions\Notification;
+use WireUi\Enum\Actions;
 
 it('should emit a notification event', function () {
     $event  = 'wireui:notification';
     $params = [
         'options' => [
             'title' => 'WireUI is awesome!',
-            'icon'  => Notification::SUCCESS,
+            'icon'  => Actions::SUCCESS,
         ],
         'componentId' => 'fake-id',
     ];
@@ -55,7 +56,7 @@ it('should emit a confirm notification event', function (?string $icon, string $
     $mock->notification()->confirm($params['options']);
 })->with([
     ['home', 'home'],
-    [null, Notification::QUESTION], // assert the default icon
+    [null, Actions::QUESTION], // assert the default icon
 ]);
 
 it('should emit the simple notification event', function (string $method) {
