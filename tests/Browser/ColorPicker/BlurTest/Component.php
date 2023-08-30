@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\ColorPicker;
+namespace Tests\Browser\ColorPicker\BlurTest;
 
 use Illuminate\Support\Facades\View;
 
 class Component extends \Livewire\Component
 {
-    public ?string $color = '#001';
+    public ?string $color = '#00000';
 
     public function render()
     {

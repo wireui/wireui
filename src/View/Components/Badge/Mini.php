@@ -10,12 +10,12 @@ use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
 
 class Mini extends BaseComponent
 {
-    use HasSetupIcon;
-    use HasSetupSize;
     use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupVariant;
+    use HasSetupIcon;
     use HasSetupIconSize;
+    use HasSetupRounded;
+    use HasSetupSize;
+    use HasSetupVariant;
 
     public function __construct(
         public ?string $label = null,

@@ -42,11 +42,11 @@ class CustomMacros
             $model = $this->wire('model');
 
             return [
-                'defer'    => $model->modifiers()->contains('defer'),
-                'lazy'     => $model->modifiers()->contains('lazy'),
+                'live'     => $model->hasModifier('live'),
+                'blur'     => $model->hasModifier('blur'),
                 'debounce' => [
-                    'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
+                    'exists' => $model->hasModifier('debounce'),
+                    'delay'  => (string) Str::of($model->modifiers()->get(2, '750'))->replace('ms', ''),
                 ],
             ];
         });

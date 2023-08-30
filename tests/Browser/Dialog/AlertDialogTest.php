@@ -3,7 +3,6 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class AlertDialogTest extends BrowserTestCase
@@ -18,7 +17,6 @@ class AlertDialogTest extends BrowserTestCase
         string $title,
         string $description,
     ) {
-        // Livewire::visit()
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT

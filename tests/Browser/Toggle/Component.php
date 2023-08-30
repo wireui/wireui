@@ -12,13 +12,13 @@ class Component extends \Livewire\Component
 
     protected array $messages = ['toggle.accepted' => 'accept it'];
 
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
-    }
-
     public function validateToggle(): void
     {
         $this->validate();
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }

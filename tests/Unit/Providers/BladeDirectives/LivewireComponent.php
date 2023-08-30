@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Unit\Support\BladeDirectives;
+namespace Tests\Unit\Providers\BladeDirectives;
 
 use Livewire\Component;
-use WireUi\Traits\Actions;
+use WireUi\Traits\WireUiActions;
 
 class LivewireComponent extends Component
 {
-    use Actions;
+    use WireUiActions;
 
     public function __construct()
     {

@@ -9,9 +9,6 @@ use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
-
-use function Livewire\str;
-
 use Livewire\{Component, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
@@ -237,7 +234,5 @@ class BrowserTestCase extends Dusk\TestCase
         $url = '/livewire-dusk/' . urlencode($livewire) . $queryString;
 
         return $browser->visit($url)->waitForLivewireToLoad();
-        // return Livewire::visitWithDusk($browser, $livewire)
-        //     ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad());
     }
 }

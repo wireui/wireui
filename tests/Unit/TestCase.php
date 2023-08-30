@@ -25,13 +25,11 @@ class TestCase extends Testbench\TestCase
         });
 
         parent::setUp();
-
-        Route::middleware('web')->group($this->srcDir('routes.php'));
     }
 
-    private function srcDir(string $path): string
+    protected function defineWebRoutes($router)
     {
-        return __DIR__ . "/../../src/{$path}";
+        base_path('src/routes/web.php');
     }
 
     protected function getPackageProviders($app)

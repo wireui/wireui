@@ -4,7 +4,7 @@
     </div>
 
     <div id="color-picker-wire">
-        <x-color-picker name="color-picker-wire" wire:model="color" />
+        <x-color-picker name="color-picker-wire" wire:model.live="color" />
     </div>
 
     <div id="colors">

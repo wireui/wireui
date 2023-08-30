@@ -12,13 +12,13 @@ class Component extends \Livewire\Component
 
     protected array $messages = ['radio.required' => 'select one'];
 
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
-    }
-
     public function validateRadio(): void
     {
         $this->validate();
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }

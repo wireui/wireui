@@ -9,10 +9,10 @@ use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
 class Dialog extends BaseComponent
 {
-    use HasSetupBlur;
-    use HasSetupType;
     use HasSetupAlign;
+    use HasSetupBlur;
     use HasSetupMaxWidth;
+    use HasSetupType;
 
     public string $dialog;
 

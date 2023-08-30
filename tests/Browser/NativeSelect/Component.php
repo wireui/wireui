@@ -19,30 +19,25 @@ class Component extends \Livewire\Component
         ['label' => 'Label Option 3', 'value' => 3],
     ];
 
-    protected array $rules = ['model' => 'required'];
-
-    protected array $messages = ['model.required' => 'select a value'];
-
-    public array $options = self::ARRAY_OPTIONS;
-
-    public Collection $collectionOptions;
-
     public $model = null;
 
     public $arrayOptionsModel = null;
+
+    public Collection $collectionOptions;
 
     public $collectionOptionsModel = null;
 
     public $arrayWithLabelAndValueKeys = null;
 
+    public array $options = self::ARRAY_OPTIONS;
+
+    protected array $rules = ['model' => 'required'];
+
+    protected array $messages = ['model.required' => 'select a value'];
+
     public function mount()
     {
         $this->collectionOptions = self::collectionOptions();
-    }
-
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
     }
 
     public function validateSelect(): void
@@ -62,5 +57,10 @@ class Component extends \Livewire\Component
             'Collection Option 2',
             'Collection Option 3',
         ]);
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\ColorPicker\LazyTest;
+namespace Tests\Browser\ColorPicker\BlurTest;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;

@@ -12,13 +12,13 @@ class Component extends \Livewire\Component
 
     public $brazilCurrency = '123.456,99';
 
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
-    }
-
     public function changeCurrency(): void
     {
         $this->currency = 12345.67;
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }

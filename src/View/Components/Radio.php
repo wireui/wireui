@@ -8,10 +8,10 @@ use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
 
 class Radio extends BaseComponent
 {
-    use HasSetupForm;
-    use HasSetupSize;
     use HasSetupColor;
+    use HasSetupForm;
     use HasSetupRounded;
+    use HasSetupSize;
 
     public function __construct(
         public ?string $label = null,

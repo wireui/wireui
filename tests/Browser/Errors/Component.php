@@ -8,11 +8,6 @@ class Component extends \Livewire\Component
 {
     public array $only = [];
 
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
-    }
-
     public function addErrors(): void
     {
         $this->addError('first', 'first error');
@@ -24,5 +19,10 @@ class Component extends \Livewire\Component
     {
         $this->only = ['first', 'second'];
         $this->addErrors();
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }

@@ -8,9 +8,9 @@ class Component extends \Livewire\Component
 {
     public $singleMask = 1234;
 
-    public $singleFormattedMask = null;
-
     public $multipleMask = null;
+
+    public $singleFormattedMask = null;
 
     public function render()
     {

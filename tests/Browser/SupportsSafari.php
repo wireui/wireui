@@ -2,6 +2,8 @@
 
 namespace Tests\Browser;
 
+use Symfony\Component\Process\Process;
+
 // Thanks to https://github.com/appstract/laravel-dusk-safari for most of this source.
 /** @see https://github.com/livewire/livewire/blob/master/tests/Browser/SupportsSafari.php */
 trait SupportsSafari
@@ -25,7 +27,7 @@ trait SupportsSafari
 
     public static function startSafariDriver()
     {
-        static::$safariProcess = new \Symfony\Component\Process\Process([
+        static::$safariProcess = new Process([
             '/usr/bin/safaridriver', '-p 9515',
         ]);
 

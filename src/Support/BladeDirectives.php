@@ -10,12 +10,12 @@ class BladeDirectives
 {
     public function confirmAction(string $expression): string
     {
-        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function notify(string $expression): string
     {
-        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function boolean(string $value): string
@@ -23,14 +23,32 @@ class BladeDirectives
         return "<?= json_encode(filter_var({$value}, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
+    public function toJs(mixed $expression): string
+    {
+        return <<<EOT
+        <?php if (is_object({$expression}) || is_array({$expression})) {
+            echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))";
+        } elseif (is_string({$expression})) {
+            echo "'".str_replace("'", "\'", {$expression})."'";
+        } else {
+            echo json_encode({$expression});
+        } ?>
+        EOT;
+    }
+
     public function entangleable(string $expression): ?string
     {
-        $fallback = Str::of($expression)->after(',')->trim()->toString();
-
-        $property = Str::of($expression)->before(',')->trim()->toString();
+        $fallback = (string) Str::of($expression)->after(',')->trim();
+        $property = (string) Str::of($expression)->before(',')->trim();
 
         return <<<EOT
-        <?php if (!isset(\$_instance->id)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
+        <?php if (!isset(\$__livewire)): ?>
+            @toJs({$fallback})
+        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>
+            @entangle({$property}).live
+        <?php else : ?>
+            @entangle({$property})
+        <?php endif; ?>
         EOT;
     }
 
@@ -88,49 +106,5 @@ class BladeDirectives
         $route = $route ? "{$route}?id={$version}" : $route;
 
         return $version;
-    }
-
-    public function confirmAction(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$__livewire->getId() }}')\"";
-    }
-
-    public function notify(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.notify($expression, '{{ \$__livewire->getId() }}')\"";
-    }
-
-    public function boolean(string $value): string
-    {
-        return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
-    }
-
-    public function entangleable(string $expression): ?string
-    {
-        $fallback = (string) Str::of($expression)->after(',')->trim();
-        $property = (string) Str::of($expression)->before(',')->trim();
-
-        return <<<EOT
-        <?php if (!isset(\$__livewire)): ?>
-            @toJs({$fallback})
-        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>
-            @entangle($property).live
-        <?php else : ?>
-            @entangle($property)
-        <?php endif; ?>
-        EOT;
-    }
-
-    public function toJs(mixed $expression): string
-    {
-        return <<<EOT
-        <?php if (is_object({$expression}) || is_array({$expression})) {
-            echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))";
-        } elseif (is_string({$expression})) {
-            echo "'".str_replace("'", "\'", {$expression})."'";
-        } else {
-            echo json_encode({$expression});
-        } ?>
-        EOT;
     }
 }

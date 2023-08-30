@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\ColorPicker\LazyTest;
+namespace Tests\Browser\ColorPicker\Test;
 
 use Illuminate\Support\Facades\View;
 
 class Component extends \Livewire\Component
 {
-    public ?string $color = '#00000';
+    public ?string $color = '#001';
 
     public function render()
     {

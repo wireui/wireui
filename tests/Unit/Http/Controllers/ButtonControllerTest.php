@@ -7,10 +7,8 @@ use Illuminate\View\ComponentAttributeBag;
 use Symfony\Component\HttpFoundation\Response;
 use WireUi\Http\Controllers\ButtonController;
 
-use function Pest\Laravel\getJson;
-
 it('should render the button with attributes', function () {
-    getJson(route('wireui.render.button', [
+    $this->getJson(route('wireui.render.button', [
         'type'  => 'primary',
         'label' => 'Click me',
     ]))
@@ -19,7 +17,7 @@ it('should render the button with attributes', function () {
 });
 
 it('should ignore the malicious attributes', function () {
-    getJson(route('wireui.render.button', [
+    $this->getJson(route('wireui.render.button', [
         ':label' => "strtoupper('Click me')",
     ]))
         ->assertSee('<button', escape: false)
@@ -107,7 +105,7 @@ it('should validate the request', function (string $attribute, string $rule) {
 ]);
 
 it('should render a button', function (string $attribute, string|bool $value) {
-    getJson(route('wireui.render.button', [$attribute => $value]))
+    $this->getJson(route('wireui.render.button', [$attribute => $value]))
         ->assertStatus(Response::HTTP_OK)
         ->assertSessionHasNoErrors();
 })->with([

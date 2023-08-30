@@ -18,11 +18,6 @@ class Component extends \Livewire\Component
         'number.between'  => 'input must be within the specified range',
     ];
 
-    public function render()
-    {
-        return View::file(__DIR__ . '/view.blade.php');
-    }
-
     public function validateInput(): void
     {
         $this->validate();
@@ -31,5 +26,10 @@ class Component extends \Livewire\Component
     public function resetInputValidation(): void
     {
         $this->resetValidation();
+    }
+
+    public function render()
+    {
+        return View::file(__DIR__ . '/view.blade.php');
     }
 }
