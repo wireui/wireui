@@ -2,7 +2,6 @@
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <livewire:styles />
     <wireui:styles />
     <wireui:scripts />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,7 +13,6 @@
 
     {!! $slot !!}
 
-    <livewire:scripts />
     @stack('scripts')
     <script>
         function getElementByXPath(xPath) {
