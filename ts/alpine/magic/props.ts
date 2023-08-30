@@ -10,7 +10,9 @@ export const props = function (el: HTMLElement): object {
 }
 
 export function watchProps (component: Component, callback: CallableFunction): void {
-  const observer = new MutationObserver(() => callback())
+  const observer = new MutationObserver(
+    (mutations) => callback(mutations)
+  )
 
   observer.observe(component.$root, { attributes: true })
 

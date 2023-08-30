@@ -4,8 +4,8 @@ import { ModalStore } from '@/alpine/store/modal'
 export type Entangle = any
 
 export type WireModifiers = {
-  defer: boolean
-  lazy: boolean
+  live: boolean
+  blur: boolean
   debounce: {
     exists: boolean
     delay: number

@@ -1,13 +1,40 @@
 <?php
 
-namespace Tests\Browser\ColorPicker;
+namespace Tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\Livewire;
-use Tests\Browser\BrowserTestCase;
 
-class Test extends BrowserTestCase
+class Component extends \Livewire\Component
+{
+    public ?string $color = '#001';
+
+    public function render()
+    {
+        return <<<HTML
+        <div>
+            <div id="color-picker">
+                <x-color-picker name="color-picker" value="#123" />
+            </div>
+
+            <div id="color-picker-wire">
+                <x-color-picker name="color-picker-wire" wire:model.live="color" />
+            </div>
+
+            <div id="colors">
+                <x-color-picker name="colors" :colors="['#123', '#456']" />
+            </div>
+
+            <div id="named-colors">
+                <x-color-picker name="named-colors" :colors="[['name'=>'FFF', 'value'=>'#FFF']]" />
+            </div>
+        </div>
+        HTML;
+    }
+}
+
+class ColorPickerTest extends BrowserTestCase
 {
     /** @test */
     public function it_should_toggle_the_colors_dropdown()

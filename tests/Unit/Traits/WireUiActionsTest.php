@@ -13,13 +13,13 @@ it('should emit a dialog event when the method dialog is called with a non empty
 
     /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
@@ -40,13 +40,13 @@ it('should emit a notification event when the method notification is called with
 
     /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options'     => ['title' => 'WireUI is awesome!'],
             'componentId' => 'fake-id',

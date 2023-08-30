@@ -3,6 +3,7 @@
 namespace Tests\Browser\DatetimePicker\MinMaxLimits;
 
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\Testable;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -15,7 +16,7 @@ class Test extends BrowserTestCase
     public function it_should_select_only_the_dates_inside_a_range_min_and_max(bool $disabled, int $day, string $model, string $input)
     {
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
-            /** @var Browser|TestableLivewire $component */
+            /** @var Browser|Testable $component */
             $component = $this->visit($browser, Component::class)
                 ->click('[name="model"]')
                 ->tap(fn () => $browser->assertScript(<<<EOT

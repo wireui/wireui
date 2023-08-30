@@ -9,7 +9,10 @@ use Facebook\WebDriver\Remote\{DesiredCapabilities, RemoteWebDriver};
 use Illuminate\Support\Facades\{Artisan, File, Route};
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
-use Livewire\{Component, Livewire, LivewireServiceProvider};
+
+use function Livewire\str;
+
+use Livewire\{Component, LivewireServiceProvider};
 use Orchestra\Testbench\Dusk;
 use Psy\Shell;
 use Symfony\Component\Finder\SplFileInfo;
@@ -163,7 +166,7 @@ class BrowserTestCase extends Dusk\TestCase
 
     protected function livewireClassesPath($path = '')
     {
-        return app_path('Http/Livewire' . ($path ? '/' . $path : ''));
+        return app_path('Livewire' . ($path ? '/' . $path : ''));
     }
 
     protected function livewireViewsPath($path = '')
@@ -229,9 +232,12 @@ class BrowserTestCase extends Dusk\TestCase
         return $sh->getScopeVariables(false);
     }
 
-    public function visit(Browser $browser, string $livewire): Browser|Testable
+    public function visit(Browser $browser, string $livewire, $queryString = ''): Browser|Testable
     {
-        return Livewire::visit($browser, $livewire)
-            ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad());
+        $url = '/livewire-dusk/' . urlencode($livewire) . $queryString;
+
+        return $browser->visit($url)->waitForLivewireToLoad();
+        // return Livewire::visitWithDusk($browser, $livewire)
+        //     ->tap(fn (Browser $browser) => $browser->waitForLivewireToLoad());
     }
 }

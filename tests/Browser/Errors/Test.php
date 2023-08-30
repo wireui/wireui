@@ -11,6 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_render_all_errors_and_render_filtered_errors()
     {
         Livewire::test(Component::class)
+            ->call('addErrors')
             ->assertSee('first error')
             ->assertSee('second error')
             ->assertSee('third error')

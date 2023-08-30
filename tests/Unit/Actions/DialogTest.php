@@ -35,13 +35,13 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
 
     /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
@@ -65,13 +65,13 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
 
     /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options' => [
                 'title' => 'User created!',
@@ -91,13 +91,13 @@ it('should emit the simple dialog event', function (string $method) {
 
     /** @var TestCase $this */
     $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
     /** @var Mock|LivewireComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options' => [
                 'title'       => 'Test Title!',

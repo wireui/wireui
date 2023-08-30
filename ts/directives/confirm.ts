@@ -25,7 +25,7 @@ const initialize = (component: HTMLElement) => {
   })
 }
 
-document.addEventListener('livewire:load', () => {
+document.addEventListener('livewire:init', () => {
   window.Livewire.hook('message.processed', (_message, component: { el: HTMLElement }) => {
     initialize(component.el)
   })
