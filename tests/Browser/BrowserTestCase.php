@@ -10,7 +10,7 @@ use Tests\Browser\Macros\DuskBrowserMacros;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
 
-/** @link https://github.com/livewire/livewire/blob/master/tests/Browser/TestCase.php */
+/** @link https://github.com/livewire/livewire/blob/main/tests/BrowserTestCase.php */
 class BrowserTestCase extends TestCase
 {
     use BrowserFunctions;

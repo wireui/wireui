@@ -4,7 +4,7 @@
     x-data="wireui_modal({
         show: @toJs($show),
         @if ($attributes->wire('model')->value())
-            model: @entangleable($attributes->wire('model'))
+            model: @entangle($attributes->wire('model'))
         @endif
     })"
     x-on:keydown.escape.window="handleEscape"
