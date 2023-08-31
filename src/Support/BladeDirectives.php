@@ -78,32 +78,20 @@ class BladeDirectives
         return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
-    public function entangleable(string $expression): ?string
+    public function entangleable(mixed $expression): string
     {
         $fallback = (string) Str::of($expression)->after(',')->trim();
         $property = (string) Str::of($expression)->before(',')->trim();
 
         return <<<EOT
-        <?php if (!isset(\$__livewire)): ?>
-            @toJs({$fallback})
-        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>
-            @entangle($property).live
-        <?php else : ?>
-            @entangle($property)
-        <?php endif; ?>
+        <?php if (!isset(\$__livewire)): ?>@toJs({$fallback})<?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>@entangle({$property}).live<?php else: ?>@entangle({$property})<?php endif; ?>
         EOT;
     }
 
     public function toJs(mixed $expression): string
     {
         return <<<EOT
-        <?php if (is_object({$expression}) || is_array({$expression})) {
-            echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))";
-        } elseif (is_string({$expression})) {
-            echo "'".str_replace("'", "\'", {$expression})."'";
-        } else {
-            echo json_encode({$expression});
-        } ?>
+        <?php if (is_object({$expression}) || is_array({$expression})) { echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))"; } elseif (is_string({$expression})) { echo "'".str_replace("'", "\'", {$expression})."'"; } else { echo json_encode({$expression}); } ?>
         EOT;
     }
 }
