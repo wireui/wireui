@@ -25,7 +25,8 @@
         "pestphp/pest-plugin-livewire": "^2.1",
         "pestphp/pest-plugin-mock": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "laravel/pint": "^1.10"
+        "laravel/pint": "^1.10",
+        "livewire/volt": "^1.1"
     },
     "authors": [
         {

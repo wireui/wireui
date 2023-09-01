@@ -2,10 +2,10 @@
 
 namespace Tests\Browser\Badge;
 
-use Livewire\Livewire;
+use Livewire\Volt\Volt;
 
 test('it should render badges without errors', function () {
-    Livewire::test(Component::class)
+    Volt::test('Badge.view')
         ->assertSee('Label')
         ->assertSee('Primary')
         ->assertSee('Secondary')

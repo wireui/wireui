@@ -5,6 +5,7 @@ namespace Tests\Browser;
 use Illuminate\Support\Facades\{Artisan, File};
 use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
+use Livewire\Volt\{Volt, VoltServiceProvider};
 use Orchestra\Testbench\Dusk\{Options, TestCase};
 use Tests\Browser\Macros\DuskBrowserMacros;
 use WireUi\Heroicons\HeroiconsServiceProvider;
@@ -38,7 +39,7 @@ class BrowserTestCase extends TestCase
         $testCase = new self('browser');
 
         $this->tweakApplication(function () use ($testCase) {
-            $testCase->auxAutoloadComponents();
+            Volt::mount(__DIR__);
 
             $testCase->auxDefineRoutes();
 
@@ -66,8 +67,9 @@ class BrowserTestCase extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            LivewireServiceProvider::class,
+            VoltServiceProvider::class,
             WireUiServiceProvider::class,
+            LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];
     }

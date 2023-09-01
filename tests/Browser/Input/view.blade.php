@@ -1,3 +1,21 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['model' => null, 'errorless' => null]);
+
+$validateInput = fn () => $this->validate();
+
+$resetInputValidation = fn () => $this->resetValidation();
+
+rules(['model' => 'required', 'errorless' => 'required'])
+    ->messages([
+        'model.required' => 'input cant be empty',
+        'errorless.required' => 'input is required',
+    ]);
+
+?>
+
 <div>
     <h1>Input test</h1>
 
