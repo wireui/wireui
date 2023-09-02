@@ -3,10 +3,11 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\{Artisan, File};
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use ReflectionClass;
+use Symfony\Component\Finder\SplFileInfo;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
 
@@ -47,7 +48,7 @@ class TestCase extends TestbenchTestCase
     }
 
     /** Call protected/private method of a class */
-    public function invokeMethod(mixed $object, string $method, array $parameters = [])
+    public function invokeMethod(mixed $object, string $method, array $parameters = []): mixed
     {
         $reflection = new ReflectionClass(get_class($object));
 
@@ -59,7 +60,7 @@ class TestCase extends TestbenchTestCase
     }
 
     /** Get protected/private property value of a class */
-    public function invokeProperty(mixed $object, string $property)
+    public function invokeProperty(mixed $object, string $property): mixed
     {
         $reflection = new ReflectionClass(get_class($object));
 
@@ -68,5 +69,19 @@ class TestCase extends TestbenchTestCase
         $property->setAccessible(true);
 
         return $property->getValue($object);
+    }
+
+    /** Get some package class to use in traits test */
+    public function getPackageClass(string $word): string
+    {
+        $files = File::allFiles(__DIR__ . '/../../src/WireUi');
+
+        $classes = collect($files)->map(function (SplFileInfo $file) {
+            return $file->getRelativePathname();
+        })->map(function ($class) {
+            return 'WireUi\\WireUi\\' . str($class)->before('.php')->replace('/', '\\');
+        });
+
+        return $classes->filter(fn ($class) => str($class)->contains($word))->random();
     }
 }
