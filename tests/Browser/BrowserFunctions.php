@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Console\DuskCommand;
 use Livewire\Features\SupportTesting\Testable;
+use Livewire\Volt\Volt;
 use Psy\Shell;
 
 trait BrowserFunctions
 {
     public function visit(Browser $browser, string $livewire, $queryParams = []): Browser|Testable
     {
+        // Volt::route($slug = str($livewire)->slug, $livewire);
+
+        // return $browser->visit($slug . '?' . Arr::query($queryParams))->waitForLivewireToLoad();
+
         $url = '/livewire-dusk/' . urlencode($livewire) . '?' . Arr::query($queryParams);
 
         return $browser->visit($url)->waitForLivewireToLoad();

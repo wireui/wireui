@@ -140,7 +140,7 @@ class AlertDialogTest extends BrowserTestCase
         ");
     }
 
-    public function provideAlertMessages(): array
+    public static function provideAlertMessages(): array
     {
         return [
             [

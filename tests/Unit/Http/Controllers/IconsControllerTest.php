@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Unit\Http\Controllers;
+
 test('it should fetch an icon', function () {
     $this->getJson(route('wireui.icons', ['variant' => 'outline', 'icon' => 'user']))
         ->assertStatus(200)

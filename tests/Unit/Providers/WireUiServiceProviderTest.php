@@ -1,8 +1,10 @@
 <?php
 
+namespace Tests\Unit\Providers;
+
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\{Blade, View};
-use Illuminate\Support\{Arr, ServiceProvider};
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
 use Tests\Unit\TestCase;
@@ -11,7 +13,7 @@ use WireUi\View\Attribute;
 use WireUi\View\Components\Icon;
 use WireUi\WireUiServiceProvider;
 
-it('should register the views paths', function () {
+test('it should register the views paths', function () {
     /** @var Factory $view */
     $view = View::getFacadeRoot();
 
@@ -21,12 +23,8 @@ it('should register the views paths', function () {
     expect($finder->getHints()['wireui'][0])->toContain('src/resources/views');
 });
 
-it('should merge the wireui config', function () {
-    expect(config('wireui'))->toHaveKeys([
-        'icons',
-        'modal',
-        'components',
-    ]);
+test('it should merge the wireui config', function () {
+    expect(config('wireui'))->toHaveKeys(['components']);
 });
 
 test('the root dir function should create the correct path', function () {
@@ -37,7 +35,7 @@ test('the root dir function should create the correct path', function () {
     expect($this->invokeMethod($provider, 'srcDir', ['resources/views']))->toEndWith('/src/resources/views');
 });
 
-it('should add the publish groups', function () {
+test('it should add the publish groups', function () {
     $publishGroups = ServiceProvider::$publishGroups;
 
     expect($publishGroups)->toHaveKeys([
@@ -59,7 +57,7 @@ it('should add the publish groups', function () {
     expect(array_values($publishGroups['wireui.lang'])[0])->toEndWith('lang/vendor/wireui');
 });
 
-it('should register the blade components', function () {
+test('it should register the blade components', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
 
@@ -68,7 +66,7 @@ it('should register the blade components', function () {
     );
 });
 
-it('should register the icon component to wireui class', function () {
+test('it should register the icon component to wireui class', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
     $aliases       = $bladeCompiler->getClassComponentAliases();
@@ -77,14 +75,14 @@ it('should register the icon component to wireui class', function () {
     $this->assertSame($aliases['icon'], Icon::class);
 });
 
-it('should register the WireUi singleton', function () {
+test('it should register the WireUi singleton', function () {
     $loader = AliasLoader::getInstance();
 
     expect($loader->getAliases())->toHaveKey('WireUi');
     expect($loader->getAliases()['WireUi'])->toBe(WireUi::class);
 });
 
-it('should register the blade directives', function () {
+test('it should register the blade directives', function () {
     $directives = Blade::getCustomDirectives();
 
     expect($directives)->toHaveKeyS([
@@ -96,21 +94,21 @@ it('should register the blade directives', function () {
     ]);
 });
 
-it('should register the component attributes bag macros', function () {
+test('it should register the component attributes bag macros', function () {
     /** @var TestCase $this */
     $macros = $this->invokeProperty(new ComponentAttributeBag(), 'macros');
 
     expect($macros)->toHaveKey('wireModifiers');
 });
 
-it('should register the attribute macro on ComponentAttributeBag', function () {
+test('it should register the attribute macro on ComponentAttributeBag', function () {
     /** @var TestCase $this */
     $macros = $this->invokeProperty(new ComponentAttributeBag(), 'macros');
 
     expect($macros)->toHaveKey('attribute');
 });
 
-it('should get the attribute with modifiers', function (string $attribute, array $modifiers) {
+test('it should get the attribute with modifiers', function (string $attribute, array $modifiers) {
     /** @var ComponentAttributeBag $bag */
     $bag = new ComponentAttributeBag([
         'name'     => 'foo',
@@ -123,10 +121,4 @@ it('should get the attribute with modifiers', function (string $attribute, array
     $attribute = $bag->attribute('spinner');
 
     expect($attribute->modifiers()->toArray())->toBe($modifiers);
-})->with([
-    ['spinner', []],
-    ['spinner.lazy', ['lazy']],
-    ['spinner.lazy.lazy', ['lazy']],
-    ['spinner.lazy..bar', ['lazy', 'bar']],
-    ['spinner.lazy.foo.', ['lazy', 'foo']],
-]);
+})->with('spinner::modifier');

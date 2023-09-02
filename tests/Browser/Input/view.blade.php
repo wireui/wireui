@@ -1,18 +1,19 @@
 <?php
 
-use function Livewire\Volt\{state, rules};
+use function Livewire\Volt\{state, rules, layout};
+
+// layout('components.layouts.app');
 
 state(['model' => null, 'errorless' => null]);
 
-$validateInput = fn () => $this->validate();
+$validateInput = fn() => $this->validate();
 
-$resetInputValidation = fn () => $this->resetValidation();
+$resetInputValidation = fn() => $this->resetValidation();
 
-rules(['model' => 'required', 'errorless' => 'required'])
-    ->messages([
-        'model.required' => 'input cant be empty',
-        'errorless.required' => 'input is required',
-    ]);
+rules(['model' => 'required', 'errorless' => 'required'])->messages([
+    'model.required' => 'input cant be empty',
+    'errorless.required' => 'input is required',
+]);
 
 ?>
 
@@ -23,13 +24,7 @@ rules(['model' => 'required', 'errorless' => 'required'])
     <x-input label="Input 1" corner-hint="Corner 1" />
 
     // test it_should_see_hint_prefix_and_suffix
-    <x-input
-        label="Input 1"
-        corner-hint="Corner 1"
-        hint="Hint 1"
-        prefix="Prefix 1"
-        suffix="Suffix 1"
-    />
+    <x-input label="Input 1" corner-hint="Corner 1" hint="Hint 1" prefix="Prefix 1" suffix="Suffix 1" />
 
     // test it_should_see_append_and_prepend_slots
     <x-input>
@@ -55,6 +50,7 @@ rules(['model' => 'required', 'errorless' => 'required'])
 
     // test it_should_set_model_value_to_livewire
     <x-input dusk="input" wire:model.live="model" label="Model Input" />
+
     <span dusk="model-value">{{ $model }}</span>
 
     // test it_should_dont_see_the_input_error_message

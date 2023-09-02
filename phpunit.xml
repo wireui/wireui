@@ -8,9 +8,10 @@
         </include>
 
         <exclude>
-            <directory suffix=".blade.php">src/resources/views/</directory>
-            <directory suffix=".php">src/lang/</directory>
             <file>src/config.php</file>
+            <directory suffix=".php">src/lang/</directory>
+            <directory suffix=".php">src/WireUi/</directory>
+            <directory suffix=".blade.php">src/resources/views/</directory>
         </exclude>
     </source>
 

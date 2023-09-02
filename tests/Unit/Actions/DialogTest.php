@@ -1,19 +1,20 @@
 <?php
 
+namespace Tests\Unit\Actions;
+
 use Mockery\Mock;
 use Tests\Unit\{TestCase, TestComponent};
 use WireUi\Actions\Dialog;
-use WireUi\Enum\Actions;
 
-it('should create the default dialog event name')
-    ->and(Dialog::makeEventName())
-    ->toBe('dialog');
+test('it should create the default dialog event name', function () {
+    expect(Dialog::makeEventName())->toBe('dialog');
+});
 
-it('should create the dialog event name')
-    ->and(Dialog::makeEventName('foo'))
-    ->toBe('dialog:foo');
+test('it should create the dialog event name', function () {
+    expect(Dialog::makeEventName('foo'))->toBe('dialog:foo');
+});
 
-it('should create the dialog event name to a custom dialog', function () {
+test('it should create the dialog event name to a custom dialog', function () {
     $dialog = new Dialog(new TestComponent());
 
     $dialog->id('foo');
@@ -24,14 +25,12 @@ it('should create the dialog event name to a custom dialog', function () {
     $this->assertSame('dialog:foo', $event);
 });
 
-it('should emit a dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:dialog';
+test('it should emit a dialog event', function (?string $icon, string $expectedIcon) {
+    $event = 'wireui:dialog';
+
     $params = [
-        'options' => [
-            'title' => 'WireUI is awesome!',
-            'icon'  => $icon,
-        ],
         'componentId' => 'fake-id',
+        'options'     => ['title' => 'WireUI is awesome!', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
@@ -43,25 +42,17 @@ it('should emit a dialog event', function (?string $icon, string $expectedIcon) 
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, [
-            'options' => [
-                'title' => 'WireUI is awesome!',
-                'icon'  => $expectedIcon,
-            ],
-            'componentId' => 'fake-id',
-        ]);
+        ->with($event, data_set($params, 'options.icon', $expectedIcon));
 
     $mock->dialog()->show($params['options']);
-})->with([
-    ['home', 'home'],
-    [null, Actions::INFO], // assert the default icon
-]);
+})->with('dialog::event');
 
-it('should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-dialog';
+test('it should emit a confirm dialog event', function (?string $icon, string $expectedIcon) {
+    $event = 'wireui:confirm-dialog';
+
     $params = [
-        'options'     => ['title' => 'User created!', 'icon' => $icon],
         'componentId' => 'fake-id',
+        'options'     => ['title' => 'User created!', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
@@ -73,21 +64,12 @@ it('should emit a confirm dialog event', function (?string $icon, string $expect
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, [
-            'options' => [
-                'title' => 'User created!',
-                'icon'  => $expectedIcon,
-            ],
-            'componentId' => 'fake-id',
-        ]);
+        ->with($event, data_set($params, 'options.icon', $expectedIcon));
 
     $mock->dialog()->confirm($params['options']);
-})->with([
-    ['home', 'home'],
-    [null, Actions::QUESTION], // assert the default icon
-]);
+})->with('dialog::confirm::event');
 
-it('should emit the simple dialog event', function (string $method) {
+test('it should emit the simple dialog event', function (string $method) {
     $event = 'wireui:dialog';
 
     /** @var TestCase $this */
@@ -100,18 +82,13 @@ it('should emit the simple dialog event', function (string $method) {
         ->expects($this->once())
         ->method('dispatch')
         ->with($event, [
-            'options' => [
+            'componentId' => 'fake-id',
+            'options'     => [
                 'title'       => 'Test Title!',
                 'icon'        => $method,
                 'description' => 'Test Description..',
             ],
-            'componentId' => 'fake-id',
         ]);
 
     $mock->dialog()->{$method}('Test Title!', 'Test Description..');
-})->with([
-    'success',
-    'error',
-    'info',
-    'warning',
-]);
+})->with('simple::dialog::event');

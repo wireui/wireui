@@ -53,7 +53,7 @@ class Test extends BrowserTestCase
         );
     }
 
-    public function datesProvider(): array
+    public static function datesProvider(): array
     {
         return [
             ['disabled' => true,  'day' => 1,  'model' => '',                     'input' => ''],
@@ -66,7 +66,7 @@ class Test extends BrowserTestCase
         ];
     }
 
-    public function timesProvider(): array
+    public static function timesProvider(): array
     {
         return [
             ['day' => 8,  'time' => '12:30', 'exists' => true],

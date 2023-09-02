@@ -1,14 +1,17 @@
 <?php
 
+namespace Tests\Unit\Traits;
+
 use Mockery\Mock;
 use Tests\Unit\{TestCase, TestComponent};
-use WireUi\Actions\Dialog;
+use WireUi\Enum\Actions;
 
-it('should emit a dialog event when the method dialog is called with a non empty array', function () {
-    $event  = 'wireui:dialog';
+test('it should emit a dialog event when the method dialog is called with a non empty array', function () {
+    $event = 'wireui:dialog';
+
     $params = [
-        'options'     => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
+        'options'     => ['title' => 'WireUI is awesome!'],
     ];
 
     /** @var TestCase $this */
@@ -20,22 +23,17 @@ it('should emit a dialog event when the method dialog is called with a non empty
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, [
-            'options' => [
-                'title' => 'WireUI is awesome!',
-                'icon'  => Dialog::INFO,
-            ],
-            'componentId' => 'fake-id',
-        ]);
+        ->with($event, data_set($params, 'options.icon', Actions::INFO->value));
 
-    $mock->dialog($params['options']);
+    $mock->dialog()->show($params['options']);
 });
 
-it('should emit a notification event when the method notification is called with a non empty array', function () {
-    $event  = 'wireui:notification';
+test('it should emit a notification event when the method notification is called with a non empty array', function () {
+    $event = 'wireui:notification';
+
     $params = [
-        'options'     => ['title' => 'WireUI is awesome!'],
         'componentId' => 'fake-id',
+        'options'     => ['title' => 'WireUI is awesome!'],
     ];
 
     /** @var TestCase $this */
@@ -47,10 +45,7 @@ it('should emit a notification event when the method notification is called with
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, [
-            'options'     => ['title' => 'WireUI is awesome!'],
-            'componentId' => 'fake-id',
-        ]);
+        ->with($event, $params);
 
-    $mock->notification($params['options']);
+    $mock->notification()->send($params['options']);
 });

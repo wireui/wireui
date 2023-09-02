@@ -35,8 +35,8 @@ class TestCase extends TestbenchTestCase
     protected function getPackageProviders($app)
     {
         return [
-            LivewireServiceProvider::class,
             WireUiServiceProvider::class,
+            LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];
     }

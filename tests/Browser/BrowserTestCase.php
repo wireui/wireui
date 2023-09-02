@@ -41,6 +41,8 @@ class BrowserTestCase extends TestCase
         $this->tweakApplication(function () use ($testCase) {
             Volt::mount(__DIR__);
 
+            // Volt::ensureViewsAreCached();
+
             $testCase->auxDefineRoutes();
 
             $testCase->auxUpdateConfigs();
