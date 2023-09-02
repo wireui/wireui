@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f88ddc8de4af60bc6a0a4dca4fc51db",
+    "content-hash": "4abde365339a8d506b2eede4dcb74dd6",
     "packages": [
         {
             "name": "brick/math",
@@ -5058,16 +5058,16 @@
         },
         {
             "name": "composer/semver",
-            "version": "3.3.2",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/semver.git",
-                "reference": "3953f23262f2bff1919fc82183ad9acb13ff62c9"
+                "reference": "35e8d0af4486141bc745f23a29cc2091eb624a32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/semver/zipball/3953f23262f2bff1919fc82183ad9acb13ff62c9",
-                "reference": "3953f23262f2bff1919fc82183ad9acb13ff62c9",
+                "url": "https://api.github.com/repos/composer/semver/zipball/35e8d0af4486141bc745f23a29cc2091eb624a32",
+                "reference": "35e8d0af4486141bc745f23a29cc2091eb624a32",
                 "shasum": ""
             },
             "require": {
@@ -5117,9 +5117,9 @@
                 "versioning"
             ],
             "support": {
-                "irc": "irc://irc.freenode.org/composer",
+                "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/semver/issues",
-                "source": "https://github.com/composer/semver/tree/3.3.2"
+                "source": "https://github.com/composer/semver/tree/3.4.0"
             },
             "funding": [
                 {
@@ -5135,7 +5135,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-01T19:23:25+00:00"
+            "time": "2023-08-31T09:50:34+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -6140,16 +6140,16 @@
         },
         {
             "name": "livewire/volt",
-            "version": "v1.1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/volt.git",
-                "reference": "9e99869a1946e1ea925e7527a95dbe10fd721d4e"
+                "reference": "73e7df2be41ee162fc2ca467a7ef3642ad67321f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/volt/zipball/9e99869a1946e1ea925e7527a95dbe10fd721d4e",
-                "reference": "9e99869a1946e1ea925e7527a95dbe10fd721d4e",
+                "url": "https://api.github.com/repos/livewire/volt/zipball/73e7df2be41ee162fc2ca467a7ef3642ad67321f",
+                "reference": "73e7df2be41ee162fc2ca467a7ef3642ad67321f",
                 "shasum": ""
             },
             "require": {
@@ -6208,7 +6208,7 @@
                 "issues": "https://github.com/livewire/volt/issues",
                 "source": "https://github.com/livewire/volt"
             },
-            "time": "2023-08-30T16:14:22+00:00"
+            "time": "2023-08-31T17:16:12+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -6505,16 +6505,16 @@
         },
         {
             "name": "orchestra/canvas",
-            "version": "v8.5.2",
+            "version": "v8.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/canvas.git",
-                "reference": "41df2347a6655f86d00aca25feffe56ad07bb3ca"
+                "reference": "ca0c13e6d5036b534cd10dae22a9181cc6ee8140"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/canvas/zipball/41df2347a6655f86d00aca25feffe56ad07bb3ca",
-                "reference": "41df2347a6655f86d00aca25feffe56ad07bb3ca",
+                "url": "https://api.github.com/repos/orchestral/canvas/zipball/ca0c13e6d5036b534cd10dae22a9181cc6ee8140",
+                "reference": "ca0c13e6d5036b534cd10dae22a9181cc6ee8140",
                 "shasum": ""
             },
             "require": {
@@ -6522,7 +6522,7 @@
                 "composer/semver": "^3.0",
                 "illuminate/database": "^10.17",
                 "illuminate/support": "^10.17",
-                "orchestra/canvas-core": "^8.4.1",
+                "orchestra/canvas-core": "^8.6",
                 "php": "^8.1",
                 "symfony/yaml": "^6.2"
             },
@@ -6571,22 +6571,22 @@
             "description": "Code Generators for Laravel Applications and Packages",
             "support": {
                 "issues": "https://github.com/orchestral/canvas/issues",
-                "source": "https://github.com/orchestral/canvas/tree/v8.5.2"
+                "source": "https://github.com/orchestral/canvas/tree/v8.7.0"
             },
-            "time": "2023-08-24T07:52:57+00:00"
+            "time": "2023-09-01T08:22:13+00:00"
         },
         {
             "name": "orchestra/canvas-core",
-            "version": "v8.4.2",
+            "version": "v8.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/canvas-core.git",
-                "reference": "48ceac3ab2dfd17d540e301c26643f69c409dfd3"
+                "reference": "7bf5c461789bb0470120b6c3e1738fe171c54874"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/canvas-core/zipball/48ceac3ab2dfd17d540e301c26643f69c409dfd3",
-                "reference": "48ceac3ab2dfd17d540e301c26643f69c409dfd3",
+                "url": "https://api.github.com/repos/orchestral/canvas-core/zipball/7bf5c461789bb0470120b6c3e1738fe171c54874",
+                "reference": "7bf5c461789bb0470120b6c3e1738fe171c54874",
                 "shasum": ""
             },
             "require": {
@@ -6597,6 +6597,7 @@
                 "php": "^8.1"
             },
             "conflict": {
+                "orchestra/canvas": "<8.6.0",
                 "orchestra/testbench-core": "<8.2.0"
             },
             "require-dev": {
@@ -6638,9 +6639,9 @@
             "description": "Code Generators Builder for Laravel Applications and Packages",
             "support": {
                 "issues": "https://github.com/orchestral/canvas/issues",
-                "source": "https://github.com/orchestral/canvas-core/tree/v8.4.2"
+                "source": "https://github.com/orchestral/canvas-core/tree/v8.6.0"
             },
-            "time": "2023-08-22T03:37:26+00:00"
+            "time": "2023-09-01T08:15:53+00:00"
         },
         {
             "name": "orchestra/dusk-updater",
@@ -6931,16 +6932,16 @@
         },
         {
             "name": "orchestra/workbench",
-            "version": "v0.2.4",
+            "version": "v0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/workbench.git",
-                "reference": "a25f74487136402459db29f0a0ff7f9255374120"
+                "reference": "1c21d53ca5fd26a17a3ad9e114c6d8dbc91bfd5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/workbench/zipball/a25f74487136402459db29f0a0ff7f9255374120",
-                "reference": "a25f74487136402459db29f0a0ff7f9255374120",
+                "url": "https://api.github.com/repos/orchestral/workbench/zipball/1c21d53ca5fd26a17a3ad9e114c6d8dbc91bfd5f",
+                "reference": "1c21d53ca5fd26a17a3ad9e114c6d8dbc91bfd5f",
                 "shasum": ""
             },
             "require": {
@@ -6948,7 +6949,7 @@
                 "illuminate/console": "^9.52.15 || ^10.17.0",
                 "illuminate/support": "^9.52.15 || ^10.17.0",
                 "laravel/tinker": "^2.8.2",
-                "orchestra/canvas": "^7.6.1 || ^8.5.1",
+                "orchestra/canvas": "^7.7 || ^8.6",
                 "orchestra/testbench-core": "^7.30.0 || ^8.10.0",
                 "php": "^8.0"
             },
@@ -6963,7 +6964,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.3.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -6984,9 +6985,9 @@
             "description": "Workbench Companion for Laravel Packages Development",
             "support": {
                 "issues": "https://github.com/orchestral/workbench/issues",
-                "source": "https://github.com/orchestral/workbench/tree/v0.2.4"
+                "source": "https://github.com/orchestral/workbench/tree/v0.2.5"
             },
-            "time": "2023-08-29T05:32:51+00:00"
+            "time": "2023-08-29T23:48:12+00:00"
         },
         {
             "name": "pestphp/pest",
@@ -7358,74 +7359,6 @@
                 }
             ],
             "time": "2023-07-20T16:28:21+00:00"
-        },
-        {
-            "name": "pestphp/pest-plugin-mock",
-            "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pestphp/pest-plugin-mock.git",
-                "reference": "5b5535a7cfbb8ddf071285ede1019213198e87d4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest-plugin-mock/zipball/5b5535a7cfbb8ddf071285ede1019213198e87d4",
-                "reference": "5b5535a7cfbb8ddf071285ede1019213198e87d4",
-                "shasum": ""
-            },
-            "require": {
-                "mockery/mockery": "^1.5.1",
-                "pestphp/pest": "^2.0.0",
-                "pestphp/pest-plugin": "^2.0.0",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "pestphp/pest-dev-tools": "^2.5.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/Autoload.php"
-                ],
-                "psr-4": {
-                    "Pest\\Mock\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Adds mocking capabilities to Pest or PHPUnit",
-            "keywords": [
-                "framework",
-                "mock",
-                "mocking",
-                "pest",
-                "php",
-                "plugin",
-                "test",
-                "testing",
-                "unit"
-            ],
-            "support": {
-                "source": "https://github.com/pestphp/pest-plugin-mock/tree/v2.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
-                }
-            ],
-            "abandoned": "mockery/mockery",
-            "time": "2023-03-20T10:00:51+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -7821,16 +7754,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.3",
+            "version": "10.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "be1fe461fdc917de2a29a452ccf2657d325b443d"
+                "reference": "cd59bb34756a16ca8253ce9b2909039c227fff71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/be1fe461fdc917de2a29a452ccf2657d325b443d",
-                "reference": "be1fe461fdc917de2a29a452ccf2657d325b443d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cd59bb34756a16ca8253ce9b2909039c227fff71",
+                "reference": "cd59bb34756a16ca8253ce9b2909039c227fff71",
                 "shasum": ""
             },
             "require": {
@@ -7887,7 +7820,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.3"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.4"
             },
             "funding": [
                 {
@@ -7895,20 +7828,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-26T13:45:28+00:00"
+            "time": "2023-08-31T14:04:38+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
-            "version": "4.0.2",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "5647d65443818959172645e7ed999217360654b6"
+                "reference": "a95037b6d9e608ba092da1b23931e537cadc3c3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/5647d65443818959172645e7ed999217360654b6",
-                "reference": "5647d65443818959172645e7ed999217360654b6",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-file-iterator/zipball/a95037b6d9e608ba092da1b23931e537cadc3c3c",
+                "reference": "a95037b6d9e608ba092da1b23931e537cadc3c3c",
                 "shasum": ""
             },
             "require": {
@@ -7948,7 +7881,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-file-iterator/issues",
                 "security": "https://github.com/sebastianbergmann/php-file-iterator/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/4.0.2"
+                "source": "https://github.com/sebastianbergmann/php-file-iterator/tree/4.1.0"
             },
             "funding": [
                 {
@@ -7956,7 +7889,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-07T09:13:23+00:00"
+            "time": "2023-08-31T06:24:48+00:00"
         },
         {
             "name": "phpunit/php-invoker",
@@ -8023,16 +7956,16 @@
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "9f3d3709577a527025f55bcf0f7ab8052c8bb37d"
+                "reference": "0c7b06ff49e3d5072f057eb1fa59258bf287a748"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/9f3d3709577a527025f55bcf0f7ab8052c8bb37d",
-                "reference": "9f3d3709577a527025f55bcf0f7ab8052c8bb37d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/0c7b06ff49e3d5072f057eb1fa59258bf287a748",
+                "reference": "0c7b06ff49e3d5072f057eb1fa59258bf287a748",
                 "shasum": ""
             },
             "require": {
@@ -8070,7 +8003,8 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-text-template/issues",
-                "source": "https://github.com/sebastianbergmann/php-text-template/tree/3.0.0"
+                "security": "https://github.com/sebastianbergmann/php-text-template/security/policy",
+                "source": "https://github.com/sebastianbergmann/php-text-template/tree/3.0.1"
             },
             "funding": [
                 {
@@ -8078,7 +8012,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T06:56:46+00:00"
+            "time": "2023-08-31T14:07:24+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -8819,16 +8753,16 @@
         },
         {
             "name": "sebastian/complexity",
-            "version": "3.0.0",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/complexity.git",
-                "reference": "e67d240970c9dc7ea7b2123a6d520e334dd61dc6"
+                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/e67d240970c9dc7ea7b2123a6d520e334dd61dc6",
-                "reference": "e67d240970c9dc7ea7b2123a6d520e334dd61dc6",
+                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/c70b73893e10757af9c6a48929fa6a333b56a97a",
+                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a",
                 "shasum": ""
             },
             "require": {
@@ -8864,7 +8798,8 @@
             "homepage": "https://github.com/sebastianbergmann/complexity",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/complexity/issues",
-                "source": "https://github.com/sebastianbergmann/complexity/tree/3.0.0"
+                "security": "https://github.com/sebastianbergmann/complexity/security/policy",
+                "source": "https://github.com/sebastianbergmann/complexity/tree/3.0.1"
             },
             "funding": [
                 {
@@ -8872,7 +8807,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T06:59:47+00:00"
+            "time": "2023-08-31T09:55:53+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -9146,16 +9081,16 @@
         },
         {
             "name": "sebastian/lines-of-code",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/lines-of-code.git",
-                "reference": "17c4d940ecafb3d15d2cf916f4108f664e28b130"
+                "reference": "649e40d279e243d985aa8fb6e74dd5bb28dc185d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/lines-of-code/zipball/17c4d940ecafb3d15d2cf916f4108f664e28b130",
-                "reference": "17c4d940ecafb3d15d2cf916f4108f664e28b130",
+                "url": "https://api.github.com/repos/sebastianbergmann/lines-of-code/zipball/649e40d279e243d985aa8fb6e74dd5bb28dc185d",
+                "reference": "649e40d279e243d985aa8fb6e74dd5bb28dc185d",
                 "shasum": ""
             },
             "require": {
@@ -9191,7 +9126,8 @@
             "homepage": "https://github.com/sebastianbergmann/lines-of-code",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/lines-of-code/issues",
-                "source": "https://github.com/sebastianbergmann/lines-of-code/tree/2.0.0"
+                "security": "https://github.com/sebastianbergmann/lines-of-code/security/policy",
+                "source": "https://github.com/sebastianbergmann/lines-of-code/tree/2.0.1"
             },
             "funding": [
                 {
@@ -9199,7 +9135,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T07:08:02+00:00"
+            "time": "2023-08-31T09:25:50+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -9684,16 +9620,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.37.2",
+            "version": "1.37.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "dea16182d4bc9d9833adec7e39fbb3d7b553425d"
+                "reference": "ef76965a3e883f2e76a3092f44e2d1e8de3b33df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/dea16182d4bc9d9833adec7e39fbb3d7b553425d",
-                "reference": "dea16182d4bc9d9833adec7e39fbb3d7b553425d",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/ef76965a3e883f2e76a3092f44e2d1e8de3b33df",
+                "reference": "ef76965a3e883f2e76a3092f44e2d1e8de3b33df",
                 "shasum": ""
             },
             "require": {
@@ -9744,7 +9680,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.37.2"
+                "source": "https://github.com/spatie/ray/tree/1.37.3"
             },
             "funding": [
                 {
@@ -9756,7 +9692,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2023-05-17T06:35:47+00:00"
+            "time": "2023-09-01T13:23:46+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",

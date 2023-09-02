@@ -2,19 +2,6 @@
 
 namespace Tests\Unit\Providers;
 
-dataset('entangleable', [
-    ['null', '@toJs(null)'],
-    ['true', '@toJs(true)'],
-    ['false', '@toJs(false)'],
-    ['1', '@toJs(1)'],
-    ['0', '@toJs(0)'],
-    ['"foo"', '@toJs("foo")'],
-    ['["foo", "bar"]', '@toJs(["foo", "bar"])'],
-    ['["foo" => "bar"]', '@toJs(["foo" => "bar"])'],
-    ['["foo" => ["bar" => "baz"]]', '@toJs(["foo" => ["bar" => "baz"]])'],
-    ['["foo" => ["bar" => ["baz" => "qux"]]]', '@toJs(["foo" => ["bar" => ["baz" => "qux"]]])'],
-]);
-
 dataset('wire::modifiers', [
     [
         'attribute' => 'wire:model.live',
