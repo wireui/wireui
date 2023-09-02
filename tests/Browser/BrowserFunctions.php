@@ -13,7 +13,7 @@ trait BrowserFunctions
 {
     public function visit(Browser $browser, string $livewire, $queryParams = []): Browser|Testable
     {
-        $url = '/livewire-dusk/' . urlencode($livewire) . Arr::query($queryParams);
+        $url = '/livewire-dusk/' . urlencode($livewire) . '?' . Arr::query($queryParams);
 
         return $browser->visit($url)->waitForLivewireToLoad();
     }
