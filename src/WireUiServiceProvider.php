@@ -109,6 +109,10 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::boolean($value);
         });
 
+        Blade::directive('attributes', static function ($attributes): string {
+            return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
+        });
+
         Blade::directive('toJs', static function ($expression): string {
             return LivewireBladeDirectives::js($expression);
         });

@@ -2,9 +2,10 @@
 
 namespace WireUi;
 
+use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use WireUi\Support\{BladeDirectives, ComponentResolver};
 
-class Wireui
+class WireUi
 {
     public function component(string $name): string
     {
@@ -19,5 +20,12 @@ class Wireui
     public function directives(): BladeDirectives
     {
         return new BladeDirectives();
+    }
+
+    public function extractAttributes(mixed $property): ComponentAttributeBag
+    {
+        return $property instanceof ComponentSlot
+            ? $property->attributes
+            : new ComponentAttributeBag();
     }
 }

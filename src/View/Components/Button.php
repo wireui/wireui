@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Support\Arr;
 use WireUi\Support\Buttons\Colors\{Color, ColorPack};
 use WireUi\Support\Buttons\Sizes\SizePack;
 use WireUi\View\Attribute;
@@ -76,13 +77,15 @@ class Button extends Base
     {
         $this->attributes = $this->attributes->class([
             'outline-none inline-flex justify-center items-center group hover:shadow-sm',
-            'transition-all ease-in-out duration-200 focus:ring-2 focus:ring-offset-2',
+            'transition-all ease-in-out duration-200 focus:ring-2',
             'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
             'disabled:opacity-80 disabled:cursor-not-allowed',
             'rounded-full' => $this->shouldBePill(),
-            'rounded'      => $this->shouldBeRounded(),
+            'rounded-md'   => $this->shouldBeRounded(),
             'w-full'       => $this->block,
             $this->getCurrentColor(),
+            'group-[.wrapper-prepend-slot]/prepend:rounded-l-[4px]',
+            'group-[.wrapper-append-slot]/append:rounded-r-[4px]',
         ]);
 
         return $this;
@@ -120,6 +123,14 @@ class Button extends Base
         $this->applyColorModifier($colorPack, $color, ['hover'], event: 'hover');
         $this->applyColorModifier($colorPack, $color, ['focus'], event: 'focus');
         $this->applyColorModifier($colorPack, $color, ['hover', 'focus'], event: 'interaction');
+
+        // todo: refactor it
+        $invalidated = $colorPack->get('invalidated');
+        $validated   = $colorPack->get('validated');
+
+        $color->base  = array_merge(Arr::wrap($color->base), Arr::wrap($invalidated->base), Arr::wrap($validated->base));
+        $color->hover = array_merge(Arr::wrap($color->hover), Arr::wrap($invalidated->hover), Arr::wrap($validated->hover));
+        $color->focus = array_merge(Arr::wrap($color->focus), Arr::wrap($invalidated->focus), Arr::wrap($validated->focus));
 
         return $color;
     }

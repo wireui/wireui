@@ -8,7 +8,7 @@ class Solid extends ColorPack
 
     private string $hover = 'hover:text-white';
 
-    private string $focus = 'focus:text-white';
+    private string $focus = 'focus:text-white focus:ring-offset-2';
 
     public function default(): Color
     {

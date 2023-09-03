@@ -38,7 +38,7 @@ abstract class FormComponent extends Component
         }
 
         if (!$attributes->has('id') && $model) {
-            $attributes->offsetSet('id', md5($model));
+            $attributes->offsetSet('id', $model);
         }
 
         foreach ($this->sharedAttributes() as $attribute) {

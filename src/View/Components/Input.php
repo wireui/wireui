@@ -7,17 +7,17 @@ use Illuminate\Support\Arr;
 class Input extends FormComponent
 {
     public function __construct(
-        public bool $borderless = false,
-        public bool $shadowless = false,
+        public bool $borderless = false, //todo
+        public bool $shadowless = false, //todo
         public ?string $label = null,
-        public ?string $hint = null,
-        public ?string $cornerHint = null,
+        public ?string $description = null,
+        public ?string $corner = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
         public ?string $prefix = null,
         public ?string $suffix = null,
-        public ?string $prepend = null,
-        public ?string $append = null,
+        public bool $validated = false,
+        public bool $invalidated = false,
         public bool $errorless = false,
     ) {
     }

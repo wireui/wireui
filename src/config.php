@@ -141,6 +141,10 @@ return [
             'class' => Components\Errors::class,
             'alias' => 'errors',
         ],
+        'inputs.wrapper' => [
+            'class' => Components\Inputs\Wrapper::class,
+            'alias' => 'inputs.wrapper',
+        ],
         'inputs.maskable' => [
             'class' => Components\Inputs\MaskableInput::class,
             'alias' => 'inputs.maskable',

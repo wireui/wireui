@@ -6,7 +6,7 @@ class Outline extends ColorPack
 {
     private string $hover = 'hover:bg-opacity-25 dark:hover:bg-opacity-15';
 
-    private string $focus = 'focus:bg-opacity-25 focus:border-transparent dark:focus:border-transparent dark:focus:bg-opacity-15';
+    private string $focus = 'focus:bg-opacity-25 focus:border-transparent dark:focus:border-transparent dark:focus:bg-opacity-15 focus:ring-offset-0';
 
     public function default(): Color
     {

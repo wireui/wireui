@@ -8,7 +8,6 @@ use Illuminate\View\Component;
 class Label extends Component
 {
     public function __construct(
-        public bool $hasError = false,
         public ?string $label = null,
     ) {
     }

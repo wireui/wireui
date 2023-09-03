@@ -1,12 +1,14 @@
 <?php
 
+// todo: use tailwind css layers to reduce css usage here
+
 namespace WireUi\Support\Buttons\Colors;
 
 class Flat extends ColorPack
 {
     protected string $hover = 'hover:bg-opacity-25 dark:hover:bg-opacity-15';
 
-    protected string $focus = 'focus:bg-opacity-25 dark:focus:bg-opacity-15';
+    protected string $focus = 'focus:bg-opacity-25 dark:focus:bg-opacity-15 focus:ring-offset-0';
 
     public function default(): Color
     {
@@ -59,6 +61,17 @@ class Flat extends ColorPack
                     'dark:focus:text-positive-500 dark:focus:bg-positive-600 dark:focus:ring-positive-700',
                 ],
             ),
+            'validated' => new Color(
+                base: 'validated:text-positive-600 validated:dark:text-positive-500/90',
+                hover: [
+                    "{$this->hover} validated:hover:text-positive-700 validated:hover:bg-positive-200",
+                    'validated:dark:hover:text-positive-500 validated:dark:hover:bg-positive-600/20',
+                ],
+                focus: [
+                    "{$this->focus} validated:focus:text-positive-700 validated:focus:bg-positive-200 validated:focus:ring-positive-600",
+                    'validated:dark:focus:text-positive-500 validated:dark:focus:bg-positive-600/20 validated:dark:focus:ring-positive-700',
+                ],
+            ),
             'negative' => new Color(
                 base: 'text-negative-600',
                 hover: [
@@ -68,6 +81,17 @@ class Flat extends ColorPack
                 focus: [
                     "{$this->focus} focus:text-negative-700 focus:bg-negative-400 focus:ring-negative-600",
                     'dark:focus:text-negative-500 dark:focus:bg-negative-600 dark:focus:ring-negative-700',
+                ],
+            ),
+            'invalidated' => new Color(
+                base: 'invalidated:text-negative-600',
+                hover: [
+                    "{$this->hover} invalidated:hover:text-negative-700 invalidated:hover:bg-negative-200",
+                    'invalidated:dark:hover:text-negative-500 invalidated:dark:hover:bg-negative-600/15',
+                ],
+                focus: [
+                    "{$this->focus} invalidated:focus:text-negative-700 invalidated:focus:bg-negative-200 invalidated:focus:ring-negative-600",
+                    'invalidated:dark:focus:text-negative-500 invalidated:dark:focus:bg-negative-600/15 invalidated:dark:focus:ring-negative-700',
                 ],
             ),
             'warning' => new Color(
