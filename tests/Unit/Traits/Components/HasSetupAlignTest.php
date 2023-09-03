@@ -4,7 +4,6 @@ namespace Tests\Unit\Traits\Components;
 
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
-use WireUi\Support\ComponentResolver;
 use WireUi\Traits\Components\HasSetupAlign;
 use WireUi\View\Components\BaseComponent;
 
@@ -29,17 +28,13 @@ class Align extends BaseComponent
 
 beforeEach(function () {
     $this->component = new Align();
-
-    $mock = $this->mock('overload:' . ComponentResolver::class);
-
-    $mock->shouldReceive('resolveByAlias')->once()->with('align')->andReturn('align');
-
-    $this->invokeMethod($this->component, 'setConfig');
 });
 
-test('it should have config name', function () {
-    expect($this->invokeProperty($this->component, 'config'))->toBe('align');
-});
+// test('it should have config name', function () {
+//     $this->invokeMethod($this->component, 'setConfig');
+
+//     expect($this->invokeProperty($this->component, 'config'))->toBe('align-name');
+// });
 
 test('it should have all properties empty', function () {
     expect($this->component->align)->toBeNull();

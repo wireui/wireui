@@ -69,10 +69,11 @@ test('it should register the blade components', function () {
 test('it should register the icon component to wireui class', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
-    $aliases       = $bladeCompiler->getClassComponentAliases();
 
-    $this->assertArrayHasKey('icon', $aliases, 'The {icon} should be registered');
-    $this->assertSame($aliases['icon'], Icon::class);
+    $aliases = $bladeCompiler->getClassComponentAliases();
+
+    expect($aliases)->toHaveKey('icon');
+    expect($aliases['icon'])->toBe(Icon::class);
 });
 
 test('it should register the WireUi singleton', function () {
