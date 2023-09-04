@@ -1,7 +1,6 @@
 <?php
 
-namespace Tests\Browser\Badge;
-
+uses(\Tests\Browser\BrowserTestCase::class);
 use Livewire\Volt\Volt;
 
 test('it should render badges without errors', function () {

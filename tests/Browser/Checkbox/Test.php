@@ -10,9 +10,8 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_render_with_label_and_change_value()
     {
-        $this->browse(
-            fn (Browser $browser) => $this
-                ->visit($browser, Component::class)
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, 'Checkbox.view')
                 ->assertSee('Remember me')
                 ->check('checkbox')
                 ->assertChecked('checkbox')
@@ -21,7 +20,7 @@ class Test extends BrowserTestCase
                 ->assertNotChecked('checkbox')
                 ->waitForTextIn('@checkbox', 'false')
                 ->click('@validate')
-                ->waitForText('accept it'),
-        );
+                ->waitForText('accept it');
+        });
     }
 }

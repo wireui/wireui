@@ -36,17 +36,7 @@ class BrowserTestCase extends TestCase
 
         parent::setUp();
 
-        $testCase = new self('browser');
-
-        $this->tweakApplication(function () use ($testCase) {
-            Volt::mount(__DIR__);
-
-            // Volt::ensureViewsAreCached();
-
-            $testCase->auxDefineRoutes();
-
-            $testCase->auxUpdateConfigs();
-        });
+        $this->tweakApplication(fn () => Volt::mount(__DIR__));
     }
 
     protected function tearDown(): void
@@ -78,17 +68,25 @@ class BrowserTestCase extends TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('view.paths', [__DIR__ . '/views', resource_path('views')]);
+        tap($app['session'], function ($session) {
+            $session->put('_token', str()->random(40));
+        });
 
-        $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
+        tap($app['config'], function ($config) {
+            $config->set('app.debug', true);
 
-        $app['config']->set('database.default', 'testbench');
+            $config->set('view.paths', [__DIR__ . '/views', resource_path('views')]);
 
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
+            $config->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
+
+            $config->set('database.default', 'testbench');
+
+            $config->set('database.connections.testbench', [
+                'driver'   => 'sqlite',
+                'database' => ':memory:',
+                'prefix'   => '',
+            ]);
+        });
     }
 
     protected function livewireClassesPath($path = '')

@@ -1,3 +1,17 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['checkbox' => false]);
+
+$validateCheckbox = fn() => $this->validate();
+
+rules(['checkbox' => 'accepted'])->messages([
+    'checkbox.accepted' => 'accept it',
+]);
+
+?>
+
 <div>
     <h1>Checkbox Test</h1>
 
