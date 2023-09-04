@@ -94,7 +94,7 @@ test('it should execute base component with custom value to blur', function () {
 
     $this->component->attributes = new ComponentAttributeBag([
         'blurless' => false,
-        'blur' => $blurRandom,
+        'blur'     => $blurRandom,
     ]);
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
