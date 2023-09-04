@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
 use Illuminate\Support\Facades\{Artisan, File};
+use Illuminate\Support\{Collection, Str};
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use ReflectionClass;
@@ -83,5 +84,14 @@ class TestCase extends TestbenchTestCase
         });
 
         return $classes->filter(fn ($class) => str($class)->contains($word))->random();
+    }
+
+    public function getIcons(): Collection
+    {
+        $files = File::allFiles(__DIR__ . '/../../vendor/wireui/heroicons/src/views/components/outline');
+
+        return collect($files)->map(function (SplFileInfo $file) {
+            return Str::of($file->getFilename())->before('.blade.php')->toString();
+        })->sort();
     }
 }
