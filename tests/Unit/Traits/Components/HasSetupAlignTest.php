@@ -79,3 +79,21 @@ test('it should execute base component with value to align', function () {
 
     expect($this->component->alignClasses)->toBe($resolve->get($alignRandom));
 });
+
+test('it should execute base component with custom value to align', function () {
+    $class = $this->getPackageClass('Align');
+
+    $alignRandom = 'sm:items-baseline';
+
+    $this->component->attributes = new ComponentAttributeBag([
+        'align' => $alignRandom,
+    ]);
+
+    $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
+
+    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+
+    expect($this->component->align)->toBe($alignRandom);
+
+    expect($this->component->alignClasses)->toBe($alignRandom);
+});
