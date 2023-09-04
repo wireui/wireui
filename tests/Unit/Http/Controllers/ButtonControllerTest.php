@@ -8,18 +8,17 @@ use Symfony\Component\HttpFoundation\Response;
 use WireUi\Http\Controllers\ButtonController;
 
 test('it should render the button with attributes', function () {
-    $this->getJson(route('wireui.render.button', [
-        'type'  => 'primary',
-        'label' => 'Click me',
-    ]))
+    $params = ['type' => 'primary', 'label' => 'Click me'];
+
+    $this->getJson(route('wireui.render.button', $params))
         ->assertSee('<button', escape: false)
         ->assertSee('Click me');
 });
 
 test('it should ignore the malicious attributes', function () {
-    $this->getJson(route('wireui.render.button', [
-        ':label' => "strtoupper('Click me')",
-    ]))
+    $params = [':label' => "strtoupper('Click me')"];
+
+    $this->getJson(route('wireui.render.button', $params))
         ->assertSee('<button', escape: false)
         ->assertDontSee('CLICK ME');
 });
