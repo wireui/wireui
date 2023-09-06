@@ -128,9 +128,23 @@ class Button extends Base
         $invalidated = $colorPack->get('invalidated');
         $validated   = $colorPack->get('validated');
 
-        $color->base  = array_merge(Arr::wrap($color->base), Arr::wrap($invalidated->base), Arr::wrap($validated->base));
-        $color->hover = array_merge(Arr::wrap($color->hover), Arr::wrap($invalidated->hover), Arr::wrap($validated->hover));
-        $color->focus = array_merge(Arr::wrap($color->focus), Arr::wrap($invalidated->focus), Arr::wrap($validated->focus));
+        $color->base = array_merge(
+            Arr::wrap($color->base),
+            Arr::wrap($invalidated->base),
+            Arr::wrap($validated->base),
+        );
+
+        $color->hover = array_merge(
+            Arr::wrap($color->hover),
+            Arr::wrap($invalidated->hover),
+            Arr::wrap($validated->hover),
+        );
+
+        $color->focus = array_merge(
+            Arr::wrap($color->focus),
+            Arr::wrap($invalidated->focus),
+            Arr::wrap($validated->focus),
+        );
 
         return $color;
     }
