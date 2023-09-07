@@ -41,6 +41,8 @@ class Component extends \Livewire\Component
 
     public $asyncModel = null;
 
+    public $asyncModelNestedData = null;
+
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');

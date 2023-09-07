@@ -1,7 +1,7 @@
 <?php
 
 use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, UnitTestCase};
+use Tests\Unit\{TestComponent, UnitTestCase};
 use WireUi\Actions\Dialog;
 
 it('should emit a dialog event when the method dialog is called with a non empty array', function () {
@@ -12,14 +12,14 @@ it('should emit a dialog event when the method dialog is called with a non empty
     ];
 
     /** @var UnitTestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+    $mock = $this->getMockBuilder(TestComponent::class)
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options' => [
                 'title' => 'WireUI is awesome!',
@@ -39,14 +39,14 @@ it('should emit a notification event when the method notification is called with
     ];
 
     /** @var UnitTestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+    $mock = $this->getMockBuilder(TestComponent::class)
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
             'options'     => ['title' => 'WireUI is awesome!'],
             'componentId' => 'fake-id',

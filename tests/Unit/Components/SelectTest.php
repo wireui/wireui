@@ -10,7 +10,7 @@ class SelectTest extends UnitTestCase
     /** @test */
     public function It_should_throw_an_error_if_async_data_and_options_is_set_together()
     {
-        $this->expectErrorMessage('The {async-data} attribute cannot be used with {options} attribute.');
+        $this->expectExceptionMessage('The {async-data} attribute cannot be used with {options} attribute.');
 
         new Select(asyncData: 'http://example.com/api/options', options: ['name' => 'Option 1']);
     }

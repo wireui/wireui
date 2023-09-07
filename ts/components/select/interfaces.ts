@@ -22,6 +22,7 @@ export interface Select extends Focusables, Positioning {
   initWireModel (): void
   initOptionsObserver (): void
   initSlotObserver (): void
+  shouldSyncProps(mutations: MutationRecord[]): boolean
   syncProps (): void
   syncJsonOptions (): void
   syncSlotOptions (): void

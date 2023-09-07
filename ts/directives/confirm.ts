@@ -25,9 +25,11 @@ const initialize = (component: HTMLElement) => {
   })
 }
 
-document.addEventListener('livewire:load', () => {
-  window.Livewire.hook('message.processed', (_message, component: { el: HTMLElement }) => {
-    initialize(component.el)
+document.addEventListener('livewire:init', () => {
+  window.Livewire.hook('commit', ({ component, succeed }) => {
+    succeed(() => {
+      queueMicrotask(() => initialize(component.el))
+    })
   })
 })
 

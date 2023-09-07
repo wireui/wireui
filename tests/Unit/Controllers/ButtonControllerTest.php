@@ -65,19 +65,19 @@ class ButtonControllerTest extends UnitTestCase
                 'attributes' => [
                     'color' => 'invalid-color',
                 ],
-                'errors' => ['color' => 'validation.in'],
+                'errors' => ['color' => 'The selected color is invalid.'],
             ],
             'size' => [
                 'attributes' => [
                     'size' => 'invalid-size',
                 ],
-                'errors' => ['size' => 'validation.in'],
+                'errors' => ['size' => 'The selected size is invalid.'],
             ],
             'iconSize' => [
                 'attributes' => [
                     'iconSize' => 'invalid-iconSize',
                 ],
-                'errors' => ['iconSize' => 'validation.in'],
+                'errors' => ['iconSize' => 'The selected icon size is invalid.'],
             ],
             'label' => [
                 'attributes' => [
@@ -101,25 +101,25 @@ class ButtonControllerTest extends UnitTestCase
                 'attributes' => [
                     'rounded' => ['invalid-type'],
                 ],
-                'errors' => ['rounded' => 'boolean'],
+                'errors' => ['rounded' => 'The rounded field must be true or false.'],
             ],
             'squared' => [
                 'attributes' => [
                     'squared' => ['invalid-type'],
                 ],
-                'errors' => ['squared' => 'boolean'],
+                'errors' => ['squared' => 'The squared field must be true or false.'],
             ],
             'bordered' => [
                 'attributes' => [
                     'bordered' => ['invalid-type'],
                 ],
-                'errors' => ['bordered' => 'boolean'],
+                'errors' => ['bordered' => 'The bordered field must be true or false.'],
             ],
             'flat' => [
                 'attributes' => [
                     'flat' => ['invalid-type'],
                 ],
-                'errors' => ['flat' => 'boolean'],
+                'errors' => ['flat' => 'The flat field must be true or false.'],
             ],
         ];
     }

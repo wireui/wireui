@@ -3,6 +3,7 @@
 namespace Tests\Browser\Notifications;
 
 use Illuminate\Support\Facades\View;
+use Livewire\Attributes\On;
 use WireUi\Traits\Actions;
 
 class Component extends \Livewire\Component
@@ -13,18 +14,18 @@ class Component extends \Livewire\Component
 
     public array $events = [];
 
-    protected $listeners = ['setValue', 'addEvent'];
-
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');
     }
 
+    #[On('setValue')]
     public function setValue($anyValue): void
     {
         $this->value = $anyValue;
     }
 
+    #[On('addEvent')]
     public function addEvent(string $event)
     {
         $this->events[] = $event;
@@ -38,7 +39,7 @@ class Component extends \Livewire\Component
     public function showSimpleNotification(): void
     {
         $this->notification()->success(
-            $title = 'Success title',
+            $title       = 'Success title',
             $description = 'Success description',
         );
     }

@@ -122,10 +122,14 @@ export default (options: InitOptions): DialogComponent => ({
       this.startCloseTimeout()
     }
   },
-  showDialog ({ options, componentId }) {
+  showDialog (data) {
+    const { options, componentId } = Array.isArray(data) ? data[0] : data
+
     this.processDialog(parseDialog(options, componentId))
   },
-  confirmDialog ({ options, componentId }) {
+  confirmDialog (data) {
+    const { options, componentId } = Array.isArray(data) ? data[0] : data
+
     this.processDialog(parseConfirmation(options, componentId))
   },
   fillIconBackground (icon) {
