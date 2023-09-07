@@ -144,10 +144,12 @@
         </label>
     @endif
 
-    @if ($name && !$errorless)
-        <x-dynamic-component
-            :component="WireUi::component('error')"
-            :name="$name"
-        />
+    @if ($name && !$errorless && $errors->has($name))
+        <label
+            class="mt-2 text-sm text-negative-600"
+            for="{{ $id }}"
+        >
+            {{ $errors->first($name) }}
+        </label>
     @endif
 </div>
