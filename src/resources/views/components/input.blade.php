@@ -1,5 +1,5 @@
 @php($attrs = $attributes)
-@php($invalidated = $invalidated ?: $errors->has($name))
+@php($invalidated = $invalidated ?: $name && $errors->has($name))
 
 <x-inputs.wrapper
     :id="$id"
