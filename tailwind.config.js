@@ -55,6 +55,7 @@ module.exports = {
     require('./ts/tailwindcss/plugins/hideScrollbar'),
     require('./ts/tailwindcss/plugins/softScrollbar'),
     require('./ts/tailwindcss/plugins/appearance-none'),
-    require('./ts/tailwindcss/plugins/form/validation')
+    require('./ts/tailwindcss/plugins/form/validation'),
+    require('./ts/tailwindcss/plugins/form/input-state')
   ]
 }
