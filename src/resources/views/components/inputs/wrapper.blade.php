@@ -66,10 +66,10 @@
         @if ($prefix || $icon)
             <div
                 name="form.wrapper.container.prefix"
-                @class([
-                    'pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'text-gray-500 invalidated:text-negative-500 validated:text-positive-500',
-                ])
+                class="
+                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
+                    input-focus:text-primary-500 invalidated:text-negative-500 validated:text-positive-500
+                "
             >
                 @if ($icon)
                     <x-dynamic-component
@@ -100,10 +100,10 @@
         @if ($suffix || $rightIcon)
             <div
                 name="form.wrapper.container.suffix"
-                @class([
-                    'pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'text-gray-500 invalidated:text-negative-500 validated:text-positive-500',
-                ])
+                class="
+                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
+                    input-focus:text-primary-500 invalidated:text-negative-500 validated:text-positive-500
+                "
             >
                 @if ($rightIcon)
                     <x-dynamic-component
