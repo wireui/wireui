@@ -22,6 +22,8 @@ class Wrapper extends Component
         public bool $validated = false,
         public bool $invalidated = false,
         public bool $errorless = false,
+        public bool $borderless = false, // todo
+        public bool $shadowless = false, // todo
     ) {
     }
 
