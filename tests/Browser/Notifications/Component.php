@@ -3,11 +3,11 @@
 namespace Tests\Browser\Notifications;
 
 use Illuminate\Support\Facades\View;
-use WireUi\Traits\Actions;
+use WireUi\Traits\{Actions, WireUiActions};
 
 class Component extends \Livewire\Component
 {
-    use Actions;
+    use WireUiActions;
 
     public $value = null;
 

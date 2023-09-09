@@ -12,17 +12,17 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^10.0",
-        "livewire/livewire": "^2.12",
-        "wireui/heroicons": "^2.4"
+        "livewire/livewire": "^3.0@beta",
+        "wireui/heroicons": "^2.3"
     },
     "require-dev": {
-        "mockery/mockery": "^1.6",
-        "phpunit/phpunit": "^10.1",
-        "orchestra/testbench": "^8.5",
-        "orchestra/testbench-dusk": "^8.6",
-        "psy/psysh": "^0.11.16",
-        "pestphp/pest": "^2.8",
-        "pestphp/pest-plugin-livewire": "^2.0",
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0",
+        "orchestra/testbench-dusk": "^8.0",
+        "psy/psysh": "^0.11.12",
+        "pestphp/pest": "^2.13",
+        "pestphp/pest-plugin-livewire": "^2.1",
         "pestphp/pest-plugin-mock": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "laravel/pint": "^1.10"
@@ -39,7 +39,10 @@
     "autoload": {
         "psr-4": {
             "WireUi\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -29,7 +29,7 @@ class TestCase extends Testbench\TestCase
         Route::middleware('web')->group($this->srcDir('routes.php'));
     }
 
-    protected function srcDir(string $path): string
+    private function srcDir(string $path): string
     {
         return __DIR__ . "/../../src/{$path}";
     }
@@ -52,7 +52,9 @@ class TestCase extends Testbench\TestCase
     public function invokeMethod(mixed $object, string $method, array $parameters = [])
     {
         $reflection = new ReflectionClass(get_class($object));
-        $method     = $reflection->getMethod($method);
+
+        $method = $reflection->getMethod($method);
+
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
@@ -62,7 +64,9 @@ class TestCase extends Testbench\TestCase
     public function invokeProperty(mixed $object, string $property)
     {
         $reflection = new ReflectionClass(get_class($object));
-        $property   = $reflection->getProperty($property);
+
+        $property = $reflection->getProperty($property);
+
         $property->setAccessible(true);
 
         return $property->getValue($object);

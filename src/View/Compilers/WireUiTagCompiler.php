@@ -12,7 +12,7 @@ class WireUiTagCompiler extends ComponentTagCompiler
         return $this->compileWireUiSelfClosingTags($value);
     }
 
-    protected function compileWireUiSelfClosingTags($value)
+    private function compileWireUiSelfClosingTags($value)
     {
         $pattern = '/<\s*wireui\:(scripts|styles)\s*\/?>/';
 

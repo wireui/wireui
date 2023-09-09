@@ -5,17 +5,17 @@ use WireUi\Support\Buttons\Colors\{ColorPack, Flat, Outline, Solid};
 use WireUi\Support\Buttons\Sizes\Mini;
 
 it('should render a button with as a link')
-    ->expect('<x-buttons.mini href="#">Go</x-buttons.mini>')
+    ->expect('<x-mini-button href="#">Go</x-mini-button>')
     ->render()
     ->toContain('<a', 'href="#"', 'Go');
 
 it('should render the button default slot')
-    ->expect('<x-buttons.mini><b>+9</b></x-buttons.mini>')
+    ->expect('<x-mini-button><b>+9</b></x-mini-button>')
     ->render()
     ->toContain('<b>+9</b>');
 
 it('should render a spinner')
-    ->expect('<x-buttons.mini primary label="GG" spinner />')
+    ->expect('<x-mini-button primary label="GG" spinner />')
     ->render()
     ->toContain(
         '<svg class="animate-spin',
@@ -23,23 +23,23 @@ it('should render a spinner')
     );
 
 it('should render a spinner with a custom delay')
-    ->expect('<x-buttons.mini primary label="GG" spinner.long />')
+    ->expect('<x-mini-button primary label="GG" spinner.long />')
     ->render()
     ->toContain('wire:loading.delay.long="true"');
 
 it('should render a spinner with a target')
-    ->expect('<x-buttons.mini primary label="Go" spinner="save" />')
+    ->expect('<x-mini-button primary label="Go" spinner="save" />')
     ->render()
     ->toContain('wire:target="save"');
 
 it('should not render a spinner')
-    ->expect('<x-buttons.mini primary label="PO" />')
+    ->expect('<x-mini-button primary label="PO" />')
     ->render()
     ->not()
     ->toContain('<svg class="animate-spin');
 
 it('should have a disabling state on livewire loading')
-    ->expect('<x-buttons.mini>A+</x-buttons.mini>')
+    ->expect('<x-mini-button>A+</x-mini-button>')
     ->render()
     ->toContain(
         'wire:loading.attr="disabled"',
@@ -47,7 +47,7 @@ it('should have a disabling state on livewire loading')
     );
 
 it('should without disabling on livewire loading')
-    ->expect('<x-buttons.mini :disabled-on-wire-loading="false">CK</x-buttons.mini>')
+    ->expect('<x-mini-button :disabled-on-wire-loading="false">CK</x-mini-button>')
     ->render()
     ->not()->toContain(
         'wire:loading.attr="disabled"',
@@ -55,12 +55,12 @@ it('should without disabling on livewire loading')
     );
 
 it('should have by default a button type')
-    ->expect('<x-buttons.mini>XD</x-buttons.mini>')
+    ->expect('<x-mini-button>XD</x-mini-button>')
     ->render()
     ->toContain('type="button"');
 
 it('should change the button type')
-    ->expect('<x-buttons.mini type="submit">:)</x-buttons.mini>')
+    ->expect('<x-mini-button type="submit">:)</x-mini-button>')
     ->render()
     ->toContain('type="submit"');
 
@@ -68,7 +68,7 @@ it('should render all color classes from attributes', function (string $class, s
     /** @var ColorPack $colorPack */
     $colorPack = new $class();
 
-    expect("<x-buttons.mini {$variant} {$color} />")
+    expect("<x-mini-button {$variant} {$color} />")
         ->render()
         ->toContain($colorPack->get($color)->toString())
         ->not()->toContain($colorPack->default()->toString());
@@ -78,7 +78,7 @@ it('should render all color classes from props', function (string $class, string
     /** @var ColorPack $colorPack */
     $colorPack = new $class();
 
-    expect("<x-buttons.mini variant=\"{$variant}\" color=\"{$color}\" />")
+    expect("<x-mini-button variant=\"{$variant}\" color=\"{$color}\" />")
         ->render()
         ->toContain($colorPack->get($color)->toString())
         ->not()
@@ -86,30 +86,30 @@ it('should render all color classes from props', function (string $class, string
 })->with('buttons::variant-color');
 
 it('should render all sizes classes from attributes', function (string $size) {
-    expect("<x-buttons.mini {$size} />")
+    expect("<x-mini-button {$size} />")
         ->render()
         ->toContain((new Mini\Base())->get($size));
 })->with('buttons::sizes');
 
 it('should render all sizes classes from props', function (string $size) {
-    expect("<x-buttons.mini size=\"{$size}\" />")
+    expect("<x-mini-button size=\"{$size}\" />")
         ->render()
         ->toContain((new Mini\Base())->get($size));
 })->with('buttons::sizes');
 
 it('should render a squared button')
-    ->expect('<x-buttons.mini squared />')
+    ->expect('<x-mini-button squared />')
     ->render()
     ->not()
     ->toContain('/(rounded)*/');
 
 it('should render a pill button')
-    ->expect('<x-buttons.mini rounded />')
+    ->expect('<x-mini-button rounded />')
     ->render()
     ->toContain('rounded-full');
 
 it('should pass the attributes bag to the button')
-    ->expect('<x-buttons.mini foo="bar" disabled aria-label="test" />')
+    ->expect('<x-mini-button foo="bar" disabled aria-label="test" />')
     ->render()
     ->toContain(
         'foo="bar"',
@@ -118,12 +118,12 @@ it('should pass the attributes bag to the button')
     );
 
 it('should render a button with a label')
-    ->expect('<x-buttons.mini label="AB" />')
+    ->expect('<x-mini-button label="AB" />')
     ->render()
     ->toContain('AB');
 
 it('should render a button with an icon with default size', function () {
-    expect('<x-buttons.mini icon="home" />')
+    expect('<x-mini-button icon="home" />')
         ->render()
         ->toContain(
             Blade::render('<x-heroicons::outline.home class="w-4 h-4 shrink-0" />'),
@@ -133,7 +133,7 @@ it('should render a button with an icon with default size', function () {
 it('should render with a icon with different size', function (string $size) {
     $css = (new Mini\Icon())->get($size);
 
-    expect("<x-buttons.mini {$size} icon=\"home\" />")
+    expect("<x-mini-button {$size} icon=\"home\" />")
         ->render()
         ->toContain(
             Blade::render("<x-heroicons::outline.home class=\"{$css} shrink-0\" />"),
@@ -141,7 +141,7 @@ it('should render with a icon with different size', function (string $size) {
 })->with('buttons::sizes');
 
 it('should render a icon with custom size', function () {
-    expect('<x-buttons.mini class="my-padding" icon="home" icon-size="my-custom icon-size" />')
+    expect('<x-mini-button class="my-padding" icon="home" icon-size="my-custom icon-size" />')
         ->render()
         ->toContain(
             'my-padding',
@@ -150,7 +150,7 @@ it('should render a icon with custom size', function () {
 });
 
 it('should render a button with two different colors on "hover" or "focus"', function () {
-    expect('<x-buttons.mini primary hover="yellow" focus="green" />')
+    expect('<x-mini-button primary hover="yellow" focus="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
@@ -164,7 +164,7 @@ it('should render a button with two different colors on "hover" or "focus"', fun
 });
 
 it('should render a button with one different color on "interaction"', function () {
-    expect('<x-buttons.mini primary interaction="green" />')
+    expect('<x-mini-button primary interaction="green" />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
@@ -190,12 +190,12 @@ it('should render a button with two different colors and variants when interacti
             ...(new Solid())->get('primary')->focus,
         );
 })->with([
-    ['<x-buttons.mini primary hover:flat="yellow" focus:outline="green" />'],
-    ['<x-buttons.mini primary hover:flat.yellow focus:outline.green />'],
+    ['<x-mini-button primary hover:flat="yellow" focus:outline="green" />'],
+    ['<x-mini-button primary hover:flat.yellow focus:outline.green />'],
 ]);
 
 it('should change the button variant but keep the same color on "hover" or "focus"', function () {
-    expect('<x-buttons.mini primary hover:flat focus:outline />')
+    expect('<x-mini-button primary hover:flat focus:outline />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,
@@ -209,7 +209,7 @@ it('should change the button variant but keep the same color on "hover" or "focu
 });
 
 it('should change the button variant but keep the same color on "interaction"', function () {
-    expect('<x-buttons.mini primary interaction:flat />')
+    expect('<x-mini-button primary interaction:flat />')
         ->render()
         ->toContain(
             (new Solid())->get('primary')->base,

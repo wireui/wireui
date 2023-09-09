@@ -11,9 +11,9 @@ class NumberInput extends Input
     public function __construct(
         bool $borderless = false,
         bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
+        string $label = null,
+        string $hint = null,
+        string $cornerHint = null,
     ) {
         parent::__construct(
             borderless: $borderless,

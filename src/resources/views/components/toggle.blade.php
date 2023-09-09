@@ -1,5 +1,12 @@
 <div>
-    <div class="flex items-center">
+
+    @dump($attributes, $size, $sizeClasses)
+
+    @dump($icon, $rightIcon, $iconless)
+
+    @dump($label, $leftLabel, $description)
+
+    {{-- <div class="flex items-center">
         @if ($leftLabel)
             <x-dynamic-component
                 :component="WireUi::component('label')"
@@ -10,7 +17,7 @@
             />
         @endif
 
-        <label for="{{ $id }}" tabindex="-1" class="group relative flex items-center select-none">
+        <label for="{{ $id }}" tabindex="-1" class="relative flex items-center select-none group">
             <input {{ $attributes->merge([
                     'name'  => $name,
                     'id'    => $id,
@@ -38,5 +45,5 @@
             :component="WireUi::component('error')"
             :name="$name"
         />
-    @endif
+    @endif --}}
 </div>

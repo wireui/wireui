@@ -32,7 +32,7 @@ export const template: UserInitTemplate = (config): UserTemplate => ({
   renderSelected (option) {
     return `
       <div class="flex items-center gap-x-3">
-        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 rounded-full">
+        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 object-cover rounded-full">
 
         <span>${option.label}</span>
       </div>

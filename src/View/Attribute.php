@@ -6,23 +6,57 @@ use Illuminate\Support\{Collection, Str};
 
 final class Attribute
 {
-    private readonly string $directive;
-
-    private readonly mixed $expression;
-
     private readonly ?string $name;
 
     private readonly ?string $value;
+
+    private readonly string $directive;
+
+    private readonly mixed $expression;
 
     private readonly Collection $modifiers;
 
     public function __construct(string $directive, mixed $expression = null)
     {
-        $this->directive  = $directive;
+        $this->directive = $directive;
+
         $this->expression = $expression;
-        $this->name       = $this->extractName();
-        $this->value      = $this->extractValue();
-        $this->modifiers  = $this->extractModifiers();
+
+        $this->name = $this->extractName();
+
+        $this->value = $this->extractValue();
+
+        $this->modifiers = $this->extractModifiers();
+    }
+
+    public function name(): ?string
+    {
+        return $this->name;
+    }
+
+    public function value(): ?string
+    {
+        return $this->value;
+    }
+
+    public function directive(): string
+    {
+        return $this->directive;
+    }
+
+    public function expression(): mixed
+    {
+        return $this->expression;
+    }
+
+    public function modifiers(): Collection
+    {
+        return $this->modifiers;
+    }
+
+    public function hasModifier(string $modifier): bool
+    {
+        return $this->modifiers()->contains($modifier);
     }
 
     private function extractName(): ?string
@@ -41,41 +75,6 @@ final class Attribute
 
     private function extractModifiers(): Collection
     {
-        return Str::of($this->directive)
-            ->explode('.')
-            ->filter()
-            ->unique()
-            ->skip(1)
-            ->values();
-    }
-
-    public function hasModifier(string $modifier): bool
-    {
-        return $this->modifiers()->contains($modifier);
-    }
-
-    public function directive(): string
-    {
-        return $this->directive;
-    }
-
-    public function expression(): mixed
-    {
-        return $this->expression;
-    }
-
-    public function name(): ?string
-    {
-        return $this->name;
-    }
-
-    public function value(): ?string
-    {
-        return $this->value;
-    }
-
-    public function modifiers(): Collection
-    {
-        return $this->modifiers;
+        return Str::of($this->directive)->explode('.')->filter()->unique()->skip(1)->values();
     }
 }

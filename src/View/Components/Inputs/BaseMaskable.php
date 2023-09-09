@@ -12,27 +12,32 @@ abstract class BaseMaskable extends Input
 
     public function __construct(
         public bool $emitFormatted = false,
-        ?string $mask = null,
+
+        string $mask = null,
         bool $borderless = false,
         bool $shadowless = false,
-        ?string $label = null,
-        ?string $description = null,
-        ?string $corner = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $prefix = null,
-        ?string $suffix = null,
+        string $label = null,
+        string $hint = null,
+        string $cornerHint = null,
+        string $icon = null,
+        string $rightIcon = null,
+        string $prefix = null,
+        string $suffix = null,
+        string $prepend = null,
+        string $append = null,
     ) {
         parent::__construct(
             borderless: $borderless,
             shadowless: $shadowless,
             label: $label,
-            description: $description,
-            corner: $corner,
+            hint: $hint,
+            cornerHint: $cornerHint,
             icon: $icon,
             rightIcon: $rightIcon,
             prefix: $prefix,
             suffix: $suffix,
+            prepend: $prepend,
+            append: $append,
         );
 
         $this->mask = $this->formatMask(!$mask ? $this->getInputMask() : $mask);
