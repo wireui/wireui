@@ -2,8 +2,6 @@
 
 use function Livewire\Volt\{state, rules, layout};
 
-// layout('components.layouts.app');
-
 state(['model' => null, 'errorless' => null]);
 
 $validateInput = fn() => $this->validate();

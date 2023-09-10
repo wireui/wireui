@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Checkbox\{Colors, Rounders, Sizes};
@@ -66,8 +67,8 @@ class Checkbox extends BaseComponent
         ]);
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.checkbox';
+        return view('wireui::components.checkbox');
     }
 }

@@ -1,12 +1,5 @@
 <div>
-
-    @dump($attributes, $size, $sizeClasses)
-
-    @dump($icon, $rightIcon, $iconless)
-
-    @dump($label, $leftLabel, $description)
-
-    {{-- <div class="flex items-center">
+    <div class="flex items-center">
         @if ($leftLabel)
             <x-dynamic-component
                 :component="WireUi::component('label')"
@@ -45,5 +38,5 @@
             :component="WireUi::component('error')"
             :name="$name"
         />
-    @endif --}}
+    @endif
 </div>

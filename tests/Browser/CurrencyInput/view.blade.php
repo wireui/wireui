@@ -1,3 +1,15 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['currency' => null, 'formattedCurrency' => null, 'brazilCurrency' => '123.456,99']);
+
+$changeCurrency = function () {
+    $this->currency = 12345.67;
+};
+
+?>
+
 <div>
     <h1>Currency Input test</h1>
 
@@ -13,10 +25,5 @@
     <span dusk="formattedCurrency">{{ $formattedCurrency }}</span>
 
     // test it_should_parse_custom_currencies_like_brazilian_real
-    <x-inputs.currency
-        thousands="."
-        decimal=","
-        precision="2"
-        wire:model.live="brazilCurrency"
-    />
+    <x-inputs.currency thousands="." decimal="," precision="2" wire:model.live="brazilCurrency" />
 </div>

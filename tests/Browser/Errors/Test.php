@@ -2,7 +2,7 @@
 
 namespace Tests\Browser\Errors;
 
-use Livewire\Livewire;
+use Livewire\Volt\Volt;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -10,7 +10,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_render_all_errors_and_render_filtered_errors()
     {
-        Livewire::test(Component::class)
+        Volt::test('Errors.view')
             ->call('addErrors')
             ->assertSee('first error')
             ->assertSee('second error')

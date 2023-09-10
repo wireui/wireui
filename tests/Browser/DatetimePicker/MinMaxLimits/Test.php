@@ -17,7 +17,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
             /** @var Browser|Testable $component */
-            $component = $this->visit($browser, Component::class)
+            $component = $this->visit($browser, 'DatetimePicker.MinMaxLimits.view')
                 ->click('[name="model"]')
                 ->tap(fn () => $browser->assertScript(<<<EOT
                     [...document.querySelectorAll('.picker-days button')]
@@ -41,16 +41,15 @@ class Test extends BrowserTestCase
      */
     public function it_should_select_only_times_inside_the_limit(int $day, string $time, bool $exists)
     {
-        $this->browse(
-            fn (Browser $browser) => $this
-                ->visit($browser, Component::class)
+        $this->browse(function (Browser $browser) use ($day, $time, $exists) {
+            $this->visit($browser, 'DatetimePicker.MinMaxLimits.view')
                 ->click('[name="model"]')
                 ->tap(fn () => $this->selectDate($browser, $day))
                 ->waitUsing(7, 100, fn () => $browser->assertScript(
                     "!!document.querySelector('[name=\"times.{$time}\"]')",
                     $exists,
-                )),
-        );
+                ));
+        });
     }
 
     public static function datesProvider(): array

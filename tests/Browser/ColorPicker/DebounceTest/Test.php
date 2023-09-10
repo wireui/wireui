@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.DebounceTest.view')
                 ->type('color', 'F')
                 ->pause(100)
                 ->append('color', 'F')

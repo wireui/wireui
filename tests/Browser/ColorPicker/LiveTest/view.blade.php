@@ -1,3 +1,11 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['color' => '#001']);
+
+?>
+
 <div>
     <div id="color-picker">
         <x-color-picker name="color-picker" value="#123" />

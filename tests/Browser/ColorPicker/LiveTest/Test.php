@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Browser\ColorPicker\Test;
+namespace Tests\Browser\ColorPicker\LiveTest;
 
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
-use Livewire\Livewire;
+use Livewire\Volt\Volt;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -14,7 +14,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.LiveTest.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -33,7 +33,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.LiveTest.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -52,7 +52,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.LiveTest.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -83,7 +83,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.LiveTest.view');
 
             $testable
                 ->clear('color-picker')
@@ -99,7 +99,7 @@ class Test extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_input_element()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.LiveTest.view')
                 ->assertInputValue('color-picker', '#123');
         });
     }
@@ -108,7 +108,7 @@ class Test extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_wire_model()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.LiveTest.view')
                 ->assertInputValue('color-picker-wire', '#001');
         });
     }
@@ -116,7 +116,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_pass_the_colors_to_js_component()
     {
-        Livewire::test(Component::class)
+        Volt::test('ColorPicker.LiveTest.view')
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IiMxMjMiLCJ2YWx1ZSI6IiMxMjMifSx7Im5hbWUiOiIjNDU2IiwidmFsdWUiOiIjNDU2In1d'))", false)
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))", false);
     }

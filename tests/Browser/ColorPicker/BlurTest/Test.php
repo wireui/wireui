@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_type_the_color_value_and_apply_only_when_the_component_loses_the_focus()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.BlurTest.view')
                 ->type('color', 'FFF')
                 ->pause(500)
                 ->assertInputValue('color', '#FFF')
