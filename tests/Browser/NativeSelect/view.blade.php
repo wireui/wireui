@@ -1,3 +1,43 @@
+<?php
+
+use function Livewire\Volt\{state, mount, rules};
+
+state([
+    'model' => null,
+    'arrayOptionsModel' => null,
+    'collectionOptions' => null,
+    'collectionOptionsModel' => null,
+    'arrayWithLabelAndValueKeys' => null,
+    'options' => [
+        'Array Option 1',
+        'Array Option 2',
+        'Array Option 3',
+    ],
+    'labelValueOptions' => [
+        ['label' => 'Label Option 1', 'value' => 1],
+        ['label' => 'Label Option 2', 'value' => 2],
+        ['label' => 'Label Option 3', 'value' => 3],
+    ],
+]);
+
+rules(['model' => 'required'])->messages([
+    'model.required' => 'select a value',
+]);
+
+mount(function (){
+    $this->collectionOptions = collect([
+        'Collection Option 1',
+        'Collection Option 2',
+        'Collection Option 3',
+    ]);
+});
+
+$validateSelect = fn() => $this->validate();
+
+$resetInputValidation = fn() => $this->resetValidation();
+
+?>
+
 <div>
     <h1>Native Select test</h1>
 
@@ -25,7 +65,7 @@
         wire:model.live="arrayWithLabelAndValueKeys"
         option-label="label"
         option-value="value"
-        :options="$this::LABEL_VALUE_OPTIONS"
+        :options="$labelValueOptions"
     />
 
     // test it_should_render_select_with_give_array_options_using_key_as_value

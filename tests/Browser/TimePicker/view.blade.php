@@ -1,3 +1,18 @@
+<?php
+
+use function Livewire\Volt\{state, mount, rules};
+use Illuminate\Support\Carbon;
+
+state(['birthday' => null, 'time24H' => null, 'timeAmPm' => null]);
+
+rules(['birthday' => 'required|datetime']);
+
+mount(function () {
+    $this->birthday = Carbon::parse('2021-05-01T23:05:51');
+});
+
+?>
+
 <div>
     <h1>Time Picker test</h1>
 

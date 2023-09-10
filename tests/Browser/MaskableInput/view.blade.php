@@ -1,3 +1,11 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['singleMask' => '1234', 'multipleMask' => null, 'singleFormattedMask' => null]);
+
+?>
+
 <div>
     <h1>Maskable Input test</h1>
 

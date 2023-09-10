@@ -1,3 +1,17 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['radio' => null]);
+
+rules(['radio' => 'required'])->messages([
+    'radio.required' => 'select one',
+]);
+
+$validateRadio = fn() => $this->validate();
+
+?>
+
 <div>
     <h1>Radio Test</h1>
 

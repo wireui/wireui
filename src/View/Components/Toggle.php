@@ -4,12 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupIcon, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
 
 class Toggle extends BaseComponent
 {
     use HasSetupColor;
+    use HasSetupForm;
     use HasSetupIcon;
     use HasSetupRounded;
     use HasSetupSize;

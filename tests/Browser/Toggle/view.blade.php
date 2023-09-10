@@ -1,3 +1,17 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['toggle' => false]);
+
+rules(['toggle' => 'accepted'])->messages([
+    'toggle.accepted' => 'accept it',
+]);
+
+$validateToggle = fn() => $this->validate();
+
+?>
+
 <div>
     <h1>Toggle test</h1>
 

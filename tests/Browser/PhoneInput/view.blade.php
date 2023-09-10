@@ -1,3 +1,11 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['phone' => null, 'customPhone' => null]);
+
+?>
+
 <div>
     <h1>Phone Input test</h1>
 

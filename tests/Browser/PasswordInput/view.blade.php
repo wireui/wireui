@@ -1,3 +1,19 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['password' => null]);
+
+rules(['password' => 'required'])->messages([
+    'password.required' => 'input cant be empty',
+]);
+
+$validateInput = fn() => $this->validate();
+
+$resetInputValidation = fn() => $this->resetValidation();
+
+?>
+
 <div>
     <h1>Password Input test</h1>
 
