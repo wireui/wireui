@@ -8,9 +8,9 @@ use WireUi\WireUi\Link\{Colors, Sizes, Underlines};
 
 class Link extends BaseComponent
 {
-    use HasSetupSize;
-    use HasSetupColor;
     use HasSetupButton;
+    use HasSetupColor;
+    use HasSetupSize;
     use HasSetupUnderline;
 
     public function __construct(

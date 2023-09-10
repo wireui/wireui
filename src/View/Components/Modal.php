@@ -8,10 +8,10 @@ use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
 class Modal extends BaseComponent
 {
-    use HasSetupBlur;
-    use HasSetupType;
     use HasSetupAlign;
+    use HasSetupBlur;
     use HasSetupMaxWidth;
+    use HasSetupType;
 
     public function __construct(
         public bool $show = false,

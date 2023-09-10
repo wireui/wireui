@@ -8,10 +8,10 @@ use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
 
 class Toggle extends BaseComponent
 {
-    use HasSetupIcon;
-    use HasSetupSize;
     use HasSetupColor;
+    use HasSetupIcon;
     use HasSetupRounded;
+    use HasSetupSize;
 
     public function __construct(
         public ?string $label = null,

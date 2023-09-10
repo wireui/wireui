@@ -8,12 +8,12 @@ use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
 
 class Avatar extends BaseComponent
 {
-    use HasSetupSize;
-    use HasSetupIcon;
-    use HasSetupColor;
     use HasSetupBorder;
-    use HasSetupRounded;
+    use HasSetupColor;
+    use HasSetupIcon;
     use HasSetupIconSize;
+    use HasSetupRounded;
+    use HasSetupSize;
 
     public function __construct(
         public ?string $src = null,

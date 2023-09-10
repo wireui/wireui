@@ -9,9 +9,9 @@ use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
 class Card extends BaseComponent
 {
     use HasSetupColor;
-    use HasSetupShadow;
     use HasSetupPadding;
     use HasSetupRounded;
+    use HasSetupShadow;
 
     public function __construct(
         public ?string $title = null,

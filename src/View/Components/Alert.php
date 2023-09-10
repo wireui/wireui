@@ -8,11 +8,11 @@ use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
 class Alert extends BaseComponent
 {
-    use HasSetupIcon;
     use HasSetupColor;
-    use HasSetupShadow;
+    use HasSetupIcon;
     use HasSetupPadding;
     use HasSetupRounded;
+    use HasSetupShadow;
     use HasSetupVariant;
 
     public function __construct(
