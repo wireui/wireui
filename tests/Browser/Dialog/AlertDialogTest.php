@@ -18,7 +18,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     icon: "{$icon}",
@@ -43,7 +43,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('showDialog', { options: {
                     icon: "{$icon}",
@@ -67,7 +67,7 @@ class AlertDialogTest extends BrowserTestCase
         string $description,
     ) {
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     id: 'custom',
@@ -89,7 +89,7 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $title = 'Autoclosing...';
 
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                     window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
                 EOT))
@@ -104,7 +104,7 @@ class AlertDialogTest extends BrowserTestCase
     public function it_should_call_callable_events_actions()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $this->showDialog($browser))
                 ->pause(400)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT

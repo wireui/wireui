@@ -11,7 +11,7 @@ class ConfirmDialogTest extends BrowserTestCase
     public function it_should_perform_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
                 ->pause(200)
                 ->assertSee('This is a title')
@@ -30,7 +30,7 @@ class ConfirmDialogTest extends BrowserTestCase
     public function it_should_prevent_twice_calls_on_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Dialog.view')
                 ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
 
                 ->waitForText($title = 'This is a title')
