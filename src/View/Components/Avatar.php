@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
@@ -64,8 +65,8 @@ class Avatar extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.avatar';
+        return view('wireui::components.avatar');
     }
 }

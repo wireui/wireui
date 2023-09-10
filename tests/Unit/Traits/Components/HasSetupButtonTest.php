@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Traits\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Traits\Components\HasSetupButton;
 use WireUi\View\Components\BaseComponent;
@@ -16,13 +17,9 @@ class Button extends BaseComponent
         $this->componentName = 'button';
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return <<<EOT
-        <div>
-            <h1>MockComponent</h1>
-        </div>
-        EOT;
+        return view('test');
     }
 }
 

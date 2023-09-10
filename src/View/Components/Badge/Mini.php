@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components\Badge;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
@@ -44,8 +45,8 @@ class Mini extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.badge.mini';
+        return view('wireui::components.badge.mini');
     }
 }

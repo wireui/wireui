@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
 use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
@@ -78,8 +79,8 @@ class Card extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.card';
+        return view('wireui::components.card');
     }
 }

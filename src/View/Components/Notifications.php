@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupPosition;
 use WireUi\WireUi\Notification\Positions;
@@ -27,8 +28,8 @@ class Notifications extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.notifications';
+        return view('wireui::components.notifications');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Traits\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Traits\Components\HasSetupIcon;
 use WireUi\View\Components\BaseComponent;
@@ -15,13 +16,9 @@ class Icon extends BaseComponent
         $this->componentName = 'icon';
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return <<<EOT
-        <div>
-            <h1>MockComponent</h1>
-        </div>
-        EOT;
+        return view('test');
     }
 }
 

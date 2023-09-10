@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Traits\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupUnderline;
@@ -16,13 +17,9 @@ class Underline extends BaseComponent
         $this->componentName = 'underline';
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return <<<EOT
-        <div>
-            <h1>MockComponent</h1>
-        </div>
-        EOT;
+        return view('test');
     }
 }
 

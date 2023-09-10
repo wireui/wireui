@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Traits\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupBlur;
@@ -16,13 +17,9 @@ class Blur extends BaseComponent
         $this->componentName = 'blur';
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return <<<EOT
-        <div>
-            <h1>MockComponent</h1>
-        </div>
-        EOT;
+        return view('test');
     }
 }
 

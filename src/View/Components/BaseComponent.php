@@ -3,6 +3,7 @@
 namespace WireUi\View\Components;
 
 use Closure;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
 use Illuminate\View\{Component, ComponentAttributeBag};
 use WireUi\Facades\WireUi;
@@ -21,12 +22,12 @@ abstract class BaseComponent extends Component
         $this->config = WireUi::components()->resolveByAlias($this->componentName);
     }
 
-    abstract protected function getView(): string;
+    abstract protected function blade(): View;
 
     public function render(): Closure
     {
         return function (array $data) {
-            return view($this->getView(), $this->executeBaseComponent($data))->render();
+            return $this->blade()->with($this->executeBaseComponent($data))->render();
         };
     }
 
