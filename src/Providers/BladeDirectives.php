@@ -46,6 +46,10 @@ class BladeDirectives
             return WireUiDirectives::styles();
         });
 
+        Blade::directive('attributes', static function ($attributes): string {
+            return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
+        });
+
         Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {
             if (!$attributes) {
                 $attributes = '[]';

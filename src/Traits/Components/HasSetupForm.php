@@ -19,7 +19,7 @@ trait HasSetupForm
         }
 
         if (!$this->data->has('id') && $model) {
-            $this->data->offsetSet('id', md5($model));
+            $this->data->offsetSet('id', $model);
         }
 
         collect($this->sharedAttributes)->each(function ($attribute) use (&$component) {

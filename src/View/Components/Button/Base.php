@@ -35,8 +35,10 @@ class Base extends BaseComponent
     {
         return Arr::toCssClasses([
             'outline-none inline-flex justify-center items-center group hover:shadow-sm',
-            'transition-all ease-in-out duration-200 focus:ring-2 focus:ring-offset-2',
             'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
+            'group-[.wrapper-prepend-slot]/prepend:rounded-l-[4px]',
+            'transition-all ease-in-out duration-200 focus:ring-2',
+            'group-[.wrapper-append-slot]/append:rounded-r-[4px]',
             'disabled:opacity-80 disabled:cursor-not-allowed',
         ]);
     }

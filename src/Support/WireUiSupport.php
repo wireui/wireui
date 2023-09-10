@@ -2,14 +2,10 @@
 
 namespace WireUi\Support;
 
-<<<<<<<< HEAD:src/WireUi.php
-use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
+use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\{BladeDirectives, ComponentResolver};
 
-class WireUi
-========
 class WireUiSupport
->>>>>>>> 2.x:src/Support/WireUiSupport.php
 {
     public function components(): ComponentResolver
     {
@@ -21,16 +17,13 @@ class WireUiSupport
         return new BladeDirectives();
     }
 
-<<<<<<<< HEAD:src/WireUi.php
-    public function extractAttributes(mixed $property): ComponentAttributeBag
-    {
-        return $property instanceof ComponentSlot
-            ? $property->attributes
-            : new ComponentAttributeBag();
-========
     public function component(string $name): string
     {
         return (new static())->components()->resolve($name);
->>>>>>>> 2.x:src/Support/WireUiSupport.php
+    }
+
+    public function extractAttributes(mixed $property): ComponentAttributeBag
+    {
+        return check_slot($property) ? $property->attributes : new ComponentAttributeBag();
     }
 }
