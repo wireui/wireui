@@ -1,17 +1,16 @@
-@php($invalidated = $invalidated ?: $name && $errors->has($name))
-
 <x-inputs.wrapper
     :id="$id"
     :name="$name"
     :icon="$icon"
     :right-icon="$rightIcon"
-    :validated="$validated && !$invalidated"
     :invalidated="$invalidated"
+    :with-validation-colors="$withValidationColors"
     :disabled="  (bool) $disabled"
     :readonly="  (bool) $readonly"
     :errorless=" (bool) $errorless"
     :borderless="(bool) $borderless"
     :shadowless="(bool) $shadowless"
+    :attributes="$attributes->only('wire:key')"
 >
     @foreach(array_filter([
         'label'       => $label,
@@ -25,5 +24,5 @@
         @slot($key, $value, WireUi::extractAttributes($value)->getAttributes())
     @endforeach
 
-    <x-wireui::inputs.element :attributes="$attributes" />
+    <x-wireui::inputs.element :attributes="$attributes->except('wire:key')" />
 </x-inputs.wrapper>

@@ -18,15 +18,15 @@ class Input extends Component
         public ?string $rightIcon = null,
         public ?string $prefix = null,
         public ?string $suffix = null,
-        public bool $validated = false,
-        public bool $invalidated = false,
+        public ?bool $invalidated = null,
+        public bool $withValidationColors = false,
         public bool $errorless = false,
         public bool $borderless = false,
         public bool $shadowless = false,
     ) {
     }
 
-    public function blade(): View
+    protected function blade(): View
     {
         return view('wireui::components.input');
     }

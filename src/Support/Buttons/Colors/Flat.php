@@ -61,17 +61,6 @@ class Flat extends ColorPack
                     'dark:focus:text-positive-500 dark:focus:bg-positive-600 dark:focus:ring-positive-700',
                 ],
             ),
-            'validated' => new Color(
-                base: 'validated:text-positive-600 validated:dark:text-positive-500/90',
-                hover: [
-                    "{$this->hover} validated:hover:text-positive-700 validated:hover:bg-positive-200",
-                    'validated:dark:hover:text-positive-500 validated:dark:hover:bg-positive-600/20',
-                ],
-                focus: [
-                    "{$this->focus} validated:focus:text-positive-700 validated:focus:bg-positive-200 validated:focus:ring-positive-600",
-                    'validated:dark:focus:text-positive-500 validated:dark:focus:bg-positive-600/20 validated:dark:focus:ring-positive-700',
-                ],
-            ),
             'negative' => new Color(
                 base: 'text-negative-600',
                 hover: [
