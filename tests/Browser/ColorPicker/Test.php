@@ -7,7 +7,7 @@ use Livewire\Features\SupportTesting\Testable;
 use Livewire\Volt\Volt;
 use Tests\Browser\BrowserTestCase;
 
-class LiveTest extends BrowserTestCase
+class Test extends BrowserTestCase
 {
     /** @test */
     public function it_should_toggle_the_colors_dropdown()
@@ -119,5 +119,39 @@ class LiveTest extends BrowserTestCase
         Volt::test('ColorPicker.view')
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IiMxMjMiLCJ2YWx1ZSI6IiMxMjMifSx7Im5hbWUiOiIjNDU2IiwidmFsdWUiOiIjNDU2In1d'))", false)
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))", false);
+    }
+
+    /** @test */
+    public function it_should_type_the_color_value_and_apply_only_when_the_component_loses_the_focus()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, 'ColorPicker.view')
+                ->type('blur', 'FFF')
+                ->pause(500)
+                ->assertInputValue('blur', '#FFF')
+                ->assertSeeIn('@blur', '#00000')
+                ->click('@blur')
+                ->waitForTextIn('@blur', '#FFF')
+                ->assertSeeIn('@blur', '#FFF');
+        });
+    }
+
+    /** @test */
+    public function it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, 'ColorPicker.view')
+                ->type('throttle', 'F')
+                ->pause(100)
+                ->append('throttle', 'F')
+                ->pause(100)
+                ->append('throttle', 'F')
+                ->pause(100)
+                ->assertInputValue('throttle', '#FFF')
+                ->assertSeeIn('@throttle', '#00000')
+                ->pause(500)
+                ->waitForTextIn('@throttle', '#FFF')
+                ->assertSeeIn('@throttle', '#FFF');
+        });
     }
 }
