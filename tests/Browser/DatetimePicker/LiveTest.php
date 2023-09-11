@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests\Browser\DatetimePicker\LiveTest;
+namespace Tests\Browser\DatetimePicker;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
 
-class Test extends BrowserTestCase
+class LiveTest extends BrowserTestCase
 {
     /** @test */
     public function it_should_select_date_without_timezone_difference()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'DatetimePicker.LiveTest.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->assertInputValue('withoutTimezone', '2021-05-22 02:48')
                 ->click('[id="withoutTimezone"]')
                 ->tap(fn () => $this->selectDate($browser, 'withoutTimezone', 5))
@@ -28,7 +28,7 @@ class Test extends BrowserTestCase
         // ref https://www.zeitverschiebung.net/en/timezone/america--sao_paulo
 
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'DatetimePicker.LiveTest.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->assertInputValue('utcTimezone', '2021-07-21 21:30')
                 ->click('[id="utcTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'utcTimezone', 31))
@@ -44,7 +44,7 @@ class Test extends BrowserTestCase
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'DatetimePicker.LiveTest.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->assertInputValue('tokyoTimezone', '2021-07-25 22:00')
                 ->click('[id="tokyoTimezone"] input')
                 ->tap(fn () => $this->selectDate($browser, 'tokyoTimezone', 31))
@@ -60,7 +60,7 @@ class Test extends BrowserTestCase
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'DatetimePicker.LiveTest.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->assertInputValue('customFormat', '29-2021-09 59:13')
                 ->click('[id="customFormat"] input')
                 ->tap(fn () => $this->selectDate($browser, 'customFormat', 10))
@@ -73,7 +73,7 @@ class Test extends BrowserTestCase
     public function it_should_select_date_and_time()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'DatetimePicker.LiveTest.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->assertInputValue('dateAndTime', '25-12-2021 00:00')
                 ->click('[id="dateAndTime"] input')
                 ->tap(fn () => $this->selectDate($browser, 'dateAndTime', 11))

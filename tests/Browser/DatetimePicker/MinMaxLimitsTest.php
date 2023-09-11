@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\DatetimePicker\MinMaxLimits;
+namespace Tests\Browser\DatetimePicker;
 
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
 use Tests\Browser\BrowserTestCase;
 
-class Test extends BrowserTestCase
+class MinMaxLimitsTest extends BrowserTestCase
 {
     /**
      * @test
@@ -17,7 +17,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) use ($disabled, $day, $model, $input) {
             /** @var Browser|Testable $component */
-            $component = $this->visit($browser, 'DatetimePicker.MinMaxLimits.view')
+            $component = $this->visit($browser, 'DatetimePicker.view')
                 ->click('[name="model"]')
                 ->tap(fn () => $browser->assertScript(<<<EOT
                     [...document.querySelectorAll('.picker-days button')]
@@ -42,7 +42,7 @@ class Test extends BrowserTestCase
     public function it_should_select_only_times_inside_the_limit(int $day, string $time, bool $exists)
     {
         $this->browse(function (Browser $browser) use ($day, $time, $exists) {
-            $this->visit($browser, 'DatetimePicker.MinMaxLimits.view')
+            $this->visit($browser, 'DatetimePicker.view')
                 ->click('[name="model"]')
                 ->tap(fn () => $this->selectDate($browser, $day))
                 ->waitUsing(7, 100, fn () => $browser->assertScript(
