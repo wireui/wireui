@@ -30,7 +30,11 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
-                ->assertSelectHasOptions('arrayOptionsModel', Component::ARRAY_OPTIONS);
+                ->assertSelectHasOptions('arrayOptionsModel', [
+                    'Array Option 1',
+                    'Array Option 2',
+                    'Array Option 3',
+                ]);
         });
     }
 
@@ -39,7 +43,11 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
-                ->assertSelectHasOptions('collectionOptionsModel', Component::collectionOptions()->values()->toArray());
+                ->assertSelectHasOptions('collectionOptionsModel', collect([
+                    'Collection Option 1',
+                    'Collection Option 2',
+                    'Collection Option 3',
+                ])->values()->toArray());
         });
     }
 

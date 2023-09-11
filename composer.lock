@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5388b6728a6d38deae99b73e895e1d0",
+    "content-hash": "d6b9f54eaad859f65dfb95c35c11982d",
     "packages": [
         {
             "name": "brick/math",
@@ -6075,16 +6075,16 @@
         },
         {
             "name": "livewire/volt",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/volt.git",
-                "reference": "73e7df2be41ee162fc2ca467a7ef3642ad67321f"
+                "reference": "aea9dc65e608d0609d277b151efd0c8279a16c6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/volt/zipball/73e7df2be41ee162fc2ca467a7ef3642ad67321f",
-                "reference": "73e7df2be41ee162fc2ca467a7ef3642ad67321f",
+                "url": "https://api.github.com/repos/livewire/volt/zipball/aea9dc65e608d0609d277b151efd0c8279a16c6a",
+                "reference": "aea9dc65e608d0609d277b151efd0c8279a16c6a",
                 "shasum": ""
             },
             "require": {
@@ -6143,7 +6143,7 @@
                 "issues": "https://github.com/livewire/volt/issues",
                 "source": "https://github.com/livewire/volt"
             },
-            "time": "2023-08-31T17:16:12+00:00"
+            "time": "2023-09-01T14:06:06+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -10172,5 +10172,5 @@
         "php": "^8.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

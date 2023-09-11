@@ -13,7 +13,7 @@ state([
         'Array Option 2',
         'Array Option 3',
     ],
-    'labelValueOptions' => [
+    'labelOptions' => [
         ['label' => 'Label Option 1', 'value' => 1],
         ['label' => 'Label Option 2', 'value' => 2],
         ['label' => 'Label Option 3', 'value' => 3],
@@ -65,7 +65,7 @@ $resetInputValidation = fn() => $this->resetValidation();
         wire:model.live="arrayWithLabelAndValueKeys"
         option-label="label"
         option-value="value"
-        :options="$labelValueOptions"
+        :options="$labelOptions"
     />
 
     // test it_should_render_select_with_give_array_options_using_key_as_value
