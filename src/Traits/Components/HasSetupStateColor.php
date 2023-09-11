@@ -82,6 +82,6 @@ trait HasSetupStateColor
             $this->colorClasses[$modifier] = data_get($colorPack->get($modifierColor), $modifier);
         }
 
-        $this->smart($attribute->directive());
+        $this->smartAttributes($attribute->directive());
     }
 }

@@ -68,13 +68,13 @@ abstract class BaseComponent extends Component
     protected function getData(string $attribute, callable $callback = null): mixed
     {
         if ($this->data->has($kebab = Str::kebab($attribute))) {
-            $this->smart($kebab);
+            $this->smartAttributes($kebab);
 
             return $this->data->get($kebab);
         }
 
         if ($this->data->has($camel = Str::camel($attribute))) {
-            $this->smart($camel);
+            $this->smartAttributes($camel);
 
             return $this->data->get($camel);
         }
@@ -88,7 +88,7 @@ abstract class BaseComponent extends Component
     {
         $value = $this->data->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
 
-        $this->smart([$attribute, ...$dataPack->keys()]);
+        $this->smartAttributes([$attribute, ...$dataPack->keys()]);
 
         return $value ?? config("wireui.{$this->config}.{$attribute}");
     }
@@ -100,7 +100,7 @@ abstract class BaseComponent extends Component
         }
     }
 
-    protected function smart(mixed $attributes): void
+    protected function smartAttributes(mixed $attributes): void
     {
         collect(Arr::wrap($attributes))->filter()->each(
             fn ($value) => $this->smartAttributes[] = $value,
