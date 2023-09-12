@@ -11,8 +11,6 @@ class BladeCompiler
 {
     public function compile(string $html, array $data = []): string
     {
-        Blade::setPath(__DIR__ . '/../resources/views');
-
         $safeHtml = (new SafeEval())->evaluate($html);
 
         $blade = Blade::compileString($safeHtml);

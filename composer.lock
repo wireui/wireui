@@ -6075,16 +6075,16 @@
         },
         {
             "name": "livewire/volt",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/volt.git",
-                "reference": "aea9dc65e608d0609d277b151efd0c8279a16c6a"
+                "reference": "284a60def2f2b1c8390acfd34e967ba75b5d5081"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/volt/zipball/aea9dc65e608d0609d277b151efd0c8279a16c6a",
-                "reference": "aea9dc65e608d0609d277b151efd0c8279a16c6a",
+                "url": "https://api.github.com/repos/livewire/volt/zipball/284a60def2f2b1c8390acfd34e967ba75b5d5081",
+                "reference": "284a60def2f2b1c8390acfd34e967ba75b5d5081",
                 "shasum": ""
             },
             "require": {
@@ -6143,7 +6143,7 @@
                 "issues": "https://github.com/livewire/volt/issues",
                 "source": "https://github.com/livewire/volt"
             },
-            "time": "2023-09-01T14:06:06+00:00"
+            "time": "2023-09-11T13:57:14+00:00"
         },
         {
             "name": "mockery/mockery",
