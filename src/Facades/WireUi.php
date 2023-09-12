@@ -68,7 +68,7 @@ class WireUi extends Facade
                 'alias' => 'dialog',
             ],
             'dropdown' => [
-                'class' => Components\Dropdown\Index::class,
+                'class' => Components\Dropdown\Base::class,
                 'alias' => 'dropdown',
             ],
             'dropdown-item' => [

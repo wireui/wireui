@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_start_input_with_formatted_value()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'MaskableInput.view')
                 ->assertSeeIn('@singleMaskValue', '1234')
                 ->assertInputValue('singleMask', '12.34');
         });
@@ -21,7 +21,7 @@ class Test extends BrowserTestCase
     public function it_should_type_input_value_and_emit_formatted_value()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'MaskableInput.view')
                 ->type('singleFormattedMask', '3245ABCD')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
@@ -35,7 +35,7 @@ class Test extends BrowserTestCase
     public function it_should_type_input_value_and_apply_multiples_masks()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'MaskableInput.view')
                 ->type('multipleMask', '9876')
                 ->waitForTextIn('@multipleMaskValue', '98.76')
                 ->type('multipleMask', '987662')

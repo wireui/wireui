@@ -13,7 +13,7 @@
         "php": "^8.2",
         "laravel/framework": "^10.0",
         "livewire/livewire": "^3.0",
-        "wireui/heroicons": "^2.4"
+        "wireui/heroicons": "^2.3"
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
@@ -21,11 +21,11 @@
         "orchestra/testbench": "^8.0",
         "orchestra/testbench-dusk": "^8.0",
         "psy/psysh": "^0.11.12",
-        "pestphp/pest": "^2.13",
+        "pestphp/pest": "^2.16",
         "pestphp/pest-plugin-livewire": "^2.1",
-        "pestphp/pest-plugin-mock": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
-        "laravel/pint": "^1.10"
+        "laravel/pint": "^1.10",
+        "livewire/volt": "^1.3"
     },
     "authors": [
         {

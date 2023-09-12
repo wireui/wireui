@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
 use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
@@ -57,8 +58,8 @@ class Modal extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.modal';
+        return view('wireui::components.modal');
     }
 }

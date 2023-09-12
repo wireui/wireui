@@ -4,7 +4,7 @@ namespace Tests\Browser\ColorPicker;
 
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
-use Livewire\Livewire;
+use Livewire\Volt\Volt;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -14,7 +14,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -33,7 +33,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -52,7 +52,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.view');
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
@@ -83,7 +83,7 @@ class Test extends BrowserTestCase
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
-            $testable = $this->visit($browser, Component::class);
+            $testable = $this->visit($browser, 'ColorPicker.view');
 
             $testable
                 ->clear('color-picker')
@@ -99,7 +99,7 @@ class Test extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_input_element()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.view')
                 ->assertInputValue('color-picker', '#123');
         });
     }
@@ -108,7 +108,7 @@ class Test extends BrowserTestCase
     public function it_should_auto_fill_the_color_from_wire_model()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ColorPicker.view')
                 ->assertInputValue('color-picker-wire', '#001');
         });
     }
@@ -116,8 +116,42 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_pass_the_colors_to_js_component()
     {
-        Livewire::test(Component::class)
+        Volt::test('ColorPicker.view')
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IiMxMjMiLCJ2YWx1ZSI6IiMxMjMifSx7Im5hbWUiOiIjNDU2IiwidmFsdWUiOiIjNDU2In1d'))", false)
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))", false);
+    }
+
+    /** @test */
+    public function it_should_type_the_color_value_and_apply_only_when_the_component_loses_the_focus()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, 'ColorPicker.view')
+                ->type('blur', 'FFF')
+                ->pause(500)
+                ->assertInputValue('blur', '#FFF')
+                ->assertSeeIn('@blur', '#00000')
+                ->click('@blur')
+                ->waitForTextIn('@blur', '#FFF')
+                ->assertSeeIn('@blur', '#FFF');
+        });
+    }
+
+    /** @test */
+    public function it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
+    {
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, 'ColorPicker.view')
+                ->type('throttle', 'F')
+                ->pause(100)
+                ->append('throttle', 'F')
+                ->pause(100)
+                ->append('throttle', 'F')
+                ->pause(100)
+                ->assertInputValue('throttle', '#FFF')
+                ->assertSeeIn('@throttle', '#00000')
+                ->pause(500)
+                ->waitForTextIn('@throttle', '#FFF')
+                ->assertSeeIn('@throttle', '#FFF');
+        });
     }
 }

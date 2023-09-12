@@ -8,7 +8,7 @@ export type Refs = PositioningRefs & {
 }
 
 export type Config = {
-  isLazy: boolean
+  isBlur: boolean
   interval: number
   format: string
   is12H: boolean

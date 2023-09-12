@@ -69,9 +69,9 @@ class Dialog
     {
         $options['icon'] ??= Actions::INFO->value;
 
-        $this->component->dispatchBrowserEvent("wireui:{$this->getEventName()}", [
+        $this->component->dispatch("wireui:{$this->getEventName()}", [
             'options'     => $options,
-            'componentId' => $this->component->id,
+            'componentId' => $this->component->getId(),
         ]);
     }
 
@@ -79,9 +79,9 @@ class Dialog
     {
         $options['icon'] ??= Actions::QUESTION->value;
 
-        $this->component->dispatchBrowserEvent("wireui:confirm-{$this->getEventName()}", [
+        $this->component->dispatch("wireui:confirm-{$this->getEventName()}", [
             'options'     => $options,
-            'componentId' => $this->component->id,
+            'componentId' => $this->component->getId(),
         ]);
     }
 }

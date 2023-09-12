@@ -45,10 +45,10 @@ trait HasSetupRounded
         $fullRounded = $this->rounded && is_bool($this->rounded);
 
         $this->roundedClasses = match (true) {
-            $this->squared => $roundedPack->get('none'),
-            $fullRounded   => $roundedPack->get('full'),
-            $this->rounded => $roundedPack->get($this->rounded),
-            default        => $roundedPack->get($config),
+            (bool) $this->squared => $roundedPack->get('none'),
+            (bool) $fullRounded   => $roundedPack->get('full'),
+            (bool) $this->rounded => $roundedPack->get($this->rounded),
+            default               => $roundedPack->get($config),
         };
     }
 }

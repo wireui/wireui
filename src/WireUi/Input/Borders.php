@@ -8,13 +8,13 @@ class Borders extends ComponentPack
 {
     protected function default(): string
     {
-        return '';
+        return 'base';
     }
 
     public function all(): array
     {
         return [
-            //
+            'base' => 'border',
         ];
     }
 }

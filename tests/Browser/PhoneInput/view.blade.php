@@ -1,3 +1,11 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['phone' => null, 'customPhone' => null]);
+
+?>
+
 <div>
     <h1>Phone Input test</h1>
 
@@ -5,7 +13,7 @@
     <span dusk="phone">{{ $phone }}</span>
     <x-inputs.phone
         label="Phone"
-        wire:model="phone"
+        wire:model.live="phone"
         emit-formatted
    />
 
@@ -13,7 +21,7 @@
     <span dusk="customPhone">{{ $customPhone }}</span>
     <x-inputs.phone
         label="Custom Phone"
-        wire:model="customPhone"
+        wire:model.live="customPhone"
         mask="['(##) ####-####', '(##) #####-####']"
         emit-formatted
    />

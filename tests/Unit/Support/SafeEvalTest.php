@@ -2,61 +2,53 @@
 
 namespace Tests\Unit\Support;
 
-use Tests\Unit\TestCase;
 use WireUi\Support\SafeEval;
 
-class SafeEvalTest extends TestCase
-{
-    /** @test */
-    public function it_should_assert_directives_regex_matches()
-    {
-        $blade = '
-        <div>
-            @if(true) @endif
-            @directive()
-            @once
-        </div>
-        ';
+test('it should assert directives regex matches', function () {
+    $blade = '
+    <div>
+        @if(true) @endif
+        @directive()
+        @once
+    </div>
+    ';
 
-        $matches = [];
+    $matches = [];
 
-        preg_match_all(SafeEval::DIRECTIVES_REGEX, $blade, $matches);
+    preg_match_all(SafeEval::DIRECTIVES_REGEX, $blade, $matches);
 
-        $this->assertCount(4, $matches[0]);
-    }
+    $this->assertCount(4, $matches[0]);
+});
 
-    /** @test */
-    public function it_should_assert_safe_eval_removes_risk_content()
-    {
-        $html = '
-            {{{ $variable }}}
-            {{ $variable }}
-            {!! $variable !!}
-            <?php echo "text"; ?>
-            <?= "text" ?>
-            <? echo "text" ?>
+test('it_should_assert_safe_eval_removes_risk_content', function () {
+    $html = '
+        {{{ $variable }}}
+        {{ $variable }}
+        {!! $variable !!}
+        <?php echo "text"; ?>
+        <?= "text" ?>
+        <? echo "text" ?>
 
-            @directive() @endDirective
-            @directive($first, $second) @endDirective
-            @directive() inside content @endDirective @endDirective
-            @once
-        ';
+        @directive() @endDirective
+        @directive($first, $second) @endDirective
+        @directive() inside content @endDirective @endDirective
+        @once
+    ';
 
-        $escaped = (new SafeEval())->evaluate($html);
+    $escaped = (new SafeEval())->evaluate($html);
 
-        $this->assertStringNotContainsString('{{{ $variable }}}', $escaped);
-        $this->assertStringNotContainsString('{{ $variable }}', $escaped);
-        $this->assertStringNotContainsString('{!! $variable !!}', $escaped);
-        $this->assertStringNotContainsString('<?php echo "text"; ?>', $escaped);
-        $this->assertStringNotContainsString('<?= "text" ?>', $escaped);
-        $this->assertStringNotContainsString('@directive($first, $second) @endDirective', $escaped);
-        $this->assertStringNotContainsString('@directive() inside content @endDirective @endDirective', $escaped);
-        $this->assertStringNotContainsString('@once', $escaped);
+    expect($escaped)->not->toContain('{{{ $variable }}}');
+    expect($escaped)->not->toContain('{{ $variable }}');
+    expect($escaped)->not->toContain('{!! $variable !!}');
+    expect($escaped)->not->toContain('<?php echo "text"; ?>');
+    expect($escaped)->not->toContain('<?= "text" ?>');
+    expect($escaped)->not->toContain('@directive($first, $second) @endDirective');
+    expect($escaped)->not->toContain('@directive() inside content @endDirective @endDirective');
+    expect($escaped)->not->toContain('@once');
 
-        $this->assertStringContainsString('$variable', $escaped);
-        $this->assertStringContainsString('echo "text";', $escaped);
-        $this->assertStringContainsString('"text"', $escaped);
-        $this->assertStringContainsString('echo "text"', $escaped);
-        $this->assertStringContainsString('inside content', $escaped);
-    }
-}
+    expect($escaped)->toContain('$variable');
+    expect($escaped)->toContain('echo "text";');
+    expect($escaped)->toContain('"text"');
+    expect($escaped)->toContain('echo "text"');
+    expect($escaped)->toContain('inside content');
+});

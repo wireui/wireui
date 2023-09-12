@@ -3,7 +3,7 @@
 
     @if ($attributes->wire('model')->value())
         wireModifiers: @toJs($attributes->wireModifiers()),
-        wireModel: @entangle($attributes->wire('model')),
+        wireModel: @entangleable($attributes->wire('model')),
     @endif
 
     @if ($colors)

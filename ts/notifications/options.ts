@@ -20,7 +20,7 @@ export interface Options {
 
 export interface ConfirmationOptions extends Options {
   method?: string
-  emit?: string
+  dispatch?: string
   to?: string
   params?: any
   accept?: ActionOptions

@@ -3,7 +3,7 @@
 namespace Tests\Browser\PasswordInput;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
+use Livewire\Volt\Volt;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_label_and_corner_hint()
     {
-        Livewire::test(Component::class)
+        Volt::test('PasswordInput.view')
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
@@ -19,7 +19,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_hint_and_prefix_and_not_see_suffix()
     {
-        Livewire::test(Component::class)
+        Volt::test('PasswordInput.view')
             ->assertSee('Hint 1')
             ->assertSee('Prefix 1')
             ->assertDontSee('Suffix 1');
@@ -28,7 +28,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_not_see_prepend_and_append_slots()
     {
-        Livewire::test(Component::class)
+        Volt::test('PasswordInput.view')
             ->assertSee('prepend 1')
             ->assertDontSee('append 1')
             ->assertDontSeeHtml('<a>prepend 1</a>')
@@ -38,7 +38,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots()
     {
-        Livewire::test(Component::class)
+        Volt::test('PasswordInput.view')
             ->assertSee('prefix 2')
             ->assertDontSee('suffix 2')
             ->assertDontSeeHtml('<a>prepend 2</a>')
@@ -48,7 +48,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_input_error()
     {
-        Livewire::test(Component::class)
+        Volt::test('PasswordInput.view')
             ->call('validateInput')
             ->assertSee('input cant be empty')
             ->call('resetInputValidation')
@@ -59,7 +59,7 @@ class Test extends BrowserTestCase
     public function it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'PasswordInput.view')
                 ->type('password', 'password')
                 ->waitForTextIn('@password-value', 'password');
         });
@@ -69,7 +69,7 @@ class Test extends BrowserTestCase
     public function it_should_change_the_input_type_when_clicking_on_the_view_password_icon()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'PasswordInput.view')
                 ->assertSee('Show Password')
                 ->assertAttribute('input[name="show-password"]', 'type', 'password')
                 ->assertInputValue('show-password', '')

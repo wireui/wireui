@@ -2,21 +2,15 @@
 
 namespace Tests\Browser\Badge;
 
-use Livewire\Livewire;
-use Tests\Browser\BrowserTestCase;
+use Livewire\Volt\Volt;
 
-class Test extends BrowserTestCase
-{
-    /** @test */
-    public function it_should_render_badges_without_errors(): void
-    {
-        Livewire::test(BadgeComponent::class)
-            ->assertSee('Label')
-            ->assertSee('Primary')
-            ->assertSee('Secondary')
-            ->assertSee('Positive')
-            ->assertSee('Negative')
-            ->assertSee('Info')
-            ->assertSee('Dark');
-    }
-}
+test('it should render badges without errors', function () {
+    Volt::test('Badge.view')
+        ->assertSee('Label')
+        ->assertSee('Primary')
+        ->assertSee('Secondary')
+        ->assertSee('Positive')
+        ->assertSee('Negative')
+        ->assertSee('Info')
+        ->assertSee('Dark');
+});
