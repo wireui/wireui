@@ -27,11 +27,11 @@ class Toggle extends BaseComponent
 
     public function backgroundClasses(bool $hasError): string
     {
-        $default = <<<EOT
-            block rounded-full cursor-pointer transition ease-in-out duration-100
-            peer-focus:ring-2 peer-focus:ring-offset-2
-            group-focus:ring-2 group-focus:ring-offset-2
-        EOT;
+        $default = Arr::toCssClasses([
+            'block rounded-full cursor-pointer transition ease-in-out duration-100',
+            'peer-focus:ring-2 peer-focus:ring-offset-2',
+            'group-focus:ring-2 group-focus:ring-offset-2',
+        ]);
 
         return Arr::toCssClasses([
             data_get($this->sizeClasses, 'background', ''),

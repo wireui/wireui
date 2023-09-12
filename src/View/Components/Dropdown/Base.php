@@ -5,7 +5,7 @@ namespace WireUi\View\Components\Dropdown;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Index extends Component
+class Base extends Component
 {
     public const DEFAULT_ALIGN = 'right';
 
