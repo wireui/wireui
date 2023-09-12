@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str, ViewErrorBag};
 
 class Errors extends BaseComponent
@@ -53,8 +54,8 @@ class Errors extends BaseComponent
         return Str::replace('{errors}', $this->count($errors), $title);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.errors';
+        return view('wireui::components.errors');
     }
 }

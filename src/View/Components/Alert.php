@@ -2,17 +2,18 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
 use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
 class Alert extends BaseComponent
 {
-    use HasSetupIcon;
     use HasSetupColor;
-    use HasSetupShadow;
+    use HasSetupIcon;
     use HasSetupPadding;
     use HasSetupRounded;
+    use HasSetupShadow;
     use HasSetupVariant;
 
     public function __construct(
@@ -80,8 +81,8 @@ class Alert extends BaseComponent
         return Arr::toCssClasses(['mt-2 pt-2']);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.alert';
+        return view('wireui::components.alert');
     }
 }

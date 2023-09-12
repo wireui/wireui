@@ -1,3 +1,11 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['singleMask' => '1234', 'multipleMask' => null, 'singleFormattedMask' => null]);
+
+?>
+
 <div>
     <h1>Maskable Input test</h1>
 
@@ -6,7 +14,7 @@
     <x-inputs.maskable
         label="Maskable"
         mask="##.##"
-        wire:model="singleMask"
+        wire:model.live="singleMask"
     />
 
     // test it_should_type_input_value_and_emit_formatted_value
@@ -14,7 +22,7 @@
     <x-inputs.maskable
         label="Maskable"
         mask="##.##.SS"
-        wire:model="singleFormattedMask"
+        wire:model.live="singleFormattedMask"
         emit-formatted
     />
 
@@ -23,7 +31,7 @@
     <x-inputs.maskable
         label="Maskable"
         mask="['##.##', '##.##.##', '##.##.###']"
-        wire:model="multipleMask"
+        wire:model.live="multipleMask"
         emit-formatted
     />
 </div>

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" backupStaticAttributes="false" colors="true" verbose="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-    <coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.3/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+    <coverage/>
+
+    <source>
         <include>
             <directory suffix=".php">src/</directory>
         </include>
 
         <exclude>
-            <directory suffix=".blade.php">src/resources/views/</directory>
-            <directory suffix=".php">src/lang/</directory>
             <file>src/config.php</file>
+            <directory suffix=".php">src/lang/</directory>
+            <directory suffix=".php">src/WireUi/</directory>
+            <directory suffix=".blade.php">src/resources/views/</directory>
         </exclude>
-    </coverage>
+    </source>
 
     <testsuites>
         <testsuite name="Unit">

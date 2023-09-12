@@ -3,92 +3,65 @@
 namespace Tests\Unit\View\Compilers;
 
 use Illuminate\Support\Facades\Blade;
-use Tests\Unit\TestCase;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\BladeDirectives;
 use WireUi\View\Compilers\WireUiTagCompiler;
 
-class WireUiTagCompilerTest extends TestCase
-{
-    /** @test */
-    public function it_should_match_scripts_and_styles_tags()
-    {
-        $compiler = resolve(WireUiTagCompiler::class);
+test('it should match scripts and styles tags', function () {
+    $compiler = resolve(WireUiTagCompiler::class);
 
-        $scripts = $compiler->compile('<wireui:scripts />');
-        $this->assertEquals(WireUiDirectives::scripts(), $scripts);
+    $scripts = $compiler->compile('<wireui:scripts />');
+    expect($scripts)->toBe(WireUiDirectives::scripts());
 
-        $scripts = $compiler->compile('<wireui:scripts/>');
-        $this->assertEquals(WireUiDirectives::scripts(), $scripts);
+    $scripts = $compiler->compile('<wireui:scripts/>');
+    expect($scripts)->toBe(WireUiDirectives::scripts());
 
-        $styles = $compiler->compile('<wireui:styles />');
-        $this->assertEquals(WireUiDirectives::styles(), $styles);
+    $styles = $compiler->compile('<wireui:styles />');
+    expect($styles)->toBe(WireUiDirectives::styles());
 
-        $styles = $compiler->compile('<wireui:styles/>');
-        $this->assertEquals(WireUiDirectives::styles(), $styles);
+    $styles = $compiler->compile('<wireui:styles/>');
+    expect($styles)->toBe(WireUiDirectives::styles());
+});
+
+test('it dont have matches', function () {
+    $compiler = resolve(WireUiTagCompiler::class);
+
+    $foo = $compiler->compile('<wireui:foo />');
+    expect($foo)->toBe('<wireui:foo />');
+
+    $bar = $compiler->compile('<wireui:bar />');
+    expect($bar)->toBe('<wireui:bar />');
+});
+
+test('it should match rendered scripts link', function () {
+    $bladeDirectives = new BladeDirectives();
+    $hooksScript     = $bladeDirectives->hooksScript();
+    $wireuiScript    = '<script src="/wireui/assets/scripts" defer ></script>';
+
+    if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
+        $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
     }
 
-    /** @test */
-    public function it_dont_have_matches()
-    {
-        $compiler = resolve(WireUiTagCompiler::class);
+    $scripts = $bladeDirectives->scripts($absolute = false);
 
-        $foo = $compiler->compile('<wireui:foo />');
-        $this->assertEquals($foo, '<wireui:foo />');
+    expect($scripts)->toContain($hooksScript);
+    expect($scripts)->toContain($wireuiScript);
+});
 
-        $bar = $compiler->compile('<wireui:bar />');
-        $this->assertEquals($bar, '<wireui:bar />');
+test('it should match rendered styles link', function () {
+    $bladeDirectives = new BladeDirectives();
+    $expected        = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
+
+    if ($version = $bladeDirectives->getManifestVersion('wireui.css')) {
+        $expected = str_replace('assets/styles', "assets/styles?id={$version}", $expected);
     }
 
-    /** @test */
-    public function it_should_match_rendered_scripts_link()
-    {
-        $bladeDirectives = new BladeDirectives();
-        $hooksScript     = $bladeDirectives->hooksScript();
-        $wireuiScript    = '<script src="/wireui/assets/scripts" defer ></script>';
+    expect($bladeDirectives->styles($absolute = false))->toBe($expected);
+});
 
-        if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
-            $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
-        }
+test('it should render all wireui scripts variation', function (string $text) {
+    $html = Blade::render($text);
 
-        $scripts = $bladeDirectives->scripts($absolute = false);
-
-        $this->assertStringContainsString($hooksScript, $scripts);
-        $this->assertStringContainsString($wireuiScript, $scripts);
-    }
-
-    /** @test */
-    public function it_should_match_rendered_styles_link()
-    {
-        $bladeDirectives = new BladeDirectives();
-        $expected        = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
-
-        if ($version = $bladeDirectives->getManifestVersion('wireui.css')) {
-            $expected = str_replace('assets/styles', "assets/styles?id={$version}", $expected);
-        }
-
-        $this->assertEquals($expected, $bladeDirectives->styles($absolute = false));
-    }
-
-    /**
-     * @dataProvider scriptsTagProvider
-     */
-    public function test_it_should_render_all_wireui_scripts_variation(string $text)
-    {
-        $html = Blade::render($text);
-
-        $this->assertStringContainsString('<script src="', $html);
-        $this->assertStringContainsString('/wireui/assets/scripts', $html);
-    }
-
-    public function scriptsTagProvider(): array
-    {
-        return [
-            ['@wireUiScripts'],
-            ['@wireUiScripts()'],
-            ['@wireUiScripts([])'],
-            ["@wireUiScripts(['foo' => 'bar'])"],
-            ['<wireui:scripts />'],
-        ];
-    }
-}
+    expect($html)->toContain('<script src="');
+    expect($html)->toContain('/wireui/assets/scripts');
+})->with('wireui::scripts');

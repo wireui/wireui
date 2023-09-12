@@ -2,16 +2,17 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
 
 class Radio extends BaseComponent
 {
-    use HasSetupForm;
-    use HasSetupSize;
     use HasSetupColor;
+    use HasSetupForm;
     use HasSetupRounded;
+    use HasSetupSize;
 
     public function __construct(
         public ?string $label = null,
@@ -57,8 +58,8 @@ class Radio extends BaseComponent
         ]);
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.radio';
+        return view('wireui::components.radio');
     }
 }

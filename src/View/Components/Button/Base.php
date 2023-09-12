@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components\Button;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\BaseComponent;
@@ -10,15 +11,15 @@ use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
 
 class Base extends BaseComponent
 {
-    use HasSetupIcon;
-    use HasSetupSize;
-    use HasSetupColor;
     use HasSetupButton;
-    use HasSetupRounded;
-    use HasSetupSpinner;
-    use HasSetupVariant;
+    use HasSetupColor;
+    use HasSetupIcon;
     use HasSetupIconSize;
+    use HasSetupRounded;
+    use HasSetupSize;
+    use HasSetupSpinner;
     use HasSetupStateColor;
+    use HasSetupVariant;
 
     public function __construct(
         public bool $full = false,
@@ -62,8 +63,8 @@ class Base extends BaseComponent
         ]);
     }
 
-    public function getView(): string
+    public function blade(): View
     {
-        return 'wireui::components.button.base';
+        return view('wireui::components.button.base');
     }
 }

@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_show_validation_message()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->click('@validate')
                 ->waitUsing(7, 100, fn () => $browser->assertSee('Select any value'));
         });
@@ -21,7 +21,7 @@ class Test extends BrowserTestCase
     public function it_should_select_one_option_from_simples_options_list()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model"]').click();
                 JS))
@@ -43,7 +43,7 @@ class Test extends BrowserTestCase
     public function it_should_select_one_option_from_labeled_options_list()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('[name="wireui.select.options.model2"]', 'Label Option 2'))
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -63,7 +63,7 @@ class Test extends BrowserTestCase
     public function it_should_select_and_unselect_multiples_options()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model3"]').click();
                 JS))
@@ -90,7 +90,7 @@ class Test extends BrowserTestCase
     public function it_should_select_from_slot_list()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model4"]').click();
                 JS))
@@ -108,7 +108,7 @@ class Test extends BrowserTestCase
     public function it_should_cannot_select_readonly_and_disabled_options()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->tap(fn (Browser $browser) => $browser->script(<<<JS
                     document.querySelector('input[name="model5"]').click();
                 JS))
@@ -130,7 +130,7 @@ class Test extends BrowserTestCase
     public function it_should_load_and_search_options_from_the_api()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->openSelect('asyncModel')
                 ->waitUsing(7, 100, fn () => $browser->assertSee('Pedro'))
                 ->wireuiSelectValue('asyncModel', 0)
@@ -149,7 +149,7 @@ class Test extends BrowserTestCase
     public function it_should_load_from_the_api_with_nested_data()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Select.view')
                 ->openSelect('asyncModelNestedData')
                 ->waitUsing(7, 100, fn () => $browser->assertSee('Tommy'));
         });

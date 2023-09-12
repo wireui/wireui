@@ -45,9 +45,9 @@ class Notification
 
     public function send(array $options): void
     {
-        $this->component->dispatchBrowserEvent('wireui:notification', [
+        $this->component->dispatch('wireui:notification', [
             'options'     => $options,
-            'componentId' => $this->component->id,
+            'componentId' => $this->component->getId(),
         ]);
     }
 
@@ -55,9 +55,9 @@ class Notification
     {
         $options['icon'] ??= Actions::QUESTION->value;
 
-        $this->component->dispatchBrowserEvent('wireui:confirm-notification', [
+        $this->component->dispatch('wireui:confirm-notification', [
             'options'     => $options,
-            'componentId' => $this->component->id,
+            'componentId' => $this->component->getId(),
         ]);
     }
 }

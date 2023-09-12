@@ -8,7 +8,7 @@ class Shadows extends ComponentPack
 {
     protected function default(): string
     {
-        return '';
+        return 'none';
     }
 
     public function all(): array
