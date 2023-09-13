@@ -2,12 +2,16 @@
 
 namespace WireUi\View\Components\Inputs;
 
-use WireUi\View\Components\Input;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-class PasswordInput extends Input
+class PasswordInput extends Component
 {
-    protected function getView(): string
+    use IsFormComponent;
+
+    public function blade(): View
     {
-        return 'wireui::components.inputs.password';
+        return view('wireui::components.inputs.password');
     }
 }
