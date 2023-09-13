@@ -4,9 +4,14 @@ namespace WireUi\View\Components\Inputs;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use WireUi\Support\Form\WrapperData;
+use WireUi\Traits\Components\Concerns\{HasFillableProperties, InteractsWithErrors};
 
 class Wrapper extends Component
 {
+    use HasFillableProperties;
+    use InteractsWithErrors;
+
     public function __construct(
         public ?string $id = null,
         public ?string $name = null,
@@ -17,14 +22,27 @@ class Wrapper extends Component
         public ?string $suffix = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
-        public bool $disabled = false,
-        public bool $readonly = false,
-        public bool $validated = false,
-        public bool $invalidated = false,
-        public bool $errorless = false,
-        public bool $borderless = false, // todo
-        public bool $shadowless = false, // todo
+        public ?bool $invalidated = null,
+        public ?bool $withValidationColors = null,
+        public ?bool $disabled = null,
+        public ?bool $readonly = null,
+        public ?bool $errorless = null,
+        public ?bool $borderless = null, // todo
+        public ?bool $shadowless = null, // todo
+        WrapperData $data = null,
     ) {
+        $this->fillValidation($name);
+
+        if ($data) {
+            $this->fill($data->toArray());
+        }
+    }
+
+    public function fillValidation(?string $name): void
+    {
+        if ($this->invalidated === null) {
+            $this->invalidated = $name && $this->errors()->has($this->name);
+        }
     }
 
     public function render(): View

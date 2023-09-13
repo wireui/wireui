@@ -1,14 +1,15 @@
 <?php
 
-namespace WireUi\Traits\Components;
+namespace WireUi\Traits\Components\Concerns;
 
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 
 trait HasSharedAttributes
 {
     protected function sharedAttributes(): array
     {
-        return ['id', 'name', 'disabled', 'readonly'];
+        return [];
     }
 
     protected function mergeAttributes(array $data): array
@@ -16,6 +17,28 @@ trait HasSharedAttributes
         /** @var ComponentAttributeBag $attributes */
         $attributes = $data['attributes'];
 
+        $this->injectModel($attributes);
+
+        foreach ($this->sharedAttributes() as $attribute) {
+            $property = Str::camel($attribute);
+
+            if ($attributes->missing($attribute) && !property_exists($this, $property)) {
+                continue;
+            }
+
+            $value = property_exists($this, $property)
+                ? data_get($this, $property)
+                : $attributes->get($attribute);
+
+            $data[$property] = $value;
+            $attributes->offsetSet($attribute, $value);
+        }
+
+        return $data;
+    }
+
+    private function injectModel(ComponentAttributeBag $attributes): void
+    {
         /** @var string|null $model */
         $model = $attributes->wire('model')->value();
 
@@ -30,16 +53,5 @@ trait HasSharedAttributes
         if (!$attributes->has('id') && $model) {
             $attributes->offsetSet('id', $model);
         }
-
-        foreach ($this->sharedAttributes() as $attribute) {
-            $value = property_exists($this, $attribute)
-                ? data_get($this, $attribute)
-                : $attributes->get($attribute);
-
-            $data[$attribute] = $value;
-            $attributes->offsetSet($attribute, $value);
-        }
-
-        return $data;
     }
 }

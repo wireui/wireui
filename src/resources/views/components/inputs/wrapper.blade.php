@@ -12,7 +12,7 @@
     ])
     {{ $attributes
         ->merge(['form-wrapper' => $id ?: 'true'])
-        ->only(['wire:key', 'form-wrapper']) }}
+        ->only(['wire:key', 'form-wrapper', 'x-data']) }}
 >
     @if ($label || $corner)
         <div
@@ -45,12 +45,12 @@
 
     <label
         {{ $attributes
-            ->except(['wire:key', 'form-wrapper'])
+            ->except(['wire:key', 'form-wrapper', 'x-data'])
             ->merge(['for' => $id])
             ->class([
                 'relative flex gap-x-2 items-center rounded-md shadow-sm',
                 'ring-1 ring-inset ring-gray-300',
-                'focus-within:ring-2 focus-within:ring-indigo-600',
+                'focus-within:ring-2 focus-within:ring-primary-600',
                 'transition-all ease-in-out duration-150',
 
                 'pl-3' => !isset($prepend),
