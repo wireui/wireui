@@ -20,11 +20,7 @@ trait HasAttributesExtraction
         foreach ($this->extractableAttributes() as $attribute) {
             $property = Str::camel($attribute);
 
-            if (array_key_exists($property, $data)) {
-                continue;
-            }
-
-            if ($attributes->missing($attribute)) {
+            if ($attributes->missing($attribute) || array_key_exists($property, $data)) {
                 continue;
             }
 
