@@ -5,14 +5,17 @@ module.exports = plugin(function ({ addVariant }) {
     return [
       `&[${modifier}]`,
       `[group-${alias}] &`,
-      `form[with-validation-colors] &:${modifier}`,
-      `form[with-validation-colors] > div[form-wrapper] > &:has(input:${modifier})`,
-      `form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}) ~ &`,
-      `form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}) &`,
-      `form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:${modifier}) > &`
+      `[with-validation-colors] > div[form-wrapper] > &:has(input:${modifier})`,
+      `[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}) ~ &`,
+      `[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}) &`,
+      `[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:${modifier}) > &`,
+
+      `[with-validation-colors][form-wrapper] > &:has(input:${modifier}:not(:placeholder-shown))`,
+      `[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}:not(:placeholder-shown)) ~ &`,
+      `[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:${modifier}:not(:placeholder-shown)) &`,
+      `[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:${modifier}:not(:placeholder-shown)) > &`
     ]
   }
 
   addVariant('invalidated', makeSelectors('invalid', 'invalidated'))
-  addVariant('validated', makeSelectors('valid', 'validated'))
 })

@@ -1,34 +1,43 @@
-<div x-data="wireui_inputs_password" {{ $attributes->only('wire:key') }}>
-    <x-dynamic-component
-        :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith('wire:key') }}
-        :borderless="$borderless"
-        :shadowless="$shadowless"
-        :label="$label"
-        :hint="$hint"
-        :corner-hint="$cornerHint"
-        :icon="$icon"
-        :prefix="$prefix"
-        :prepend="$prepend"
+@php($attrs = $attributes)
+
+<x-inputs.wrapper
+    :data="$wrapperData"
+    :attributes="$attrs->only('wire:key')"
+    x-data="wireui_inputs_password"
+>
+    @include('wireui::form.wrapper.slots', [
+        'except' => ['append'],
+    ])
+
+    <x-wireui::inputs.element
+        :attributes="$attrs->except(['wire:key', 'x-data'])"
+        type="password"
         x-bind:type="type"
-    >
-        <x-slot name="append">
-            <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center">
-                <div x-on:click="toggle" class="text-gray-400 cursor-pointer">
-                    <x-dynamic-component
-                        x-show="!status"
-                        :component="WireUi::component('icon')"
-                        name="eye-slash"
-                        class="w-5 h-5"
-                    />
-                    <x-dynamic-component
-                        x-show="status"
-                        :component="WireUi::component('icon')"
-                        name="eye"
-                        class="w-5 h-5"
-                    />
-                </div>
-            </div>
-        </x-slot>
-    </x-dynamic-component>
-</div>
+    />
+
+    <x-slot name="append">
+        <button
+            x-on:click="toggle"
+            class="
+                text-gray-400 cursor-pointer mr-2
+                input-focus:text-primary-600 focus:text-primary-600
+                invalidated:text-negative-600 invalidated:focus:text-negative-600
+            "
+        >
+            <x-dynamic-component
+                x-show="!status"
+                :component="WireUi::component('icon')"
+                name="eye-slash"
+                class="w-5 h-5"
+            />
+
+            <x-dynamic-component
+                x-show="status"
+                :component="WireUi::component('icon')"
+                name="eye"
+                class="w-5 h-5"
+                x-cloak
+            />
+        </button>
+    </x-slot>
+</x-inputs.wrapper>

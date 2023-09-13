@@ -10,23 +10,7 @@ class Input extends Component
 {
     use IsFormComponent;
 
-    public function __construct(
-        public ?string $label = null,
-        public ?string $description = null,
-        public ?string $corner = null,
-        public ?string $icon = null,
-        public ?string $rightIcon = null,
-        public ?string $prefix = null,
-        public ?string $suffix = null,
-        public bool $validated = false,
-        public bool $invalidated = false,
-        public bool $errorless = false,
-        public bool $borderless = false,
-        public bool $shadowless = false,
-    ) {
-    }
-
-    public function blade(): View
+    protected function blade(): View
     {
         return view('wireui::components.input');
     }

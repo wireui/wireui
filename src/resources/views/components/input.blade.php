@@ -1,29 +1,10 @@
-@php($invalidated = $invalidated ?: $name && $errors->has($name))
+@php($attrs = $attributes)
 
 <x-inputs.wrapper
-    :id="$id"
-    :name="$name"
-    :icon="$icon"
-    :right-icon="$rightIcon"
-    :validated="$validated && !$invalidated"
-    :invalidated="$invalidated"
-    :disabled="  (bool) $disabled"
-    :readonly="  (bool) $readonly"
-    :errorless=" (bool) $errorless"
-    :borderless="(bool) $borderless"
-    :shadowless="(bool) $shadowless"
+     :data="$wrapperData"
+     :attributes="$attrs->only(['wire:key', 'x-data'])"
 >
-    @foreach(array_filter([
-        'label'       => $label,
-        'corner'      => $corner,
-        'prefix'      => $prefix,
-        'suffix'      => $suffix,
-        'description' => $description,
-        'prepend'     => isset($prepend) ? $prepend : false,
-        'append'      => isset($append)  ? $append  : false,
-    ]) as $key => $value)
-        @slot($key, $value, WireUi::extractAttributes($value)->getAttributes())
-    @endforeach
+    @include('wireui::form.wrapper.slots')
 
-    <x-wireui::inputs.element :attributes="$attributes" />
+    <x-wireui::inputs.element :attributes="$attrs->except(['wire:key', 'x-data'])" />
 </x-inputs.wrapper>
