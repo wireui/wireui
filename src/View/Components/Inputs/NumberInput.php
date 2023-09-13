@@ -2,30 +2,16 @@
 
 namespace WireUi\View\Components\Inputs;
 
-use WireUi\View\Components\Input;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-class NumberInput extends Input
+class NumberInput extends Component
 {
-    public $except = ['type', 'icon', 'right-icon', 'rightIcon', 'prefix', 'suffix', 'prepend', 'append'];
+    use IsFormComponent;
 
-    public function __construct(
-        bool $borderless = false,
-        bool $shadowless = false,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-    ) {
-        parent::__construct(
-            borderless: $borderless,
-            shadowless: $shadowless,
-            label: $label,
-            hint: $hint,
-            cornerHint: $cornerHint,
-        );
-    }
-
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.inputs.number';
+        return view('wireui::components.inputs.number');
     }
 }
