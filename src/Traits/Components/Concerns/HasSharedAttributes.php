@@ -22,10 +22,6 @@ trait HasSharedAttributes
         foreach ($this->sharedAttributes() as $attribute) {
             $property = Str::camel($attribute);
 
-            if ($attributes->missing($attribute) && !property_exists($this, $property)) {
-                continue;
-            }
-
             $value = property_exists($this, $property)
                 ? data_get($this, $property)
                 : $attributes->get($attribute);
