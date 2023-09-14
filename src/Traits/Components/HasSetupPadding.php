@@ -18,7 +18,7 @@ trait HasSetupPadding
         $this->paddingResolve = $class;
     }
 
-    protected function setupPadding(array &$component): void
+    protected function setupPadding(array &$data): void
     {
         throw_if(!$this->paddingResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupPadding
 
         $this->paddingClasses = $paddingPack->get($this->padding);
 
-        $this->setVariables($component, ['padding', 'paddingClasses']);
+        $this->setVariables($data, ['padding', 'paddingClasses']);
     }
 }

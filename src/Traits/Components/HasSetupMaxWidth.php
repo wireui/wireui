@@ -18,7 +18,7 @@ trait HasSetupMaxWidth
         $this->maxWidthResolve = $class;
     }
 
-    protected function setupMaxWidth(array &$component): void
+    protected function setupMaxWidth(array &$data): void
     {
         throw_if(!$this->maxWidthResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupMaxWidth
 
         $this->maxWidthClasses = $maxWidthPack->get($this->maxWidth);
 
-        $this->setVariables($component, ['maxWidth', 'maxWidthClasses']);
+        $this->setVariables($data, ['maxWidth', 'maxWidthClasses']);
     }
 }

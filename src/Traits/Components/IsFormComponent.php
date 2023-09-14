@@ -5,11 +5,7 @@ namespace WireUi\Traits\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use WireUi\Support\Form\WrapperData;
-use WireUi\Traits\Components\Concerns\{
-    HasAttributesExtraction,
-    HasSharedAttributes,
-    InteractsWithErrors,
-};
+use WireUi\Traits\Components\Concerns\{HasAttributesExtraction, HasSharedAttributes, InteractsWithErrors};
 
 trait IsFormComponent
 {

@@ -20,7 +20,7 @@ trait HasSetupShadow
         $this->shadowResolve = $class;
     }
 
-    protected function setupShadow(array &$component): void
+    protected function setupShadow(array &$data): void
     {
         throw_if(!$this->shadowResolve, new WireUiResolveException($this));
 
@@ -35,6 +35,6 @@ trait HasSetupShadow
 
         $this->shadowClasses = $shadowPack->get($this->shadow);
 
-        $this->setVariables($component, ['shadow', 'shadowless', 'shadowClasses']);
+        $this->setVariables($data, ['shadow', 'shadowless', 'shadowClasses']);
     }
 }

@@ -18,7 +18,7 @@ trait HasSetupColor
         $this->colorResolve = $class;
     }
 
-    protected function setupColor(array &$component): void
+    protected function setupColor(array &$data): void
     {
         throw_if(!$this->colorResolve, new WireUiResolveException($this));
 
@@ -35,7 +35,7 @@ trait HasSetupColor
             $this->setColorPack($colorPack);
         }
 
-        $this->setVariables($component, ['color', 'colorClasses']);
+        $this->setVariables($data, ['color', 'colorClasses']);
     }
 
     private function getColorConfigName(string $variant = null): string

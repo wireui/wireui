@@ -18,7 +18,7 @@ trait HasSetupPosition
         $this->positionResolve = $class;
     }
 
-    protected function setupPosition(array &$component): void
+    protected function setupPosition(array &$data): void
     {
         throw_if(!$this->positionResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupPosition
 
         $this->positionClasses = $positionPack->get($this->position);
 
-        $this->setVariables($component, ['position', 'positionClasses']);
+        $this->setVariables($data, ['position', 'positionClasses']);
     }
 }

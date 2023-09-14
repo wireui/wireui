@@ -20,7 +20,7 @@ trait HasSetupRounded
         $this->roundedResolve = $class;
     }
 
-    protected function setupRounded(array &$component): void
+    protected function setupRounded(array &$data): void
     {
         throw_if(!$this->roundedResolve, new WireUiResolveException($this));
 
@@ -29,13 +29,13 @@ trait HasSetupRounded
         /** @var ComponentPack $roundedPack */
         $roundedPack = $rounders ? resolve($rounders) : resolve($this->roundedResolve);
 
-        $this->squared = $this->data->get('squared');
+        $this->squared = $this->attributes->get('squared');
 
-        $this->rounded = $this->data->get('rounded');
+        $this->rounded = $this->attributes->get('rounded');
 
         $this->getRoundedClasses($roundedPack);
 
-        $this->setVariables($component, ['squared', 'rounded', 'roundedClasses']);
+        $this->setVariables($data, ['squared', 'rounded', 'roundedClasses']);
     }
 
     private function getRoundedClasses(mixed $roundedPack): void
