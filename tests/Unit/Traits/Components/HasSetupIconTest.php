@@ -41,7 +41,7 @@ test('it should have all properties empty', function () {
 });
 
 test('it should execute base component without values', function () {
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->icon)->toBeNull();
 
@@ -60,7 +60,7 @@ test('it should execute base component with values', function () {
         'right-icon' => $rightIcon,
     ]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->icon)->toBe($icon);
 

@@ -54,7 +54,7 @@ test('it should execute base component without value to border', function () {
 
     $this->invokeMethod($this->component, 'setBorderResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->border)->toBeNull();
 
@@ -75,7 +75,7 @@ test('it should execute base component with value to border', function () {
 
     $this->invokeMethod($this->component, 'setBorderResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->borderless)->toBeTrue();
 
@@ -96,7 +96,7 @@ test('it should execute base component with custom value to border', function ()
 
     $this->invokeMethod($this->component, 'setBorderResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->borderless)->toBeFalse();
 

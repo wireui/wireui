@@ -52,7 +52,7 @@ test('it should execute base component without value to underline', function () 
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to underline', function () {
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBe($underlineRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to underline', function
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBe($underlineRandom);
 

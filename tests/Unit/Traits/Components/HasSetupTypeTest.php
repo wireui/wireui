@@ -52,7 +52,7 @@ test('it should execute base component without value to type', function () {
 
     $this->invokeMethod($this->component, 'setTypeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->type)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to type', function () {
 
     $this->invokeMethod($this->component, 'setTypeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->type)->toBe($typeRandom);
 
@@ -93,7 +93,7 @@ test('it should execute base component with custom value to type', function () {
 
     $this->invokeMethod($this->component, 'setTypeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->type)->toBe($typeRandom);
 

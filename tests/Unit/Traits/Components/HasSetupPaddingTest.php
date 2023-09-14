@@ -52,7 +52,7 @@ test('it should execute base component without value to padding', function () {
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to padding', function () {
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBe($paddingRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to padding', function (
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBe($paddingRandom);
 

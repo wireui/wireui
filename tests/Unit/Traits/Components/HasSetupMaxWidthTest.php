@@ -52,7 +52,7 @@ test('it should execute base component without value to max width', function () 
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to max width', function () {
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBe($maxWidthRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to max width', function
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBe($maxWidthRandom);
 
