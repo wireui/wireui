@@ -22,7 +22,9 @@ class Wrapper extends Component
         public ?string $suffix = null,
         public ?string $icon = null,
         public ?string $rightIcon = null,
+        public ?string $padding = null,
         public ?bool $invalidated = null,
+        public ?bool $withErrorIcon = true,
         public ?bool $withValidationColors = null,
         public ?bool $disabled = null,
         public ?bool $readonly = null,
@@ -31,11 +33,12 @@ class Wrapper extends Component
         public ?bool $shadowless = null, // todo
         WrapperData $data = null,
     ) {
-        $this->fillValidation($name);
-
+        // dd($data, $this);
         if ($data) {
             $this->fill($data->toArray());
         }
+
+        $this->fillValidation($name);
     }
 
     public function fillValidation(?string $name): void

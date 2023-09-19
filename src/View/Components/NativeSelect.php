@@ -2,11 +2,16 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\Component;
 use InvalidArgumentException;
+use WireUi\Traits\Components\IsFormComponent;
 
-class NativeSelect extends FormComponent
+class NativeSelect extends Component
 {
+    use IsFormComponent;
+
     public const PRIMITIVE_VALUES = [
         'string',
         'integer',
@@ -18,8 +23,6 @@ class NativeSelect extends FormComponent
     public Collection $options;
 
     public function __construct(
-        public ?string $label = null,
-        public ?string $hint = null,
         public ?string $placeholder = null,
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
@@ -28,7 +31,7 @@ class NativeSelect extends FormComponent
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
-        Collection|array|null $options = null,
+        Collection|array $options = null,
     ) {
         $this->options = collect($options)->when(
             $flipOptions,
@@ -61,7 +64,7 @@ class NativeSelect extends FormComponent
         ) {
             throw new InvalidArgumentException(
                 'Inform the {option-value} and {option-label} to use array, model, or object option.'
-                    . ' <x-select [...] option-value="id" option-label="name" />',
+                . ' <x-select [...] option-value="id" option-label="name" />',
             );
         }
 
@@ -72,36 +75,9 @@ class NativeSelect extends FormComponent
         ) {
             throw new InvalidArgumentException(
                 'The {option-value} and {option-label} attributes cannot be used with primitive options values: '
-                    . implode(', ', self::PRIMITIVE_VALUES),
+                . implode(', ', self::PRIMITIVE_VALUES),
             );
         }
-    }
-
-    protected function getView(): string
-    {
-        return 'wireui::components.native-select';
-    }
-
-    public function defaultClasses(): string
-    {
-        return <<<EOT
-            form-select block w-full pl-3 pr-10 py-2 text-base sm:text-sm shadow-sm
-            rounded-md border bg-white focus:ring-1 focus:outline-none
-            dark:bg-secondary-800 dark:border-secondary-600 dark:text-secondary-400
-        EOT;
-    }
-
-    public function colorClasses(): string
-    {
-        return 'border-secondary-300 focus:ring-primary-500 focus:border-primary-500';
-    }
-
-    public function errorClasses(): string
-    {
-        return <<<EOT
-            border-negative-400 focus:ring-negative-500 focus:border-negative-500 text-negative-500
-            dark:border-negative-600 dark:text-negative-500
-        EOT;
     }
 
     public function getOptionValue(int|string $key, mixed $option): mixed
@@ -131,5 +107,10 @@ class NativeSelect extends FormComponent
         }
 
         return data_get($option, 'description');
+    }
+
+    protected function blade(): View
+    {
+        return view('wireui::components.native-select');
     }
 }

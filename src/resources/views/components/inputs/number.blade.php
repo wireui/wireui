@@ -2,7 +2,8 @@
 
 <x-inputs.wrapper
     :data="$wrapperData"
-    :attributes="$attrs->only('wire:key')"
+    :right-icon="$rightIcon"
+    :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_inputs_number({
         disabled: {{ json_encode($disabled) }},
         readonly: {{ json_encode($readonly) }},
@@ -12,40 +13,42 @@
         'except' => ['prepend', 'append'],
     ])
 
-    <x-slot name="prepend">
+    <x-slot:prepend>
         <x-dynamic-component
             :component="WireUi::component('button')"
             x-hold.click.delay.repeat.100ms="minus"
+            x-bind:disabled="disableMinus"
             x-on:keydown.enter="minus"
-            class="h-full rounded-l-md"
-            icon="minus"
+            :icon="$leftIcon"
             primary
             flat
             squared
-            x-bind:disabled="disableMinus"
         />
-    </x-slot>
+    </x-slot:prepend>
 
     <x-wireui::inputs.element
-        :attributes="$attrs->class('text-center appearance-number-none')->except(['wire:key', 'x-data'])"
-        type="number"
-        inputmode="numeric"
-        x-ref="input"
-        x-on:keydown.up.prevent="plus"
+        :attributes="$attrs
+            ->except('class')
+            ->class('text-center appearance-number-none')
+            ->except(['wire:key', 'x-data'])
+        "
         x-on:keydown.down.prevent="minus"
+        x-on:keydown.up.prevent="plus"
+        inputmode="numeric"
+        type="number"
+        x-ref="input"
     />
 
-    <x-slot name="append">
+    <x-slot:append>
         <x-dynamic-component
             :component="WireUi::component('button')"
             x-hold.click.delay.repeat.100ms="plus"
+            x-bind:disabled="disablePlus"
             x-on:keydown.enter="plus"
-            class="h-full rounded-r-md"
-            icon="plus"
+            :icon="$rightIcon"
             primary
             flat
             squared
-            x-bind:disabled="disablePlus"
         />
-    </x-slot>
+    </x-slot:append>
 </x-inputs.wrapper>

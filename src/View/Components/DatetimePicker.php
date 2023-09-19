@@ -4,9 +4,14 @@ namespace WireUi\View\Components;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\IsFormComponent;
+use Illuminate\View\Component;
 
-class DatetimePicker extends Input
+class DatetimePicker extends Component
 {
+    use IsFormComponent;
+
     public ?Carbon $min;
 
     public ?Carbon $max;
@@ -16,16 +21,7 @@ class DatetimePicker extends Input
      * @param Carbon|DateTimeInterface|string|int|null $max
      */
     public function __construct(
-        bool $borderless = false,
-        bool $shadowless = false,
-        ?string $rightIcon = 'calendar',
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $prefix = null,
-        ?string $prepend = null,
-
+        public ?string $rightIcon = 'calendar',
         public bool $clearable = true,
         public bool $withoutTips = false,
         public bool $withoutTimezone = false,
@@ -42,25 +38,13 @@ class DatetimePicker extends Input
         $min = null,
         $max = null,
     ) {
-        parent::__construct(
-            borderless: $borderless,
-            shadowless: $shadowless,
-            label: $label,
-            hint: $hint,
-            cornerHint: $cornerHint,
-            icon: $icon,
-            rightIcon: $rightIcon,
-            prefix: $prefix,
-            prepend: $prepend,
-        );
-
         $this->timezone ??= config('app.timezone', 'UTC');
         $this->min = $min ? Carbon::parse($min) : null;
         $this->max = $max ? Carbon::parse($max) : null;
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.datetime-picker';
+        return view('wireui::components.datetime-picker');
     }
 }

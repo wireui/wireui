@@ -10,6 +10,12 @@ class NumberInput extends Component
 {
     use IsFormComponent;
 
+    public function __construct(
+        public string $leftIcon = 'minus',
+        public string $rightIcon = 'plus',
+    ) {
+    }
+
     protected function blade(): View
     {
         return view('wireui::components.inputs.number');

@@ -2,7 +2,7 @@
 
 <x-inputs.wrapper
     :data="$wrapperData"
-    :attributes="$attrs->only('wire:key')"
+    :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_inputs_password"
 >
     @include('wireui::form.wrapper.slots', [
@@ -10,7 +10,7 @@
     ])
 
     <x-wireui::inputs.element
-        :attributes="$attrs->except(['wire:key', 'x-data'])"
+        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
         type="password"
         x-bind:type="type"
     />

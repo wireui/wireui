@@ -3,44 +3,27 @@
 namespace WireUi\View\Components\Inputs;
 
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
-use WireUi\View\Components\Input;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-abstract class BaseMaskable extends Input
+abstract class BaseMaskable extends Component
 {
+    use IsFormComponent;
+
     public string $mask;
 
     public function __construct(
         public bool $emitFormatted = false,
-        ?string $mask = null,
-        bool $borderless = false,
-        bool $shadowless = false,
-        ?string $label = null,
-        ?string $description = null,
-        ?string $corner = null,
-        ?string $icon = null,
-        ?string $rightIcon = null,
-        ?string $prefix = null,
-        ?string $suffix = null,
+        string $mask = null,
     ) {
-        parent::__construct(
-            borderless: $borderless,
-            shadowless: $shadowless,
-            label: $label,
-            description: $description,
-            corner: $corner,
-            icon: $icon,
-            rightIcon: $rightIcon,
-            prefix: $prefix,
-            suffix: $suffix,
-        );
-
-        $this->mask = $this->formatMask(!$mask ? $this->getInputMask() : $mask);
+        $this->mask = $this->formatMask($mask ?: $this->getInputMask());
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.inputs.maskable';
+        return view('wireui::components.inputs.maskable');
     }
 
     private function formatMask(string $mask): string

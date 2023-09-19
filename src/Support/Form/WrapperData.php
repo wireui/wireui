@@ -2,17 +2,27 @@
 
 namespace WireUi\Support\Form;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\{Collection, Str};
 
 class WrapperData
 {
-    private array $data = [];
+    private Collection $data;
 
-    public function __construct(array $data)
+    private array $except = [];
+
+    public function __construct(Collection|array $data)
     {
-        $this->data = collect($data)
+        $this->data = collect($data);
+    }
+
+    public function toArray(): array
+    {
+        return $this->data
             ->filter(function ($value, string $key) {
-                return in_array(Str::kebab($key), self::attributes());
+                $property = Str::kebab($key);
+
+                return in_array($property, self::attributes())
+                    && !in_array($property, $this->except);
             })
             ->mapWithKeys(fn ($value, string $key) => [
                 Str::camel($key) => $value,
@@ -20,9 +30,11 @@ class WrapperData
             ->toArray();
     }
 
-    public function toArray(): array
+    public function except(array $array): self
     {
-        return $this->data;
+        $this->except = $array;
+
+        return $this;
     }
 
     public static function attributes(): array

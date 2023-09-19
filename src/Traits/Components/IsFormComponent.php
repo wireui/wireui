@@ -17,6 +17,11 @@ trait IsFormComponent
     use HasSharedAttributes;
     use InteractsWithErrors;
 
+    protected function except(): array
+    {
+        return [];
+    }
+
     protected function sharedAttributes(): array
     {
         return WrapperData::shared();
@@ -33,7 +38,11 @@ trait IsFormComponent
             $data = $this->mergeAttributes($data);
             $data = $this->extractAttributes($data);
 
-            $data['wrapperData'] = new WrapperData($data);
+            $data['wrapperData'] = (new WrapperData($data))->except($this->except());
+
+            $data['attrs'] = $data['attributes'];
+
+            // dd($data);
 
             return $this->blade()
                 ->with($data)

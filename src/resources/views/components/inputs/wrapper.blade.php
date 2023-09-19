@@ -1,9 +1,4 @@
 <div
-    class="
-        aria-disabled:pointer-events-none aria-disabled:select-none
-        aria-disabled:opacity-60 aria-disabled:cursor-not-allowed
-        aria-readonly:pointer-events-none aria-readonly:select-none
-    "
     @attributes([
         'with-validation-colors' => $withValidationColors,
         'group-invalidated'      => $invalidated,
@@ -12,7 +7,13 @@
     ])
     {{ $attributes
         ->merge(['form-wrapper' => $id ?: 'true'])
-        ->only(['wire:key', 'form-wrapper', 'x-data']) }}
+        ->class([
+            'aria-disabled:pointer-events-none aria-disabled:select-none',
+            'aria-disabled:opacity-60 aria-disabled:cursor-not-allowed',
+            'aria-readonly:pointer-events-none aria-readonly:select-none',
+            'relative',
+        ])
+        ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
 >
     @if ($label || $corner)
         <div
@@ -45,7 +46,7 @@
 
     <label
         {{ $attributes
-            ->except(['wire:key', 'form-wrapper', 'x-data'])
+            ->except(['wire:key', 'form-wrapper', 'x-data', 'class'])
             ->merge(['for' => $id])
             ->class([
                 'relative flex gap-x-2 items-center rounded-md shadow-sm',
@@ -53,10 +54,11 @@
                 'focus-within:ring-2 focus-within:ring-primary-600',
                 'transition-all ease-in-out duration-150',
 
-                'pl-3' => !isset($prepend),
-                'pr-3' => !isset($append),
-                'h-10' => isset($prepend) || isset($append),
-                'py-2' => !isset($prepend) && !isset($append),
+                $padding =>  $padding,
+                'pl-3'   => !$padding && !isset($prepend),
+                'pr-3'   => !$padding && !isset($append),
+                'py-2'   => !$padding && !isset($prepend) && !isset($append),
+                'h-10'   => isset($prepend) || isset($append),
 
                 'invalidated:bg-negative-50 invalidated:ring-negative-500 invalidated:dark:ring-negative-700',
                 'invalidated:dark:bg-negative-700/10 invalidated:dark:ring-negative-600',
@@ -99,7 +101,7 @@
 
         {{ $slot }}
 
-        @if (!isset($append))
+        @if (!isset($append) && ($rightIcon || $suffix || $withErrorIcon))
             <div
                 name="form.wrapper.container.suffix"
                 class="
@@ -118,7 +120,7 @@
                     <span {{ WireUi::extractAttributes($suffix) }}>
                         {{ $suffix }}
                     </span>
-                @else
+                @elseif($withErrorIcon)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         name="exclamation-circle"
@@ -126,7 +128,7 @@
                     />
                 @endif
             </div>
-        @else
+        @elseif(isset($append))
             <div
                 name="form.wrapper.container.append"
                 {{ $append->attributes->class([
@@ -154,4 +156,10 @@
             :message="$errors->first($name)"
         />
     @endif
+
+    @isset($after)
+        <div {{ $after->attributes }}>
+            {{ $after }}
+        </div>
+    @endisset
 </div>

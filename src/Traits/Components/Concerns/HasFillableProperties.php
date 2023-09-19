@@ -7,7 +7,7 @@ trait HasFillableProperties
     protected function fill(array $data): void
     {
         foreach ($data as $property => $value) {
-            if (property_exists($this, $property)) {
+            if (property_exists($this, $property) && $this->{$property} === null) {
                 $this->{$property} = $value;
             }
         }

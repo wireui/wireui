@@ -159,8 +159,8 @@ class WireUiServiceProvider extends ServiceProvider
             $model = $this->wire('model');
 
             return [
-                'defer'    => $model->modifiers()->contains('defer'),
-                'lazy'     => $model->modifiers()->contains('lazy'),
+                'live'     => $model->modifiers()->contains('live'),
+                'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
                     'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),

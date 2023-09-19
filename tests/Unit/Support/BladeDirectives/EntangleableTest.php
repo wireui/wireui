@@ -63,7 +63,7 @@ class EntangleableTest extends TestCase
     {
         $blade = <<<'BLADE'
             <div x-data="{
-                model: @entangle($attributes->wire('model')).defer,
+                model: @entangle($attributes->wire('model')),
             }">
                 ...
             </div>
@@ -72,6 +72,6 @@ class EntangleableTest extends TestCase
         View::share('_instance', (object) ['id' => 'foo']);
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
-        $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name').defer", escape: false);
+        $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name')", escape: false);
     }
 }

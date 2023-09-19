@@ -3,6 +3,7 @@
 namespace WireUi\View\Components;
 
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 
 class Select extends NativeSelect
@@ -13,9 +14,6 @@ class Select extends NativeSelect
         public bool $multiselect = false,
         public bool $withoutItemsCount = false,
         public string $rightIcon = 'chevron-up-down',
-        public ?string $icon = null,
-        public ?string $label = null,
-        public ?string $hint = null,
         public ?string $placeholder = null,
         public ?string $optionValue = null,
         public ?string $optionLabel = null,
@@ -27,12 +25,10 @@ class Select extends NativeSelect
         public bool $alwaysFetch = false,
         public string|array|null $asyncData = null,
         public string|array|null $template = null,
-        Collection|array|null $options = null,
+        Collection|array $options = null,
         public ?int $minItemsForSearch = 11,
     ) {
         parent::__construct(
-            label: $label,
-            hint: $hint,
             placeholder: $placeholder,
             optionValue: $optionValue,
             optionLabel: $optionLabel,
@@ -74,9 +70,9 @@ class Select extends NativeSelect
         }
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.select';
+        return view('wireui::components.select');
     }
 
     public function getOptionLabel(mixed $option): string

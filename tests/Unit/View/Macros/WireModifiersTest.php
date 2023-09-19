@@ -23,10 +23,10 @@ class WireModifiersTest extends TestCase
     {
         return [
             [
-                'attribute' => 'wire:model.defer',
+                'attribute' => 'wire:model.live',
                 'expected'  => [
-                    'defer'    => true,
-                    'lazy'     => false,
+                    'live'     => true,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => false,
                         'delay'  => '750',
@@ -34,10 +34,10 @@ class WireModifiersTest extends TestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.lazy',
+                'attribute' => 'wire:model.blur',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => true,
+                    'live'     => false,
+                    'blur'     => true,
                     'debounce' => [
                         'exists' => false,
                         'delay'  => '750',
@@ -47,8 +47,8 @@ class WireModifiersTest extends TestCase
             [
                 'attribute' => 'wire:model.debounce',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => false,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '750',
@@ -58,8 +58,8 @@ class WireModifiersTest extends TestCase
             [
                 'attribute' => 'wire:model.debounce.700',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => false,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '700',
@@ -69,8 +69,8 @@ class WireModifiersTest extends TestCase
             [
                 'attribute' => 'wire:model.debounce.700ms',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => false,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '700',
