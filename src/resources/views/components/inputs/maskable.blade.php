@@ -1,5 +1,3 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
     x-data="wireui_inputs_maskable({
         isBlur: @boolean($attrs->wire('model')->hasModifier('blur')),

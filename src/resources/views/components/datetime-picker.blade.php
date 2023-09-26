@@ -1,5 +1,3 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
     x-data="wireui_datetime_picker({
         model: @entangleable($attrs->wire('model')),

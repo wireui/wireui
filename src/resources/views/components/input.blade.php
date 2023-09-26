@@ -1,5 +1,3 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class', 'group-invalidated'])"

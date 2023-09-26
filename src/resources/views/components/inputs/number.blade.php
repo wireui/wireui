@@ -1,5 +1,3 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
     :data="$wrapperData"
     :right-icon="$rightIcon"

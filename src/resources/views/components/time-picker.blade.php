@@ -1,5 +1,3 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
     x-data="wireui_timepicker({
         model: @entangle($attrs->wire('model')),
