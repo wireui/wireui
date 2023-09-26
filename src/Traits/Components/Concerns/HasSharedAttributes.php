@@ -35,19 +35,18 @@ trait HasSharedAttributes
 
     private function injectModel(ComponentAttributeBag $attributes): void
     {
-        /** @var string|null $model */
+        /** @var ?string $model */
         $model = $attributes->wire('model')->value();
 
-        if ($attributes->has('name') && !$model) {
-            $model = $attributes->get('name');
-        }
+        /** @var ?string $name */
+        $name = $attributes->get('name', $model);
 
-        if (!$attributes->has('name') && $model) {
+        if ($attributes->missing('name') && $model) {
             $attributes->offsetSet('name', $model);
         }
 
-        if (!$attributes->has('id') && $model) {
-            $attributes->offsetSet('id', $model);
+        if ($attributes->missing('id') && $name) {
+            $attributes->offsetSet('id', $name);
         }
     }
 }
