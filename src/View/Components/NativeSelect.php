@@ -44,7 +44,6 @@ class NativeSelect extends Component
     /**
      * Validate if the select options is set correctly.
      *
-     *
      * @throws InvalidArgumentException
      */
     private function validateConfig(): void

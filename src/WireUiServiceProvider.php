@@ -4,81 +4,85 @@ namespace WireUi;
 
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\{Arr, ServiceProvider, Str};
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\ComponentAttributeBag;
-use Livewire\{LivewireBladeDirectives, WireDirective};
-use WireUi\Facades\{WireUi, WireUiDirectives};
-use WireUi\View\Attribute;
+use WireUi\Facades\WireUi;
+use WireUi\Providers\{BladeDirectives, CustomMacros};
 use WireUi\View\Compilers\WireUiTagCompiler;
 
-/** @property Application $app */
+/**
+ * @property Application $app
+ */
 class WireUiServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->registerConfig()
-            ->setupHeroiconsComponent()
-            ->registerWireUI();
+        $this->registerConfig();
+
+        $this->registerWireUI();
+
+        $this->setupHeroiconsComponent();
     }
 
     public function boot(): void
     {
-        $this->registerBladeDirectives()
-            ->registerBladeComponents()
-            ->registerTagCompiler()
-            ->registerMacros();
+        CustomMacros::register();
+
+        BladeDirectives::register();
+
+        $this->registerTagCompiler();
+
+        $this->registerBladeComponents();
     }
 
-    protected function registerTagCompiler(): self
+    private function registerTagCompiler(): void
     {
         Blade::precompiler(static function (string $string): string {
             return app(WireUiTagCompiler::class)->compile($string);
         });
-
-        return $this;
     }
 
-    protected function registerConfig(): self
+    private function registerConfig(): void
     {
-        $this->loadViewsFrom($this->srcDir('resources/views'), 'wireui');
-        $this->loadTranslationsFrom($this->srcDir('lang'), 'wireui');
-        $this->mergeConfigFrom($this->srcDir('config.php'), 'wireui');
         $this->loadRoutesFrom($this->srcDir('routes.php'));
 
-        $this->publishes(
-            [$this->srcDir('config.php') => $this->app->configPath('wireui.php')],
-            'wireui.config',
-        );
-        $this->publishes(
-            [$this->srcDir('resources/views') => $this->app->resourcePath('views/vendor/wireui')],
-            'wireui.views',
-        );
+        $this->loadTranslationsFrom($this->srcDir('lang'), 'wireui');
+
+        $this->mergeConfigFrom($this->srcDir('config.php'), 'wireui');
+
+        $this->loadViewsFrom($this->srcDir('resources/views'), 'wireui');
+
         $this->publishes(
             [$this->srcDir('lang') => $this->app->langPath('vendor/wireui')],
             'wireui.lang',
         );
 
-        return $this;
+        $this->publishes(
+            [$this->srcDir('config.php') => $this->app->configPath('wireui.php')],
+            'wireui.config',
+        );
+
+        $this->publishes(
+            [$this->srcDir('resources/views') => $this->app->resourcePath('views/vendor/wireui')],
+            'wireui.views',
+        );
     }
 
-    public function registerWireUI(): self
+    private function registerWireUI(): void
     {
         $this->app->singleton('WireUi', WireUi::class);
-        $loader = AliasLoader::getInstance();
-        $loader->alias('WireUi', WireUi::class);
 
-        return $this;
+        $loader = AliasLoader::getInstance();
+
+        $loader->alias('WireUi', WireUi::class);
     }
 
-    protected function setupHeroiconsComponent(): self
+    private function setupHeroiconsComponent(): void
     {
         config()->set('wireui.heroicons.alias', 'heroicons');
-
-        return $this;
     }
 
-    protected function srcDir(string $path): string
+    private function srcDir(string $path): string
     {
         return __DIR__ . "/{$path}";
     }
@@ -124,15 +128,13 @@ class WireUiServiceProvider extends ServiceProvider
         return $this;
     }
 
-    protected function registerBladeComponents(): self
+    private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
             foreach (config('wireui.components') as $component) {
                 $blade->component($component['class'], $component['alias']);
             }
         });
-
-        return $this;
     }
 
     protected function registerMacros(): self

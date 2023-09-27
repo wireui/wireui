@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_render_with_label_and_change_value()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Radio.view')
                 ->assertSee('Laravel')
                 ->assertSee('Livewire')
                 ->click('@validate')

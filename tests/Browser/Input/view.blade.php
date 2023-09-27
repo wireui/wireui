@@ -1,3 +1,20 @@
+<?php
+
+use function Livewire\Volt\{state, rules, layout};
+
+state(['model' => null, 'errorless' => null]);
+
+$validateInput = fn() => $this->validate();
+
+$resetInputValidation = fn() => $this->resetValidation();
+
+rules(['model' => 'required', 'errorless' => 'required'])->messages([
+    'model.required' => 'input cant be empty',
+    'errorless.required' => 'input is required',
+]);
+
+?>
+
 <div>
     <h1>Input test</h1>
 
@@ -5,13 +22,7 @@
     <x-input label="Input 1" corner-hint="Corner 1" />
 
     // test it_should_see_hint_prefix_and_suffix
-    <x-input
-        label="Input 1"
-        corner-hint="Corner 1"
-        hint="Hint 1"
-        prefix="Prefix 1"
-        suffix="Suffix 1"
-    />
+    <x-input label="Input 1" corner-hint="Corner 1" hint="Hint 1" prefix="Prefix 1" suffix="Suffix 1" />
 
     // test it_should_see_append_and_prepend_slots
     <x-input>
@@ -36,9 +47,10 @@
     </x-input>
 
     // test it_should_set_model_value_to_livewire
-    <x-input dusk="input" wire:model="model" label="Model Input" />
+    <x-input dusk="input" wire:model.live="model" label="Model Input" />
+
     <span dusk="model-value">{{ $model }}</span>
 
     // test it_should_dont_see_the_input_error_message
-    <x-input wire:model="errorless" label="Test error less" :errorless="true" />
+    <x-input wire:model.live="errorless" label="Test error less" :errorless="true" />
 </div>

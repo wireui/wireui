@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_call_confirm_notification_by_directive_with_alpine_js()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ConfirmDirective.view')
                 ->click('@button.alpine')
                 ->waitForText('Alpine Confirmation')
                 ->waitForText('AcceptAlpine')
@@ -24,7 +24,7 @@ class Test extends BrowserTestCase
     public function it_should_call_confirm_notification_by_directive_js()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'ConfirmDirective.view')
                 ->click('@button.js')
                 ->waitForText('JS Confirmation')
                 ->waitForText('AcceptJS')

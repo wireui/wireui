@@ -1,3 +1,15 @@
+<?php
+
+use function Livewire\Volt\{state};
+
+state(['value' => '']);
+
+$setValue = function (string $value) {
+    $this->value = $value;
+};
+
+?>
+
 <div>
     <h1>Confirm Directive test</h1>
 

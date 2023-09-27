@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_select_time_and_clear_am_pm_time()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'TimePicker.view')
                 ->type('timeAmPm', '144')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
@@ -40,7 +40,7 @@ class Test extends BrowserTestCase
     public function it_should_select_time_and_clear_24h_time()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'TimePicker.view')
                 ->type('time24H', '12:44')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
@@ -73,25 +73,25 @@ class Test extends BrowserTestCase
     public function it_should_select_time_using_model_property_datetime()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, Component::class)
-                ->assertInputValue('user.birthday', '11:05 PM')
-                ->clear('user.birthday')
-                ->typeSlowly('user.birthday', '12:45 AM', 50)
-                ->assertInputValue('user.birthday', '12:45 AM')
+            $this->visit($browser, 'TimePicker.view')
+                ->assertInputValue('birthday', '11:05 PM')
+                ->clear('birthday')
+                ->typeSlowly('birthday', '12:45 AM', 50)
+                ->assertInputValue('birthday', '12:45 AM')
                 ->click('@refresh')
-                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@user.birthday', '00:45'))
-                ->clear('user.birthday')
-                ->type('user.birthday', '7:59 PM')
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@birthday', '00:45'))
+                ->clear('birthday')
+                ->type('birthday', '7:59 PM')
                 ->click('@refresh')
-                ->assertInputValue('user.birthday', '7:59 PM')
-                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@user.birthday', '19:59'))
+                ->assertInputValue('birthday', '7:59 PM')
+                ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@birthday', '19:59'))
                 ->tap(function (Browser $browser) {
                     return $browser->script('
-                        const input = document.querySelector("[name=\'user.birthday\']")
+                        const input = document.querySelector("[name=\'birthday\']")
                         input.value = ""
                         input.dispatchEvent(new Event("input"))
                     ');
-                })->assertInputValue('user.birthday', '');
+                })->assertInputValue('birthday', '');
         });
     }
 }

@@ -10,7 +10,7 @@
             />
         @endif
 
-        <label for="{{ $id }}" tabindex="-1" class="group relative flex items-center select-none">
+        <label for="{{ $id }}" tabindex="-1" class="relative flex items-center select-none group">
             <input {{ $attributes->merge([
                     'name'  => $name,
                     'id'    => $id,

@@ -17,4 +17,11 @@ class ComponentResolver
 
         return $components[$name]['class'];
     }
+
+    public function resolveByAlias(string $name): string
+    {
+        $components = config('wireui.components');
+
+        return collect($components)->search(fn ($component) => $component['alias'] === $name);
+    }
 }

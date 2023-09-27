@@ -13,6 +13,6 @@ return [
         'yesterday' => 'Yesterday',
     ],
     'errors' => [
-        'title' => 'There were {errors} errors with your submission',
+        'title' => 'There was an error in your submission|There were {errors} errors in your submission',
     ],
 ];

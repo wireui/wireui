@@ -27,6 +27,7 @@ declare global {
     Livewire: any
     Alpine: Alpine
     $openModal: CallableFunction
+    $closeModal: CallableFunction
   }
 }
 

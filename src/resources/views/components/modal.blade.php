@@ -1,6 +1,6 @@
 @php($name = $name ?? $attributes->wire('model')->value())
 
-<div class="fixed inset-0 overflow-y-auto {{ $spacing }} {{ $zIndex }}"
+<div class="{{ $getRootClasses() }}"
     x-data="wireui_modal({
         show: @toJs($show),
         @if ($attributes->wire('model')->value())
@@ -11,6 +11,7 @@
     x-on:keydown.tab.prevent="handleTab"
     x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
+    x-on:close-wireui-modal:{{ Str::kebab($name) }}.window="close"
     {{ $attributes
         ->whereDoesntStartWith('wire:model')
         ->whereStartsWith(['x-on:', '@', 'wire:']) }}
@@ -18,11 +19,7 @@
     x-cloak
     x-show="show"
     wireui-modal>
-    <div @class([
-            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
-            'dark:bg-opacity-60 transform transition-opacity',
-            $blur => (bool) $blur
-        ])
+    <div class="{{ $getBackdropClasses() }}"
         x-show="show"
         x-on:click="close"
         x-transition:enter="ease-out duration-300"
@@ -33,7 +30,7 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div class="w-full min-h-full transform flex items-end justify-center mx-auto {{ $align }} {{ $maxWidth }}"
+    <div class="{{ $getMainClasses() }}"
         x-show="show"
         x-on:click.self="close"
         x-transition:enter="ease-out duration-300"

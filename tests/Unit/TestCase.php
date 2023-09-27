@@ -3,14 +3,16 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\{Artisan, Route};
+use Illuminate\Support\Facades\{Artisan, File};
+use Illuminate\Support\{Collection, Str};
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench;
+use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use ReflectionClass;
+use Symfony\Component\Finder\SplFileInfo;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\WireUiServiceProvider;
 
-class TestCase extends Testbench\TestCase
+class TestCase extends TestbenchTestCase
 {
     use InteractsWithViews;
 
@@ -25,20 +27,18 @@ class TestCase extends Testbench\TestCase
         });
 
         parent::setUp();
-
-        Route::middleware('web')->group($this->srcDir('routes.php'));
     }
 
-    protected function srcDir(string $path): string
+    protected function defineWebRoutes($router)
     {
-        return __DIR__ . "/../../src/{$path}";
+        base_path('src/routes/web.php');
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            LivewireServiceProvider::class,
             WireUiServiceProvider::class,
+            LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];
     }
@@ -49,22 +49,49 @@ class TestCase extends Testbench\TestCase
     }
 
     /** Call protected/private method of a class */
-    public function invokeMethod(mixed $object, string $method, array $parameters = [])
+    public function invokeMethod(mixed $object, string $method, array $parameters = []): mixed
     {
         $reflection = new ReflectionClass(get_class($object));
-        $method     = $reflection->getMethod($method);
+
+        $method = $reflection->getMethod($method);
+
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
     }
 
     /** Get protected/private property value of a class */
-    public function invokeProperty(mixed $object, string $property)
+    public function invokeProperty(mixed $object, string $property): mixed
     {
         $reflection = new ReflectionClass(get_class($object));
-        $property   = $reflection->getProperty($property);
+
+        $property = $reflection->getProperty($property);
+
         $property->setAccessible(true);
 
         return $property->getValue($object);
+    }
+
+    /** Get some package class to use in traits test */
+    public function getPackageClass(string $word): string
+    {
+        $files = File::allFiles(__DIR__ . '/../../src/WireUi');
+
+        $classes = collect($files)->map(function (SplFileInfo $file) {
+            return $file->getRelativePathname();
+        })->map(function ($class) {
+            return 'WireUi\\WireUi\\' . str($class)->before('.php')->replace('/', '\\');
+        });
+
+        return $classes->filter(fn ($class) => str($class)->contains($word))->random();
+    }
+
+    public function getIcons(): Collection
+    {
+        $files = File::allFiles(__DIR__ . '/../../vendor/wireui/heroicons/src/views/components/outline');
+
+        return collect($files)->map(function (SplFileInfo $file) {
+            return Str::of($file->getFilename())->before('.blade.php')->toString();
+        })->sort();
     }
 }

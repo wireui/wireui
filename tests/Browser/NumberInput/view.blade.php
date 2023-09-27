@@ -1,3 +1,21 @@
+<?php
+
+use function Livewire\Volt\{state, rules};
+
+state(['number' => null]);
+
+rules(['number' => 'required|integer|between:5,10'])->messages([
+    'number.required' => 'input cant be empty',
+    'number.integer'  => 'input must be an integer',
+    'number.between'  => 'input must be within the specified range',
+]);
+
+$validateInput = fn() => $this->validate();
+
+$resetInputValidation = fn() => $this->resetValidation();
+
+?>
+
 <div>
     <h1>Number Input test</h1>
 
@@ -36,7 +54,7 @@
     </x-inputs.number>
 
     // test it_should_set_model_value_to_livewire
-    <x-inputs.number dusk="input" wire:model="number" label="Model Input" />
+    <x-inputs.number dusk="input" wire:model.live="number" label="Model Input" />
     <span dusk="number-value">{{ $number }}</span>
 
     // test it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon

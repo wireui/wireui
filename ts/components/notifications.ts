@@ -43,12 +43,16 @@ export default (): Notifications => ({
       })
     }
   },
-  addNotification ({ options, componentId }) {
+  addNotification (data) {
+    const { options, componentId } = Array.isArray(data) ? data[0] : data
+
     const notification = parseNotification(options, componentId)
 
     this.proccessNotification(notification)
   },
-  addConfirmNotification ({ options, componentId }) {
+  addConfirmNotification (data) {
+    const { options, componentId } = Array.isArray(data) ? data[0] : data
+
     const notification = parseConfirmation(options, componentId)
 
     this.proccessNotification(notification)

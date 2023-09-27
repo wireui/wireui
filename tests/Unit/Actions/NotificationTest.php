@@ -1,88 +1,78 @@
 <?php
 
-use Mockery\Mock;
-use Tests\Unit\{LivewireComponent, TestCase};
-use WireUi\Actions\Notification;
+namespace Tests\Unit\Actions;
 
-it('should emit a notification event', function () {
-    $event  = 'wireui:notification';
+use Mockery\Mock;
+use Tests\Unit\{TestCase, TestComponent};
+use WireUi\Enum\Actions;
+
+test('it should emit a notification event', function () {
+    $event = 'wireui:notification';
+
     $params = [
-        'options' => [
-            'title' => 'WireUI is awesome!',
-            'icon'  => Notification::SUCCESS,
-        ],
         'componentId' => 'fake-id',
+        'options'     => [
+            'icon'  => Actions::SUCCESS->value,
+            'title' => 'WireUI is awesome!',
+        ],
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+    $mock = $this->getMockBuilder(TestComponent::class)
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, $params);
 
     $mock->notification()->send($params['options']);
 });
 
-it('should emit a confirm notification event', function (?string $icon, string $expectedIcon) {
-    $event  = 'wireui:confirm-notification';
+test('it should emit a confirm notification event', function (?string $icon, string $expectedIcon) {
+    $event = 'wireui:confirm-notification';
+
     $params = [
-        'options'     => ['title' => 'Sure Delete?', 'icon' => $icon],
         'componentId' => 'fake-id',
+        'options'     => ['title' => 'Sure Delete?', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+    $mock = $this->getMockBuilder(TestComponent::class)
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
-        ->with($event, [
-            'options' => [
-                'title' => 'Sure Delete?',
-                'icon'  => $expectedIcon,
-            ],
-            'componentId' => 'fake-id',
-        ]);
+        ->method('dispatch')
+        ->with($event, data_set($params, 'options.icon', $expectedIcon));
 
     $mock->notification()->confirm($params['options']);
-})->with([
-    ['home', 'home'],
-    [null, Notification::QUESTION], // assert the default icon
-]);
+})->with('notification::event');
 
-it('should emit the simple notification event', function (string $method) {
+test('it should emit the simple notification event', function (string $method) {
     $event = 'wireui:notification';
 
     /** @var TestCase $this */
-    $mock = $this->getMockBuilder(LivewireComponent::class)
-        ->onlyMethods(['dispatchBrowserEvent'])
+    $mock = $this->getMockBuilder(TestComponent::class)
+        ->onlyMethods(['dispatch'])
         ->getMock();
 
-    /** @var Mock|LivewireComponent $mock */
+    /** @var Mock|TestComponent $mock */
     $mock
         ->expects($this->once())
-        ->method('dispatchBrowserEvent')
+        ->method('dispatch')
         ->with($event, [
-            'options' => [
+            'componentId' => 'fake-id',
+            'options'     => [
                 'icon'        => $method,
                 'title'       => $title       = 'WireUI is awesome!',
                 'description' => $description = 'WireUI is easy to use.',
             ],
-            'componentId' => 'fake-id',
         ]);
 
     $mock->notification()->{$method}($title, $description);
-})->with([
-    'success',
-    'error',
-    'info',
-    'warning',
-]);
+})->with('simple::notification::event');

@@ -1,59 +1,32 @@
 <?php
 
+namespace Tests\Unit\View;
+
 use WireUi\View\Attribute;
 
 it('should get the attribute directive', function (?string $directive) {
     $attribute = new Attribute($directive);
 
     expect($attribute->directive())->toBe($directive);
-})->with([
-    ['spinner.lazy'],
-    ['spinner.lazy.lazy'],
-    ['spinner.lazy..bar'],
-    ['spinner.lazy.foo.'],
-    [''],
-    ['.foo'],
-]);
+})->with('attribute::directive');
 
 it('should get the attribute name', function (string $directive, string $name) {
     $attribute = new Attribute($directive);
 
     expect($attribute->name())->toBe($name);
-})->with([
-    ['spinner.lazy', 'spinner'],
-    ['spinner.lazy.lazy', 'spinner'],
-    ['spinner.lazy..bar', 'spinner'],
-    ['spinner.lazy.foo.', 'spinner'],
-    ['spinner:lazy,foo.', 'spinner'],
-    ['', ''],
-    ['.foo', ''],
-]);
+})->with('attribute::name');
 
 it('should get the attribute expression', function ($expression) {
     $attribute = new Attribute('directive', $expression);
 
     expect($attribute->expression())->toBe($expression);
-})->with([
-    ['true'],
-    ['false'],
-    ['0'],
-    ['1'],
-    ['abc'],
-    [null],
-]);
+})->with('attribute::expression');
 
 it('should get the attribute value', function (string $directive, ?string $value) {
     $attribute = new Attribute($directive);
 
     expect($attribute->value())->toBe($value);
-})->with([
-    ['spinner:lazy', 'lazy'],
-    ['spinner:lazy.foo', 'lazy'],
-    ['spinner.lazy..bar', null],
-    ['spinner:bar.lazy.foo.', 'bar'],
-    ['', null],
-    ['.foo', null],
-]);
+})->with('attribute::value');
 
 it('should return true if the attribute has a modifier', function () {
     $attribute = new Attribute('spinner.lazy');
@@ -66,10 +39,4 @@ it('should get filtered the attribute modifiers', function (string $attribute, a
     $attribute = new Attribute($attribute, true);
 
     expect($attribute->modifiers()->toArray())->toBe($modifiers);
-})->with([
-    ['spinner.lazy', ['lazy']],
-    ['spinner.lazy.lazy', ['lazy']],
-    ['spinner.lazy..bar', ['lazy', 'bar']],
-    ['spinner.lazy.foo.', ['lazy', 'foo']],
-    ['spinner:fast.lazy.foo', ['lazy', 'foo']],
-]);
+})->with('attribute::modifiers');

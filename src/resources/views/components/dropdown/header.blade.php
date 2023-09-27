@@ -1,5 +1,5 @@
-<div class="@if($separator) border-t border-secondary-200 dark:border-secondary-600 @endif">
-    <h6 {{ $attributes->class($classes) }}>
+<div class="{{ $getSeparatorClasses() }}">
+    <h6 {{ $attributes->class($getLabelClasses()) }}>
         {{ $label }}
     </h6>
 

@@ -4,13 +4,55 @@ namespace WireUi\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-use WireUi\Actions\Minify;
+use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class BladeDirectives
 {
+    public function confirmAction(string $expression): string
+    {
+        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$__livewire->getId() }}')\"";
+    }
+
+    public function notify(string $expression): string
+    {
+        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$__livewire->getId() }}')\"";
+    }
+
+    public function boolean(string $value): string
+    {
+        return "<?= json_encode(filter_var({$value}, FILTER_VALIDATE_BOOLEAN)); ?>";
+    }
+
+    public function toJs(mixed $expression): string
+    {
+        return <<<EOT
+        <?php if (is_object({$expression}) || is_array({$expression})) { echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))"; } elseif (is_string({$expression})) { echo "'".str_replace("'", "\'", {$expression})."'"; } else { echo json_encode({$expression}); } ?>
+        EOT;
+    }
+
+    public function entangleable(mixed $expression): string
+    {
+        $fallback = (string) Str::of($expression)->after(',')->trim();
+        $property = (string) Str::of($expression)->before(',')->trim();
+
+        return <<<EOT
+        <?php if (!isset(\$__livewire)): ?>@toJs({$fallback})<?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>@entangle({$property}).live<?php else: ?>@entangle({$property})<?php endif; ?>
+        EOT;
+    }
+
+    public function styles(bool $absolute = true): string
+    {
+        $route = route('wireui.assets.styles', [], $absolute);
+
+        $this->getManifestVersion('wireui.css', $route);
+
+        return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
+    }
+
     public function scripts(bool $absolute = true, array $attributes = []): string
     {
-        $route = route('wireui.assets.scripts', $parameters = [], $absolute);
+        $route = route('wireui.assets.scripts', [], $absolute);
+
         $this->getManifestVersion('wireui.js', $route);
 
         $attributes = new ComponentAttributeBag($attributes);
@@ -34,18 +76,10 @@ class BladeDirectives
             }
         JS;
 
-        return Minify::execute($scripts);
+        return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
     }
 
-    public function styles(bool $absolute = true): string
-    {
-        $route = route('wireui.assets.styles', $parameters = [], $absolute);
-        $this->getManifestVersion('wireui.css', $route);
-
-        return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
-    }
-
-    public function getManifestVersion(string $file, ?string &$route = null): ?string
+    public function getManifestVersion(string $file, string &$route = null): ?string
     {
         $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';
 
@@ -54,37 +88,11 @@ class BladeDirectives
         }
 
         $manifest = json_decode(file_get_contents($manifestPath), $assoc = true);
-        $version  = last(explode('=', $manifest["/{$file}"]));
 
-        if ($route) {
-            $route .= "?id={$version}";
-        }
+        $version = last(explode('=', $manifest["/{$file}"]));
+
+        $route = $route ? "{$route}?id={$version}" : $route;
 
         return $version;
-    }
-
-    public function confirmAction(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$_instance->id }}')\"";
-    }
-
-    public function notify(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$_instance->id }}')\"";
-    }
-
-    public function boolean(string $value): string
-    {
-        return "<?= json_encode(filter_var({$value}, FILTER_VALIDATE_BOOLEAN)); ?>";
-    }
-
-    public function entangleable(string $expression): ?string
-    {
-        $fallback = (string) Str::of($expression)->after(',')->trim();
-        $property = (string) Str::of($expression)->before(',')->trim();
-
-        return <<<EOT
-        <?php if (!isset(\$_instance->id)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
-        EOT;
     }
 }

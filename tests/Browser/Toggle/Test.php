@@ -13,7 +13,7 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $id = md5('toggle');
 
-            $this->visit($browser, Component::class)
+            $this->visit($browser, 'Toggle.view')
                 ->assertSee('Enable Notifications')
                 ->tap(fn () => $browser->script("document.getElementById('{$id}').click()"))
                 ->assertChecked('toggle')
