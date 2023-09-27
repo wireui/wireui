@@ -58,28 +58,26 @@ class Dialog
 
     public function simpleDialog(string $icon, string $title, string $description = null): void
     {
-        $this->show([
-            'icon'        => $icon,
-            'title'       => $title,
-            'description' => $description,
-        ]);
+        $this->show(['icon' => $icon, 'title' => $title, 'description' => $description]);
     }
 
     public function show(array $options): void
     {
         $options['icon'] ??= Actions::INFO->value;
 
-        $this->component->dispatch("wireui:{$this->getEventName()}", [
-            'options'     => $options,
-            'componentId' => $this->component->getId(),
-        ]);
+        $this->dispatchDialog("wireui:{$this->getEventName()}", $options);
     }
 
     public function confirm(array $options): void
     {
         $options['icon'] ??= Actions::QUESTION->value;
 
-        $this->component->dispatch("wireui:confirm-{$this->getEventName()}", [
+        $this->dispatchDialog("wireui:confirm-{$this->getEventName()}", $options);
+    }
+
+    private function dispatchDialog(string $event, array $options): void
+    {
+        $this->component->dispatch($event, [
             'options'     => $options,
             'componentId' => $this->component->getId(),
         ]);

@@ -9,9 +9,18 @@ class Notification
 {
     private Component $component;
 
+    private bool $session = false;
+
     public function __construct(Component $component)
     {
         $this->component = $component;
+    }
+
+    public function session(): self
+    {
+        $this->session = true;
+
+        return $this;
     }
 
     public function success(string $title, string $description = null): void
@@ -36,28 +45,25 @@ class Notification
 
     public function simpleNotification(string $icon, string $title, string $description = null): void
     {
-        $this->send([
-            'icon'        => $icon,
-            'title'       => $title,
-            'description' => $description,
-        ]);
+        $this->send(['icon' => $icon, 'title' => $title, 'description' => $description]);
     }
 
     public function send(array $options): void
     {
-        $this->component->dispatch('wireui:notification', [
-            'options'     => $options,
-            'componentId' => $this->component->getId(),
-        ]);
+        $this->dispatchNotification('wireui:notification', $options);
     }
 
     public function confirm(array $options): void
     {
         $options['icon'] ??= Actions::QUESTION->value;
 
-        $this->component->dispatch('wireui:confirm-notification', [
-            'options'     => $options,
-            'componentId' => $this->component->getId(),
-        ]);
+        $this->dispatchNotification('wireui:confirm-notification', $options);
+    }
+
+    private function dispatchNotification(string $event, array $options): void
+    {
+        $payload = ['options' => $options, 'componentId' => $this->component->getId()];
+
+        $this->session ? session()->flash($event, $payload) : $this->component->dispatch($event, $payload);
     }
 }
