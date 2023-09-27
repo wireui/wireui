@@ -10,9 +10,11 @@ export interface Positioning extends Component {
   $refs: PositioningRefs
   cleanupPosition: CallableFunction | null
   initPositioningSystem (): void
+  rootContainer(): HTMLElement
   syncPopoverPosition (): void
   open (): void
   close (): void
+  closeIfNotFocused (): void
   toggle (): void
   handleEscape (): void
   updatePosition(): void
@@ -40,19 +42,30 @@ export const positioning: Positioning = {
       }
     })
   },
+  rootContainer () {
+    return this.$root
+  },
   syncPopoverPosition () {
     this.cleanupPosition = autoUpdate(
-      this.$root,
+      this.rootContainer(),
       this.$refs.popover,
-      () => this.updatePosition()
+      () => this.updatePosition(),
+      {
+        animationFrame: true
+      }
     )
   },
   open () { this.popover = true },
   close () { this.popover = false },
+  closeIfNotFocused () {
+    if (!this.$root.contains(document.activeElement) && this.popover) {
+      this.close()
+    }
+  },
   toggle () { this.popover = !this.popover },
   handleEscape () { this.close() },
   updatePosition () {
-    computePosition(this.$root, this.$refs.popover, {
+    computePosition(this.rootContainer(), this.$refs.popover, {
       placement: 'bottom',
       middleware: [
         offset(4),

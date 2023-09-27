@@ -4,6 +4,7 @@ namespace WireUi\Traits\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\Form\WrapperData;
 use WireUi\Traits\Components\Concerns\{
     HasAttributesExtraction,
@@ -42,7 +43,10 @@ trait IsFormComponent
 
             $data['attrs'] = $data['attributes'];
 
-            // dd($data);
+            /** @var ComponentAttributeBag $attributes */
+            $attributes = $data['attributes'];
+
+            $data['value'] = $attributes->get('value', $attributes->wire('model')->value());
 
             return $this->blade()
                 ->with($data)

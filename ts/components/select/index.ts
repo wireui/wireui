@@ -225,6 +225,9 @@ export default (initOptions: InitOptions): Select => ({
       subtree: true
     })
   },
+  rootContainer () {
+    return <HTMLElement> this.$root.querySelector('[form-wrapper]')
+  },
   syncProps () {
     const props = this.$props
 

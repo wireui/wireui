@@ -1,18 +1,10 @@
-@php($attrs = $attributes)
-
 <x-inputs.wrapper
-    x-data="wireui_color_picker({
-        colorNameAsValue: @boolean($colorNameAsValue),
-
-        @if ($attrs->wire('model')->value())
-            wireModifiers: @toJs($attrs->wireModifiers()),
-            wireModel: @entangle($attrs->wire('model')),
-        @endif
-
-        @if ($colors)
-            colors: @toJs($getColors())
-        @endif
-    })"
+    :x-data="WireUi::alpine('wireui_color_picker', [
+        'colorNameAsValue' => $colorNameAsValue,
+        'colors'           => $getColors(),
+        'wireModel'        => WireUi::wireModel($this, $attributes),
+        'value'            => $value
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
 >
@@ -28,7 +20,7 @@
     </x-slot:prefix>
 
     <x-wireui::inputs.element
-        x-model="{{ $colorNameAsValue ? 'selected.name' : 'selected.value' }}"
+        x-model="value"
         x-on:input="setColor($event.target.value)"
         x-ref="input"
         :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"

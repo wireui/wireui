@@ -22,6 +22,7 @@ export interface Select extends Focusables, Positioning {
   initWireModel (): void
   initOptionsObserver (): void
   initSlotObserver (): void
+  rootContainer (): HTMLElement
   syncProps (): void
   syncJsonOptions (): void
   syncSlotOptions (): void

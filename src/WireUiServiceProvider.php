@@ -105,21 +105,21 @@ class WireUiServiceProvider extends ServiceProvider
             return WireUiDirectives::styles();
         });
 
-        Blade::directive('boolean', static function ($value): string {
-            return WireUiDirectives::boolean($value);
-        });
+        // Blade::directive('boolean', static function ($value): string {
+        //     return WireUiDirectives::boolean($value);
+        // });
 
         Blade::directive('attributes', static function ($attributes): string {
             return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
         });
 
-        Blade::directive('toJs', static function ($expression): string {
-            return LivewireBladeDirectives::js($expression);
-        });
+        // Blade::directive('toJs', static function ($expression): string {
+        //     return LivewireBladeDirectives::js($expression);
+        // });
 
-        Blade::directive('entangleable', static function ($value): string {
-            return WireUiDirectives::entangleable($value);
-        });
+        // Blade::directive('entangleable', static function ($value): string {
+        //     return WireUiDirectives::entangleable($value);
+        // });
 
         return $this;
     }
@@ -152,21 +152,30 @@ class WireUiServiceProvider extends ServiceProvider
             return implode(' ', $classes);
         });
 
-        ComponentAttributeBag::macro('wireModifiers', function () {
-            /** @var ComponentAttributeBag $this */
-
-            /** @var WireDirective $model */
-            $model = $this->wire('model');
-
-            return [
-                'live'     => $model->modifiers()->contains('live'),
-                'blur'     => $model->modifiers()->contains('blur'),
-                'debounce' => [
-                    'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
-                ],
-            ];
-        });
+        // ComponentAttributeBag::macro('wireModel', function () {
+        //     $exists = count($this->whereStartsWith('wire:model')->getAttributes()) > 0;
+        //
+        //     if (!$exists) {
+        //         return ['exists' => false];
+        //     }
+        //
+        //     /** @var WireDirective $model */
+        //     $model = $this->wire('model');
+        //
+        //     return [
+        //         'exists'    => $exists,
+        //         'name'      => $model->name(),
+        //         'value'     => $this->wire('model')->value(),
+        //         'modifiers' => [
+        //             'live'     => $model->modifiers()->contains('live'),
+        //             'blur'     => $model->modifiers()->contains('blur'),
+        //             'debounce' => [
+        //                 'exists' => $model->modifiers()->contains('debounce'),
+        //                 'delay'  => (int) Str::of($model->modifiers()->get(1, '750'))->replace('ms', '')->toString(),
+        //             ],
+        //         ],
+        //     ];
+        // });
 
         ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */

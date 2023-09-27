@@ -518,142 +518,6 @@ video {
     max-width: 1536px;
   }
 }
-.form-input,.form-textarea,.form-select,.form-multiselect {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-color: #fff;
-  border-color: #6b7280;
-  border-width: 1px;
-  border-radius: 0px;
-  padding-top: 0.5rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  --tw-shadow: 0 0 #0000;
-}
-.form-input:focus, .form-textarea:focus, .form-select:focus, .form-multiselect:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 0px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: #2563eb;
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  border-color: #2563eb;
-}
-.form-input::-moz-placeholder, .form-textarea::-moz-placeholder {
-  color: #6b7280;
-  opacity: 1;
-}
-.form-input::placeholder,.form-textarea::placeholder {
-  color: #6b7280;
-  opacity: 1;
-}
-.form-input::-webkit-datetime-edit-fields-wrapper {
-  padding: 0;
-}
-.form-input::-webkit-date-and-time-value {
-  min-height: 1.5em;
-  text-align: inherit;
-}
-.form-input::-webkit-datetime-edit {
-  display: inline-flex;
-}
-.form-input::-webkit-datetime-edit,.form-input::-webkit-datetime-edit-year-field,.form-input::-webkit-datetime-edit-month-field,.form-input::-webkit-datetime-edit-day-field,.form-input::-webkit-datetime-edit-hour-field,.form-input::-webkit-datetime-edit-minute-field,.form-input::-webkit-datetime-edit-second-field,.form-input::-webkit-datetime-edit-millisecond-field,.form-input::-webkit-datetime-edit-meridiem-field {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-  -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-}
-.form-select:where([size]:not([size="1"])) {
-  background-image: initial;
-  background-position: initial;
-  background-repeat: unset;
-  background-size: initial;
-  padding-right: 0.75rem;
-  -webkit-print-color-adjust: unset;
-          print-color-adjust: unset;
-}
-.form-checkbox,.form-radio {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  padding: 0;
-  -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-  display: inline-block;
-  vertical-align: middle;
-  background-origin: border-box;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  flex-shrink: 0;
-  height: 1rem;
-  width: 1rem;
-  color: #2563eb;
-  background-color: #fff;
-  border-color: #6b7280;
-  border-width: 1px;
-  --tw-shadow: 0 0 #0000;
-}
-.form-checkbox {
-  border-radius: 0px;
-}
-.form-radio {
-  border-radius: 100%;
-}
-.form-checkbox:focus,.form-radio:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
-  --tw-ring-offset-width: 2px;
-  --tw-ring-offset-color: #fff;
-  --tw-ring-color: #2563eb;
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-}
-.form-checkbox:checked,.form-radio:checked {
-  border-color: transparent;
-  background-color: currentColor;
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.form-checkbox:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
-}
-.form-radio:checked {
-  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
-}
-.form-checkbox:checked:hover,.form-checkbox:checked:focus,.form-radio:checked:hover,.form-radio:checked:focus {
-  border-color: transparent;
-  background-color: currentColor;
-}
-.form-checkbox:indeterminate {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");
-  border-color: transparent;
-  background-color: currentColor;
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.form-checkbox:indeterminate:hover,.form-checkbox:indeterminate:focus {
-  border-color: transparent;
-  background-color: currentColor;
-}
 .sr-only {
   position: absolute;
   width: 1px;
@@ -710,9 +574,6 @@ video {
 }
 .right-2 {
   right: 0.5rem;
-}
-.right-3 {
-  right: 0.75rem;
 }
 .top-0 {
   top: 0px;
@@ -1139,9 +1000,6 @@ video {
 .self-start {
   align-self: flex-start;
 }
-.self-center {
-  align-self: center;
-}
 .overflow-auto {
   overflow: auto;
 }
@@ -1198,10 +1056,6 @@ video {
 .rounded-b-xl {
   border-bottom-right-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
-}
-.rounded-l-md {
-  border-top-left-radius: 0.375rem;
-  border-bottom-left-radius: 0.375rem;
 }
 .rounded-r-md {
   border-top-right-radius: 0.375rem;
@@ -1332,10 +1186,6 @@ video {
 .border-negative-200 {
   --tw-border-opacity: 1;
   border-color: rgb(254 202 202 / var(--tw-border-opacity));
-}
-.border-negative-300 {
-  --tw-border-opacity: 1;
-  border-color: rgb(252 165 165 / var(--tw-border-opacity));
 }
 .border-negative-400 {
   --tw-border-opacity: 1;
@@ -1468,9 +1318,6 @@ video {
 .border-teal-600 {
   --tw-border-opacity: 1;
   border-color: rgb(13 148 136 / var(--tw-border-opacity));
-}
-.border-transparent {
-  border-color: transparent;
 }
 .border-violet-500 {
   --tw-border-opacity: 1;
@@ -1909,9 +1756,6 @@ video {
 .p-0 {
   padding: 0px;
 }
-.p-0\.5 {
-  padding: 0.125rem;
-}
 .p-1 {
   padding: 0.25rem;
 }
@@ -2025,23 +1869,11 @@ video {
 .pl-4 {
   padding-left: 1rem;
 }
-.pl-8 {
-  padding-left: 2rem;
-}
 .pr-0 {
   padding-right: 0px;
 }
 .pr-0\.5 {
   padding-right: 0.125rem;
-}
-.pr-1 {
-  padding-right: 0.25rem;
-}
-.pr-10 {
-  padding-right: 2.5rem;
-}
-.pr-14 {
-  padding-right: 3.5rem;
 }
 .pr-2 {
   padding-right: 0.5rem;
@@ -2054,9 +1886,6 @@ video {
 }
 .pr-4 {
   padding-right: 1rem;
-}
-.pr-8 {
-  padding-right: 2rem;
 }
 .pr-9 {
   padding-right: 2.25rem;
@@ -2252,10 +2081,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-.text-negative-900 {
-  --tw-text-opacity: 1;
-  color: rgb(127 29 29 / var(--tw-text-opacity));
-}
 .text-neutral-500 {
   --tw-text-opacity: 1;
   color: rgb(115 115 115 / var(--tw-text-opacity));
@@ -2424,22 +2249,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(82 82 91 / var(--tw-text-opacity));
 }
-.placeholder-negative-300::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-placeholder-opacity));
-}
-.placeholder-negative-300::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(252 165 165 / var(--tw-placeholder-opacity));
-}
-.placeholder-secondary-400::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-placeholder-opacity));
-}
-.placeholder-secondary-400::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-placeholder-opacity));
-}
 .opacity-0 {
   opacity: 0;
 }
@@ -2487,6 +2296,9 @@ video {
 }
 .\!outline-0 {
   outline-width: 0px !important;
+}
+.outline-0 {
+  outline-width: 0px;
 }
 .\!ring-0 {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color) !important;
@@ -2743,7 +2555,7 @@ input[type="number"].appearance-number-none {
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
-.focus-within\:ring-indigo-600:focus-within {
+.focus-within\:ring-primary-600:focus-within {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
 }
@@ -3309,17 +3121,9 @@ input[type="number"].appearance-number-none {
   --tw-border-opacity: 1;
   border-color: rgb(248 113 113 / var(--tw-border-opacity));
 }
-.focus\:border-negative-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
 .focus\:border-primary-400:focus {
   --tw-border-opacity: 1;
   border-color: rgb(129 140 248 / var(--tw-border-opacity));
-}
-.focus\:border-primary-500:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
 }
 .focus\:border-transparent:focus {
   border-color: transparent;
@@ -3701,6 +3505,10 @@ input[type="number"].appearance-number-none {
   --tw-text-opacity: 1;
   color: rgb(6 95 70 / var(--tw-text-opacity));
 }
+.focus\:text-primary-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(79 70 229 / var(--tw-text-opacity));
+}
 .focus\:text-primary-700:focus {
   --tw-text-opacity: 1;
   color: rgb(67 56 202 / var(--tw-text-opacity));
@@ -3831,11 +3639,6 @@ input[type="number"].appearance-number-none {
 .focus\:ring-0:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-.focus\:ring-1:focus {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 .focus\:ring-2:focus {
@@ -3975,10 +3778,6 @@ input[type="number"].appearance-number-none {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(129 140 248 / var(--tw-ring-opacity));
 }
-.focus\:ring-primary-500:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity));
-}
 .focus\:ring-primary-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(79 70 229 / var(--tw-ring-opacity));
@@ -4058,9 +3857,6 @@ input[type="number"].appearance-number-none {
 .focus\:ring-teal-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(13 148 136 / var(--tw-ring-opacity));
-}
-.focus\:ring-transparent:focus {
-  --tw-ring-color: transparent;
 }
 .focus\:ring-violet-400:focus {
   --tw-ring-opacity: 1;
@@ -4205,6 +4001,9 @@ input[type="number"].appearance-number-none {
      -moz-user-select: none;
           user-select: none;
 }
+.invalidated\:block[invalid] {
+  display: block;
+}
 .invalidated\:bg-negative-50[invalid] {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
@@ -4245,6 +4044,10 @@ input[type="number"].appearance-number-none {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
+.invalidated\:focus\:text-negative-600:focus[invalid] {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
 .invalidated\:focus\:text-negative-700:focus[invalid] {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
@@ -4252,6 +4055,9 @@ input[type="number"].appearance-number-none {
 .invalidated\:focus\:ring-negative-600:focus[invalid] {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[group-invalidated] .invalidated\:block {
+  display: block;
 }
 [group-invalidated] .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
@@ -4293,6 +4099,10 @@ input[type="number"].appearance-number-none {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
+[group-invalidated] .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
 [group-invalidated] .invalidated\:focus\:text-negative-700:focus {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
@@ -4301,869 +4111,713 @@ input[type="number"].appearance-number-none {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] .invalidated\:bg-negative-50:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:block:has(input:invalid) {
+  display: block;
+}
+[with-validation-colors] > div[form-wrapper] > .invalidated\:bg-negative-50:has(input:invalid) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] .invalidated\:text-negative-500:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-500:has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] .invalidated\:text-negative-600:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-600:has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] .invalidated\:text-negative-800:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-800:has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] .invalidated\:placeholder-negative-400:invalid::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid)::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] .invalidated\:placeholder-negative-400:invalid::placeholder {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid)::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] .invalidated\:ring-negative-500:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:ring-negative-500:has(input:invalid) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] .invalidated\:hover\:bg-negative-200:hover:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:hover\:bg-negative-200:hover:has(input:invalid) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] .invalidated\:hover\:text-negative-700:hover:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:hover\:text-negative-700:hover:has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] .invalidated\:focus\:bg-negative-200:focus:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:bg-negative-200:focus:has(input:invalid) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] .invalidated\:focus\:text-negative-700:focus:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:text-negative-600:focus:has(input:invalid) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:text-negative-700:focus:has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] .invalidated\:focus\:ring-negative-600:focus:invalid {
+[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:ring-negative-600:focus:has(input:invalid) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:bg-negative-50:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:block {
+  display: block;
+}
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-500:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-600:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:text-negative-800:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid)::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid)::placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:ring-negative-500:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:hover\:bg-negative-200:hover:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:hover\:text-negative-700:hover:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:bg-negative-200:focus:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:bg-negative-200:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:text-negative-700:focus:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:text-negative-700:focus {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .invalidated\:focus\:ring-negative-600:focus:has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:bg-negative-50[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:block {
+  display: block;
+}
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-500[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-600[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:text-negative-800[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:placeholder-negative-400[name="form.wrapper.description"]::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:placeholder-negative-400[name="form.wrapper.description"]::placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:ring-negative-500[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:hover\:bg-negative-200:hover[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:hover\:text-negative-700:hover[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:bg-negative-200:focus[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:bg-negative-200:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:text-negative-700:focus[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:text-negative-700:focus {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .invalidated\:focus\:ring-negative-600:focus[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:bg-negative-50[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:block {
+  display: block;
+}
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-500[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-600[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-800[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400[name="form.wrapper.container.prefix"]::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400[name="form.wrapper.container.prefix"]::placeholder {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:ring-negative-500[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:bg-negative-200:hover[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:text-negative-700:hover[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:bg-negative-200:focus[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:bg-negative-200:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:text-negative-700:focus[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:text-negative-700:focus {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:ring-negative-600:focus[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:bg-negative-50[name="form.wrapper.container.suffix"] {
+[with-validation-colors][form-wrapper] > .invalidated\:block:has(input:invalid:not(:-moz-placeholder-shown)) {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > .invalidated\:block:has(input:invalid:not(:placeholder-shown)) {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > .invalidated\:bg-negative-50:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-500[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-600[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:text-negative-800[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400[name="form.wrapper.container.suffix"]::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:placeholder-negative-400[name="form.wrapper.container.suffix"]::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:ring-negative-500[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:bg-negative-200:hover[name="form.wrapper.container.suffix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:hover\:text-negative-700:hover[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:bg-negative-200:focus[name="form.wrapper.container.suffix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:text-negative-700:focus[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .invalidated\:focus\:ring-negative-600:focus[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:bg-negative-50 {
+[with-validation-colors][form-wrapper] > .invalidated\:bg-negative-50:has(input:invalid:not(:placeholder-shown)) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-500 {
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-500:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-600 {
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-500:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-600:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:text-negative-800 {
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-600:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-800:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:placeholder-negative-400::-moz-placeholder {
+[with-validation-colors][form-wrapper] > .invalidated\:text-negative-800:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid:not(:placeholder-shown))::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:placeholder-negative-400::placeholder {
+[with-validation-colors][form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid:not(:-moz-placeholder-shown))::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:ring-negative-500 {
+[with-validation-colors][form-wrapper] > .invalidated\:placeholder-negative-400:has(input:invalid:not(:placeholder-shown))::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:ring-negative-500:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:hover\:bg-negative-200:hover {
+[with-validation-colors][form-wrapper] > .invalidated\:ring-negative-500:has(input:invalid:not(:placeholder-shown)) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:hover\:bg-negative-200:hover:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:hover\:text-negative-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:bg-negative-200:focus {
+[with-validation-colors][form-wrapper] > .invalidated\:hover\:bg-negative-200:hover:has(input:invalid:not(:placeholder-shown)) {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:text-negative-700:focus {
+[with-validation-colors][form-wrapper] > .invalidated\:hover\:text-negative-700:hover:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .invalidated\:focus\:ring-negative-600:focus {
+[with-validation-colors][form-wrapper] > .invalidated\:hover\:text-negative-700:hover:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:bg-negative-200:focus:has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:bg-negative-200:focus:has(input:invalid:not(:placeholder-shown)) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:text-negative-600:focus:has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:text-negative-600:focus:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:text-negative-700:focus:has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:text-negative-700:focus:has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:ring-negative-600:focus:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:bg-negative-50:is(button, a) {
+[with-validation-colors][form-wrapper] > .invalidated\:focus\:ring-negative-600:focus:has(input:invalid:not(:placeholder-shown)) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:text-negative-500:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:text-negative-600:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:text-negative-800:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:placeholder-negative-400:is(button, a)::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:placeholder-negative-400:is(button, a)::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:ring-negative-500:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:hover\:bg-negative-200:hover:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:hover\:text-negative-700:hover:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:focus\:bg-negative-200:focus:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:focus\:text-negative-700:focus:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .invalidated\:focus\:ring-negative-600:focus:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:bg-negative-50:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:text-negative-500:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:text-negative-600:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:text-negative-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:text-negative-800:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:text-negative-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:text-negative-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:placeholder-negative-400:is(button, a)::-moz-placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:text-negative-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:placeholder-negative-400:is(button, a)::placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:ring-negative-500:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:placeholder-negative-400::placeholder {
+  --tw-placeholder-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:hover\:bg-negative-200:hover:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:ring-negative-500 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:hover\:text-negative-700:hover:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:focus\:bg-negative-200:focus:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:focus\:text-negative-700:focus:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .invalidated\:focus\:ring-negative-600:focus:is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:hover\:text-negative-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-.validated\:bg-positive-50[valid] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-.validated\:text-positive-500[valid] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-.validated\:text-positive-600[valid] {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-.validated\:text-positive-800[valid] {
-  --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
-}
-.validated\:placeholder-positive-400[valid]::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-.validated\:placeholder-positive-400[valid]::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-.validated\:ring-positive-500[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-.validated\:hover\:bg-positive-200:hover[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-.validated\:hover\:text-positive-700:hover[valid] {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-.validated\:focus\:bg-positive-200:focus[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:bg-negative-50 {
   --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
-.validated\:focus\:text-positive-700:focus[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-.validated\:focus\:ring-positive-600:focus[valid] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-[group-validated] .validated\:bg-positive-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-[group-validated] .validated\:text-positive-500 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-[group-validated] .validated\:text-positive-600 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-[group-validated] .validated\:text-positive-800 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:text-negative-600 {
   --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-[group-validated] .validated\:placeholder-positive-400::-moz-placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:text-negative-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:text-negative-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-[group-validated] .validated\:placeholder-positive-400::placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-[group-validated] .validated\:ring-positive-500 {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-[group-validated] .validated\:hover\:bg-positive-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-[group-validated] .validated\:hover\:text-positive-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-[group-validated] .validated\:focus\:bg-positive-200:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-[group-validated] .validated\:focus\:text-positive-700:focus {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-[group-validated] .validated\:focus\:ring-positive-600:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] .validated\:bg-positive-50:valid {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] .validated\:text-positive-500:valid {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] .validated\:text-positive-600:valid {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] .validated\:text-positive-800:valid {
-  --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
-}
-form[with-validation-colors] .validated\:placeholder-positive-400:valid::-moz-placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] .validated\:placeholder-positive-400:valid::placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:ring-negative-500 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:ring-negative-500 {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:hover\:bg-negative-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:hover\:bg-negative-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:hover\:text-negative-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:hover\:text-negative-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .invalidated\:focus\:ring-negative-600:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .invalidated\:focus\:ring-negative-600:focus {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:block {
+  display: block;
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:bg-negative-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:bg-negative-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:text-negative-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:text-negative-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:text-negative-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:text-negative-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:text-negative-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:text-negative-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:placeholder-negative-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] .validated\:ring-positive-500:valid {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] .validated\:hover\:bg-positive-200:hover:valid {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] .validated\:hover\:text-positive-700:hover:valid {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] .validated\:focus\:bg-positive-200:focus:valid {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] .validated\:focus\:text-positive-700:focus:valid {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] .validated\:focus\:ring-positive-600:focus:valid {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:bg-positive-50:has(input:valid) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:text-positive-500:has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:text-positive-600:has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:text-positive-800:has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:placeholder-positive-400:has(input:valid)::-moz-placeholder {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .validated\:placeholder-positive-400:has(input:valid)::placeholder {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:placeholder-negative-400::placeholder {
   --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+  color: rgb(248 113 113 / var(--tw-placeholder-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .validated\:ring-positive-500:has(input:valid) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > .validated\:hover\:bg-positive-200:hover:has(input:valid) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:hover\:text-positive-700:hover:has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:focus\:bg-positive-200:focus:has(input:valid) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:focus\:text-positive-700:focus:has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > .validated\:focus\:ring-positive-600:focus:has(input:valid) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:ring-negative-500 {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(239 68 68 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:bg-positive-50[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:hover\:bg-negative-200:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:text-positive-500[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:hover\:bg-negative-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:text-positive-600[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:hover\:text-negative-700:hover {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:text-positive-800[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:focus\:bg-negative-200:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:focus\:text-negative-600:focus {
   --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:placeholder-positive-400[name="form.wrapper.description"]::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:focus\:text-negative-600:focus {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:placeholder-positive-400[name="form.wrapper.description"]::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:ring-positive-500[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:focus\:text-negative-700:focus {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:hover\:bg-positive-200:hover[name="form.wrapper.description"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:hover\:text-positive-700:hover[name="form.wrapper.description"] {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:focus\:bg-positive-200:focus[name="form.wrapper.description"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:focus\:text-positive-700:focus[name="form.wrapper.description"] {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .validated\:focus\:ring-positive-600:focus[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .invalidated\:focus\:ring-negative-600:focus {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:bg-positive-50[name="form.wrapper.container.prefix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-500[name="form.wrapper.container.prefix"] {
+label[name="form.wrapper.container"]:has(input:focus) .input-focus\:text-primary-500 {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(99 102 241 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-600[name="form.wrapper.container.prefix"] {
+label[name="form.wrapper.container"]:has(input:focus) .input-focus\:text-primary-600 {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(79 70 229 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-800[name="form.wrapper.container.prefix"] {
+label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500[invalid] {
   --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:placeholder-positive-400[name="form.wrapper.container.prefix"]::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:placeholder-positive-400[name="form.wrapper.container.prefix"]::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:ring-positive-500[name="form.wrapper.container.prefix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:hover\:bg-positive-200:hover[name="form.wrapper.container.prefix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:hover\:text-positive-700:hover[name="form.wrapper.container.prefix"] {
+[group-invalidated] label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:bg-positive-200:focus[name="form.wrapper.container.prefix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:text-positive-700:focus[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500:has(input:invalid) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:ring-positive-600:focus[name="form.wrapper.container.prefix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:bg-positive-50[name="form.wrapper.container.suffix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-500[name="form.wrapper.container.suffix"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-600[name="form.wrapper.container.suffix"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:text-positive-800[name="form.wrapper.container.suffix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:placeholder-positive-400[name="form.wrapper.container.suffix"]::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:placeholder-positive-400[name="form.wrapper.container.suffix"]::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:ring-positive-500[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:hover\:bg-positive-200:hover[name="form.wrapper.container.suffix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:hover\:text-positive-700:hover[name="form.wrapper.container.suffix"] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500:has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:bg-positive-200:focus[name="form.wrapper.container.suffix"] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:text-positive-700:focus[name="form.wrapper.container.suffix"] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500:has(input:invalid:not(:placeholder-shown)) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .validated\:focus\:ring-positive-600:focus[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:bg-positive-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:text-positive-500 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:text-positive-600 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:text-positive-800 {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:placeholder-positive-400::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:placeholder-positive-400::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:ring-positive-500 {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:hover\:bg-positive-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:hover\:text-positive-700:hover {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:focus\:bg-positive-200:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:focus\:text-positive-700:focus {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .validated\:focus\:ring-positive-600:focus {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:bg-positive-50:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:text-positive-500:is(button, a) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > label[name="form.wrapper.container"]:has(input:focus) .invalidated\:input-focus\:text-negative-500 {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:text-positive-600:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:text-positive-800:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:placeholder-positive-400:is(button, a)::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:placeholder-positive-400:is(button, a)::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:ring-positive-500:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:hover\:bg-positive-200:hover:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:hover\:text-positive-700:hover:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:focus\:bg-positive-200:focus:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:focus\:text-positive-700:focus:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .validated\:focus\:ring-positive-600:focus:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:bg-positive-50:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 253 245 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:text-positive-500:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:text-positive-600:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:text-positive-800:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(6 95 70 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:placeholder-positive-400:is(button, a)::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:placeholder-positive-400:is(button, a)::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(52 211 153 / var(--tw-placeholder-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:ring-positive-500:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(16 185 129 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:hover\:bg-positive-200:hover:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:hover\:text-positive-700:hover:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:focus\:bg-positive-200:focus:is(button, a) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(167 243 208 / var(--tw-bg-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:focus\:text-positive-700:focus:is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .validated\:focus\:ring-positive-600:focus:is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 :is(.dark .dark\:border) {
   border-width: 1px;
@@ -5664,22 +5318,6 @@ form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.cont
 }
 :is(.dark .dark\:text-opacity-80) {
   --tw-text-opacity: 0.8;
-}
-:is(.dark .dark\:placeholder-negative-500)::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-placeholder-opacity));
-}
-:is(.dark .dark\:placeholder-negative-500)::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-placeholder-opacity));
-}
-:is(.dark .dark\:placeholder-secondary-500)::-moz-placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-placeholder-opacity));
-}
-:is(.dark .dark\:placeholder-secondary-500)::placeholder {
-  --tw-placeholder-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-placeholder-opacity));
 }
 :is(.dark .dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
@@ -7142,881 +6780,557 @@ form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.cont
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:bg-negative-700\/10):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:bg-negative-700\/10):has(input:invalid) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] .dark\:invalidated\:text-negative-700:invalid) {
+:is(.dark [with-validation-colors] > div[form-wrapper] > .dark\:invalidated\:text-negative-700:has(input:invalid)) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:text-negative-600):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-600):has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:text-negative-700):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-700):has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):invalid::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid)::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):invalid::placeholder {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid)::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:ring-negative-600):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-600):has(input:invalid) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:ring-negative-700):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-700):has(input:invalid) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):has(input:invalid) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):has(input:invalid) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):has(input:invalid) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):invalid {
+[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):has(input:invalid) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:bg-negative-700\/10):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > .dark\:invalidated\:text-negative-700:has(input:invalid)) {
+:is(.dark [with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-600):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:text-negative-600) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-700):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid)::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid)::placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-600):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-700):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):has(input:invalid) {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:bg-negative-700\/10)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ .dark\:invalidated\:text-negative-700[name="form.wrapper.description"]) {
+:is(.dark [with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:text-negative-600)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-600) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:text-negative-700)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.description"]::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.description"]::placeholder {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:ring-negative-600)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:ring-negative-700)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus)[name="form.wrapper.description"] {
+[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:bg-negative-700\/10)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .dark\:invalidated\:text-negative-700[name="form.wrapper.container.prefix"]) {
+:is(.dark [with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-600)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:text-negative-600) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-700)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.container.prefix"]::-moz-placeholder {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.container.prefix"]::placeholder {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-600)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-700)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
   background-color: rgb(220 38 38 / .15);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus)[name="form.wrapper.container.prefix"] {
+[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:bg-negative-700\/10)[name="form.wrapper.container.suffix"] {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:bg-negative-700\/10):has(input:invalid:not(:-moz-placeholder-shown)) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) .dark\:invalidated\:text-negative-700[name="form.wrapper.container.suffix"]) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:bg-negative-700\/10):has(input:invalid:not(:placeholder-shown)) {
+  background-color: rgb(185 28 28 / 0.1);
+}
+:is(.dark [with-validation-colors][form-wrapper] > .dark\:invalidated\:text-negative-700:has(input:invalid:not(:-moz-placeholder-shown))) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-600)[name="form.wrapper.container.suffix"] {
+:is(.dark [with-validation-colors][form-wrapper] > .dark\:invalidated\:text-negative-700:has(input:invalid:not(:placeholder-shown))) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-600):has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:text-negative-700)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.container.suffix"]::-moz-placeholder {
-  color: rgb(220 38 38 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)[name="form.wrapper.container.suffix"]::placeholder {
-  color: rgb(220 38 38 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-600)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:ring-negative-700)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover)[name="form.wrapper.container.suffix"] {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus)[name="form.wrapper.container.suffix"] {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
-  background-color: rgb(185 28 28 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > .dark\:invalidated\:text-negative-700) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:text-negative-600) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-600):has(input:invalid:not(:placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:text-negative-700) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-700):has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:text-negative-700):has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid:not(:placeholder-shown))::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid:not(:-moz-placeholder-shown))::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:ring-negative-600) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):has(input:invalid:not(:placeholder-shown))::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-600):has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:ring-negative-700) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-600):has(input:invalid:not(:placeholder-shown)) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-700):has(input:invalid:not(:-moz-placeholder-shown)) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:ring-negative-700):has(input:invalid:not(:placeholder-shown)) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:bg-negative-700\/10):is(button, a) {
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):has(input:invalid:not(:-moz-placeholder-shown)) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):has(input:invalid:not(:placeholder-shown)) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):has(input:invalid:not(:-moz-placeholder-shown)) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):has(input:invalid:not(:placeholder-shown)) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):has(input:invalid:not(:placeholder-shown)) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):has(input:invalid:not(:-moz-placeholder-shown)) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):has(input:invalid:not(:placeholder-shown)) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
   background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] .dark\:invalidated\:text-negative-700:is(button, a)) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
+  background-color: rgb(185 28 28 / 0.1);
+}
+:is(.dark [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:text-negative-600):is(button, a) {
+:is(.dark [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ .dark\:invalidated\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:text-negative-600) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:text-negative-700):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):is(button, a)::-moz-placeholder {
-  color: rgb(220 38 38 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):is(button, a)::placeholder {
-  color: rgb(220 38 38 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:ring-negative-600):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:ring-negative-700):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):is(button, a) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):is(button, a) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.prepend"] :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:bg-negative-700\/10):is(button, a) {
-  background-color: rgb(185 28 28 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] .dark\:invalidated\:text-negative-700:is(button, a)) {
-  --tw-text-opacity: 1;
-  color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:text-negative-600):is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:text-negative-600) {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:text-negative-700):is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:text-negative-700) {
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):is(button, a)::-moz-placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:placeholder-negative-600\/70):is(button, a)::placeholder {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
   color: rgb(220 38 38 / 0.7);
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:ring-negative-600):is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:ring-negative-700):is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:ring-negative-600) {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover):is(button, a) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus):is(button, a) {
-  background-color: rgb(220 38 38 / .15);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) > div[name="form.wrapper.container.append"] :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus):is(button, a) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-:is(.dark .validated\:dark\:bg-positive-700\/10)[valid] {
-  background-color: rgb(4 120 87 / 0.1);
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
 }
-:is(.dark .dark\:validated\:text-positive-700[valid]) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:text-positive-500\/90)[valid] {
-  color: rgb(16 185 129 / 0.9);
-}
-:is(.dark .validated\:dark\:text-positive-600)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:text-positive-700)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:placeholder-positive-600\/70)[valid]::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:placeholder-positive-600\/70)[valid]::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-:is(.dark .validated\:dark\:ring-positive-600)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-:is(.dark .validated\:dark\:ring-positive-700)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-:is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover)[valid] {
-  background-color: rgb(5 150 105 / 0.2);
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
+  background-color: rgb(185 28 28 / 0.1);
 }
-:is(.dark .validated\:dark\:hover\:text-positive-500:hover)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
+  background-color: rgb(185 28 28 / 0.1);
+}
+:is(.dark [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus)[valid] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-:is(.dark .validated\:dark\:focus\:text-positive-500:focus)[valid] {
+:is(.dark [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-:is(.dark .validated\:dark\:focus\:ring-positive-700:focus)[valid] {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:text-negative-600) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:text-negative-600) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-[group-validated] :is(.dark .validated\:dark\:bg-positive-700\/10) {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark [group-validated] .dark\:validated\:text-positive-700) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-[group-validated] :is(.dark .validated\:dark\:text-positive-500\/90) {
-  color: rgb(16 185 129 / 0.9);
-}
-[group-validated] :is(.dark .validated\:dark\:text-positive-600) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-[group-validated] :is(.dark .validated\:dark\:text-positive-700) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-[group-validated] :is(.dark .validated\:dark\:placeholder-positive-600\/70)::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-[group-validated] :is(.dark .validated\:dark\:placeholder-positive-600\/70)::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-[group-validated] :is(.dark .validated\:dark\:ring-positive-600) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-[group-validated] :is(.dark .validated\:dark\:ring-positive-700) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-[group-validated] :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-[group-validated] :is(.dark .validated\:dark\:hover\:text-positive-500:hover) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-[group-validated] :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-[group-validated] :is(.dark .validated\:dark\:focus\:text-positive-500:focus) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-[group-validated] :is(.dark .validated\:dark\:focus\:ring-positive-700:focus) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:bg-positive-700\/10):valid {
-  background-color: rgb(4 120 87 / 0.1);
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
 }
-:is(.dark form[with-validation-colors] .dark\:validated\:text-positive-700:valid) {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:text-positive-500\/90):valid {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] :is(.dark .validated\:dark\:text-positive-600):valid {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:text-positive-700):valid {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:placeholder-positive-600\/70):valid::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:placeholder-positive-600\/70):valid::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] :is(.dark .validated\:dark\:ring-positive-600):valid {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:-moz-placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:ring-positive-700):valid {
+[with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover):valid {
-  background-color: rgb(5 150 105 / 0.2);
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
+  background-color: rgb(185 28 28 / 0.1);
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:hover\:text-positive-500:hover):valid {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:bg-negative-700\/10) {
+  background-color: rgb(185 28 28 / 0.1);
+}
+:is(.dark [with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus):valid {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] :is(.dark .validated\:dark\:focus\:text-positive-500:focus):valid {
+:is(.dark [with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > .dark\:invalidated\:text-negative-700) {
   --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
+  color: rgb(185 28 28 / var(--tw-text-opacity));
 }
-form[with-validation-colors] :is(.dark .validated\:dark\:focus\:ring-positive-700:focus):valid {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:text-negative-600) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:text-negative-600) {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:text-negative-700) {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::-moz-placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:placeholder-negative-600\/70)::placeholder {
+  color: rgb(220 38 38 / 0.7);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:bg-positive-700\/10):has(input:valid) {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > .dark\:validated\:text-positive-700:has(input:valid)) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:text-positive-500\/90):has(input:valid) {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:text-positive-600):has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:text-positive-700):has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:placeholder-positive-600\/70):has(input:valid)::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:placeholder-positive-600\/70):has(input:valid)::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:ring-positive-600):has(input:valid) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:ring-negative-600) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(220 38 38 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:ring-positive-700):has(input:valid) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover):has(input:valid) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:hover\:text-positive-500:hover):has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus):has(input:valid) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:focus\:text-positive-500:focus):has(input:valid) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > :is(.dark .validated\:dark\:focus\:ring-positive-700:focus):has(input:valid) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:ring-negative-700) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:bg-positive-700\/10)[name="form.wrapper.description"] {
-  background-color: rgb(4 120 87 / 0.1);
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
 }
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ .dark\:validated\:text-positive-700[name="form.wrapper.description"]) {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:hover\:bg-negative-600\/15:hover) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:text-positive-500\/90)[name="form.wrapper.description"] {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:text-positive-600)[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:hover\:text-negative-500:hover) {
   --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:text-positive-700)[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:bg-negative-600\/15:focus) {
+  background-color: rgb(220 38 38 / .15);
+}
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
   --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.description"]::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:text-negative-500:focus) {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.description"]::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:ring-positive-600)[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:-moz-placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:ring-positive-700)[name="form.wrapper.description"] {
+[with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > :is(.dark .invalidated\:dark\:focus\:ring-negative-700:focus) {
   --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover)[name="form.wrapper.description"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:hover\:text-positive-500:hover)[name="form.wrapper.description"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus)[name="form.wrapper.description"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:focus\:text-positive-500:focus)[name="form.wrapper.description"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) ~ :is(.dark .validated\:dark\:focus\:ring-positive-700:focus)[name="form.wrapper.description"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:bg-positive-700\/10)[name="form.wrapper.container.prefix"] {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .dark\:validated\:text-positive-700[name="form.wrapper.container.prefix"]) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-500\/90)[name="form.wrapper.container.prefix"] {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-600)[name="form.wrapper.container.prefix"] {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-700)[name="form.wrapper.container.prefix"] {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.container.prefix"]::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.container.prefix"]::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:ring-positive-600)[name="form.wrapper.container.prefix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:ring-positive-700)[name="form.wrapper.container.prefix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover)[name="form.wrapper.container.prefix"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:hover\:text-positive-500:hover)[name="form.wrapper.container.prefix"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus)[name="form.wrapper.container.prefix"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:text-positive-500:focus)[name="form.wrapper.container.prefix"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:ring-positive-700:focus)[name="form.wrapper.container.prefix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:bg-positive-700\/10)[name="form.wrapper.container.suffix"] {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) .dark\:validated\:text-positive-700[name="form.wrapper.container.suffix"]) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-500\/90)[name="form.wrapper.container.suffix"] {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-600)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:text-positive-700)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.container.suffix"]::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:placeholder-positive-600\/70)[name="form.wrapper.container.suffix"]::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:ring-positive-600)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:ring-positive-700)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover)[name="form.wrapper.container.suffix"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:hover\:text-positive-500:hover)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus)[name="form.wrapper.container.suffix"] {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:text-positive-500:focus)[name="form.wrapper.container.suffix"] {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) :is(.dark .validated\:dark\:focus\:ring-positive-700:focus)[name="form.wrapper.container.suffix"] {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:bg-positive-700\/10) {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > .dark\:validated\:text-positive-700) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:text-positive-500\/90) {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:text-positive-600) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:text-positive-700) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:placeholder-positive-600\/70)::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:placeholder-positive-600\/70)::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:ring-positive-600) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:ring-positive-700) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:hover\:text-positive-500:hover) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:focus\:text-positive-500:focus) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:valid) > :is(.dark .validated\:dark\:focus\:ring-positive-700:focus) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:bg-positive-700\/10):is(button, a) {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] .dark\:validated\:text-positive-700:is(button, a)) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:text-positive-500\/90):is(button, a) {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:text-positive-600):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:text-positive-700):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:placeholder-positive-600\/70):is(button, a)::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:placeholder-positive-600\/70):is(button, a)::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:ring-positive-600):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:ring-positive-700):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover):is(button, a) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:hover\:text-positive-500:hover):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus):is(button, a) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:focus\:text-positive-500:focus):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.prepend"] :is(.dark .validated\:dark\:focus\:ring-positive-700:focus):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:bg-positive-700\/10):is(button, a) {
-  background-color: rgb(4 120 87 / 0.1);
-}
-:is(.dark form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] .dark\:validated\:text-positive-700:is(button, a)) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:text-positive-500\/90):is(button, a) {
-  color: rgb(16 185 129 / 0.9);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:text-positive-600):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(5 150 105 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:text-positive-700):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(4 120 87 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:placeholder-positive-600\/70):is(button, a)::-moz-placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:placeholder-positive-600\/70):is(button, a)::placeholder {
-  color: rgb(5 150 105 / 0.7);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:ring-positive-600):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(5 150 105 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:ring-positive-700):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:hover\:bg-positive-600\/20:hover):is(button, a) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:hover\:text-positive-500:hover):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:focus\:bg-positive-600\/20:focus):is(button, a) {
-  background-color: rgb(5 150 105 / 0.2);
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:focus\:text-positive-500:focus):is(button, a) {
-  --tw-text-opacity: 1;
-  color: rgb(16 185 129 / var(--tw-text-opacity));
-}
-form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:valid) > div[name="form.wrapper.container.append"] :is(.dark .validated\:dark\:focus\:ring-positive-700:focus):is(button, a) {
-  --tw-ring-opacity: 1;
-  --tw-ring-color: rgb(4 120 87 / var(--tw-ring-opacity));
+  --tw-ring-color: rgb(185 28 28 / var(--tw-ring-opacity));
 }
 @media (min-width: 640px) {
 
@@ -8226,11 +7540,6 @@ form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.cont
     padding: 1.25rem;
   }
 
-  .sm\:px-1 {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-  }
-
   .sm\:px-3 {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
@@ -8278,6 +7587,10 @@ form[with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.cont
 
   .sm\:leading-6 {
     line-height: 1.5rem;
+  }
+
+  .sm\:leading-normal {
+    line-height: 1.5;
   }
 
   :is(.dark .sm\:dark\:bg-secondary-800) {

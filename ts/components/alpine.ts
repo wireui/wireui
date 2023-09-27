@@ -12,6 +12,14 @@ export type WireModifiers = {
   },
 }
 
+export interface WireModel {
+  exists: boolean
+  livewireId: string
+  name: string
+  value: any
+  modifiers: WireModifiers
+}
+
 export interface DirectiveUtilities {
   // eslint-disable-next-line no-use-before-define
   Alpine: Alpine

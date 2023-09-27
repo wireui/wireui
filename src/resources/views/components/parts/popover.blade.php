@@ -9,7 +9,7 @@
     x-cloak
     x-show="popover"
     x-ref="popover"
-    x-on:click.outside="close"
+    x-on:click.outside.prevent="close"
     x-on:keydown.escape.window="handleEscape"
 >
     <div
