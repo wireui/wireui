@@ -1,15 +1,17 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupIcon, HasSetupRounded, HasSetupShadow};
+use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Wrapper\Input\{Colors, Rounders, Shadows};
 
-class Input extends BaseComponent
+class Number extends BaseComponent
 {
     use HasSetupColor;
     use HasSetupForm;
+    use HasSetupIcon;
     use HasSetupRounded;
     use HasSetupShadow;
 
@@ -22,6 +24,6 @@ class Input extends BaseComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.input');
+        return view('wireui::components.input.number');
     }
 }

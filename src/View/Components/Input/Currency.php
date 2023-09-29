@@ -6,18 +6,20 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupForm;
 use WireUi\View\Components\BaseComponent;
 
-class NumberInput extends BaseComponent
+class Currency extends BaseComponent
 {
     use HasSetupForm;
 
     public function __construct(
-        public string $leftIcon = 'minus',
-        public string $rightIcon = 'plus',
+        public string $thousands = ',',
+        public string $decimal = '.',
+        public int $precision = 2,
+        public bool $emitFormatted = false,
     ) {
     }
 
     protected function blade(): View
     {
-        return view('wireui::components.input.number');
+        return view('wireui::components.input.currency');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\NumberInput;
+namespace Tests\Browser\Number;
 
 use Laravel\Dusk\Browser;
 use Livewire\Volt\Volt;
@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_label_and_corner_hint()
     {
-        Volt::test('NumberInput.view')
+        Volt::test('Number.view')
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
@@ -19,7 +19,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_hint_and_not_see_prefix_and_suffix()
     {
-        Volt::test('NumberInput.view')
+        Volt::test('Number.view')
             ->assertSee('Hint 1')
             ->assertDontSee('Prefix 1')
             ->assertDontSee('Suffix 1');
@@ -28,7 +28,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_not_see_prepend_and_append_slots()
     {
-        Volt::test('NumberInput.view')
+        Volt::test('Number.view')
             ->assertDontSeeHtml('<a>prepend</a>')
             ->assertDontSeeHtml('<a>append</a>');
     }
@@ -36,7 +36,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_not_see_prefix_suffix_append_and_prepend()
     {
-        Volt::test('NumberInput.view')
+        Volt::test('Number.view')
             ->assertDontSee('prefix 2')
             ->assertDontSee('suffix 2')
             ->assertDontSeeHtml('<a>prepend 2</a>')
@@ -46,7 +46,7 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_see_input_error()
     {
-        Volt::test('NumberInput.view')
+        Volt::test('Number.view')
             ->call('validateInput')
             ->assertSee('input cant be empty')
             ->set('number', 'text')
@@ -65,7 +65,7 @@ class Test extends BrowserTestCase
     public function it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'NumberInput.view')
+            $this->visit($browser, 'Number.view')
                 ->type('number', 8)
                 ->waitForTextIn('@number-value', 8);
         });
@@ -75,7 +75,7 @@ class Test extends BrowserTestCase
     public function it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'NumberInput.view')
+            $this->visit($browser, 'Number.view')
                 ->assertSee('Show Number')
                 ->assertInputValue('show-number', '')
                 ->type('show-number', '2')

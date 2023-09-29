@@ -107,6 +107,6 @@ class Base extends Component
 
     public function render(): View
     {
-        return view('wireui::components.wrapper.input');
+        return view('wireui::components.wrapper.input.base');
     }
 }

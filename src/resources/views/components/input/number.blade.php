@@ -14,13 +14,13 @@
     <x-slot:prepend>
         <x-dynamic-component
             :component="WireUi::component('button')"
+            :color="$color ?? 'primary'"
+            :rounded="Arr::get($roundedClasses, 'prepend', '')"
             x-hold.click.delay.repeat.100ms="minus"
             x-bind:disabled="disableMinus"
             x-on:keydown.enter="minus"
-            :icon="$leftIcon"
-            primary
+            :icon="$icon"
             flat
-            squared
         />
     </x-slot:prepend>
 
@@ -41,12 +41,12 @@
         <x-dynamic-component
             :component="WireUi::component('button')"
             x-hold.click.delay.repeat.100ms="plus"
+            :color="$color ?? 'primary'"
+            :rounded="Arr::get($roundedClasses, 'append', '')"
             x-bind:disabled="disablePlus"
             x-on:keydown.enter="plus"
             :icon="$rightIcon"
-            primary
             flat
-            squared
         />
     </x-slot:append>
 </x-wrapper>

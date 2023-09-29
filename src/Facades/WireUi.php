@@ -96,7 +96,7 @@ class WireUi extends Facade
                 'alias' => 'input',
             ],
             'input-currency' => [
-                'class' => Components\Input\CurrencyInput::class,
+                'class' => Components\Input\Currency::class,
                 'alias' => 'input-currency',
             ],
             'input-maskable' => [
@@ -104,15 +104,15 @@ class WireUi extends Facade
                 'alias' => 'input-maskable',
             ],
             'input-number' => [
-                'class' => Components\Input\NumberInput::class,
+                'class' => Components\Input\Number::class,
                 'alias' => 'input-number',
             ],
             'input-password' => [
-                'class' => Components\Input\PasswordInput::class,
+                'class' => Components\Input\Password::class,
                 'alias' => 'input-password',
             ],
             'input-phone' => [
-                'class' => Components\Input\PhoneInput::class,
+                'class' => Components\Input\Phone::class,
                 'alias' => 'input-phone',
             ],
             'label' => [

@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use WireUi\Traits\Components\HasSetupForm;
 use WireUi\View\Components\BaseComponent;
 
-abstract class BaseMaskable extends BaseComponent
+abstract class Maskable extends BaseComponent
 {
     use HasSetupForm;
 

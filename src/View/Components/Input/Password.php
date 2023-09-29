@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupForm;
 use WireUi\View\Components\BaseComponent;
 
-class PasswordInput extends BaseComponent
+class Password extends BaseComponent
 {
     use HasSetupForm;
 

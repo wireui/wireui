@@ -2,7 +2,7 @@
 
 namespace WireUi\View\Components\Input;
 
-class PhoneInput extends BaseMaskable
+class Phone extends Maskable
 {
     protected function getInputMask(): string
     {
