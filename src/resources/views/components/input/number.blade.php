@@ -7,7 +7,7 @@
         readonly: {{ json_encode($readonly) }},
     })"
 >
-    @include('wireui::form.wrapper.slots', [
+    @include('wireui::components.wrapper.slots', [
         'except' => ['prepend', 'append'],
     ])
 
@@ -24,7 +24,7 @@
         />
     </x-slot:prepend>
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         :attributes="$attrs
             ->except('class')
             ->class('text-center appearance-number-none')

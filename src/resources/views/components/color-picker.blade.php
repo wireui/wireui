@@ -8,7 +8,7 @@
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::components.wrapper.slots')
 
     <x-slot:prefix>
         <template x-if="selected.value">
@@ -19,7 +19,7 @@
         </template>
     </x-slot:prefix>
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         x-model="value"
         x-on:input="setColor($event.target.value)"
         x-ref="input"

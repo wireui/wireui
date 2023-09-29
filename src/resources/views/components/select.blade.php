@@ -29,7 +29,7 @@
         </div>
     @endif
 
-    @include('wireui::form.wrapper.slots', [
+    @include('wireui::components.wrapper.slots', [
         'except' => ['append', 'prepend']
     ])
 
@@ -113,7 +113,7 @@
         </template>
     </x-slot:prepend>
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         x-ref="input"
         x-on:click="toggle"
         x-on:focus="open"

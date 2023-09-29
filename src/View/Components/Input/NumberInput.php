@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Inputs;
+namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupForm;
@@ -18,6 +18,6 @@ class NumberInput extends BaseComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.inputs.number');
+        return view('wireui::components.input.number');
     }
 }

@@ -38,8 +38,9 @@
     @if ($rightIcon)
         <x-dynamic-component
             :component="WireUi::component('icon')"
-            {{ $spinnerRemove->class($iconClasses)->merge([
+            {{ $spinnerRemove->merge([
                 'name' => $rightIcon,
+                'class' => $iconClasses,
             ]) }}
         />
     @elseif (isset($append))

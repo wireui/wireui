@@ -60,6 +60,7 @@ class WrapperData
             'prefix',
             'shadow',
             'suffix',
+            'padding',
             'rounded',
             'errorless',
             'right-icon',

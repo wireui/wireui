@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Inputs;
+namespace WireUi\View\Components\Input;
 
 class PhoneInput extends BaseMaskable
 {

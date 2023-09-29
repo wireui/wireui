@@ -10,9 +10,9 @@
         precision:  {{ $precision }},
     })"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::components.wrapper.slots')
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         x-model="input"
         x-on:input="mask($event.target.value)"
         x-on:blur="emitInput($event.target.value)"

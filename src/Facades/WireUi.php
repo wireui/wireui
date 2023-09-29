@@ -95,25 +95,25 @@ class WireUi extends Facade
                 'class' => Components\Input::class,
                 'alias' => 'input',
             ],
-            'inputs.currency' => [
-                'class' => Components\Inputs\CurrencyInput::class,
-                'alias' => 'inputs.currency',
+            'input-currency' => [
+                'class' => Components\Input\CurrencyInput::class,
+                'alias' => 'input-currency',
             ],
-            'inputs.maskable' => [
-                'class' => Components\Inputs\MaskableInput::class,
-                'alias' => 'inputs.maskable',
+            'input-maskable' => [
+                'class' => Components\Input\MaskableInput::class,
+                'alias' => 'input-maskable',
             ],
-            'inputs.number' => [
-                'class' => Components\Inputs\NumberInput::class,
-                'alias' => 'inputs.number',
+            'input-number' => [
+                'class' => Components\Input\NumberInput::class,
+                'alias' => 'input-number',
             ],
-            'inputs.password' => [
-                'class' => Components\Inputs\PasswordInput::class,
-                'alias' => 'inputs.password',
+            'input-password' => [
+                'class' => Components\Input\PasswordInput::class,
+                'alias' => 'input-password',
             ],
-            'inputs.phone' => [
-                'class' => Components\Inputs\PhoneInput::class,
-                'alias' => 'inputs.phone',
+            'input-phone' => [
+                'class' => Components\Input\PhoneInput::class,
+                'alias' => 'input-phone',
             ],
             'label' => [
                 'class' => Components\Label::class,
@@ -127,9 +127,9 @@ class WireUi extends Facade
                 'class' => Components\Modal::class,
                 'alias' => 'modal',
             ],
-            'modal.card' => [
+            'modal-card' => [
                 'class' => Components\ModalCard::class,
-                'alias' => 'modal.card',
+                'alias' => 'modal-card',
             ],
             'native-select' => [
                 'class' => Components\NativeSelect::class,

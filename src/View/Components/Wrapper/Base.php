@@ -57,6 +57,10 @@ class Base extends Component
 
     public mixed $roundedClasses = null;
 
+    public ?string $padding = null;
+
+    public ?bool $withErrorIcon = true;
+
     // public function __construct(
     //     public ?string $id = null,
     //     public ?string $name = null,

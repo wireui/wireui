@@ -8,9 +8,9 @@
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::components.wrapper.slots')
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         x-model="input"
         x-on:input="onInput($event.target.value)"
         x-on:blur="emitInput"

@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Inputs;
+namespace WireUi\View\Components\Input;
 
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -23,7 +23,7 @@ abstract class BaseMaskable extends BaseComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.inputs.maskable');
+        return view('wireui::components.input.maskable');
     }
 
     private function formatMask(string $mask): string

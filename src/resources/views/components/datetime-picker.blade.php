@@ -25,7 +25,7 @@
     :data="$wrapperData"
     :attributes="$attrs->only('wire:key')"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::components.wrapper.slots')
 
     @if (!$readonly && !$disabled)
         <x-slot:append>
@@ -55,7 +55,7 @@
         </x-slot:append>
     @endif
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.input.element
         readonly
         x-on:click="toggle"
         x-bind:value="model ? getDisplayValue() : null"
