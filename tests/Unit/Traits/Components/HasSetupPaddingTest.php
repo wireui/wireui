@@ -27,12 +27,6 @@ beforeEach(function () {
     $this->component = new Padding();
 });
 
-// test('it should have config name', function () {
-//     $this->invokeMethod($this->component, 'setConfig');
-
-//     expect($this->invokeProperty($this->component, 'config'))->toBe('padding-name');
-// });
-
 test('it should have all properties empty', function () {
     expect($this->component->padding)->toBeNull();
 
