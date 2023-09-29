@@ -5,12 +5,12 @@ namespace WireUi\View\Components\Inputs;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupForm;
+use WireUi\View\Components\BaseComponent;
 
-abstract class BaseMaskable extends Component
+abstract class BaseMaskable extends BaseComponent
 {
-    use IsFormComponent;
+    use HasSetupForm;
 
     public string $mask;
 

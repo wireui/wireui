@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_inputs_password"
@@ -38,4 +38,4 @@
             />
         </button>
     </x-slot>
-</x-inputs.wrapper>
+</x-wrapper>

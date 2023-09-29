@@ -2,32 +2,40 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Support\WrapperData;
+use WireUi\Traits\Components\Concerns\{HasAttributesExtraction, HasSharedAttributes, InteractsWithErrors};
+
 trait HasSetupForm
 {
-    private array $sharedAttributes = ['id', 'name', 'readonly', 'disabled'];
+    use HasAttributesExtraction;
+    use HasSharedAttributes;
+    use InteractsWithErrors;
+
+    protected function except(): array
+    {
+        return [];
+    }
+
+    protected function sharedAttributes(): array
+    {
+        return WrapperData::shared();
+    }
+
+    protected function extractableAttributes(): array
+    {
+        return WrapperData::extractable();
+    }
 
     protected function setupForm(array &$data): void
     {
-        $model = $this->attributes->wire('model')->value();
+        $this->mergeAttributes($data);
 
-        if ($this->attributes->has('name') && !$model) {
-            $model = $this->attributes->get('name');
-        }
+        $this->extractAttributes($data);
 
-        if (!$this->attributes->has('name') && $model) {
-            $this->attributes->offsetSet('name', $model);
-        }
+        $data['attrs'] = $data['attributes'];
 
-        if (!$this->attributes->has('id') && $model) {
-            $this->attributes->offsetSet('id', $model);
-        }
+        $data['wrapperData'] = (new WrapperData($data))->except($this->except());
 
-        collect($this->sharedAttributes)->each(function ($attribute) use (&$data) {
-            $value = $this->attributes->get($attribute);
-
-            $data[$attribute] = $value;
-
-            $this->attributes->offsetSet($attribute, $value);
-        });
+        $data['value'] = $this->attributes->get('value', $this->attributes->wire('model')->value());
     }
 }

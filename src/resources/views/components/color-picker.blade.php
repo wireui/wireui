@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :x-data="WireUi::alpine('wireui_color_picker', [
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
@@ -73,4 +73,4 @@
             </div>
         </x-wireui::parts.popover>
     </x-slot:after>
-</x-inputs.wrapper>
+</x-wrapper>

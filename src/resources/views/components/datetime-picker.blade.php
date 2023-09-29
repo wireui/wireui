@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     x-data="wireui_datetime_picker({
         model: @entangleable($attrs->wire('model')),
     })"
@@ -237,4 +237,4 @@
             </div>
         </div>
     </x-wireui::parts.popover>
-</x-inputs.wrapper>
+</x-wrapper>

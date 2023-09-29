@@ -1,27 +1,48 @@
-<div {{ $attributes->class([
-    Arr::get($colorClasses, 'root', ''),
-    $shadowClasses => !$shadowless,
-    $roundedClasses,
-]) }}>
+@php
+    $rootClasses = Arr::toCssClasses([
+        Arr::get($colorClasses, 'root', ''),
+        $shadowClasses => !$shadowless,
+        $roundedClasses,
+    ]);
+
+    $headerClasses = Arr::toCssClasses([
+        Arr::get($colorClasses, 'border', '') => !$borderless,
+        'px-4 py-2.5 flex justify-between items-center',
+        'border-b' => !$borderless,
+    ]);
+
+    $titleClasses = Arr::toCssClasses([
+        'font-medium text-base whitespace-normal',
+        Arr::get($colorClasses, 'text', ''),
+    ]);
+
+    $mainClasses = Arr::toCssClasses([
+        Arr::get($colorClasses, 'text', ''),
+        $paddingClasses,
+        'grow',
+    ]);
+
+    $footerClasses = Arr::toCssClasses([
+        Arr::get($colorClasses, 'border', '') => !$borderless,
+        Arr::get($colorClasses, 'footer', ''),
+        'px-4 py-4 sm:px-6 bg-clip-content',
+        'border-t' => !$borderless,
+    ]);
+@endphp
+
+<div {{ $attributes->class($rootClasses) }}>
     @isset($header)
         <div {{ $header->attributes }}>
             {{ $header }}
         </div>
     @elseif($title)
-        <div @class([
-            Arr::get($colorClasses, 'border', '') => !$borderless,
-            'px-4 py-2.5 flex justify-between items-center',
-            'border-b' => !$borderless,
-        ])>
+        <div class="{{ $headerClasses }}">
             @if (check_slot($title))
-                <div {{ $title->attributes }}>
+                <div {{ $title->attributes->class($titleClasses) }}>
                     {{ $title }}
                 </div>
             @else
-                <h3 @class([
-                    'font-medium text-base whitespace-normal',
-                    Arr::get($colorClasses, 'text', ''),
-                ])>
+                <h3 class="{{ $titleClasses }}">
                     {{ $title }}
                 </h3>
             @endif
@@ -35,26 +56,17 @@
     @endisset
 
     @if (check_slot($slot))
-        <div {{ $slot->attributes }}>
+        <div {{ $slot->attributes->class($mainClasses) }}>
             {{ $slot }}
         </div>
     @else
-        <div @class([
-            Arr::get($colorClasses, 'text', ''),
-            $paddingClasses,
-            'grow',
-        ])>
+        <div class="{{ $mainClasses }}">
             {{ $slot }}
         </div>
     @endif
 
     @isset($footer)
-        <div {{ $footer->attributes->class([
-            Arr::get($colorClasses, 'border', '') => !$borderless,
-            Arr::get($colorClasses, 'footer', ''),
-            'px-4 py-4 sm:px-6 bg-clip-content',
-            'border-t' => !$borderless,
-        ]) }}>
+        <div {{ $footer->attributes->class($footerClasses) }}>
             {{ $footer }}
         </div>
     @endisset

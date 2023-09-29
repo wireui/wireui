@@ -1,10 +1,27 @@
-<div @class([
+@php
+    $rootClasses = Arr::toCssClasses([
         'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
         $zIndex ?? Arr::get($typeClasses, 'z-index', 'z-50'),
         'fixed inset-0 flex overflow-y-auto sm:pt-16 justify-center',
         $alignClasses,
-    ])
+    ]);
+
+    $backdropClasses = Arr::toCssClasses([
+        'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
+        'dark:bg-secondary-700 dark:bg-opacity-60',
+        $blurClasses => !$blurless,
+        "{$dialog}-backdrop",
+    ]);
+
+    $mainClasses = Arr::toCssClasses([
+        $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
+        'w-full transition-all',
+        $maxWidthClasses,
+    ]);
+@endphp
+
+<div class="{{ $rootClasses }}"
     x-data="wireui_dialog({ id: '{{ $dialog }}' })"
     x-show="show"
     x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
@@ -12,12 +29,7 @@
     x-on:keydown.escape.window="handleEscape"
     style="display: none"
     x-cloak>
-    <div @class([
-            'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
-            'dark:bg-secondary-700 dark:bg-opacity-60',
-            $blurClasses => !$blurless,
-            "{$dialog}-backdrop",
-        ])
+    <div class="{{ $backdropClasses }}"
         x-show="show"
         x-on:click="dismiss"
         x-transition:enter="ease-out duration-300"
@@ -28,11 +40,7 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div @class([
-            $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
-            'w-full transition-all',
-            $maxWidthClasses,
-        ])
+    <div class="{{ $mainClasses }}"
         x-show="show"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"

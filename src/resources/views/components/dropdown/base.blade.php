@@ -1,3 +1,22 @@
+@php
+    $iconClasses = Arr::toCssClasses([
+        'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
+        'w-4 h-4 text-secondary-500 hover:text-secondary-700',
+    ]);
+
+    $baseClasses = Arr::toCssClasses([
+        'z-30 absolute mt-2 whitespace-nowrap',
+        $maxWidthClasses,
+        $alignClasses,
+    ]);
+
+    $mainClasses = Arr::toCssClasses([
+        'relative soft-scrollbar overflow-auto border border-secondary-200 rounded-lg',
+        'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
+        $maxHeightClasses,
+    ]);
+@endphp
+
 <div class="relative inline-block text-left"
     x-data="wireui_dropdown"
     x-on:click.outside="close"
@@ -10,10 +29,7 @@
             <x-dynamic-component
                 :component="WireUi::component('icon')"
                 name="ellipsis-vertical"
-                @class([
-                    'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
-                    'w-4 h-4 text-secondary-500 hover:text-secondary-700',
-                ])
+                :class="$iconClasses"
             />
         @endif
     </div>
@@ -25,18 +41,10 @@
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        {{ $attributes->except('wire:key')->class([
-            'z-30 absolute mt-2 whitespace-nowrap'
-            $maxWidthClasses,
-            $alignClasses,
-        ]) }}
+        {{ $attributes->except('wire:key')->class($baseClasses) }}
         style="display: none;"
         @unless($persistent) x-on:click="close" @endunless>
-        <div @class([
-            'relative soft-scrollbar overflow-auto border border-secondary-200 rounded-lg',
-            'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
-            $maxHeightClasses,
-        ])>
+        <div class="{{ $mainClasses }}">
             {{ $slot }}
         </div>
     </div>

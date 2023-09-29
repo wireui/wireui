@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     x-data="wireui_timepicker({
         model: @entangle($attrs->wire('model')),
         config: {
@@ -100,4 +100,4 @@
             </template>
         </ul>
     </x-wireui::parts.popover>
-</x-inputs.wrapper>
+</x-wrapper>

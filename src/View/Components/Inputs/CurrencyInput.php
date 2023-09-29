@@ -3,12 +3,12 @@
 namespace WireUi\View\Components\Inputs;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupForm;
+use WireUi\View\Components\BaseComponent;
 
-class CurrencyInput extends Component
+class CurrencyInput extends BaseComponent
 {
-    use IsFormComponent;
+    use HasSetupForm;
 
     public function __construct(
         public string $thousands = ',',

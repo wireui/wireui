@@ -1,15 +1,24 @@
-<span {{ $attributes->class([
-    'outline-none inline-flex justify-center items-center group',
-    'w-full' => $full,
-    $roundedClasses,
-    $colorClasses,
-    $sizeClasses,
-]) }}>
+@php
+    $rootClasses = Arr::toCssClasses([
+        'outline-none inline-flex justify-center items-center group',
+        'w-full' => $full,
+        $roundedClasses,
+        $colorClasses,
+        $sizeClasses,
+    ]);
+
+    $iconClasses = Arr::toCssClasses([
+        $iconSizeClasses,
+        'shrink-0',
+    ]);
+@endphp
+
+<span {{ $attributes->class($rootClasses) }}>
     @if ($icon)
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$icon"
-            @class([$iconSizeClasses, 'shrink-0'])
+            :class="$iconClasses"
         />
     @elseif (isset($prepend))
         <div {{ $prepend->attributes }}>
@@ -23,7 +32,7 @@
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$rightIcon"
-            @class([$iconSizeClasses, 'shrink-0'])
+            :class="$iconClasses"
         />
     @elseif (isset($append))
         <div {{ $append->attributes }}>

@@ -95,10 +95,6 @@ class WireUi extends Facade
                 'class' => Components\Input::class,
                 'alias' => 'input',
             ],
-            'inputs.wrapper' => [
-                'class' => Components\Inputs\Wrapper::class,
-                'alias' => 'inputs.wrapper',
-            ],
             'inputs.currency' => [
                 'class' => Components\Inputs\CurrencyInput::class,
                 'alias' => 'inputs.currency',
@@ -170,6 +166,10 @@ class WireUi extends Facade
             'toggle' => [
                 'class' => Components\Toggle::class,
                 'alias' => 'toggle',
+            ],
+            'wrapper' => [
+                'class' => Components\Wrapper\Base::class,
+                'alias' => 'wrapper',
             ],
         ]);
     }

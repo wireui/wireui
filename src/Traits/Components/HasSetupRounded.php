@@ -35,6 +35,8 @@ trait HasSetupRounded
 
         $this->getRoundedClasses($roundedPack);
 
+        $this->smartAttributes(['squared', 'rounded']);
+
         $this->setVariables($data, ['squared', 'rounded', 'roundedClasses']);
     }
 

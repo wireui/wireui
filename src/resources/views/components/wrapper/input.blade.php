@@ -49,9 +49,12 @@
             ->except(['wire:key', 'form-wrapper', 'x-data', 'class'])
             ->merge(['for' => $id])
             ->class([
-                'relative flex gap-x-2 items-center rounded-md shadow-sm',
-                'ring-1 ring-inset ring-gray-300',
-                'focus-within:ring-2 focus-within:ring-primary-600',
+                Arr::get($roundedClasses, 'input', ''),
+                Arr::get($colorClasses, 'input', ''),
+                $shadowClasses => !$shadowless,
+
+                'relative flex gap-x-2 items-center',
+                'ring-1 ring-inset ring-gray-300 focus-within:ring-2',
                 'transition-all ease-in-out duration-150',
 
                 $padding =>  $padding,
@@ -69,11 +72,12 @@
         @if (!isset($prepend) && ($prefix || $icon))
             <div
                 name="form.wrapper.container.prefix"
-                class="
-                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
-                    input-focus:text-primary-500 invalidated:input-focus:text-negative-500
-                    invalidated:text-negative-500
-                "
+                @class([
+                    'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
+                    'invalidated:input-focus:text-negative-500',
+                    Arr::get($roundedClasses, 'prepend', ''),
+                    'invalidated:text-negative-500',
+                ])
             >
                 @if ($icon)
                     <x-dynamic-component
@@ -104,11 +108,12 @@
         @if (!isset($append) && ($rightIcon || $suffix || $withErrorIcon))
             <div
                 name="form.wrapper.container.suffix"
-                class="
-                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
-                    input-focus:text-primary-500 invalidated:input-focus:text-negative-500
-                    invalidated:text-negative-500
-                "
+                @class([
+                    'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
+                    'invalidated:input-focus:text-negative-500',
+                    Arr::get($roundedClasses, 'append', ''),
+                    'invalidated:text-negative-500',
+                ])
             >
                 @if ($rightIcon)
                     <x-dynamic-component

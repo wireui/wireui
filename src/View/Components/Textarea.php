@@ -3,12 +3,11 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupForm;
 
-class Textarea extends Component
+class Textarea extends BaseComponent
 {
-    use IsFormComponent;
+    use HasSetupForm;
 
     protected function except(): array
     {

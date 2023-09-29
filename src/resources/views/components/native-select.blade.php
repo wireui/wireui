@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
@@ -35,4 +35,4 @@
             @endforelse
         @else {{ $slot }} @endif
     </select>
-</x-inputs.wrapper>
+</x-wrapper>

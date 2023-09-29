@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Input;
+namespace WireUi\WireUi\Wrapper;
 
 use WireUi\Support\ComponentPack;
 
@@ -8,7 +8,7 @@ class Shadows extends ComponentPack
 {
     protected function default(): string
     {
-        return 'none';
+        return config('wireui.wrapper.shadow') ?? 'sm';
     }
 
     public function all(): array

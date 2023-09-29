@@ -4,12 +4,11 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupForm;
 
-class ColorPicker extends Component
+class ColorPicker extends BaseComponent
 {
-    use IsFormComponent;
+    use HasSetupForm;
 
     public function __construct(
         public $rightIcon = 'swatch',

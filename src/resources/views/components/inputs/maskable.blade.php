@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     x-data="wireui_inputs_maskable({
         isBlur: @boolean($attrs->wire('model')->hasModifier('blur')),
         model: @entangle($attrs->wire('model')),
@@ -19,4 +19,4 @@
             ->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key'])
         "
     />
-</x-inputs.wrapper>
+</x-wrapper>

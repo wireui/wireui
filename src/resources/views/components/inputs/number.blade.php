@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :right-icon="$rightIcon"
     :attributes="$attrs->only(['wire:key', 'class'])"
@@ -49,4 +49,4 @@
             squared
         />
     </x-slot:append>
-</x-inputs.wrapper>
+</x-wrapper>

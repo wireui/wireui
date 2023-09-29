@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     x-data="wireui_select({
@@ -240,4 +240,4 @@
             </div>
         </x-wireui::parts.popover>
     </x-slot:after>
-</x-inputs.wrapper>
+</x-wrapper>

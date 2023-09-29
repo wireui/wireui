@@ -3,11 +3,11 @@
 namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupMaxHeight, HasSetupMaxWidth};
+use WireUi\View\Components\BaseComponent;
 use WireUi\WireUi\Dropdown\{Aligns, Heights, Widths};
 
-class Base extends Component
+class Base extends BaseComponent
 {
     use HasSetupAlign;
     use HasSetupMaxHeight;
@@ -27,7 +27,7 @@ class Base extends Component
         $this->setMaxHeightResolve(Heights::class);
     }
 
-    public function render(): View
+    public function blade(): View
     {
         return view('wireui::components.dropdown.base');
     }

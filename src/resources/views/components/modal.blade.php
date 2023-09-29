@@ -1,12 +1,28 @@
-@php($name = $name ?? $attributes->wire('model')->value())
+@php
+    $name = $name ?? $attributes->wire('model')->value();
 
-<div @class([
+    $rootClasses = Arr::toCssClasses([
         'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
         $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
         $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-50'),
         'fixed inset-0 overflow-y-auto',
-    ])
+    ]);
+
+    $backdropClasses = Arr::toCssClasses([
+        'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
+        'dark:bg-opacity-60 transform transition-opacity',
+        $blurClasses => !$blurless,
+    ]);
+
+    $mainClasses = Arr::toCssClasses([
+        'w-full min-h-full transform flex items-end justify-center mx-auto',
+        $maxWidthClasses,
+        $alignClasses,
+    ]);
+@endphp
+
+<div class="{{ $rootClasses }}"
     x-data="wireui_modal({
         show: @toJs($show),
         @if ($attributes->wire('model')->value())
@@ -25,11 +41,7 @@
     x-cloak
     x-show="show"
     wireui-modal>
-    <div @class([
-            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
-            'dark:bg-opacity-60 transform transition-opacity',
-            $blurClasses => !$blurless,
-        ])
+    <div class="{{ $backdropClasses }}"
         x-show="show"
         x-on:click="close"
         x-transition:enter="ease-out duration-300"
@@ -40,11 +52,7 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div @class([
-            'w-full min-h-full transform flex items-end justify-center mx-auto',
-            $maxWidthClasses,
-            $alignClasses,
-        ])
+    <div class="{{ $mainClasses }}"
         x-show="show"
         x-on:click.self="close"
         x-transition:enter="ease-out duration-300"
