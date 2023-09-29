@@ -4,34 +4,31 @@ namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use WireUi\Traits\Components\{HasSetupAlign, HasSetupMaxHeight, HasSetupMaxWidth};
+use WireUi\WireUi\Dropdown\{Aligns, Heights, Widths};
 
 class Base extends Component
 {
-    public const DEFAULT_ALIGN = 'right';
+    use HasSetupAlign;
+    use HasSetupMaxHeight;
+    use HasSetupMaxWidth;
 
     public function __construct(
-        public string $width = 'w-48',
-        public string $height = 'max-h-60',
-        public string $align = self::DEFAULT_ALIGN,
-        public bool $persistent = false,
+        string $width = null,
+        string $height = null,
         public ?string $trigger = null,
+        public bool $persistent = false,
     ) {
+        $this->maxWidth  = $width;
+        $this->maxHeight = $height;
+
+        $this->setAlignResolve(Aligns::class);
+        $this->setMaxWidthResolve(Widths::class);
+        $this->setMaxHeightResolve(Heights::class);
     }
 
     public function render(): View
     {
-        return view('wireui::components.dropdown.index');
-    }
-
-    public function getAlign(): string
-    {
-        $alignments = [
-            'right'     => 'origin-top-right right-0',
-            'left'      => 'origin-top-left left-0',
-            'top-right' => 'origin-top-right right-0 bottom-0',
-            'top-left'  => 'origin-top-left left-0 bottom-0',
-        ];
-
-        return $alignments[$this->align];
+        return view('wireui::components.dropdown.base');
     }
 }
