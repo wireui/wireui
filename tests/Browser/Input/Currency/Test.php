@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Currency;
+namespace Tests\Browser\Input\Currency;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_mask_currency_value()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Currency.view')
+            $this->visit($browser, 'Input.Currency.view')
                 ->type('currency', '123456')
                 ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '123,456'))
                 ->clear('currency')
@@ -25,7 +25,7 @@ class Test extends BrowserTestCase
     public function it_should_follow_livewire_model_changes()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Currency.view')
+            $this->visit($browser, 'Input.Currency.view')
                 ->clear('currency')
                 ->click('@button.change.currency')
                 ->waitUsing(7, 100, fn () => $browser->assertInputValue('currency', '12,345.67'));
@@ -36,7 +36,7 @@ class Test extends BrowserTestCase
     public function it_should_type_currency_value_and_emit_formatted_value()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Currency.view')
+            $this->visit($browser, 'Input.Currency.view')
                 ->clear('formattedCurrency')
                 ->type('formattedCurrency', '123456')
                 ->waitUsing(7, 100, function () use ($browser) {
@@ -51,7 +51,7 @@ class Test extends BrowserTestCase
     public function it_should_parse_custom_currencies_like_brazilian_real()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Currency.view')
+            $this->visit($browser, 'Input.Currency.view')
                 ->assertInputValue('brazilCurrency', '123.456,99')
                 ->append('brazilCurrency', '66')
                 ->assertInputValue('brazilCurrency', '12.345.699,66');

@@ -34,7 +34,6 @@ class Base extends Component
         public ?string $description = null,
         public ?bool $withErrorIcon = true,
         public ?bool $withValidationColors = null,
-        // public ?bool $borderless = null, // todo
         // Classes
         public mixed $colorClasses = null,
         public mixed $shadowClasses = null,

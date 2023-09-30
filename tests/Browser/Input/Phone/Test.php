@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Phone;
+namespace Tests\Browser\Input\Phone;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
@@ -11,7 +11,7 @@ class Test extends BrowserTestCase
     public function it_should_type_formatted_phone_number()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Phone.view')
+            $this->visit($browser, 'Input.Phone.view')
                 ->type('phone', '0123456789')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSeeIn('@phone', '(012) 345-6789');
@@ -30,7 +30,7 @@ class Test extends BrowserTestCase
     public function it_should_type_custom_masked_phone_number()
     {
         $this->browse(function (Browser $browser) {
-            $this->visit($browser, 'Phone.view')
+            $this->visit($browser, 'Input.Phone.view')
                 ->type('customPhone', '0123456789')
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSeeIn('@customPhone', '(01) 2345-6789');
