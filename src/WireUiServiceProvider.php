@@ -87,47 +87,6 @@ class WireUiServiceProvider extends ServiceProvider
         return __DIR__ . "/{$path}";
     }
 
-    protected function registerBladeDirectives(): self
-    {
-        Blade::directive('confirmAction', static function (string $expression): string {
-            return WireUiDirectives::confirmAction($expression);
-        });
-
-        Blade::directive('notify', static function (string $expression): string {
-            return WireUiDirectives::notify($expression);
-        });
-
-        Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {
-            if (!$attributes) {
-                $attributes = '[]';
-            }
-
-            return "{!! WireUi::directives()->scripts(attributes: {$attributes}) !!}";
-        });
-
-        Blade::directive('wireUiStyles', static function (): string {
-            return WireUiDirectives::styles();
-        });
-
-        // Blade::directive('boolean', static function ($value): string {
-        //     return WireUiDirectives::boolean($value);
-        // });
-
-        Blade::directive('attributes', static function ($attributes): string {
-            return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
-        });
-
-        // Blade::directive('toJs', static function ($expression): string {
-        //     return LivewireBladeDirectives::js($expression);
-        // });
-
-        // Blade::directive('entangleable', static function ($value): string {
-        //     return WireUiDirectives::entangleable($value);
-        // });
-
-        return $this;
-    }
-
     private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
@@ -135,64 +94,5 @@ class WireUiServiceProvider extends ServiceProvider
                 $blade->component($component['class'], $component['alias']);
             }
         });
-    }
-
-    protected function registerMacros(): self
-    {
-        Arr::macro('toRecursiveCssClasses', function ($classList): string {
-            $classList = Arr::wrap($classList);
-            $classes   = [];
-
-            foreach ($classList as $class => $constraint) {
-                if (is_numeric($class)) {
-                    $classes[] = Arr::toCssClasses($constraint);
-                } elseif ($constraint) {
-                    $classes[] = $class;
-                }
-            }
-
-            return implode(' ', $classes);
-        });
-
-        // ComponentAttributeBag::macro('wireModel', function () {
-        //     $exists = count($this->whereStartsWith('wire:model')->getAttributes()) > 0;
-        //
-        //     if (!$exists) {
-        //         return ['exists' => false];
-        //     }
-        //
-        //     /** @var WireDirective $model */
-        //     $model = $this->wire('model');
-        //
-        //     return [
-        //         'exists'    => $exists,
-        //         'name'      => $model->name(),
-        //         'value'     => $this->wire('model')->value(),
-        //         'modifiers' => [
-        //             'live'     => $model->modifiers()->contains('live'),
-        //             'blur'     => $model->modifiers()->contains('blur'),
-        //             'debounce' => [
-        //                 'exists' => $model->modifiers()->contains('debounce'),
-        //                 'delay'  => (int) Str::of($model->modifiers()->get(1, '750'))->replace('ms', '')->toString(),
-        //             ],
-        //         ],
-        //     ];
-        // });
-
-        ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
-            /** @var ComponentAttributeBag $this */
-            $attributes = collect($this->whereStartsWith($name)->getAttributes());
-
-            if ($attributes->isEmpty()) {
-                return null;
-            }
-
-            return new Attribute(
-                directive: $attributes->keys()->first(),
-                expression: $attributes->first(),
-            );
-        });
-
-        return $this;
     }
 }
