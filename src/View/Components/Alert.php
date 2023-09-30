@@ -7,7 +7,7 @@ use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
 use WireUi\WireUi\Alert\{Paddings, Rounders, Shadows, Variants};
 
-class Alert extends BaseComponent
+class Alert extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupIcon;

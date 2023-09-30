@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
 
-abstract class BaseComponent extends Component
+abstract class WireUiComponent extends Component
 {
     protected ?string $config = null;
 
@@ -27,11 +27,11 @@ abstract class BaseComponent extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return $this->blade()->with($this->runBaseComponent($data))->render();
+            return $this->blade()->with($this->runWireUiComponent($data))->render();
         };
     }
 
-    private function runBaseComponent(array $data): array
+    private function runWireUiComponent(array $data): array
     {
         $this->setConfig();
 

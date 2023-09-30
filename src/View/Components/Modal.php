@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
 use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
-class Modal extends BaseComponent
+class Modal extends WireUiComponent
 {
     use HasSetupAlign;
     use HasSetupBlur;

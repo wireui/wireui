@@ -4,11 +4,11 @@ namespace WireUi\View\Components\Badge;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 use WireUi\WireUi\Badge\Sizes\Mini as MiniSize;
 use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
 
-class Mini extends BaseComponent
+class Mini extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupIcon;

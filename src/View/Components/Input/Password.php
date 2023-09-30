@@ -4,9 +4,9 @@ namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupWrapper;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Password extends BaseComponent
+class Password extends WireUiComponent
 {
     use HasSetupWrapper;
 

@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupBorder, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Avatar\{Borders, Colors, IconSizes, Rounders, Sizes};
 
-class Avatar extends BaseComponent
+class Avatar extends WireUiComponent
 {
     use HasSetupBorder;
     use HasSetupColor;

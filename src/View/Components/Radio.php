@@ -8,7 +8,7 @@ use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
 
-class Radio extends BaseComponent
+class Radio extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;

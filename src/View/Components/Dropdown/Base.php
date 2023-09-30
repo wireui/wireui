@@ -4,10 +4,10 @@ namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupMaxHeight, HasSetupMaxWidth};
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 use WireUi\WireUi\Dropdown\{Aligns, Heights, Widths};
 
-class Base extends BaseComponent
+class Base extends WireUiComponent
 {
     use HasSetupAlign;
     use HasSetupMaxHeight;

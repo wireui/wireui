@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupPadding;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Padding extends BaseComponent
+class Padding extends WireUiComponent
 {
     use HasSetupPadding;
 
@@ -46,7 +46,7 @@ test('it should execute base component without value to padding', function () {
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBeNull();
 
@@ -64,7 +64,7 @@ test('it should execute base component with value to padding', function () {
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBe($paddingRandom);
 
@@ -82,7 +82,7 @@ test('it should execute base component with custom value to padding', function (
 
     $this->invokeMethod($this->component, 'setPaddingResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->padding)->toBe($paddingRandom);
 

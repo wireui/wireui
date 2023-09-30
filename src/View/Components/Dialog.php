@@ -7,7 +7,7 @@ use WireUi\Actions\Dialog as DialogAction;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
 use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
 
-class Dialog extends BaseComponent
+class Dialog extends WireUiComponent
 {
     use HasSetupAlign;
     use HasSetupBlur;

@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use WireUi\Traits\Components\HasSetupWrapper;
 
-class NativeSelect extends BaseComponent
+class NativeSelect extends WireUiComponent
 {
     use HasSetupWrapper;
 

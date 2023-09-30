@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupWrapper;
 
-class TimePicker extends BaseComponent
+class TimePicker extends WireUiComponent
 {
     use HasSetupWrapper;
 

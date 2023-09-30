@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use WireUi\Traits\Components\HasSetupWrapper;
 
-class ColorPicker extends BaseComponent
+class ColorPicker extends WireUiComponent
 {
     use HasSetupWrapper;
 

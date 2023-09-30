@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str, ViewErrorBag};
 
-class Errors extends BaseComponent
+class Errors extends WireUiComponent
 {
     public function __construct(
         public mixed $only = [],

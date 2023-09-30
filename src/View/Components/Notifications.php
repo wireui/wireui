@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupPosition;
 use WireUi\WireUi\Notification\Positions;
 
-class Notifications extends BaseComponent
+class Notifications extends WireUiComponent
 {
     use HasSetupPosition;
 

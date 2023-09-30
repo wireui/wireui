@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupUnderline;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Underline extends BaseComponent
+class Underline extends WireUiComponent
 {
     use HasSetupUnderline;
 
@@ -46,7 +46,7 @@ test('it should execute base component without value to underline', function () 
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBeNull();
 
@@ -64,7 +64,7 @@ test('it should execute base component with value to underline', function () {
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBe($underlineRandom);
 
@@ -82,7 +82,7 @@ test('it should execute base component with custom value to underline', function
 
     $this->invokeMethod($this->component, 'setUnderlineResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->underline)->toBe($underlineRandom);
 

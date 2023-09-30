@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
 use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
 
-class Card extends BaseComponent
+class Card extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupPadding;

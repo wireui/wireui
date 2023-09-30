@@ -8,7 +8,7 @@ use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
 
-class Toggle extends BaseComponent
+class Toggle extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupIcon;

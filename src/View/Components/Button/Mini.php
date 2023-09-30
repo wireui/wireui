@@ -4,11 +4,11 @@ namespace WireUi\View\Components\Button;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 use WireUi\WireUi\Button\Sizes\Mini as SizesMini;
 use WireUi\WireUi\Button\{IconSizes, Rounders, Variants};
 
-class Mini extends BaseComponent
+class Mini extends WireUiComponent
 {
     use HasSetupButton;
     use HasSetupColor;

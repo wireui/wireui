@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupIconSize};
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class IconSize extends BaseComponent
+class IconSize extends WireUiComponent
 {
     use HasSetupIconSize;
 
@@ -46,7 +46,7 @@ test('it should execute base component without value to icon size', function () 
 
     $this->invokeMethod($this->component, 'setIconSizeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->iconSize)->toBeNull();
 
@@ -64,7 +64,7 @@ test('it should execute base component with value to icon size', function () {
 
     $this->invokeMethod($this->component, 'setIconSizeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->iconSize)->toBe($iconSizeRandom);
 
@@ -82,7 +82,7 @@ test('it should execute base component with custom value to icon size', function
 
     $this->invokeMethod($this->component, 'setIconSizeResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->iconSize)->toBe($iconSizeRandom);
 

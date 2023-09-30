@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupAlign;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Align extends BaseComponent
+class Align extends WireUiComponent
 {
     use HasSetupAlign;
 
@@ -46,7 +46,7 @@ test('it should execute base component without value to align', function () {
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBeNull();
 
@@ -64,7 +64,7 @@ test('it should execute base component with value to align', function () {
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBe($alignRandom);
 
@@ -82,7 +82,7 @@ test('it should execute base component with custom value to align', function () 
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBe($alignRandom);
 

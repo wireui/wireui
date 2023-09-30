@@ -6,9 +6,9 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use WireUi\Traits\Components\HasSetupWrapper;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-abstract class Maskable extends BaseComponent
+abstract class Maskable extends WireUiComponent
 {
     use HasSetupWrapper;
 

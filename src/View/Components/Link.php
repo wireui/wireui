@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize, HasSetupUnderline};
 use WireUi\WireUi\Link\{Colors, Sizes, Underlines};
 
-class Link extends BaseComponent
+class Link extends WireUiComponent
 {
     use HasSetupButton;
     use HasSetupColor;

@@ -7,7 +7,7 @@ use DateTimeInterface;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupWrapper;
 
-class DatetimePicker extends BaseComponent
+class DatetimePicker extends WireUiComponent
 {
     use HasSetupWrapper;
 

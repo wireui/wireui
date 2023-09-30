@@ -8,7 +8,7 @@ use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Checkbox\{Colors, Rounders, Sizes};
 
-class Checkbox extends BaseComponent
+class Checkbox extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;

@@ -5,9 +5,9 @@ namespace Tests\Unit\Traits\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Traits\Components\HasSetupButton;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Button extends BaseComponent
+class Button extends WireUiComponent
 {
     use HasSetupButton;
 
@@ -32,7 +32,7 @@ test('it should have all properties empty', function () {
 });
 
 test('it should execute base component type button', function () {
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     $newData = $this->component->data();
 
@@ -48,7 +48,7 @@ test('it should execute base component type link', function () {
         'href' => fake()->url(),
     ]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     $newData = $this->component->data();
 
@@ -62,7 +62,7 @@ test('it should execute base component type link', function () {
 test('it should execute base component with loading', function () {
     $this->component = new Button(loading: true);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     $newData = $this->component->data();
 
