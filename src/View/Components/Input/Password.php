@@ -3,12 +3,12 @@
 namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Traits\Components\HasSetupWrapper;
 use WireUi\View\Components\BaseComponent;
 
 class Password extends BaseComponent
 {
-    use HasSetupForm;
+    use HasSetupWrapper;
 
     public function blade(): View
     {

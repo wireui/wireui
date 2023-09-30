@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Wrapper\Input;
+namespace WireUi\WireUi\Wrapper;
 
 use WireUi\Support\ComponentPack;
 

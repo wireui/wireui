@@ -46,6 +46,10 @@ abstract class BaseComponent extends Component
             fn ($method) => Str::startsWith($method, 'setup'),
         )->values();
 
+        if ($methods->containsAll(['setupWrapper'])) {
+            $methods = $methods->putStart('setupWrapper');
+        }
+
         if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
             $methods = $methods->putEnd('setupIconSize');
         }

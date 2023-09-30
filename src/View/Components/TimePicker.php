@@ -3,11 +3,11 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Traits\Components\HasSetupWrapper;
 
 class TimePicker extends BaseComponent
 {
-    use HasSetupForm;
+    use HasSetupWrapper;
 
     public const INTERVAL       = 10;
     public const FORMAT_12H     = '12';

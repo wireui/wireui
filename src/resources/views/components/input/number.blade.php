@@ -24,7 +24,7 @@
         />
     </x-slot:prepend>
 
-    <x-wireui::wrapper.input.element
+    <x-wireui::wrapper.element
         :attributes="$attrs
             ->except('class')
             ->class('text-center appearance-number-none')

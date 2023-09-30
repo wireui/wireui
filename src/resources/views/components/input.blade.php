@@ -4,5 +4,5 @@
 >
     @include('wireui::components.wrapper.slots')
 
-    <x-wireui::wrapper.input.element :attributes="$attrs->except(['wire:key', 'x-data', 'class', 'group-invalidated'])" />
+    <x-wireui::wrapper.element :attributes="$attrs->except(['wire:key', 'x-data', 'class', 'group-invalidated'])" />
 </x-wrapper>

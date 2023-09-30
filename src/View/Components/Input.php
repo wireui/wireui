@@ -3,22 +3,11 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupShadow};
-use WireUi\WireUi\Wrapper\Input\{Colors, Rounders, Shadows};
+use WireUi\Traits\Components\HasSetupWrapper;
 
 class Input extends BaseComponent
 {
-    use HasSetupColor;
-    use HasSetupForm;
-    use HasSetupRounded;
-    use HasSetupShadow;
-
-    public function __construct()
-    {
-        $this->setColorResolve(Colors::class);
-        $this->setShadowResolve(Shadows::class);
-        $this->setRoundedResolve(Rounders::class);
-    }
+    use HasSetupWrapper;
 
     protected function blade(): View
     {

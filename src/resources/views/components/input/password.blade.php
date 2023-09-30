@@ -7,7 +7,7 @@
         'except' => ['append'],
     ])
 
-    <x-wireui::wrapper.input.element
+    <x-wireui::wrapper.element
         :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
         type="password"
         x-bind:type="type"

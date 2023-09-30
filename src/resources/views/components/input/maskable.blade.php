@@ -10,7 +10,7 @@
 >
     @include('wireui::components.wrapper.slots')
 
-    <x-wireui::wrapper.input.element
+    <x-wireui::wrapper.element
         x-model="input"
         x-on:input="onInput($event.target.value)"
         x-on:blur="emitInput"

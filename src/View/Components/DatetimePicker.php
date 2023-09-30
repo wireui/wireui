@@ -5,11 +5,11 @@ namespace WireUi\View\Components;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Traits\Components\HasSetupWrapper;
 
 class DatetimePicker extends BaseComponent
 {
-    use HasSetupForm;
+    use HasSetupWrapper;
 
     public ?Carbon $min;
 

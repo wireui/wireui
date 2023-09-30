@@ -55,7 +55,7 @@
         </x-slot:append>
     @endif
 
-    <x-wireui::wrapper.input.element
+    <x-wireui::wrapper.element
         readonly
         x-on:click="toggle"
         x-bind:value="model ? getDisplayValue() : null"

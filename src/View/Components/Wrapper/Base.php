@@ -12,101 +12,52 @@ class Base extends Component
     use HasFillableProperties;
     use InteractsWithErrors;
 
-    public ?string $id = null;
-
-    public ?string $icon = null;
-
-    public ?string $name = null;
-
-    public ?string $color = null;
-
-    public ?string $label = null;
-
-    public ?string $corner = null;
-
-    public ?string $prefix = null;
-
-    public ?string $shadow = null;
-
-    public ?string $suffix = null;
-
-    public ?bool $disabled = null;
-
-    public ?bool $readonly = null;
-
-    public ?string $rounded = null;
-
-    public ?bool $errorless = null;
-
-    public ?string $rightIcon = null;
-
-    public ?bool $shadowless = null;
-
-    public ?string $description = null;
-
-    public ?bool $invalidated = null;
-
-    public ?bool $withValidationColors = null;
-
-    /**
-     * Classes to be applied to the input element.
-     */
-    public mixed $colorClasses = null;
-
-    public mixed $shadowClasses = null;
-
-    public mixed $roundedClasses = null;
-
-    public ?string $padding = null;
-
-    public ?bool $withErrorIcon = true;
-
-    // public function __construct(
-    //     public ?string $id = null,
-    //     public ?string $name = null,
-    //     public ?string $label = null,
-    //     public ?string $corner = null,
-    //     public ?string $description = null,
-    //     public ?string $prefix = null,
-    //     public ?string $suffix = null,
-    //     public ?string $icon = null,
-    //     public ?string $rightIcon = null,
-    //     public ?string $padding = null,
-    //     public ?bool $invalidated = null,
-    //     public ?bool $withErrorIcon = true,
-    //     public ?bool $withValidationColors = null,
-    //     public ?bool $disabled = null,
-    //     public ?bool $readonly = null,
-    //     public ?bool $errorless = null,
-    //     public ?bool $borderless = null, // todo
-    //     public ?bool $shadowless = null, // todo
-    //     WrapperData $data = null,
-    // ) {
-
-    public function __construct(WrapperData $data)
-    {
+    public function __construct(
+        WrapperData $data = null,
+        public ?string $id = null,
+        public ?string $icon = null,
+        public ?string $name = null,
+        public ?string $color = null,
+        public ?string $label = null,
+        public ?string $corner = null,
+        public ?string $prefix = null,
+        public ?string $shadow = null,
+        public ?string $suffix = null,
+        public ?bool $disabled = null,
+        public ?bool $readonly = null,
+        public ?string $padding = null,
+        public ?string $rounded = null,
+        public ?bool $errorless = null,
+        public ?string $rightIcon = null,
+        public ?bool $shadowless = null,
+        public ?bool $invalidated = null,
+        public ?string $description = null,
+        public ?bool $withErrorIcon = true,
+        public ?bool $withValidationColors = null,
+        // public ?bool $borderless = null, // todo
+        // Classes
+        public mixed $colorClasses = null,
+        public mixed $shadowClasses = null,
+        public mixed $roundedClasses = null,
+    ) {
         // dd($data, $this);
 
-        // if ($data) {
-        //     $this->fill($data->toArray());
-        // }
+        if ($data) {
+            $this->fill($data->toArray());
+        }
 
-        // $this->fillValidation($name);
-
-        $this->fill($data->toArray());
-
-        $this->fillValidation();
+        $this->fillValidation($name);
     }
 
-    public function fillValidation(): void
+    public function fillValidation(?string $name): void
     {
         if ($this->invalidated === null) {
-            $this->invalidated = $this->name && $this->errors()->has($this->name);
+            $this->invalidated = $name && $this->errors()->has($this->name);
         }
     }
 
     public function render(): View
     {
-        return view('wireui::components.wrapper.input.base');
+        return view('wireui::components.wrapper.base');
     }
 }

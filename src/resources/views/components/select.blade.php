@@ -113,7 +113,7 @@
         </template>
     </x-slot:prepend>
 
-    <x-wireui::wrapper.input.element
+    <x-wireui::wrapper.element
         x-ref="input"
         x-on:click="toggle"
         x-on:focus="open"

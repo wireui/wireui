@@ -11,10 +11,10 @@
     <textarea
         {{ $attrs
             ->merge([
-                'type'         => 'text',
+                'type' => 'text',
                 'autocomplete' => 'off',
-                'placeholder'  => ' ',
-                'rows'         => 4,
+                'placeholder' => ' ',
+                'rows' => 4,
             ])
             ->except(['wire:key', 'x-data', 'class'])
             ->class([
