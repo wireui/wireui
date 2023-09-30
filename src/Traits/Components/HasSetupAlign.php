@@ -18,7 +18,7 @@ trait HasSetupAlign
         $this->alignResolve = $class;
     }
 
-    protected function setupAlign(array &$data): void
+    protected function setupAlign(): void
     {
         throw_if(!$this->alignResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupAlign
 
         $this->alignClasses = $alignPack->get($this->align);
 
-        $this->setVariables($data, ['align', 'alignClasses']);
+        $this->setVariables(['align', 'alignClasses']);
     }
 }

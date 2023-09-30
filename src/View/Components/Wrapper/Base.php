@@ -5,11 +5,10 @@ namespace WireUi\View\Components\Wrapper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use WireUi\Support\WrapperData;
-use WireUi\Traits\Components\Concerns\{HasFillableProperties, InteractsWithErrors};
+use WireUi\Traits\Components\Concerns\InteractsWithErrors;
 
 class Base extends Component
 {
-    use HasFillableProperties;
     use InteractsWithErrors;
 
     public function __construct(
@@ -52,6 +51,15 @@ class Base extends Component
     {
         if ($this->invalidated === null) {
             $this->invalidated = $name && $this->errors()->has($this->name);
+        }
+    }
+
+    protected function fill(array $data): void
+    {
+        foreach ($data as $property => $value) {
+            if (property_exists($this, $property) && $this->{$property} === null) {
+                $this->{$property} = $value;
+            }
         }
     }
 

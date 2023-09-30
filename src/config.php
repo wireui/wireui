@@ -4,13 +4,6 @@ use WireUi\Facades\WireUi;
 use WireUi\View\Components;
 
 return [
-
-    'input-number' => [
-        'icon' => 'minus',
-
-        'right-icon' => 'plus',
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | WireUI Components

@@ -1,11 +1,10 @@
 <?php
 
-namespace WireUi\Traits\Components;
+namespace WireUi\Traits\Components\Concerns;
 
 use WireUi\Support\WrapperData;
-use WireUi\Traits\Components\Concerns\{HasAttributesExtraction, HasSharedAttributes, InteractsWithErrors};
 
-trait HasSetupForm
+trait IsFormComponent
 {
     use HasAttributesExtraction;
     use HasSharedAttributes;
@@ -26,7 +25,7 @@ trait HasSetupForm
         return WrapperData::extractable();
     }
 
-    protected function setupForm(array &$data): void
+    protected function formable(array &$data): void
     {
         $this->mergeAttributes($data);
 

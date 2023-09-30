@@ -18,7 +18,7 @@ trait HasSetupType
         $this->typeResolve = $class;
     }
 
-    protected function setupType(array &$data): void
+    protected function setupType(): void
     {
         throw_if(!$this->typeResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupType
 
         $this->typeClasses = $typePack->get($this->type);
 
-        $this->setVariables($data, ['type', 'typeClasses']);
+        $this->setVariables(['type', 'typeClasses']);
     }
 }

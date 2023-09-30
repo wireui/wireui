@@ -18,7 +18,7 @@ trait HasSetupMaxHeight
         $this->maxHeightResolve = $class;
     }
 
-    protected function setupMaxHeight(array &$data): void
+    protected function setupMaxHeight(): void
     {
         throw_if(!$this->maxHeightResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupMaxHeight
 
         $this->maxHeightClasses = $maxHeightPack->get($this->maxHeight);
 
-        $this->setVariables($data, ['maxHeight', 'maxHeightClasses']);
+        $this->setVariables(['maxHeight', 'maxHeightClasses']);
     }
 }

@@ -20,7 +20,7 @@ trait HasSetupBlur
         $this->blurResolve = $class;
     }
 
-    protected function setupBlur(array &$data): void
+    protected function setupBlur(): void
     {
         throw_if(!$this->blurResolve, new WireUiResolveException($this));
 
@@ -35,6 +35,6 @@ trait HasSetupBlur
 
         $this->blurClasses = $blurPack->get($this->blur);
 
-        $this->setVariables($data, ['blur', 'blurless', 'blurClasses']);
+        $this->setVariables(['blur', 'blurless', 'blurClasses']);
     }
 }

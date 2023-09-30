@@ -4,15 +4,16 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupForm, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 use WireUi\WireUi\Radio\{Colors, Rounders, Sizes};
 
 class Radio extends BaseComponent
 {
     use HasSetupColor;
-    use HasSetupForm;
     use HasSetupRounded;
     use HasSetupSize;
+    use IsFormComponent;
 
     public function __construct(
         public ?string $label = null,

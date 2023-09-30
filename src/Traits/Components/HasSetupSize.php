@@ -18,7 +18,7 @@ trait HasSetupSize
         $this->sizeResolve = $class;
     }
 
-    protected function setupSize(array &$data): void
+    protected function setupSize(): void
     {
         throw_if(!$this->sizeResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupSize
 
         $this->sizeClasses = $sizePack->get($this->size);
 
-        $this->setVariables($data, ['size', 'sizeClasses']);
+        $this->setVariables(['size', 'sizeClasses']);
     }
 }

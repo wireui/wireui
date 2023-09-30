@@ -6,7 +6,7 @@ trait HasSetupButton
 {
     public mixed $tag = null;
 
-    protected function setupButton(array &$data): void
+    protected function setupButton(): void
     {
         $this->tag = $this->getTag();
 
@@ -14,7 +14,7 @@ trait HasSetupButton
 
         $this->ensureWireLoading();
 
-        $this->setVariables($data, ['tag']);
+        $this->setVariables(['tag']);
     }
 
     private function getTag(): string

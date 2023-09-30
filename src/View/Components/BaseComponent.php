@@ -13,6 +13,8 @@ abstract class BaseComponent extends Component
 {
     protected ?string $config = null;
 
+    private array $setVariables = [];
+
     private array $smartAttributes = [];
 
     private function setConfig(): void
@@ -33,8 +35,24 @@ abstract class BaseComponent extends Component
     {
         $this->setConfig();
 
+        if (method_exists($this, 'mount')) {
+            $this->mount($data);
+        }
+
         foreach ($this->getMethods() as $method) {
             $this->{$method}($data);
+        }
+
+        if (method_exists($this, 'rendered')) {
+            $this->rendered($data);
+        }
+
+        foreach ($this->setVariables as $attribute) {
+            $data[$attribute] = $this->{$attribute};
+        }
+
+        if (method_exists($this, 'formable')) {
+            $this->formable($data);
         }
 
         return Arr::set($data, 'attributes', $this->attributes->except($this->smartAttributes));
@@ -60,10 +78,6 @@ abstract class BaseComponent extends Component
 
         if ($methods->containsAll(['setupStateColor'])) {
             $methods = $methods->putEnd('setupStateColor');
-        }
-
-        if ($methods->containsAll(['setupForm'])) {
-            $methods = $methods->putEnd('setupForm');
         }
 
         return $methods->values()->toArray();
@@ -99,11 +113,11 @@ abstract class BaseComponent extends Component
         return $value ?? config("wireui.{$this->config}.{$attribute}");
     }
 
-    protected function setVariables(array &$data, array $variables): void
+    protected function setVariables(mixed $variables): void
     {
-        foreach ($variables as $variable) {
-            $data[$variable] = $this->{$variable};
-        }
+        collect(Arr::wrap($variables))->filter()->each(
+            fn ($value) => $this->setVariables[] = $value,
+        );
     }
 
     protected function smartAttributes(mixed $attributes): void

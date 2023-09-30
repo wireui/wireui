@@ -18,7 +18,7 @@ trait HasSetupIconSize
         $this->iconSizeResolve = $class;
     }
 
-    protected function setupIconSize(array &$data): void
+    protected function setupIconSize(): void
     {
         throw_if(!$this->iconSizeResolve, new WireUiResolveException($this));
 
@@ -33,6 +33,6 @@ trait HasSetupIconSize
 
         $this->iconSizeClasses = $iconSizePack->get($this->iconSize);
 
-        $this->setVariables($data, ['iconSize', 'iconSizeClasses']);
+        $this->setVariables(['iconSize', 'iconSizeClasses']);
     }
 }

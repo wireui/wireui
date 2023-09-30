@@ -20,7 +20,7 @@ trait HasSetupBorder
         $this->borderResolve = $class;
     }
 
-    protected function setupBorder(array &$data): void
+    protected function setupBorder(): void
     {
         throw_if(!$this->borderResolve, new WireUiResolveException($this));
 
@@ -35,6 +35,6 @@ trait HasSetupBorder
 
         $this->borderClasses = $borderPack->get($this->border);
 
-        $this->setVariables($data, ['border', 'borderless', 'borderClasses']);
+        $this->setVariables(['border', 'borderless', 'borderClasses']);
     }
 }
