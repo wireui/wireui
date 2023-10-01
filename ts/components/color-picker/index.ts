@@ -1,7 +1,6 @@
 import { applyMask, masker } from '@/utils/masker'
 import { baseComponent, WireModel } from '@/components/alpine'
 import { positioning, PositioningRefs } from '@/components/modules/positioning'
-import { watchProps } from '@/alpine/magic/props'
 import Entangleable from '@/alpine/proxy/Entangleable'
 import SupportsLivewire from '@/alpine/proxy/SupportsLivewire'
 
@@ -28,7 +27,7 @@ export default () => ({
   $refs: {} as Refs,
   $props: {} as Props,
   selected: { value: '', name: '' } as Color,
-  entangleable: {} as Entangleable,
+  entangleable: new Entangleable(),
   masker: masker('!#XXXXXX', null),
 
   get colors (): Color[] {
@@ -40,24 +39,17 @@ export default () => ({
   },
 
   init () {
-    this.entangleable = new Entangleable()
-
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
     this.initPositioningSystem()
 
-    watchProps(this, this.syncProps.bind(this))
-
-    if (this.entangleable.value) {
-      this.setColor(this.entangleable.value)
-    }
-
     this.entangleable.watch(() => this.syncSelected())
-  },
-  syncProps (mutations: MutationRecord[] = []) {
-    console.log('syncProps', mutations)
+
+    if (this.$refs.input.value) {
+      this.setColor(this.$refs.input.value)
+    }
   },
   syncSelected () {
     const value = this.entangleable.get()
