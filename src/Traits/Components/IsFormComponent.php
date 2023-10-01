@@ -6,7 +6,11 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\Form\WrapperData;
-use WireUi\Traits\Components\Concerns\{HasAttributesExtraction, HasSharedAttributes, InteractsWithErrors};
+use WireUi\Traits\Components\Concerns\{
+    HasAttributesExtraction,
+    HasSharedAttributes,
+    InteractsWithErrors,
+};
 
 trait IsFormComponent
 {
@@ -38,11 +42,6 @@ trait IsFormComponent
             $data['wrapperData'] = (new WrapperData($data))->except($this->except());
 
             $data['attrs'] = $data['attributes'];
-
-            /** @var ComponentAttributeBag $attributes */
-            $attributes = $data['attributes'];
-
-            $data['value'] = $attributes->get('value', $attributes->wire('model')->value());
 
             return $this->blade()
                 ->with($data)

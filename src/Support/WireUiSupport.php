@@ -4,6 +4,7 @@ namespace WireUi\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
+use Livewire\{Component, WireDirective};
 use WireUi\Support\{BladeDirectives, ComponentResolver};
 
 class WireUiSupport
@@ -30,6 +31,13 @@ class WireUiSupport
 
     public function alpine(string $component, array $data = []): string
     {
+        $expressions = $this->phpToJs($data);
+
+        return "{$component}({{$expressions}})";
+    }
+
+    public function phpToJs(array $data = []): string
+    {
         $expressions = '';
 
         $parse = function ($value) {
@@ -46,16 +54,14 @@ class WireUiSupport
             $expressions .= "{$key}:{$parse($value)},";
         }
 
-        return <<<EOT
-        {$component}({{$expressions}})
-        EOT;
+        return "{{$expressions}}";
     }
 
-    public static function wireModel(Component $component, ComponentAttributeBag $attributes)
+    public static function wireModel(?Component $component, ComponentAttributeBag $attributes)
     {
         $exists = count($attributes->whereStartsWith('wire:model')->getAttributes()) > 0;
 
-        if (!$exists) {
+        if (!$component || !$exists) {
             return ['exists' => false];
         }
 
@@ -64,15 +70,18 @@ class WireUiSupport
 
         return [
             'exists'     => $exists,
-            'name'       => $model->name(),
-            'value'      => $attributes->wire('model')->value(), // todo: get value from $component
-            'livewireId' => $component->id,
+            'name'       => $model->value(),
+            'livewireId' => $component->id(),
             'modifiers'  => [
                 'live'     => $model->modifiers()->contains('live'),
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->get(1, '750'))->replace('ms', '')->toString(),
+                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                ],
+                'throttle' => [
+                    'exists' => $model->modifiers()->contains('throttle'),
+                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
                 ],
             ],
         ];

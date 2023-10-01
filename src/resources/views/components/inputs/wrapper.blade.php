@@ -46,7 +46,7 @@
 
     <label
         {{ $attributes
-            ->except(['wire:key', 'form-wrapper', 'x-data', 'class'])
+            ->except(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props'])
             ->merge(['for' => $id])
             ->class([
                 'relative flex gap-x-2 items-center rounded-md shadow-sm',

@@ -1,29 +1,34 @@
 <x-inputs.wrapper
-    :x-data="WireUi::alpine('wireui_color_picker', [
-        'colorNameAsValue' => $colorNameAsValue,
-        'colors'           => $getColors(),
-        'wireModel'        => WireUi::wireModel($this, $attributes),
-        'value'            => $value
-    ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
+    x-data="wireui_color_picker"
+    :x-props="WireUi::phpToJs([
+        'colorNameAsValue' => $colorNameAsValue,
+        'colors'           => $getColors(),
+        'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+    ])"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::form.wrapper.slots', [
+        'except' => ['prefix', 'append']
+    ])
 
-    <x-slot:prefix>
-        <template x-if="selected.value">
-            <div
-                class="w-4 h-4 rounded shadow border"
-                :style="{ 'background-color': selected.value }"
-            ></div>
-        </template>
-    </x-slot:prefix>
+     <x-slot:prefix>
+         <div
+             x-show="selected.value"
+             class="w-4 h-4 rounded shadow border"
+             :style="{ 'background-color': selected.value }"
+         ></div>
+     </x-slot:prefix>
 
     <x-wireui::inputs.element
-        x-model="value"
+        x-model="selected.value"
         x-on:input="setColor($event.target.value)"
+        x-on:blur="onBlur($event.target.value)"
         x-ref="input"
-        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
+        :attributes="$attrs
+            ->whereDoesntStartWith('wire:model')
+            ->except(['wire:key', 'x-data', 'class'])
+        "
     />
 
     <x-slot:append>

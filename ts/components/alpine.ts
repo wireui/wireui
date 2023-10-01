@@ -10,18 +10,20 @@ export type WireModifiers = {
     exists: boolean
     delay: number
   },
+  throttle: {
+    exists: boolean
+    delay: number
+  }
 }
 
 export interface WireModel {
   exists: boolean
   livewireId: string
   name: string
-  value: any
   modifiers: WireModifiers
 }
 
 export interface DirectiveUtilities {
-  // eslint-disable-next-line no-use-before-define
   Alpine: Alpine
   effect: () => void
   cleanup: (callback: CallableFunction) => void
@@ -35,6 +37,11 @@ export interface DirectiveParameters {
   expression: string
   original: string
   type: string
+}
+
+export type MagicAlpineHelpers = {
+  Alpine: Alpine
+  evaluate: (el: Element, expression: string, extras?: any) => any
 }
 
 export interface Alpine {
@@ -51,6 +58,7 @@ export interface Alpine {
 }
 
 export interface Component {
+  $wire: any
   $el: HTMLElement
   $root: HTMLElement
   $watch: (name: string, callback: CallableFunction) => void

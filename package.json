@@ -13,17 +13,16 @@
     },
     "dependencies": {
         "@floating-ui/dom": "^1.5.3",
-        "@vue/reactivity": "^3.3.4",
+        "@types/lodash.throttle": "^4.1.7",
         "@wireui/alpinejs-hold-directive": "^1.0.1",
         "alpinejs": "^3.13.0",
         "dayjs": "^1.11.10",
         "lodash.debounce": "^4.0.8",
         "lodash.kebabcase": "^4.1.1",
-        "qs": "^6.11.2",
-        "vue": "^3.3.4"
+        "lodash.throttle": "^4.1.1",
+        "qs": "^6.11.2"
     },
     "devDependencies": {
-        "@types/alpinejs": "^3.13.2",
         "@types/jest": "^29.5.5",
         "@types/lodash.debounce": "^4.0.7",
         "@types/tailwindcss": "^3.1.0",

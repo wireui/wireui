@@ -1,7 +1,9 @@
 import { applyMask, masker } from '@/utils/masker'
 import { baseComponent, WireModel } from '@/components/alpine'
 import { positioning, PositioningRefs } from '@/components/modules/positioning'
-import makeEntangleable from '@/alpine/proxies/entangleable.js'
+import { watchProps } from '@/alpine/magic/props'
+import Entangleable from '@/alpine/proxy/Entangleable'
+import SupportsLivewire from '@/alpine/proxy/SupportsLivewire'
 
 export type Color = {
   name: string
@@ -12,61 +14,88 @@ export type InitOptions = {
   colorNameAsValue: boolean
   wireModel: WireModel
   colors: Color[]
-  value: string|null
 }
+
+export type Props = InitOptions
 
 export type Refs = PositioningRefs & {
   input: HTMLInputElement
 }
 
-export default (options: InitOptions) => ({
+export default () => ({
   ...baseComponent,
   ...positioning,
   $refs: {} as Refs,
+  $props: {} as Props,
   selected: { value: '', name: '' } as Color,
-  value: null,
+  entangleable: {} as Entangleable,
   masker: masker('!#XXXXXX', null),
 
   get colors (): Color[] {
-    if (options.colors) return options.colors
+    if (this.$props.colors.length) {
+      return this.$props.colors
+    }
 
     return window.Alpine.store('wireui:color-picker')?.colors ?? []
   },
 
   init () {
-    this.value = makeEntangleable({
-      component: this,
-      value: options.value,
-      wireModel: options.wireModel
-    })
+    this.entangleable = new Entangleable()
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
 
     this.initPositioningSystem()
 
-    if (this.value) {
-      this.setColor(this.value)
+    watchProps(this, this.syncProps.bind(this))
+
+    if (this.entangleable.value) {
+      this.setColor(this.entangleable.value)
     }
 
-    // todo: watch value
-    // const selectedColor = this.colors.find(color => {
-    //   if (options.colorNameAsValue) return color.name === value
-    //
-    //   return applyMask('!#XXXXXX', color.value) === value
-    // })
-    //
-    // this.selected = {
-    //   value: selectedColor?.value ?? value ?? '',
-    //   name: selectedColor?.name ?? value ?? ''
-    // }
+    this.entangleable.watch(() => this.syncSelected())
+  },
+  syncProps (mutations: MutationRecord[] = []) {
+    console.log('syncProps', mutations)
+  },
+  syncSelected () {
+    const value = this.entangleable.get()
+
+    const selectedColor = this.colors.find(color => {
+      if (this.$props.colorNameAsValue) {
+        return color.name === value
+      }
+
+      return applyMask('!#XXXXXX', color.value) === value
+    })
+
+    this.selected = {
+      value: selectedColor?.value ?? value ?? '',
+      name: selectedColor?.name ?? value ?? ''
+    }
   },
   select (color: Color) {
-    this.selected = color
+    this.selected = { ...color }
+
+    const value = this.$props.colorNameAsValue
+      ? color.name
+      : color.value
+
+    this.entangleable.set(value, { force: true, triggerBlur: true })
+
     this.close()
   },
-  setColor (value: string|null) {
-    if (!options.colorNameAsValue) {
-      value = applyMask('!#XXXXXX', value)
+  setColor (color: string | null) {
+    if (!this.$props.colorNameAsValue) {
+      color = applyMask('!#XXXXXX', color)
     }
 
-    this.value = value
+    this.entangleable.set(color)
+
+    this.syncSelected()
+  },
+  onBlur (color: string | null) {
+    this.entangleable.onBlur(color)
   }
 })
