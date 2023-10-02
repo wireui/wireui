@@ -23,3 +23,17 @@ export const jsonParse = (value?: string | null, fallback: any = null): any => {
     return fallback
   }
 }
+
+export const isEmpty = (value: any): boolean => {
+  if (value === null || value === undefined || value === '') {
+    return true
+  }
+
+  if (Array.isArray(value) && value.length === 0) {
+    return true
+  }
+
+  if (value instanceof Date) return false
+
+  return typeof value === 'object' && Object.keys(value).length === 0
+}
