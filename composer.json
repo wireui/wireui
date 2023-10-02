@@ -11,21 +11,21 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^10.0",
-        "livewire/livewire": "^3.0",
+        "laravel/framework": "^10.25",
         "wireui/heroicons": "^2.4"
     },
     "require-dev": {
-        "mockery/mockery": "^1.5",
-        "phpunit/phpunit": "^10.0",
-        "orchestra/testbench": "^8.0",
+        "laravel/pint": "^1.13",
+        "livewire/livewire": "^3.0",
+        "livewire/volt": "^1.3",
+        "mockery/mockery": "^1.6",
+        "orchestra/testbench": "^8.12",
         "orchestra/testbench-dusk": "^8.0",
-        "psy/psysh": "^0.11.12",
-        "pestphp/pest": "^2.16",
+        "pestphp/pest": "^2.20",
         "pestphp/pest-plugin-livewire": "^2.1",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "laravel/pint": "^1.10",
-        "livewire/volt": "^1.3"
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "phpunit/phpunit": "^10.3",
+        "psy/psysh": "^0.11.21"
     },
     "authors": [
         {
@@ -62,7 +62,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WireUi\\WireUiServiceProvider"
+                "WireUi\\ServiceProvider"
             ],
             "aliases": []
         }

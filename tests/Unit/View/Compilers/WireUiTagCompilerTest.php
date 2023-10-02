@@ -4,7 +4,7 @@ namespace Tests\Unit\View\Compilers;
 
 use Illuminate\Support\Facades\Blade;
 use WireUi\Facades\WireUiDirectives;
-use WireUi\Support\BladeDirectives;
+use WireUi\View\BladeDirectives;
 use WireUi\View\Compilers\WireUiTagCompiler;
 
 test('it should match scripts and styles tags', function () {

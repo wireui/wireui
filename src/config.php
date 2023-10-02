@@ -1,7 +1,6 @@
 <?php
 
-use WireUi\Facades\WireUi;
-use WireUi\View\Components;
+use WireUi\WireUi;
 
 return [
     /*

@@ -1,6 +1,8 @@
 <?php
 
-namespace WireUi\Support; // todo: move to View namespace
+namespace WireUi\View;
+
+// todo: move to View namespace
 
 use Illuminate\View\ComponentAttributeBag;
 

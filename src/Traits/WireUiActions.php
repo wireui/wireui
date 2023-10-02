@@ -17,6 +17,7 @@ trait WireUiActions
         return new Notification($this);
     }
 
+    // todo: refactor this
     public function openModal(string $modal): void
     {
         $modal = Str::kebab($modal);
@@ -24,6 +25,7 @@ trait WireUiActions
         $this->dispatchBrowserEvent("open-wireui-modal:{$modal}");
     }
 
+    // todo: refactor this
     public function closeModal(string $modal): void
     {
         $modal = Str::kebab($modal);

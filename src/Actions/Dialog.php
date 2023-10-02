@@ -3,85 +3,56 @@
 namespace WireUi\Actions;
 
 use Illuminate\Support\Str;
-use Livewire\Component;
-use WireUi\Enum\Actions;
+use WireUi\Enum\Icon;
+use WireUi\Support\DialogEvent;
 
+/**
+ * @property \Livewire\Component|null $component
+ */
 class Dialog
 {
-    private Component $component;
+    /** @var DialogEvent[] */
+    public static array $dispatches = [];
 
-    private ?string $dialogId = null;
-
-    public function __construct(Component $component)
-    {
-        $this->component = $component;
+    public function __construct(
+        private $component = null,
+        private ?string $dialogId = 'default',
+    ) {
     }
 
     public function id(string $dialogId): self
     {
-        $this->dialogId = $dialogId;
+        $this->dialogId = Str::kebab($dialogId);
 
         return $this;
     }
 
-    private function getEventName(): string
+    public function show(...$options): self
     {
-        return static::makeEventName($this->dialogId);
-    }
+        $options['icon'] ??= Icon::INFO->value;
 
-    public static function makeEventName(string $dialogId = null): string
-    {
-        $id = Str::kebab($dialogId);
-
-        return !empty($id) ? "dialog:{$id}" : 'dialog';
-    }
-
-    public function success(string $title, string $description = null): void
-    {
-        $this->simpleDialog(Actions::SUCCESS->value, $title, $description);
-    }
-
-    public function error(string $title, string $description = null): void
-    {
-        $this->simpleDialog(Actions::ERROR->value, $title, $description);
-    }
-
-    public function info(string $title, string $description = null): void
-    {
-        $this->simpleDialog(Actions::INFO->value, $title, $description);
-    }
-
-    public function warning(string $title, string $description = null): void
-    {
-        $this->simpleDialog(Actions::WARNING->value, $title, $description);
-    }
-
-    public function simpleDialog(string $icon, string $title, string $description = null): void
-    {
-        $this->show([
-            'icon'        => $icon,
-            'title'       => $title,
-            'description' => $description,
-        ]);
-    }
-
-    public function show(array $options): void
-    {
-        $options['icon'] ??= Actions::INFO->value;
-
-        $this->component->dispatch("wireui:{$this->getEventName()}", [
+        return $this->dispatch("wireui:dialog:{$this->dialogId}", [
             'options'     => $options,
-            'componentId' => $this->component->getId(),
+            'componentId' => $this->component?->getId(),
         ]);
     }
 
-    public function confirm(array $options): void
+    public function confirm(...$options): self
     {
-        $options['icon'] ??= Actions::QUESTION->value;
+        $options['icon'] ??= Icon::QUESTION->value;
 
-        $this->component->dispatch("wireui:confirm-{$this->getEventName()}", [
+        return $this->dispatch("wireui:confirm-dialog:{$this->dialogId}", [
             'options'     => $options,
-            'componentId' => $this->component->getId(),
+            'componentId' => $this->component?->getId(),
         ]);
+    }
+
+    private function dispatch(string $event, array $data): self
+    {
+        $this->component
+            ? $this->component->dispatch($event, $data)
+            : static::$dispatches[] = new DialogEvent($this->dialogId, $event, $data);
+
+        return $this;
     }
 }

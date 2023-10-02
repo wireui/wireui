@@ -5,7 +5,7 @@ namespace WireUi\Http\Controllers;
 use Illuminate\Http\Response;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Http\Requests\ButtonRequest;
-use WireUi\Support\BladeCompiler;
+use WireUi\View\Compilers\BladeCompiler;
 
 class ButtonController extends Controller
 {

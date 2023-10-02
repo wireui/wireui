@@ -2,7 +2,7 @@
 
 namespace WireUi\Enum;
 
-enum Actions: string
+enum Icon: string
 {
     case SUCCESS  = 'success';
     case ERROR    = 'error';

@@ -4,17 +4,17 @@ namespace WireUi\View;
 
 use Illuminate\Support\{Collection, Str};
 
-final class Attribute
+final readonly class Attribute
 {
-    private readonly ?string $name;
+    private ?string $name;
 
-    private readonly ?string $value;
+    private ?string $value;
 
-    private readonly string $directive;
+    private string $directive;
 
-    private readonly mixed $expression;
+    private mixed $expression;
 
-    private readonly Collection $modifiers;
+    private Collection $modifiers;
 
     public function __construct(string $directive, mixed $expression = null)
     {

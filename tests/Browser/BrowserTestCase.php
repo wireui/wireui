@@ -9,7 +9,7 @@ use Livewire\Volt\{Volt, VoltServiceProvider};
 use Orchestra\Testbench\Dusk\{Options, TestCase};
 use Tests\Browser\Macros\DuskBrowserMacros;
 use WireUi\Heroicons\HeroiconsServiceProvider;
-use WireUi\WireUiServiceProvider;
+use WireUi\ServiceProvider;
 
 /** @link https://github.com/livewire/livewire/blob/main/tests/BrowserTestCase.php */
 class BrowserTestCase extends TestCase
@@ -60,7 +60,7 @@ class BrowserTestCase extends TestCase
     {
         return [
             VoltServiceProvider::class,
-            WireUiServiceProvider::class,
+            ServiceProvider::class,
             LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];

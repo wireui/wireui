@@ -4,7 +4,7 @@ namespace Tests\Unit\Traits;
 
 use Mockery\Mock;
 use Tests\Unit\{TestCase, TestComponent};
-use WireUi\Enum\Actions;
+use WireUi\Enum\Icon;
 
 test('it should emit a dialog event when the method dialog is called with a non empty array', function () {
     $event = 'wireui:dialog';
@@ -23,7 +23,7 @@ test('it should emit a dialog event when the method dialog is called with a non 
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, data_set($params, 'options.icon', Actions::INFO->value));
+        ->with($event, data_set($params, 'options.icon', Icon::INFO->value));
 
     $mock->dialog()->show($params['options']);
 });

@@ -3,8 +3,8 @@
 namespace WireUi;
 
 use Illuminate\Foundation\{AliasLoader, Application};
+use Illuminate\Support;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
 use WireUi\Providers\{BladeDirectives, CustomMacros};
@@ -13,7 +13,7 @@ use WireUi\View\Compilers\WireUiTagCompiler;
 /**
  * @property Application $app
  */
-class WireUiServiceProvider extends ServiceProvider
+class ServiceProvider extends Support\ServiceProvider
 {
     public function register(): void
     {

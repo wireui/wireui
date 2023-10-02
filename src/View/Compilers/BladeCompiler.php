@@ -1,11 +1,12 @@
 <?php
 
-namespace WireUi\Support;
+namespace WireUi\View\Compilers;
 
 use Exception;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Factory;
 use Throwable;
+use WireUi\Support\SafeEval;
 
 class BladeCompiler
 {

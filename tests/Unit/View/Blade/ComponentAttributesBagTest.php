@@ -9,7 +9,7 @@ it('should parse boolean attributes', function () {
         'sail'   => 'laravel',
     ];
 
-    $bag = new WireUi\Support\ComponentAttributesBag($attributes);
+    $bag = new \WireUi\View\ComponentAttributesBag($attributes);
 
     expect($bag->getAttributes())->toBe([
         'foo'    => 'true',
