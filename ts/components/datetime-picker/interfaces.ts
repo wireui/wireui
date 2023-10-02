@@ -1,11 +1,8 @@
 import { Dateable } from '@/utils/date'
-import { Component, Entangle } from '@/components/alpine'
+import { Component, WireModel } from '@/components/alpine'
 import { Time } from './makeTimes'
 import { Positioning, PositioningRefs } from '@/components/modules/positioning'
-
-export interface InitOptions {
-  model: Entangle
-}
+import Entangleable from '@/alpine/proxy/Entangleable'
 
 export interface Props {
   config: {
@@ -23,9 +20,9 @@ export interface Props {
   userTimezone: string
   parseFormat: string
   displayFormat: string
-  weekDays: string[]
   monthNames: string[]
   withoutTime: boolean
+  wireModel: WireModel
 }
 
 export interface iDate {
@@ -58,9 +55,10 @@ export type Refs = PositioningRefs & {
   timesContainer: HTMLElement
 }
 
-export interface DateTimePicker extends Component, InitOptions, Props, Positioning {
+export interface DateTimePicker extends Component, Positioning {
   $refs: Refs
   $props: Props,
+  entangleable: Entangleable,
   localTimezone: string
   localeDateConfig: LocaleDateConfig
   searchTime: string | null
@@ -78,39 +76,73 @@ export interface DateTimePicker extends Component, InitOptions, Props, Positioni
   minDate: Dateable | null
   maxDate: Dateable | null
 
-  get dates (): iDate[]
+  get userTimezone(): string
 
-  init (): void
-  initComponent (): void
-  syncProps (): void
-  syncDateLimits (): void
-  clearDate (): void
-  syncCalendar (): void
-  getPreviousDates (currentDate: Dateable): PreviousDate[]
-  getCurrentDates (currentDate: Dateable): CurrentDate[]
-  getNextDates (currentDate: Dateable, datesLength: number): NextDate[]
-  isDateDisabled (date: iDate): boolean
-  syncPickerDates (forceSync?: boolean): void
-  fillPickerDates (): void
-  fillTimes (): void
-  filterTimes (times: Time[]): Time[]
-  previousMonth (): void
-  nextMonth (): void
-  isSelected (date: CurrentDate): boolean
-  isToday (day: number): boolean
-  selectMonth (month: number): void
-  syncWireModel (): void
-  syncInput (): void
-  selectDate (date: iDate): void
-  selectTime (time: Time): void
-  today (): Dateable
-  selectYesterday (): void
-  selectToday (): void
-  selectTomorrow (): void
-  getLocaleDateConfig (): LocaleDateConfig
-  getDisplayValue (): string | undefined
-  getSearchPlaceholder (): string
-  onSearchTime (search: string): void
-  makeSearchTimes (search: string): Time[]
-  focusTime (): void
+  get dates(): iDate[]
+
+  init(): void
+
+  initComponent(): void
+
+  onPropsChange(): void
+
+  syncDateLimits(): void
+
+  clearDate(): void
+
+  syncCalendar(): void
+
+  getPreviousDates(currentDate: Dateable): PreviousDate[]
+
+  getCurrentDates(currentDate: Dateable): CurrentDate[]
+
+  getNextDates(currentDate: Dateable, datesLength: number): NextDate[]
+
+  isDateDisabled(date: iDate): boolean
+
+  syncPickerDates(forceSync?: boolean): void
+
+  fillPickerDates(): void
+
+  fillTimes(): void
+
+  filterTimes(times: Time[]): Time[]
+
+  previousMonth(): void
+
+  nextMonth(): void
+
+  isSelected(date: CurrentDate): boolean
+
+  isToday(day: number): boolean
+
+  selectMonth(month: number): void
+
+  syncWireModel(): void
+
+  syncInput(): void
+
+  selectDate(date: iDate): void
+
+  selectTime(time: Time): void
+
+  today(): Dateable
+
+  selectYesterday(): void
+
+  selectToday(): void
+
+  selectTomorrow(): void
+
+  getLocaleDateConfig(): LocaleDateConfig
+
+  getDisplayValue(): string | undefined
+
+  getSearchPlaceholder(): string
+
+  onSearchTime(search: string): void
+
+  makeSearchTimes(search: string): Time[]
+
+  focusTime(): void
 }

@@ -1,27 +1,25 @@
 <x-inputs.wrapper
-    x-data="wireui_datetime_picker({
-        model: @entangleable($attrs->wire('model')),
-    })"
-    x-props="{
-        config: {
-            interval: @toJs($interval),
-            is12H:    @boolean($timeFormat == '12'),
-            readonly: @boolean($readonly),
-            disabled: @boolean($disabled),
-            min: @toJs($min ? $min->format('Y-m-d\TH:i') : null),
-            max: @toJs($max ? $max->format('Y-m-d\TH:i') : null),
-            minTime: @toJs($minTime),
-            maxTime: @toJs($maxTime),
-        },
-        withoutTimezone: @boolean($withoutTimezone),
-        timezone:      @toJs($timezone),
-        userTimezone:  @toJs($userTimezone ?? ''),
-        parseFormat:   @toJs($parseFormat ?? ''),
-        displayFormat: @toJs($displayFormat ?? ''),
-        weekDays:      @lang('wireui::messages.datePicker.days'),
-        monthNames:    @lang('wireui::messages.datePicker.months'),
-        withoutTime:   @boolean($withoutTime),
-    }"
+    x-data="wireui_datetime_picker"
+    :x-props="WireUi::phpToJs([
+        'config' => [
+            'interval' => $interval,
+            'is12H'    => $timeFormat == '12',
+            'readonly' => $readonly,
+            'disabled' => $disabled,
+            'min'      => $min?->format('Y-m-d\TH:i'),
+            'max'      => $max?->format('Y-m-d\TH:i'),
+            'minTime'  => $minTime,
+            'maxTime'  => $maxTime,
+        ],
+        'withoutTimezone' => $withoutTimezone,
+        'timezone'        => $timezone,
+        'userTimezone'    => $userTimezone ?? '',
+        'parseFormat'     => $parseFormat ?? '',
+        'displayFormat'   => $displayFormat ?? '',
+         'monthNames'     => __('wireui::messages.date_picker.months'),
+        'withoutTime'     => $withoutTime,
+        'wireModel'       => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only('wire:key')"
 >
@@ -30,7 +28,7 @@
     @if (!$readonly && !$disabled)
         <x-slot:append>
             <div @class([
-                'flex items-center gap-x-2 my-auto',
+                'flex items-center gap-x-2 my-auto pr-2',
                 'text-negative-400 dark:text-negative-600' => $invalidated,
                 'text-secondary-400'                       => !$invalidated,
             ])>
@@ -40,8 +38,8 @@
                         class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
                         x-cloak
                         name="x-mark"
-                        x-show="model"
-                        x-on:click="clearDate()"
+                        x-show="entangleable.get()"
+                        x-on:click.prevent="clearDate()"
                     />
                 @endif
 
@@ -49,7 +47,6 @@
                     :component="WireUi::component('icon')"
                     class="cursor-pointer w-5 h-5"
                     :name="$rightIcon"
-                    x-on:click="toggle"
                 />
             </div>
         </x-slot:append>
@@ -58,15 +55,17 @@
     <x-wireui::inputs.element
         readonly
         x-on:click="toggle"
-        x-bind:value="model ? getDisplayValue() : null"
+        x-bind:value="entangleable.get() ? getDisplayValue() : null"
         :attributes="$attrs
+            ->class('cursor-pointer')
             ->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key', 'readonly'])
-            ->except(['wire:key', 'x-data'])
+            ->except('x-data')
         "
     />
 
     <x-wireui::parts.popover
         class="max-h-96 overflow-y-auto p-3 sm:w-72"
+        root-class="sm:w-full sm:justify-end"
         :margin="(bool) $label"
     >
         <div x-show="tab === 'date'" class="space-y-5">
@@ -76,21 +75,21 @@
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectYesterday"
-                        :label="__('wireui::messages.datePicker.yesterday')"
+                        :label="__('wireui::messages.date_picker.yesterday')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectToday"
-                        :label="__('wireui::messages.datePicker.today')"
+                        :label="__('wireui::messages.date_picker.today')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="bg-secondary-100 border-none dark:bg-secondary-800"
                         x-on:click="selectTomorrow"
-                        :label="__('wireui::messages.datePicker.tomorrow')"
+                        :label="__('wireui::messages.date_picker.tomorrow')"
                     />
                 </div>
             @endunless
@@ -99,7 +98,7 @@
                 <x-dynamic-component
                     :component="WireUi::component('button')"
                     class="rounded-lg shrink-0"
-                    x-show="!monthsPicker"
+                    x-show="!$props.monthsPicker"
                     x-on:click="previousMonth"
                     icon="chevron-left"
                     flat
@@ -108,8 +107,8 @@
                 <div class="w-full flex items-center justify-center gap-x-2 text-secondary-600 dark:text-secondary-500">
                     <button
                         class="focus:outline-none focus:underline"
-                        x-text="monthNames[month]"
-                        x-on:click="monthsPicker = !monthsPicker"
+                        x-text="$props.monthNames[month]"
+                        x-on:click="$props.monthsPicker = !$props.monthsPicker"
                         type="button"
                     ></button>
 
@@ -124,7 +123,7 @@
                 <x-dynamic-component
                     :component="WireUi::component('button')"
                     class="rounded-lg shrink-0"
-                    x-show="!monthsPicker"
+                    x-show="!$props.monthsPicker"
                     x-on:click="nextMonth"
                     icon="chevron-right"
                     flat
@@ -134,31 +133,30 @@
             <div class="relative">
                 <div
                     class="absolute inset-0 bg-white dark:bg-secondary-800 grid grid-cols-3 gap-3"
-                    x-show="monthsPicker"
+                    x-show="$props.monthsPicker"
                     x-transition
                 >
-                    <template x-for="(monthName, index) in monthNames" :key="`month.${monthName}`">
+                    @foreach(__('wireui::messages.date_picker.months') as $month)
                         <x-dynamic-component
                             :component="WireUi::component('button')"
                             class="text-secondary-400 dark:border-0 dark:hover:bg-secondary-700 uppercase"
-                            x-on:click="selectMonth(index)"
-                            x-text="monthName"
+                            x-on:click="selectMonth({{ $loop->index }})"
+                            :label="$month"
                             xs
                         />
-                    </template>
+                    @endforeach
                 </div>
 
                 <div class="grid grid-cols-7 gap-2">
-                    <template x-for="day in weekDays" :key="`week-day.${day}`">
-                        <span
-                            class="text-secondary-400 text-3xs text-center uppercase pointer-events-none"
-                            x-text="day"
-                        ></span>
-                    </template>
+                    @foreach(__('wireui::messages.date_picker.days') as $day)
+                        <span class="text-secondary-400 text-3xs text-center uppercase pointer-events-none">
+                            {{ $day }}
+                        </span>
+                    @endforeach
 
                     <template
                         x-for="date in dates"
-                        :key="`date.${date.day}.${date.month}`"
+                        :key="`date.${date.year}.${date.month}.${date.day}`"
                     >
                         <div class="flex justify-center picker-days">
                             <button
@@ -199,7 +197,7 @@
             />
 
             <div
-                class="mt-1 w-full max-h-52 pb-1 pt-2 overflow-y-auto flex flex-col picker-times"
+                class="mt-1 w-full max-h-52 pb-1 pt-2 overflow-y-auto soft-scrollbar flex flex-col picker-times"
                 x-ref="timesContainer"
             >
                 <template x-for="time in filteredTimes" :key="time.value">
