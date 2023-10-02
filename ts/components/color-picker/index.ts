@@ -86,6 +86,6 @@ export default () => ({
     this.syncSelected()
   },
   onBlur (color: string | null) {
-    this.entangleable.onBlur(color)
+    this.entangleable.set(color, { triggerBlur: true })
   }
 })

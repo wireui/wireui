@@ -41,7 +41,7 @@ export default class SupportsLivewire {
     }
 
     if (modifiers.blur) {
-      this.entangleable.executeOnBlur((value: any) => this.set(value, IN_LIVE))
+      this.entangleable.onBlur((value: any) => this.set(value, IN_LIVE))
     }
 
     if (modifiers.debounce.exists) {

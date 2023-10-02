@@ -1,5 +1,9 @@
+import { isEmpty } from '@/utils/helpers'
+
 export default class Entangleable {
-  private callbacks: CallableFunction[] = []
+  private onSetCallbacks: CallableFunction[] = []
+
+  private onClearCallbacks: CallableFunction[] = []
 
   private onBlurCallbacks: CallableFunction[] = []
 
@@ -10,10 +14,10 @@ export default class Entangleable {
 
     this.value = value
 
-    this.callbacks.forEach(callback => callback(value))
+    this.onSetCallbacks.forEach(callback => callback(value))
 
     if (triggerBlur) {
-      this.executeBlurCallbacks()
+      this.onBlurCallbacks.forEach(callback => callback(this.value))
     }
   }
 
@@ -21,21 +25,25 @@ export default class Entangleable {
     return this.value
   }
 
-  onBlur (value: any) {
-    this.set(value, { force: true })
+  clear ($default = null) {
+    this.value = $default
 
-    this.executeBlurCallbacks()
-  }
-
-  executeBlurCallbacks () {
-    this.onBlurCallbacks.forEach(callback => callback(this.value))
+    this.onClearCallbacks.forEach(callback => callback())
   }
 
   watch (callback: CallableFunction) {
-    this.callbacks.push(callback)
+    this.onSetCallbacks.push(callback)
   }
 
-  executeOnBlur (callback: CallableFunction) {
+  onBlur (callback: CallableFunction) {
     this.onBlurCallbacks.push(callback)
+  }
+
+  onClear (callback: CallableFunction) {
+    this.onClearCallbacks.push(callback)
+  }
+
+  isEmpty (): boolean {
+    return isEmpty(this.value)
   }
 }
