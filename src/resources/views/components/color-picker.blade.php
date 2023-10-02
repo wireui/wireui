@@ -56,26 +56,34 @@
     <x-slot:after>
         <x-wireui::parts.popover
             :margin="(bool) $label"
+            root-class="sm:w-full justify-end"
             class="
-                max-h-56 py-3 px-2 sm:py-2 sm:rounded-xl
-                overflow-y-auto soft-scrollbar border border-secondary-200
+                max-h-64 py-2 px-1 sm:w-auto sm:max-w-[19rem] sm:max-h-60 overflow-y-auto
+                overscroll-contain soft-scrollbar select-none
             "
+            x-ref="optionsContainer"
+            tabindex="-1"
+            name="wireui.select.options.{{ $name }}"
+            x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
+            x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
+            x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
+            x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
         >
-            <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 max-w-[18rem] mx-auto">
-                <template x-for="(color, index) in colors" :key="index">
-                    <button
-                        class="
-                            w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer
-                            hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400
-                            dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400
-                        "
-                        :style="{ 'background-color': color.value }"
-                        x-on:click="select(color)"
-                        :title="color.name"
-                        type="button"
-                    ></button>
-                </template>
-            </div>
+             <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto">
+                 <template x-for="(color, index) in colors" :key="index">
+                     <button
+                         class="
+                             w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer
+                             hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400
+                             dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400
+                         "
+                         :style="{ 'background-color': color.value }"
+                         x-on:click="select(color)"
+                         :title="color.name"
+                         type="button"
+                     ></button>
+                 </template>
+             </div>
         </x-wireui::parts.popover>
     </x-slot:after>
 </x-inputs.wrapper>
