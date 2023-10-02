@@ -1,4 +1,4 @@
-import { parseConfirmation, parseNotification } from '@/notifications/parses'
+import { parseConfirmation, parseNotification } from '@/alpine/components/notifications/parses'
 
 declare global {
   interface Window {
@@ -33,9 +33,15 @@ describe('Testing notifications', () => {
 
     const options = {
       title: 'Events Notification',
-      onClose () { onClose = true },
-      onTimeout () { onTimeout = true },
-      onDismiss () { onDismiss = true }
+      onClose () {
+        onClose = true
+      },
+      onTimeout () {
+        onTimeout = true
+      },
+      onDismiss () {
+        onDismiss = true
+      }
     }
 
     const notification = parseNotification(options)
@@ -82,11 +88,15 @@ describe('Testing notifications', () => {
       title: 'Confirm Notification',
       accept: {
         label: 'Save',
-        execute: () => { accepted = true }
+        execute: () => {
+          accepted = true
+        }
       },
       reject: {
         label: 'Delete',
-        execute: () => { rejected = true }
+        execute: () => {
+          rejected = true
+        }
       }
     }
 

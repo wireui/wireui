@@ -1,5 +1,5 @@
-import { parseIcon } from '@/notifications/icons'
-import { parseRedirect, parseLivewire } from '@/notifications/parses'
+import { parseIcon } from '@/alpine/components/notifications/icons'
+import { parseRedirect, parseLivewire } from '@/alpine/components/notifications/parses'
 
 declare global {
   interface Window {

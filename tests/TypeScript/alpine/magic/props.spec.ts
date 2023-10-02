@@ -1,5 +1,5 @@
 import { props, watchProps } from '@/alpine/magic/props'
-import { Component } from '@/components/alpine'
+import { Component } from '@/alpine/components/alpine'
 import { AlpineMock, WireuiMock, mockAlpineComponent, sleep } from '@tests/helpers'
 
 describe('Testing the props magic helper', () => {

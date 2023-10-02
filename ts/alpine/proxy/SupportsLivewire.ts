@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce'
 import throttle from '@/utils/throttle'
 import Entangleable from '@/alpine/proxy/Entangleable'
-import { WireModel } from '@/components/alpine'
+import { WireModel } from '@/alpine/components/alpine'
 import { isEmpty } from '@/utils/helpers'
 
 export default class SupportsLivewire {

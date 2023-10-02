@@ -1,4 +1,4 @@
-import { Component } from '@/components/alpine'
+import { Component } from '@/alpine/components/alpine'
 
 export const props = function (el: HTMLElement): object {
   const $root = el.closest('[x-data]')

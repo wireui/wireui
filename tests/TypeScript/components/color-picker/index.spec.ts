@@ -1,6 +1,6 @@
-import colorPicker, { Color, Props } from '@/components/color-picker'
+import colorPicker, { Color, Props } from '@/alpine/components/color-picker'
 import { AlpineMock, mockAlpineComponent } from '@tests/helpers'
-import { makeColors } from '@/components/color-picker/colors'
+import { makeColors } from '@/alpine/components/color-picker/colors'
 
 type ColorPicker = ReturnType<typeof colorPicker>
 
@@ -86,7 +86,7 @@ describe('Testing the color picker component', () => {
     const color: Color = { value: '#FFFFFF', name: 'White' }
     const component = mockComponent()
 
-    window.Alpine.store = jest.fn().mockReturnValue({ colors: [color]})
+    window.Alpine.store = jest.fn().mockReturnValue({ colors: [color] })
 
     expect(component.selected).toMatchObject(nullColor)
 

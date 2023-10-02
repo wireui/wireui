@@ -1,8 +1,9 @@
-import { makeColors } from '@/components/color-picker/colors'
-import { Color } from '@/components/color-picker'
+import { makeColors } from '@/alpine/components/color-picker/colors'
+import { Color } from '@/alpine/components/color-picker'
 
 export interface ColorsStore {
   colors: Color[]
+
   setColors (colors: Color[]): this
 }
 

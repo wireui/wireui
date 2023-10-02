@@ -1,5 +1,5 @@
 import Alpine from 'alpinejs'
-import { Alpine as AlpineInterface, baseComponent, Component } from '@/components/alpine'
+import { Alpine as AlpineInterface, baseComponent, Component } from '@/alpine/components/alpine'
 import { WireUiHooks } from '@/hooks'
 
 export interface MockedAlpine extends AlpineInterface {
