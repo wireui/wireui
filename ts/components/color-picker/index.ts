@@ -9,13 +9,11 @@ export type Color = {
   value: string
 }
 
-export type InitOptions = {
+export type Props = {
   colorNameAsValue: boolean
   wireModel: WireModel
   colors: Color[]
 }
-
-export type Props = InitOptions
 
 export type Refs = PositioningRefs & {
   input: HTMLInputElement
@@ -39,13 +37,13 @@ export default () => ({
   },
 
   init () {
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-    }
+    this.entangleable.watch(() => this.syncSelected())
 
     this.initPositioningSystem()
 
-    this.entangleable.watch(() => this.syncSelected())
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
 
     if (this.$refs.input.value) {
       this.setColor(this.$refs.input.value)
