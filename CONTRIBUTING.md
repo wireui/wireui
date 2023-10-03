@@ -1,54 +1,78 @@
-# Contributing
+# Contributing to WireUI
 
-## Before you start
+We welcome contributions from everyone, and are grateful for the time and effort spent by contributors. 
+This document provides guidelines and steps for contributing to WireUI.
 
-Please, make sure you have taken a look on [our documentation](https://livewire-wireui.com/).
+## Table of Contents
+- [Before You Start](#before-you-start)
+- [Setting Up Your Environment](#setting-up-your-environment)
+- [Working on a Local Project](#working-on-a-local-project)
+- [Submitting Your Contributions](#submitting-your-contributions)
 
-Are you with problem with one of ours components? The best way to reach us is to
-open a new issue, we just ask you to search if your problem was discussed before
-and if so continue the discussion there.
+## Before You Start
 
-Wanna to submit a new pull request? Let us know what you're planning to work opening a
-new issue this will prevent that we're working on the same thing. We'll be very happy
-to discuss and review your code.
+- Please ensure you have reviewed [our documentation](https://wireui.dev) to familiarize yourself with the project.
+- If you encounter issues with any of our components, we encourage you to [open a new issue](https://github.com/wireui/wireui/issues). Before doing so, please check for existing issues to avoid duplicates and continue the discussion there if the issue has already been reported.
+- If you're planning to submit a pull request, kindly [open a new issue](https://github.com/wireui/wireui/issues) detailing your plans to ensure we're not working on the same feature/bug fix. We're always excited to review and discuss your code!
 
-## Installing
+## Setting Up Your Environment
 
-To clone the project source and install its dependencies, run:
+1. **Clone the repository and install dependencies:**
 
-```shell
-git clone git@github.com:wireui/wireui.git
-cd wireui
+    ```shell
+    git clone git@github.com:wireui/wireui.git
+    cd wireui
+    composer install
+    yarn install
+    ```
+   
+2. **Running Tests:**
+Make sure you have a chromium-based browser installed for running tests.
 
-composer install
-yarn install
-```
+    ```shell
+    composer test 
+    yarn test  
+    ```
+   
+3. **Code Formatting:**
+We adhere to a coding standard to maintain consistency. Before submitting your PR, ensure your code is formatted by running:
 
-To run the project test make sure you have installed the chromium-browser and run:
+    ```shell
+    composer pint
+    yarn lint
+    ```
+## Working on a Local Project
+1. **Create a new Laravel project:**
+    ```shell
+    composer create-project laravel/laravel wireui-demo
+   cd wireui-demo
+    ```
 
-```shell
-composer test
-```
-
-Now you can work on the project. We're using a code standard to format our code
-so before send your PR make sure that you run ` composer phpcs `.
-
-## Work on a local project with the project source
-
-After installing the projects using the steps above you can create a brand new laravel
-project and add to the composer.json:
-
-```json
-    ...,
+2. **Link local wireui into composer.json**
+    ```json
     "repositories": {
         "local": {
             "type": "path",
             "url": "../path/to/wireui"
         }
     }
-}
-```
+    ```
 
-After added this configuration you can install the wireui project as a local dependency
-using ` composer require wireui/wireui `, so when you change the wireui source code
-it will be reflected on your laravel package.
+3. **Install WireUI as a local dependency:**
+    ```shell
+    composer require wireui/wireui
+    ```
+
+4. **Complete the setup:**
+
+    Follow the WireUI [installation instructions](https://wireui.dev/docs/installation) to finish the setup.
+
+
+5. **You're ready to contribute! 🎉**
+
+## Submitting Your Contributions
+Head over to the Pull Requests section in GitHub and create a new pull request.
+
+Please provide a clear description of the changes you made, and reference any related issues.
+
+We look forward to your contributions!
