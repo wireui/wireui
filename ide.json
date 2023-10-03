@@ -14,7 +14,7 @@
                 }
             ],
             "ignoreViewPaths": [
-                "resources/views"
+                "src/resources/views"
             ]
         }
     }
