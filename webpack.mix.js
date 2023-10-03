@@ -7,9 +7,5 @@ mix.ts('ts/index.ts', 'dist/wireui.js')
   .alias({
     '@': path.join(__dirname, 'ts')
   })
-
-if (mix.inProduction()) {
-  mix.version()
-}
-
-mix.disableSuccessNotifications()
+  .disableSuccessNotifications()
+  .version()
