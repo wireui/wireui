@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupRounded
@@ -13,21 +12,10 @@ trait HasSetupRounded
 
     public mixed $roundedClasses = null;
 
-    private mixed $roundedResolve = null;
-
-    protected function setRoundedResolve(string $class): void
-    {
-        $this->roundedResolve = $class;
-    }
-
     protected function setupRounded(): void
     {
-        throw_if(!$this->roundedResolve, new WireUiResolveException($this));
-
-        $rounders = config("wireui.{$this->config}.rounders");
-
         /** @var ComponentPack $roundedPack */
-        $roundedPack = $rounders ? resolve($rounders) : resolve($this->roundedResolve);
+        $roundedPack = resolve(config("wireui.{$this->config}.rounders"));
 
         $this->squared = $this->attributes->get('squared');
 

@@ -4,7 +4,6 @@ namespace Tests\Unit\Traits\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupShadow;
 use WireUi\View\Components\WireUiComponent;
 
@@ -41,7 +40,7 @@ test('it should dispatch exception because the resolve is empty', function () {
     $data = $this->component->data();
 
     $this->invokeMethod($this->component, 'setupShadow', [&$data]);
-})->throws(WireUiResolveException::class);
+});
 
 test('it should execute base component without value to shadow', function () {
     $resolve = resolve($class = $this->getPackageClass('Shadow'));

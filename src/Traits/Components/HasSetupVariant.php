@@ -2,28 +2,16 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupVariant
 {
     public mixed $variant = null;
 
-    private mixed $variantResolve = null;
-
-    protected function setVariantResolve(string $class): void
-    {
-        $this->variantResolve = $class;
-    }
-
     protected function setupVariant(): void
     {
-        throw_if(!$this->variantResolve, new WireUiResolveException($this));
-
-        $variants = config("wireui.{$this->config}.variants");
-
         /** @var ComponentPack $variantPack */
-        $variantPack = $variants ? resolve($variants) : resolve($this->variantResolve);
+        $variantPack = resolve(config("wireui.{$this->config}.variants"));
 
         $this->variant = $this->getDataModifier('variant', $variantPack);
 
