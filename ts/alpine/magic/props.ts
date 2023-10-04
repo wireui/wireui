@@ -1,6 +1,6 @@
 import { Component } from '@/alpine/components/alpine'
 
-export const props = function (el: HTMLElement): object {
+export function props (el: HTMLElement): object {
   const $root = el.closest('[x-data]')
   const expression = $root?.getAttribute('x-props')
 
@@ -34,7 +34,6 @@ export function watchProps (component: Component, callback: CallableFunction): v
 
   observer.observe(component.$root, { attributes: true })
 
+  // todo: refactor cleanup
   component.$cleanup(() => observer.disconnect())
 }
-
-export default props

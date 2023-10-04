@@ -1,6 +1,6 @@
 import { parseConfirmation, parseNotification } from '@/alpine/components/notifications/parses'
 import { timer } from '@/alpine/components/notifications/timer'
-import uuid from '../../utils/uuid'
+import uuid from '../../../utils/uuid'
 
 export interface Notifications {
   [index: string]: any

@@ -3,26 +3,6 @@ import { ModalStore } from '@/alpine/store/modal'
 
 export type Entangle = any
 
-export type WireModifiers = {
-  live: boolean
-  blur: boolean
-  debounce: {
-    exists: boolean
-    delay: number
-  },
-  throttle: {
-    exists: boolean
-    delay: number
-  }
-}
-
-export interface WireModel {
-  exists: boolean
-  livewireId: string
-  name: string
-  modifiers: WireModifiers
-}
-
 export interface DirectiveUtilities {
   Alpine: Alpine
   effect: () => void
@@ -46,53 +26,47 @@ export type MagicAlpineHelpers = {
 
 export interface Alpine {
   raw (data: any): any
-
   data (name: string, data: any): void
-
   store (name: 'wireui:color-picker', data?: ColorsStore): ColorsStore
-
   store (name: 'wireui:modal', data?: ModalStore): ModalStore
-
   evaluate (scope: any, expression: string): any
-
   magic (name: string, callback: (el: HTMLElement) => any): void
-
   directive (
     name: string,
     handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void,
   ): void;
+  reactive<Type> (data: Type): Type
+  effect (callback: () => void): void
 }
 
-export interface Component {
-  $wire: any
-  $el: HTMLElement
-  $root: HTMLElement
-  $watch: (name: string, callback: CallableFunction) => void
-  $nextTick: (callback: CallableFunction) => void
-  $dispatch: (name: string, value: any) => void
-  $cleanup: (callback: CallableFunction) => void
-
-  init? (): void
-
-  _x_cleanups?: CallableFunction[]
+export type FocusManager = {
+  focus(el: HTMLElement): void;
+  focusable(el: HTMLElement): boolean;
+  focusables(): HTMLElement[];
+  focused(): HTMLElement | null;
+  lastFocused(): HTMLElement | null;
+  within(el: HTMLElement): FocusManager;
+  first(): void;
+  last(): void;
+  next(): void;
+  previous(): void;
+  noscroll(): void;
+  wrap(): void;
+  getFirst(): HTMLElement | null;
+  getLast(): HTMLElement | null;
+  getNext(): HTMLElement | null;
+  getPrevious(): HTMLElement | null;
 }
-
-export const baseComponent = {
-  $cleanup (callback) {
-    if (!this._x_cleanups) this._x_cleanups = []
-
-    this._x_cleanups.push(callback)
-  }
-} as Component
 
 export abstract class AlpineComponent {
   $wire!: any
   $el!: HTMLElement
   $root!: HTMLElement
   $refs!: { [name: string]: HTMLElement }
-  $watch!: (name: string, callback: CallableFunction) => void
   $nextTick!: (callback: CallableFunction) => void
   $dispatch!: (name: string, value: any) => void
+  $watch!: (name: string, callback: CallableFunction) => void
+  $focus!: FocusManager
 }
 
 export function convertClassToObject<Type extends AlpineComponent> (component: Type): Type {
@@ -101,6 +75,7 @@ export function convertClassToObject<Type extends AlpineComponent> (component: T
   return Object.getOwnPropertyNames(names)
     .filter((method) => method !== 'constructor')
     .reduce((object: any, method: any) => {
+      // @ts-ignore
       object[method] = component[method]
 
       return object

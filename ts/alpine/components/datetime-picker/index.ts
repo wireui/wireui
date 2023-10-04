@@ -1,61 +1,80 @@
-import { applyMask } from '@/utils/masker'
-import { getLocalTimezone, date as parseDate } from '@/utils/date'
-import { CurrentDate, DateTimePicker, LocaleDateConfig, NextDate, PreviousDate, Props, Refs } from './interfaces'
-import { makeTimes, Time } from './makeTimes'
-import { convertStandardTimeToMilitary } from '@/utils/time'
-import { baseComponent } from '@/alpine/components/alpine'
-import { positioning } from '@/alpine/components/modules/positioning'
+import { AlpineComponent } from '@/alpine/components/alpine'
+import Positioning from '@/alpine/components/modules/Positioning'
+import Entangleable from '@/alpine/entangleable'
 import { watchProps } from '@/alpine/magic/props'
-import Entangleable from '@/alpine/proxy/Entangleable'
+import { date as parseDate, Dateable, getLocalTimezone } from '@/utils/date'
+import { applyMask } from '@/utils/masker'
+import { convertStandardTimeToMilitary } from '@/utils/time'
+import { CurrentDate, iDate, LocaleDateConfig, NextDate, PreviousDate, Props, Refs } from './interfaces'
+import { makeTimes, Time } from './makeTimes'
 
-export default (): DateTimePicker => ({
-  ...baseComponent,
-  ...positioning,
-  $refs: {} as Refs,
-  $props: {} as Props,
-  entangleable: new Entangleable(),
-  localTimezone: getLocalTimezone(),
-  localeDateConfig: {
+export default class DateTimePicker extends AlpineComponent {
+  declare $refs: Refs
+
+  $props!:Props
+
+  positioning!: Positioning
+
+  entangleable: Entangleable = new Entangleable()
+
+  localTimezone: string = getLocalTimezone()
+
+  localeDateConfig: LocaleDateConfig = {
     year: undefined,
     month: undefined,
     day: undefined,
     timeZone: undefined
-  },
-  searchTime: null,
-  input: null,
-  modelTime: null,
-  tab: 'date',
-  monthsPicker: false,
-  previousDates: [],
-  currentDates: [],
-  nextDates: [],
-  times: [],
-  filteredTimes: [],
-  month: 0,
-  year: 0,
-  minDate: null,
-  maxDate: null,
+  }
 
-  get userTimezone () {
+  searchTime: string | null = null
+
+  input: Dateable | null = null
+
+  modelTime: string | null | undefined = null
+
+  tab: 'date' | 'time' = 'date'
+
+  monthsPicker: boolean = false
+
+  previousDates: PreviousDate[] = []
+
+  currentDates:CurrentDate[] = []
+
+  nextDates:NextDate[] = []
+
+  times: Time[] = []
+
+  filteredTimes:Time[] = []
+
+  month:number = 0
+
+  year:number = 0
+
+  minDate:  Dateable | null = null
+
+  maxDate:  Dateable | null = null
+
+  get userTimezone (): string {
     if (this.$props.userTimezone) {
       return this.$props.userTimezone
     }
 
     return this.localTimezone
-  },
-  get dates () {
+  }
+
+  get dates (): iDate[] {
     return [...this.previousDates, ...this.currentDates, ...this.nextDates]
-  },
+  }
 
   init () {
     watchProps(this, this.onPropsChange.bind(this))
 
     this.onPropsChange()
     this.initComponent()
-    this.initPositioningSystem()
 
-    this.$watch('popover', popover => {
-      if (popover) {
+    this.positioning = new Positioning(this.$root, this.$refs.popover).start()
+    this.positioning.watch((state: boolean) => {
+      if (state) {
         this.syncPickerDates()
 
         if (!this.$props.withoutTime) {
@@ -63,7 +82,7 @@ export default (): DateTimePicker => ({
         }
       }
 
-      if (!popover && this.tab !== 'date') {
+      if (!state && this.tab !== 'date') {
         setTimeout(() => (this.tab = 'date'), 500)
       }
     })
@@ -87,19 +106,22 @@ export default (): DateTimePicker => ({
       this.syncInput()
       this.syncPickerDates()
     })
-  },
+  }
+
   initComponent () {
     this.localeDateConfig = this.getLocaleDateConfig()
     this.syncInput()
     this.syncCalendar()
-  },
+  }
+
   onPropsChange () {
     this.syncDateLimits()
 
-    if (this.popover) {
+    if (this.state) {
       this.syncPickerDates()
     }
-  },
+  }
+
   syncDateLimits () {
     this.minDate = null
     this.maxDate = null
@@ -119,34 +141,40 @@ export default (): DateTimePicker => ({
         this.maxDate.setTimezone(this.userTimezone)
       }
     }
-  },
+  }
+
   clearDate () {
     this.entangleable.clear()
-  },
+  }
+
   toggle () {
     if (this.$props.config.readonly || this.$props.config.disabled) return
 
     this.syncDateLimits()
 
-    this.popover = !this.popover
+    this.state = !this.state
     this.monthsPicker = false
-  },
+  }
+
   close () {
-    this.popover = false
+    this.state = false
     this.monthsPicker = false
-  },
+  }
+
   handleEscape () {
     if (this.monthsPicker) return (this.monthsPicker = false)
 
-    this.popover = false
-  },
+    this.state = false
+  }
+
   syncCalendar () {
     if (!this.input?.getYear || !this.input?.getMonth) return
 
     this.year = this.input.getYear()
     this.month = this.input.getMonth()
-  },
-  getPreviousDates (currentDate) {
+  }
+
+  getPreviousDates (currentDate: Dateable): PreviousDate[] {
     const dayOfWeek = currentDate.getDayOfWeek()
     const previousDate = currentDate.clone().subMonth()
     const monthDays = previousDate.getMonthDays()
@@ -166,8 +194,9 @@ export default (): DateTimePicker => ({
     }
 
     return dates
-  },
-  getCurrentDates (currentDate) {
+  }
+
+  getCurrentDates (currentDate: Dateable): CurrentDate[] {
     const formatted = currentDate.format('YYYY-MM')
     const monthDays = currentDate.getMonthDays()
     const dates: CurrentDate[] = []
@@ -189,8 +218,9 @@ export default (): DateTimePicker => ({
     }
 
     return dates
-  },
-  getNextDates (currentDate, datesLength) {
+  }
+
+  getNextDates (currentDate: Dateable, datesLength: number): NextDate[] {
     const nextDate = currentDate.clone().addMonth()
     const dates: NextDate[] = []
 
@@ -207,8 +237,9 @@ export default (): DateTimePicker => ({
     }
 
     return dates
-  },
-  isDateDisabled (date) {
+  }
+
+  isDateDisabled (date: iDate) {
     const compareDate = `${date.year}-${date.month + 1}-${date.day}`
 
     if (!this.minDate?.isSame(compareDate, 'date') && this.minDate?.isAfter(compareDate)) {
@@ -220,18 +251,21 @@ export default (): DateTimePicker => ({
     }
 
     return false
-  },
+  }
+
   syncPickerDates () {
     this.syncCalendar()
     this.fillPickerDates()
-  },
+  }
+
   fillPickerDates () {
     const date = parseDate(`${this.year}-${this.month + 1}`, this.localTimezone)
 
     this.previousDates = this.getPreviousDates(date)
     this.currentDates = this.getCurrentDates(date)
     this.nextDates = this.getNextDates(date, this.previousDates.length + this.currentDates.length)
-  },
+  }
+
   fillTimes () {
     if (this.times.length > 0) return
 
@@ -244,8 +278,9 @@ export default (): DateTimePicker => ({
 
     this.times = times
     this.filteredTimes = times
-  },
-  filterTimes (times) {
+  }
+
+  filterTimes (times: Time[]): Time[] {
     if (this.minDate && this.input && this.minDate.isSame(this.input, 'date')) {
       return times.filter(time => {
         return Number(time.value.replace(':', '')) >= Number(this.minDate?.getTime().replace(':', ''))
@@ -259,7 +294,8 @@ export default (): DateTimePicker => ({
     }
 
     return times
-  },
+  }
+
   previousMonth () {
     if (this.month === 0) {
       this.month = 12
@@ -268,7 +304,8 @@ export default (): DateTimePicker => ({
 
     this.month--
     this.fillPickerDates()
-  },
+  }
+
   nextMonth () {
     if (this.month === 11) {
       this.month = -1
@@ -277,16 +314,18 @@ export default (): DateTimePicker => ({
 
     this.month++
     this.fillPickerDates()
-  },
-  isSelected (date) {
+  }
+
+  isSelected (date: CurrentDate): boolean {
     if (this.entangleable.isEmpty()) return false
 
     const model = parseDate(this.entangleable.get(), this.$props.timezone, this.$props.parseFormat)
     const compare = parseDate(date.date, this.userTimezone)
 
     return model.setTimezone(this.userTimezone).isSame(compare, 'date')
-  },
-  isToday (day) {
+  }
+
+  isToday (day: number): boolean {
     const now = new Date()
 
     if (this.month !== now.getMonth() || this.year !== now.getFullYear()) {
@@ -294,12 +333,14 @@ export default (): DateTimePicker => ({
     }
 
     return day === now.getDate()
-  },
-  selectMonth (month) {
+  }
+
+  selectMonth (month: number) {
     this.month = month
     this.monthsPicker = false
     this.fillPickerDates()
-  },
+  }
+
   syncWireModel () {
     let date = this.input?.format(this.$props.parseFormat, this.$props.timezone)
 
@@ -308,7 +349,8 @@ export default (): DateTimePicker => ({
     }
 
     this.entangleable.set(date)
-  },
+  }
+
   syncInput () {
     const value = this.entangleable.get()
 
@@ -321,8 +363,9 @@ export default (): DateTimePicker => ({
     }
 
     this.modelTime = this.input?.getTime(this.userTimezone)
-  },
-  selectDate (date) {
+  }
+
+  selectDate (date: iDate) {
     if (date.isDisabled) return
 
     this.monthsPicker = false
@@ -351,9 +394,10 @@ export default (): DateTimePicker => ({
 
     !this.$props.withoutTime
       ? this.tab = 'time'
-      : this.popover = false
-  },
-  selectTime (time) {
+      : this.state = false
+  }
+
+  selectTime (time: iDate) {
     if (!this.$props.withoutTimezone) {
       this.input?.setTimezone(this.userTimezone)
     }
@@ -365,27 +409,32 @@ export default (): DateTimePicker => ({
     }
 
     this.syncWireModel()
-    this.popover = false
-  },
-  today () {
+    this.state = false
+  }
+
+  today (): Dateable {
     return parseDate(new Date(), this.$props.timezone)
-  },
+  }
+
   selectYesterday () {
     this.input = this.today().subDay()
     this.close()
     this.syncWireModel()
-  },
+  }
+
   selectToday () {
     this.input = this.today()
     this.close()
     this.syncWireModel()
-  },
+  }
+
   selectTomorrow () {
     this.input = this.today().addDay()
     this.close()
     this.syncWireModel()
-  },
-  getLocaleDateConfig () {
+  }
+
+  getLocaleDateConfig (): LocaleDateConfig {
     const config: LocaleDateConfig = {
       year: 'numeric',
       month: 'numeric',
@@ -403,7 +452,8 @@ export default (): DateTimePicker => ({
     }
 
     return config
-  },
+  }
+
   getDisplayValue () {
     if (this.$props.displayFormat) {
       const timezone = this.$props.withoutTimezone
@@ -416,15 +466,17 @@ export default (): DateTimePicker => ({
     return this.input
       ?.getNativeDate()
       .toLocaleString(navigator.language, this.localeDateConfig)
-  },
+  }
+
   getSearchPlaceholder () {
     if (this.$props.config.is12H) {
       return this.input?.format('h:mm a', this.userTimezone) ?? '12:00 AM'
     }
 
     return this.modelTime ? this.modelTime : '12:00'
-  },
-  onSearchTime (search) {
+  }
+
+  onSearchTime (search: string) {
     const mask = this.$props.config.is12H ? 'h:m' : 'H:m'
     this.searchTime = applyMask(mask, search) ?? ''
     this.filteredTimes = this.filterTimes(
@@ -434,8 +486,9 @@ export default (): DateTimePicker => ({
     if (this.filteredTimes.length > 0) return
 
     this.filteredTimes = this.makeSearchTimes(this.searchTime)
-  },
-  makeSearchTimes (search) {
+  }
+
+  makeSearchTimes (search: string) {
     const times: Time[] = []
 
     if (!this.$props.config.is12H) {
@@ -458,7 +511,8 @@ export default (): DateTimePicker => ({
     })
 
     return this.filterTimes(times)
-  },
+  }
+
   focusTime () {
     this.$nextTick(() => {
 
@@ -472,4 +526,4 @@ export default (): DateTimePicker => ({
         })
     })
   }
-})
+}

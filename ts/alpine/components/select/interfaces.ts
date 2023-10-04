@@ -1,9 +1,9 @@
 import { Entangle } from '@/alpine/components/alpine'
-import { Focusables } from '@/alpine/components/modules/focusables'
-import { Positioning } from '@/alpine/components/modules/positioning'
+import { Focusable } from '@/alpine/components/modules/Focusable'
+import { Positioning } from '@/alpine/components/modules/Positioning'
 import { AsyncData, Config, Option, Options, Props, Refs } from './types'
 
-export interface Select extends Focusables, Positioning {
+export interface Select extends Focusable, Positioning {
   $refs: Refs
   $props: Props,
   asyncData: AsyncData

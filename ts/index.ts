@@ -2,12 +2,20 @@ import { notify, confirmNotification, Notify, Confirm } from './alpine/component
 import { showDialog, showConfirmDialog, ShowConfirmDialog, ShowDialog } from './alpine/components/dialog'
 import { dataGet, DataGet } from './utils/dataGet'
 import { Alpine } from '@/alpine/components/alpine'
-import { WireUiHooks } from './hooks'
-import './alpine/directives/confirm'
-import './alpine/store'
-import './alpine/magic'
-import './alpine/directives'
-import './alpine/components'
+import { WireUiConfig } from './config'
+import { Livewire } from '@/livewire'
+import '@/alpine'
+
+declare global {
+  interface Window {
+    $wireui: WireUi
+    Wireui: WireUiConfig
+    Livewire: Livewire
+    Alpine: Alpine
+    $openModal: CallableFunction
+    $closeModal: CallableFunction
+  }
+}
 
 export interface WireUi {
   notify: Notify
@@ -18,18 +26,7 @@ export interface WireUi {
   dataGet: DataGet
 }
 
-declare global {
-  interface Window {
-    $wireui: WireUi
-    Wireui: WireUiHooks
-    Livewire: any
-    Alpine: Alpine
-    $openModal: CallableFunction
-    $closeModal: CallableFunction
-  }
-}
-
-const wireui = {
+const wireui: WireUi = {
   notify,
   confirmNotification,
   confirmAction: showConfirmDialog,

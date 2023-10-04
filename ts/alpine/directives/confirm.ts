@@ -10,17 +10,17 @@ const initialize = (component: HTMLElement) => {
   const elements = getElements(component)
 
   elements.forEach(element => {
-    const insideAlpineComponent = element.closest('[x-data]')
     const confirmData = element.getAttribute('x-on:confirm')
-    const componentId = element.closest('[wire\\:id]')?.getAttribute('wire:id')
+    const rootAlpineElement = element.closest('[x-data]')
+    const livewireId = element.closest('[wire\\:id]')?.getAttribute('wire:id')
 
-    if (insideAlpineComponent) {
-      return element.setAttribute('x-on:click', `$wireui.confirmAction(${confirmData}, '${componentId}')`)
+    if (rootAlpineElement) {
+      return element.setAttribute('x-on:click', `$wireui.confirmAction(${confirmData}, '${livewireId}')`)
     }
 
     element.onclick = () => {
       const options = eval(`(${confirmData})`) as ConfirmationOptions
-      showConfirmDialog(options, componentId)
+      showConfirmDialog(options, livewireId)
     }
   })
 }

@@ -1,6 +1,6 @@
 import Alpine from 'alpinejs'
 import { Alpine as AlpineInterface, baseComponent, Component } from '@/alpine/components/alpine'
-import { WireUiHooks } from '@/hooks'
+import { WireUiConfig } from '@/config'
 
 export interface MockedAlpine extends AlpineInterface {
   store (name: string, data?: any): any
@@ -23,7 +23,7 @@ export const mockAlpineComponent = (component: Component): Component => {
   return component
 }
 
-export const WireuiMock: WireUiHooks = {
+export const WireuiMock: WireUiConfig = {
   cache: {},
   hook: jest.fn(),
   dispatchHook: jest.fn()

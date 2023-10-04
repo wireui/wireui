@@ -58,7 +58,7 @@ class WireUi
         return "{{$expressions}}";
     }
 
-    public static function wireModel(?Component $component, ComponentAttributeBag $attributes)
+    public static function wireModel(?Component $component, ComponentAttributeBag $attributes): array
     {
         $exists = count($attributes->whereStartsWith('wire:model')->getAttributes()) > 0;
 

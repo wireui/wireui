@@ -18,11 +18,6 @@ class Base extends Component
     ) {
     }
 
-    public function render(): View
-    {
-        return view('wireui::components.dropdown.index');
-    }
-
     public function getAlign(): string
     {
         $alignments = [
@@ -33,5 +28,10 @@ class Base extends Component
         ];
 
         return $alignments[$this->align];
+    }
+
+    public function render(): View
+    {
+        return view('wireui::components.dropdown.index');
     }
 }

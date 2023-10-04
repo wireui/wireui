@@ -1,6 +1,6 @@
-import { Pausable, PausableInterval } from './timeout'
+import { Pauseable, PauseableInterval } from './timeout'
 
-export const interval: PausableInterval = (callback, delay): Pausable => {
+export const interval: PauseableInterval = (callback, delay): Pauseable => {
   let timerId = delay
   let remaining = delay
   let start = new Date()

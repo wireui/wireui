@@ -1,7 +1,7 @@
 import { Component, Entangle } from '@/alpine/components/alpine'
 import { Time } from '@/alpine/components/datetime-picker/makeTimes'
-import { Focusables } from '@/alpine/components/modules/focusables'
-import { Positioning, PositioningRefs } from '@/alpine/components/modules/positioning'
+import { Focusable } from '@/alpine/components/modules/Focusable'
+import { Positioning, PositioningRefs } from '@/alpine/components/modules/Positioning'
 
 export type Refs = PositioningRefs & {
   search: HTMLInputElement
@@ -21,7 +21,7 @@ export interface InitOptions {
   config: Config
 }
 
-export interface TimePicker extends Component, Positioning, Focusables {
+export interface TimePicker extends Component, Positioning, Focusable {
   $refs: Refs
   model: Entangle
   input: string | null

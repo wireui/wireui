@@ -1,27 +1,37 @@
-import dropdown from './dropdown'
-import modal from './modal'
-import dialog from './dialog'
-import notifications from './notifications'
-import maskable from './inputs/maskable'
-import currency from './inputs/currency'
-import number from './inputs/number'
-import password from './inputs/password'
-import select from './select'
-import timePicker from './time-picker'
-import datetimePicker from './datetime-picker'
-import colorPicker from './color-picker'
+import Dropdown from './Dropdown'
+import Modal from './Modal'
+import Dialog from './dialog/dialog'
+import Notifications from './notifications/notifications'
+import Maskable from './inputs/maskable'
+import Currency from './inputs/currency'
+import Number from './inputs/number'
+import Password from './inputs/password'
+import Select from './select'
+import TimePicker from './time-picker'
+import DatetimePicker from './datetime-picker'
+import ColorPicker from './color-picker'
+import { convertClassToObject } from '@/alpine/components/alpine'
 
 document.addEventListener('alpine:init', () => {
-  window.Alpine.data('wireui_dropdown', dropdown)
-  window.Alpine.data('wireui_modal', modal)
-  window.Alpine.data('wireui_dialog', dialog)
-  window.Alpine.data('wireui_notifications', notifications)
-  window.Alpine.data('wireui_inputs_maskable', maskable)
-  window.Alpine.data('wireui_inputs_currency', currency)
-  window.Alpine.data('wireui_inputs_number', number)
-  window.Alpine.data('wireui_inputs_password', password)
-  window.Alpine.data('wireui_select', select)
-  window.Alpine.data('wireui_timepicker', timePicker)
-  window.Alpine.data('wireui_datetime_picker', datetimePicker)
-  window.Alpine.data('wireui_color_picker', colorPicker)
+  const components = {
+    dropdown: Dropdown,
+    modal: Modal,
+    dialog: Dialog,
+    notifications: Notifications,
+    inputs_maskable: Maskable,
+    inputs_currency: Currency,
+    inputs_number: Number,
+    inputs_password: Password,
+    select: Select,
+    timepicker: TimePicker,
+    datetime_picker: DatetimePicker,
+    color_picker: ColorPicker
+  }
+
+  Object.entries(components).forEach(([name, Component]) => {
+    window.Alpine.data(
+      `wireui_${name}`,
+      (params: any) => convertClassToObject(new Component(params))
+    )
+  })
 })

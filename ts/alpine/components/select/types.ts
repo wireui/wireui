@@ -1,5 +1,5 @@
 import { Entangle } from '@/alpine/components/alpine'
-import { PositioningRefs } from '@/alpine/components/modules/positioning'
+import { PositioningRefs } from '@/alpine/components/modules/Positioning'
 import { Template, TemplateName } from './templates'
 
 export type Option = {

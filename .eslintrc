@@ -18,7 +18,7 @@
         // Possible Errors
         "no-extra-parens": ["error", "all", { "returnAssign": false }],
         "import/first": "off",
-        "import/named": "error",
+        "import/named": "off",
         "import/namespace": "error",
         "import/default": "error",
         "import/export": "error",
@@ -107,9 +107,10 @@
             "plugins": ["@typescript-eslint"],
             "rules": {
                 "indent": "off",
+                "no-use-before-define": "off",
+                "@typescript-eslint/ban-ts-comment": "warn",
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/indent": ["error", 2],
-                "no-use-before-define": "off",
                 "@typescript-eslint/no-use-before-define": "error"
             }
         }

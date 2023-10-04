@@ -1,8 +1,9 @@
-import { applyMask, masker } from '@/utils/masker'
-import { baseComponent, WireModel } from '@/alpine/components/alpine'
-import { positioning, PositioningRefs } from '@/alpine/components/modules/positioning'
-import Entangleable from '@/alpine/proxy/Entangleable'
-import SupportsLivewire from '@/alpine/proxy/SupportsLivewire'
+import { AlpineComponent } from '@/alpine/components/alpine'
+import Positioning from '@/alpine/components/modules/Positioning'
+import Entangleable from '@/alpine/entangleable'
+import SupportsLivewire from '@/alpine/entangleable/SupportsLivewire'
+import { WireModel } from '@/livewire'
+import { applyMask } from '@/utils/masker'
 
 export type Color = {
   name: string
@@ -15,18 +16,25 @@ export type Props = {
   colors: Color[]
 }
 
-export type Refs = PositioningRefs & {
+export type Refs = {
   input: HTMLInputElement
+  popover: HTMLElement
 }
 
-export default () => ({
-  ...baseComponent,
-  ...positioning,
-  $refs: {} as Refs,
-  $props: {} as Props,
-  selected: { value: '', name: '' } as Color,
-  entangleable: new Entangleable(),
-  masker: masker('!#XXXXXX', null),
+export default class ColorPicker extends AlpineComponent {
+  declare $refs: Refs
+
+  $props!: Props
+
+  selected: Color = { value: '', name: '' }
+
+  entangleable: Entangleable = new Entangleable()
+
+  positioning!: Positioning
+
+  constructor () {
+    super()
+  }
 
   get colors (): Color[] {
     if (this.$props.colors.length) {
@@ -34,12 +42,14 @@ export default () => ({
     }
 
     return window.Alpine.store('wireui:color-picker')?.colors ?? []
-  },
+  }
 
   init () {
-    this.entangleable.watch(() => this.syncSelected())
+    this.positioning = new Positioning(this.$refs.input, this.$refs.popover)
 
-    this.initPositioningSystem()
+    this.positioning.start()
+
+    this.entangleable.watch(() => this.syncSelected())
 
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
@@ -48,7 +58,8 @@ export default () => ({
     if (this.$refs.input.value) {
       this.setColor(this.$refs.input.value)
     }
-  },
+  }
+
   syncSelected () {
     const value = this.entangleable.get()
 
@@ -64,7 +75,8 @@ export default () => ({
       value: selectedColor?.value ?? value ?? '',
       name: selectedColor?.name ?? value ?? ''
     }
-  },
+  }
+
   select (color: Color) {
     this.selected = { ...color }
 
@@ -74,8 +86,9 @@ export default () => ({
 
     this.entangleable.set(value, { force: true, triggerBlur: true })
 
-    this.close()
-  },
+    this.positioning.close()
+  }
+
   setColor (color: string | null) {
     if (!this.$props.colorNameAsValue) {
       color = applyMask('!#XXXXXX', color)
@@ -84,8 +97,9 @@ export default () => ({
     this.entangleable.set(color)
 
     this.syncSelected()
-  },
+  }
+
   onBlur (color: string | null) {
     this.entangleable.set(color, { triggerBlur: true })
   }
-})
+}

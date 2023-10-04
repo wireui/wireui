@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce'
 import throttle from '@/utils/throttle'
-import Entangleable from '@/alpine/proxy/Entangleable'
-import { WireModel } from '@/alpine/components/alpine'
+import Entangleable from '@/alpine/entangleable'
+import { LivewireComponent, WireModel } from '@/livewire'
 import { isEmpty } from '@/utils/helpers'
 
 export default class SupportsLivewire {
@@ -9,12 +9,12 @@ export default class SupportsLivewire {
 
   private wireModel: WireModel
 
-  private livewire: any
+  private livewire: LivewireComponent
 
   constructor (entangleable: Entangleable, wireModel: WireModel) {
     this.entangleable = entangleable
     this.wireModel = wireModel
-    this.livewire = window.Livewire.find(wireModel.livewireId)
+    this.livewire = <LivewireComponent>window.Livewire.find(wireModel.livewireId)
 
     this.init()
 

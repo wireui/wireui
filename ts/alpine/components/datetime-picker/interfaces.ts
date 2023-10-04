@@ -1,8 +1,4 @@
-import { Dateable } from '@/utils/date'
-import { Component, WireModel } from '@/alpine/components/alpine'
-import { Time } from './makeTimes'
-import { Positioning, PositioningRefs } from '@/alpine/components/modules/positioning'
-import Entangleable from '@/alpine/proxy/Entangleable'
+import { WireModel } from '@/livewire'
 
 export interface Props {
   config: {
@@ -51,98 +47,7 @@ export interface LocaleDateConfig {
   minute?: 'numeric' | '2-digit'
 }
 
-export type Refs = PositioningRefs & {
+export type Refs = {
   timesContainer: HTMLElement
-}
-
-export interface DateTimePicker extends Component, Positioning {
-  $refs: Refs
-  $props: Props,
-  entangleable: Entangleable,
-  localTimezone: string
-  localeDateConfig: LocaleDateConfig
-  searchTime: string | null
-  input: Dateable | null
-  modelTime: string | null | undefined
-  tab: 'date' | 'time'
-  monthsPicker: boolean
-  previousDates: PreviousDate[]
-  currentDates: CurrentDate[]
-  nextDates: NextDate[]
-  times: Time[]
-  filteredTimes: Time[]
-  month: number
-  year: number
-  minDate: Dateable | null
-  maxDate: Dateable | null
-
-  get userTimezone (): string
-
-  get dates (): iDate[]
-
-  init (): void
-
-  initComponent (): void
-
-  onPropsChange (): void
-
-  syncDateLimits (): void
-
-  clearDate (): void
-
-  syncCalendar (): void
-
-  getPreviousDates (currentDate: Dateable): PreviousDate[]
-
-  getCurrentDates (currentDate: Dateable): CurrentDate[]
-
-  getNextDates (currentDate: Dateable, datesLength: number): NextDate[]
-
-  isDateDisabled (date: iDate): boolean
-
-  syncPickerDates (forceSync?: boolean): void
-
-  fillPickerDates (): void
-
-  fillTimes (): void
-
-  filterTimes (times: Time[]): Time[]
-
-  previousMonth (): void
-
-  nextMonth (): void
-
-  isSelected (date: CurrentDate): boolean
-
-  isToday (day: number): boolean
-
-  selectMonth (month: number): void
-
-  syncWireModel (): void
-
-  syncInput (): void
-
-  selectDate (date: iDate): void
-
-  selectTime (time: Time): void
-
-  today (): Dateable
-
-  selectYesterday (): void
-
-  selectToday (): void
-
-  selectTomorrow (): void
-
-  getLocaleDateConfig (): LocaleDateConfig
-
-  getDisplayValue (): string | undefined
-
-  getSearchPlaceholder (): string
-
-  onSearchTime (search: string): void
-
-  makeSearchTimes (search: string): Time[]
-
-  focusTime (): void
+  popover: HTMLElement
 }

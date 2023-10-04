@@ -49,8 +49,8 @@ describe('Testing the modal store', () => {
     store.setCurrent('test')
     store.setCurrent('test2')
 
-    expect(store.isFirstest('test')).toBeTrue()
-    expect(store.isFirstest('test2')).toBeFalse()
+    expect(store.isFirst('test')).toBeTrue()
+    expect(store.isFirst('test2')).toBeFalse()
   })
 
   it('should set the previous modal id when remove the current modal id', () => {

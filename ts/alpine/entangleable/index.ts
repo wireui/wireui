@@ -9,16 +9,18 @@ export default class Entangleable {
 
   value: any = null
 
-  set (value: any, { force = false, triggerBlur = false } = {}) {
-    if (this.value === value && !force) return
+  set (value: any, { force = false, triggerBlur = false } = {}): this {
+    if (this.value === value && !force) return this
 
     this.value = value
 
     this.onSetCallbacks.forEach(callback => callback(value))
 
     if (triggerBlur) {
-      this.onBlurCallbacks.forEach(callback => callback(this.value))
+      this.onBlurCallbacks.forEach(callback => callback(value))
     }
+
+    return this
   }
 
   get () {

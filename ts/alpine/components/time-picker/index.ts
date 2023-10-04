@@ -1,9 +1,9 @@
+import { makeTimes, Time } from '@/alpine/components/datetime-picker/makeTimes'
+import { focusables } from '@/alpine/components/modules/Focusable'
+import { positioning } from '@/alpine/components/modules/Positioning'
 import { applyMask } from '@/utils/masker'
 import { convertStandardTimeToMilitary } from '@/utils/time'
-import { positioning } from '@/alpine/components/modules/positioning'
-import { InitOptions, TimePicker, Refs } from './interfaces'
-import { focusables } from '@/alpine/components/modules/focusables'
-import { makeTimes, Time } from '@/alpine/components/datetime-picker/makeTimes'
+import { InitOptions, Refs, TimePicker } from './interfaces'
 
 export default (options: InitOptions): TimePicker => ({
   ...positioning,
@@ -18,7 +18,7 @@ export default (options: InitOptions): TimePicker => ({
   filteredTimes: [],
 
   init () {
-    this.initPositioningSystem()
+    this.start()
 
     this.input = this.convertModelTime(this.model)
 
@@ -37,9 +37,9 @@ export default (options: InitOptions): TimePicker => ({
     return applyMask(mask, value)
   },
   toggle () {
-    this.popover = !this.popover
+    this.state = !this.state
 
-    if (!this.popover || this.config.readonly || this.config.disabled) return
+    if (!this.state || this.config.readonly || this.config.disabled) return
 
     if (this.times.length === 0) {
       this.fillTimes()

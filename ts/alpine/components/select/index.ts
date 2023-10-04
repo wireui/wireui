@@ -1,14 +1,14 @@
+import { focusables } from '@/alpine/components/modules/Focusable'
+import { positioning } from '@/alpine/components/modules/Positioning'
+import { notify } from '@/alpine/components/notifications/notifications'
+import { watchProps } from '@/alpine/magic/props'
+import dataGet from '@/utils/dataGet'
+import { jsonParse } from '@/utils/helpers'
 import { stringify } from 'qs'
-import { focusables } from '@/alpine/components/modules/focusables'
 import { Select } from './interfaces'
 import { templates } from './templates'
-import { InitOptions, Option, Options, Props, Refs } from './types'
 import baseTemplate from './templates/baseTemplate'
-import dataGet from '@/utils/dataGet'
-import { notify } from 'ts/alpine/components/notifications'
-import { watchProps } from '@/alpine/magic/props'
-import { jsonParse } from '@/utils/helpers'
-import { positioning } from '@/alpine/components/modules/positioning'
+import { InitOptions, Option, Options, Props, Refs } from './types'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -49,7 +49,7 @@ export default (initOptions: InitOptions): Select => ({
   init () {
     this.initWatchers()
     this.syncProps()
-    this.initPositioningSystem()
+    this.start()
 
     watchProps(this, this.syncProps.bind(this))
 
@@ -494,14 +494,14 @@ export default (initOptions: InitOptions): Select => ({
     })
   },
   closeIfNotFocused () {
-    if (!this.$root.contains(document.activeElement) && this.popover) {
+    if (!this.$root.contains(document.activeElement) && this.state) {
       this.close()
     }
   },
   toggle () {
     if (this.config.readonly) return
 
-    this.popover = !this.popover
+    this.state = !this.state
 
     this.$refs.input.focus()
   },

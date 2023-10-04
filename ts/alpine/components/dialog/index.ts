@@ -1,6 +1,6 @@
 import { EventOptions } from '@/alpine/components/notifications/events'
 import { Icon } from '@/alpine/components/notifications/icons'
-import { Pausable } from '../../../utils/timeout'
+import { Pauseable } from '@/utils/timeout'
 import { Action, ButtonOptions } from './actions'
 import { ConfirmationOptions, Options, Style } from './options'
 import { parseDialog, parseConfirmation, ParseDialog, ParseConfirmation } from './parses'
@@ -30,7 +30,7 @@ export interface Dialog extends DialogOptions {
   onClose: CallableFunction
   onDismiss: CallableFunction
   onTimeout: CallableFunction
-  timer?: Pausable
+  timer?: Pauseable
 }
 
 export interface ConfirmDialog extends Dialog {

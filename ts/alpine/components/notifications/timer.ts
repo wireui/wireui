@@ -1,11 +1,11 @@
-import Timeout, { Pausable } from '../../../utils/timeout'
+import Timeout, { Pauseable } from '../../../utils/timeout'
 import Interval from '../../../utils/interval'
 
 export interface Timer {
-  (timeout: number, onTimeout: CallableFunction, onInterval: CallableFunction): Pausable
+  (timeout: number, onTimeout: CallableFunction, onInterval: CallableFunction): Pauseable
 }
 
-const makeInterval = (totalTimeout: number, delay: number, callback: CallableFunction): Pausable => {
+const makeInterval = (totalTimeout: number, delay: number, callback: CallableFunction): Pauseable => {
   let percentage = 100
   let timeout = totalTimeout
 

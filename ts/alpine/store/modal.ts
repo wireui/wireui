@@ -5,7 +5,7 @@ export interface ModalStore {
   setCurrent (id: string): this
   remove (id: string): this
   isCurrent (id: string): boolean
-  isFirstest (id: string): boolean
+  isFirst (id: string): boolean
 }
 
 const store: ModalStore = {
@@ -34,7 +34,7 @@ const store: ModalStore = {
   isCurrent (id) {
     return this.current === id
   },
-  isFirstest (id) {
+  isFirst (id) {
     return this.actives[0] === id
   }
 }

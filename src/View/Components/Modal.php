@@ -15,8 +15,8 @@ class Modal extends BaseComponent
     use HasSetupType;
 
     public function __construct(
-        public bool $show = false,
-        public ?string $name = null,
+        public bool $state = false,
+        public ?string $id = null,
         public ?string $zIndex = null,
         public ?string $spacing = null,
     ) {

@@ -1,5 +1,5 @@
 import { Color } from '@/alpine/components/color-picker/index'
-import { default as tailwindColors } from 'tailwindcss/colors'
+import tailwindColors from 'tailwindcss/colors'
 
 const excludeColors = [
   'lightBlue',
@@ -10,6 +10,7 @@ const excludeColors = [
 ]
 
 export const makeColors = (): Color[] => {
+  // @ts-ignore
   excludeColors.forEach(color => delete tailwindColors[color])
 
   const colors = Object.entries(tailwindColors).flatMap(([name, values]) => {
