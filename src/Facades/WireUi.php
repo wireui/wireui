@@ -71,13 +71,13 @@ class WireUi extends Facade
                 'class' => Components\Dropdown\Base::class,
                 'alias' => 'dropdown',
             ],
-            'dropdown-item' => [
+            'dropdown.item' => [
                 'class' => Components\Dropdown\Item::class,
-                'alias' => 'dropdown-item',
+                'alias' => 'dropdown.item',
             ],
-            'dropdown-header' => [
+            'dropdown.header' => [
                 'class' => Components\Dropdown\Header::class,
-                'alias' => 'dropdown-header',
+                'alias' => 'dropdown.header',
             ],
             'error' => [
                 'class' => Components\Error::class,
