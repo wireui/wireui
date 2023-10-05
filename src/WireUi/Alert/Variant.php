@@ -3,7 +3,7 @@
 namespace WireUi\WireUi\Alert;
 
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Alert\Colors\{Flat, Outline, Solid};
+use WireUi\WireUi\Alert\Color\{Flat, Outline, Solid};
 
 class Variant extends ComponentPack
 {

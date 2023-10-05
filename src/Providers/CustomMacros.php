@@ -11,16 +11,6 @@ class CustomMacros
 {
     public static function register(): void
     {
-        Collection::macro('putEnd', function (mixed $value): Collection {
-            /** @var Collection $this */
-            return $this->reject($value)->push($value);
-        });
-
-        Collection::macro('putStart', function (mixed $value): Collection {
-            /** @var Collection $this */
-            return $this->reject($value)->prepend($value);
-        });
-
         Collection::macro('containsAll', function (array $values): bool {
             return collect($values)->every(function ($value) {
                 /** @var Collection $this */

@@ -5,7 +5,7 @@ namespace WireUi\View\Components\Button;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\WireUiComponent;
-use WireUi\WireUi\Button\Sizes\Mini as MiniSize;
+use WireUi\WireUi\Button\Size\Mini as MiniSize;
 use WireUi\WireUi\Button\{IconSize, Variant};
 use WireUi\WireUi\Rounded;
 

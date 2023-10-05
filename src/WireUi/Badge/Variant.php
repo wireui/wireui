@@ -3,7 +3,7 @@
 namespace WireUi\WireUi\Badge;
 
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Badge\Colors\{Flat, Outline, Solid};
+use WireUi\WireUi\Badge\Color\{Flat, Outline, Solid};
 
 class Variant extends ComponentPack
 {

@@ -65,19 +65,19 @@ abstract class WireUiComponent extends Component
         )->values();
 
         if ($methods->containsAll(['setupWrapper'])) {
-            $methods = $methods->putStart('setupWrapper');
+            $methods = $methods->reject('setupWrapper')->prepend('setupWrapper');
         }
 
         if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
-            $methods = $methods->putEnd('setupIconSize');
+            $methods = $methods->reject('setupIconSize')->push('setupIconSize');
         }
 
         if ($methods->containsAll(['setupVariant', 'setupColor'])) {
-            $methods = $methods->putEnd('setupColor');
+            $methods = $methods->reject('setupColor')->push('setupColor');
         }
 
         if ($methods->containsAll(['setupStateColor'])) {
-            $methods = $methods->putEnd('setupStateColor');
+            $methods = $methods->reject('setupStateColor')->push('setupStateColor');
         }
 
         return $methods->values()->toArray();

@@ -3,7 +3,7 @@
 namespace WireUi\WireUi\Button;
 
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Button\Colors\{Flat, Light, Outline, Solid};
+use WireUi\WireUi\Button\Color\{Flat, Light, Outline, Solid};
 
 class Variant extends ComponentPack
 {
