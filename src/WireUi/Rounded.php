@@ -21,7 +21,8 @@ class Rounded extends ComponentPack
             'lg'   => 'rounded-lg',
             'xl'   => 'rounded-xl',
             '2xl'  => 'rounded-2xl',
-            'full' => 'rounded-3xl',
+            '3xl'  => 'rounded-3xl',
+            'full' => 'rounded-full',
         ];
     }
 }
