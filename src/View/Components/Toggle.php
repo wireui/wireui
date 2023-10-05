@@ -6,7 +6,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Toggle\{Colors, Rounders, Sizes};
+use WireUi\WireUi\Rounded;
+use WireUi\WireUi\Toggle\{Color, Size};
 
 class Toggle extends WireUiComponent
 {
@@ -21,9 +22,9 @@ class Toggle extends WireUiComponent
         public ?string $leftLabel = null,
         public ?string $description = null,
     ) {
-        $this->setSizeResolve(Sizes::class);
-        $this->setColorResolve(Colors::class);
-        $this->setRoundedResolve(Rounders::class);
+        $this->setSizeResolve(Size::class);
+        $this->setColorResolve(Color::class);
+        $this->setRoundedResolve(Rounded::class);
     }
 
     public function backgroundClasses(bool $hasError): string

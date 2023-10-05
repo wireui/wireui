@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupPosition;
-use WireUi\WireUi\Notification\Positions;
+use WireUi\WireUi\Notification\Position;
 
 class Notifications extends WireUiComponent
 {
@@ -13,7 +13,7 @@ class Notifications extends WireUiComponent
     public function __construct(
         public ?string $zIndex = null,
     ) {
-        $this->setPositionResolve(Positions::class);
+        $this->setPositionResolve(Position::class);
 
         $this->zIndex ??= config('wireui.notifications.z-index', 'z-50');
     }

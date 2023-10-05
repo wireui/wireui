@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
-use WireUi\WireUi\Modal\{Aligns, Blurs, MaxWidths, Types};
+use WireUi\WireUi\Modal\{Align, Blur, MaxWidth, Type};
 
 class Modal extends WireUiComponent
 {
@@ -19,10 +19,10 @@ class Modal extends WireUiComponent
         public ?string $zIndex = null,
         public ?string $spacing = null,
     ) {
-        $this->setBlurResolve(Blurs::class);
-        $this->setTypeResolve(Types::class);
-        $this->setAlignResolve(Aligns::class);
-        $this->setMaxWidthResolve(MaxWidths::class);
+        $this->setBlurResolve(Blur::class);
+        $this->setTypeResolve(Type::class);
+        $this->setAlignResolve(Align::class);
+        $this->setMaxWidthResolve(MaxWidth::class);
 
         $this->zIndex  ??= config('wireui.modal.z-index');
         $this->spacing ??= config('wireui.modal.spacing');

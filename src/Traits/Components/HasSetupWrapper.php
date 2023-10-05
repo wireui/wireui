@@ -3,7 +3,8 @@
 namespace WireUi\Traits\Components;
 
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\WireUi\Wrapper\{Colors, Rounders, Shadows};
+use WireUi\WireUi\Shadow;
+use WireUi\WireUi\Wrapper\{Color, Rounded};
 
 trait HasSetupWrapper
 {
@@ -14,8 +15,8 @@ trait HasSetupWrapper
 
     protected function setupWrapper(): void
     {
-        $this->setColorResolve(Colors::class);
-        $this->setShadowResolve(Shadows::class);
-        $this->setRoundedResolve(Rounders::class);
+        $this->setColorResolve(Color::class);
+        $this->setShadowResolve(Shadow::class);
+        $this->setRoundedResolve(Rounded::class);
     }
 }

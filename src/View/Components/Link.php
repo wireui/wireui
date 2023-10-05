@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize, HasSetupUnderline};
-use WireUi\WireUi\Link\{Colors, Sizes, Underlines};
+use WireUi\WireUi\Link\{Color, Size, Underline};
 
 class Link extends WireUiComponent
 {
@@ -16,9 +16,9 @@ class Link extends WireUiComponent
     public function __construct(
         public ?string $label = null,
     ) {
-        $this->setSizeResolve(Sizes::class);
-        $this->setColorResolve(Colors::class);
-        $this->setUnderlineResolve(Underlines::class);
+        $this->setSizeResolve(Size::class);
+        $this->setColorResolve(Color::class);
+        $this->setUnderlineResolve(Underline::class);
     }
 
     public function blade(): View

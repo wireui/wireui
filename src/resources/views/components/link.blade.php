@@ -1,12 +1,8 @@
-@php
-    $rootClasses = Arr::toCssClasses([
-        'font-semibold text-center inline-block',
-        $underlineClasses,
-        $colorClasses,
-        $sizeClasses,
-    ]);
-@endphp
-
-<{{ $tag }} {{ $attributes->class($rootClasses) }}>
+<{{ $tag }} {{ $attributes->class([
+    'font-semibold text-center inline-block',
+    $underlineClasses,
+    $colorClasses,
+    $sizeClasses,
+]) }}>
     {{ $label ?? $slot }}
 </{{ $tag }}>

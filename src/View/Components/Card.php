@@ -4,7 +4,8 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
-use WireUi\WireUi\Card\{Colors, Paddings, Rounders, Shadows};
+use WireUi\WireUi\Card\{Color, Padding};
+use WireUi\WireUi\{Rounded, Shadow};
 
 class Card extends WireUiComponent
 {
@@ -17,10 +18,10 @@ class Card extends WireUiComponent
         public ?string $title = null,
         public ?bool $borderless = null,
     ) {
-        $this->setColorResolve(Colors::class);
-        $this->setShadowResolve(Shadows::class);
-        $this->setPaddingResolve(Paddings::class);
-        $this->setRoundedResolve(Rounders::class);
+        $this->setColorResolve(Color::class);
+        $this->setShadowResolve(Shadow::class);
+        $this->setPaddingResolve(Padding::class);
+        $this->setRoundedResolve(Rounded::class);
 
         $this->borderless ??= config('wireui.card.borderless', false);
     }

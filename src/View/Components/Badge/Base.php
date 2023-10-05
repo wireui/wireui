@@ -5,8 +5,9 @@ namespace WireUi\View\Components\Badge;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
 use WireUi\View\Components\WireUiComponent;
-use WireUi\WireUi\Badge\Sizes\Base as BaseSize;
-use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
+use WireUi\WireUi\Badge\Size\Base as BaseSize;
+use WireUi\WireUi\Badge\{IconSize, Variant};
+use WireUi\WireUi\Rounded;
 
 class Base extends WireUiComponent
 {
@@ -22,9 +23,9 @@ class Base extends WireUiComponent
         public ?string $label = null,
     ) {
         $this->setSizeResolve(BaseSize::class);
-        $this->setRoundedResolve(Rounders::class);
-        $this->setVariantResolve(Variants::class);
-        $this->setIconSizeResolve(IconSizes::class);
+        $this->setRoundedResolve(Rounded::class);
+        $this->setVariantResolve(Variant::class);
+        $this->setIconSizeResolve(IconSize::class);
     }
 
     public function blade(): View

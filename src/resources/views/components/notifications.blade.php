@@ -1,12 +1,8 @@
-@php
-    $rootClasses = Arr::toCssClasses([
+<div @class([
         'fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-5 sm:pt-4',
         $positionClasses,
         $zIndex,
-    ]);
-@endphp
-
-<div class="{{ $rootClasses }}"
+    ])
      x-data="wireui_notifications"
      x-on:wireui:notification.window="addNotification($event.detail)"
      x-on:wireui:confirm-notification.window="addConfirmNotification($event.detail)"
