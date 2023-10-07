@@ -8,7 +8,7 @@ class Rounded extends ComponentPack
 {
     protected function default(): string
     {
-        return config('wireui.wrapper.rounded') ?? 'md';
+        return 'md';
     }
 
     public function all(): array

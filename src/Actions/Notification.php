@@ -16,22 +16,22 @@ class Notification
 
     public function success(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::SUCCESS->value, $title, $description);
+        $this->simpleNotification(Actions::SUCCESS, $title, $description);
     }
 
     public function error(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::ERROR->value, $title, $description);
+        $this->simpleNotification(Actions::ERROR, $title, $description);
     }
 
     public function info(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::INFO->value, $title, $description);
+        $this->simpleNotification(Actions::INFO, $title, $description);
     }
 
     public function warning(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::WARNING->value, $title, $description);
+        $this->simpleNotification(Actions::WARNING, $title, $description);
     }
 
     public function simpleNotification(string $icon, string $title, string $description = null): void
@@ -53,7 +53,7 @@ class Notification
 
     public function confirm(array $options): void
     {
-        $options['icon'] ??= Actions::QUESTION->value;
+        $options['icon'] ??= Actions::QUESTION;
 
         $this->component->dispatch('wireui:confirm-notification', [
             'options'     => $options,

@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupShadow
@@ -13,21 +12,10 @@ trait HasSetupShadow
 
     public mixed $shadowClasses = null;
 
-    private mixed $shadowResolve = null;
-
-    protected function setShadowResolve(string $class): void
-    {
-        $this->shadowResolve = $class;
-    }
-
     protected function setupShadow(): void
     {
-        throw_if(!$this->shadowResolve, new WireUiResolveException($this));
-
-        $shadows = config("wireui.{$this->config}.shadows");
-
         /** @var ComponentPack $shadowPack */
-        $shadowPack = $shadows ? resolve($shadows) : resolve($this->shadowResolve);
+        $shadowPack = resolve(config("wireui.{$this->config}.packs.shadows"));
 
         $this->shadow = $this->getData('shadow');
 

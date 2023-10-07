@@ -2,11 +2,11 @@
 
 namespace WireUi\Enum;
 
-enum Actions: string
+class Actions
 {
-    case SUCCESS  = 'success';
-    case ERROR    = 'error';
-    case INFO     = 'info';
-    case WARNING  = 'warning';
-    case QUESTION = 'question';
+    public const SUCCESS  = 'success';
+    public const ERROR    = 'error';
+    public const INFO     = 'info';
+    public const WARNING  = 'warning';
+    public const QUESTION = 'question';
 }

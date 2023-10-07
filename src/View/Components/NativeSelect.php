@@ -5,11 +5,13 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
-use WireUi\Traits\Components\HasSetupWrapper;
 
 class NativeSelect extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
+    use IsFormComponent;
 
     public const PRIMITIVE_VALUES = [
         'string',

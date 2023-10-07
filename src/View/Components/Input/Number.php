@@ -8,8 +8,11 @@ use WireUi\View\Components\WireUiComponent;
 
 class Number extends WireUiComponent
 {
+    use HasSetupColor;
     use HasSetupIcon;
-    use HasSetupWrapper;
+    use HasSetupRounded;
+    use HasSetupShadow;
+    use IsFormComponent;
 
     protected function rendered(): void
     {

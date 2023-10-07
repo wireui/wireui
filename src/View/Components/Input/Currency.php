@@ -3,12 +3,15 @@
 namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupWrapper;
+
 use WireUi\View\Components\WireUiComponent;
 
 class Currency extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
+    use IsFormComponent;
 
     public function __construct(
         public int $precision = 2,

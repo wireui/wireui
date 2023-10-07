@@ -8,7 +8,7 @@ class Rounded extends ComponentPack
 {
     protected function default(): string
     {
-        return 'lg';
+        return 'base';
     }
 
     public function all(): array

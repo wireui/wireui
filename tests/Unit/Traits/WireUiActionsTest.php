@@ -23,7 +23,7 @@ test('it should emit a dialog event when the method dialog is called with a non 
     $mock
         ->expects($this->once())
         ->method('dispatch')
-        ->with($event, data_set($params, 'options.icon', Actions::INFO->value));
+        ->with($event, data_set($params, 'options.icon', Actions::INFO));
 
     $mock->dialog()->show($params['options']);
 });

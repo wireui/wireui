@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupBorder
@@ -13,21 +12,10 @@ trait HasSetupBorder
 
     public mixed $borderClasses = null;
 
-    private mixed $borderResolve = null;
-
-    protected function setBorderResolve(string $class): void
-    {
-        $this->borderResolve = $class;
-    }
-
     protected function setupBorder(): void
     {
-        throw_if(!$this->borderResolve, new WireUiResolveException($this));
-
-        $borders = config("wireui.{$this->config}.borders");
-
         /** @var ComponentPack $borderPack */
-        $borderPack = $borders ? resolve($borders) : resolve($this->borderResolve);
+        $borderPack = resolve(config("wireui.{$this->config}.packs.borders"));
 
         $this->border = $this->getData('border');
 

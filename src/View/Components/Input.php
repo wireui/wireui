@@ -3,11 +3,13 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupWrapper;
 
 class Input extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
+    use IsFormComponent;
 
     protected function blade(): View
     {

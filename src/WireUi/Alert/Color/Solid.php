@@ -2,43 +2,50 @@
 
 namespace WireUi\WireUi\Alert\Color;
 
+use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
 class Solid extends ComponentPack
 {
     protected function default(): string
     {
-        return 'primary';
+        return config('wireui.style.color') ?? Color::PRIMARY;
     }
 
     public function all(): array
     {
         return [
-            'primary' => [
+            Color::PRIMARY => [
                 'icon'       => 'bell',
                 'iconColor'  => 'text-white dark:text-black',
                 'text'       => 'text-white dark:text-black',
                 'background' => 'bg-primary-600 dark:bg-primary-600',
             ],
-            'positive' => [
+            Color::SECONDARY => [
+                'icon'       => 'information-circle',
+                'iconColor'  => 'text-white dark:text-black',
+                'text'       => 'text-white dark:text-black',
+                'background' => 'bg-secondary-600 dark:bg-secondary-600',
+            ],
+            Color::POSITIVE => [
                 'icon'       => 'check-circle',
                 'iconColor'  => 'text-white dark:text-black',
                 'text'       => 'text-white dark:text-black',
                 'background' => 'bg-positive-600 dark:bg-positive-600',
             ],
-            'negative' => [
+            Color::NEGATIVE => [
                 'icon'       => 'x-circle',
                 'iconColor'  => 'text-white dark:text-black',
                 'text'       => 'text-white dark:text-black',
                 'background' => 'bg-negative-600 dark:bg-negative-600',
             ],
-            'warning' => [
+            Color::WARNING => [
                 'icon'       => 'exclamation-triangle',
                 'iconColor'  => 'text-white dark:text-black',
                 'text'       => 'text-white dark:text-black',
                 'background' => 'bg-warning-600 dark:bg-warning-600',
             ],
-            'info' => [
+            Color::INFO => [
                 'icon'       => 'information-circle',
                 'iconColor'  => 'text-white dark:text-black',
                 'text'       => 'text-white dark:text-black',

@@ -5,12 +5,15 @@ namespace WireUi\View\Components\Input;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
-use WireUi\Traits\Components\HasSetupWrapper;
+
 use WireUi\View\Components\WireUiComponent;
 
 abstract class Maskable extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
+    use IsFormComponent;
 
     public string $mask;
 

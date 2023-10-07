@@ -12,7 +12,7 @@ test('it should emit a notification event', function () {
     $params = [
         'componentId' => 'fake-id',
         'options'     => [
-            'icon'  => Actions::SUCCESS->value,
+            'icon'  => Actions::SUCCESS,
             'title' => 'WireUI is awesome!',
         ],
     ];

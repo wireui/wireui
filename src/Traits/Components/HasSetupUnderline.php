@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupUnderline
@@ -11,21 +10,10 @@ trait HasSetupUnderline
 
     public mixed $underlineClasses = null;
 
-    private mixed $underlineResolve = null;
-
-    protected function setUnderlineResolve(string $class): void
-    {
-        $this->underlineResolve = $class;
-    }
-
     protected function setupUnderline(): void
     {
-        throw_if(!$this->underlineResolve, new WireUiResolveException($this));
-
-        $underlines = config("wireui.{$this->config}.underlines");
-
         /** @var ComponentPack $underlinePack */
-        $underlinePack = $underlines ? resolve($underlines) : resolve($this->underlineResolve);
+        $underlinePack = resolve(config("wireui.{$this->config}.packs.underlines"));
 
         $this->underline = $this->getData('underline');
 

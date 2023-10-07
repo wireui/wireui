@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupBlur
@@ -13,21 +12,10 @@ trait HasSetupBlur
 
     public mixed $blurClasses = null;
 
-    private mixed $blurResolve = null;
-
-    protected function setBlurResolve(string $class): void
-    {
-        $this->blurResolve = $class;
-    }
-
     protected function setupBlur(): void
     {
-        throw_if(!$this->blurResolve, new WireUiResolveException($this));
-
-        $blurs = config("wireui.{$this->config}.blurs");
-
         /** @var ComponentPack $blurPack */
-        $blurPack = $blurs ? resolve($blurs) : resolve($this->blurResolve);
+        $blurPack = resolve(config("wireui.{$this->config}.packs.blurs"));
 
         $this->blur = $this->getData('blur');
 

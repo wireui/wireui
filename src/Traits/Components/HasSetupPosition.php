@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupPosition
@@ -11,21 +10,10 @@ trait HasSetupPosition
 
     public mixed $positionClasses = null;
 
-    private mixed $positionResolve = null;
-
-    protected function setPositionResolve(string $class): void
-    {
-        $this->positionResolve = $class;
-    }
-
     protected function setupPosition(): void
     {
-        throw_if(!$this->positionResolve, new WireUiResolveException($this));
-
-        $positions = config("wireui.{$this->config}.positions");
-
         /** @var ComponentPack $positionPack */
-        $positionPack = $positions ? resolve($positions) : resolve($this->positionResolve);
+        $positionPack = resolve(config("wireui.{$this->config}.packs.positions"));
 
         $this->position = $this->getData('position');
 

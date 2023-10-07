@@ -38,22 +38,22 @@ class Dialog
 
     public function success(string $title, string $description = null): void
     {
-        $this->simpleDialog(Actions::SUCCESS->value, $title, $description);
+        $this->simpleDialog(Actions::SUCCESS, $title, $description);
     }
 
     public function error(string $title, string $description = null): void
     {
-        $this->simpleDialog(Actions::ERROR->value, $title, $description);
+        $this->simpleDialog(Actions::ERROR, $title, $description);
     }
 
     public function info(string $title, string $description = null): void
     {
-        $this->simpleDialog(Actions::INFO->value, $title, $description);
+        $this->simpleDialog(Actions::INFO, $title, $description);
     }
 
     public function warning(string $title, string $description = null): void
     {
-        $this->simpleDialog(Actions::WARNING->value, $title, $description);
+        $this->simpleDialog(Actions::WARNING, $title, $description);
     }
 
     public function simpleDialog(string $icon, string $title, string $description = null): void
@@ -67,7 +67,7 @@ class Dialog
 
     public function show(array $options): void
     {
-        $options['icon'] ??= Actions::INFO->value;
+        $options['icon'] ??= Actions::INFO;
 
         $this->component->dispatch("wireui:{$this->getEventName()}", [
             'options'     => $options,
@@ -77,7 +77,7 @@ class Dialog
 
     public function confirm(array $options): void
     {
-        $options['icon'] ??= Actions::QUESTION->value;
+        $options['icon'] ??= Actions::QUESTION;
 
         $this->component->dispatch("wireui:confirm-{$this->getEventName()}", [
             'options'     => $options,

@@ -64,10 +64,6 @@ abstract class WireUiComponent extends Component
             fn ($method) => Str::startsWith($method, 'setup'),
         )->values();
 
-        if ($methods->containsAll(['setupWrapper'])) {
-            $methods = $methods->reject('setupWrapper')->prepend('setupWrapper');
-        }
-
         if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
             $methods = $methods->reject('setupIconSize')->push('setupIconSize');
         }
@@ -97,7 +93,7 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        $config = config("wireui.{$this->config}.{$kebab}");
+        $config = config("wireui.{$this->config}.default.{$kebab}");
 
         return $callback ? $callback($config) : $config;
     }
@@ -110,7 +106,7 @@ abstract class WireUiComponent extends Component
 
         $this->smartAttributes([$attribute, ...$remove]);
 
-        return $value ?? config("wireui.{$this->config}.{$attribute}");
+        return $value ?? config("wireui.{$this->config}.default.{$attribute}");
     }
 
     protected function setVariables(mixed $variables): void
