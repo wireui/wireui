@@ -46,20 +46,20 @@ return [
         ],
     ],
 
-    // 'avatar' => [
-    //     'default' => [
-    //         'color'   => GLOBAL_STYLE,
-    //         'rounded' => GLOBAL_STYLE,
-    //         'padding' => Packs\Padding::BASE,
-    //         'variant' => Packs\Variant::FLAT,
-    //     ],
-    //     'packs' => [
-    //         'shadows'  => WireUi\Shadow::class,
-    //         'rounders' => WireUi\Rounded::class,
-    //         'paddings' => WireUi\Alert\Padding::class,
-    //         'variants' => WireUi\Alert\Variant::class,
-    //     ],
-    // ],
+    'avatar' => [
+        'default' => [
+            'border'  => Packs\Border::THIN,
+            'rounded' => Packs\Rounded::FULL,
+            'color'   => Packs\Color::SECONDARY,
+        ],
+        'packs' => [
+            'rounders'   => WireUi\Rounded::class,
+            'sizes'      => WireUi\Avatar\Size::class,
+            'colors'     => WireUi\Avatar\Color::class,
+            'borders'    => WireUi\Avatar\Border::class,
+            'icon-sizes' => WireUi\Avatar\IconSize::class,
+        ],
+    ],
 
     'badge' => [
         'default' => [
