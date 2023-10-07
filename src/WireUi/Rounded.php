@@ -2,27 +2,28 @@
 
 namespace WireUi\WireUi;
 
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Rounded extends ComponentPack
 {
     protected function default(): string
     {
-        return 'base';
+        return config('wireui.style.rounded') ?? Packs\Rounded::BASE;
     }
 
     public function all(): array
     {
         return [
-            'none' => 'rounded-none',
-            'sm'   => 'rounded-sm',
-            'base' => 'rounded',
-            'md'   => 'rounded-md',
-            'lg'   => 'rounded-lg',
-            'xl'   => 'rounded-xl',
-            '2xl'  => 'rounded-2xl',
-            '3xl'  => 'rounded-3xl',
-            'full' => 'rounded-full',
+            Packs\Rounded::NONE => 'rounded-none',
+            Packs\Rounded::SM   => 'rounded-sm',
+            Packs\Rounded::BASE => 'rounded',
+            Packs\Rounded::MD   => 'rounded-md',
+            Packs\Rounded::LG   => 'rounded-lg',
+            Packs\Rounded::XL   => 'rounded-xl',
+            Packs\Rounded::XXL  => 'rounded-2xl',
+            Packs\Rounded::XXXL => 'rounded-3xl',
+            Packs\Rounded::FULL => 'rounded-full',
         ];
     }
 }

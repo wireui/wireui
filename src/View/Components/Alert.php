@@ -5,8 +5,6 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
-use WireUi\WireUi\Alert\{Padding, Variant};
-use WireUi\WireUi\{Rounded, Shadow};
 
 class Alert extends WireUiComponent
 {
@@ -20,10 +18,7 @@ class Alert extends WireUiComponent
     public function __construct(
         public ?string $title = null,
     ) {
-        $this->setShadowResolve(Shadow::class);
-        $this->setPaddingResolve(Padding::class);
-        $this->setRoundedResolve(Rounded::class);
-        $this->setVariantResolve(Variant::class);
+        //
     }
 
     public function getUseIcon(): mixed

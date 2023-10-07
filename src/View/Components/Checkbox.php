@@ -6,8 +6,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
-use WireUi\WireUi\Checkbox\{Color, Size};
-use WireUi\WireUi\Rounded;
 
 class Checkbox extends WireUiComponent
 {
@@ -21,9 +19,7 @@ class Checkbox extends WireUiComponent
         public ?string $leftLabel = null,
         public ?string $description = null,
     ) {
-        $this->setSizeResolve(Size::class);
-        $this->setColorResolve(Color::class);
-        $this->setRoundedResolve(Rounded::class);
+        //
     }
 
     public function getClasses(bool $hasError): string

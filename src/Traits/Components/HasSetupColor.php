@@ -10,10 +10,19 @@ trait HasSetupColor
 
     public mixed $colorClasses = null;
 
+    private mixed $colorResolve = null;
+
+    protected function setColorResolve(string $class): void
+    {
+        $this->colorResolve = $class;
+    }
+
     protected function setupColor(): void
     {
+        $colors = config("wireui.{$this->config}.packs.colors");
+
         /** @var ComponentPack $colorPack */
-        $colorPack = resolve(config("wireui.{$this->config}.packs.colors"));
+        $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
 
         $this->color = $this->getDataModifier('color', $colorPack);
 

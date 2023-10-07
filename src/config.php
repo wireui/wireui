@@ -17,9 +17,9 @@ return [
      */
 
     'style' => [
-        'color'   => Packs\Color::PRIMARY,
-        'rounded' => Packs\Rounded::BASE,
         'shadow'  => Packs\Shadow::BASE,
+        'rounded' => Packs\Rounded::BASE,
+        'color'   => Packs\Color::PRIMARY,
     ],
 
     /*
@@ -39,81 +39,87 @@ return [
             'variant' => Packs\Variant::FLAT,
         ],
         'packs' => [
+            'shadows'  => WireUi\Shadow::class,
             'rounders' => WireUi\Rounded::class,
             'paddings' => WireUi\Alert\Padding::class,
             'variants' => WireUi\Alert\Variant::class,
         ],
     ],
 
-    'avatar' => [
+    // 'avatar' => [
+    //     'default' => [
+    //         'color'   => GLOBAL_STYLE,
+    //         'rounded' => GLOBAL_STYLE,
+    //         'padding' => Packs\Padding::BASE,
+    //         'variant' => Packs\Variant::FLAT,
+    //     ],
+    //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
+    //         'rounders' => WireUi\Rounded::class,
+    //         'paddings' => WireUi\Alert\Padding::class,
+    //         'variants' => WireUi\Alert\Variant::class,
+    //     ],
+    // ],
+
+    'badge' => [
         'default' => [
             'color'   => GLOBAL_STYLE,
             'rounded' => GLOBAL_STYLE,
-            'padding' => Packs\Padding::BASE,
-            'variant' => Packs\Variant::FLAT,
+            'size'    => Packs\Size::SM,
+            'variant' => Packs\Variant::SOLID,
         ],
         'packs' => [
-            'rounders' => WireUi\Rounded::class,
-            'paddings' => WireUi\Alert\Padding::class,
-            'variants' => WireUi\Alert\Variant::class,
+            'rounders'   => WireUi\Rounded::class,
+            'variants'   => WireUi\Badge\Variant::class,
+            'icon-sizes' => WireUi\Badge\IconSize::class,
+            'sizes'      => WireUi\Badge\Size\Base::class,
         ],
     ],
 
-    // 'badge' => [
-    //     'default' => [
-    //         'color'   => GLOBAL_STYLE,
-    //         'rounded' => GLOBAL_STYLE,
-    //         'padding' => Packs\Padding::BASE,
-    //         'variant' => Packs\Variant::FLAT,
-    //     ],
-    //     'packs' => [
-    //         'rounders' => WireUi\Rounded::class,
-    //         'paddings' => WireUi\Alert\Padding::class,
-    //         'variants' => WireUi\Alert\Variant::class,
-    //     ],
-    // ],
+    'mini-badge' => [
+        'default' => [
+            'color'   => GLOBAL_STYLE,
+            'rounded' => GLOBAL_STYLE,
+            'size'    => Packs\Size::SM,
+            'variant' => Packs\Variant::SOLID,
+        ],
+        'packs' => [
+            'rounders'   => WireUi\Rounded::class,
+            'variants'   => WireUi\Badge\Variant::class,
+            'icon-sizes' => WireUi\Badge\IconSize::class,
+            'sizes'      => WireUi\Badge\Size\Base::class,
+        ],
+    ],
 
-    // 'mini-badge' => [
-    //     'default' => [
-    //         'color'   => GLOBAL_STYLE,
-    //         'rounded' => GLOBAL_STYLE,
-    //         'padding' => Packs\Padding::BASE,
-    //         'variant' => Packs\Variant::FLAT,
-    //     ],
-    //     'packs' => [
-    //         'rounders' => WireUi\Rounded::class,
-    //         'paddings' => WireUi\Alert\Padding::class,
-    //         'variants' => WireUi\Alert\Variant::class,
-    //     ],
-    // ],
+    'button' => [
+        'default' => [
+            'color'   => GLOBAL_STYLE,
+            'rounded' => GLOBAL_STYLE,
+            'size'    => Packs\Size::MD,
+            'variant' => Packs\Variant::SOLID,
+        ],
+        'packs' => [
+            'rounders'   => WireUi\Rounded::class,
+            'variants'   => WireUi\Button\Variant::class,
+            'icon-sizes' => WireUi\Button\IconSize::class,
+            'sizes'      => WireUi\Button\Size\Base::class,
+        ],
+    ],
 
-    // 'button' => [
-    //     'default' => [
-    //         'color'   => GLOBAL_STYLE,
-    //         'rounded' => GLOBAL_STYLE,
-    //         'padding' => Packs\Padding::BASE,
-    //         'variant' => Packs\Variant::FLAT,
-    //     ],
-    //     'packs' => [
-    //         'rounders' => WireUi\Rounded::class,
-    //         'paddings' => WireUi\Alert\Padding::class,
-    //         'variants' => WireUi\Alert\Variant::class,
-    //     ],
-    // ],
-
-    // 'mini-button' => [
-    //     'default' => [
-    //         'color'   => GLOBAL_STYLE,
-    //         'rounded' => GLOBAL_STYLE,
-    //         'padding' => Packs\Padding::BASE,
-    //         'variant' => Packs\Variant::FLAT,
-    //     ],
-    //     'packs' => [
-    //         'rounders' => WireUi\Rounded::class,
-    //         'paddings' => WireUi\Alert\Padding::class,
-    //         'variants' => WireUi\Alert\Variant::class,
-    //     ],
-    // ],
+    'mini-button' => [
+        'default' => [
+            'color'   => GLOBAL_STYLE,
+            'rounded' => GLOBAL_STYLE,
+            'size'    => Packs\Size::MD,
+            'variant' => Packs\Variant::SOLID,
+        ],
+        'packs' => [
+            'rounders'   => WireUi\Rounded::class,
+            'variants'   => WireUi\Button\Variant::class,
+            'icon-sizes' => WireUi\Button\IconSize::class,
+            'sizes'      => WireUi\Button\Size\Mini::class,
+        ],
+    ],
 
     // 'card' => [
     //     'default' => [
@@ -123,6 +129,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -137,6 +144,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -151,6 +159,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -165,6 +174,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -179,6 +189,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -193,6 +204,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -207,6 +219,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -221,6 +234,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -235,6 +249,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -249,6 +264,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -263,6 +279,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -277,6 +294,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -291,6 +309,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -305,6 +324,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -319,6 +339,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -333,6 +354,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -347,6 +369,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -361,6 +384,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -375,6 +399,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -389,6 +414,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -403,6 +429,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -417,6 +444,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -431,6 +459,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -445,6 +474,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -459,6 +489,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -473,6 +504,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -487,6 +519,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -501,6 +534,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -515,6 +549,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,
@@ -529,6 +564,7 @@ return [
     //         'variant' => Packs\Variant::FLAT,
     //     ],
     //     'packs' => [
+    //         'shadows'  => WireUi\Shadow::class,
     //         'rounders' => WireUi\Rounded::class,
     //         'paddings' => WireUi\Alert\Padding::class,
     //         'variants' => WireUi\Alert\Variant::class,

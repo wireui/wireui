@@ -5,7 +5,6 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
 use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
-use WireUi\WireUi\Modal\{Align, Blur, MaxWidth, Type};
 
 class Dialog extends WireUiComponent
 {
@@ -23,11 +22,6 @@ class Dialog extends WireUiComponent
         public ?string $spacing = null,
         public ?string $description = null,
     ) {
-        $this->setBlurResolve(Blur::class);
-        $this->setTypeResolve(Type::class);
-        $this->setAlignResolve(Align::class);
-        $this->setMaxWidthResolve(MaxWidth::class);
-
         $this->dialog = DialogAction::makeEventName($id);
         $this->zIndex  ??= config('wireui.modal.z-index');
         $this->spacing ??= config('wireui.modal.spacing');

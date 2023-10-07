@@ -2,6 +2,7 @@
 
 namespace WireUi\WireUi\Button\Color;
 
+use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
 class Flat extends ComponentPack
@@ -12,18 +13,18 @@ class Flat extends ComponentPack
 
     public function default(): string
     {
-        return 'base';
+        return config('wireui.style.color') ?? Color::BASE;
     }
 
     public function all(): array
     {
         return [
-            'none' => [
+            Color::NONE => [
                 'base'  => '',
                 'hover' => '',
                 'focus' => '',
             ],
-            'base' => [
+            Color::BASE => [
                 'base'  => 'text-slate-500 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-600 hover:bg-slate-400",
@@ -34,7 +35,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-slate-300/90 dark:focus:bg-slate-600 dark:focus:ring-slate-600',
                 ],
             ],
-            'invalidated' => [
+            Color::INVALIDATED => [
                 'base'  => 'invalidated:text-negative-600',
                 'hover' => [
                     "{$this->hover} invalidated:hover:text-negative-700 invalidated:hover:bg-negative-200",
@@ -45,7 +46,7 @@ class Flat extends ComponentPack
                     'invalidated:dark:focus:text-negative-500 invalidated:dark:focus:bg-negative-600/15 invalidated:dark:focus:ring-negative-700',
                 ],
             ],
-            'primary' => [
+            Color::PRIMARY => [
                 'base'  => 'text-primary-600',
                 'hover' => [
                     "{$this->hover} hover:text-primary-700 hover:bg-primary-400",
@@ -56,7 +57,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-primary-500 dark:focus:bg-primary-600 dark:focus:ring-primary-700',
                 ],
             ],
-            'secondary' => [
+            Color::SECONDARY => [
                 'base'  => 'text-secondary-600 dark:text-secondary-400',
                 'hover' => [
                     "{$this->hover} hover:text-secondary-700 hover:bg-secondary-400",
@@ -67,7 +68,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-secondary-300/90 dark:focus:bg-secondary-400 dark:focus:ring-secondary-500',
                 ],
             ],
-            'positive' => [
+            Color::POSITIVE => [
                 'base'  => 'text-positive-600 dark:text-positive-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-positive-700 hover:bg-positive-400",
@@ -78,7 +79,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-positive-500 dark:focus:bg-positive-600 dark:focus:ring-positive-700',
                 ],
             ],
-            'negative' => [
+            Color::NEGATIVE => [
                 'base'  => 'text-negative-600',
                 'hover' => [
                     "{$this->hover} hover:text-negative-700 hover:bg-negative-400",
@@ -89,7 +90,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-negative-500 dark:focus:bg-negative-600 dark:focus:ring-negative-700',
                 ],
             ],
-            'warning' => [
+            Color::WARNING => [
                 'base'  => 'text-warning-600',
                 'hover' => [
                     "{$this->hover} hover:text-warning-700 hover:bg-warning-300",
@@ -100,7 +101,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-warning-500 dark:focus:bg-warning-600 dark:focus:ring-warning-700',
                 ],
             ],
-            'info' => [
+            Color::INFO => [
                 'base'  => 'text-info-600',
                 'hover' => [
                     "{$this->hover} hover:text-info-700 hover:bg-info-400",
@@ -111,7 +112,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-info-500 dark:focus:bg-info-600 dark:focus:ring-info-700',
                 ],
             ],
-            'white' => [
+            Color::WHITE => [
                 'base'  => 'text-white dark:text-opacity-80',
                 'hover' => [
                     "{$this->hover} hover:text-slate-100 hover:bg-slate-100",
@@ -123,7 +124,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-opacity-100 dark:focus:bg-slate-400 dark:focus:ring-white/70',
                 ],
             ],
-            'black' => [
+            Color::BLACK => [
                 'base'  => 'text-black',
                 'hover' => [
                     "{$this->hover} hover:text-black hover:bg-black/10",
@@ -134,7 +135,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-black dark:focus:bg-black dark:focus:ring-black',
                 ],
             ],
-            'slate' => [
+            Color::SLATE => [
                 'base'  => 'text-slate-600 dark:text-slate-400',
                 'hover' => [
                     "{$this->hover} hover:text-slate-700 hover:bg-slate-400",
@@ -145,7 +146,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-slate-300 dark:focus:bg-slate-400 dark:focus:ring-slate-500',
                 ],
             ],
-            'gray' => [
+            Color::GRAY => [
                 'base'  => 'text-gray-600 dark:text-gray-400',
                 'hover' => [
                     "{$this->hover} hover:text-gray-700 hover:bg-gray-400",
@@ -156,7 +157,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-gray-300 dark:focus:bg-gray-400 dark:focus:ring-gray-500',
                 ],
             ],
-            'zinc' => [
+            Color::ZINC => [
                 'base'  => 'text-zinc-600 dark:text-zinc-400',
                 'hover' => [
                     "{$this->hover} hover:text-zinc-700 hover:bg-zinc-400",
@@ -167,7 +168,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-zinc-300 dark:focus:bg-zinc-400 dark:focus:ring-zinc-500',
                 ],
             ],
-            'neutral' => [
+            Color::NEUTRAL => [
                 'base'  => 'text-neutral-600 dark:text-neutral-400',
                 'hover' => [
                     "{$this->hover} hover:text-neutral-700 hover:bg-neutral-400",
@@ -178,7 +179,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-neutral-300/90 dark:focus:bg-neutral-400 dark:focus:ring-neutral-500',
                 ],
             ],
-            'stone' => [
+            Color::STONE => [
                 'base'  => 'text-stone-600 dark:text-stone-400',
                 'hover' => [
                     "{$this->hover} hover:text-stone-700 hover:bg-stone-400",
@@ -189,7 +190,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-stone-300/90 dark:focus:bg-stone-400 dark:focus:ring-stone-500',
                 ],
             ],
-            'red' => [
+            Color::RED => [
                 'base'  => 'text-red-600',
                 'hover' => [
                     "{$this->hover} hover:text-red-700 hover:bg-red-400",
@@ -200,7 +201,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-red-500 dark:focus:bg-red-600 dark:focus:ring-red-700',
                 ],
             ],
-            'orange' => [
+            Color::ORANGE => [
                 'base'  => 'text-orange-600',
                 'hover' => [
                     "{$this->hover} hover:text-orange-700 hover:bg-orange-400",
@@ -211,7 +212,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-orange-500 dark:focus:bg-orange-600 dark:focus:ring-orange-700',
                 ],
             ],
-            'yellow' => [
+            Color::YELLOW => [
                 'base'  => 'text-yellow-600',
                 'hover' => [
                     "{$this->hover} hover:text-yellow-700 hover:bg-yellow-400",
@@ -222,7 +223,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-yellow-500 dark:focus:bg-yellow-600 dark:focus:ring-yellow-700',
                 ],
             ],
-            'amber' => [
+            Color::AMBER => [
                 'base'  => 'text-amber-600',
                 'hover' => [
                     "{$this->hover} hover:text-amber-700 hover:bg-amber-400",
@@ -233,7 +234,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-amber-500 dark:focus:bg-amber-600 dark:focus:ring-amber-700',
                 ],
             ],
-            'lime' => [
+            Color::LIME => [
                 'base'  => 'text-lime-600',
                 'hover' => [
                     "{$this->hover} hover:text-lime-700 hover:bg-lime-400",
@@ -244,7 +245,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-lime-500 dark:focus:bg-lime-600 dark:focus:ring-lime-700',
                 ],
             ],
-            'green' => [
+            Color::GREEN => [
                 'base'  => 'text-green-600',
                 'hover' => [
                     "{$this->hover} hover:text-green-700 hover:bg-green-400",
@@ -255,7 +256,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-green-500 dark:focus:bg-green-600 dark:focus:ring-green-700',
                 ],
             ],
-            'emerald' => [
+            Color::EMERALD => [
                 'base'  => 'text-emerald-600 dark:text-emerald-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-emerald-700 hover:bg-emerald-400",
@@ -266,7 +267,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-emerald-500 dark:focus:bg-emerald-600 dark:focus:ring-emerald-700',
                 ],
             ],
-            'teal' => [
+            Color::TEAL => [
                 'base'  => 'text-teal-600 dark:text-teal-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-teal-700 hover:bg-teal-400",
@@ -277,7 +278,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-teal-500 dark:focus:bg-teal-600 dark:focus:ring-teal-700',
                 ],
             ],
-            'cyan' => [
+            Color::CYAN => [
                 'base'  => 'text-cyan-600 dark:text-cyan-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-cyan-700 hover:bg-cyan-400",
@@ -288,7 +289,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-cyan-500 dark:focus:bg-cyan-600 dark:focus:ring-cyan-700',
                 ],
             ],
-            'sky' => [
+            Color::SKY => [
                 'base'  => 'text-sky-600 dark:text-sky-500/90',
                 'hover' => [
                     "{$this->hover} hover:text-sky-700 hover:bg-sky-400",
@@ -299,7 +300,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-sky-500 dark:focus:bg-sky-600 dark:focus:ring-sky-700',
                 ],
             ],
-            'blue' => [
+            Color::BLUE => [
                 'base'  => 'text-blue-600',
                 'hover' => [
                     "{$this->hover} hover:text-blue-700 hover:bg-blue-400",
@@ -310,7 +311,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-blue-500 dark:focus:bg-blue-600 dark:focus:ring-blue-700',
                 ],
             ],
-            'indigo' => [
+            Color::INDIGO => [
                 'base'  => 'text-indigo-600',
                 'hover' => [
                     "{$this->hover} hover:text-indigo-700 hover:bg-indigo-400",
@@ -321,7 +322,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-indigo-500 dark:focus:bg-indigo-600 dark:focus:ring-indigo-700',
                 ],
             ],
-            'violet' => [
+            Color::VIOLET => [
                 'base'  => 'text-violet-600',
                 'hover' => [
                     "{$this->hover} hover:text-violet-700 hover:bg-violet-400",
@@ -332,7 +333,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-violet-500 dark:focus:bg-violet-600 dark:focus:ring-violet-700',
                 ],
             ],
-            'purple' => [
+            Color::PURPLE => [
                 'base'  => 'text-purple-600',
                 'hover' => [
                     "{$this->hover} hover:text-purple-700 hover:bg-purple-400",
@@ -343,7 +344,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-purple-500 dark:focus:bg-purple-600 dark:focus:ring-purple-700',
                 ],
             ],
-            'fuchsia' => [
+            Color::FUCHSIA => [
                 'base'  => 'text-fuchsia-600',
                 'hover' => [
                     "{$this->hover} hover:text-fuchsia-700 hover:bg-fuchsia-400",
@@ -354,7 +355,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-fuchsia-500 dark:focus:bg-fuchsia-600 dark:focus:ring-fuchsia-700',
                 ],
             ],
-            'pink' => [
+            Color::PINK => [
                 'base'  => 'text-pink-600',
                 'hover' => [
                     "{$this->hover} hover:text-pink-700 hover:bg-pink-400",
@@ -365,7 +366,7 @@ class Flat extends ComponentPack
                     'dark:focus:text-pink-500 dark:focus:bg-pink-600 dark:focus:ring-pink-700',
                 ],
             ],
-            'rose' => [
+            Color::ROSE => [
                 'base'  => 'text-rose-600',
                 'hover' => [
                     "{$this->hover} hover:text-rose-700 hover:bg-rose-400",
