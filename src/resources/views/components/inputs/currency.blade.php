@@ -1,14 +1,14 @@
 <x-inputs.wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
-    x-data="wireui_inputs_currency({
-        isBlur: @boolean($attrs->wire('model')->hasModifier('blur')),
-        model:  @entangle($attrs->wire('model')),
-        emitFormatted: @boolean($emitFormatted),
-        thousands: '{{ $thousands }}',
-        decimal:   '{{ $decimal }}',
-        precision:  {{ $precision }},
-    })"
+    :x-data="WireUi::alpine('wireui_inputs_currency', [
+        'isBlur'        => $attrs->wire('model')->hasModifier('blur'),
+        'model'         => $attrs->wire('model'),
+        'emitFormatted' => $emitFormatted,
+        'thousands'     => $thousands,
+        'decimal'       => $decimal,
+        'precision'     => $precision,
+    ])"
 >
     @include('wireui::form.wrapper.slots')
 

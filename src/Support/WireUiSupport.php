@@ -33,7 +33,7 @@ class WireUiSupport
     {
         $expressions = $this->phpToJs($data);
 
-        return "{$component}({{$expressions}})";
+        return "{$component}({$expressions})";
     }
 
     public function phpToJs(array $data = []): string

@@ -1,29 +1,29 @@
 <x-inputs.wrapper
-    x-data="wireui_datetime_picker({
-        model: @entangleable($attrs->wire('model')),
-    })"
-    x-props="{
-        config: {
-            interval: @toJs($interval),
-            is12H:    @boolean($timeFormat == '12'),
-            readonly: @boolean($readonly),
-            disabled: @boolean($disabled),
-            min: @toJs($min ? $min->format('Y-m-d\TH:i') : null),
-            max: @toJs($max ? $max->format('Y-m-d\TH:i') : null),
-            minTime: @toJs($minTime),
-            maxTime: @toJs($maxTime),
-        },
-        withoutTimezone: @boolean($withoutTimezone),
-        timezone:      @toJs($timezone),
-        userTimezone:  @toJs($userTimezone ?? ''),
-        parseFormat:   @toJs($parseFormat ?? ''),
-        displayFormat: @toJs($displayFormat ?? ''),
-        weekDays:      @lang('wireui::messages.datePicker.days'),
-        monthNames:    @lang('wireui::messages.datePicker.months'),
-        withoutTime:   @boolean($withoutTime),
-    }"
+    :x-data="WireUi::alpine('wireui_datetime_picker', [
+        'model' => null
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only('wire:key')"
+    :x-props="WireUi::phpToJs([
+        'config' => [
+            'interval' => $interval,
+            'is12H'    => $timeFormat == '12',
+            'readonly' => $readonly,
+            'disabled' => $disabled,
+            'min'      => $min ? $min->format('Y-m-d\TH:i') : null,
+            'max'      => $max ? $max->format('Y-m-d\TH:i') : null,
+            'minTime'  => $minTime,
+            'maxTime'  => $maxTime,
+        ],
+        'withoutTimezone' => $withoutTimezone,
+        'timezone'        => $timezone,
+        'userTimezone'    => $userTimezone ?? '',
+        'parseFormat'     => $parseFormat ?? '',
+        'displayFormat'   => $displayFormat ?? '',
+        'weekDays'        => __('wireui::messages.datePicker.days'),
+        'monthNames'      => __('wireui::messages.datePicker.months'),
+        'withoutTime'     => $withoutTime,
+    ])"
 >
     @include('wireui::form.wrapper.slots')
 

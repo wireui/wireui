@@ -1,15 +1,15 @@
 <x-inputs.wrapper
-    x-data="wireui_timepicker({
-        model: @entangle($attrs->wire('model')),
-        config: {
-            isBlur:   @boolean($attrs->wire('model')->hasModifier('blur')),
-            interval: @toJs($interval),
-            format:   @toJs($format),
-            is12H:    @boolean($format == '12'),
-            readonly: @boolean($readonly),
-            disabled: @boolean($disabled),
-        },
-    })"
+    :x-data="WireUi::alpine('wireui_timepicker', [
+        'model'  => null,
+        'config' => [
+            'isBlur'   => $attrs->wire('model')->hasModifier('blur'),
+            'interval' => $interval,
+            'format'   => $format,
+            'is12H'    => $format == '12',
+            'readonly' => $readonly,
+            'disabled' => $disabled,
+        ]
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >

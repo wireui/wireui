@@ -1,10 +1,10 @@
 <x-inputs.wrapper
-    x-data="wireui_inputs_maskable({
-        isBlur: @boolean($attrs->wire('model')->hasModifier('blur')),
-        model: @entangle($attrs->wire('model')),
-        emitFormatted: @boolean($emitFormatted),
-        mask: {{ $mask }},
-    })"
+    :x-data="WireUi::alpine('wireui_inputs_maskable', [
+        'isBlur'        => $attrs->wire('model')->hasModifier('blur'),
+        'model'         => null,
+        'emitFormatted' => $emitFormatted,
+        'mask'          => $mask,
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >

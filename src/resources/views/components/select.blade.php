@@ -1,24 +1,22 @@
 <x-inputs.wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    x-data="wireui_select({
-        @if ($attrs->wire('model')->value())
-            wireModel: @entangle($attrs->wire('model')),
-        @endif
-    })"
-    x-props="{
-        asyncData:    @toJs($asyncData),
-        optionValue:  @toJs($optionValue),
-        optionLabel:  @toJs($optionLabel),
-        optionDescription: @toJs($optionDescription),
-        hasSlot:     @boolean($slot->isNotEmpty()),
-        multiselect: @boolean($multiselect),
-        searchable:  @boolean($searchable),
-        clearable:   @boolean($clearable),
-        readonly:    @boolean($readonly || $disabled),
-        placeholder: @toJs($placeholder),
-        template:    @toJs($template),
-    }"
+    :x-data="WireUi::alpine('wireui_select', [
+        'wireModel' => null,
+    ])"
+    :x-props="WireUi::phpToJs([
+        'asyncData'         => $asyncData,
+        'optionValue'       => $optionValue,
+        'optionLabel'       => $optionLabel,
+        'optionDescription' => $optionDescription,
+        'hasSlot'           => $slot->isNotEmpty(),
+        'multiselect'       => $multiselect,
+        'searchable'        => $searchable,
+        'clearable'         => $clearable,
+        'readonly'          => $readonly || $disabled,
+        'placeholder'       => $placeholder,
+        'template'          => $template,
+    ])"
 >
     <div hidden x-ref="json">@toJs($optionsToArray())</div>
     <div hidden x-ref="slot">{{ $slot }}</div>

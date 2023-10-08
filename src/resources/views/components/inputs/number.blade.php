@@ -2,10 +2,10 @@
     :data="$wrapperData"
     :right-icon="$rightIcon"
     :attributes="$attrs->only(['wire:key', 'class'])"
-    x-data="wireui_inputs_number({
-        disabled: {{ json_encode($disabled) }},
-        readonly: {{ json_encode($readonly) }},
-    })"
+    :x-data="WireUi::alpine('wireui_inputs_number', [
+        'disabled' => $disabled,
+        'readonly' => $readonly,
+    ])"
 >
     @include('wireui::form.wrapper.slots', [
         'except' => ['prepend', 'append'],
