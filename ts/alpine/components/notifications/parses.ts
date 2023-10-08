@@ -1,7 +1,7 @@
-import { ConfirmNotification, Notification } from './index'
 import { parseActions } from './actions'
 import { parseEvents } from './events'
 import { parseIcon } from './icons'
+import { ConfirmNotification, Notification } from './index'
 import { ConfirmationOptions, Options } from './options'
 
 export interface LivewireOptions {
@@ -38,15 +38,16 @@ export const parseRedirect = (redirect: string): CallableFunction => {
 
 export const parseLivewire: ParseLivewire = ({ id, method, params = undefined }) => {
   return () => {
-    const component = window.Livewire.find(id)
+    console.log({ id, method, params })
+    // const component = window.Livewire.find(id)
 
     if (params !== undefined) {
-      return Array.isArray(params)
-        ? component?.call(method, ...params)
-        : component?.call(method, params)
+      // return Array.isArray(params)
+      //   ? component?.call(method, ...params)
+      //   : component?.call(method, params)
     }
 
-    component?.call(method)
+    // component?.call(method)
   }
 }
 

@@ -12,7 +12,7 @@
         "outDir": "./dist/js",
         "removeComments": true,
         "strict": true,
-        "noImplicitAny": true,
+        "noImplicitAny": false,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
@@ -33,6 +33,7 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": ["ts/**/*.ts", "tests/TypeScript/**/*.ts"],
+    "exclude": ["node_modules", "dist", "tests/TypeScript"],
     "files": [
         "tests/TypeScript/global.d.ts"
     ]

@@ -1,4 +1,4 @@
-import { parseRedirect, parseLivewire, LivewireOptions } from '@/alpine/components/notifications/parses'
+import { LivewireOptions, parseLivewire, parseRedirect } from '@/alpine/components/notifications/parses'
 import { ConfirmationOptions } from './options'
 
 const colors = ['primary', 'secondary', 'positive', 'negative', 'warning', 'info', 'dark']

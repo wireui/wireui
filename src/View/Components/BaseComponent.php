@@ -6,8 +6,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
 use Illuminate\View\Component;
-use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
+use WireUi\WireUi;
 
 abstract class BaseComponent extends Component
 {
@@ -61,7 +61,7 @@ abstract class BaseComponent extends Component
         return $methods->values()->toArray();
     }
 
-    protected function getData(string $attribute, callable $callback = null): mixed
+    protected function getData(string $attribute, ?callable $callback = null): mixed
     {
         if ($this->attributes->has($kebab = Str::kebab($attribute))) {
             $this->smartAttributes($kebab);

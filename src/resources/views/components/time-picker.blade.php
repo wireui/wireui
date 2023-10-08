@@ -1,15 +1,14 @@
 <x-inputs.wrapper
-    x-data="wireui_timepicker({
-        model: @entangle($attrs->wire('model')),
-        config: {
-            isBlur:   @boolean($attrs->wire('model')->hasModifier('blur')),
-            interval: @toJs($interval),
-            format:   @toJs($format),
-            is12H:    @boolean($format == '12'),
-            readonly: @boolean($readonly),
-            disabled: @boolean($disabled),
-        },
-    })"
+    x-data="wireui_timepicker"
+    :x-props="WireUi::phpToJs([
+        'isBlur'    => $attrs->wire('model')->hasModifier('blur'),
+        'interval'  => $interval,
+        'format'    => $format,
+        'is12H'     => $format == '12',
+        'readonly'  => $readonly,
+        'disabled'  => $disabled,
+        'wireModel' => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+    ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >
@@ -17,8 +16,7 @@
 
     <x-wireui::inputs.element
         x-model="input"
-        x-on:input.debounce.150ms="onInput($event.target.value)"
-        x-on:blur="emitInput"
+        x-on:blur="onBlur"
         :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
     />
 

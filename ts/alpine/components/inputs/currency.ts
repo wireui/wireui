@@ -1,87 +1,86 @@
-import { baseComponent, Component, Entangle } from '../alpine'
-import currency from '@/utils/currency'
+import { AlpineComponent } from '@/alpine/components/alpine'
+import Entangleable from '@/alpine/entangleable'
+import SupportsLivewire from '@/alpine/entangleable/SupportsLivewire'
+import { WireModel } from '@/livewire'
+import currency, { CurrencyConfig } from '@/utils/currency'
 import { occurrenceCount } from '@/utils/helpers'
 
-export interface Options {
-  model: Entangle
+export interface Props {
+  wireModel: WireModel
   emitFormatted: boolean
-  isBlur: boolean
   thousands: string
   decimal: string
   precision: number
 }
 
-export interface Config {
-  emitFormatted: boolean
-  isBlur: boolean
-  thousands: string
-  decimal: string
-  precision: number
-}
+export default class Currency extends AlpineComponent {
+  $props!: Props
 
-export interface Currency extends Component {
-  model: Entangle
-  input: string | null
-  config: Config
+  entangleable: Entangleable = new Entangleable()
 
-  init (): void
-  mask (value: string | number | null, emitInput?: boolean, walkDecimals?: boolean): void
-  unMask (value: string | null): number | null
-  emitInput (value: string | null): void
-}
+  input: string|null = null
 
-export default (options: Options): Currency => ({
-  ...baseComponent,
-  model: options.model,
-  input: null,
-  config: {
-    emitFormatted: options.emitFormatted,
-    isBlur: options.isBlur,
-    thousands: options.thousands,
-    decimal: options.decimal,
-    precision: options.precision
-  },
+  get currencyConfig (): CurrencyConfig {
+    return {
+      thousands: this.$props.thousands,
+      decimal: this.$props.decimal,
+      precision: this.$props.precision
+    }
+  }
 
   init () {
-    if (typeof this.model !== 'object') {
-      this.input = currency.mask(this.model, this.config, false)
-    }
-
-    this.$watch('model', value => {
-      if (!this.config.emitFormatted) {
-        value = currency.mask(value, this.config, false)
+    this.$watch('input', (value: string|null) => {
+      if (this.$props.emitFormatted) {
+        value = currency.mask(value, this.$props)
       }
 
-      if (value !== this.input) {
-        this.mask(value, false, false)
-      }
+      this.input = value
+
+      this.entangleable.set(value)
     })
-  },
-  mask (value, emitInput = true, walkDecimals = true) {
+
+    this.entangleable.watch((value: string|null) => {
+      if (!this.$props.emitFormatted) {
+        value = currency.mask(value, this.$props, false)
+      }
+
+      this.mask(value, false)
+    })
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+  }
+
+  private mask (value: string|null, walkDecimals: boolean = true): string|null {
     if (
       typeof value === 'string'
-      && value.endsWith(this.config.decimal)
-      && occurrenceCount(value, this.config.decimal) === 1
+      && value.endsWith(this.$props.decimal)
+      && occurrenceCount(value, this.$props.decimal) === 1
     ) {
       if (value.length === 1) {
-        return (this.input = `0${this.config.decimal}`)
+        return `0${this.$props.decimal}`
       }
 
-      return
+      return null
     }
 
-    this.input = currency.mask(value, this.config, walkDecimals)
-
-    if (!this.config.isBlur && emitInput) {
-      this.emitInput(this.input)
-    }
-  },
-  unMask (value) {
-    return currency.unMask(value, this.config)
-  },
-  emitInput (value) {
-    this.model = this.config.emitFormatted
-      ? value
-      : this.unMask(value)
+    return currency.mask(value, this.currencyConfig, walkDecimals)
   }
-})
+
+  private unMask (value: string|null): number|null {
+    return currency.unMask(value, this.currencyConfig)
+  }
+
+  private getValue (): string|number|null {
+    if (this.$props.emitFormatted) {
+      return this.input
+    }
+
+    return this.unMask(this.input)
+  }
+
+  onBlur (): void {
+    this.entangleable.set(this.getValue(), { triggerBlur: true })
+  }
+}

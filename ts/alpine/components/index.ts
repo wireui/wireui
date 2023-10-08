@@ -1,16 +1,16 @@
-import Dropdown from './Dropdown'
-import Modal from './Modal'
+import { convertClassToObject } from '@/alpine/components/alpine'
+import ColorPicker from './color-picker'
+import DatetimePicker from './datetime-picker'
 import Dialog from './dialog/dialog'
-import Notifications from './notifications/notifications'
-import Maskable from './inputs/maskable'
+import Dropdown from './Dropdown'
 import Currency from './inputs/currency'
+import Maskable from './inputs/maskable'
 import Number from './inputs/number'
 import Password from './inputs/password'
+import Modal from './Modal'
+import Notifications from './notifications/notifications'
 import Select from './select'
 import TimePicker from './time-picker'
-import DatetimePicker from './datetime-picker'
-import ColorPicker from './color-picker'
-import { convertClassToObject } from '@/alpine/components/alpine'
 
 document.addEventListener('alpine:init', () => {
   const components = {
@@ -31,7 +31,7 @@ document.addEventListener('alpine:init', () => {
   Object.entries(components).forEach(([name, Component]) => {
     window.Alpine.data(
       `wireui_${name}`,
-      (params: any) => convertClassToObject(new Component(params))
+      () => convertClassToObject(new Component())
     )
   })
 })

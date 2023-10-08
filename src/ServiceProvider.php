@@ -6,7 +6,6 @@ use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Compilers\BladeCompiler;
-use WireUi\Facades\WireUi;
 use WireUi\Providers\{BladeDirectives, CustomMacros};
 use WireUi\View\Compilers\WireUiTagCompiler;
 

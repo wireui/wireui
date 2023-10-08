@@ -1,9 +1,7 @@
+import { AlpineComponent } from '@/alpine/components/alpine'
+import { Action } from '@/alpine/components/dialog/actions'
 import { parseConfirmation, parseDialog } from '@/alpine/components/dialog/parses'
-import { Style } from '@/alpine/components/dialog/options'
-import { Dialog, DialogOptions } from './dialog'
-import { timer } from '@/alpine/components/notifications/timer'
-import { Icon } from '@/alpine/components/dialog/icons'
-import { Action, ButtonOptions } from '@/alpine/components/dialog/actions'
+import { Dialog, DialogOptions } from './'
 
 export interface InitOptions {
   id: string
@@ -33,75 +31,29 @@ type Refs = {
   progressbar: HTMLDivElement
 }
 
-export interface DialogComponent {
-  [index: string]: any
-
-  $refs: Refs
-
-  show: boolean
-  style: Style | null
-  dialog: ParsedDialog | null
-
-  init (): void
-
-  dismiss (): void
-
-  close (): void
-
-  open (): void
-
-  processDialog (options: ParsedDialog): void
-
-  showDialog (data: ParseOptions): void
-
-  confirmDialog (data: ParseOptions): void
-
-  fillIconBackground (icon: Icon | null): void
-
-  fillDialogIcon (icon: Icon | null): void
-
-  createButton (options: ButtonOptions, action: string): void
-
-  parseHtmlString (html: string): Element | null
-
-  startCloseTimeout (): void
-
-  accept (): void
-
-  reject (): void
-
-  disableButtons (): void
-
-  handleEscape (): void
-
-  pauseTimeout (): void
-
-  resumeTimeout (): void
-}
-
-export default (options: InitOptions): DialogComponent => ({
-  $refs: {} as Refs,
-  show: false,
-  style: null,
-  dialog: null,
+export default class DialogComponent extends AlpineComponent {
+  declare $refs: Refs
+  show = false
+  style = null
+  dialog = null
 
   init () {
-    this.$nextTick(() => {
-      window.Wireui.dispatchHook(`${options.id}:load`)
-    })
-  },
+    // this.$nextTick(() => {
+    //   window.Wireui.dispatchHook(`${options.id}:load`)
+    // })
+  }
   dismiss () {
     this.close()
-    this.dialog?.onDismiss()
-  },
+    // this.dialog?.onDismiss()
+  }
   close () {
     this.show = false
-    this.dialog?.timer?.pause()
-    this.dialog?.onClose()
-  },
+    // this.dialog?.timer?.pause()
+    // this.dialog?.onClose()
+  }
   open () {
     this.show = true
-  },
+  }
   processDialog (options) {
     this.dialog = options
     this.style = options.style
@@ -138,25 +90,25 @@ export default (options: InitOptions): DialogComponent => ({
       this.$refs.description.innerHTML = options.description
     }
 
-    this.$nextTick(() => this.open())
-
-    if (this.dialog?.timeout) {
-      this.startCloseTimeout()
-    }
-  },
+    // this.$nextTick(() => this.open())
+    //
+    // if (this.dialog?.timeout) {
+    //   this.startCloseTimeout()
+    // }
+  }
   showDialog (data) {
     const { options, componentId } = Array.isArray(data) ? data[0] : data
 
     this.processDialog(parseDialog(options, componentId))
-  },
+  }
   confirmDialog (data) {
     const { options, componentId } = Array.isArray(data) ? data[0] : data
 
     this.processDialog(parseConfirmation(options, componentId))
-  },
+  }
   fillIconBackground (icon) {
     this.$refs.iconContainer.className = icon?.background ?? ''
-  },
+  }
   fillDialogIcon (icon) {
     if (!icon?.name) return
 
@@ -181,7 +133,7 @@ export default (options: InitOptions): DialogComponent => ({
         svg.classList.add(...classes)
         this.$refs.iconContainer.replaceChildren(svg)
       })
-  },
+  }
   createButton (options, action) {
     const params = new URLSearchParams(options as string)
 
@@ -203,48 +155,48 @@ export default (options: InitOptions): DialogComponent => ({
 
         this.$refs[action].replaceChildren(button)
       })
-  },
+  }
   parseHtmlString (html) {
     const div = document.createElement('div')
     div.innerHTML = html
 
     return div.firstElementChild
-  },
+  }
   startCloseTimeout () {
-    if (!this.dialog) return
+    // if (!this.dialog) return
 
-    this.dialog.timer = timer(
-      this.dialog?.timeout ?? 0,
-      () => {
-        this.close()
-        this.dialog?.onTimeout()
-      },
-      (percentage) => {
-        this.$refs.progressbar.style.width = `${percentage}%`
-      }
-    )
-  },
+    // this.dialog.timer = timer(
+    //   this.dialog?.timeout ?? 0,
+    //   () => {
+    //     this.close()
+    //     // this.dialog?.onTimeout()
+    //   },
+    //   (percentage) => {
+    //     this.$refs.progressbar.style.width = `${percentage}%`
+    //   }
+    // )
+  }
   accept () {
     this.disableButtons()
     this.close()
-    this.dialog?.accept?.execute()
-  },
+    // this.dialog?.accept?.execute()
+  }
   reject () {
     this.disableButtons()
     this.close()
-    this.dialog?.reject?.execute()
-  },
+    // this.dialog?.reject?.execute()
+  }
   disableButtons () {
     this.$refs.accept.firstElementChild?.setAttribute('disabled', 'disabled')
     this.$refs.reject.firstElementChild?.setAttribute('disabled', 'disabled')
-  },
+  }
   handleEscape () {
     if (this.show) this.dismiss()
-  },
-  pauseTimeout () {
-    this.dialog?.timer?.pause()
-  },
-  resumeTimeout () {
-    this.dialog?.timer?.resume()
   }
-})
+  pauseTimeout () {
+    // this.dialog?.timer?.pause()
+  }
+  resumeTimeout () {
+    // this.dialog?.timer?.resume()
+  }
+}

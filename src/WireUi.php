@@ -10,34 +10,34 @@ use WireUi\View\{BladeDirectives, Components};
 
 class WireUi
 {
-    public function components(): ComponentResolver
+    public static function components(): ComponentResolver
     {
         return new ComponentResolver();
     }
 
-    public function directives(): BladeDirectives
+    public static function directives(): BladeDirectives
     {
         return new BladeDirectives();
     }
 
-    public function component(string $name): string
+    public static function component(string $name): string
     {
         return (new static())->components()->resolve($name);
     }
 
-    public function extractAttributes(mixed $property): ComponentAttributeBag
+    public static function extractAttributes(mixed $property): ComponentAttributeBag
     {
         return check_slot($property) ? $property->attributes : new ComponentAttributeBag();
     }
 
-    public function alpine(string $component, array $data = []): string
+    public static function alpine(string $component, array $data = []): string
     {
-        $expressions = $this->phpToJs($data);
+        $expressions = static::phpToJs($data);
 
         return "{$component}({{$expressions}})";
     }
 
-    public function phpToJs(array $data = []): string
+    public static function phpToJs(array $data = []): string
     {
         $expressions = '';
 

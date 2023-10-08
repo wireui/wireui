@@ -32,10 +32,6 @@ export default class ColorPicker extends AlpineComponent {
 
   positioning!: Positioning
 
-  constructor () {
-    super()
-  }
-
   get colors (): Color[] {
     if (this.$props.colors.length) {
       return this.$props.colors

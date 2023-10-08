@@ -1,63 +1,64 @@
-export type Refs = {
+import { AlpineComponent } from '@/alpine/components/alpine'
+
+type Refs = {
   input: HTMLInputElement
 }
 
-export interface InputNumber {
-  $refs: Refs,
-  min: string | null,
-  max: string | null,
-  value: string | null,
-  disabled: boolean,
-  readonly: boolean,
-
-  init(): void
-  plus(): void
-  minus(): void
-  get disablePlus(): boolean
-  get disableMinus(): boolean
+type Props = {
+  disabled: boolean
+  readonly: boolean
 }
 
-export default (params): InputNumber => ({
-  $refs: {} as Refs,
-  min: null,
-  max: null,
-  value: null,
-  disabled: params.disabled,
-  readonly: params.readonly,
+export default class InputNumber extends AlpineComponent {
+  declare $refs: Refs
+
+  $props!: Props
+
+  min: number|null = null
+
+  max: number|null = null
+
+  value: number|null = null
 
   init () {
-    this.min = this.$refs.input.min
+    this.min = Number(this.$refs.input.min) || null
+    this.max = Number(this.$refs.input.max) || null
+    this.value = Number(this.$refs.input.value) || null
+  }
 
-    this.max = this.$refs.input.max
-
-    this.value = this.$refs.input.value
-  },
-  plus () {
-    if (this.disabled || this.readonly) return
+  plus (): void {
+    if (this.$props.disabled || this.$props.readonly) return
 
     this.$refs.input.stepUp()
 
-    this.value = this.$refs.input.value
+    this.value = Number(this.$refs.input.value) || null
 
     this.$refs.input.dispatchEvent(new Event('input'))
-  },
-  minus () {
-    if (this.disabled || this.readonly) return
+  }
+
+  minus (): void {
+    if (this.$props.disabled || this.$props.readonly) return
 
     this.$refs.input.stepDown()
 
-    this.value = this.$refs.input.value
+    this.value = Number(this.$refs.input.value) || null
 
     this.$refs.input.dispatchEvent(new Event('input'))
-  },
-  get disablePlus () {
-    if (this.disabled) return true
-
-    return this.max ? Number(this.value) >= Number(this.max) : false
-  },
-  get disableMinus () {
-    if (this.disabled) return true
-
-    return this.min ? Number(this.value) <= Number(this.min) : false
   }
-})
+
+  get disablePlus (): boolean {
+    if (this.$props.disabled) return true
+
+    return this.max
+      ? Number(this.value) >= Number(this.max)
+      : false
+  }
+
+  get disableMinus (): boolean {
+    if (this.$props.disabled) return true
+
+    return this.min
+      ? Number(this.value) <= Number(this.min)
+      : false
+  }
+}

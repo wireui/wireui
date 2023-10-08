@@ -117,9 +117,9 @@ export default class DateTimePicker extends AlpineComponent {
   onPropsChange () {
     this.syncDateLimits()
 
-    if (this.state) {
-      this.syncPickerDates()
-    }
+    // if (this.state) {
+    //   this.syncPickerDates()
+    // }
   }
 
   syncDateLimits () {
@@ -152,19 +152,20 @@ export default class DateTimePicker extends AlpineComponent {
 
     this.syncDateLimits()
 
-    this.state = !this.state
+    // this.state = !this.state
     this.monthsPicker = false
   }
 
   close () {
-    this.state = false
+    // this.state = false
     this.monthsPicker = false
   }
 
+  // @ts-ignore
   handleEscape () {
     if (this.monthsPicker) return (this.monthsPicker = false)
 
-    this.state = false
+    // this.state = false
   }
 
   syncCalendar () {
@@ -392,9 +393,9 @@ export default class DateTimePicker extends AlpineComponent {
 
     this.syncWireModel()
 
-    !this.$props.withoutTime
-      ? this.tab = 'time'
-      : this.state = false
+    // !this.$props.withoutTime
+    //   ? this.tab = 'time'
+    //   : this.state = false
   }
 
   selectTime (time: iDate) {
@@ -402,14 +403,15 @@ export default class DateTimePicker extends AlpineComponent {
       this.input?.setTimezone(this.userTimezone)
     }
 
-    this.input?.setTime(time.value)
+    console.log(time)
+    // this.input?.setTime(time.value)
 
     if (!this.$props.withoutTimezone) {
       this.input?.setTimezone(this.$props.timezone)
     }
 
     this.syncWireModel()
-    this.state = false
+    // this.state = false
   }
 
   today (): Dateable {

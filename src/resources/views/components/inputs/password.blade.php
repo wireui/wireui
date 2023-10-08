@@ -23,14 +23,14 @@
             "
         >
             <x-dynamic-component
-                x-show="!status"
+                x-show="!state"
                 :component="WireUi::component('icon')"
                 name="eye-slash"
                 class="w-5 h-5"
             />
 
             <x-dynamic-component
-                x-show="status"
+                x-show="state"
                 :component="WireUi::component('icon')"
                 name="eye"
                 class="w-5 h-5"

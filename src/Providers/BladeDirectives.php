@@ -3,38 +3,38 @@
 namespace WireUi\Providers;
 
 use Illuminate\Support\Facades\Blade;
-use WireUi\Facades\WireUiDirectives;
+use WireUi\View\BladeDirectives as Directives;
 
 class BladeDirectives
 {
     public static function register(): void
     {
         Blade::directive('toJs', static function ($expression): string {
-            return WireUiDirectives::toJs($expression);
+            return Directives::toJs($expression);
         });
 
-        Blade::directive('boolean', static function ($value): string {
-            return WireUiDirectives::boolean($value);
-        });
-
-        Blade::directive('entangleable', static function ($value): string {
-            return WireUiDirectives::entangleable($value);
-        });
+        // Blade::directive('boolean', static function ($value): string {
+        //     return Directives::boolean($value);
+        // });
+        //
+        // Blade::directive('entangleable', static function ($value): string {
+        //     return Directives::entangleable($value);
+        // });
 
         Blade::directive('notify', static function (string $expression): string {
-            return WireUiDirectives::notify($expression);
+            return Directives::notify($expression);
         });
 
         Blade::directive('confirmAction', static function (string $expression): string {
-            return WireUiDirectives::confirmAction($expression);
+            return Directives::confirmAction($expression);
         });
 
         Blade::directive('wireUiStyles', static function (): string {
-            return WireUiDirectives::styles();
+            return Directives::styles();
         });
 
         Blade::directive('attributes', static function ($attributes): string {
-            return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
+            return "<?= new \WireUi\View\ComponentAttributesBag({$attributes}) ?>";
         });
 
         Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {

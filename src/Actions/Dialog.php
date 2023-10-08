@@ -3,11 +3,12 @@
 namespace WireUi\Actions;
 
 use Illuminate\Support\Str;
+use Livewire\Component;
 use WireUi\Enum\Icon;
 use WireUi\Support\DialogEvent;
 
 /**
- * @property \Livewire\Component|null $component
+ * @property Component|null $component
  */
 class Dialog
 {
@@ -18,6 +19,11 @@ class Dialog
         private $component = null,
         private ?string $dialogId = 'default',
     ) {
+    }
+
+    public static function makeEventName(?string $id): string
+    {
+        return "dialog:{$id}";
     }
 
     public function id(string $dialogId): self

@@ -8,10 +8,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
 use Tests\Unit\TestCase;
-use WireUi\Facades\WireUi;
-use WireUi\ServiceProvider;
 use WireUi\View\Attribute;
 use WireUi\View\Components\Icon;
+use WireUi\{ServiceProvider, WireUi};
 
 test('it should register the views paths', function () {
     /** @var Factory $view */

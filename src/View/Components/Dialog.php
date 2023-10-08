@@ -18,7 +18,7 @@ class Dialog extends BaseComponent
     public string $dialog;
 
     public function __construct(
-        string $id = null,
+        ?string $id = null,
         public ?string $title = null,
         public ?string $zIndex = null,
         public ?string $spacing = null,

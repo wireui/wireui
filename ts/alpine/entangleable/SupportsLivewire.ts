@@ -1,8 +1,13 @@
-import debounce from '@/utils/debounce'
-import throttle from '@/utils/throttle'
 import Entangleable from '@/alpine/entangleable'
 import { LivewireComponent, WireModel } from '@/livewire'
+import debounce from '@/utils/debounce'
 import { isEmpty } from '@/utils/helpers'
+import throttle from '@/utils/throttle'
+
+type Config = {
+  format?: CallableFunction
+  unFormat?: CallableFunction
+}
 
 export default class SupportsLivewire {
   private entangleable: Entangleable
@@ -11,10 +16,17 @@ export default class SupportsLivewire {
 
   private livewire: LivewireComponent
 
-  constructor (entangleable: Entangleable, wireModel: WireModel) {
+  private config?: Config
+
+  constructor (
+    entangleable: Entangleable,
+    wireModel: WireModel,
+    config?: Config
+  ) {
     this.entangleable = entangleable
     this.wireModel = wireModel
     this.livewire = <LivewireComponent>window.Livewire.find(wireModel.livewireId)
+    this.config = config
 
     this.init()
 
@@ -25,6 +37,10 @@ export default class SupportsLivewire {
 
   private init () {
     this.livewire.watch(this.wireModel.name, (value: any) => {
+      if (this.config?.unFormat) {
+        value = this.config.unFormat(value)
+      }
+
       this.entangleable.set(value)
     })
 
@@ -60,6 +76,10 @@ export default class SupportsLivewire {
   }
 
   set (value: any, isLive: boolean) {
+    if (this.config?.format) {
+      value = this.config.format(value)
+    }
+
     if (this.livewire.get(this.wireModel.name) === value) return
 
     this.livewire.set(this.wireModel.name, value, isLive)

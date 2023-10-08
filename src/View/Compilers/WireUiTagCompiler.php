@@ -3,7 +3,6 @@
 namespace WireUi\View\Compilers;
 
 use Illuminate\View\Compilers\ComponentTagCompiler;
-use WireUi\Facades\WireUiDirectives;
 
 class WireUiTagCompiler extends ComponentTagCompiler
 {

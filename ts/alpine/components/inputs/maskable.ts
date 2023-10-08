@@ -1,61 +1,44 @@
-import { Masker, masker } from '../../../utils/masker'
-import { Entangle } from '../alpine'
+import { AlpineComponent } from '@/alpine/components/alpine'
+import Entangleable from '@/alpine/entangleable'
+import { Masker, masker } from '@/utils/masker'
 
-export interface Options {
-  model: Entangle
+export interface Props {
   emitFormatted: boolean
-  isBlur: boolean
   mask: string
 }
 
-export interface Config {
-  emitFormatted: boolean
-  isBlur: boolean
-  mask: string
-}
+export default class Maskable extends AlpineComponent {
+  $props!: Props
 
-export interface Maskable {
-  [index: string]: any
+  entangleable: Entangleable = new Entangleable()
 
-  model: Entangle
-  input: string | null
-  masker: Masker
-  config: Config
+  input: string|null = null
 
-  init (): void
-
-  onInput (value: string | null): void
-
-  emitInput (): void
-}
-
-export default (options: Options): Maskable => ({
-  model: options.model,
-  input: null,
-  masker: masker(options.mask, null),
-  config: {
-    emitFormatted: options.emitFormatted,
-    isBlur: options.isBlur,
-    mask: options.mask
-  },
+  masker!: Masker
 
   init () {
-    this.input = this.masker.apply(this.model).value
+    this.masker = masker(this.$props.mask, this.input)
 
-    this.$watch('model', value => {
+    this.entangleable.watch((value: string|null) => {
       this.input = this.masker.apply(value).value
     })
-  },
-  onInput (value: string | null) {
-    this.input = this.masker.apply(value).value
 
-    if (!this.config.isBlur) {
-      this.emitInput()
-    }
-  },
-  emitInput () {
-    this.model = this.config.emitFormatted
+    this.$watch('model', (value: string|null) => {
+      this.input = this.masker.apply(value).value
+
+      this.entangleable.set(this.getValue())
+    })
+
+    this.input = this.masker.apply(this.input).value
+  }
+
+  getValue (): string|null {
+    return this.$props.emitFormatted
       ? this.masker.value
       : this.masker.getOriginal()
   }
-})
+
+  onBlur (): void {
+    this.entangleable.set(this.getValue(), { triggerBlur: true })
+  }
+}

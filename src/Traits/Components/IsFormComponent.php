@@ -4,7 +4,6 @@ namespace WireUi\Traits\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\Form\WrapperData;
 use WireUi\Traits\Components\Concerns\{
     HasAttributesExtraction,

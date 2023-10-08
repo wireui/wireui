@@ -23,7 +23,7 @@ class BladeDirectives
         return "onclick=\"window.\$wireui.notify({$expression}, {$safeLivewireId})\"";
     }
 
-    public function toJs(mixed $expression): string
+    public static function toJs(mixed $expression): string
     {
         return <<<EOT
         <?php

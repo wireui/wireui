@@ -1,5 +1,6 @@
 import { ColorsStore } from '@/alpine/store/colorPicker'
 import { ModalStore } from '@/alpine/store/modal'
+import { $Wire } from '@/livewire'
 
 export type Entangle = any
 
@@ -35,8 +36,8 @@ export interface Alpine {
     name: string,
     handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void,
   ): void;
-  reactive<Type> (data: Type): Type
-  effect (callback: () => void): void
+  // reactive<Type> (data: Type): Type
+  // effect (callback: () => void): void
 }
 
 export type FocusManager = {
@@ -59,7 +60,7 @@ export type FocusManager = {
 }
 
 export abstract class AlpineComponent {
-  $wire!: any
+  $wire!: $Wire
   $el!: HTMLElement
   $root!: HTMLElement
   $refs!: { [name: string]: HTMLElement }
