@@ -24,7 +24,9 @@
             $blur => (bool) $blur
         ])
         x-show="show"
-        x-on:click="close"
+        @if(! $attributes->get('prevent-outside-close'))
+            x-on:click="close"
+        @endif
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -35,7 +37,9 @@
 
     <div class="w-full min-h-full transform flex items-end justify-center mx-auto {{ $align }} {{ $maxWidth }}"
         x-show="show"
-        x-on:click.self="close"
+        @if(! $attributes->get('prevent-outside-close'))
+            x-on:click.self="close"
+        @endif
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
