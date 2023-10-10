@@ -2,21 +2,25 @@
 
 namespace WireUi\View\Components;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-class ColorPicker extends FormComponent
+class ColorPicker extends Component
 {
+    use IsFormComponent;
+
     public function __construct(
         public $rightIcon = 'swatch',
         public array|Collection $colors = [],
-        public ?string $label = null,
         public bool $colorNameAsValue = false,
     ) {
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.color-picker';
+        return view('wireui::components.color-picker');
     }
 
     public function getColors(): array

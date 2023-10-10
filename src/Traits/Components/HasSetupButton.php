@@ -6,7 +6,7 @@ trait HasSetupButton
 {
     public mixed $tag = null;
 
-    protected function setupButton(array &$component): void
+    protected function setupButton(array &$data): void
     {
         $this->tag = $this->getTag();
 
@@ -14,26 +14,26 @@ trait HasSetupButton
 
         $this->ensureWireLoading();
 
-        $this->setVariables($component, ['tag']);
+        $this->setVariables($data, ['tag']);
     }
 
     private function getTag(): string
     {
-        return $this->data->missing('href') ? 'button' : 'a';
+        return $this->attributes->missing('href') ? 'button' : 'a';
     }
 
     private function ensureLinkType(): void
     {
-        if (!$this->data->has('href') && !$this->data->has('type')) {
-            $this->data->offsetSet('type', 'button');
+        if (!$this->attributes->has('href') && !$this->attributes->has('type')) {
+            $this->attributes->offsetSet('type', 'button');
         }
     }
 
     private function ensureWireLoading(): void
     {
         if (property_exists($this, 'loading') && $this->loading) {
-            $this->data->offsetSet('wire:loading.attr', 'disabled');
-            $this->data->offsetSet('wire:loading.class', '!cursor-wait');
+            $this->attributes->offsetSet('wire:loading.attr', 'disabled');
+            $this->attributes->offsetSet('wire:loading.class', '!cursor-wait');
         }
     }
 }

@@ -8,7 +8,7 @@ class Flat extends ComponentPack
 {
     protected string $hover = 'hover:bg-opacity-25 dark:hover:bg-opacity-15';
 
-    protected string $focus = 'focus:bg-opacity-25 dark:focus:bg-opacity-15';
+    protected string $focus = 'focus:bg-opacity-25 dark:focus:bg-opacity-15 focus:ring-offset-0';
 
     public function default(): string
     {
@@ -32,6 +32,17 @@ class Flat extends ComponentPack
                 'focus' => [
                     "{$this->focus} focus:text-slate-600 focus:bg-slate-400 focus:ring-slate-200",
                     'dark:focus:text-slate-300/90 dark:focus:bg-slate-600 dark:focus:ring-slate-600',
+                ],
+            ],
+            'invalidated' => [
+                'base'  => 'invalidated:text-negative-600',
+                'hover' => [
+                    "{$this->hover} invalidated:hover:text-negative-700 invalidated:hover:bg-negative-200",
+                    'invalidated:dark:hover:text-negative-500 invalidated:dark:hover:bg-negative-600/15',
+                ],
+                'focus' => [
+                    "{$this->focus} invalidated:focus:text-negative-700 invalidated:focus:bg-negative-200 invalidated:focus:ring-negative-600",
+                    'invalidated:dark:focus:text-negative-500 invalidated:dark:focus:bg-negative-600/15 invalidated:dark:focus:ring-negative-700',
                 ],
             ],
             'primary' => [

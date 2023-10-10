@@ -18,7 +18,7 @@ trait HasSetupUnderline
         $this->underlineResolve = $class;
     }
 
-    protected function setupUnderline(array &$component): void
+    protected function setupUnderline(array &$data): void
     {
         throw_if(!$this->underlineResolve, new WireUiResolveException($this));
 
@@ -31,6 +31,6 @@ trait HasSetupUnderline
 
         $this->underlineClasses = $underlinePack->get($this->underline);
 
-        $this->setVariables($component, ['underline', 'underlineClasses']);
+        $this->setVariables($data, ['underline', 'underlineClasses']);
     }
 }

@@ -52,7 +52,7 @@ test('it should execute base component without value to align', function () {
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to align', function () {
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBe($alignRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to align', function () 
 
     $this->invokeMethod($this->component, 'setAlignResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->align)->toBe($alignRandom);
 

@@ -67,6 +67,7 @@ class BladeDirectives
     {
         $scripts = <<<JS
             window.Wireui = {
+                cache: {},
                 hook(hook, callback) {
                     window.addEventListener(`wireui:\${hook}`, () => callback())
                 },

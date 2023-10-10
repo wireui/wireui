@@ -11,6 +11,7 @@ use WireUi\View\Components;
  * @method static ComponentResolver components()
  * @method static BladeDirectives directives()
  * @method static string component(string $name)
+ * @method static string|null extractAttributes(mixed $property)
  */
 class WireUi extends Facade
 {
@@ -93,6 +94,10 @@ class WireUi extends Facade
             'input' => [
                 'class' => Components\Input::class,
                 'alias' => 'input',
+            ],
+            'inputs.wrapper' => [
+                'class' => Components\Inputs\Wrapper::class,
+                'alias' => 'inputs.wrapper',
             ],
             'inputs.currency' => [
                 'class' => Components\Inputs\CurrencyInput::class,

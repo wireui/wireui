@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs'
 import { Alpine as AlpineInterface, baseComponent, Component } from '@/components/alpine'
+import { WireUiHooks } from '@/hooks'
 
 export interface MockedAlpine extends AlpineInterface {
   store (name: string, data?: any): any
@@ -20,6 +21,12 @@ export const mockAlpineComponent = (component: Component): Component => {
   }
 
   return component
+}
+
+export const WireuiMock: WireUiHooks = {
+  cache: {},
+  hook: jest.fn(),
+  dispatchHook: jest.fn()
 }
 
 export const AlpineMock: MockedAlpine = {

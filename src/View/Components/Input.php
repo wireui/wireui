@@ -2,87 +2,16 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\Arr;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-class Input extends FormComponent
+class Input extends Component
 {
-    public function __construct(
-        public bool $borderless = false,
-        public bool $shadowless = false,
-        public ?string $label = null,
-        public ?string $hint = null,
-        public ?string $cornerHint = null,
-        public ?string $icon = null,
-        public ?string $rightIcon = null,
-        public ?string $prefix = null,
-        public ?string $suffix = null,
-        public ?string $prepend = null,
-        public ?string $append = null,
-        public bool $errorless = false,
-    ) {
-    }
+    use IsFormComponent;
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.input';
-    }
-
-    public function getInputClasses(bool $hasError = false): string
-    {
-        return Arr::toCssClasses([
-            $this->getDefaultClasses(),
-            'pl-8'                          => $this->prefix || $this->icon,
-            'pr-8'                          => $hasError     || $this->suffix || $this->rightIcon,
-            $this->getErrorClasses()        => $hasError,
-            $this->getDefaultColorClasses() => !$hasError,
-        ]);
-    }
-
-    protected function getErrorClasses(): string
-    {
-        $default = <<<EOT
-            text-negative-900 dark:text-negative-600 placeholder-negative-300
-            dark:placeholder-negative-500
-        EOT;
-
-        $withBorder = <<<EOT
-            border border-negative-300 focus:ring-negative-500 focus:border-negative-500
-            dark:bg-secondary-800 dark:border-negative-600
-        EOT;
-
-        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
-    }
-
-    protected function getDefaultColorClasses(): string
-    {
-        $default = <<<EOT
-            placeholder-secondary-400 dark:bg-secondary-800 dark:text-secondary-400
-            dark:placeholder-secondary-500
-        EOT;
-
-        $withBorder = <<<EOT
-            border border-secondary-300 focus:ring-primary-500 focus:border-primary-500
-            dark:border-secondary-600
-        EOT;
-
-        return Arr::toCssClasses([$default, $withBorder => !$this->borderless]);
-    }
-
-    protected function getDefaultClasses(): string
-    {
-        $default = <<<EOT
-            form-input block w-full sm:text-sm rounded-md transition
-            ease-in-out duration-100 focus:outline-none
-        EOT;
-
-        $withShadow = 'shadow-sm';
-
-        $withoutBorder = 'border-transparent focus:border-transparent focus:ring-transparent';
-
-        return Arr::toCssClasses([
-            $default,
-            $withShadow    => !$this->shadowless,
-            $withoutBorder => $this->borderless,
-        ]);
+        return view('wireui::components.input');
     }
 }

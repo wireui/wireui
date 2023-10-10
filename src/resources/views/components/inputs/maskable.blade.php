@@ -1,25 +1,22 @@
-<div x-data="wireui_inputs_maskable({
-    isBlur: @boolean($attributes->wire('model')->hasModifier('blur')),
-    model: @entangleable($attributes->wire('model')),
-    emitFormatted: @boolean($emitFormatted),
-    mask: {{ $mask }},
-})" {{ $attributes->only('wire:key') }}>
-    <x-dynamic-component
-        :component="WireUi::component('input')"
-        :borderless="$borderless"
-        :shadowless="$shadowless"
-        :label="$label"
-        :hint="$hint"
-        :corner-hint="$cornerHint"
-        :icon="$icon"
-        :right-icon="$rightIcon"
-        :prefix="$prefix"
-        :suffix="$suffix"
-        :prepend="$prepend"
-        :append="$append"
+<x-inputs.wrapper
+    :x-data="WireUi::alpine('wireui_inputs_maskable', [
+        'isBlur'        => $attrs->wire('model')->hasModifier('blur'),
+        'model'         => null,
+        'emitFormatted' => $emitFormatted,
+        'mask'          => $mask,
+    ])"
+    :data="$wrapperData"
+    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
+>
+    @include('wireui::form.wrapper.slots')
+
+    <x-wireui::inputs.element
         x-model="input"
         x-on:input="onInput($event.target.value)"
         x-on:blur="emitInput"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
+        :attributes="$attrs
+            ->except('class')
+            ->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key'])
+        "
     />
-</div>
+</x-inputs.wrapper>

@@ -2,45 +2,24 @@
 
 namespace WireUi\View\Components\Inputs;
 
-use WireUi\View\Components\Input;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
 
-class CurrencyInput extends Input
+class CurrencyInput extends Component
 {
+    use IsFormComponent;
+
     public function __construct(
         public string $thousands = ',',
         public string $decimal = '.',
         public int $precision = 2,
         public bool $emitFormatted = false,
-
-        bool $borderless = false,
-        bool $shadowless = false,
-        string $label = null,
-        string $hint = null,
-        string $cornerHint = null,
-        string $icon = null,
-        string $rightIcon = null,
-        string $prefix = null,
-        string $suffix = null,
-        string $prepend = null,
-        string $append = null,
     ) {
-        parent::__construct(
-            borderless: $borderless,
-            shadowless: $shadowless,
-            label: $label,
-            hint: $hint,
-            cornerHint: $cornerHint,
-            icon: $icon,
-            rightIcon: $rightIcon,
-            prefix: $prefix,
-            suffix: $suffix,
-            prepend: $prepend,
-            append: $append,
-        );
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.inputs.currency';
+        return view('wireui::components.inputs.currency');
     }
 }

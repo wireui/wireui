@@ -16,7 +16,7 @@ trait HasSetupVariant
         $this->variantResolve = $class;
     }
 
-    protected function setupVariant(array &$component): void
+    protected function setupVariant(array &$data): void
     {
         throw_if(!$this->variantResolve, new WireUiResolveException($this));
 
@@ -35,6 +35,6 @@ trait HasSetupVariant
             $this->setVariantPack($variantPack);
         }
 
-        $this->setVariables($component, ['variant']);
+        $this->setVariables($data, ['variant']);
     }
 }

@@ -10,7 +10,7 @@ class Light extends ComponentPack
 
     protected string $hover = 'hover:bg-opacity-60 dark:hover:bg-opacity-30';
 
-    protected string $focus = 'focus:bg-opacity-60 dark:focus:bg-opacity-30';
+    protected string $focus = 'focus:bg-opacity-60 dark:focus:bg-opacity-30 focus:ring-offset-2';
 
     public function default(): string
     {

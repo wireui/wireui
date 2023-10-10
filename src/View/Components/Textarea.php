@@ -2,10 +2,26 @@
 
 namespace WireUi\View\Components;
 
-class Textarea extends Input
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
+use WireUi\Traits\Components\IsFormComponent;
+
+class Textarea extends Component
 {
-    protected function getView(): string
+    use IsFormComponent;
+
+    protected function except(): array
     {
-        return 'wireui::components.textarea';
+        return [
+            'icon',
+            'right-icon',
+            'prefix',
+            'suffix',
+        ];
+    }
+
+    protected function blade(): View
+    {
+        return view('wireui::components.textarea');
     }
 }

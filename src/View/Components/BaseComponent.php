@@ -5,7 +5,7 @@ namespace WireUi\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
-use Illuminate\View\{Component, ComponentAttributeBag};
+use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
 
@@ -14,8 +14,6 @@ abstract class BaseComponent extends Component
     protected ?string $config = null;
 
     private array $smartAttributes = [];
-
-    protected ComponentAttributeBag $data;
 
     private function setConfig(): void
     {
@@ -27,21 +25,19 @@ abstract class BaseComponent extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return $this->blade()->with($this->executeBaseComponent($data))->render();
+            return $this->blade()->with($this->runBaseComponent($data))->render();
         };
     }
 
-    private function executeBaseComponent(array $component): array
+    private function runBaseComponent(array $data): array
     {
         $this->setConfig();
 
-        $this->data = $component['attributes'];
-
         foreach ($this->getMethods() as $method) {
-            $this->{$method}($component);
+            $this->{$method}($data);
         }
 
-        return Arr::set($component, 'attributes', $this->data->except($this->smartAttributes));
+        return Arr::set($data, 'attributes', $this->attributes->except($this->smartAttributes));
     }
 
     private function getMethods(): array
@@ -67,16 +63,16 @@ abstract class BaseComponent extends Component
 
     protected function getData(string $attribute, callable $callback = null): mixed
     {
-        if ($this->data->has($kebab = Str::kebab($attribute))) {
+        if ($this->attributes->has($kebab = Str::kebab($attribute))) {
             $this->smartAttributes($kebab);
 
-            return $this->data->get($kebab);
+            return $this->attributes->get($kebab);
         }
 
-        if ($this->data->has($camel = Str::camel($attribute))) {
+        if ($this->attributes->has($camel = Str::camel($attribute))) {
             $this->smartAttributes($camel);
 
-            return $this->data->get($camel);
+            return $this->attributes->get($camel);
         }
 
         $config = config("wireui.{$this->config}.{$kebab}");
@@ -86,17 +82,19 @@ abstract class BaseComponent extends Component
 
     protected function getDataModifier(string $attribute, ComponentPack $dataPack): mixed
     {
-        $value = $this->data->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
+        $value = $this->attributes->get($attribute) ?? $this->getMatchModifier($dataPack->keys());
 
-        $this->smartAttributes([$attribute, ...$dataPack->keys()]);
+        $remove = in_array($value, $dataPack->keys()) ? [$value] : [];
+
+        $this->smartAttributes([$attribute, ...$remove]);
 
         return $value ?? config("wireui.{$this->config}.{$attribute}");
     }
 
-    protected function setVariables(array &$component, array $variables): void
+    protected function setVariables(array &$data, array $variables): void
     {
         foreach ($variables as $variable) {
-            $component[$variable] = $this->{$variable};
+            $data[$variable] = $this->{$variable};
         }
     }
 

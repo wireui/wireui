@@ -6,28 +6,28 @@ trait HasSetupForm
 {
     private array $sharedAttributes = ['id', 'name', 'readonly', 'disabled'];
 
-    protected function setupForm(array &$component): void
+    protected function setupForm(array &$data): void
     {
-        $model = $this->data->wire('model')->value();
+        $model = $this->attributes->wire('model')->value();
 
-        if ($this->data->has('name') && !$model) {
-            $model = $this->data->get('name');
+        if ($this->attributes->has('name') && !$model) {
+            $model = $this->attributes->get('name');
         }
 
-        if (!$this->data->has('name') && $model) {
-            $this->data->offsetSet('name', $model);
+        if (!$this->attributes->has('name') && $model) {
+            $this->attributes->offsetSet('name', $model);
         }
 
-        if (!$this->data->has('id') && $model) {
-            $this->data->offsetSet('id', md5($model));
+        if (!$this->attributes->has('id') && $model) {
+            $this->attributes->offsetSet('id', $model);
         }
 
-        collect($this->sharedAttributes)->each(function ($attribute) use (&$component) {
-            $value = $this->data->get($attribute);
+        collect($this->sharedAttributes)->each(function ($attribute) use (&$data) {
+            $value = $this->attributes->get($attribute);
 
-            $component[$attribute] = $value;
+            $data[$attribute] = $value;
 
-            $this->data->offsetSet($attribute, $value);
+            $this->attributes->offsetSet($attribute, $value);
         });
     }
 }

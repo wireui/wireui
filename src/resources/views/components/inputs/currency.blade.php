@@ -1,27 +1,23 @@
-<div x-data="wireui_inputs_currency({
-    isBlur: @boolean($attributes->wire('model')->hasModifier('blur')),
-    model:  @entangleable($attributes->wire('model')),
-    emitFormatted: @boolean($emitFormatted),
-    thousands: '{{ $thousands }}',
-    decimal:   '{{ $decimal }}',
-    precision:  {{ $precision }},
-})" {{ $attributes->only('wire:key') }}>
-    <x-dynamic-component
-        :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'wire:key'])->except('type') }}
-        :borderless="$borderless"
-        :shadowless="$shadowless"
-        :label="$label"
-        :hint="$hint"
-        :corner-hint="$cornerHint"
-        :icon="$icon"
-        :right-icon="$rightIcon"
-        :prefix="$prefix"
-        :suffix="$suffix"
-        :prepend="$prepend"
-        :append="$append"
+<x-inputs.wrapper
+    :data="$wrapperData"
+    :attributes="$attrs->only(['wire:key', 'class'])"
+    :x-data="WireUi::alpine('wireui_inputs_currency', [
+        'isBlur'        => $attrs->wire('model')->hasModifier('blur'),
+        'model'         => $attrs->wire('model'),
+        'emitFormatted' => $emitFormatted,
+        'thousands'     => $thousands,
+        'decimal'       => $decimal,
+        'precision'     => $precision,
+    ])"
+>
+    @include('wireui::form.wrapper.slots')
+
+    <x-wireui::inputs.element
         x-model="input"
         x-on:input="mask($event.target.value)"
         x-on:blur="emitInput($event.target.value)"
+        :attributes="$attrs
+            ->whereDoesntStartWith(['wire:model', 'wire:key'])
+            ->except(['type', 'wire:key', 'x-data', 'class'])"
     />
-</div>
+</x-inputs.wrapper>

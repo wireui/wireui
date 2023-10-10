@@ -10,7 +10,7 @@ class Solid extends ComponentPack
 
     private string $hover = 'hover:text-white';
 
-    private string $focus = 'focus:text-white';
+    private string $focus = 'focus:text-white focus:ring-offset-2';
 
     public function default(): string
     {

@@ -23,6 +23,7 @@ export interface Select extends Focusables, Positioning {
   initOptionsObserver (): void
   initSlotObserver (): void
   shouldSyncProps(mutations: MutationRecord[]): boolean
+  rootContainer (): HTMLElement
   syncProps (): void
   syncJsonOptions (): void
   syncSlotOptions (): void

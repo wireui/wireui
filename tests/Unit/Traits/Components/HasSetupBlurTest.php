@@ -54,7 +54,7 @@ test('it should execute base component without value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->blur)->toBeNull();
 
@@ -75,7 +75,7 @@ test('it should execute base component with value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->blurless)->toBeTrue();
 
@@ -96,7 +96,7 @@ test('it should execute base component with custom value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->blurless)->toBeFalse();
 

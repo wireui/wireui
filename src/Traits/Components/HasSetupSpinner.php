@@ -8,23 +8,23 @@ trait HasSetupSpinner
 {
     public ?ComponentAttributeBag $spinnerRemove = null;
 
-    protected function setupSpinner(array &$component): void
+    protected function setupSpinner(array &$data): void
     {
         $this->spinnerRemove = new ComponentAttributeBag();
 
-        $this->setSpinnerVariables($component);
+        $this->setSpinnerVariables($data);
     }
 
-    private function setSpinnerVariables(array &$component): void
+    private function setSpinnerVariables(array &$data): void
     {
-        $component['spinner'] = $this->executeSpinner();
+        $data['spinner'] = $this->executeSpinner();
 
-        $component['spinnerRemove'] = $this->spinnerRemove;
+        $data['spinnerRemove'] = $this->spinnerRemove;
     }
 
     private function executeSpinner(): ?ComponentAttributeBag
     {
-        $spinner = $this->data->attribute('spinner');
+        $spinner = $this->attributes->attribute('spinner');
 
         if (is_null($spinner)) {
             return null;
@@ -36,7 +36,7 @@ trait HasSetupSpinner
             $attributes->offsetSet('wire:target', $target);
         }
 
-        $this->data->offsetUnset($spinner->directive());
+        $this->attributes->offsetUnset($spinner->directive());
 
         return $attributes;
     }

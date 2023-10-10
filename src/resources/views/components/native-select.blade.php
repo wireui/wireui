@@ -1,27 +1,29 @@
-<div class="@if($disabled) opacity-60 @endif">
-    @if ($label)
-        <x-dynamic-component
-            :component="WireUi::component('label')"
-            class="mb-1"
-            :label="$label"
-            :has-error="$errors->has($name)"
-            :for="$id"
-        />
-    @endif
+<x-inputs.wrapper
+    :data="$wrapperData"
+    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
+    :with-error-icon="false"
+>
+    @include('wireui::form.wrapper.slots')
 
-    <select {{ $attributes->class([
-        $defaultClasses(),
-        $errorClasses() =>  $errors->has($name),
-        $colorClasses() => !$errors->has($name),
-    ]) }}>
+    <select {{ $attrs
+        ->except(['class', 'wire:key', 'x-data'])
+        ->class([
+            'bg-transparent w-full p-0 border-0 outline-0 ring-0',
+            'sm:text-sm sm:leading-6 text-gray-900',
+            'invalidated:text-negative-800 invalidated:dark:text-negative-600',
+            'invalidated:placeholder-negative-400 invalidated:dark:placeholder-negative-600/70',
+        ]) }}
+    >
         @if ($options->isNotEmpty())
             @if ($placeholder)
                 <option value="">{{ $placeholder }}</option>
             @endif
 
             @forelse ($options as $key => $option)
-                <option value="{{ $getOptionValue($key, $option) }}"
-                    @if(data_get($option, 'disabled', false)) disabled @endif>
+                <option
+                    value="{{ $getOptionValue($key, $option) }}"
+                    @disabled(data_get($option, 'disabled', false))
+                >
                     {{ $getOptionLabel($option) }}
                 </option>
             @empty
@@ -33,17 +35,4 @@
             @endforelse
         @else {{ $slot }} @endif
     </select>
-
-    @if ($hint)
-        <label @if ($id) for="{{ $id }}" @endif class="mt-2 text-sm text-secondary-500 dark:text-secondary-400">
-            {{ $hint }}
-        </label>
-    @endif
-
-    @if ($name)
-        <x-dynamic-component
-            :component="WireUi::component('error')"
-            :name="$name"
-        />
-    @endif
-</div>
+</x-inputs.wrapper>

@@ -52,7 +52,7 @@ test('it should execute base component without value to position', function () {
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to position', function () {
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBe($positionRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to position', function 
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'executeBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBe($positionRandom);
 
