@@ -4,7 +4,7 @@
     ])"
     :data="$wrapperData"
     :attributes="$attrs->only('wire:key')"
-    :x-props="WireUi::phpToJs([
+    :x-props="WireUi::toJs([
         'config' => [
             'interval' => $interval,
             'is12H'    => $timeFormat == '12',

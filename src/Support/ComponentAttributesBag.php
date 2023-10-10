@@ -14,7 +14,7 @@ class ComponentAttributesBag extends ComponentAttributeBag
             ->filter()
             ->mapWithKeys(static function ($value, string $key): array {
                 if (is_bool($value)) {
-                    $value = json_encode($value);
+                    $value = $value ? 'true' : 'false';
                 }
 
                 return [$key => $value];

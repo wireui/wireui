@@ -4,7 +4,7 @@
     :x-data="WireUi::alpine('wireui_select', [
         'wireModel' => null,
     ])"
-    :x-props="WireUi::phpToJs([
+    :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,
         'optionLabel'       => $optionLabel,

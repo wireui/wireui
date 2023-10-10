@@ -5,7 +5,6 @@ namespace WireUi\Support;
 use Illuminate\Support\Str;
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use Livewire\{Component, WireDirective};
-use WireUi\Support\{BladeDirectives, ComponentResolver};
 
 class WireUiSupport
 {
@@ -26,28 +25,32 @@ class WireUiSupport
 
     public function extractAttributes(mixed $property): ComponentAttributeBag
     {
-        return check_slot($property) ? $property->attributes : new ComponentAttributeBag();
+        return $property instanceof ComponentSlot
+            ? $property->attributes
+            : new ComponentAttributeBag();
     }
 
     public function alpine(string $component, array $data = []): string
     {
-        $expressions = $this->phpToJs($data);
+        $expressions = $this->toJs($data);
 
         return "{$component}({$expressions})";
     }
 
-    public function phpToJs(array $data = []): string
+    public function toJs(array $data = []): string
     {
         $expressions = '';
 
         $parse = function ($value) {
-            if (is_object($value) || is_array($value)) {
-                return "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))";
-            } elseif (is_string($value)) {
-                return "'" . str_replace("'", "\'", $value) . "'";
-            }
-
-            return json_encode($value);
+            return match (true) {
+                is_array($value),
+                is_object($value)  => "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))",
+                is_string($value)  => "'" . str_replace("'", "\'", $value) . "'",
+                is_bool($value)    => $value ? 'true' : 'false',
+                $value === null    => 'null',
+                is_numeric($value) => (string) $value,
+                default            => json_encode($value),
+            };
         };
 
         foreach ($data as $key => $value) {

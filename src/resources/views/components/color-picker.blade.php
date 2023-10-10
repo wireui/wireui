@@ -2,7 +2,7 @@
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_color_picker"
-    :x-props="WireUi::phpToJs([
+    :x-props="WireUi::toJs([
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),

@@ -33,7 +33,6 @@ class Wrapper extends Component
         public ?bool $shadowless = null, // todo
         WrapperData $data = null,
     ) {
-        // dd($data, $this);
         if ($data) {
             $this->fill($data->toArray());
         }
