@@ -4,14 +4,13 @@ namespace Tests\Unit\Providers;
 
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\{Blade, View};
-use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
 use Tests\Unit\TestCase;
 use WireUi\Facades\WireUi;
+use WireUi\ServiceProvider;
 use WireUi\View\Attribute;
 use WireUi\View\Components\Icon;
-use WireUi\WireUiServiceProvider;
 
 test('it should register the views paths', function () {
     /** @var Factory $view */
@@ -29,7 +28,7 @@ test('it should merge the wireui config', function () {
 
 test('the root dir function should create the correct path', function () {
     /** @var TestCase $this */
-    $provider = new WireUiServiceProvider(new Application());
+    $provider = new ServiceProvider(new Application());
 
     expect($this->invokeMethod($provider, 'srcDir', ['config.php']))->toEndWith('/src/config.php');
     expect($this->invokeMethod($provider, 'srcDir', ['resources/views']))->toEndWith('/src/resources/views');
