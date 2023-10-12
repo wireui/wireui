@@ -69,11 +69,11 @@
         @if (!isset($prepend) && ($prefix || $icon))
             <div
                 name="form.wrapper.container.prefix"
-                class="
-                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
-                    input-focus:text-primary-500 invalidated:input-focus:text-negative-500
-                    invalidated:text-negative-500
-                "
+                {{ WireUi::extractAttributes($prefix)->class([
+                    'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
+                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500',
+                ]) }}
             >
                 @if ($icon)
                     <x-dynamic-component
@@ -82,9 +82,7 @@
                         class="w-4.5 h-4.5"
                     />
                 @elseif($prefix)
-                    <span {{ WireUi::extractAttributes($prefix) }}>
-                        {{ $prefix }}
-                    </span>
+                    {{ $prefix }}
                 @endif
             </div>
         @elseif (isset($prepend))
@@ -104,11 +102,11 @@
         @if (!isset($append) && ($rightIcon || $suffix || $withErrorIcon))
             <div
                 name="form.wrapper.container.suffix"
-                class="
-                    text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap
-                    input-focus:text-primary-500 invalidated:input-focus:text-negative-500
-                    invalidated:text-negative-500
-                "
+                {{ WireUi::extractAttributes($suffix)->class([
+                    'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
+                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500',
+                ]) }}
             >
                 @if ($rightIcon)
                     <x-dynamic-component
@@ -117,9 +115,7 @@
                         class="w-4.5 h-4.5"
                     />
                 @elseif($suffix)
-                    <span {{ WireUi::extractAttributes($suffix) }}>
-                        {{ $suffix }}
-                    </span>
+                    {{ $suffix }}
                 @elseif($withErrorIcon)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
