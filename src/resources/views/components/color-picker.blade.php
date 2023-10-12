@@ -12,13 +12,12 @@
         'except' => ['prefix', 'append']
     ])
 
-     <x-slot:prefix>
-         <div
-             x-show="selected.value"
-             class="w-4 h-4 rounded shadow border"
-             :style="{ 'background-color': selected.value }"
-         ></div>
-     </x-slot:prefix>
+    <x-slot:prefix x-show="selected.value">
+        <div
+            class="w-4 h-4 rounded shadow border"
+            :style="{ 'background-color': selected.value }"
+        ></div>
+    </x-slot:prefix>
 
     <x-wireui::inputs.element
         x-model="selected.value"
@@ -70,7 +69,7 @@
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
         >
              <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto">
-                 <template x-for="(color, index) in colors" :key="index">
+                 <template x-for="color in colors" :key="`${color.value}.${color.name}`">
                      <button
                          class="
                              w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer
