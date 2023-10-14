@@ -2,33 +2,33 @@
 
 namespace Tests\Unit\Actions;
 
-use WireUi\Enum\Actions;
+use WireUi\Enum\Icon;
 
 dataset('dialog::event', [
     ['home', 'home'],
-    [null, Actions::INFO->value],
+    [null, Icon::INFO],
 ]);
 
 dataset('dialog::confirm::event', [
     ['home', 'home'],
-    [null, Actions::QUESTION->value],
+    [null, Icon::QUESTION],
 ]);
 
 dataset('simple::dialog::event', [
-    [Actions::SUCCESS->value],
-    [Actions::ERROR->value],
-    [Actions::INFO->value],
-    [Actions::WARNING->value],
+    [Icon::SUCCESS],
+    [Icon::ERROR],
+    [Icon::INFO],
+    [Icon::WARNING],
 ]);
 
 dataset('notification::event', [
     ['home', 'home'],
-    [null, Actions::QUESTION->value],
+    [null, Icon::QUESTION],
 ]);
 
 dataset('simple::notification::event', [
-    [Actions::SUCCESS->value],
-    [Actions::ERROR->value],
-    [Actions::INFO->value],
-    [Actions::WARNING->value],
+    [Icon::SUCCESS],
+    [Icon::ERROR],
+    [Icon::INFO],
+    [Icon::WARNING],
 ]);

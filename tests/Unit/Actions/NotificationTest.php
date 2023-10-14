@@ -4,7 +4,7 @@ namespace Tests\Unit\Actions;
 
 use Mockery\Mock;
 use Tests\Unit\{TestCase, TestComponent};
-use WireUi\Enum\Actions;
+use WireUi\Enum\Icon;
 
 test('it should emit a notification event', function () {
     $event = 'wireui:notification';
@@ -12,7 +12,7 @@ test('it should emit a notification event', function () {
     $params = [
         'componentId' => 'fake-id',
         'options'     => [
-            'icon'  => Actions::SUCCESS->value,
+            'icon'  => Icon::SUCCESS,
             'title' => 'WireUI is awesome!',
         ],
     ];
