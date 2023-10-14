@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupMaxWidth
@@ -11,26 +10,15 @@ trait HasSetupMaxWidth
 
     public mixed $maxWidthClasses = null;
 
-    private mixed $maxWidthResolve = null;
-
-    protected function setMaxWidthResolve(string $class): void
+    protected function setupMaxWidth(): void
     {
-        $this->maxWidthResolve = $class;
-    }
-
-    protected function setupMaxWidth(array &$data): void
-    {
-        throw_if(!$this->maxWidthResolve, new WireUiResolveException($this));
-
-        $maxWidths = config("wireui.{$this->config}.max-widths");
-
         /** @var ComponentPack $maxWidthPack */
-        $maxWidthPack = $maxWidths ? resolve($maxWidths) : resolve($this->maxWidthResolve);
+        $maxWidthPack = resolve(config("wireui.{$this->config}.packs.max-widths"));
 
         $this->maxWidth = $this->getData('max-width');
 
         $this->maxWidthClasses = $maxWidthPack->get($this->maxWidth);
 
-        $this->setVariables($data, ['maxWidth', 'maxWidthClasses']);
+        $this->setVariables(['maxWidth', 'maxWidthClasses']);
     }
 }

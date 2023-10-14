@@ -10,7 +10,7 @@ trait HasSetupIcon
 
     public mixed $rightIcon = null;
 
-    protected function setupIcon(array &$data): void
+    protected function setupIcon(): void
     {
         $this->icon = $this->getData('icon');
 
@@ -18,6 +18,6 @@ trait HasSetupIcon
 
         $this->iconless = (bool) ($this->getData('iconless') ?? false);
 
-        $this->setVariables($data, ['icon', 'iconless', 'rightIcon']);
+        $this->setVariables(['icon', 'iconless', 'rightIcon']);
     }
 }

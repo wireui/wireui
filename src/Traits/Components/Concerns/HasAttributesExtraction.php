@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components\Concerns;
 
 use Illuminate\Support\Str;
-use Illuminate\View\ComponentAttributeBag;
 
 trait HasAttributesExtraction
 {
@@ -12,15 +11,12 @@ trait HasAttributesExtraction
         return [];
     }
 
-    protected function extractAttributes(array $data): array
+    protected function extractAttributes(array &$data): void
     {
-        /** @var ComponentAttributeBag $attributes */
-        $attributes = $data['attributes'];
-
         foreach ($this->extractableAttributes() as $attribute) {
             $property = Str::camel($attribute);
 
-            if ($attributes->missing($attribute)) {
+            if ($this->attributes->missing($attribute)) {
                 if (!array_key_exists($property, $data) && !property_exists($this, $property)) {
                     $data[$property] = null;
                 }
@@ -28,11 +24,9 @@ trait HasAttributesExtraction
                 continue;
             }
 
-            $data[$property] = $attributes->get($attribute);
+            $data[$property] = $this->attributes->get($attribute);
 
-            $attributes->offsetUnset($attribute);
+            $this->attributes->offsetUnset($attribute);
         }
-
-        return $data;
     }
 }

@@ -9,9 +9,11 @@ use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
 
-abstract class BaseComponent extends Component
+abstract class WireUiComponent extends Component
 {
     protected ?string $config = null;
+
+    private array $setVariables = [];
 
     private array $smartAttributes = [];
 
@@ -25,16 +27,32 @@ abstract class BaseComponent extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return $this->blade()->with($this->runBaseComponent($data))->render();
+            return $this->blade()->with($this->runWireUiComponent($data))->render();
         };
     }
 
-    private function runBaseComponent(array $data): array
+    private function runWireUiComponent(array $data): array
     {
         $this->setConfig();
 
+        if (method_exists($this, 'mount')) {
+            $this->mount($data);
+        }
+
         foreach ($this->getMethods() as $method) {
             $this->{$method}($data);
+        }
+
+        if (method_exists($this, 'rendered')) {
+            $this->rendered($data);
+        }
+
+        foreach ($this->setVariables as $attribute) {
+            $data[$attribute] = $this->{$attribute};
+        }
+
+        if (method_exists($this, 'formable')) {
+            $this->formable($data);
         }
 
         return Arr::set($data, 'attributes', $this->attributes->except($this->smartAttributes));
@@ -47,15 +65,15 @@ abstract class BaseComponent extends Component
         )->values();
 
         if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
-            $methods = $methods->putEnd('setupIconSize');
+            $methods = $methods->reject('setupIconSize')->push('setupIconSize');
         }
 
         if ($methods->containsAll(['setupVariant', 'setupColor'])) {
-            $methods = $methods->putEnd('setupColor');
+            $methods = $methods->reject('setupColor')->push('setupColor');
         }
 
         if ($methods->containsAll(['setupStateColor'])) {
-            $methods = $methods->putEnd('setupStateColor');
+            $methods = $methods->reject('setupStateColor')->push('setupStateColor');
         }
 
         return $methods->values()->toArray();
@@ -75,7 +93,7 @@ abstract class BaseComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        $config = config("wireui.{$this->config}.{$kebab}");
+        $config = config("wireui.{$this->config}.default.{$kebab}");
 
         return $callback ? $callback($config) : $config;
     }
@@ -88,14 +106,14 @@ abstract class BaseComponent extends Component
 
         $this->smartAttributes([$attribute, ...$remove]);
 
-        return $value ?? config("wireui.{$this->config}.{$attribute}");
+        return $value ?? config("wireui.{$this->config}.default.{$attribute}");
     }
 
-    protected function setVariables(array &$data, array $variables): void
+    protected function setVariables(mixed $variables): void
     {
-        foreach ($variables as $variable) {
-            $data[$variable] = $this->{$variable};
-        }
+        collect(Arr::wrap($variables))->filter()->each(
+            fn ($value) => $this->setVariables[] = $value,
+        );
     }
 
     protected function smartAttributes(mixed $attributes): void

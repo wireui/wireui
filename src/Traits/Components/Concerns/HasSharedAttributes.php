@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components\Concerns;
 
 use Illuminate\Support\Str;
-use Illuminate\View\ComponentAttributeBag;
 
 trait HasSharedAttributes
 {
@@ -12,41 +11,37 @@ trait HasSharedAttributes
         return [];
     }
 
-    protected function mergeAttributes(array $data): array
+    protected function mergeAttributes(array &$data): void
     {
-        /** @var ComponentAttributeBag $attributes */
-        $attributes = $data['attributes'];
-
-        $this->injectModel($attributes);
+        $this->injectModel();
 
         foreach ($this->sharedAttributes() as $attribute) {
             $property = Str::camel($attribute);
 
             $value = property_exists($this, $property)
                 ? data_get($this, $property)
-                : $attributes->get($attribute);
+                : $this->attributes->get($attribute);
 
             $data[$property] = $value;
-            $attributes->offsetSet($attribute, $value);
-        }
 
-        return $data;
+            $this->attributes->offsetSet($attribute, $value);
+        }
     }
 
-    private function injectModel(ComponentAttributeBag $attributes): void
+    private function injectModel(): void
     {
         /** @var ?string $model */
-        $model = $attributes->wire('model')->value();
+        $model = $this->attributes->wire('model')->value();
 
         /** @var ?string $name */
-        $name = $attributes->get('name', $model);
+        $name = $this->attributes->get('name', $model);
 
-        if ($attributes->missing('name') && $model) {
-            $attributes->offsetSet('name', $model);
+        if ($this->attributes->missing('name') && $model) {
+            $this->attributes->offsetSet('name', $model);
         }
 
-        if ($attributes->missing('id') && $name) {
-            $attributes->offsetSet('id', $name);
+        if ($this->attributes->missing('id') && $name) {
+            $this->attributes->offsetSet('id', $name);
         }
     }
 }

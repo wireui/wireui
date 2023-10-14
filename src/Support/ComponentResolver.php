@@ -22,6 +22,6 @@ class ComponentResolver
     {
         $components = config('wireui.components');
 
-        return collect($components)->search(fn ($component) => $component['alias'] === $name);
+        return collect($components)->search(fn (array $component) => $component['alias'] === $name);
     }
 }
