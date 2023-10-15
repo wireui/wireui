@@ -1,54 +1,64 @@
-import { applyMask, masker } from '@/utils/masker'
-import { baseComponent, WireModel } from '@/components/alpine'
-import { positioning, PositioningRefs } from '@/components/modules/positioning'
+import { Focusable, HasFocusable } from '@/alpine/modules/Focusable'
+import Positionable, { HasPositionable } from '@/alpine/modules/Positionable'
 import Entangleable from '@/alpine/proxy/Entangleable'
+import SupportsAlpine from '@/alpine/proxy/SupportsAlpine'
 import SupportsLivewire from '@/alpine/proxy/SupportsLivewire'
+import { AlpineComponent } from '@/components/alpine2'
+import { WireModel } from '@/livewire'
+import { applyMask } from '@/utils/masker'
 
 export type Color = {
   name: string
   value: string
 }
 
-export type Props = {
-  colorNameAsValue: boolean
-  wireModel: WireModel
-  colors: Color[]
-}
+export default class ColorPicker
+  extends AlpineComponent
+  implements HasPositionable, HasFocusable {
 
-export type Refs = PositioningRefs & {
-  input: HTMLInputElement
-}
+  declare $refs: {
+    input: HTMLInputElement
+    popover: HTMLElement
+    container: HTMLLabelElement
+    colorsContainer: HTMLDivElement
+  }
 
-export default () => ({
-  ...baseComponent,
-  ...positioning,
-  $refs: {} as Refs,
-  $props: {} as Props,
-  selected: { value: '', name: '' } as Color,
-  entangleable: new Entangleable(),
-  masker: masker('!#XXXXXX', null),
+  declare $props: {
+    colorNameAsValue: boolean
+    wireModel: WireModel
+    colors: Color[]
+  }
+
+  selected: Color = { value: '', name: '' }
+
+  entangleable: Entangleable = new Entangleable()
+
+  positionable: Positionable = new Positionable()
+
+  focusable: Focusable = new Focusable()
 
   get colors (): Color[] {
-    if (this.$props.colors.length) {
+    if (this.$props?.colors?.length) {
       return this.$props.colors
     }
 
     return window.Alpine.store('wireui:color-picker')?.colors ?? []
-  },
+  }
 
   init () {
-    this.entangleable.watch(() => this.syncSelected())
+    this.positionable.start(this, this.$refs.container, this.$refs.popover)
 
-    this.initPositioningSystem()
+    this.focusable.start(this.$refs.colorsContainer, 'button')
+
+    this.entangleable.watch(() => this.syncSelected())
 
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    if (this.$refs.input.value) {
-      this.setColor(this.$refs.input.value)
-    }
-  },
+    new SupportsAlpine(this.entangleable, this.$refs.input)
+  }
+
   syncSelected () {
     const value = this.entangleable.get()
 
@@ -64,7 +74,8 @@ export default () => ({
       value: selectedColor?.value ?? value ?? '',
       name: selectedColor?.name ?? value ?? ''
     }
-  },
+  }
+
   select (color: Color) {
     this.selected = { ...color }
 
@@ -74,8 +85,9 @@ export default () => ({
 
     this.entangleable.set(value, { force: true, triggerBlur: true })
 
-    this.close()
-  },
+    this.positionable?.close()
+  }
+
   setColor (color: string | null) {
     if (!this.$props.colorNameAsValue) {
       color = applyMask('!#XXXXXX', color)
@@ -84,8 +96,9 @@ export default () => ({
     this.entangleable.set(color)
 
     this.syncSelected()
-  },
+  }
+
   onBlur (color: string | null) {
     this.entangleable.set(color, { triggerBlur: true })
   }
-})
+}

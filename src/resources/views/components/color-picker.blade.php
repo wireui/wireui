@@ -1,12 +1,13 @@
 <x-inputs.wrapper
     :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'class'])"
+    :attributes="$attributes->only(['wire:key', 'class'])"
     x-data="wireui_color_picker"
     :x-props="WireUi::toJs([
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
+    x-ref="container"
 >
     @include('wireui::form.wrapper.slots', [
         'except' => ['prefix', 'append']
@@ -20,7 +21,7 @@
     </x-slot:prefix>
 
     <x-wireui::inputs.element
-        x-model="selected.value"
+        x-model.fill="selected.value"
         x-on:input="setColor($event.target.value)"
         x-on:blur="onBlur($event.target.value)"
         x-ref="input"
@@ -37,9 +38,10 @@
             primary
             flat
             squared
-            x-on:click="toggle"
+            x-on:click="positionable.toggle()"
             trigger
             :disabled="$disabled"
+            x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
         >
             <x-dynamic-component
                 :component="WireUi::component('icon')"
@@ -53,23 +55,30 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-wireui::parts.popover
+        <x-wireui::parts.popover2
             :margin="(bool) $label"
             root-class="sm:w-full justify-end"
             class="
-                max-h-64 py-2 px-1 sm:w-auto sm:max-w-[19rem] sm:max-h-60 overflow-y-auto
-                overscroll-contain soft-scrollbar select-none
+                max-h-64 select-none overflow-hidden
+                sm:w-auto sm:max-w-[19rem]
             "
-            x-ref="optionsContainer"
             tabindex="-1"
             name="wireui.select.options.{{ $name }}"
-            x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-            x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-            x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
-            x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
+            x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
+            x-on:keydown.shift.tab.prevent="focusable.previous()?.focus()"
+            x-on:keydown.arrow-up.prevent="focusable.walk.to('up')"
+            x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
+            x-on:keydown.arrow-left.prevent="focusable.walk.to('left')"
+            x-on:keydown.arrow-right.prevent="focusable.walk.to('right')"
         >
-             <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto">
-                 <template x-for="color in colors" :key="`${color.value}.${color.name}`">
+             <div
+                 class="
+                    max-h-60 overflow-y-auto overscroll-contain soft-scrollbar py-2 px-1
+                    flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto
+                 "
+                 x-ref="colorsContainer"
+             >
+                 <template x-for="(color, index) in colors" :key="index + color.value + color.name">
                      <button
                          class="
                              w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer
@@ -79,10 +88,11 @@
                          :style="{ 'background-color': color.value }"
                          x-on:click="select(color)"
                          :title="color.name"
+                         :focusable-id="color.value + color.name"
                          type="button"
                      ></button>
                  </template>
              </div>
-        </x-wireui::parts.popover>
+        </x-wireui::parts.popover2>
     </x-slot:after>
 </x-inputs.wrapper>
