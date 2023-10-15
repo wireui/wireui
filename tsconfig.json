@@ -33,6 +33,8 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": ["ts/**/*.ts", "tests/TypeScript/**/*.ts"],
-    "exclude": ["node_modules", "dist", "tests/TypeScript"],
-    "files": ["ts/global.d.ts"]
+    "exclude": ["node_modules", "dist"],
+    "files": [
+      "tests/TypeScript/global.d.ts"
+    ]
 }
