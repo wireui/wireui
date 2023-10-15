@@ -1,6 +1,10 @@
 import { isEmpty } from '@/utils/helpers'
+import SupportsAlpine from './SupportsAlpine'
+import SupportsLivewire from './SupportsLivewire'
 
-export default class Entangleable {
+export { SupportsLivewire, SupportsAlpine }
+
+export class Entangleable {
   private onSetCallbacks: CallableFunction[] = []
 
   private onClearCallbacks: CallableFunction[] = []

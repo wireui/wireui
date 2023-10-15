@@ -1,8 +1,8 @@
-import debounce from '@/utils/debounce'
-import throttle from '@/utils/throttle'
-import Entangleable from '@/alpine/proxy/Entangleable'
 import { WireModel } from '@/components/alpine'
+import debounce from '@/utils/debounce'
 import { isEmpty } from '@/utils/helpers'
+import throttle from '@/utils/throttle'
+import { Entangleable } from './index'
 
 export default class SupportsLivewire {
   private entangleable: Entangleable

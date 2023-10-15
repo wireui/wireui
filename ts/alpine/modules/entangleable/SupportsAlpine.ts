@@ -1,5 +1,5 @@
-import Entangleable from '@/alpine/proxy/Entangleable'
 import { isEmpty } from '@/utils/helpers'
+import { Entangleable } from './index'
 
 export default class SupportsAlpine {
   private entangleable: Entangleable
