@@ -1,5 +1,5 @@
 import { Color } from '@/components/color-picker'
-import { default as tailwindColors } from 'tailwindcss/colors'
+import tailwindColors from 'tailwindcss/colors'
 
 const excludeColors = [
   'lightBlue',
