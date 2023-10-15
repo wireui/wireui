@@ -7,7 +7,7 @@ export default class Entangleable {
 
   private onBlurCallbacks: CallableFunction[] = []
 
-  value: any = null
+  private value: any = null
 
   set (value: any, { force = false, triggerBlur = false } = {}) {
     if (this.value === value && !force) return
