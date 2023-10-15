@@ -107,9 +107,10 @@
             "plugins": ["@typescript-eslint"],
             "rules": {
                 "indent": "off",
+                "no-use-before-define": "off",
+                "@typescript-eslint/ban-ts-comment": "warn",
                 "@typescript-eslint/no-explicit-any": "off",
                 "@typescript-eslint/indent": ["error", 2],
-                "no-use-before-define": "off",
                 "@typescript-eslint/no-use-before-define": "error"
             }
         }
