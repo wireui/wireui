@@ -6,7 +6,7 @@ export interface HasPositionable {
 }
 
 export default class Positionable {
-  private state: boolean = false
+  state: boolean = false
 
   private cleanupPosition?: CallableFunction = undefined
 
