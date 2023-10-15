@@ -5,7 +5,7 @@
         "target": "ESNext",
         "module": "CommonJS",
         "allowJs": true,
-        "checkJs": false,
+        "checkJs": true,
         "declaration": false,
         "declarationMap": false,
         "sourceMap": true,
@@ -33,5 +33,6 @@
         "forceConsistentCasingInFileNames": true
     },
     "include": ["ts/**/*.ts", "tests/TypeScript/**/*.ts"],
+    "exclude": ["node_modules", "dist", "tests/TypeScript"],
     "files": ["ts/global.d.ts"]
 }
