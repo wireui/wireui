@@ -1,6 +1,6 @@
 import { props, watchProps } from '@/alpine/magic/props'
-import { Component } from '@/components/alpine'
-import { AlpineMock, WireuiMock, mockAlpineComponent, sleep } from '@tests/helpers'
+import { AlpineComponent } from '@/components/alpine2'
+import { AlpineMock, mockAlpineComponent, sleep, WireuiMock } from '@tests/helpers'
 
 describe('Testing the props magic helper', () => {
   beforeEach(() => {
@@ -44,7 +44,7 @@ describe('Testing the props magic helper', () => {
   it('should run the callback when the props is changed', async () => {
     const $root = document.createElement('div')
     const callback = jest.fn()
-    const component = mockAlpineComponent({} as Component)
+    const component = mockAlpineComponent({} as AlpineComponent)
     component.$root = $root
 
     $root.setAttribute('x-props', '{ foo: false }')
