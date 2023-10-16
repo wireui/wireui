@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_all_errors_and_render_filtered_errors()
+    public function test_it_should_render_all_errors_and_render_filtered_errors()
     {
         Volt::test('Errors.view')
             ->call('addErrors')

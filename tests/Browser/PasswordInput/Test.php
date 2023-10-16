@@ -8,16 +8,14 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_see_label_and_corner_hint()
+    public function test_it_should_see_label_and_corner_hint()
     {
         Volt::test('PasswordInput.view')
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
 
-    /** @test */
-    public function it_should_see_hint_and_prefix_and_not_see_suffix()
+    public function test_it_should_see_hint_and_prefix_and_not_see_suffix()
     {
         Volt::test('PasswordInput.view')
             ->assertSee('Hint 1')
@@ -25,8 +23,7 @@ class Test extends BrowserTestCase
             ->assertDontSee('Suffix 1');
     }
 
-    /** @test */
-    public function it_should_not_see_prepend_and_append_slots()
+    public function test_it_should_not_see_prepend_and_append_slots()
     {
         Volt::test('PasswordInput.view')
             ->assertSee('prepend 1')
@@ -35,8 +32,7 @@ class Test extends BrowserTestCase
             ->assertDontSeeHtml('<a>append 1</a>');
     }
 
-    /** @test */
-    public function it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots()
+    public function test_it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots()
     {
         Volt::test('PasswordInput.view')
             ->assertSee('prefix 2')
@@ -45,8 +41,7 @@ class Test extends BrowserTestCase
             ->assertDontSeeHtml('<a>append 2</a>');
     }
 
-    /** @test */
-    public function it_should_see_input_error()
+    public function test_it_should_see_input_error()
     {
         Volt::test('PasswordInput.view')
             ->call('validateInput')
@@ -55,8 +50,7 @@ class Test extends BrowserTestCase
             ->assertDontSee('input cant be empty');
     }
 
-    /** @test */
-    public function it_should_set_model_value_to_livewire()
+    public function test_it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'PasswordInput.view')
@@ -65,8 +59,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_change_the_input_type_when_clicking_on_the_view_password_icon()
+    public function test_it_should_change_the_input_type_when_clicking_on_the_view_password_icon()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'PasswordInput.view')

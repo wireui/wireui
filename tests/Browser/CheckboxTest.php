@@ -6,8 +6,7 @@ use Livewire\{Attributes\Rule, Component, Livewire};
 
 class CheckboxTest extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_with_label_and_change_value()
+    public function test_it_should_render_with_label_and_change_value()
     {
         Livewire::visit(new class() extends Component
         {

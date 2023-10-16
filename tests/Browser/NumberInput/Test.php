@@ -8,16 +8,14 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_see_label_and_corner_hint()
+    public function test_it_should_see_label_and_corner_hint()
     {
         Volt::test('NumberInput.view')
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
 
-    /** @test */
-    public function it_should_see_hint_and_not_see_prefix_and_suffix()
+    public function test_it_should_see_hint_and_not_see_prefix_and_suffix()
     {
         Volt::test('NumberInput.view')
             ->assertSee('Hint 1')
@@ -25,16 +23,14 @@ class Test extends BrowserTestCase
             ->assertDontSee('Suffix 1');
     }
 
-    /** @test */
-    public function it_should_not_see_prepend_and_append_slots()
+    public function test_it_should_not_see_prepend_and_append_slots()
     {
         Volt::test('NumberInput.view')
             ->assertDontSeeHtml('<a>prepend</a>')
             ->assertDontSeeHtml('<a>append</a>');
     }
 
-    /** @test */
-    public function it_should_not_see_prefix_suffix_append_and_prepend()
+    public function test_it_should_not_see_prefix_suffix_append_and_prepend()
     {
         Volt::test('NumberInput.view')
             ->assertDontSee('prefix 2')
@@ -43,8 +39,7 @@ class Test extends BrowserTestCase
             ->assertDontSeeHtml('<a>append 2</a>');
     }
 
-    /** @test */
-    public function it_should_see_input_error()
+    public function test_it_should_see_input_error()
     {
         Volt::test('NumberInput.view')
             ->call('validateInput')
@@ -61,8 +56,7 @@ class Test extends BrowserTestCase
             ->assertDontSee('input must be within the specified range');
     }
 
-    /** @test */
-    public function it_should_set_model_value_to_livewire()
+    public function test_it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NumberInput.view')
@@ -71,8 +65,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon()
+    public function test_it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NumberInput.view')

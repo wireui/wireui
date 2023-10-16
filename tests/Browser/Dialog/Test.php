@@ -83,8 +83,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_close_when_timeout_is_end()
+    public function test_it_should_close_when_timeout_is_end()
     {
         $this->browse(function (Browser $browser) {
             $title = 'Autoclosing...';
@@ -100,8 +99,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_call_callable_events_actions()
+    public function test_it_should_call_callable_events_actions()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Dialog.view')
@@ -171,8 +169,7 @@ class Test extends BrowserTestCase
         ];
     }
 
-    /** @test */
-    public function it_should_perform_accept_and_reject_action()
+    public function test_it_should_perform_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Dialog.view')
@@ -190,8 +187,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_prevent_twice_calls_on_accept_and_reject_action()
+    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Dialog.view')

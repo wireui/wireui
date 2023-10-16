@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_with_label_and_change_value()
+    public function test_it_should_render_with_label_and_change_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Radio.view')

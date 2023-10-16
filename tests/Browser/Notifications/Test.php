@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_show_notification_from_directive_and_call_accept_and_reject_methods()
+    public function test_it_should_show_notification_from_directive_and_call_accept_and_reject_methods()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Notifications.view')
@@ -23,8 +22,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_show_simple_notification_from_component_call()
+    public function test_it_should_show_simple_notification_from_component_call()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Notifications.view')
@@ -39,8 +37,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_show_confirmation_with_single_callback_from_component_call()
+    public function test_it_should_show_confirmation_with_single_callback_from_component_call()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Notifications.view')
@@ -55,8 +52,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_show_confirmation_with_multiple_callbacks_and_events_from_component_call()
+    public function test_it_should_show_confirmation_with_multiple_callbacks_and_events_from_component_call()
     {
         $this->browse(function (Browser $browser) {
             $duskButton = '@button.test.call_confirm_action_with_multiples_callbacks_and_events';
@@ -98,8 +94,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_show_simple_notification_from_js_call()
+    public function test_it_should_show_simple_notification_from_js_call()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Notifications.view')
@@ -108,8 +103,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_show_complex_notification_from_js_call()
+    public function test_it_should_show_complex_notification_from_js_call()
     {
         $this->browse(function (Browser $browser) {
             $duskButton = '@button.test.js.complex_notification';
@@ -132,8 +126,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_redirect_when_notification_is_closed()
+    public function test_it_should_redirect_when_notification_is_closed()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Notifications.view')

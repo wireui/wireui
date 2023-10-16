@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_show_validation_message()
+    public function test_it_should_show_validation_message()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -17,8 +16,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_one_option_from_simples_options_list()
+    public function test_it_should_select_one_option_from_simples_options_list()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -39,8 +37,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_one_option_from_labeled_options_list()
+    public function test_it_should_select_one_option_from_labeled_options_list()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -59,8 +56,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_and_unselect_multiples_options()
+    public function test_it_should_select_and_unselect_multiples_options()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -86,8 +82,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_from_slot_list()
+    public function test_it_should_select_from_slot_list()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -104,8 +99,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_cannot_select_readonly_and_disabled_options()
+    public function test_it_should_cannot_select_readonly_and_disabled_options()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -126,8 +120,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_load_and_search_options_from_the_api()
+    public function test_it_should_load_and_search_options_from_the_api()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')
@@ -145,8 +138,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_load_from_the_api_with_nested_data()
+    public function test_it_should_load_from_the_api_with_nested_data()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'Select.view')

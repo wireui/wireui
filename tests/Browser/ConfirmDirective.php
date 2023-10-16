@@ -71,8 +71,7 @@ class ConfirmDirective extends BrowserTestCase
             ->waitForTextIn('@value', 'Accepted by Alpine');
     }
 
-    /** @test */
-    public function it_should_call_confirm_notification_by_directive_js()
+    public function test_it_should_call_confirm_notification_by_directive_js()
     {
         $this->component()
             ->click('@button.js')

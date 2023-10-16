@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_select_date_without_timezone_difference()
+    public function test_it_should_select_date_without_timezone_difference()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'DatetimePicker.view')
@@ -20,8 +19,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_date_with_utc_timezone_difference()
+    public function test_it_should_select_date_with_utc_timezone_difference()
     {
         // The America/Sao_Paulo timezone is -3 hours apart compared to the UTC timezone
         // UTC is default timezone
@@ -37,8 +35,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_date_with_default_timezone_and_auto_user_timezone()
+    public function test_it_should_select_date_with_default_timezone_and_auto_user_timezone()
     {
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
@@ -53,8 +50,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_parse_date_in_custom_format()
+    public function test_it_should_parse_date_in_custom_format()
     {
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
@@ -69,8 +65,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_date_and_time()
+    public function test_it_should_select_date_and_time()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'DatetimePicker.view')

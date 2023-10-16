@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_mask_currency_value()
+    public function test_it_should_mask_currency_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'CurrencyInput.view')
@@ -21,8 +20,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_follow_livewire_model_changes()
+    public function test_it_should_follow_livewire_model_changes()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'CurrencyInput.view')
@@ -32,8 +30,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_type_currency_value_and_emit_formatted_value()
+    public function test_it_should_type_currency_value_and_emit_formatted_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'CurrencyInput.view')
@@ -47,8 +44,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_parse_custom_currencies_like_brazilian_real()
+    public function test_it_should_parse_custom_currencies_like_brazilian_real()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'CurrencyInput.view')

@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_select_with_slot_options_and_show_error_message()
+    public function test_it_should_render_select_with_slot_options_and_show_error_message()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
@@ -25,8 +24,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_render_select_with_give_array_options()
+    public function test_it_should_render_select_with_give_array_options()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
@@ -38,8 +36,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_render_select_with_give_collection_options()
+    public function test_it_should_render_select_with_give_collection_options()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
@@ -51,8 +48,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_render_select_with_give_array_options_with_label_and_option_keys()
+    public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
@@ -64,8 +60,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_render_select_with_give_array_options_using_key_as_value()
+    public function test_it_should_render_select_with_give_array_options_using_key_as_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')
@@ -77,8 +72,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_render_select_with_give_array_options_using_key_as_label()
+    public function test_it_should_render_select_with_give_array_options_using_key_as_label()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'NativeSelect.view')

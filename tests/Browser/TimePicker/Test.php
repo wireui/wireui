@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_select_time_and_clear_am_pm_time()
+    public function test_it_should_select_time_and_clear_am_pm_time()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'TimePicker.view')
@@ -36,8 +35,7 @@ class Test extends BrowserTestCase
         });
     }
 
-    /** @test */
-    public function it_should_select_time_and_clear_24h_time()
+    public function test_it_should_select_time_and_clear_24h_time()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, 'TimePicker.view')
