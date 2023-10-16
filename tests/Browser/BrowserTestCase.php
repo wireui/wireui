@@ -17,7 +17,7 @@ class BrowserTestCase extends TestCase
 {
     use BrowserFunctions;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         if (isset($_SERVER['CI'])) {
             Options::withoutUI();
@@ -40,7 +40,7 @@ class BrowserTestCase extends TestCase
         trigger('browser.testCase.setUp', $this);
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->removeApplicationTweaks();
 
@@ -49,7 +49,7 @@ class BrowserTestCase extends TestCase
         parent::tearDown();
     }
 
-    public function makeACleanSlate()
+    protected function makeACleanSlate()
     {
         Artisan::call('view:clear');
 
