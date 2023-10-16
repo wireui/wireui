@@ -1,12 +1,13 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\View\Components\WireUiComponent;
 
-class Input extends WireUiComponent
+class Base extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -15,6 +16,6 @@ class Input extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.input');
+        return view('wireui::components.input.base');
     }
 }

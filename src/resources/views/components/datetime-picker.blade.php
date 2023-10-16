@@ -20,8 +20,8 @@
         'userTimezone'    => $userTimezone ?? '',
         'parseFormat'     => $parseFormat ?? '',
         'displayFormat'   => $displayFormat ?? '',
-        'weekDays'        => __('wireui::messages.datePicker.days'),
-        'monthNames'      => __('wireui::messages.datePicker.months'),
+        'weekDays'        => trans('wireui::messages.datePicker.days'),
+        'monthNames'      => trans('wireui::messages.datePicker.months'),
         'withoutTime'     => $withoutTime,
     ])"
 >
@@ -77,21 +77,21 @@
                         :component="WireUi::component('button')"
                         class="border-none bg-secondary-100 dark:bg-secondary-800"
                         x-on:click="selectYesterday"
-                        :label="__('wireui::messages.date_picker.yesterday')"
+                        :label="trans('wireui::messages.date_picker.yesterday')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="border-none bg-secondary-100 dark:bg-secondary-800"
                         x-on:click="selectToday"
-                        :label="__('wireui::messages.date_picker.today')"
+                        :label="trans('wireui::messages.date_picker.today')"
                     />
 
                     <x-dynamic-component
                         :component="WireUi::component('button')"
                         class="border-none bg-secondary-100 dark:bg-secondary-800"
                         x-on:click="selectTomorrow"
-                        :label="__('wireui::messages.date_picker.tomorrow')"
+                        :label="trans('wireui::messages.date_picker.tomorrow')"
                     />
                 </div>
             @endunless
@@ -138,7 +138,7 @@
                     x-show="$props.monthsPicker"
                     x-transition
                 >
-                    @foreach(__('wireui::messages.date_picker.months') as $month)
+                    @foreach(trans('wireui::messages.date_picker.months') as $month)
                         <x-dynamic-component
                             :component="WireUi::component('button')"
                             class="uppercase text-secondary-400 dark:border-0 dark:hover:bg-secondary-700"
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="grid grid-cols-7 gap-2">
-                    @foreach(__('wireui::messages.date_picker.days') as $day)
+                    @foreach(trans('wireui::messages.date_picker.days') as $day)
                         <span class="text-center uppercase pointer-events-none text-secondary-400 text-3xs">
                             {{ $day }}
                         </span>
@@ -187,7 +187,7 @@
             <x-dynamic-component
                 :component="WireUi::component('input')"
                 id="search.{{ $attrs->wire('model')->value() }}"
-                :label="__('wireui::messages.selectTime')"
+                :label="trans('wireui::messages.selectTime')"
                 x-model="searchTime"
                 x-bind:placeholder="getSearchPlaceholder"
                 x-ref="searchTime"

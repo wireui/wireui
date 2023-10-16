@@ -191,7 +191,7 @@ class WireUiConfig
                 'alias' => 'icon',
             ],
             'input' => [
-                'class' => Components\Input::class,
+                'class' => Components\Input\Base::class,
                 'alias' => 'input',
             ],
             'input-currency' => [
@@ -274,7 +274,7 @@ class WireUiConfig
     }
 
     /**
-     * Auxiliar Methods.
+     * Function to mix default configuration with custom configuration.
      */
     private static function mix(array $default, array $options): array
     {

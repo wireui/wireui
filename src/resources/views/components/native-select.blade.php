@@ -29,7 +29,7 @@
             @empty
                 @unless ($hideEmptyMessage)
                     <option disabled>
-                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                        {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                     </option>
                 @endunless
             @endforelse

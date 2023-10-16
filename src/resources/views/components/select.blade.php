@@ -47,12 +47,12 @@
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         :name="$icon"
-                        class="h-5 w-5 mr-1 text-gray-400 dark:text-gray-600"
+                        class="w-5 h-5 mr-1 text-gray-400 dark:text-gray-600"
                     />
                 @endif
 
                 <span
-                    class="truncate text-secondary-700 dark:text-secondary-400 text-sm"
+                    class="text-sm truncate text-secondary-700 dark:text-secondary-400"
                     x-show="!isEmpty()"
                     x-html="getSelectedDisplayText()"
                 ></span>
@@ -69,19 +69,19 @@
                         <x-dynamic-component
                             :component="WireUi::component('icon')"
                             :name="$icon"
-                            class="h-5 w-5 text-gray-400 dark:text-gray-600"
+                            class="w-5 h-5 text-gray-400 dark:text-gray-600"
                         />
                     @endif
 
                     @if (!$withoutItemsCount)
                         <span
-                            class="inline-flex text-secondary-700 dark:text-secondary-400 text-sm"
+                            class="inline-flex text-sm text-secondary-700 dark:text-secondary-400"
                             x-show="selectedOptions.length"
                             x-text="selectedOptions.length"
                         ></span>
                     @endif
 
-                    <div wire:ignore class="flex flex-nowrap items-center gap-1">
+                    <div wire:ignore class="flex items-center gap-1 flex-nowrap">
                         <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
                             <span class="
                                 inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
@@ -91,14 +91,14 @@
                                 <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
 
                                 <button
-                                    class="shrink-0 h-4 w-4 flex items-center text-secondary-400 justify-center hover:text-secondary-500"
+                                    class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
                                     x-on:click.stop="unSelect(option)"
                                     tabindex="-1"
                                     type="button"
                                 >
                                     <x-dynamic-component
                                         :component="WireUi::component('icon')"
-                                        class="h-3 w-3"
+                                        class="w-3 h-3"
                                         name="x-mark"
                                     />
                                 </button>
@@ -183,7 +183,7 @@
             </template>
 
             <div
-                class="max-h-64 sm:max-h-60 overflow-y-auto overscroll-contain soft-scrollbar select-none"
+                class="overflow-y-auto select-none max-h-64 sm:max-h-60 overscroll-contain soft-scrollbar"
                 tabindex="-1"
                 x-ref="optionsContainer"
                 name="wireui.select.options.{{ $name }}"
@@ -213,7 +213,7 @@
                     <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                         <li tabindex="-1" :index="index">
                             <div class="px-2 py-0.5">
-                                <div class="h-8 w-full animate-pulse bg-slate-200 dark:bg-slate-600 rounded"></div>
+                                <div class="w-full h-8 rounded animate-pulse bg-slate-200 dark:bg-slate-600"></div>
                             </div>
                         </li>
                     </template>
@@ -221,11 +221,11 @@
 
                 @unless ($hideEmptyMessage)
                     <div
-                        class="py-12 px-3 sm:py-2 sm:px-3 text-center sm:text-left text-secondary-500 cursor-pointer"
+                        class="px-3 py-12 text-center cursor-pointer sm:py-2 sm:px-3 sm:text-left text-secondary-500"
                         x-show="displayOptions.length === 0"
                         x-on:click="close"
                     >
-                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                        {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                     </div>
                 @endunless
 

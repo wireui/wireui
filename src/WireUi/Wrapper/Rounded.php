@@ -9,7 +9,7 @@ class Rounded extends ComponentPack
 {
     protected function default(): string
     {
-        return config('wireui.style.rounded') ?? Packs\Rounded::MD;
+        return config('wireui.style.rounded') ?? Packs\Rounded::BASE;
     }
 
     public function all(): array

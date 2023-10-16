@@ -74,6 +74,7 @@
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'prepend', ''),
+                    Arr::get($colorClasses, 'prepend', ''),
                     'invalidated:text-negative-500',
                 ])
             >
@@ -108,6 +109,7 @@
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'append', ''),
+                    Arr::get($colorClasses, 'append', ''),
                     'invalidated:text-negative-500',
                 ])
             >
