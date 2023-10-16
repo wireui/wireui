@@ -97,6 +97,6 @@ export default class ColorPicker
   }
 
   onBlur (color: string | null) {
-    this.entangleable.set(color, { triggerBlur: true })
+    this.entangleable.set(color, { force:true, triggerBlur: true })
   }
 }
