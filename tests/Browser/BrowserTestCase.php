@@ -53,13 +53,13 @@ class BrowserTestCase extends TestCase
     {
         Artisan::call('view:clear');
 
-        File::deleteDirectory($this->tmpBladePath());
+        File::deleteDirectory(self::tmpPath());
         File::deleteDirectory($this->livewireViewsPath());
         File::deleteDirectory($this->livewireClassesPath());
         File::deleteDirectory($this->livewireTestsPath());
         File::delete(app()->bootstrapPath('cache/livewire-components.php'));
 
-        File::ensureDirectoryExists($this->tmpBladePath());
+        File::ensureDirectoryExists(self::tmpPath());
     }
 
     public static function tweakApplicationHook()
@@ -102,7 +102,7 @@ class BrowserTestCase extends TestCase
         });
     }
 
-    public static function tmpPath(string $path): string
+    public static function tmpPath(string $path = ''): string
     {
         return __DIR__ . "/tmp/{$path}";
     }

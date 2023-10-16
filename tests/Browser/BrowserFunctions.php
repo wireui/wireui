@@ -16,7 +16,7 @@ trait BrowserFunctions
     {
         $uuid = (string) Str::uuid();
 
-        $path = $this->tmpBladePath("{$uuid}.blade.php");
+        $path = self::tmpPath("{$uuid}.blade.php");
 
         $blade = <<<BLADE
         <x-layouts.app>
