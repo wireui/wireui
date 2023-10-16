@@ -100,9 +100,7 @@ return [
     //     //
     // ],
 
-    // 'modal' => [
-    //     //
-    // ],
+    'modal' => Config::modal(),
 
     // 'modal-card' => [
     //     //

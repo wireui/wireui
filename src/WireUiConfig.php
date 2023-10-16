@@ -116,6 +116,24 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function modal(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'blur'  => Packs\Blur::NONE,
+                'type'  => Packs\Type::BASE,
+                'width' => Packs\Width::X2L,
+                'align' => Packs\Align::START,
+            ],
+            'packs' => [
+                'blurs'  => WireUi\Modal\Blur::class,
+                'types'  => WireUi\Modal\Type::class,
+                'widths' => WireUi\Modal\Width::class,
+                'aligns' => WireUi\Modal\Align::class,
+            ],
+        ], $options);
+    }
+
     public static function wrapper(array $options = []): array
     {
         return self::mix([

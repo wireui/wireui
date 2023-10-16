@@ -2,31 +2,32 @@
 
 namespace WireUi\WireUi\Modal;
 
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Type extends ComponentPack
 {
     protected function default(): string
     {
-        return 'base';
+        return Packs\Type::BASE;
     }
 
     public function all(): array
     {
         return [
-            'base' => [
+            Packs\Type::BASE => [
                 'z-index'        => 'z-50',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => false,
                 'hide-scrollbar' => false,
             ],
-            'soft' => [
+            Packs\Type::SOFT => [
                 'z-index'        => 'z-50',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => true,
                 'hide-scrollbar' => false,
             ],
-            'hide' => [
+            Packs\Type::HIDE => [
                 'z-index'        => 'z-50',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => false,

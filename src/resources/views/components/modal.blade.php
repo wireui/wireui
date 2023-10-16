@@ -1,11 +1,9 @@
 @php($name = $name ?? $attributes->wire('model')->value())
 
-<div x-data="wireui_modal({
-        show: @toJs($show),
-        @if ($attributes->wire('model')->value())
-            model: @entangle($attributes->wire('model'))
-        @endif
-    })"
+<div x-data="{{ WireUi::alpine('wireui_modal', [
+        'show' => $show,
+        'model' => null,
+    ]) }}"
     @class([
         'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),

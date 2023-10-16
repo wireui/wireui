@@ -13,8 +13,9 @@ class Modal extends WireUiComponent
     use HasSetupWidth;
 
     public function __construct(
-        public bool $state = false,
+        public bool $show = false,
         public ?string $id = null,
+        public ?string $name = null,
         public ?string $zIndex = null,
         public ?string $spacing = null,
     ) {

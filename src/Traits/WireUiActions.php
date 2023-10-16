@@ -22,7 +22,7 @@ trait WireUiActions
     {
         $modal = Str::kebab($modal);
 
-        $this->dispatchBrowserEvent("open-wireui-modal:{$modal}");
+        $this->dispatch("open-wireui-modal:{$modal}");
     }
 
     // todo: refactor this
@@ -30,6 +30,6 @@ trait WireUiActions
     {
         $modal = Str::kebab($modal);
 
-        $this->dispatchBrowserEvent("close-wireui-modal:{$modal}");
+        $this->dispatch("close-wireui-modal:{$modal}");
     }
 }
