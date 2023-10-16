@@ -38,8 +38,6 @@ class Base extends Component
         public mixed $shadowClasses = null,
         public mixed $roundedClasses = null,
     ) {
-        // dd($data, $this);
-
         if ($data) {
             $this->fill($data->toArray());
         }

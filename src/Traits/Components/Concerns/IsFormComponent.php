@@ -27,9 +27,9 @@ trait IsFormComponent
 
     protected function finished(array &$data): void
     {
-        $this->mergeAttributes($data);
+        $data = $this->mergeAttributes($data);
 
-        $this->extractAttributes($data);
+        $data = $this->extractAttributes($data);
 
         $data['attrs'] = $data['attributes'];
 
