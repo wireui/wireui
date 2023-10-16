@@ -6600,16 +6600,16 @@
         },
         {
             "name": "orchestra/dusk-updater",
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/dusk-updater.git",
-                "reference": "602c741c8192f926893e6521633b13eb57944e4c"
+                "reference": "238cfe8dde91b41b717903d33fcf6c341de64e7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/dusk-updater/zipball/602c741c8192f926893e6521633b13eb57944e4c",
-                "reference": "602c741c8192f926893e6521633b13eb57944e4c",
+                "url": "https://api.github.com/repos/orchestral/dusk-updater/zipball/238cfe8dde91b41b717903d33fcf6c341de64e7f",
+                "reference": "238cfe8dde91b41b717903d33fcf6c341de64e7f",
                 "shasum": ""
             },
             "require": {
@@ -6619,12 +6619,11 @@
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": "^7.2",
                 "php": "^8.0",
-                "symfony/console": "^6.0",
+                "symfony/console": "^6.0 || ^7.0",
                 "symfony/polyfill-ctype": "^1.9",
-                "symfony/process": "^6.0"
+                "symfony/process": "^6.0 || ^7.0"
             },
             "require-dev": {
-                "laravel/dusk": "^7.6",
                 "laravel/pint": "^1.4",
                 "phpstan/phpstan": "^1.10.7",
                 "phpunit/phpunit": "^9.6"
@@ -6663,19 +6662,9 @@
             "description": "Updater for Laravel Dusk ChromeDriver binaries",
             "support": {
                 "issues": "https://github.com/orchestral/dusk-updater/issues",
-                "source": "https://github.com/orchestral/dusk-updater/tree/v2.3.0"
+                "source": "https://github.com/orchestral/dusk-updater/tree/v2.4.0"
             },
-            "funding": [
-                {
-                    "url": "https://paypal.me/crynobone",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://liberapay.com/crynobone",
-                    "type": "liberapay"
-                }
-            ],
-            "time": "2023-09-13T01:49:18+00:00"
+            "time": "2023-10-14T09:13:02+00:00"
         },
         {
             "name": "orchestra/testbench",
@@ -8359,16 +8348,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.21",
+            "version": "v0.11.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "bcb22101107f3bf770523b65630c9d547f60c540"
+                "reference": "128fa1b608be651999ed9789c95e6e2a31b5802b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/bcb22101107f3bf770523b65630c9d547f60c540",
-                "reference": "bcb22101107f3bf770523b65630c9d547f60c540",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/128fa1b608be651999ed9789c95e6e2a31b5802b",
+                "reference": "128fa1b608be651999ed9789c95e6e2a31b5802b",
                 "shasum": ""
             },
             "require": {
@@ -8397,7 +8386,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "0.11.x-dev"
+                    "dev-0.11": "0.11.x-dev"
                 },
                 "bamarni-bin": {
                     "bin-links": false,
@@ -8433,9 +8422,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.21"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.22"
             },
-            "time": "2023-09-17T21:15:54+00:00"
+            "time": "2023-10-14T21:56:36+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
