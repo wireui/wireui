@@ -2,19 +2,20 @@
 
 namespace WireUi\WireUi\Card;
 
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Padding extends ComponentPack
 {
     protected function default(): string
     {
-        return 'base';
+        return Packs\Padding::BASE;
     }
 
     public function all(): array
     {
         return [
-            'base' => 'px-2 py-5 md:px-4',
+            Packs\Padding::BASE => 'px-2 py-5 md:px-4',
         ];
     }
 }

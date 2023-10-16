@@ -121,9 +121,20 @@ return [
         ],
     ],
 
-    // 'card' => [
-    //     //
-    // ],
+    'card' => [
+        'default' => [
+            'rounded' => GLOBAL_STYLE,
+            'color'   => Packs\Color::BASE,
+            'padding' => Packs\Padding::BASE,
+            'variant' => Packs\Variant::FLAT,
+        ],
+        'packs' => [
+            'shadows'  => WireUi\Shadow::class,
+            'rounders' => WireUi\Rounded::class,
+            'colors'   => WireUi\Card\Color::class,
+            'paddings' => WireUi\Card\Padding::class,
+        ],
+    ],
 
     // 'checkbox' => [
     //     //
