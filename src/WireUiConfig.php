@@ -116,6 +116,13 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function icon(array $options = []): array
+    {
+        return self::mix([
+            'variant' => Packs\Icon::OUTLINE,
+        ], $options);
+    }
+
     public static function modal(array $options = []): array
     {
         return self::mix([
@@ -130,6 +137,18 @@ class WireUiConfig
                 'types'  => WireUi\Modal\Type::class,
                 'widths' => WireUi\Modal\Width::class,
                 'aligns' => WireUi\Modal\Align::class,
+            ],
+        ], $options);
+    }
+
+    public static function notifications(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'position' => Packs\Position::TOP_RIGHT,
+            ],
+            'packs' => [
+                'positions' => WireUi\Notification\Position::class,
             ],
         ], $options);
     }

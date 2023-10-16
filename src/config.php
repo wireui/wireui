@@ -62,23 +62,11 @@ return [
 
     'datetime-picker' => Config::wrapper(),
 
-    // 'dialog' => [
-    //     //
-    // ],
+    'dialog' => Config::modal(),
 
     'dropdown' => Config::dropdown(),
 
-    // 'error' => [
-    //     //
-    // ],
-
-    // 'errors' => [
-    //     //
-    // ],
-
-    // 'icon' => [
-    //     //
-    // ],
+    'icon' => Config::icon(),
 
     'input' => Config::wrapper(),
 
@@ -92,10 +80,6 @@ return [
 
     'input-phone' => Config::wrapper(),
 
-    // 'label' => [
-    //     //
-    // ],
-
     // 'link' => [
     //     //
     // ],
@@ -108,23 +92,13 @@ return [
 
     'native-select' => Config::wrapper(),
 
-    // 'notifications' => [
-    //     //
-    // ],
+    'notifications' => Config::notifications(),
 
     // 'radio' => [
     //     //
     // ],
 
     'select' => Config::wrapper(),
-
-    // 'select.option' => [
-    //     //
-    // ],
-
-    // 'select.user-option' => [
-    //     //
-    // ],
 
     'textarea' => Config::wrapper(),
 
