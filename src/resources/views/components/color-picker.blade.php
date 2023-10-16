@@ -39,7 +39,6 @@
             flat
             squared
             x-on:click="positionable.toggle()"
-            trigger
             :disabled="$disabled"
             x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
         >
