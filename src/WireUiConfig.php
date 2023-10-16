@@ -100,6 +100,22 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function dropdown(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'width'    => Packs\Width::LG,
+                'height'   => Packs\Height::X3L,
+                'position' => Packs\Position::RIGHT,
+            ],
+            'packs' => [
+                'widths'    => WireUi\Dropdown\Width::class,
+                'heights'   => WireUi\Dropdown\Height::class,
+                'positions' => WireUi\Dropdown\Position::class,
+            ],
+        ], $options);
+    }
+
     public static function wrapper(array $options = []): array
     {
         return self::mix([
@@ -276,7 +292,7 @@ class WireUiConfig
     /**
      * Function to mix default configuration with custom configuration.
      */
-    private static function mix(array $default, array $options): array
+    protected static function mix(array $default, array $options): array
     {
         collect($options)->dot()->each(function ($value, $key) use (&$default) {
             data_set($default, $key, $value);

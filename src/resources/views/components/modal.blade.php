@@ -46,8 +46,8 @@
         x-show="show"
         @class([
             'w-full min-h-full transform flex items-end justify-center mx-auto',
-            $maxWidthClasses,
             $alignClasses,
+            $widthClasses,
         ])
         x-on:click.self="close"
         x-transition:enter="ease-out duration-300"

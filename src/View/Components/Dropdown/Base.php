@@ -3,13 +3,13 @@
 namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupAlign, HasSetupHeight, HasSetupWidth};
+use WireUi\Traits\Components\{HasSetupHeight, HasSetupPosition, HasSetupWidth};
 use WireUi\View\Components\WireUiComponent;
 
 class Base extends WireUiComponent
 {
-    use HasSetupAlign;
     use HasSetupHeight;
+    use HasSetupPosition;
     use HasSetupWidth;
 
     public function __construct(

@@ -39,7 +39,7 @@ class IconSize extends ComponentPack
                 'icon'  => 'w-9 h-9',
                 'label' => 'text-xl',
             ],
-            Size::XXL => [
+            Size::X2L => [
                 'icon'  => 'w-12 h-12',
                 'label' => 'text-2xl',
             ],

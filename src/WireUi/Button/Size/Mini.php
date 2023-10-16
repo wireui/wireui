@@ -21,7 +21,7 @@ class Mini extends ComponentPack
             Size::MD  => 'text-sm w-9 h-9',
             Size::LG  => 'text-base w-10 h-10',
             Size::XL  => 'text-lg w-12 h-12',
-            Size::XXL => 'text-xl w-14 h-14',
+            Size::X2L => 'text-xl w-14 h-14',
         ];
     }
 }

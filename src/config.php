@@ -66,17 +66,7 @@ return [
     //     //
     // ],
 
-    // 'dropdown' => [
-    //     //
-    // ],
-
-    // 'dropdown.item' => [
-    //     //
-    // ],
-
-    // 'dropdown.header' => [
-    //     //
-    // ],
+    'dropdown' => Config::dropdown(),
 
     // 'error' => [
     //     //

@@ -45,12 +45,12 @@ class Rounded extends ComponentPack
                 'prepend' => 'rounded-l-xl',
                 'append'  => 'rounded-r-xl',
             ],
-            Packs\Rounded::XXL => [
+            Packs\Rounded::X2L => [
                 'input'   => 'rounded-2xl',
                 'prepend' => 'rounded-l-2xl',
                 'append'  => 'rounded-r-2xl',
             ],
-            Packs\Rounded::XXXL => [
+            Packs\Rounded::X3L => [
                 'input'   => 'rounded-3xl',
                 'prepend' => 'rounded-l-3xl',
                 'append'  => 'rounded-r-3xl',
