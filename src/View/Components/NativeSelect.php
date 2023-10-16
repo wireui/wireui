@@ -4,12 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\View\Component;
 use InvalidArgumentException;
-use WireUi\Traits\Components\IsFormComponent;
 
-class NativeSelect extends Component
+class NativeSelect extends WireUiComponent
 {
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
     use IsFormComponent;
 
     public const PRIMITIVE_VALUES = [

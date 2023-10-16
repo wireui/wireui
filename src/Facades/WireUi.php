@@ -71,13 +71,13 @@ class WireUi extends Facade
                 'class' => Components\Dropdown\Base::class,
                 'alias' => 'dropdown',
             ],
-            'dropdown-item' => [
+            'dropdown.item' => [
                 'class' => Components\Dropdown\Item::class,
-                'alias' => 'dropdown-item',
+                'alias' => 'dropdown.item',
             ],
-            'dropdown-header' => [
+            'dropdown.header' => [
                 'class' => Components\Dropdown\Header::class,
-                'alias' => 'dropdown-header',
+                'alias' => 'dropdown.header',
             ],
             'error' => [
                 'class' => Components\Error::class,
@@ -95,29 +95,25 @@ class WireUi extends Facade
                 'class' => Components\Input::class,
                 'alias' => 'input',
             ],
-            'inputs.wrapper' => [
-                'class' => Components\Inputs\Wrapper::class,
-                'alias' => 'inputs.wrapper',
+            'input-currency' => [
+                'class' => Components\Input\Currency::class,
+                'alias' => 'input-currency',
             ],
-            'inputs.currency' => [
-                'class' => Components\Inputs\CurrencyInput::class,
-                'alias' => 'inputs.currency',
+            'input-maskable' => [
+                'class' => Components\Input\MaskableInput::class,
+                'alias' => 'input-maskable',
             ],
-            'inputs.maskable' => [
-                'class' => Components\Inputs\MaskableInput::class,
-                'alias' => 'inputs.maskable',
+            'input-number' => [
+                'class' => Components\Input\Number::class,
+                'alias' => 'input-number',
             ],
-            'inputs.number' => [
-                'class' => Components\Inputs\NumberInput::class,
-                'alias' => 'inputs.number',
+            'input-password' => [
+                'class' => Components\Input\Password::class,
+                'alias' => 'input-password',
             ],
-            'inputs.password' => [
-                'class' => Components\Inputs\PasswordInput::class,
-                'alias' => 'inputs.password',
-            ],
-            'inputs.phone' => [
-                'class' => Components\Inputs\PhoneInput::class,
-                'alias' => 'inputs.phone',
+            'input-phone' => [
+                'class' => Components\Input\Phone::class,
+                'alias' => 'input-phone',
             ],
             'label' => [
                 'class' => Components\Label::class,
@@ -131,9 +127,9 @@ class WireUi extends Facade
                 'class' => Components\Modal::class,
                 'alias' => 'modal',
             ],
-            'modal.card' => [
+            'modal-card' => [
                 'class' => Components\ModalCard::class,
-                'alias' => 'modal.card',
+                'alias' => 'modal-card',
             ],
             'native-select' => [
                 'class' => Components\NativeSelect::class,
@@ -170,6 +166,10 @@ class WireUi extends Facade
             'toggle' => [
                 'class' => Components\Toggle::class,
                 'alias' => 'toggle',
+            ],
+            'wrapper' => [
+                'class' => Components\Wrapper\Base::class,
+                'alias' => 'wrapper',
             ],
         ]);
     }

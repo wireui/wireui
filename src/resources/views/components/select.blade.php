@@ -1,10 +1,8 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    :x-data="WireUi::alpine('wireui_select', [
-        'wireModel' => null,
-    ])"
-    :x-props="WireUi::toJs([
+    x-data="wireui_select"
+    :x-props="WireUi::phpToJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,
         'optionLabel'       => $optionLabel,
@@ -16,6 +14,7 @@
         'readonly'          => $readonly || $disabled,
         'placeholder'       => $placeholder,
         'template'          => $template,
+        'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
 >
     <div hidden x-ref="json">@toJs($optionsToArray())</div>
@@ -27,7 +26,7 @@
         </div>
     @endif
 
-    @include('wireui::form.wrapper.slots', [
+    @include('wireui::components.wrapper.slots', [
         'except' => ['append', 'prepend']
     ])
 
@@ -42,7 +41,7 @@
                     'pl-3.5' => !$icon,
                     'pl-2.5' =>  $icon,
                 ])
-                 x-on:click="toggle"
+                x-on:click="toggle"
             >
                 @if ($icon != null)
                     <x-dynamic-component
@@ -111,7 +110,7 @@
         </template>
     </x-slot:prepend>
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.element
         x-ref="input"
         x-on:click="toggle"
         x-on:focus="open"
@@ -238,4 +237,4 @@
             </div>
         </x-wireui::parts.popover>
     </x-slot:after>
-</x-inputs.wrapper>
+</x-wrapper>

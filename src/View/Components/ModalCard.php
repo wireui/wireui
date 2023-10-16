@@ -13,7 +13,7 @@ class ModalCard extends Modal
         public ?string $spacing = null,
         public ?string $align = null,
         public string|bool|null $blur = null,
-        public bool $show = false,
+        public bool $state = false,
         public ?string $title = null,
         public ?string $padding = null,
         public ?string $shadow = null,
@@ -30,7 +30,7 @@ class ModalCard extends Modal
             spacing: $spacing,
             align: $align,
             blur: $blur,
-            show: $show,
+            state: $state,
         );
     }
 

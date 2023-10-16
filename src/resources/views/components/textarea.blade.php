@@ -1,20 +1,20 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
     padding="none"
 >
-    @include('wireui::form.wrapper.slots', [
+    @include('wireui::components.wrapper.slots', [
         'except' => ['prepend', 'append'],
     ])
 
     <textarea
         {{ $attrs
             ->merge([
-                'type'         => 'text',
+                'type' => 'text',
                 'autocomplete' => 'off',
-                'placeholder'  => ' ',
-                'rows'         => 4,
+                'placeholder' => ' ',
+                'rows' => 4,
             ])
             ->except(['wire:key', 'x-data', 'class'])
             ->class([
@@ -24,4 +24,4 @@
                 'invalidated:placeholder-negative-400 invalidated:dark:placeholder-negative-600/70',
             ]) }}
     >{{ $slot }}</textarea>
-</x-inputs.wrapper>
+</x-wrapper>

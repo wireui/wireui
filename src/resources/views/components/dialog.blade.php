@@ -1,4 +1,10 @@
-<div class="{{ $getRootClasses() }}"
+<div @class([
+        'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
+        'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
+        $zIndex ?? Arr::get($typeClasses, 'z-index', 'z-50'),
+        'fixed inset-0 flex overflow-y-auto sm:pt-16 justify-center',
+        $alignClasses,
+    ])
     x-data="wireui_dialog({ id: '{{ $dialog }}' })"
     x-show="show"
     x-on:wireui:{{ $dialog }}.window="showDialog($event.detail)"
@@ -6,7 +12,12 @@
     x-on:keydown.escape.window="handleEscape"
     style="display: none"
     x-cloak>
-    <div class="{{ $getBackdropClasses() }}"
+    <div @class([
+            'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
+            'dark:bg-secondary-700 dark:bg-opacity-60',
+            $blurClasses => !$blurless,
+            "{$dialog}-backdrop",
+        ])
         x-show="show"
         x-on:click="dismiss"
         x-transition:enter="ease-out duration-300"
@@ -17,7 +28,11 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div class="{{ $getMainClasses() }}"
+    <div @class([
+            $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
+            'w-full transition-all',
+            $maxWidthClasses,
+        ])
         x-show="show"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -27,12 +42,12 @@
         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-on:mouseenter="pauseTimeout"
         x-on:mouseleave="resumeTimeout">
-        <div class="relative shadow-md bg-white dark:bg-secondary-800 rounded-xl space-y-4 p-4"
+        <div class="relative p-4 space-y-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
                 'sm:p-0 sm:pt-1': style === 'inline',
             }">
-            <div class="bg-secondary-300 dark:bg-secondary-600 rounded-full transition-all duration-150 ease-linear absolute top-0 left-0"
+            <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
                 style="height: 2px; width: 100%;"
                 x-ref="progressbar"
                 x-show="dialog && dialog.progressbar && dialog.timeout">
@@ -52,20 +67,20 @@
             </div>
 
             <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
-                <div class="mx-auto flex items-center self-start justify-center shrink-0"
+                <div class="flex items-center self-start justify-center mx-auto shrink-0"
                     :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                     x-show="dialog && dialog.icon">
                     <div x-ref="iconContainer"></div>
                 </div>
 
-                <div class="mt-4 w-full" :class="{ 'sm:mt-5': style === 'center' }">
-                    <h3 class="text-lg leading-6 font-medium text-secondary-900 dark:text-secondary-400 text-center"
+                <div class="w-full mt-4" :class="{ 'sm:mt-5': style === 'center' }">
+                    <h3 class="text-lg font-medium leading-6 text-center text-secondary-900 dark:text-secondary-400"
                         :class="{ 'sm:text-left': style === 'inline' }"
                         @unless($title) x-ref="title" @endunless>
                         {{ $title }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-secondary-500 text-center"
+                    <p class="mt-2 text-sm text-center text-secondary-500"
                         :class="{ 'sm:text-left': style === 'inline' }"
                         @unless($description) x-ref="description" @endunless>
                         {{ $description }}

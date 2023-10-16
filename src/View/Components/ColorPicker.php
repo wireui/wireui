@@ -4,11 +4,12 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
 
-class ColorPicker extends Component
+class ColorPicker extends WireUiComponent
 {
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
     use IsFormComponent;
 
     public function __construct(

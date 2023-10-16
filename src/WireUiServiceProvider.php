@@ -2,6 +2,8 @@
 
 namespace WireUi;
 
+define('GLOBAL_STYLE', 'global');
+
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
