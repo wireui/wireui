@@ -3,6 +3,7 @@
 namespace WireUi\Support;
 
 use WireUi\Exceptions\WireUiAttributeException;
+use WireUi\WireUiConfig as Config;
 
 abstract class ComponentPack
 {
@@ -20,7 +21,7 @@ abstract class ComponentPack
 
     public function get(mixed $attribute = null): mixed
     {
-        if (is_null($attribute) || $attribute === GLOBAL_STYLE) {
+        if (is_null($attribute) || $attribute === Config::GLOBAL) {
             return $this->getDefault();
         }
 
