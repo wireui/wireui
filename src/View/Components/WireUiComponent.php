@@ -35,24 +35,24 @@ abstract class WireUiComponent extends Component
     {
         $this->setConfig();
 
-        if (method_exists($this, 'mount')) {
-            $this->mount($data);
+        if (method_exists($this, 'mounted')) {
+            $this->mounted($data);
         }
 
         foreach ($this->getMethods() as $method) {
             $this->{$method}($data);
         }
 
-        if (method_exists($this, 'rendered')) {
-            $this->rendered($data);
+        if (method_exists($this, 'processed')) {
+            $this->processed($data);
         }
 
         foreach ($this->setVariables as $attribute) {
             $data[$attribute] = $this->{$attribute};
         }
 
-        if (method_exists($this, 'formable')) {
-            $this->formable($data);
+        if (method_exists($this, 'finished')) {
+            $this->finished($data);
         }
 
         return Arr::set($data, 'attributes', $this->attributes->except($this->smartAttributes));

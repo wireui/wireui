@@ -1,9 +1,8 @@
 <?php
 
 use WireUi\Enum\Packs;
-use WireUi\Facades\WireUi as WireUiFacade;
 use WireUi\View\Components;
-use WireUi\WireUi;
+use WireUi\{WireUi, WireUiConfig as Config};
 
 return [
 
@@ -31,114 +30,37 @@ return [
     |
      */
 
-    'alert' => [
-        'default' => [
-            'color'   => GLOBAL_STYLE,
-            'rounded' => GLOBAL_STYLE,
-            'padding' => Packs\Padding::BASE,
-            'variant' => Packs\Variant::FLAT,
-        ],
-        'packs' => [
-            'shadows'  => WireUi\Shadow::class,
-            'rounders' => WireUi\Rounded::class,
-            'paddings' => WireUi\Alert\Padding::class,
-            'variants' => WireUi\Alert\Variant::class,
-        ],
-    ],
+    'alert' => Config::alert(),
 
-    'avatar' => [
-        'default' => [
-            'border'  => Packs\Border::THIN,
-            'rounded' => Packs\Rounded::FULL,
-            'color'   => Packs\Color::SECONDARY,
-        ],
-        'packs' => [
-            'rounders'   => WireUi\Rounded::class,
-            'sizes'      => WireUi\Avatar\Size::class,
-            'colors'     => WireUi\Avatar\Color::class,
-            'borders'    => WireUi\Avatar\Border::class,
-            'icon-sizes' => WireUi\Avatar\IconSize::class,
-        ],
-    ],
+    'avatar' => Config::avatar(),
 
-    'badge' => [
-        'default' => [
-            'color'   => GLOBAL_STYLE,
-            'rounded' => GLOBAL_STYLE,
-            'size'    => Packs\Size::SM,
-            'variant' => Packs\Variant::SOLID,
-        ],
-        'packs' => [
-            'rounders'   => WireUi\Rounded::class,
-            'variants'   => WireUi\Badge\Variant::class,
-            'icon-sizes' => WireUi\Badge\IconSize::class,
-            'sizes'      => WireUi\Badge\Size\Base::class,
-        ],
-    ],
+    'badge' => Config::badge(),
 
-    'mini-badge' => [
-        'default' => [
-            'color'   => GLOBAL_STYLE,
-            'rounded' => GLOBAL_STYLE,
-            'size'    => Packs\Size::SM,
-            'variant' => Packs\Variant::SOLID,
-        ],
+    'mini-badge' => Config::badge([
         'packs' => [
-            'rounders'   => WireUi\Rounded::class,
-            'variants'   => WireUi\Badge\Variant::class,
-            'icon-sizes' => WireUi\Badge\IconSize::class,
-            'sizes'      => WireUi\Badge\Size\Mini::class,
+            'sizes' => WireUi\Badge\Size\Mini::class,
         ],
-    ],
+    ]),
 
-    'button' => [
-        'default' => [
-            'color'   => GLOBAL_STYLE,
-            'rounded' => GLOBAL_STYLE,
-            'size'    => Packs\Size::MD,
-            'variant' => Packs\Variant::SOLID,
-        ],
-        'packs' => [
-            'rounders'   => WireUi\Rounded::class,
-            'variants'   => WireUi\Button\Variant::class,
-            'icon-sizes' => WireUi\Button\IconSize::class,
-            'sizes'      => WireUi\Button\Size\Base::class,
-        ],
-    ],
+    'button' => Config::button(),
 
-    'mini-button' => [
-        'default' => [
-            'color'   => GLOBAL_STYLE,
-            'rounded' => GLOBAL_STYLE,
-            'size'    => Packs\Size::MD,
-            'variant' => Packs\Variant::SOLID,
-        ],
+    'mini-button' => Config::button([
         'packs' => [
-            'rounders'   => WireUi\Rounded::class,
-            'variants'   => WireUi\Button\Variant::class,
-            'icon-sizes' => WireUi\Button\IconSize::class,
-            'sizes'      => WireUi\Button\Size\Mini::class,
+            'sizes' => WireUi\Button\Size\Mini::class,
         ],
-    ],
+    ]),
 
-    'card' => [
-        'default' => [
-            'rounded' => GLOBAL_STYLE,
-            'color'   => Packs\Color::BASE,
-            'padding' => Packs\Padding::BASE,
-            'variant' => Packs\Variant::FLAT,
-        ],
-        'packs' => [
-            'shadows'  => WireUi\Shadow::class,
-            'rounders' => WireUi\Rounded::class,
-            'colors'   => WireUi\Card\Color::class,
-            'paddings' => WireUi\Card\Padding::class,
-        ],
-    ],
+    'card' => Config::card(),
+
+    'input' => Config::wrapper(),
 
     // 'checkbox' => [
     //     //
     // ],
+
+    'color-picker' => Config::wrapper(),
+
+    'datetime-picker' => Config::wrapper(),
 
     // 'dialog' => [
     //     //
@@ -168,6 +90,18 @@ return [
     //     //
     // ],
 
+    'input' => Config::wrapper(),
+
+    'input-currency' => Config::wrapper(),
+
+    'input-maskable' => Config::wrapper(),
+
+    'input-number' => Config::wrapper(),
+
+    'input-password' => Config::wrapper(),
+
+    'input-phone' => Config::wrapper(),
+
     // 'label' => [
     //     //
     // ],
@@ -184,6 +118,8 @@ return [
     //     //
     // ],
 
+    'native-select' => Config::wrapper(),
+
     // 'notifications' => [
     //     //
     // ],
@@ -191,6 +127,8 @@ return [
     // 'radio' => [
     //     //
     // ],
+
+    'select' => Config::wrapper(),
 
     // 'select.option' => [
     //     //
@@ -200,35 +138,13 @@ return [
     //     //
     // ],
 
+    'textarea' => Config::wrapper(),
+
+    'time-picker' => Config::wrapper(),
+
     // 'toggle' => [
     //     //
     // ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Wrapper Configuration
-    |--------------------------------------------------------------------------
-    |
-    | This option controls the default configuration for this components:
-    |
-    | - color-picker
-    | - datetime-picker
-    | - input
-    | - input-currency
-    | - input-maskable
-    | - input-number
-    | - input-password
-    | - input-phone
-    | - native-select
-    | - select
-    | - textarea
-    | - time-picker
-    |
-     */
-
-    'wrapper' => [
-        //
-    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -240,10 +156,13 @@ return [
     |
      */
 
-    'components' => WireUiFacade::defaultComponents()->merge([
+    'components' => Config::defaultComponents([
         // 'button' => [
-        //     'class' => Components\Button::class,
         //     'alias' => 'new-button',
         // ],
-    ])->toArray(),
+        // 'mini-button' => [
+        //     'class' => Components\Button\Mini::class,
+        //     'alias' => 'new-mini-button',
+        // ],
+    ]),
 ];

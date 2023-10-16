@@ -3,7 +3,8 @@
 namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupIcon, HasSetupWrapper};
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupShadow, HasSetupWrapper};
 use WireUi\View\Components\WireUiComponent;
 
 class Number extends WireUiComponent
@@ -14,7 +15,7 @@ class Number extends WireUiComponent
     use HasSetupShadow;
     use IsFormComponent;
 
-    protected function rendered(): void
+    protected function processed(): void
     {
         $this->icon ??= 'minus';
 

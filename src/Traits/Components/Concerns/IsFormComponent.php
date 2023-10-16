@@ -25,7 +25,7 @@ trait IsFormComponent
         return WrapperData::extractable();
     }
 
-    protected function formable(array &$data): void
+    protected function finished(array &$data): void
     {
         $this->mergeAttributes($data);
 
