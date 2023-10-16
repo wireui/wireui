@@ -7,6 +7,8 @@ use WireUi\View\Components;
 
 class WireUiConfig
 {
+    public const GLOBAL = 'global';
+
     /**
      * Default Configuration to Components.
      */
@@ -14,8 +16,8 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => GLOBAL_STYLE,
-                'rounded' => GLOBAL_STYLE,
+                'color'   => self::GLOBAL,
+                'rounded' => self::GLOBAL,
                 'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
             ],
@@ -50,8 +52,8 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => GLOBAL_STYLE,
-                'rounded' => GLOBAL_STYLE,
+                'color'   => self::GLOBAL,
+                'rounded' => self::GLOBAL,
                 'size'    => Packs\Size::SM,
                 'variant' => Packs\Variant::SOLID,
             ],
@@ -68,8 +70,8 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => GLOBAL_STYLE,
-                'rounded' => GLOBAL_STYLE,
+                'color'   => self::GLOBAL,
+                'rounded' => self::GLOBAL,
                 'size'    => Packs\Size::MD,
                 'variant' => Packs\Variant::SOLID,
             ],
@@ -86,7 +88,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'rounded' => GLOBAL_STYLE,
+                'rounded' => self::GLOBAL,
                 'color'   => Packs\Color::BASE,
                 'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
@@ -120,6 +122,22 @@ class WireUiConfig
     {
         return self::mix([
             'variant' => Packs\Icon::OUTLINE,
+        ], $options);
+    }
+
+    public static function link(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'size'      => Packs\Size::MD,
+                'color'     => Packs\Color::PRIMARY,
+                'underline' => Packs\Underline::HOVER,
+            ],
+            'packs' => [
+                'sizes'      => WireUi\Link\Size::class,
+                'colors'     => WireUi\Link\Color::class,
+                'underlines' => WireUi\Link\Underline::class,
+            ],
         ], $options);
     }
 
@@ -157,9 +175,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => GLOBAL_STYLE,
-                'shadow'  => GLOBAL_STYLE,
-                'rounded' => GLOBAL_STYLE,
+                'color'   => self::GLOBAL,
+                'shadow'  => self::GLOBAL,
+                'rounded' => self::GLOBAL,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,

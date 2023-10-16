@@ -2,21 +2,22 @@
 
 namespace WireUi\WireUi\Link;
 
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Size extends ComponentPack
 {
     protected function default(): string
     {
-        return 'md';
+        return Packs\Size::MD;
     }
 
     public function all(): array
     {
         return [
-            'sm' => 'text-sm',
-            'md' => 'text-base',
-            'lg' => 'text-lg',
+            Packs\Size::SM => 'text-sm',
+            Packs\Size::MD => 'text-base',
+            Packs\Size::LG => 'text-lg',
         ];
     }
 }

@@ -2,21 +2,22 @@
 
 namespace WireUi\WireUi\Link;
 
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Underline extends ComponentPack
 {
     protected function default(): string
     {
-        return 'hover';
+        return Packs\Underline::HOVER;
     }
 
     public function all(): array
     {
         return [
-            'always' => 'underline',
-            'none'   => 'no-underline',
-            'hover'  => 'no-underline hover:underline',
+            Packs\Underline::ALWAYS => 'underline',
+            Packs\Underline::NONE   => 'no-underline',
+            Packs\Underline::HOVER  => 'no-underline hover:underline',
         ];
     }
 }

@@ -80,9 +80,7 @@ return [
 
     'input-phone' => Config::wrapper(),
 
-    // 'link' => [
-    //     //
-    // ],
+    'link' => Config::link(),
 
     'modal' => Config::modal(),
 
