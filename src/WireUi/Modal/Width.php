@@ -4,7 +4,7 @@ namespace WireUi\WireUi\Modal;
 
 use WireUi\Support\ComponentPack;
 
-class MaxWidth extends ComponentPack
+class Width extends ComponentPack
 {
     protected function default(): string
     {

@@ -5,12 +5,12 @@ namespace Tests\Unit\Traits\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
-use WireUi\Traits\Components\HasSetupMaxWidth;
+use WireUi\Traits\Components\HasSetupWidth;
 use WireUi\View\Components\BaseComponent;
 
 class MaxWidth extends BaseComponent
 {
-    use HasSetupMaxWidth;
+    use HasSetupWidth;
 
     public function __construct()
     {

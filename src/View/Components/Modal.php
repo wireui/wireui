@@ -3,13 +3,13 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
+use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupWidth, HasSetupType};
 
 class Modal extends WireUiComponent
 {
     use HasSetupAlign;
     use HasSetupBlur;
-    use HasSetupMaxWidth;
+    use HasSetupWidth;
     use HasSetupType;
 
     public function __construct(

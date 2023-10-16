@@ -4,13 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
-use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupMaxWidth, HasSetupType};
+use WireUi\Traits\Components\{HasSetupAlign, HasSetupBlur, HasSetupWidth, HasSetupType};
 
 class Dialog extends WireUiComponent
 {
     use HasSetupAlign;
     use HasSetupBlur;
-    use HasSetupMaxWidth;
+    use HasSetupWidth;
     use HasSetupType;
 
     public string $dialog;
