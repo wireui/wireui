@@ -12,43 +12,36 @@ class ColorPickerTest extends BrowserTestCase
 
     public function test_it_should_select_a_color()
     {
-        $this->browse(function (Browser $browser) {
-            $this->visitation($browser, self::HTML)
-                ->openPopover(self::NAME)
-                ->selectColorByTitle(self::NAME, 'White')
-                ->waitTo(fn () => $browser->assertInputValue(self::NAME, '#fff'))
+        $this->render(self::HTML)
+            ->openPopover(self::NAME)
+            ->selectColorByTitle(self::NAME, 'White')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#fff'))
 
-                ->openPopover(self::NAME)
-                ->selectColorByTitle(self::NAME, 'Black')
-                ->waitTo(fn () => $browser->assertInputValue(self::NAME, '#000'))
+            ->openPopover(self::NAME)
+            ->selectColorByTitle(self::NAME, 'Black')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#000'))
 
-                ->openPopover(self::NAME)
-                ->selectColorByTitle(self::NAME, 'purple-100')
-                ->waitTo(fn () => $browser->assertInputValue(self::NAME, '#f3e8ff'));
-        });
+            ->openPopover(self::NAME)
+            ->selectColorByTitle(self::NAME, 'purple-100')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#f3e8ff'));
     }
 
     public function test_it_should_type_the_color_value()
     {
-        $this->browse(function (Browser $browser) {
-            $this->visitation($browser, self::HTML)
-                ->clear(self::NAME)
-                ->assertInputValue(self::NAME, null)
-                ->type(self::NAME, 'ABC')
-                ->assertInputValue(self::NAME, '#ABC')
-                ->type(self::NAME, '123456789')
-                ->assertInputValue(self::NAME, '#123456');
-        });
+        $this->render(self::HTML)
+            ->clear(self::NAME)
+            ->assertInputValue(self::NAME, null)
+            ->type(self::NAME, 'ABC')
+            ->assertInputValue(self::NAME, '#ABC')
+            ->type(self::NAME, '123456789')
+            ->assertInputValue(self::NAME, '#123456');
     }
 
     public function test_it_should_auto_fill_the_color_from_input_element_value_as_color_title()
     {
-        $this->browse(function (Browser $browser) {
-            $this
-                ->visitation($browser, '<x-color-picker color-name-as-value name="color" value="Black" />')
-                ->waitForAlpineJs()
-                ->assertInputValue('color', 'Black');
-        });
+        $this->render('<x-color-picker color-name-as-value name="color" value="Black" />')
+            ->waitForAlpineJs()
+            ->assertInputValue('color', 'Black');
     }
 
     public function test_auto_fill_from_wire_model()

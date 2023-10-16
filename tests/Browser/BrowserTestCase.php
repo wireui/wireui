@@ -46,6 +46,13 @@ class BrowserTestCase extends TestCase
 
         trigger('browser.testCase.tearDown', $this);
 
+        if (!$this->status()->isSuccess()) {
+            $this->captureFailuresFor(collect(static::$browsers));
+            $this->storeSourceLogsFor(collect(static::$browsers));
+        }
+
+        $this->closeAll();
+
         parent::tearDown();
     }
 

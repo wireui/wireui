@@ -2,7 +2,6 @@
 
 namespace Tests\Browser\Modules\Entangleable;
 
-use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
 
 class SupportsAlpineTest extends BrowserTestCase
@@ -26,12 +25,9 @@ class SupportsAlpineTest extends BrowserTestCase
         string $html,
         string|int $value,
     ) {
-        $this->browse(function (Browser $browser) use ($html, $value) {
-            $this
-                ->visitation($browser, $html)
-                ->waitForAlpineJs()
-                ->assertInputValue('value', $value);
-        });
+        $this->render($html)
+            ->waitForAlpineJs()
+            ->assertInputValue('value', $value);
     }
 
     public function components(): array
@@ -49,11 +45,8 @@ class SupportsAlpineTest extends BrowserTestCase
         string $html,
         string|int $value,
     ) {
-        $this->browse(function (Browser $browser) use ($html, $value) {
-            $this
-                ->visitation($browser, $html)
-                ->waitForAlpineJs()
-                ->assertInputValue('value', $value);
-        });
+        $this->render($html)
+            ->waitForAlpineJs()
+            ->assertInputValue('value', $value);
     }
 }

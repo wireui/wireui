@@ -6,13 +6,11 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\{Arr, Str};
 use Laravel\Dusk\Browser;
-use Livewire\Features\SupportTesting\Testable;
 
 /** @mixin BrowserTestCase */
 trait BrowserFunctions
 {
-    /** @return Browser|Testable */
-    public function visitation(Browser $browser, string $html): Browser
+    public function render(string $html): Browser
     {
         $uuid = (string) Str::uuid();
 
@@ -25,6 +23,10 @@ trait BrowserFunctions
         BLADE;
 
         file_put_contents($path, $blade);
+
+        $browser = $this->newBrowser($this->createWebDriver());
+
+        static::$browsers = collect([$browser]);
 
         return $browser->visit('/testing/' . base64_encode($path));
     }
