@@ -162,7 +162,11 @@
                     >
                         <div class="flex justify-center picker-days">
                             <button
-                                class="h-6 text-sm rounded-md w-7 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400 disabled:cursor-not-allowed"
+                                @class([
+                                    'text-sm w-7 h-6 focus:outline-none rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-primary-600',
+                                    'hover:bg-primary-100 dark:hover:bg-secondary-700 dark:focus:ring-secondary-400',
+                                    'disabled:cursor-not-allowed',
+                                ])
                                 :class="{
                                     'text-secondary-600 dark:text-secondary-400': !date.isDisabled && !date.isSelected && date.month === month,
                                     'text-secondary-400 dark:text-secondary-600': date.isDisabled || date.month !== month,
@@ -200,7 +204,11 @@
             >
                 <template x-for="time in filteredTimes" :key="time.value">
                     <button
-                        class="relative py-2 pl-2 text-left transition-colors duration-100 ease-in-out rounded-md cursor-pointer select-none group focus:outline-none focus:bg-primary-100 dark:focus:bg-secondary-700 pr-9 hover:text-white hover:bg-primary-600 dark:hover:bg-secondary-700 dark:text-secondary-400"
+                        @class([
+                            'group rounded-md focus:outline-none focus:bg-primary-100 dark:focus:bg-secondary-700',
+                            'relative py-2 pl-2 pr-9 text-left transition-colors ease-in-out duration-100 cursor-pointer select-none',
+                            'hover:text-white hover:bg-primary-600 dark:hover:bg-secondary-700 dark:text-secondary-400',
+                        ])
                         :class="{
                             'text-primary-600': modelTime === time.value,
                             'text-secondary-700': modelTime !== time.value,
@@ -212,7 +220,10 @@
                         <span x-text="time.label"></span>
 
                         <span
-                            class="absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 dark:text-secondary-400 group-hover:text-white"
+                            @class([
+                                'text-primary-600 dark:text-secondary-400 group-hover:text-white',
+                                'absolute inset-y-0 right-0 flex items-center pr-4',
+                            ])
                             x-show="modelTime === time.value"
                         >
                             <x-dynamic-component

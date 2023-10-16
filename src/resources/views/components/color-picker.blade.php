@@ -72,12 +72,10 @@
              <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto">
                 <template x-for="(color, index) in colors" :key="index">
                      <button
-                         @class([
-                            'w-6 h-6 transition-all duration-100 ease-in-out border',
-                            'rounded shadow-lg cursor-pointer hover:scale-125',
-                            'hover:border-gray-400 focus:outline-none focus:ring-2',
-                            'focus:ring-primary-600 dark:focus:ring-gray-400 dark:border-0',
-                            'dark:hover:ring-2 dark:hover:ring-gray-400',
+                        @class([
+                            'w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
+                            'hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400',
+                            'dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400',
                         ])
                          :style="{ 'background-color': color.value }"
                          x-on:click="select(color)"

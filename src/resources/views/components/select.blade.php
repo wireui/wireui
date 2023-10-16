@@ -1,8 +1,10 @@
 <x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    x-data="wireui_select"
-    :x-props="WireUi::phpToJs([
+    :x-data="WireUi::alpine('wireui_select', [
+        'wireModel' => null,
+    ])"
+    :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,
         'optionLabel'       => $optionLabel,
@@ -14,7 +16,6 @@
         'readonly'          => $readonly || $disabled,
         'placeholder'       => $placeholder,
         'template'          => $template,
-        'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
 >
     <div hidden x-ref="json">@toJs($optionsToArray())</div>

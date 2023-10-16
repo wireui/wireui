@@ -23,11 +23,11 @@
         ->whereStartsWith(['x-on:', '@', 'wire:']) }}
     style="display: none"
     x-cloak
-    x-show="state"
+    x-show="show"
     wireui-modal
 >
     <div
-        x-show="state"
+        x-show="show"
         @class([
             'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
             'dark:bg-opacity-60 transform transition-opacity',
@@ -43,8 +43,7 @@
     </div>
 
     <div
-        x-show="state"
-        x-trap.noscroll="state"
+        x-show="show"
         @class([
             'w-full min-h-full transform flex items-end justify-center mx-auto',
             $maxWidthClasses,

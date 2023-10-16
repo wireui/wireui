@@ -68,7 +68,11 @@
         <ul class="w-full h-64 pt-2 pb-1 mt-1 overflow-y-auto sm:h-32 soft-scrollbar">
             <template x-for="time in filteredTimes">
                 <li
-                    class="relative py-2 pl-2 rounded-md cursor-pointer select-none group focus:outline-none focus:bg-primary-100 hover:text-white hover:bg-primary-600 pr-9 dark:hover:bg-secondary-700"
+                    @class([
+                        'group rounded-md focus:outline-none focus:bg-primary-100 hover:text-white',
+                        'hover:bg-primary-600 cursor-pointer select-none relative py-2 pl-2 pr-9',
+                        'dark:hover:bg-secondary-700',
+                    ])
                     :class="{
                         'text-primary-600 dark:text-secondary-400':   input === time.value,
                         'text-secondary-700 dark:text-secondary-400': input !== time.value,
@@ -80,7 +84,10 @@
                     <span x-text="time.label" class="block font-normal truncate"></span>
 
                     <span
-                        class="absolute inset-y-0 right-0 flex items-center pr-4 text-primary-600 group-hover:text-white dark:text-secondary-400"
+                        @class([
+                            'absolute text-primary-600 group-hover:text-white inset-y-0',
+                            'right-0 flex items-center pr-4 dark:text-secondary-400',
+                        ])
                         x-show="input === time.value"
                     >
                         <x-dynamic-component
