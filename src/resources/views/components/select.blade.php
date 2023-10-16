@@ -177,7 +177,7 @@
                         x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                         shadowless
                         right-icon="magnifying-glass"
-                        :placeholder="trans('wireui::messages.searchHere')"
+                        :placeholder="trans('wireui::messages.search_here')"
                     />
                 </div>
             </template>

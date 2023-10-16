@@ -1,4 +1,4 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_color_picker"
@@ -20,7 +20,7 @@
          ></div>
      </x-slot:prefix>
 
-    <x-wireui::inputs.element
+    <x-wireui::wrapper.element
         x-model="selected.value"
         x-on:input="setColor($event.target.value)"
         x-on:blur="onBlur($event.target.value)"
@@ -44,8 +44,11 @@
         >
             <x-dynamic-component
                 :component="WireUi::component('icon')"
-                class="w-4 h-4 text-gray-400 group-focus:text-primary-700 dark:text-gray-600 dark:group-hover:text-gray-500 dark:group-focus:text-primary-500"
                 :name="$rightIcon"
+                @class([
+                    'w-4 h-4 group-focus:text-primary-700 text-gray-400 dark:text-gray-600',
+                    'dark:group-hover:text-gray-500 dark:group-focus:text-primary-500',
+                ])
             />
         </x-dynamic-component>
     </x-slot:append>
@@ -54,10 +57,10 @@
         <x-wireui::parts.popover
             :margin="(bool) $label"
             root-class="justify-end sm:w-full"
-            class="
-                max-h-64 py-2 px-1 sm:w-auto sm:max-w-[19rem] sm:max-h-60 overflow-y-auto
-                overscroll-contain soft-scrollbar select-none
-            "
+            @class([
+                'max-h-64 py-2 px-1 sm:w-auto sm:max-w-[19rem] sm:max-h-60 overflow-y-auto',
+                'overscroll-contain soft-scrollbar select-none',
+            ])
             x-ref="optionsContainer"
             tabindex="-1"
             name="wireui.select.options.{{ $name }}"
@@ -67,9 +70,15 @@
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
         >
              <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto">
-                 <template x-for="color in colors" :key="`${color.value}.${color.name}`">
+                <template x-for="(color, index) in colors" :key="index">
                      <button
-                         class="w-6 h-6 transition-all duration-100 ease-in-out border rounded shadow-lg cursor-pointer  hover:scale-125 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400 dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400"
+                         @class([
+                            'w-6 h-6 transition-all duration-100 ease-in-out border',
+                            'rounded shadow-lg cursor-pointer hover:scale-125',
+                            'hover:border-gray-400 focus:outline-none focus:ring-2',
+                            'focus:ring-primary-600 dark:focus:ring-gray-400 dark:border-0',
+                            'dark:hover:ring-2 dark:hover:ring-gray-400',
+                        ])
                          :style="{ 'background-color': color.value }"
                          x-on:click="select(color)"
                          :title="color.name"

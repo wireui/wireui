@@ -57,7 +57,7 @@
     >
         <x-dynamic-component
             :component="WireUi::component('input')"
-            :label="trans('wireui::messages.selectTime')"
+            :label="trans('wireui::messages.select_time')"
             tabindex="0"
             x-model="search"
             x-bind:placeholder="input ? input : '12:00'"
