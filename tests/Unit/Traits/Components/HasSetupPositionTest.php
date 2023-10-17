@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupPosition;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Position extends BaseComponent
+class Position extends WireUiComponent
 {
     use HasSetupPosition;
 
@@ -52,7 +52,7 @@ test('it should execute base component without value to position', function () {
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to position', function () {
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBe($positionRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to position', function 
 
     $this->invokeMethod($this->component, 'setPositionResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->position)->toBe($positionRandom);
 

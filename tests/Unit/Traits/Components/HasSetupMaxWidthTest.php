@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupWidth;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class MaxWidth extends BaseComponent
+class MaxWidth extends WireUiComponent
 {
     use HasSetupWidth;
 
@@ -52,7 +52,7 @@ test('it should execute base component without value to max width', function () 
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBeNull();
 
@@ -70,7 +70,7 @@ test('it should execute base component with value to max width', function () {
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBe($maxWidthRandom);
 
@@ -88,7 +88,7 @@ test('it should execute base component with custom value to max width', function
 
     $this->invokeMethod($this->component, 'setMaxWidthResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->maxWidth)->toBe($maxWidthRandom);
 

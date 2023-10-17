@@ -6,6 +6,19 @@ use WireUi\{WireUi, WireUiConfig as Config};
 
 return [
 
+    /**
+     * --------------------------------------------------------------------------
+     * Prefix
+     * --------------------------------------------------------------------------
+     *
+     * This option controls the prefix for WireUI components. Example:
+     * If you change the prefix to 'wireui', you can call the component with
+     * the prefix: <x-wireui:button />.
+     *
+     */
+
+    'prefix' => null,
+
     /*
     |--------------------------------------------------------------------------
     | Global Styles

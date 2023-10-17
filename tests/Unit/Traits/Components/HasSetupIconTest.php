@@ -5,9 +5,9 @@ namespace Tests\Unit\Traits\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Traits\Components\HasSetupIcon;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Icon extends BaseComponent
+class Icon extends WireUiComponent
 {
     use HasSetupIcon;
 
@@ -41,7 +41,7 @@ test('it should have all properties empty', function () {
 });
 
 test('it should execute base component without values', function () {
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->icon)->toBeNull();
 
@@ -60,7 +60,7 @@ test('it should execute base component with values', function () {
         'right-icon' => $rightIcon,
     ]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->icon)->toBe($icon);
 

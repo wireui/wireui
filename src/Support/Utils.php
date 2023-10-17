@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Support\Controllers;
+namespace WireUi\Support;
 
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

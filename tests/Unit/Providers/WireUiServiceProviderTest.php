@@ -91,7 +91,6 @@ test('it should register the blade directives', function () {
         'notify',
         'wireUiScripts',
         'wireUiStyles',
-        'boolean',
     ]);
 });
 

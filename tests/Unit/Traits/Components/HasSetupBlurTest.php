@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupBlur;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Blur extends BaseComponent
+class Blur extends WireUiComponent
 {
     use HasSetupBlur;
 
@@ -54,7 +54,7 @@ test('it should execute base component without value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->blur)->toBeNull();
 
@@ -75,7 +75,7 @@ test('it should execute base component with value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->blurless)->toBeTrue();
 
@@ -96,7 +96,7 @@ test('it should execute base component with custom value to blur', function () {
 
     $this->invokeMethod($this->component, 'setBlurResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->blurless)->toBeFalse();
 
