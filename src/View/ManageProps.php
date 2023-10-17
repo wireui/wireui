@@ -32,7 +32,7 @@ trait ManageProps
     {
         $field = Str::camel($field);
 
-        $this->{$field} = $this->getData("{$field}");
+        $this->{$field} = $this->getData($field);
 
         $this->setVariables($field);
     }
@@ -46,7 +46,7 @@ trait ManageProps
         /** @var ComponentPack $pack */
         $pack = resolve(config("wireui.{$this->config}.packs.{$config}"));
 
-        $this->{$field} = $this->getData("{$field}");
+        $this->{$field} = $this->getData($field);
 
         $this->{"{$field}Classes"} = $pack->get($this->{$field});
 
@@ -57,7 +57,7 @@ trait ManageProps
     {
         $field = Str::camel($field);
 
-        $this->{$field} = boolval($this->getData("{$field}"));
+        $this->{$field} = (bool) $this->getData($field);
 
         $this->setVariables($field);
     }
