@@ -12,7 +12,7 @@ class Alert extends WireUiComponent
     use HasSetupRounded;
     use HasSetupVariant;
 
-    protected array $customs = ['shadow', 'padding'];
+    protected array $packs = ['shadow', 'padding'];
 
     protected array $booleans = ['iconless', 'shadowless'];
 

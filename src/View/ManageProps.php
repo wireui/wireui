@@ -2,14 +2,14 @@
 
 namespace WireUi\View;
 
-use WireUi\Support\ComponentPack;
 use Illuminate\Support\Str;
+use WireUi\Support\ComponentPack;
 
 trait ManageProps
 {
     protected array $props = [];
 
-    protected array $customs = [];
+    protected array $packs = [];
 
     protected array $booleans = [];
 
@@ -19,8 +19,8 @@ trait ManageProps
             $this->manageProps($prop);
         }
 
-        foreach ($this->customs as $custom) {
-            $this->manageCustoms($custom);
+        foreach ($this->packs as $pack) {
+            $this->managePacks($pack);
         }
 
         foreach ($this->booleans as $boolean) {
@@ -37,7 +37,7 @@ trait ManageProps
         $this->setVariables($field);
     }
 
-    protected function manageCustoms(string $field): void
+    protected function managePacks(string $field): void
     {
         $field = Str::camel($field);
 
