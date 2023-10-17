@@ -3,14 +3,13 @@
 namespace WireUi\View\Components\Button;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\Components\WireUiComponent;
 
 class Base extends WireUiComponent
 {
     use HasSetupButton;
     use HasSetupColor;
-    use HasSetupIcon;
     use HasSetupIconSize;
     use HasSetupRounded;
     use HasSetupSize;
@@ -18,12 +17,15 @@ class Base extends WireUiComponent
     use HasSetupStateColor;
     use HasSetupVariant;
 
-    public function __construct(
-        public bool $full = false,
-        public bool $loading = true,
-        public ?string $label = null,
-    ) {
-        //
+    protected array $props = ['label', 'icon', 'right-icon'];
+
+    protected array $booleans = ['full', 'loading', 'iconless'];
+
+    protected function processed(): void
+    {
+        $this->full ??= false;
+
+        $this->loading ??= true;
     }
 
     public function blade(): View

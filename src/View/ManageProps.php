@@ -41,8 +41,10 @@ trait ManageProps
     {
         $field = Str::camel($field);
 
+        $config = Str::plural($field);
+
         /** @var ComponentPack $pack */
-        $pack = resolve(config("wireui.{$this->config}.packs.{$field}s"));
+        $pack = resolve(config("wireui.{$this->config}.packs.{$config}"));
 
         $this->{$field} = $this->getData("{$field}");
 
