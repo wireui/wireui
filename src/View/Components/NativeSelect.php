@@ -5,6 +5,8 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
 
 class NativeSelect extends WireUiComponent
 {

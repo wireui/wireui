@@ -5,6 +5,8 @@ namespace WireUi\View\Components;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
 
 class DatetimePicker extends WireUiComponent
 {

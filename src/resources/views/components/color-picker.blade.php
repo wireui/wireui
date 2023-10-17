@@ -8,7 +8,7 @@
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
 >
-    @include('wireui::form.wrapper.slots', [
+    @include('wireui::components.wrapper.slots', [
         'except' => ['prefix', 'append']
     ])
 
