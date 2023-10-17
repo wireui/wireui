@@ -8,10 +8,13 @@ use Illuminate\Support\{Arr, Str};
 use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
+use WireUi\View\ManageProps;
 
 abstract class WireUiComponent extends Component
 {
-    protected ?string $config = null;
+    use ManageProps;
+
+    public ?string $config = null;
 
     private array $setVariables = [];
 
