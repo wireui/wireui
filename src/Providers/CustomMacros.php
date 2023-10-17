@@ -2,7 +2,7 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\WireDirective;
 use WireUi\View\Attribute;
@@ -11,13 +11,6 @@ class CustomMacros
 {
     public static function register(): void
     {
-        Collection::macro('containsAll', function (array $values): bool {
-            return collect($values)->every(function ($value) {
-                /** @var Collection $this */
-                return $this->contains($value);
-            });
-        });
-
         ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
             $attributes = collect($this->whereStartsWith($name)->getAttributes());

@@ -67,15 +67,15 @@ abstract class WireUiComponent extends Component
             fn ($method) => Str::startsWith($method, 'setup'),
         )->values();
 
-        if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
-            $methods = $methods->reject('setupIconSize')->push('setupIconSize');
+        if ($methods->contains('setupSize')) {
+            $methods = $methods->reject('setupSize')->prepend('setupSize');
         }
 
-        if ($methods->containsAll(['setupVariant', 'setupColor'])) {
+        if ($methods->contains('setupColor')) {
             $methods = $methods->reject('setupColor')->push('setupColor');
         }
 
-        if ($methods->containsAll(['setupStateColor'])) {
+        if ($methods->contains('setupStateColor')) {
             $methods = $methods->reject('setupStateColor')->push('setupStateColor');
         }
 
@@ -96,9 +96,11 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        $config = config("wireui.{$this->config}.default.{$kebab}");
+        if ($attribute === 'icon-size' && property_exists($this, 'size') && $this->size) {
+            return $this->size;
+        }
 
-        return $callback ? $callback($config) : $config;
+        return config("wireui.{$this->config}.default.{$kebab}");
     }
 
     protected function getDataModifier(string $attribute, ComponentPack $dataPack): mixed
