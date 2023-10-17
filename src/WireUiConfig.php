@@ -265,25 +265,25 @@ class WireUiConfig
                 'class' => Components\Input\Base::class,
                 'alias' => 'input',
             ],
-            'input-currency' => [
+            'currency' => [
                 'class' => Components\Input\Currency::class,
-                'alias' => 'input-currency',
+                'alias' => 'currency',
             ],
-            'input-maskable' => [
+            'maskable' => [
                 'class' => Components\Input\MaskableInput::class,
-                'alias' => 'input-maskable',
+                'alias' => 'maskable',
             ],
-            'input-number' => [
+            'number' => [
                 'class' => Components\Input\Number::class,
-                'alias' => 'input-number',
+                'alias' => 'number',
             ],
-            'input-password' => [
+            'password' => [
                 'class' => Components\Input\Password::class,
-                'alias' => 'input-password',
+                'alias' => 'password',
             ],
-            'input-phone' => [
+            'phone' => [
                 'class' => Components\Input\Phone::class,
-                'alias' => 'input-phone',
+                'alias' => 'phone',
             ],
             'label' => [
                 'class' => Components\Label::class,

@@ -84,15 +84,15 @@ return [
 
     'input' => Config::wrapper(),
 
-    'input-currency' => Config::wrapper(),
+    'currency' => Config::wrapper(),
 
-    'input-maskable' => Config::wrapper(),
+    'maskable' => Config::wrapper(),
 
-    'input-number' => Config::wrapper(),
+    'number' => Config::wrapper(),
 
-    'input-password' => Config::wrapper(),
+    'password' => Config::wrapper(),
 
-    'input-phone' => Config::wrapper(),
+    'phone' => Config::wrapper(),
 
     'link' => Config::link(),
 
