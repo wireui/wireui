@@ -3,20 +3,17 @@
 namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupHeight, HasSetupPosition, HasSetupWidth};
 use WireUi\View\Components\WireUiComponent;
 
 class Base extends WireUiComponent
 {
-    use HasSetupHeight;
-    use HasSetupPosition;
-    use HasSetupWidth;
+    protected array $booleans = ['persistent'];
 
-    public function __construct(
-        public ?string $trigger = null,
-        public bool $persistent = false,
-    ) {
-        //
+    protected array $packs = ['width', 'height', 'position'];
+
+    protected function processed(): void
+    {
+        $this->persistent ??= false;
     }
 
     public function blade(): View
