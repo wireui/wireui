@@ -82,7 +82,7 @@ abstract class WireUiComponent extends Component
         return $methods->values()->toArray();
     }
 
-    protected function getData(string $attribute, callable $callback = null): mixed
+    protected function getData(string $attribute): mixed
     {
         if ($this->attributes->has($kebab = Str::kebab($attribute))) {
             $this->smartAttributes($kebab);
