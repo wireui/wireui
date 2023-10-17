@@ -28,29 +28,29 @@ trait ManageProps
         }
     }
 
-    protected function manageProps(string $field): void
+    protected function manageProps(string $value): void
     {
-        $field = Str::camel($field);
+        $field = Str::camel($value);
 
         $this->{$field} = $this->getData($field);
 
         $this->setVariables($field);
     }
 
-    protected function manageBooleans(string $field): void
+    protected function manageBooleans(string $value): void
     {
-        $field = Str::camel($field);
+        $field = Str::camel($value);
 
         $this->{$field} = (bool) $this->getData($field);
 
         $this->setVariables($field);
     }
 
-    protected function managePacks(string $field): void
+    protected function managePacks(string $value): void
     {
-        $field = Str::camel($field);
+        $field = Str::camel($value);
 
-        $config = Str::plural($field);
+        $config = Str::plural($value);
 
         /** @var ComponentPack $pack */
         $pack = resolve(config("wireui.{$this->config}.packs.{$config}"));
