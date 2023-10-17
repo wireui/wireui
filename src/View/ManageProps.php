@@ -7,20 +7,20 @@ use WireUi\Support\ComponentPack;
 
 trait ManageProps
 {
-    protected array $props = [];
-
     protected array $packs = [];
+
+    protected array $props = [];
 
     protected array $booleans = [];
 
     protected function setupProps(): void
     {
-        foreach ($this->props as $prop) {
-            $this->manageProps($prop);
-        }
-
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);
+        }
+
+        foreach ($this->props as $prop) {
+            $this->manageProps($prop);
         }
 
         foreach ($this->booleans as $boolean) {
@@ -33,6 +33,15 @@ trait ManageProps
         $field = Str::camel($field);
 
         $this->{$field} = $this->getData($field);
+
+        $this->setVariables($field);
+    }
+
+    protected function manageBooleans(string $field): void
+    {
+        $field = Str::camel($field);
+
+        $this->{$field} = (bool) $this->getData($field);
 
         $this->setVariables($field);
     }
@@ -51,14 +60,5 @@ trait ManageProps
         $this->{"{$field}Classes"} = $pack->get($this->{$field});
 
         $this->setVariables([$field, "{$field}Classes"]);
-    }
-
-    protected function manageBooleans(string $field): void
-    {
-        $field = Str::camel($field);
-
-        $this->{$field} = (bool) $this->getData($field);
-
-        $this->setVariables($field);
     }
 }
