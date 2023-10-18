@@ -6,14 +6,15 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class DatetimePicker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public ?Carbon $min;
 

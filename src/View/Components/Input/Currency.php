@@ -4,15 +4,16 @@ namespace WireUi\View\Components\Input;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\Components\WireUiComponent;
 
 class Currency extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public function __construct(
         public int $precision = 2,
