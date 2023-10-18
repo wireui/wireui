@@ -11,37 +11,24 @@ trait ManageProps
 
     protected array $props = [];
 
-    protected array $booleans = [];
-
     protected function setupProps(): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);
         }
 
-        foreach ($this->props as $prop) {
-            $this->manageProps($prop);
-        }
-
-        foreach ($this->booleans as $boolean) {
-            $this->manageBooleans($boolean);
+        foreach ($this->props as $key => $prop) {
+            $this->manageProps($key, $prop);
         }
     }
 
-    protected function manageProps(string $value): void
+    protected function manageProps(mixed $key, mixed $value): void
     {
-        $field = Str::camel($value);
+        [$key, $value] = $this->serialize($key, $value);
 
-        $this->{$field} = $this->getData($field);
+        $field = Str::camel($key);
 
-        $this->setVariables($field);
-    }
-
-    protected function manageBooleans(string $value): void
-    {
-        $field = Str::camel($value);
-
-        $this->{$field} = (bool) $this->getData($field);
+        $this->{$field} = $this->getData(attribute: $field, default: $value);
 
         $this->setVariables($field);
     }
@@ -60,5 +47,10 @@ trait ManageProps
         $this->{"{$field}Classes"} = $pack->get($this->{$field});
 
         $this->setVariables([$field, "{$field}Classes"]);
+    }
+
+    private function serialize(mixed $key, mixed $value): array
+    {
+        return is_int($key) ? [$value, null] : [$key, $value];
     }
 }

@@ -18,16 +18,14 @@ class Base extends WireUiComponent
 
     protected array $packs = ['icon-size'];
 
-    protected array $props = ['label', 'icon', 'right-icon'];
-
-    protected array $booleans = ['full', 'loading', 'iconless'];
-
-    protected function processed(): void
-    {
-        $this->full ??= false;
-
-        $this->loading ??= true;
-    }
+    protected array $props = [
+        'icon',
+        'label',
+        'iconless',
+        'right-icon',
+        'full'    => false,
+        'loading' => true,
+    ];
 
     public function blade(): View
     {

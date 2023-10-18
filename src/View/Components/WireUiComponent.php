@@ -82,7 +82,7 @@ abstract class WireUiComponent extends Component
         return $methods->values()->toArray();
     }
 
-    protected function getData(string $attribute): mixed
+    protected function getData(string $attribute, mixed $default = null): mixed
     {
         if ($this->attributes->has($kebab = Str::kebab($attribute))) {
             $this->smartAttributes($kebab);
@@ -100,7 +100,7 @@ abstract class WireUiComponent extends Component
             return $this->size;
         }
 
-        return config("wireui.{$this->config}.default.{$kebab}");
+        return config("wireui.{$this->config}.default.{$kebab}") ?? $default;
     }
 
     protected function getDataModifier(string $attribute, ComponentPack $dataPack): mixed
