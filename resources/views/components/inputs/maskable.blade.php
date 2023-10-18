@@ -20,6 +20,6 @@
         x-model="input"
         x-on:input="onInput($event.target.value)"
         x-on:blur="emitInput"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key']) }}
+        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model'])->except('wire:key') }}
     />
 </div>
