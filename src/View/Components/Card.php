@@ -2,8 +2,8 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\Support\{Str, Stringable};
+use Illuminate\View\Component;
 
 class Card extends Component
 {
@@ -50,6 +50,7 @@ class Card extends Component
                 ->replace('dark:border-0', '')
                 ->append(" {$headerClasses}");
         }
+
         return Str::of('px-4 py-2.5 flex justify-between items-center border-b dark:border-0')
             ->append(" {$headerClasses}");
     }

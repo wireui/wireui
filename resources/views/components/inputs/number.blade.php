@@ -9,7 +9,7 @@
         inputmode="numeric"
         {{ $attributes
             ->class('text-center appearance-number-none')
-            ->whereDoesntStartWith('wire:key')
+            ->except('wire:key')
             ->except($except) }}
         :borderless="$borderless"
         :shadowless="$shadowless"

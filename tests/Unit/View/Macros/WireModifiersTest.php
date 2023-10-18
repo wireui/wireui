@@ -22,10 +22,10 @@ class WireModifiersTest extends UnitTestCase
     {
         return [
             [
-                'attribute' => 'wire:model.defer',
+                'attribute' => 'wire:model.live',
                 'expected'  => [
-                    'defer'    => true,
-                    'lazy'     => false,
+                    'live'     => true,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => false,
                         'delay'  => '750',
@@ -33,10 +33,10 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.lazy',
+                'attribute' => 'wire:model.blur',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => true,
+                    'live'     => false,
+                    'blur'     => true,
                     'debounce' => [
                         'exists' => false,
                         'delay'  => '750',
@@ -44,10 +44,10 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce',
+                'attribute' => 'wire:model.live.debounce',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => true,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '750',
@@ -55,10 +55,10 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce.700',
+                'attribute' => 'wire:model.live.debounce.700',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => true,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '700',
@@ -66,10 +66,10 @@ class WireModifiersTest extends UnitTestCase
                 ],
             ],
             [
-                'attribute' => 'wire:model.debounce.700ms',
+                'attribute' => 'wire:model.live.debounce.700ms',
                 'expected'  => [
-                    'defer'    => false,
-                    'lazy'     => false,
+                    'live'     => true,
+                    'blur'     => false,
                     'debounce' => [
                         'exists' => true,
                         'delay'  => '700',

@@ -16,7 +16,7 @@
         :options="$this::ARRAY_OPTIONS"
         placeholder="Select Single Value"
         label="Single Select"
-        wire:model="model"
+        wire:model.live="model"
     />
 
     // test it_should_select_one_option_from_labeled_options_list
@@ -24,7 +24,7 @@
         :options="$this::LABEL_VALUE_OPTIONS"
         placeholder="Select Single Value"
         label="Single Select"
-        wire:model="model2"
+        wire:model.live="model2"
         option-label="label"
         option-value="value"
     />
@@ -35,7 +35,7 @@
         placeholder="Select Multiples Values"
         multiselect
         label="Multiple Select"
-        wire:model="model3"
+        wire:model.live="model3"
         option-label="label"
         option-value="value"
     />
@@ -44,7 +44,7 @@
     <x-select
         placeholder="Slot Select"
         label="Slot Select"
-        wire:model="model4"
+        wire:model.live="model4"
     >
         <x-select.option label="Option D" value="D" />
         <x-select.option label="Option E" value="E" />
@@ -56,7 +56,7 @@
         :options="$this::READONLY_DISABLED_OPTIONS"
         placeholder="Select With Readonly/Disabled"
         label="Select With Readonly/Disabled"
-        wire:model="model5"
+        wire:model.live="model5"
         option-label="label"
         option-value="value"
     />
@@ -66,7 +66,7 @@
         label="Select From Async data"
         {{-- async-data="/api/options" --}}
         :async-data="route('api.options')"
-        wire:model="asyncModel"
+        wire:model.live="asyncModel"
         option-value="id"
         option-label="name"
         wire:key="asyncModel"
@@ -77,7 +77,7 @@
         label="Select From Async data"
         {{-- async-data="/api/options" --}}
         :async-data="['api' => route('api.options.nested'), 'optionsPath' => 'data.nested']"
-        wire:model="asyncModelNestedData"
+        wire:model.live="asyncModelNestedData"
         option-value="id"
         option-label="name"
         wire:key="asyncModelNestedData"

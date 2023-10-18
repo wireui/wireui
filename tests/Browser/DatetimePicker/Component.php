@@ -23,7 +23,7 @@ class Component extends \Livewire\Component
             // test it_should_select_date_without_timezone_difference
             <div id="withoutTimezone">
                 <x-datetime-picker
-                    wire:model="withoutTimezone"
+                    wire:model.live="withoutTimezone"
                     without-timezone
                     label="Without Timezone"
                     display-format="YYYY-MM-DD HH:mm"
@@ -34,7 +34,7 @@ class Component extends \Livewire\Component
             // test it_should_select_date_with_utc_timezone_difference
             <div id="utcTimezone">
                 <x-datetime-picker
-                    wire:model="utcTimezone"
+                    wire:model.live="utcTimezone"
                     label="UTC Timezone"
                     {{-- the user's timezone is automatic, but I need to mock the timezone in the tests --}}
                     user-timezone="America/Sao_Paulo"
@@ -46,7 +46,7 @@ class Component extends \Livewire\Component
             // test it_should_select_date_with_default_timezone_and_auto_user_timezone
             <div id="tokyoTimezone">
                 <x-datetime-picker
-                    wire:model="tokyoTimezone"
+                    wire:model.live="tokyoTimezone"
                     timezone="Asia/Tokyo"
                     {{-- the user's timezone is automatic, but I need to mock the timezone in the tests --}}
                     user-timezone="America/Sao_Paulo"
@@ -59,7 +59,7 @@ class Component extends \Livewire\Component
             // test it_should_parse_date_in_custom_format
             <div id="customFormat">
                 <x-datetime-picker
-                    wire:model="customFormat"
+                    wire:model.live="customFormat"
                     parse-format="DD-YYYY-MM mm:HH"
                     without-timezone
                     label="Custom Format Parse"
@@ -71,7 +71,7 @@ class Component extends \Livewire\Component
             // test it_should_select_date_and_time
             <div id="dateAndTime">
                 <x-datetime-picker
-                    wire:model="dateAndTime"
+                    wire:model.live="dateAndTime"
                     without-timezone
                     label="Date and Time"
                     display-format="DD-MM-YYYY HH:mm"

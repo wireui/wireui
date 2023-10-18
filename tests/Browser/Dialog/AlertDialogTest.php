@@ -3,6 +3,7 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class AlertDialogTest extends BrowserTestCase
@@ -16,6 +17,7 @@ class AlertDialogTest extends BrowserTestCase
         string $title,
         string $description
     ) {
+        // Livewire::visit()
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
@@ -43,13 +45,12 @@ class AlertDialogTest extends BrowserTestCase
         $this->browse(function (Browser $browser) use ($icon, $title, $description) {
             $this->visit($browser, Component::class)
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.livewire.emit('showDialog', {
+                window.Livewire.dispatch('showDialog', { options: {
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
-                })
+                }})
                 EOT))
-                ->waitForLivewire()
                 ->waitUsing(7, 100, fn () => $browser->assertSee($title))
                 ->assertSee($description);
         });
@@ -108,7 +109,6 @@ class AlertDialogTest extends BrowserTestCase
                 ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                     document.querySelector('button.dialog-button-close').click()
                 EOT))
-                ->waitForLivewire()
                 ->pause(100)
                 ->assertSeeIn('@events', 'onClose, onTimeout')
                 ->tap(fn (Browser $browser) => $this->showDialog($browser))
@@ -127,13 +127,13 @@ class AlertDialogTest extends BrowserTestCase
                 title: 'Testing events',
                 timeout: 300,
                 onClose() {
-                    window.livewire.emit('addEvent', 'onClose')
+                    window.Livewire.dispatch('addEvent', { event: 'onClose' })
                 },
                 onTimeout() {
-                    window.livewire.emit('addEvent', 'onTimeout')
+                    window.Livewire.dispatch('addEvent', { event: 'onTimeout' })
                 },
                 onDismiss() {
-                    window.livewire.emit('addEvent', 'onDismiss')
+                    window.Livewire.dispatch('addEvent', { event: 'onDismiss' })
                 },
             })
         ");
@@ -150,7 +150,7 @@ class AlertDialogTest extends BrowserTestCase
             [
                 'icon'        => 'error',
                 'title'       => 'Permission Denied',
-                'description' => "You don't have suficiente permission",
+                'description' => "You don't have enough permission",
             ],
             [
                 'icon'        => 'info',

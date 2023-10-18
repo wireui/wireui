@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\{ServiceProvider, Str};
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\ComponentAttributeBag;
-use Livewire\LivewireBladeDirectives;
 use Livewire\WireDirective;
 use WireUi\Facades\{WireUi, WireUiDirectives};
 use WireUi\Support\WireUiTagCompiler;
@@ -92,7 +91,7 @@ class WireUiServiceProvider extends ServiceProvider
         });
 
         Blade::directive('toJs', static function ($expression): string {
-            return LivewireBladeDirectives::js($expression);
+            return WireUiDirectives::toJs($expression);
         });
 
         Blade::directive('entangleable', static function ($value): string {
@@ -118,11 +117,11 @@ class WireUiServiceProvider extends ServiceProvider
             $model = $this->wire('model');
 
             return [
-                'defer'    => $model->modifiers()->contains('defer'),
-                'lazy'     => $model->modifiers()->contains('lazy'),
+                'live'     => $model->hasModifier('live'),
+                'blur'     => $model->hasModifier('blur'),
                 'debounce' => [
-                    'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (string) Str::of($model->modifiers()->get(1, '750'))->replace('ms', ''),
+                    'exists' => $model->hasModifier('debounce'),
+                    'delay'  => (string) Str::of($model->modifiers()->get(2, '750'))->replace('ms', ''),
                 ],
             ];
         });

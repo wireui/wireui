@@ -8,17 +8,12 @@ class Component extends \Livewire\Component
 {
     public array $only = [];
 
-    public function mount()
-    {
-        $this->addErrors();
-    }
-
     public function render()
     {
         return View::file(__DIR__ . '/view.blade.php');
     }
 
-    private function addErrors(): void
+    public function addErrors(): void
     {
         $this->addError('first', 'first error');
         $this->addError('second', 'second error');

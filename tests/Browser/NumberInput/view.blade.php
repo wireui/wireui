@@ -36,7 +36,7 @@
     </x-inputs.number>
 
     // test it_should_set_model_value_to_livewire
-    <x-inputs.number dusk="input" wire:model="number" label="Model Input" />
+    <x-inputs.number dusk="input" wire:model.live="number" label="Model Input" />
     <span dusk="number-value">{{ $number }}</span>
 
     // test it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon

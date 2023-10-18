@@ -4,7 +4,7 @@ namespace WireUi\Support;
 
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
-use WireUi\Actions\Minify;
+use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class BladeDirectives
 {
@@ -34,7 +34,7 @@ class BladeDirectives
             }
         JS;
 
-        return Minify::execute($scripts);
+        return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
     }
 
     public function styles(bool $absolute = true): string
@@ -65,12 +65,12 @@ class BladeDirectives
 
     public function confirmAction(string $expression): string
     {
-        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function notify(string $expression): string
     {
-        return "onclick=\"window.\$wireui.notify($expression, '{{ \$_instance->id }}')\"";
+        return "onclick=\"window.\$wireui.notify($expression, '{{ \$__livewire->getId() }}')\"";
     }
 
     public function boolean(string $value): string
@@ -78,13 +78,20 @@ class BladeDirectives
         return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
-    public function entangleable(string $expression): ?string
+    public function entangleable(mixed $expression): string
     {
         $fallback = (string) Str::of($expression)->after(',')->trim();
         $property = (string) Str::of($expression)->before(',')->trim();
 
         return <<<EOT
-        <?php if (!isset(\$_instance->id)): ?> @toJs({$fallback}) <?php else : ?> @entangle({$property}) <?php endif; ?>
+        <?php if (!isset(\$__livewire)): ?>@toJs({$fallback})<?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>@entangle({$property}).live<?php else: ?>@entangle({$property})<?php endif; ?>
+        EOT;
+    }
+
+    public function toJs(mixed $expression): string
+    {
+        return <<<EOT
+        <?php if (is_object({$expression}) || is_array({$expression})) { echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))"; } elseif (is_string({$expression})) { echo "'".str_replace("'", "\'", {$expression})."'"; } else { echo json_encode({$expression}); } ?>
         EOT;
     }
 }

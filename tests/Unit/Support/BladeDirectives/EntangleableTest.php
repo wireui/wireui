@@ -4,7 +4,7 @@ namespace Tests\Unit\Support\BladeDirectives;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\View\ComponentAttributeBag;
-use Tests\Unit\UnitTestCase;
+use Tests\Unit\{TestComponent, UnitTestCase};
 
 class EntangleableTest extends UnitTestCase
 {
@@ -34,11 +34,17 @@ class EntangleableTest extends UnitTestCase
         ];
     }
 
-    public function test_it_should_render_the_normal_entangle_directive_when_the_livewire_exists()
+    public function test_it_should_render_the_entangle_directive_from_the_string_attribute()
     {
-        $blade = "@entangleable('name', false)";
+        $blade = <<<'BLADE'
+            <div x-data="{
+                model: @entangleable('name'),
+            }">
+                ...
+            </div>
+        BLADE;
 
-        View::share('_instance', (object) ['id' => 'foo']);
+        View::share('__livewire', new TestComponent());
 
         $this->blade($blade)->assertSee("@entangle('name')", escape: false);
     }
@@ -47,31 +53,47 @@ class EntangleableTest extends UnitTestCase
     {
         $blade = <<<'BLADE'
             <div x-data="{
-                model: @entangle($attributes->wire('model')),
+                model: @entangleable($attributes->wire('model')),
             }">
                 ...
             </div>
         BLADE;
 
-        View::share('_instance', (object) ['id' => 'foo']);
+        View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
-        $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name')", escape: false);
+        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
     }
 
-    public function test_it_should_render_the_entangle_directive_from_the_wire_model_defer_attribute()
+    public function test_it_should_render_the_entangle_directive_from_the_wire_model_live_attribute()
     {
         $blade = <<<'BLADE'
             <div x-data="{
-                model: @entangle($attributes->wire('model')).defer,
+                model: @entangleable($attributes->wire('model')),
             }">
                 ...
             </div>
         BLADE;
 
-        View::share('_instance', (object) ['id' => 'foo']);
-        View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
+        View::share('__livewire', new TestComponent());
+        View::share('attributes', new ComponentAttributeBag(['wire:model.live' => 'name']));
 
-        $this->blade($blade)->assertSee("window.Livewire.find('foo').entangle('name').defer", escape: false);
+        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
+    }
+
+    public function test_it_should_render_the_entangle_directive_from_the_wire_model_blur_attribute()
+    {
+        $blade = <<<'BLADE'
+            <div x-data="{
+                model: @entangleable($attributes->wire('model')),
+            }">
+                ...
+            </div>
+        BLADE;
+
+        View::share('__livewire', new TestComponent());
+        View::share('attributes', new ComponentAttributeBag(['wire:model.blur' => 'name']));
+
+        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model')).live", escape: false);
     }
 }

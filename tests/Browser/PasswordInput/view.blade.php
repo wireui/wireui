@@ -36,7 +36,7 @@
     </x-inputs.password>
 
     // test it_should_set_model_value_to_livewire
-    <x-inputs.password dusk="input" wire:model="password" label="Model Input" />
+    <x-inputs.password dusk="input" wire:model.live="password" label="Model Input" />
     <span dusk="password-value">{{ $password }}</span>
 
     // test it_should_change_the_input_type_when_clicking_on_the_view_password_icon

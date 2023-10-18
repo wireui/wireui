@@ -63,7 +63,7 @@ export default (options: InitOptions = { colorNameAsValue: false }): ColorPicker
     this.setColor(this.wireModel)
     const emitInput = this.emitInput.bind(this)
 
-    if (options.wireModifiers?.lazy) {
+    if (options.wireModifiers?.blur) {
       this.$refs.input.addEventListener('blur', emitInput)
       this.$cleanup(() => this.$refs.input.removeEventListener('blur', emitInput))
     } else if (options.wireModifiers?.debounce?.exists) {

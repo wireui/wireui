@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\Concerns\InteractsWithViews;
-use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase;
 use ReflectionClass;
@@ -16,13 +15,11 @@ class UnitTestCase extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        Route::middleware('web')->group(base_path('src/routes/web.php'));
     }
 
-    protected function getEnvironmentSetUp($app)
+    protected function defineWebRoutes($router)
     {
-        $app->setBasePath(__DIR__ . '/../..');
+        base_path('src/routes/web.php');
     }
 
     protected function getPackageProviders($app)

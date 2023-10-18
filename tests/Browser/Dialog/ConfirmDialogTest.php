@@ -3,7 +3,6 @@
 namespace Tests\Browser\Dialog;
 
 use Laravel\Dusk\Browser;
-use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class ConfirmDialogTest extends BrowserTestCase
@@ -58,13 +57,13 @@ class ConfirmDialogTest extends BrowserTestCase
                 accept: {
                     label: 'Confirm it',
                     execute() {
-                        window.livewire.emit('addEvent', 'accepted')
+                        window.Livewire.dispatch('addEvent', { event: 'accepted' })
                     }
                 },
                 reject: {
                     label: 'Decline',
                     execute() {
-                        window.livewire.emit('addEvent', 'rejected')
+                        window.Livewire.dispatch('addEvent', { event: 'rejected' })
                     }
                 }
             })

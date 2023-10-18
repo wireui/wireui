@@ -5,7 +5,7 @@ import { occurrenceCount } from '@/utils/helpers'
 export interface Options {
   model: Entangle
   emitFormatted: boolean
-  isLazy: boolean
+  isBlur: boolean
   thousands: string
   decimal: string
   precision: number
@@ -13,7 +13,7 @@ export interface Options {
 
 export interface Config {
   emitFormatted: boolean
-  isLazy: boolean
+  isBlur: boolean
   thousands: string
   decimal: string
   precision: number
@@ -36,7 +36,7 @@ export default (options: Options): Currency => ({
   input: null,
   config: {
     emitFormatted: options.emitFormatted,
-    isLazy: options.isLazy,
+    isBlur: options.isBlur,
     thousands: options.thousands,
     decimal: options.decimal,
     precision: options.precision
@@ -72,7 +72,7 @@ export default (options: Options): Currency => ({
 
     this.input = currency.mask(value, this.config, walkDecimals)
 
-    if (!this.config.isLazy && emitInput) {
+    if (!this.config.isBlur && emitInput) {
       this.emitInput(this.input)
     }
   },
