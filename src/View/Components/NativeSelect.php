@@ -6,14 +6,15 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class NativeSelect extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public const PRIMITIVE_VALUES = [
         'string',

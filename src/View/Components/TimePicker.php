@@ -4,14 +4,15 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class TimePicker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public const INTERVAL       = 10;
     public const FORMAT_12H     = '12';

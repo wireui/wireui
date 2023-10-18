@@ -5,14 +5,15 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class ColorPicker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public function __construct(
         public $rightIcon = 'swatch',

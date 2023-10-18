@@ -6,15 +6,16 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\Components\WireUiComponent;
 
 abstract class Maskable extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use HasSetupShadow;
     use IsFormComponent;
+
+    protected array $packs = ['shadow'];
 
     public string $mask;
 
