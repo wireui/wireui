@@ -6,7 +6,7 @@ use Illuminate\View\ComponentAttributeBag;
 
 trait HasSetupSpinner
 {
-    public ?ComponentAttributeBag $spinnerRemove = null;
+    private ?ComponentAttributeBag $spinnerRemove = null;
 
     protected function setupSpinner(array &$data): void
     {

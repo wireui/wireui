@@ -23,7 +23,7 @@ trait HasSetupStateColor
         $this->variantPack = $variantPack;
     }
 
-    protected function setupStateColor(array &$data): void
+    protected function setupStateColor(): void
     {
         throw_if(!$this->colorPack || !$this->variantPack, new WireUiStateColorException($this));
 
@@ -33,7 +33,7 @@ trait HasSetupStateColor
 
         $this->serializeColorClasses();
 
-        $this->setVariables($data, ['colorClasses']);
+        $this->setVariables(['colorClasses']);
     }
 
     private function serializeColorClasses(): void

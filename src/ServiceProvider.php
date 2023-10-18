@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
 use WireUi\Providers\{BladeDirectives, CustomMacros};
+use WireUi\Support\ComponentResolver;
 use WireUi\View\Compilers\WireUiTagCompiler;
 
 /**
@@ -90,8 +91,10 @@ class ServiceProvider extends Support\ServiceProvider
     private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
+            $resolver = new ComponentResolver();
+
             foreach (config('wireui.components') as $component) {
-                $blade->component($component['class'], $component['alias']);
+                $blade->component($component['class'], $resolver->addPrefix($component['alias']));
             }
         });
     }

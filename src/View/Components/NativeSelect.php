@@ -4,12 +4,15 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use Illuminate\View\Component;
 use InvalidArgumentException;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
 
-class NativeSelect extends Component
+class NativeSelect extends WireUiComponent
 {
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
     use IsFormComponent;
 
     public const PRIMITIVE_VALUES = [
@@ -31,7 +34,7 @@ class NativeSelect extends Component
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
-        Collection|array $options = null,
+        Collection|array|null $options = null,
     ) {
         $this->options = collect($options)->when(
             $flipOptions,

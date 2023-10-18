@@ -17,17 +17,19 @@ trait WireUiActions
         return new Notification($this);
     }
 
+    // todo: refactor this
     public function openModal(string $modal): void
     {
         $modal = Str::kebab($modal);
 
-        $this->dispatchBrowserEvent("open-wireui-modal:{$modal}");
+        $this->dispatch("open-wireui-modal:{$modal}");
     }
 
+    // todo: refactor this
     public function closeModal(string $modal): void
     {
         $modal = Str::kebab($modal);
 
-        $this->dispatchBrowserEvent("close-wireui-modal:{$modal}");
+        $this->dispatch("close-wireui-modal:{$modal}");
     }
 }

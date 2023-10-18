@@ -1,9 +1,9 @@
-<x-inputs.wrapper
+<x-wrapper
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
 >
-    @include('wireui::form.wrapper.slots')
+    @include('wireui::components.wrapper.slots')
 
     <select {{ $attrs
         ->except(['class', 'wire:key', 'x-data'])
@@ -29,10 +29,10 @@
             @empty
                 @unless ($hideEmptyMessage)
                     <option disabled>
-                        {{ $emptyMessage ?? __('wireui::messages.empty_options') }}
+                        {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                     </option>
                 @endunless
             @endforelse
         @else {{ $slot }} @endif
     </select>
-</x-inputs.wrapper>
+</x-wrapper>

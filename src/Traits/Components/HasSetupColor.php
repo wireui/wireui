@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupColor
@@ -18,10 +17,8 @@ trait HasSetupColor
         $this->colorResolve = $class;
     }
 
-    protected function setupColor(array &$data): void
+    protected function setupColor(): void
     {
-        throw_if(!$this->colorResolve, new WireUiResolveException($this));
-
         $colors = config($this->getColorConfigName());
 
         /** @var ComponentPack $colorPack */
@@ -35,19 +32,19 @@ trait HasSetupColor
             $this->setColorPack($colorPack);
         }
 
-        $this->setVariables($data, ['color', 'colorClasses']);
+        $this->setVariables(['color', 'colorClasses']);
     }
 
-    private function getColorConfigName(string $variant = null): string
+    private function getColorConfigName(?string $variant = null): string
     {
         if ($variant) {
-            return "wireui.{$this->config}.colors.{$variant}";
+            return "wireui.{$this->config}.packs.colors.{$variant}";
         }
 
         if (property_exists($this, 'variant')) {
-            return "wireui.{$this->config}.colors.{$this->variant}";
+            return "wireui.{$this->config}.packs.colors.{$this->variant}";
         }
 
-        return "wireui.{$this->config}.colors";
+        return "wireui.{$this->config}.packs.colors";
     }
 }
