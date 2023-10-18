@@ -8,10 +8,13 @@ use Illuminate\Support\{Arr, Str};
 use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
+use WireUi\View\ManageProps;
 
 abstract class WireUiComponent extends Component
 {
-    protected ?string $config = null;
+    use ManageProps;
+
+    public ?string $config = null;
 
     private array $setVariables = [];
 
@@ -64,22 +67,22 @@ abstract class WireUiComponent extends Component
             fn ($method) => Str::startsWith($method, 'setup'),
         )->values();
 
-        if ($methods->containsAll(['setupSize', 'setupIconSize'])) {
-            $methods = $methods->reject('setupIconSize')->push('setupIconSize');
+        if ($methods->contains('setupSize')) {
+            $methods = $methods->reject('setupSize')->prepend('setupSize');
         }
 
-        if ($methods->containsAll(['setupVariant', 'setupColor'])) {
+        if ($methods->contains('setupColor')) {
             $methods = $methods->reject('setupColor')->push('setupColor');
         }
 
-        if ($methods->containsAll(['setupStateColor'])) {
+        if ($methods->contains('setupStateColor')) {
             $methods = $methods->reject('setupStateColor')->push('setupStateColor');
         }
 
         return $methods->values()->toArray();
     }
 
-    protected function getData(string $attribute, callable $callback = null): mixed
+    protected function getData(string $attribute, mixed $default = null): mixed
     {
         if ($this->attributes->has($kebab = Str::kebab($attribute))) {
             $this->smartAttributes($kebab);
@@ -93,9 +96,11 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        $config = config("wireui.{$this->config}.default.{$kebab}");
+        if ($attribute === 'icon-size' && property_exists($this, 'size') && $this->size) {
+            return $this->size;
+        }
 
-        return $callback ? $callback($config) : $config;
+        return config("wireui.{$this->config}.default.{$kebab}") ?? $default;
     }
 
     protected function getDataModifier(string $attribute, ComponentPack $dataPack): mixed

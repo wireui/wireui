@@ -4,22 +4,23 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupPadding, HasSetupRounded, HasSetupShadow, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupVariant};
 
 class Alert extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupIcon;
-    use HasSetupPadding;
     use HasSetupRounded;
-    use HasSetupShadow;
     use HasSetupVariant;
 
-    public function __construct(
-        public ?string $title = null,
-    ) {
-        //
-    }
+    protected array $packs = ['shadow', 'padding'];
+
+    protected array $props = [
+        'icon',
+        'title',
+        'iconless',
+        'right-icon',
+        'shadowless',
+    ];
 
     public function getUseIcon(): mixed
     {

@@ -3,24 +3,25 @@
 namespace WireUi\View\Components\Badge;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupVariant};
 use WireUi\View\Components\WireUiComponent;
 
 class Base extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupIcon;
-    use HasSetupIconSize;
     use HasSetupRounded;
     use HasSetupSize;
     use HasSetupVariant;
 
-    public function __construct(
-        public bool $full = false,
-        public ?string $label = null,
-    ) {
-        //
-    }
+    protected array $packs = ['icon-size'];
+
+    protected array $props = [
+        'icon',
+        'label',
+        'iconless',
+        'right-icon',
+        'full' => false,
+    ];
 
     public function blade(): View
     {
