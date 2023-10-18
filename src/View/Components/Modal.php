@@ -15,6 +15,7 @@ class Modal extends WireUiComponent
         'z-index',
         'blurless',
         'show' => false,
+        'persistent' => false,
     ];
 
     public function blade(): View
