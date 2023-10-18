@@ -163,7 +163,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'position' => Packs\Position::TOP_RIGHT,
+                'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
                 'positions' => WireUi\Notification\Position::class,

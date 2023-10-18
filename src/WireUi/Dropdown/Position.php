@@ -17,8 +17,8 @@ class Position extends ComponentPack
         return [
             Packs\Position::RIGHT     => 'origin-top-right right-0',
             Packs\Position::LEFT      => 'origin-top-left left-0',
-            Packs\Position::TOP_RIGHT => 'origin-top-right right-0 bottom-0',
-            Packs\Position::TOP_LEFT  => 'origin-top-left left-0 bottom-0',
+            Packs\Position::TOP_END   => 'origin-top-right right-0 bottom-0',
+            Packs\Position::TOP_START => 'origin-top-left left-0 bottom-0',
         ];
     }
 }
