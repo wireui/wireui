@@ -53,7 +53,7 @@ There will you see all the latest news about features, ideas, discussions and mo
 
 WireUI is and will always be FREE to anyone who would like to use it.
 
-This project is created [Pedro Oliveira], and it is maintained by the author with the help of the community.
+This project is created by [Pedro Oliveira], and it is maintained by the author with the help of the community.
 
 All contributions are welcome!
 
