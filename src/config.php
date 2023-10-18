@@ -31,7 +31,7 @@ return [
 
     'style' => [
         'shadow'  => Packs\Shadow::BASE,
-        'rounded' => Packs\Rounded::BASE,
+        'rounded' => Packs\Rounded::MD,
         'color'   => Packs\Color::PRIMARY,
     ],
 
