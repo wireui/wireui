@@ -15,7 +15,7 @@ class Number extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    protected array $props = ['icon' => 'minus', 'rightIcon' => 'plus'];
+    protected array $props = ['icon' => 'minus', 'right-icon' => 'plus'];
 
     protected function blade(): View
     {

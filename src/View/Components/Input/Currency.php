@@ -15,13 +15,12 @@ class Currency extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    public function __construct(
-        public int $precision = 2,
-        public string $decimal = '.',
-        public string $thousands = ',',
-        public bool $emitFormatted = false,
-    ) {
-    }
+    protected array $props = [
+        'decimal'        => '.',
+        'precision'      => 2,
+        'thousands'      => ',',
+        'emit-formatted' => false,
+    ];
 
     protected function blade(): View
     {

@@ -17,18 +17,11 @@ abstract class Maskable extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    public string $mask;
+    protected array $props = ['mask', 'emit-formatted' => false];
 
-    public function __construct(
-        public bool $emitFormatted = false,
-        ?string $mask = null,
-    ) {
-        $this->mask = $this->formatMask($mask ?: $this->getInputMask());
-    }
-
-    protected function blade(): View
+    protected function processed(): void
     {
-        return view('wireui::components.input.maskable');
+        $this->mask = $this->formatMask($this->mask ?: $this->getInputMask());
     }
 
     private function formatMask(string $mask): string
@@ -43,5 +36,10 @@ abstract class Maskable extends WireUiComponent
     protected function getInputMask(): string
     {
         throw new Exception('Implement this method [getInputMask] on your component or pass [mask] in parameters');
+    }
+
+    protected function blade(): View
+    {
+        return view('wireui::components.input.maskable');
     }
 }

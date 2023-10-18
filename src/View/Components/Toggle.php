@@ -5,23 +5,23 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 
 class Toggle extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupIcon;
     use HasSetupRounded;
     use HasSetupSize;
     use IsFormComponent;
 
-    public function __construct(
-        public ?string $label = null,
-        public ?string $leftLabel = null,
-        public ?string $description = null,
-    ) {
-        //
-    }
+    protected array $props = [
+        'icon',
+        'label',
+        'iconless',
+        'left-label',
+        'right-icon',
+        'description',
+    ];
 
     public function backgroundClasses(bool $hasError): string
     {
