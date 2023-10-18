@@ -26,9 +26,8 @@
 
     <x-wireui::wrapper.element
         :attributes="$attrs
-            ->except('class')
+            ->except(['class', 'wire:key', 'x-data'])
             ->class('text-center appearance-number-none')
-            ->except(['wire:key', 'x-data'])
         "
         x-on:keydown.down.prevent="minus"
         x-on:keydown.up.prevent="plus"

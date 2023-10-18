@@ -17,7 +17,7 @@
         x-on:input="mask($event.target.value)"
         x-on:blur="emitInput($event.target.value)"
         :attributes="$attrs
-            ->whereDoesntStartWith(['wire:model', 'wire:key'])
+            ->whereDoesntStartWith(['wire:model'])
             ->except(['type', 'wire:key', 'x-data', 'class'])"
     />
 </x-wrapper>
