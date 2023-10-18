@@ -1,3 +1,4 @@
+import { Component } from '@/components/alpine'
 import { AlpineComponent } from '@/components/alpine2'
 import { autoUpdate, computePosition, flip, hide, offset, Placement, shift } from '@floating-ui/dom'
 
@@ -18,14 +19,14 @@ export default class Positionable {
 
   private cleanupPosition?: CallableFunction = undefined
 
-  declare private component: AlpineComponent
+  declare private component: AlpineComponent|Component
 
   declare private container: HTMLElement
 
   declare private target: HTMLElement
 
   start (
-    component: AlpineComponent,
+    component: AlpineComponent|Component,
     container: HTMLElement,
     target: HTMLElement
   ): this {
@@ -86,6 +87,10 @@ export default class Positionable {
 
   handleEscape (): void {
     this.close()
+  }
+
+  isOpen () {
+    return this.state
   }
 
   watch (callback: (value: boolean) => void): this {

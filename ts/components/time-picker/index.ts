@@ -1,14 +1,13 @@
+import { Focusable } from '@/alpine/modules/Focusable'
+import Positionable from '@/alpine/modules/Positionable'
+import { baseComponent } from '@/components/alpine'
+import { makeTimes, Time } from '@/components/datetime-picker/makeTimes'
 import { applyMask } from '@/utils/masker'
 import { convertStandardTimeToMilitary } from '@/utils/time'
-import { positioning } from '@/components/modules/positioning'
-import { InitOptions, TimePicker, Refs } from './interfaces'
-import { focusables } from '@/components/modules/focusables'
-import { makeTimes, Time } from '@/components/datetime-picker/makeTimes'
+import { InitOptions, Refs, TimePicker } from './interfaces'
 
 export default (options: InitOptions): TimePicker => ({
-  ...positioning,
-  ...focusables,
-  focusableSelector: 'li, input',
+  ...baseComponent,
   $refs: {} as Refs,
   model: options.model,
   input: null,
@@ -16,9 +15,32 @@ export default (options: InitOptions): TimePicker => ({
   search: '',
   times: [],
   filteredTimes: [],
+  focusable: new Focusable(),
+  positionable: new Positionable(),
 
   init () {
-    this.initPositioningSystem()
+    this.focusable.start(this.$root, 'li, input, button')
+
+    this.positionable
+      .start(this, this.$refs.container, this.$refs.popover)
+      .position('bottom')
+
+    this.positionable.watch(() => {
+      if (!this.positionable.isOpen() || this.config.readonly || this.config.disabled) return
+
+      if (this.times.length === 0) {
+        this.fillTimes()
+      }
+
+      this.search = ''
+      this.filteredTimes = this.times
+
+      if (window.innerWidth >= 1024) {
+        this.$nextTick(() => {
+          this.$refs.search.focus()
+        })
+      }
+    })
 
     this.input = this.convertModelTime(this.model)
 
@@ -35,24 +57,6 @@ export default (options: InitOptions): TimePicker => ({
     const mask = this.config.is12H ? 'h:m AA' : 'H:m'
 
     return applyMask(mask, value)
-  },
-  toggle () {
-    this.popover = !this.popover
-
-    if (!this.popover || this.config.readonly || this.config.disabled) return
-
-    if (this.times.length === 0) {
-      this.fillTimes()
-    }
-
-    this.search = ''
-    this.filteredTimes = this.times
-
-    if (window.innerWidth >= 1024) {
-      this.$nextTick(() => {
-        this.$refs.search.focus()
-      })
-    }
   },
   clearInput () {
     this.input = null
@@ -72,7 +76,7 @@ export default (options: InitOptions): TimePicker => ({
   },
   selectTime (time) {
     this.input = this.config.is12H ? time.label : time.value
-    this.close()
+    this.positionable.close()
     this.emitInput()
   },
   onInput (value) {

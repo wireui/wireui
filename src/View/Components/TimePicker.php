@@ -20,6 +20,7 @@ class TimePicker extends WireUiComponent
     public const DEFAULT_FORMAT = self::FORMAT_12H;
 
     public function __construct(
+        public string $rightIcon = 'clock',
         public int $interval = self::INTERVAL,
         public string $format = self::DEFAULT_FORMAT,
     ) {
