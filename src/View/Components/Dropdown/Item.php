@@ -3,18 +3,13 @@
 namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use WireUi\View\Components\WireUiComponent;
 
-class Item extends Component
+class Item extends WireUiComponent
 {
-    public function __construct(
-        public ?string $icon = null,
-        public ?string $label = null,
-        public bool $separator = false,
-    ) {
-    }
+    protected array $props = ['icon', 'label', 'separator' => false];
 
-    public function render(): View
+    public function blade(): View
     {
         return view('wireui::components.dropdown.item');
     }
