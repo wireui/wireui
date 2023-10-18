@@ -66,8 +66,6 @@ return [
 
     'card' => Config::card(),
 
-    'input' => Config::wrapper(),
-
     // 'checkbox' => [
     //     //
     // ],
