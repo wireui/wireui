@@ -14,13 +14,11 @@ class Radio extends WireUiComponent
     use HasSetupSize;
     use IsFormComponent;
 
-    public function __construct(
-        public ?string $label = null,
-        public ?string $leftLabel = null,
-        public ?string $description = null,
-    ) {
-        //
-    }
+    protected array $props = [
+        'label',
+        'left-label',
+        'description',
+    ];
 
     public function getClasses(bool $hasError): string
     {
