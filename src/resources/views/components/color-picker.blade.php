@@ -63,7 +63,6 @@
             ])
             x-ref="optionsContainer"
             tabindex="-1"
-            name="wireui.select.options.{{ $name }}"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
             x-on:keydown.shift.tab.prevent="focusable.previous()?.focus()"
             x-on:keydown.arrow-up.prevent="focusable.walk.to('up')"
