@@ -1,9 +1,5 @@
 import Walk from '@/alpine/modules/Walk'
 
-export interface HasFocusable {
-  focusable: Focusable
-}
-
 export class Focusable {
   declare container: HTMLElement
 

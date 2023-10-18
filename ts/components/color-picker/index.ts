@@ -1,6 +1,6 @@
 import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
-import { Focusable, HasFocusable } from '@/alpine/modules/Focusable'
-import Positionable, { HasPositionable } from '@/alpine/modules/Positionable'
+import { Focusable } from '@/alpine/modules/Focusable'
+import Positionable from '@/alpine/modules/Positionable'
 import { AlpineComponent } from '@/components/alpine2'
 import { WireModel } from '@/livewire'
 import { applyMask } from '@/utils/masker'
@@ -10,10 +10,7 @@ export type Color = {
   value: string
 }
 
-export default class ColorPicker
-  extends AlpineComponent
-  implements HasPositionable, HasFocusable {
-
+export default class ColorPicker extends AlpineComponent {
   declare $refs: {
     input: HTMLInputElement
     popover: HTMLElement
