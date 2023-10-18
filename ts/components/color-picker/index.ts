@@ -41,7 +41,9 @@ export default class ColorPicker extends AlpineComponent {
   }
 
   init () {
-    this.positionable.start(this, this.$refs.container, this.$refs.popover)
+    this.positionable
+      .start(this, this.$refs.container, this.$refs.popover)
+      .position('bottom')
 
     this.focusable.start(this.$refs.colorsContainer, 'button')
 
