@@ -1,29 +1,37 @@
 import { AlpineComponent } from '@/components/alpine2'
-import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom'
+import { autoUpdate, computePosition, flip, hide, offset, Placement, shift } from '@floating-ui/dom'
 
-export interface HasPositionable {
-  positionable: Positionable
+export type Position = Placement
+
+type Config = {
+  position: Position
+  offset: number
 }
 
 export default class Positionable {
   state: boolean = false
 
+  private config: Config = {
+    position: 'bottom',
+    offset: 4
+  }
+
   private cleanupPosition?: CallableFunction = undefined
 
   declare private component: AlpineComponent
 
-  declare private target: HTMLElement
+  declare private container: HTMLElement
 
-  declare private popover: HTMLElement
+  declare private target: HTMLElement
 
   start (
     component: AlpineComponent,
-    target: HTMLElement,
-    popover: HTMLElement
+    container: HTMLElement,
+    target: HTMLElement
   ): this {
     this.component = component
+    this.container = container
     this.target = target
-    this.popover = popover
 
     this.watch(state => {
       if (!state && this.cleanupPosition) {
@@ -35,13 +43,25 @@ export default class Positionable {
 
     this.watch(state => {
       if (window.innerWidth < 640) {
-        return this.popover.removeAttribute('style')
+        return this.target.removeAttribute('style')
       }
 
       if (state && !this.cleanupPosition) {
         this.component.$nextTick(() => this.syncPopoverPosition())
       }
     })
+
+    return this
+  }
+
+  position (position: Position): this {
+    this.config.position = position
+
+    return this
+  }
+
+  offset (offset: number): this {
+    this.config.offset = offset
 
     return this
   }
@@ -59,7 +79,7 @@ export default class Positionable {
   }
 
   closeIfNotFocused (): void {
-    if (!this.target.contains(document.activeElement) && this.state) {
+    if (!this.container.contains(document.activeElement) && this.state) {
       this.close()
     }
   }
@@ -81,27 +101,33 @@ export default class Positionable {
 
   private syncPopoverPosition (): void {
     this.cleanupPosition = autoUpdate(
+      this.container,
       this.target,
-      this.popover,
-      () => this.updatePosition(),
+      () => this.computePosition(),
       { animationFrame: true }
     )
   }
 
-  private updatePosition (): void {
-    computePosition(this.target, this.popover, {
-      placement: 'bottom',
+  computePosition (): void {
+    computePosition(this.container, this.target, {
+      placement: this.config.position,
       strategy: 'absolute',
       middleware: [
-        offset(4),
-        flip(),
-        shift()
+        offset(this.config.offset),
+        flip({ padding: 5 }),
+        shift(),
+        hide({
+          padding: -100
+        })
       ]
-    }).then(({ x, y }) => {
-      if (x >= 10) { x = 0 }
-      if (y >= 100) { y = 0 }
+    }).then(({ x, y, middlewareData }) => {
+      const { referenceHidden } = middlewareData.hide ?? {}
 
-      return Object.assign(this.popover.style, {
+      if (referenceHidden) {
+        this.component.$nextTick(() => this.close())
+      }
+
+      return Object.assign(this.target.style, {
         position: 'absolute',
         left: `${x}px`,
         top: `${y}px`
