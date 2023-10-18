@@ -1,12 +1,16 @@
 @php($name = $name ?? $attributes->wire('model')->value())
 
-<div class="{{ $getRootClasses() }}"
-    x-data="wireui_modal({
-        show: @toJs($show),
-        @if ($attributes->wire('model')->value())
-            model: @entangle($attributes->wire('model'))
-        @endif
-    })"
+<div x-data="{{ WireUi::alpine('wireui_modal', [
+        'show' => $show,
+        'model' => null,
+    ]) }}"
+    @class([
+        'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
+        'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
+        $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
+        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-50'),
+        'fixed inset-0 overflow-y-auto',
+    ])
     x-on:keydown.escape.window="handleEscape"
     x-on:keydown.tab.prevent="handleTab"
     x-on:keydown.shift.tab.prevent="handleShiftTab"
@@ -18,9 +22,15 @@
     style="display: none"
     x-cloak
     x-show="show"
-    wireui-modal>
-    <div class="{{ $getBackdropClasses() }}"
+    wireui-modal
+>
+    <div
         x-show="show"
+        @class([
+            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
+            'dark:bg-opacity-60 transform transition-opacity',
+            $blurClasses => !$blurless,
+        ])
         x-on:click="close"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"
@@ -30,15 +40,21 @@
         x-transition:leave-end="opacity-0">
     </div>
 
-    <div class="{{ $getMainClasses() }}"
+    <div
         x-show="show"
+        @class([
+            'w-full min-h-full transform flex items-end justify-center mx-auto',
+            $alignClasses,
+            $widthClasses,
+        ])
         x-on:click.self="close"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
         x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    >
         {{ $slot }}
     </div>
 </div>

@@ -3,7 +3,7 @@
 namespace WireUi\Actions;
 
 use Livewire\Component;
-use WireUi\Enum\Actions;
+use WireUi\Enum\Icon;
 
 class Notification
 {
@@ -25,22 +25,22 @@ class Notification
 
     public function success(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::SUCCESS->value, $title, $description);
+        $this->simpleNotification(Icon::SUCCESS, $title, $description);
     }
 
     public function error(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::ERROR->value, $title, $description);
+        $this->simpleNotification(Icon::ERROR, $title, $description);
     }
 
     public function info(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::INFO->value, $title, $description);
+        $this->simpleNotification(Icon::INFO, $title, $description);
     }
 
     public function warning(string $title, string $description = null): void
     {
-        $this->simpleNotification(Actions::WARNING->value, $title, $description);
+        $this->simpleNotification(Icon::WARNING, $title, $description);
     }
 
     public function simpleNotification(string $icon, string $title, string $description = null): void
@@ -55,7 +55,7 @@ class Notification
 
     public function confirm(array $options): void
     {
-        $options['icon'] ??= Actions::QUESTION->value;
+        $options['icon'] ??= Icon::QUESTION;
 
         $this->dispatchNotification('wireui:confirm-notification', $options);
     }

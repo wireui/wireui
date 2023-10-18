@@ -2,13 +2,13 @@
 
 namespace WireUi\View\Components;
 
+use WireUi\Enum\Packs;
 use WireUi\Heroicons;
 
 class Icon extends Heroicons\Icon
 {
     protected function defaultVariant(): string
     {
-        /** @var string */
-        return config('wireui.icons.variant', 'outline');
+        return config('wireui.icon.variant') ?? Packs\Icon::OUTLINE;
     }
 }

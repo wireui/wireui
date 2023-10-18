@@ -3,26 +3,12 @@
 namespace WireUi\Support;
 
 use WireUi\Exceptions\WireUiAttributeException;
+use WireUi\WireUiConfig as Config;
 
 abstract class ComponentPack
 {
-    private function serializeAttribute(mixed $attribute): mixed
-    {
-        if (is_bool($attribute) && $attribute) {
-            return '1';
-        }
-
-        if (is_bool($attribute) && !$attribute) {
-            return '0';
-        }
-
-        return $attribute;
-    }
-
     private function checkAttribute(mixed $attribute): void
     {
-        $attribute = $this->serializeAttribute($attribute);
-
         throw_if(!in_array($attribute, $this->keys()), new WireUiAttributeException($this));
     }
 
@@ -35,11 +21,9 @@ abstract class ComponentPack
 
     public function get(mixed $attribute = null): mixed
     {
-        if (is_null($attribute)) {
+        if (is_null($attribute) || $attribute === Config::GLOBAL) {
             return $this->getDefault();
         }
-
-        $attribute = $this->serializeAttribute($attribute);
 
         return data_get($this->all(), $attribute) ?? $attribute;
     }

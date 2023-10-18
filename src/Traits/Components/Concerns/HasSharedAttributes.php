@@ -27,6 +27,7 @@ trait HasSharedAttributes
                 : $attributes->get($attribute);
 
             $data[$property] = $value;
+
             $attributes->offsetSet($attribute, $value);
         }
 

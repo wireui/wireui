@@ -3,47 +3,24 @@
 namespace WireUi\View\Components\Badge;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIcon, HasSetupIconSize, HasSetupRounded, HasSetupSize, HasSetupVariant};
-use WireUi\View\Components\BaseComponent;
-use WireUi\WireUi\Badge\Sizes\Mini as MiniSize;
-use WireUi\WireUi\Badge\{IconSizes, Rounders, Variants};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\View\Components\WireUiComponent;
 
-class Mini extends BaseComponent
+class Mini extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupIcon;
-    use HasSetupIconSize;
     use HasSetupRounded;
     use HasSetupSize;
     use HasSetupVariant;
 
-    public function __construct(
-        public ?string $label = null,
-    ) {
-        $this->setSizeResolve(MiniSize::class);
-        $this->setRoundedResolve(Rounders::class);
-        $this->setVariantResolve(Variants::class);
-        $this->setIconSizeResolve(IconSizes::class);
-    }
+    protected array $packs = ['icon-size'];
 
-    public function getRootClasses(): string
-    {
-        return Arr::toCssClasses([
-            'outline-none inline-flex justify-center items-center group',
-            $this->roundedClasses,
-            $this->colorClasses,
-            $this->sizeClasses,
-        ]);
-    }
-
-    public function getIconClasses(): string
-    {
-        return Arr::toCssClasses([
-            $this->iconSizeClasses,
-            'shrink-0',
-        ]);
-    }
+    protected array $props = [
+        'icon',
+        'label',
+        'iconless',
+        'right-icon',
+    ];
 
     public function blade(): View
     {

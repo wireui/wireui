@@ -4,7 +4,7 @@ namespace WireUi\Http\Controllers;
 
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use WireUi\Support\Controllers\Utils;
+use WireUi\Support\Utils;
 
 class WireUiAssetsController extends Controller
 {

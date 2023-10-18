@@ -3,11 +3,14 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupShadow};
 
-class TimePicker extends Component
+class TimePicker extends WireUiComponent
 {
+    use HasSetupColor;
+    use HasSetupRounded;
+    use HasSetupShadow;
     use IsFormComponent;
 
     public const INTERVAL       = 10;

@@ -6,9 +6,9 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Exceptions\WireUiResolveException;
 use WireUi\Traits\Components\HasSetupShadow;
-use WireUi\View\Components\BaseComponent;
+use WireUi\View\Components\WireUiComponent;
 
-class Shadow extends BaseComponent
+class Shadow extends WireUiComponent
 {
     use HasSetupShadow;
 
@@ -54,7 +54,7 @@ test('it should execute base component without value to shadow', function () {
 
     $this->invokeMethod($this->component, 'setShadowResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->shadow)->toBeNull();
 
@@ -75,7 +75,7 @@ test('it should execute base component with value to shadow', function () {
 
     $this->invokeMethod($this->component, 'setShadowResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->shadowless)->toBeTrue();
 
@@ -96,7 +96,7 @@ test('it should execute base component with custom value to shadow', function ()
 
     $this->invokeMethod($this->component, 'setShadowResolve', [$class]);
 
-    $this->invokeMethod($this->component, 'runBaseComponent', [$this->component->data()]);
+    $this->invokeMethod($this->component, 'runWireUiComponent', [$this->component->data()]);
 
     expect($this->component->shadowless)->toBeFalse();
 
