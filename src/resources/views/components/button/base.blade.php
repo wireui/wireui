@@ -3,8 +3,6 @@
     'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
     'transition-all ease-in-out duration-200 focus:ring-2',
     'disabled:opacity-80 disabled:cursor-not-allowed',
-    // 'group-[.wrapper-prepend-slot]/prepend:rounded-l-[4px]',
-    // 'group-[.wrapper-append-slot]/append:rounded-r-[4px]',
     Arr::get($colorClasses, 'base', ''),
     Arr::get($colorClasses, 'hover', ''),
     Arr::get($colorClasses, 'focus', ''),

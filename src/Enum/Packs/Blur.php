@@ -10,6 +10,6 @@ class Blur
     public const MD   = 'md';
     public const LG   = 'lg';
     public const XL   = 'xl';
-    public const X2L  = '2xl';
-    public const X3L  = '3xl';
+    public const XL2  = '2xl';
+    public const XL3  = '3xl';
 }

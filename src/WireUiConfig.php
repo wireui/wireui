@@ -107,7 +107,7 @@ class WireUiConfig
         return self::mix([
             'default' => [
                 'width'    => Packs\Width::LG,
-                'height'   => Packs\Height::X3L,
+                'height'   => Packs\Height::XL3,
                 'position' => Packs\Position::RIGHT,
             ],
             'packs' => [
@@ -147,7 +147,7 @@ class WireUiConfig
             'default' => [
                 'blur'  => Packs\Blur::NONE,
                 'type'  => Packs\Type::BASE,
-                'width' => Packs\Width::X2L,
+                'width' => Packs\Width::XL2,
                 'align' => Packs\Align::START,
             ],
             'packs' => [

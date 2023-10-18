@@ -10,6 +10,6 @@ class Shadow
     public const MD    = 'md';
     public const LG    = 'lg';
     public const XL    = 'xl';
-    public const X2L   = '2xl';
+    public const XL2   = '2xl';
     public const INNER = 'inner';
 }

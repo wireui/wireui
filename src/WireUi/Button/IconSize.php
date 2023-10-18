@@ -21,7 +21,7 @@ class IconSize extends ComponentPack
             Size::MD  => 'w-4 h-4',
             Size::LG  => 'w-5 h-5',
             Size::XL  => 'w-6 h-6',
-            Size::X2L => 'w-7 h-7',
+            Size::XL2 => 'w-7 h-7',
         ];
     }
 }

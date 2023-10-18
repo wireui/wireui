@@ -21,8 +21,8 @@ class Rounded extends ComponentPack
             Packs\Rounded::MD   => 'rounded-md',
             Packs\Rounded::LG   => 'rounded-lg',
             Packs\Rounded::XL   => 'rounded-xl',
-            Packs\Rounded::X2L  => 'rounded-2xl',
-            Packs\Rounded::X3L  => 'rounded-3xl',
+            Packs\Rounded::XL2  => 'rounded-2xl',
+            Packs\Rounded::XL3  => 'rounded-3xl',
             Packs\Rounded::FULL => 'rounded-full',
         ];
     }

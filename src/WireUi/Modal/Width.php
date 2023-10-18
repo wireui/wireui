@@ -9,7 +9,7 @@ class Width extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Width::X2L;
+        return Packs\Width::XL2;
     }
 
     public function all(): array
@@ -19,12 +19,12 @@ class Width extends ComponentPack
             Packs\Width::MD  => 'sm:max-w-md',
             Packs\Width::LG  => 'sm:max-w-lg',
             Packs\Width::XL  => 'sm:max-w-xl',
-            Packs\Width::X2L => 'sm:max-w-2xl',
-            Packs\Width::X3L => 'sm:max-w-3xl',
-            Packs\Width::X4L => 'sm:max-w-4xl',
-            Packs\Width::X5L => 'sm:max-w-5xl',
-            Packs\Width::X6L => 'sm:max-w-6xl',
-            Packs\Width::X7L => 'sm:max-w-7xl',
+            Packs\Width::XL2 => 'sm:max-w-2xl',
+            Packs\Width::XL3 => 'sm:max-w-3xl',
+            Packs\Width::XL4 => 'sm:max-w-4xl',
+            Packs\Width::XL5 => 'sm:max-w-5xl',
+            Packs\Width::XL6 => 'sm:max-w-6xl',
+            Packs\Width::XL7 => 'sm:max-w-7xl',
         ];
     }
 }

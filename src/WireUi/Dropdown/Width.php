@@ -19,12 +19,12 @@ class Width extends ComponentPack
             Packs\Width::MD  => 'w-44',
             Packs\Width::LG  => 'w-48',
             Packs\Width::XL  => 'w-52',
-            Packs\Width::X2L => 'w-56',
-            Packs\Width::X3L => 'w-60',
-            Packs\Width::X4L => 'w-64',
-            Packs\Width::X5L => 'w-72',
-            Packs\Width::X6L => 'w-80',
-            Packs\Width::X7L => 'w-96',
+            Packs\Width::XL2 => 'w-56',
+            Packs\Width::XL3 => 'w-60',
+            Packs\Width::XL4 => 'w-64',
+            Packs\Width::XL5 => 'w-72',
+            Packs\Width::XL6 => 'w-80',
+            Packs\Width::XL7 => 'w-96',
         ];
     }
 }

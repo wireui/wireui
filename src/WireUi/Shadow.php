@@ -21,7 +21,7 @@ class Shadow extends ComponentPack
             Packs\Shadow::MD    => 'shadow-md',
             Packs\Shadow::LG    => 'shadow-lg',
             Packs\Shadow::XL    => 'shadow-xl',
-            Packs\Shadow::X2L   => 'shadow-2xl',
+            Packs\Shadow::XL2   => 'shadow-2xl',
             Packs\Shadow::INNER => 'shadow-inner',
         ];
     }

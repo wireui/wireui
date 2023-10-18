@@ -21,7 +21,7 @@ class Base extends ComponentPack
             Size::MD  => 'gap-x-2 text-sm px-4 py-2',
             Size::LG  => 'gap-x-2 text-base px-4 py-2.5',
             Size::XL  => 'gap-x-2 text-lg px-6 py-3',
-            Size::X2L => 'gap-x-3 text-xl px-7 py-4',
+            Size::XL2 => 'gap-x-3 text-xl px-7 py-4',
         ];
     }
 }

@@ -9,7 +9,7 @@ class Height extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Height::X3L;
+        return Packs\Height::XL3;
     }
 
     public function all(): array
@@ -19,12 +19,12 @@ class Height extends ComponentPack
             Packs\Height::MD  => 'max-h-44',
             Packs\Height::LG  => 'max-h-48',
             Packs\Height::XL  => 'max-h-52',
-            Packs\Height::X2L => 'max-h-56',
-            Packs\Height::X3L => 'max-h-60',
-            Packs\Height::X4L => 'max-h-64',
-            Packs\Height::X5L => 'max-h-72',
-            Packs\Height::X6L => 'max-h-80',
-            Packs\Height::X7L => 'max-h-96',
+            Packs\Height::XL2 => 'max-h-56',
+            Packs\Height::XL3 => 'max-h-60',
+            Packs\Height::XL4 => 'max-h-64',
+            Packs\Height::XL5 => 'max-h-72',
+            Packs\Height::XL6 => 'max-h-80',
+            Packs\Height::XL7 => 'max-h-96',
         ];
     }
 }
