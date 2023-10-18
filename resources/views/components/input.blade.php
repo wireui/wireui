@@ -2,7 +2,7 @@
     $hasError = !$errorless && $name && $errors->has($name);
 @endphp
 
-<div class="@if($disabled) opacity-60 @endif">
+<div class="w-full @if($disabled) opacity-60 @endif">
     @if ($label || $cornerHint)
         <div class="flex {{ !$label && $cornerHint ? 'justify-end' : 'justify-between items-end' }} mb-1">
             @if ($label)
