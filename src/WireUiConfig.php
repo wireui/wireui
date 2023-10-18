@@ -108,12 +108,11 @@ class WireUiConfig
             'default' => [
                 'width'    => Packs\Width::LG,
                 'height'   => Packs\Height::XL3,
-                'position' => Packs\Position::RIGHT,
+                'position' => Packs\Position::BOTTOM_END,
             ],
             'packs' => [
-                'widths'    => WireUi\Dropdown\Width::class,
-                'heights'   => WireUi\Dropdown\Height::class,
-                'positions' => WireUi\Dropdown\Position::class,
+                'widths'  => WireUi\Dropdown\Width::class,
+                'heights' => WireUi\Dropdown\Height::class,
             ],
         ], $options);
     }

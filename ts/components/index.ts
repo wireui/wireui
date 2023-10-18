@@ -2,7 +2,7 @@ import classToObject from '@/utils/classToObject'
 import ColorPicker from './color-picker'
 import datetimePicker from './datetime-picker'
 import dialog from './dialog'
-import dropdown from './dropdown'
+import Dropdown from './Dropdown'
 import currency from './inputs/currency'
 import maskable from './inputs/maskable'
 import number from './inputs/number'
@@ -13,7 +13,6 @@ import select from './select'
 import timePicker from './time-picker'
 
 document.addEventListener('alpine:init', () => {
-  window.Alpine.data('wireui_dropdown', dropdown)
   window.Alpine.data('wireui_modal', modal)
   window.Alpine.data('wireui_dialog', dialog)
   window.Alpine.data('wireui_notifications', notifications)
@@ -25,5 +24,6 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_timepicker', timePicker)
   window.Alpine.data('wireui_datetime_picker', datetimePicker)
 
+  window.Alpine.data('wireui_dropdown', () => classToObject(new Dropdown()))
   window.Alpine.data('wireui_color_picker', () => classToObject(new ColorPicker()))
 })

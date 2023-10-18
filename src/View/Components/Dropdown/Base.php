@@ -7,9 +7,12 @@ use WireUi\View\Components\WireUiComponent;
 
 class Base extends WireUiComponent
 {
-    protected array $props = ['persistent' => false];
+    protected array $props = [
+        'persistent' => false,
+        'position'   => null,
+    ];
 
-    protected array $packs = ['width', 'height', 'position'];
+    protected array $packs = ['width', 'height'];
 
     public function blade(): View
     {
