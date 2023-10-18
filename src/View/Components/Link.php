@@ -3,20 +3,17 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize, HasSetupUnderline};
+use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize};
 
 class Link extends WireUiComponent
 {
     use HasSetupButton;
     use HasSetupColor;
     use HasSetupSize;
-    use HasSetupUnderline;
 
-    public function __construct(
-        public ?string $label = null,
-    ) {
-        //
-    }
+    protected array $props = ['label'];
+
+    protected array $packs = ['underline'];
 
     public function blade(): View
     {

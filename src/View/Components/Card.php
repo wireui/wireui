@@ -3,21 +3,20 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupPadding, HasSetupRounded, HasSetupShadow};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class Card extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupPadding;
     use HasSetupRounded;
-    use HasSetupShadow;
 
-    public function __construct(
-        public ?string $title = null,
-        public ?bool $borderless = null,
-    ) {
-        $this->borderless ??= config('wireui.card.borderless', false);
-    }
+    protected array $packs = ['shadow', 'padding'];
+
+    protected array $props = [
+        'title',
+        'borderless',
+        'shadowless',
+    ];
 
     public function blade(): View
     {

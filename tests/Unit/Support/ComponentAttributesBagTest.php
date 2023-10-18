@@ -1,6 +1,6 @@
 <?php
 
-it('should parse boolean attributes', function () {
+test('it should parse boolean attributes', function () {
     $attributes = [
         'foo'    => true,
         'bar'    => false,
@@ -13,8 +13,6 @@ it('should parse boolean attributes', function () {
 
     expect($bag->getAttributes())->toBe([
         'foo'    => 'true',
-        'bar'    => 'false',
-        'baz'    => 0,
         'docker' => 'container',
         'sail'   => 'laravel',
     ]);

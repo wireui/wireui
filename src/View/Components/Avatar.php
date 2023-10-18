@@ -3,16 +3,15 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupIconSize, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 
 class Avatar extends WireUiComponent
 {
     use HasSetupColor;
-    use HasSetupIconSize;
     use HasSetupRounded;
     use HasSetupSize;
 
-    protected array $packs = ['border'];
+    protected array $packs = ['border', 'icon-size'];
 
     protected array $props = [
         'src',
