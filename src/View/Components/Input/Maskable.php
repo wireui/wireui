@@ -21,7 +21,7 @@ abstract class Maskable extends WireUiComponent
 
     public function __construct(
         public bool $emitFormatted = false,
-        string $mask = null,
+        ?string $mask = null,
     ) {
         $this->mask = $this->formatMask($mask ?: $this->getInputMask());
     }

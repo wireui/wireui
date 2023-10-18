@@ -35,7 +35,7 @@ trait HasSetupColor
         $this->setVariables(['color', 'colorClasses']);
     }
 
-    private function getColorConfigName(string $variant = null): string
+    private function getColorConfigName(?string $variant = null): string
     {
         if ($variant) {
             return "wireui.{$this->config}.packs.colors.{$variant}";

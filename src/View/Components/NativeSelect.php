@@ -35,7 +35,7 @@ class NativeSelect extends WireUiComponent
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
-        Collection|array $options = null,
+        Collection|array|null $options = null,
     ) {
         $this->options = collect($options)->when(
             $flipOptions,

@@ -23,27 +23,27 @@ class Notification
         return $this;
     }
 
-    public function success(string $title, string $description = null): void
+    public function success(string $title, ?string $description = null): void
     {
         $this->simpleNotification(Icon::SUCCESS, $title, $description);
     }
 
-    public function error(string $title, string $description = null): void
+    public function error(string $title, ?string $description = null): void
     {
         $this->simpleNotification(Icon::ERROR, $title, $description);
     }
 
-    public function info(string $title, string $description = null): void
+    public function info(string $title, ?string $description = null): void
     {
         $this->simpleNotification(Icon::INFO, $title, $description);
     }
 
-    public function warning(string $title, string $description = null): void
+    public function warning(string $title, ?string $description = null): void
     {
         $this->simpleNotification(Icon::WARNING, $title, $description);
     }
 
-    public function simpleNotification(string $icon, string $title, string $description = null): void
+    public function simpleNotification(string $icon, string $title, ?string $description = null): void
     {
         $this->send(['icon' => $icon, 'title' => $title, 'description' => $description]);
     }

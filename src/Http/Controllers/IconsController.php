@@ -9,7 +9,7 @@ use WireUi\View\Components\Icon;
 
 class IconsController extends Controller
 {
-    public function __invoke(string $variant = null, string $icon): Response
+    public function __invoke(?string $variant, string $icon): Response
     {
         try {
             $component = new Icon(name: $icon, variant: $variant);

@@ -16,7 +16,7 @@ class Dialog extends WireUiComponent
     public string $dialog;
 
     public function __construct(
-        string $id = null,
+        ?string $id = null,
         public ?string $title = null,
         public ?string $zIndex = null,
         public ?string $spacing = null,

@@ -29,34 +29,34 @@ class Dialog
         return static::makeEventName($this->dialogId);
     }
 
-    public static function makeEventName(string $dialogId = null): string
+    public static function makeEventName(?string $dialogId = null): string
     {
         $id = Str::kebab($dialogId);
 
         return !empty($id) ? "dialog:{$id}" : 'dialog';
     }
 
-    public function success(string $title, string $description = null): void
+    public function success(string $title, ?string $description = null): void
     {
         $this->simpleDialog(Icon::SUCCESS, $title, $description);
     }
 
-    public function error(string $title, string $description = null): void
+    public function error(string $title, ?string $description = null): void
     {
         $this->simpleDialog(Icon::ERROR, $title, $description);
     }
 
-    public function info(string $title, string $description = null): void
+    public function info(string $title, ?string $description = null): void
     {
         $this->simpleDialog(Icon::INFO, $title, $description);
     }
 
-    public function warning(string $title, string $description = null): void
+    public function warning(string $title, ?string $description = null): void
     {
         $this->simpleDialog(Icon::WARNING, $title, $description);
     }
 
-    public function simpleDialog(string $icon, string $title, string $description = null): void
+    public function simpleDialog(string $icon, string $title, ?string $description = null): void
     {
         $this->show(['icon' => $icon, 'title' => $title, 'description' => $description]);
     }

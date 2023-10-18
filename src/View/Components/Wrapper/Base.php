@@ -12,7 +12,7 @@ class Base extends Component
     use InteractsWithErrors;
 
     public function __construct(
-        WrapperData $data = null,
+        ?WrapperData $data = null,
         public ?string $id = null,
         public ?string $icon = null,
         public ?string $name = null,
