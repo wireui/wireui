@@ -170,24 +170,33 @@ class WireUiConfig
         ], $options);
     }
 
-    // @todo: merge options from wrapper
+    public static function dateTimePicker(array $options = []): array
+    {
+        return self::wrapper(self::mix([
+            'default' => [
+                'right-icon'       => 'calendar',
+                'without-tips'     => false,
+                'without-timezone' => false,
+                'without-time'     => false,
+                'interval'         => Components\TimePicker::INTERVAL,
+                'time-format'      => Components\TimePicker::DEFAULT_FORMAT,
+                'parse-format'     => null,
+                'display-format'   => null,
+                'timezone'         => null,
+                'user-timezone'    => null,
+            ],
+        ], $options));
+    }
+
     public static function timePicker(array $options = []): array
     {
-        return self::mix([
+        return self::wrapper(self::mix([
             'default' => [
                 'format'     => Components\TimePicker::DEFAULT_FORMAT,
                 'interval'   => Components\TimePicker::INTERVAL,
                 'right-icon' => 'clock',
-                'color'      => self::GLOBAL,
-                'shadow'     => self::GLOBAL,
-                'rounded'    => self::GLOBAL,
             ],
-            'packs' => [
-                'shadows'  => WireUi\Shadow::class,
-                'colors'   => WireUi\Wrapper\Color::class,
-                'rounders' => WireUi\Wrapper\Rounded::class,
-            ],
-        ], $options);
+        ], $options));
     }
 
     public static function wrapper(array $options = []): array
