@@ -91,7 +91,7 @@
 
             <ul
                 @class([
-                   'max-h-44 overflow-y-auto overscroll-contain soft-scrollbar pb-2 px-2',
+                   'max-h-44 overflow-y-auto overscroll-contain soft-scrollbar p-2.5',
                    'flex flex-col gap-1 sm:gap-0.5',
                    'snap-proximity snap-y'
                 ])

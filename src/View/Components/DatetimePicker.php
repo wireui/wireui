@@ -3,7 +3,6 @@
 namespace WireUi\View\Components;
 
 use Carbon\Carbon;
-use DateTimeInterface;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\Concerns\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
@@ -12,39 +11,37 @@ class DatetimePicker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use IsFormComponent;
+    use IsFormComponent {
+        finished as finishedForm; // todo: change this
+    }
+
+    protected array $props = [
+        'right-icon'       => 'calendar',
+        'clearable'        => true,
+        'without-tips'     => false,
+        'without-timezone' => false,
+        'without-time'     => false,
+        'interval'         => TimePicker::INTERVAL,
+        'time-format'      => TimePicker::DEFAULT_FORMAT,
+        'parse-format'     => null,
+        'display-format'   => null,
+        'timezone'         => null,
+        'user-timezone'    => null,
+        'min-time'         => 0,
+        'max-time'         => 24,
+        'min'              => null,
+        'max'              => null,
+    ];
 
     protected array $packs = ['shadow'];
 
-    public ?Carbon $min;
+    protected function finished(array &$data): void
+    {
+        $this->finishedForm($data);
 
-    public ?Carbon $max;
-
-    /**
-     * @param Carbon|DateTimeInterface|string|int|null $min
-     * @param Carbon|DateTimeInterface|string|int|null $max
-     */
-    public function __construct(
-        public ?string $rightIcon = 'calendar',
-        public bool $clearable = true,
-        public bool $withoutTips = false,
-        public bool $withoutTimezone = false,
-        public bool $withoutTime = false,
-        public int $interval = TimePicker::INTERVAL,
-        public string $timeFormat = TimePicker::DEFAULT_FORMAT,
-        public ?string $parseFormat = null,
-        public ?string $displayFormat = null,
-        public ?string $timezone = null,
-        public ?string $userTimezone = null,
-        public string|int $minTime = 0,
-        public string|int $maxTime = 24,
-
-        $min = null,
-        $max = null,
-    ) {
-        $this->timezone ??= config('app.timezone', 'UTC');
-        $this->min = $min ? Carbon::parse($min) : null;
-        $this->max = $max ? Carbon::parse($max) : null;
+        $data['timezone'] ??= config('app.timezone', 'UTC');
+        $data['min'] = Carbon::make($data['min']);
+        $data['max'] = Carbon::make($data['max']);
     }
 
     protected function blade(): View
