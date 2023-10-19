@@ -14,7 +14,7 @@ class Modal extends WireUiComponent
         'spacing',
         'z-index',
         'blurless',
-        'show' => false,
+        'show'       => false,
         'persistent' => false,
     ];
 
