@@ -1,11 +1,12 @@
 @props(['margin' => false, 'rootClass' => null])
 
 <div
-    class="
-        fixed inset-0 z-20 flex items-end sm:z-10 sm:absolute sm:inset-auto
-        transition-all ease-linear duration-150 {{ $rootClass }}
-        sm:top-0 sm:right-0
-    "
+    @class([
+        'fixed inset-0 z-20 flex items-end sm:z-10 sm:absolute sm:inset-auto',
+        'transition-all ease-linear duration-150',
+        'sm:top-0 sm:right-0',
+        $rootClass,
+    ])
     style="display: none;"
     x-cloak
     x-show="positionable.state"
@@ -14,10 +15,10 @@
     x-on:keydown.escape.window="positionable.handleEscape()"
 >
     <div
-        class="
-            fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden
-            dark:bg-secondary-700 dark:bg-opacity-60
-        "
+        @class([
+            'fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden',
+            'dark:bg-secondary-700 dark:bg-opacity-60',
+        ])
         x-show="positionable.state"
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0"

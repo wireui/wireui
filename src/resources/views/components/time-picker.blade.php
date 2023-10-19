@@ -28,10 +28,10 @@
     <x-slot:append class="flex items-center">
         <x-dynamic-component
             :component="WireUi::component('icon')"
-            class="
-                w-4 h-4 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500
-                text-gray-400 dark:text-gray-600
-            "
+            @class([
+                'w-4 h-4 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500',
+                'text-gray-400 dark:text-gray-600',
+            ])
             x-cloak
             name="x-mark"
             x-show="!config.readonly && !config.disabled && input"
@@ -40,10 +40,10 @@
 
         <x-dynamic-component
             :component="WireUi::component('button')"
-            class="h-full rounded-r-md"
-            primary
+            class="h-full"
+            :color="$color ?? 'primary'"
+            :rounded="Arr::get($roundedClasses, 'append', '')"
             flat
-            squared
             x-on:click="positionable.toggle()"
             :disabled="$disabled"
             x-on:keydown.arrow-up.prevent="positionable.close()"

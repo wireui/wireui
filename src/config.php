@@ -112,7 +112,7 @@ return [
 
     'textarea' => Config::wrapper(),
 
-    'time-picker' => Config::wrapper(),
+    'time-picker' => Config::timePicker(),
 
     // 'toggle' => [
     //     //

@@ -34,10 +34,10 @@
     <x-slot:append>
         <x-dynamic-component
             :component="WireUi::component('button')"
-            class="h-full rounded-r-md"
-            primary
+            class="h-full"
+            :color="$color ?? 'primary'"
+            :rounded="Arr::get($roundedClasses, 'append', '')"
             flat
-            squared
             x-on:click="positionable.toggle()"
             :disabled="$disabled"
             x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
