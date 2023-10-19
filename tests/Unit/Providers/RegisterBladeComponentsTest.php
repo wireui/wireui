@@ -5,7 +5,7 @@ namespace Tests\Unit\Providers;
 use Illuminate\Config\Repository;
 use Illuminate\View\Compilers\BladeCompiler;
 use Tests\Unit\TestCase;
-use WireUi\View\Components\Input;
+use WireUi\View\Components\Input\Base;
 
 class RegisterBladeComponentsTest extends TestCase
 {
@@ -29,6 +29,6 @@ class RegisterBladeComponentsTest extends TestCase
 
         $this->assertArrayNotHasKey('input', $aliases, "The input shouldn't be registered");
 
-        $this->assertSame($aliases['form.input'], Input::class);
+        $this->assertSame($aliases['form.input'], Base::class);
     }
 }
