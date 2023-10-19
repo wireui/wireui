@@ -72,7 +72,7 @@ return [
 
     'color-picker' => Config::wrapper(),
 
-    'datetime-picker' => Config::wrapper(),
+    'datetime-picker' => Config::dateTimePicker(),
 
     'dialog' => Config::modal(),
 
