@@ -15,6 +15,8 @@ class Base extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
+    protected array $props = ['shadowless'];
+
     protected function blade(): View
     {
         return view('wireui::components.input.base');

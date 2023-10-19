@@ -15,6 +15,8 @@ class Password extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
+    protected array $props = ['shadowless'];
+
     public function blade(): View
     {
         return view('wireui::components.input.password');
