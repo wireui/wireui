@@ -31,7 +31,7 @@ return [
 
     'style' => [
         'shadow'  => Packs\Shadow::BASE,
-        'rounded' => Packs\Rounded::BASE,
+        'rounded' => Packs\Rounded::MD,
         'color'   => Packs\Color::PRIMARY,
     ],
 
@@ -65,8 +65,6 @@ return [
     ]),
 
     'card' => Config::card(),
-
-    'input' => Config::wrapper(),
 
     // 'checkbox' => [
     //     //
@@ -114,7 +112,7 @@ return [
 
     'textarea' => Config::wrapper(),
 
-    'time-picker' => Config::wrapper(),
+    'time-picker' => Config::timePicker(),
 
     // 'toggle' => [
     //     //

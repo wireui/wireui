@@ -4,8 +4,10 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     './ts/**/*.{ts,js}',
-    './src/resources/views/**/*.blade.php',
-    './src/**/*.php'
+    './src/resources/views/**/*.php',
+    './src/Traits/**/*.php',
+    './src/View/**/*.php',
+    './src/WireUi/**/*.php'
   ],
   darkMode: 'class',
   theme: {

@@ -5,6 +5,7 @@ tests/Browser/console
 tests/Browser/screenshots
 tests/Browser/source
 .phpunit.result.cache
+.phpunit.cache/
 yarn-error.log
 .idea
 .vscode

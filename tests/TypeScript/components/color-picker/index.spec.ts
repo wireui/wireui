@@ -1,8 +1,6 @@
-import colorPicker, { Color, Props } from '@/components/color-picker'
-import { AlpineMock, mockAlpineComponent } from '@tests/helpers'
+import ColorPicker, { Color } from '@/components/color-picker'
 import { makeColors } from '@/components/color-picker/colors'
-
-type ColorPicker = ReturnType<typeof colorPicker>
+import { AlpineMock, mockAlpineComponent } from '@tests/helpers'
 
 describe('Testing the color picker component', () => {
   window.Alpine = AlpineMock
@@ -10,7 +8,7 @@ describe('Testing the color picker component', () => {
 
   const nullColor: Color = { value: '', name: '' }
 
-  const defaultProps: Props = {
+  const defaultProps = {
     colorNameAsValue: false,
     wireModel: {
       exists: false,
@@ -29,21 +27,27 @@ describe('Testing the color picker component', () => {
         }
       }
     },
-    colors: []
+    colors: [] as Color[]
   }
 
   function mockComponent (
-    props: Props = defaultProps,
+    props = defaultProps,
     input = document.createElement('input')
   ): ColorPicker {
-    const component = colorPicker()
+    const component = new ColorPicker()
 
     component.$refs = {
       input,
-      popover: document.createElement('div')
+      popover: document.createElement('div'),
+      container: document.createElement('label'),
+      colorsContainer: document.createElement('div')
     }
 
     component.$props = props
+
+    if (input.value) {
+      component.setColor(input.value)
+    }
 
     return mockAlpineComponent(component) as ColorPicker
   }
@@ -51,35 +55,35 @@ describe('Testing the color picker component', () => {
   it('should open the dropdown', () => {
     const component = mockComponent()
 
-    expect(component.popover).toBeFalse()
+    expect(component.positionable.state).toBeFalse()
 
-    component.open()
+    component.positionable.open()
 
-    expect(component.popover).toBeTrue()
+    expect(component.positionable.state).toBeTrue()
   })
 
   it('should close the dropdown', () => {
     const component = mockComponent()
 
-    component.open()
+    component.positionable.open()
 
-    expect(component.popover).toBeTrue()
+    expect(component.positionable.state).toBeTrue()
 
-    component.close()
+    component.positionable.close()
 
-    expect(component.popover).toBeFalse()
+    expect(component.positionable.state).toBeFalse()
   })
 
   it('should toggle the dropdown', () => {
     const component = mockComponent()
 
-    component.toggle()
+    component.positionable.toggle()
 
-    expect(component.popover).toBeTrue()
+    expect(component.positionable.state).toBeTrue()
 
-    component.toggle()
+    component.positionable.toggle()
 
-    expect(component.popover).toBeFalse()
+    expect(component.positionable.state).toBeFalse()
   })
 
   it('should select a color and close the dropdown', () => {
@@ -93,7 +97,7 @@ describe('Testing the color picker component', () => {
     component.select(color)
 
     expect(component.selected).toMatchObject(color)
-    expect(component.popover).toBeFalse()
+    expect(component.positionable.state).toBeFalse()
   })
 
   it('should mask the value before selecting a color', () => {
@@ -113,7 +117,7 @@ describe('Testing the color picker component', () => {
 
     const component = mockComponent(defaultProps, input)
 
-    expect(component.popover).toBeFalse()
+    expect(component.positionable.state).toBeFalse()
     expect(component.selected.value).toBe('#000')
   })
 
@@ -143,8 +147,11 @@ describe('Testing the color picker component', () => {
   test('ensure that the livewire watches is not created when dont have a wire model', () => {
     const component = mockComponent()
 
-    expect(component.$watch).toBeCalledTimes(1)
-    expect(component.$watch).toBeCalledWith('popover', expect.any(Function))
+    queueMicrotask(() => {
+      expect(component.$watch).toBeCalledTimes(2)
+      expect(component.$watch).toHaveBeenNthCalledWith(1, 'positionable.state', expect.any(Function))
+      expect(component.$watch).toHaveBeenNthCalledWith(2, 'positionable.state', expect.any(Function))
+    })
   })
 
   it('should show colors from a custom provider', () => {

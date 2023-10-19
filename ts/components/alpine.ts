@@ -55,6 +55,7 @@ export interface Alpine {
     name: string,
     handler: (el: Node, directive: DirectiveParameters, utilities: DirectiveUtilities) => void,
   ): void;
+  effect(callback: () => void): void
 }
 
 export interface Component {

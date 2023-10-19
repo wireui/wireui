@@ -22,11 +22,6 @@ class ColorPicker extends WireUiComponent
     ) {
     }
 
-    protected function blade(): View
-    {
-        return view('wireui::components.color-picker');
-    }
-
     public function getColors(): array
     {
         return collect($this->colors)
@@ -46,5 +41,10 @@ class ColorPicker extends WireUiComponent
             })
             ->values()
             ->toArray();
+    }
+
+    protected function blade(): View
+    {
+        return view('wireui::components.color-picker');
     }
 }

@@ -1,6 +1,7 @@
 import { Component } from '@/components/alpine'
+import { AlpineComponent } from '@/components/alpine2'
 
-export const props = function (el: HTMLElement): object {
+export function props (el: HTMLElement): object {
   const $root = el.closest('[x-data]')
   const expression = $root?.getAttribute('x-props')
 
@@ -21,7 +22,7 @@ export const props = function (el: HTMLElement): object {
   return evaluated
 }
 
-export function watchProps (component: Component, callback: CallableFunction): void {
+export function watchProps (component: Component|AlpineComponent, callback: CallableFunction): void {
   const observer = new MutationObserver(mutations => {
     const wasChanged = mutations.some(
       mutation => mutation.attributeName === 'x-props'
@@ -34,7 +35,9 @@ export function watchProps (component: Component, callback: CallableFunction): v
 
   observer.observe(component.$root, { attributes: true })
 
-  component.$cleanup(() => observer.disconnect())
+  if (component instanceof AlpineComponent) {
+    component.$destroy(() => observer.disconnect())
+  } else {
+    component.$cleanup(() => observer.disconnect())
+  }
 }
-
-export default props

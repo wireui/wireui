@@ -108,12 +108,11 @@ class WireUiConfig
             'default' => [
                 'width'    => Packs\Width::LG,
                 'height'   => Packs\Height::XL3,
-                'position' => Packs\Position::RIGHT,
+                'position' => Packs\Position::BOTTOM_END,
             ],
             'packs' => [
-                'widths'    => WireUi\Dropdown\Width::class,
-                'heights'   => WireUi\Dropdown\Height::class,
-                'positions' => WireUi\Dropdown\Position::class,
+                'widths'  => WireUi\Dropdown\Width::class,
+                'heights' => WireUi\Dropdown\Height::class,
             ],
         ], $options);
     }
@@ -163,10 +162,30 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'position' => Packs\Position::TOP_RIGHT,
+                'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
                 'positions' => WireUi\Notification\Position::class,
+            ],
+        ], $options);
+    }
+
+    // @todo: merge options from wrapper
+    public static function timePicker(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'format'     => Components\TimePicker::DEFAULT_FORMAT,
+                'interval'   => Components\TimePicker::INTERVAL,
+                'right-icon' => 'clock',
+                'color'      => self::GLOBAL,
+                'shadow'     => self::GLOBAL,
+                'rounded'    => self::GLOBAL,
+            ],
+            'packs' => [
+                'shadows'  => WireUi\Shadow::class,
+                'colors'   => WireUi\Wrapper\Color::class,
+                'rounders' => WireUi\Wrapper\Rounded::class,
             ],
         ], $options);
     }

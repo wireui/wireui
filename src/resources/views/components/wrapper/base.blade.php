@@ -1,9 +1,9 @@
 <div
     @attributes([
         'with-validation-colors' => $withValidationColors,
-        'group-invalidated' => $invalidated,
-        'aria-disabled' => $disabled,
-        'aria-readonly' => $readonly,
+        'group-invalidated'      => $invalidated,
+        'aria-disabled'          => $disabled,
+        'aria-readonly'          => $readonly,
     ])
     {{ $attributes
         ->merge(['form-wrapper' => $id ?: 'true'])
@@ -16,12 +16,13 @@
         ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
 >
     @if ($label || $corner)
-        <div name="form.wrapper.header"
+        <div
             @class([
                 'flex mb-1',
-                'justify-end' => !$label,
+                'justify-end'               => !$label,
                 'justify-between items-end' =>  $label,
             ])
+            name="form.wrapper.header"
         >
             @if ($label)
                 <x-wireui::form.label
@@ -69,14 +70,16 @@
         name="form.wrapper.container"
     >
         @if (!isset($prepend) && ($prefix || $icon))
-            <div name="form.wrapper.container.prefix"
-                @class([
+            <div
+                name="form.wrapper.container.prefix"
+                {{ WireUi::extractAttributes($prefix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'prepend', ''),
                     Arr::get($colorClasses, 'prepend', ''),
+                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
                     'invalidated:text-negative-500',
-                ])
+                ]) }}
             >
                 @if ($icon)
                     <x-dynamic-component
@@ -85,9 +88,7 @@
                         class="w-4.5 h-4.5"
                     />
                 @elseif($prefix)
-                    <span {{ WireUi::extractAttributes($prefix) }}>
-                        {{ $prefix }}
-                    </span>
+                    {{ $prefix }}
                 @endif
             </div>
         @elseif (isset($prepend))
@@ -104,14 +105,15 @@
         {{ $slot }}
 
         @if (!isset($append) && ($rightIcon || $suffix || $withErrorIcon))
-            <div name="form.wrapper.container.suffix"
-                @class([
+            <div
+                name="form.wrapper.container.suffix"
+                {{ WireUi::extractAttributes($suffix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'invalidated:input-focus:text-negative-500',
+                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500',
                     Arr::get($roundedClasses, 'append', ''),
                     Arr::get($colorClasses, 'append', ''),
-                    'invalidated:text-negative-500',
-                ])
+                ]) }}
             >
                 @if ($rightIcon)
                     <x-dynamic-component
@@ -120,9 +122,7 @@
                         class="w-4.5 h-4.5"
                     />
                 @elseif($suffix)
-                    <span {{ WireUi::extractAttributes($suffix) }}>
-                        {{ $suffix }}
-                    </span>
+                    {{ $suffix }}
                 @elseif($withErrorIcon)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
@@ -132,7 +132,8 @@
                 @endif
             </div>
         @elseif(isset($append))
-            <div name="form.wrapper.container.append"
+            <div
+                name="form.wrapper.container.append"
                 {{ $append->attributes->class([
                     'group/append wrapper-append-slot',
                     'flex h-full py-0.5 pr-0.5',

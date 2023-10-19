@@ -12,18 +12,18 @@ class TimePicker extends WireUiComponent
     use HasSetupRounded;
     use IsFormComponent;
 
-    protected array $packs = ['shadow'];
-
     public const INTERVAL       = 10;
     public const FORMAT_12H     = '12';
     public const FORMAT_24H     = '24';
     public const DEFAULT_FORMAT = self::FORMAT_12H;
 
-    public function __construct(
-        public int $interval = self::INTERVAL,
-        public string $format = self::DEFAULT_FORMAT,
-    ) {
-    }
+    protected array $props = [
+        'format'     => self::DEFAULT_FORMAT,
+        'interval'   => self::INTERVAL,
+        'right-icon' => 'clock',
+    ];
+
+    protected array $packs = ['shadow'];
 
     protected function blade(): View
     {

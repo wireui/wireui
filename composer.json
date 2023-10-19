@@ -62,7 +62,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WireUi\\WireUiServiceProvider"
+                "WireUi\\ServiceProvider"
             ],
             "aliases": []
         }

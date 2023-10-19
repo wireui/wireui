@@ -10,7 +10,7 @@ use Orchestra\Testbench\TestCase as TestbenchTestCase;
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;
 use WireUi\Heroicons\HeroiconsServiceProvider;
-use WireUi\WireUiServiceProvider;
+use WireUi\ServiceProvider;
 
 class TestCase extends TestbenchTestCase
 {
@@ -37,7 +37,7 @@ class TestCase extends TestbenchTestCase
     protected function getPackageProviders($app)
     {
         return [
-            WireUiServiceProvider::class,
+            ServiceProvider::class,
             LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];

@@ -1,5 +1,5 @@
 import '@/alpine/magic/index'
-import props from '@/alpine/magic/props'
+import { props } from '@/alpine/magic/props'
 import { AlpineMock } from '@tests/helpers'
 
 describe('Testing the index magic register', () => {

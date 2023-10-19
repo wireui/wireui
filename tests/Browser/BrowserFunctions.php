@@ -2,13 +2,35 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Support\Arr;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\{Arr, Str};
 use Laravel\Dusk\Browser;
-use Laravel\Dusk\Console\DuskCommand;
-use Psy\Shell;
 
+/** @mixin BrowserTestCase */
 trait BrowserFunctions
 {
+    public function render(string $html): Browser
+    {
+        $uuid = (string) Str::uuid();
+
+        $path = self::tmpPath("{$uuid}.blade.php");
+
+        $blade = <<<BLADE
+        <x-layouts.app>
+            {$html}
+        </x-layouts.app>
+        BLADE;
+
+        file_put_contents($path, $blade);
+
+        $browser = $this->newBrowser($this->createWebDriver());
+
+        static::$browsers = collect([$browser]);
+
+        return $browser->visit('/testing/' . base64_encode($path));
+    }
+
     public function visit(Browser $browser, string $livewire, $queryParams = [])
     {
         $url = '/livewire-dusk/' . urlencode($livewire) . '?' . Arr::query($queryParams);
@@ -16,29 +38,13 @@ trait BrowserFunctions
         return $browser->visit($url)->waitForLivewireToLoad();
     }
 
-    public function breakIntoATinkerShell($browsers, $e)
-    {
-        $sh = new Shell();
-
-        $sh->add(new DuskCommand($this, $e));
-
-        $sh->setScopeVariables(['browsers' => $browsers]);
-
-        $sh->addInput('dusk');
-
-        $sh->setBoundObject($this);
-
-        $sh->run();
-
-        return $sh->getScopeVariables(false);
-    }
-
+    /** @param Router $router */
     protected function defineWebRoutes($router)
     {
-        $router->get('/livewire-dusk/{component}', function (string $component) {
-            $class = urldecode($component);
+        $router->get('/testing/{path}', function (string $path) {
+            $path = base64_decode($path);
 
-            return app()->call(app('livewire')->new($class));
+            return View::file($path);
         });
 
         $router->get('/api/options', function () {
