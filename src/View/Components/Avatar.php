@@ -17,8 +17,6 @@ class Avatar extends WireUiComponent
         'src'        => null,
         'icon'       => null,
         'label'      => null,
-        'iconless'   => false,
-        'right-icon' => null,
         'borderless' => false,
     ];
 

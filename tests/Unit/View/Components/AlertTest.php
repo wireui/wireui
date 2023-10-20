@@ -5,7 +5,7 @@ namespace Tests\Unit\View\Components;
 use Illuminate\Support\Facades\Blade;
 use WireUi\Enum\Packs;
 use WireUi\View\Components\Alert;
-use WireUi\WireUi\Alert\Color\Outline;
+use WireUi\WireUi\Alert\Color\{Flat, Outline};
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -86,7 +86,9 @@ test('it should set icon in component and using iconless', function () {
 
     expect($this->component->icon)->toBe($icon);
 
-    $html = Blade::render("<x-icon name=\"{$icon}\" class=\"text-primary-800 dark:text-primary-200 w-5 h-5 mr-3 shrink-0\" />");
+    $iconColor = data_get((new Flat())->get(), 'iconColor');
+
+    $html = Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconColor} w-5 h-5 mr-3 shrink-0\" />");
 
     expect(Blade::render("<x-alert title=\"Title Example\" icon=\"{$icon}\" />"))->toContain($html);
 

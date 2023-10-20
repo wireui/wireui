@@ -5,7 +5,6 @@
     $borderClasses => !$borderless,
     $sizeClasses => !$src,
     $roundedClasses,
-    $sizeClasses,
 ]) }}>
     @if ($label)
         @if (check_slot($label))
