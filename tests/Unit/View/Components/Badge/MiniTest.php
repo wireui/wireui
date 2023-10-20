@@ -138,3 +138,19 @@ test('it should set squared in component', function () {
 
     expect(Blade::render('<x-mini-badge squared />'))->toContain($class);
 });
+
+test('it should custom rounded in component', function () {
+    $this->setAttributes($this->component, [
+        'rounded' => $class = 'rounded-[40px]',
+    ]);
+
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->squared)->toBeFalse();
+
+    expect($this->component->rounded)->toBe($class);
+
+    expect($this->component->roundedClasses)->toBe($class);
+
+    expect(Blade::render('<x-mini-badge rounded="rounded-[40px]" />'))->toContain($class);
+});
