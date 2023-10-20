@@ -15,12 +15,12 @@ class Toggle extends WireUiComponent
     use IsFormComponent;
 
     protected array $props = [
-        'icon',
-        'label',
-        'iconless',
-        'left-label',
-        'right-icon',
-        'description',
+        'icon'        => null,
+        'label'       => null,
+        'iconless'    => false,
+        'left-label'  => null,
+        'right-icon'  => null,
+        'description' => null,
     ];
 
     public function backgroundClasses(bool $hasError): string

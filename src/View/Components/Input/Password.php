@@ -15,7 +15,9 @@ class Password extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    protected array $props = ['shadowless'];
+    protected array $props = [
+        'shadowless' => false,
+    ];
 
     public function blade(): View
     {

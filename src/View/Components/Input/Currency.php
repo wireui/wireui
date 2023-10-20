@@ -16,10 +16,10 @@ class Currency extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless',
         'decimal'        => '.',
         'precision'      => 2,
         'thousands'      => ',',
+        'shadowless'     => false,
         'emit-formatted' => false,
     ];
 

@@ -19,7 +19,11 @@ test('it should have array properties', function () {
 
     $props = $this->invokeProperty($this->component, 'props');
 
-    expect($props)->toBe(['shadowless' => false, 'icon' => 'minus', 'right-icon' => 'plus']);
+    expect($props)->toBe([
+        'icon'       => 'minus',
+        'right-icon' => 'plus',
+        'shadowless' => false,
+    ]);
 });
 
 test('it should have properties in component', function () {

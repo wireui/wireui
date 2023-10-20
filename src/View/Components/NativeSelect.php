@@ -16,7 +16,9 @@ class NativeSelect extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    protected array $props = ['shadowless'];
+    protected array $props = [
+        'shadowless' => false,
+    ];
 
     public const PRIMITIVE_VALUES = [
         'string',

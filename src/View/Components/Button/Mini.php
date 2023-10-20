@@ -19,11 +19,11 @@ class Mini extends WireUiComponent
     protected array $packs = ['icon-size'];
 
     protected array $props = [
-        'icon',
-        'label',
-        'iconless',
-        'right-icon',
-        'loading' => true,
+        'icon'       => null,
+        'label'      => null,
+        'loading'    => true,
+        'iconless'   => false,
+        'right-icon' => null,
     ];
 
     public function blade(): View

@@ -14,12 +14,12 @@ class Avatar extends WireUiComponent
     protected array $packs = ['border', 'icon-size'];
 
     protected array $props = [
-        'src',
-        'icon',
-        'label',
-        'iconless',
-        'right-icon',
-        'borderless',
+        'src'        => null,
+        'icon'       => null,
+        'label'      => null,
+        'iconless'   => false,
+        'right-icon' => null,
+        'borderless' => false,
     ];
 
     public function blade(): View

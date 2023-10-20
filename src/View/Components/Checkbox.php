@@ -15,9 +15,9 @@ class Checkbox extends WireUiComponent
     use IsFormComponent;
 
     protected array $props = [
-        'label',
-        'left-label',
-        'description',
+        'label'       => null,
+        'left-label'  => null,
+        'description' => null,
     ];
 
     public function getClasses(bool $hasError): string

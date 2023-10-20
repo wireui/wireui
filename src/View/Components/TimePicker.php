@@ -20,10 +20,10 @@ class TimePicker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless',
-        'right-icon' => 'clock',
-        'interval'   => self::INTERVAL,
         'format'     => self::DEFAULT_FORMAT,
+        'interval'   => self::INTERVAL,
+        'right-icon' => 'clock',
+        'shadowless' => false,
     ];
 
     protected function blade(): View

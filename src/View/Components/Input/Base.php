@@ -15,7 +15,9 @@ class Base extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    protected array $props = ['shadowless'];
+    protected array $props = [
+        'shadowless' => false,
+    ];
 
     protected function blade(): View
     {
