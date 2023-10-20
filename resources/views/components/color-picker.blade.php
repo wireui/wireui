@@ -9,7 +9,7 @@
     @if ($colors)
         colors: @toJs($getColors())
     @endif
-})" {{ $attributes->only(['class', 'wire:key'])->class('relative') }}>
+})" {{ $attributes->only(['class', 'wire:key'])->class('relative w-full') }}>
     <x-dynamic-component
         {{ $attributes->except(['class', 'wire:key'])->whereDoesntStartWith('wire:model') }}
         :component="WireUi::component('input')"

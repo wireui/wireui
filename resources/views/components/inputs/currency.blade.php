@@ -5,7 +5,7 @@
     thousands: '{{ $thousands }}',
     decimal:   '{{ $decimal }}',
     precision:  {{ $precision }},
-})" {{ $attributes->only('wire:key') }}>
+})" {{ $attributes->only('wire:key')->class('w-full') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
         {{ $attributes->whereDoesntStartWith(['wire:model'])->except(['type', 'wire:key']) }}
