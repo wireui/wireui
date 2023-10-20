@@ -4,7 +4,7 @@ namespace WireUi\Traits\Components;
 
 trait HasSetupButton
 {
-    public string $tag = '';
+    public mixed $tag = null;
 
     protected function setupButton(): void
     {

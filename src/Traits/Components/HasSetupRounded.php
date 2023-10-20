@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 trait HasSetupRounded
 {
-    public bool $squared = false;
+    public mixed $squared = null;
 
-    public bool $rounded = false;
+    public mixed $rounded = null;
 
     public mixed $roundedClasses = null;
 
