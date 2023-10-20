@@ -18,7 +18,6 @@ class Alert extends WireUiComponent
         'icon'       => null,
         'title'      => null,
         'iconless'   => false,
-        'right-icon' => null,
         'shadowless' => false,
     ];
 

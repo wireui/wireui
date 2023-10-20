@@ -21,8 +21,6 @@ class Mini extends WireUiComponent
     protected array $props = [
         'icon'              => null,
         'label'             => null,
-        'iconless'          => false,
-        'right-icon'        => null,
         'wire-load-enabled' => false,
     ];
 

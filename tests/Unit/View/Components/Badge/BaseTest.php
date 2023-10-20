@@ -41,10 +41,12 @@ test('it should have properties in component', function () {
         'rounded',
         'squared',
         'variant',
+        'iconSize',
         'rightIcon',
         'sizeClasses',
         'colorClasses',
         'roundedClasses',
+        'iconSizeClasses',
     ]);
 
     expect($this->component->full)->toBeFalse();
@@ -55,7 +57,9 @@ test('it should not have properties in component', function () {
         'full',
         'icon',
         'label',
+        'iconSize',
         'rightIcon',
+        'iconSizeClasses',
     ]);
 });
 

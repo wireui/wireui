@@ -38,9 +38,11 @@ test('it should have properties in component', function () {
         'rounded',
         'squared',
         'variant',
+        'iconSize',
         'sizeClasses',
         'colorClasses',
         'roundedClasses',
+        'iconSizeClasses',
     ]);
 });
 
@@ -48,6 +50,8 @@ test('it should not have properties in component', function () {
     expect($this->component)->not->toHaveProperties([
         'icon',
         'label',
+        'iconSize',
+        'iconSizeClasses',
     ]);
 });
 
