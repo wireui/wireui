@@ -7,6 +7,15 @@ use Illuminate\View\ComponentAttributeBag;
 
 abstract class Component extends View\Component
 {
+    protected function extractBladeViewFromString($contents)
+    {
+        if ($contents instanceof \Illuminate\Contracts\View\View) {
+            return $contents;
+        }
+
+        return parent::extractBladeViewFromString($contents);
+    }
+
     protected const DEFAULT = 'default';
 
     protected function classes(array $classList): string
