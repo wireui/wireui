@@ -72,7 +72,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect(Blade::render("<x-badge label=\"{$label}\" />"))->toContain($label);
+    expect('<x-badge :label="$label" />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with lg size', function () {
@@ -96,10 +96,11 @@ test('it should set icon and right icon in component with lg size', function () 
 
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
 
-    expect(Blade::render("<x-badge size=\"{$size}\" icon=\"{$icon}\" rightIcon=\"{$rightIcon}\" />"))
+    expect('<x-badge :size="$size" :icon="$icon" :right-icon="$rightIcon" />')
+        ->render(compact('size', 'icon', 'rightIcon'))
         ->toContain($sizeClasses)
-        ->toContain(Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconSizeClasses} shrink-0\" />"))
-        ->toContain(Blade::render("<x-icon name=\"{$rightIcon}\" class=\"{$iconSizeClasses} shrink-0\" />"));
+        ->toContain(Blade::render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
+        ->toContain(Blade::render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
 test('it should set specific color in component with variant outline', function () {
@@ -116,7 +117,7 @@ test('it should set specific color in component with variant outline', function 
 
     expect($this->component->colorClasses)->toBe($class = (new Outline())->get(Packs\Color::INFO));
 
-    expect(Blade::render("<x-badge variant=\"{$variant}\" color=\"{$color}\" />"))->toContain($class);
+    expect('<x-badge :color="$color" :variant="$variant" />')->render(compact('color', 'variant'))->toContain($class);
 });
 
 test('it should set rounded full in component', function () {
@@ -132,7 +133,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
 
-    expect(Blade::render('<x-badge rounded />'))->toContain($class);
+    expect('<x-badge rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -148,7 +149,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
 
-    expect(Blade::render('<x-badge squared />'))->toContain($class);
+    expect('<x-badge squared />')->render()->toContain($class);
 });
 
 test('it should custom rounded in component', function () {
@@ -164,5 +165,5 @@ test('it should custom rounded in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(Blade::render('<x-badge rounded="rounded-[40px]" />'))->toContain($class);
+    expect('<x-badge rounded="rounded-[40px]" />')->render()->toContain($class);
 });
