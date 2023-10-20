@@ -13,7 +13,8 @@ class Modal extends Component
         public ?string $spacing = null,
         public ?string $align = null,
         public string|bool|null $blur = null,
-        public bool $show = false
+        public bool $show = false,
+        public bool $persistent = false
     ) {
         $zIndex   ??= config('wireui.modal.zIndex');
         $maxWidth ??= config('wireui.modal.maxWidth');
