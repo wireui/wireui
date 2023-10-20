@@ -38,6 +38,8 @@ abstract class WireUiComponent extends Component
     {
         $this->setConfig();
 
+        $this->executeProps();
+
         if (method_exists($this, 'mounted')) {
             $this->mounted($data);
         }

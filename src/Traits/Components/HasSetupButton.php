@@ -31,7 +31,7 @@ trait HasSetupButton
 
     private function ensureWireLoading(): void
     {
-        if (property_exists($this, 'loading') && $this->loading) {
+        if (property_exists($this, 'wireLoadEnabled') && $this->wireLoadEnabled) {
             $this->attributes->offsetSet('wire:loading.attr', 'disabled');
             $this->attributes->offsetSet('wire:loading.class', '!cursor-wait');
         }
