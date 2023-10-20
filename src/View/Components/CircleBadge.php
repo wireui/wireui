@@ -31,7 +31,7 @@ class CircleBadge extends Badge
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.circle-badge', $this->mergeData($data));
+            return view('wireui::components.circle-badge', $this->mergeData($data))->render();
         };
     }
 

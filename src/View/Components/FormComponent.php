@@ -2,15 +2,14 @@
 
 namespace WireUi\View\Components;
 
-use Closure;
 use Illuminate\View\ComponentAttributeBag;
 
 abstract class FormComponent extends Component
 {
-    public function render(): Closure
+    public function render()
     {
         return function (array $data) {
-            return view($this->getView(), $this->mergeAttributes($data));
+            return view($this->getView(), $this->mergeAttributes($data))->render();
         };
     }
 

@@ -26,7 +26,7 @@ abstract class BaseBadge extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.badge', $this->mergeData($data));
+            return view('wireui::components.badge', $this->mergeData($data))->render();
         };
     }
 
