@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\View\Components;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Enum\Packs;
 use WireUi\View\Components\Alert;
 use WireUi\WireUi\Alert\Color\{Flat, Outline};
@@ -74,10 +73,12 @@ test('it should set specific title in component', function () {
 
     expect($this->component->title)->toBe($title);
 
-    expect(Blade::render("<x-alert title=\"{$title}\" />"))->toContain($title);
+    expect('<x-alert :title="$title" />')->render(compact('title'))->toContain($title);
 });
 
 test('it should set icon in component and using iconless', function () {
+    $title = fake()->word();
+
     $this->setAttributes($this->component, [
         'icon' => $icon = $this->getRandomIcon(),
     ]);
@@ -88,14 +89,16 @@ test('it should set icon in component and using iconless', function () {
 
     $iconColor = data_get((new Flat())->get(), 'iconColor');
 
-    $html = Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconColor} w-5 h-5 mr-3 shrink-0\" />");
+    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
-    expect(Blade::render("<x-alert title=\"Title Example\" icon=\"{$icon}\" />"))->toContain($html);
+    expect('<x-alert :$icon :title="$title" />')->render(compact('icon', 'title'))->toContain($html);
 
-    expect(Blade::render("<x-alert title=\"Title Example\" icon=\"{$icon}\" iconless />"))->not->toContain($html);
+    expect('<x-alert :$icon :title="$title" iconless />')->render(compact('icon', 'title'))->not->toContain($html);
 });
 
 test('it should set specific color in component with variant outline', function () {
+    $title = fake()->word();
+
     $this->setAttributes($this->component, [
         'color'   => Packs\Color::INFO,
         'variant' => Packs\Variant::OUTLINE,
@@ -113,11 +116,12 @@ test('it should set specific color in component with variant outline', function 
 
     $iconColor = collect($class)->get('iconColor');
 
-    $html = Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconColor} w-5 h-5 mr-3 shrink-0\" />");
+    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
-    expect(Blade::render("<x-alert title=\"Title Example\" variant=\"{$variant}\" color=\"{$color}\" />"))->toContain(
-        ...collect($class)->except(['icon', 'iconColor'])->flatten()->toArray(),
-    )->toContain($html);
+    expect('<x-alert :title="$title" :$color :$variant />')
+        ->render(compact('title', 'color', 'variant'))
+        ->toContain(...collect($class)->except(['icon', 'iconColor'])->flatten()->toArray())
+        ->toContain($html);
 });
 
 test('it should set rounded full in component', function () {
@@ -133,7 +137,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
 
-    expect(Blade::render('<x-alert rounded />'))->toContain($class);
+    expect('<x-alert rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -149,7 +153,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
 
-    expect(Blade::render('<x-alert squared />'))->toContain($class);
+    expect('<x-alert squared />')->render()->toContain($class);
 });
 
 test('it should custom rounded in component', function () {
@@ -165,5 +169,5 @@ test('it should custom rounded in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(Blade::render('<x-alert rounded="rounded-[40px]" />'))->toContain($class);
+    expect('<x-alert rounded="rounded-[40px]" />')->render()->toContain($class);
 });

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\View\Components;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Enum\Packs;
 use WireUi\View\Components\Avatar;
 use WireUi\WireUi\Avatar\{IconSize, Size};
@@ -73,7 +72,7 @@ test('it should render label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect(Blade::render("<x-avatar label=\"{$label}\" />"))->toContain($label);
+    expect('<x-alert :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should render link photo in component', function () {
@@ -85,13 +84,13 @@ test('it should render link photo in component', function () {
 
     expect($this->component->src)->toBe($src);
 
-    expect(Blade::render("<x-avatar src=\"{$src}\" />"))->toContain($src);
+    expect('<x-alert :src="$src" />')->render(compact('src'))->toContain($src);
 });
 
 test('it should render icon in component', function () {
     $this->setAttributes($this->component, [
         'icon' => $icon = $this->getRandomIcon(),
-        'size' => $size      = Packs\Size::SM,
+        'size' => $size = Packs\Size::SM,
     ]);
 
     $this->runWireUiComponent($this->component);
@@ -108,9 +107,10 @@ test('it should render icon in component', function () {
 
     $iconSizeClasses = collect($iconSizeClasses)->get('icon');
 
-    $html = Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconSizeClasses} text-white dark:text-gray-200 shrink-0\" solid />");
+    $html = render('<x-icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
 
-    expect(Blade::render("<x-avatar icon=\"{$icon}\" size=\"{$size}\" />"))
+    expect('<x-avatar :$icon :$size />')
+        ->render(compact('icon', 'size'))
         ->toContain($html)
         ->toContain($sizeClasses);
 });
@@ -128,7 +128,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
 
-    expect(Blade::render('<x-avatar rounded />'))->toContain($class);
+    expect('<x-avatar rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -144,7 +144,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
 
-    expect(Blade::render('<x-avatar squared />'))->toContain($class);
+    expect('<x-avatar squared />')->render()->toContain($class);
 });
 
 test('it should custom rounded in component', function () {
@@ -160,5 +160,5 @@ test('it should custom rounded in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(Blade::render('<x-avatar rounded="rounded-[40px]" />'))->toContain($class);
+    expect('<x-avatar rounded="rounded-[40px]" />')->render()->toContain($class);
 });

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\View\Components\Badge;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Enum\Packs;
 use WireUi\View\Components\Badge\Base;
 use WireUi\WireUi\Badge\Color\Outline;
@@ -72,7 +71,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-badge :label="$label" />')->render(compact('label'))->toContain($label);
+    expect('<x-badge :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with lg size', function () {
@@ -96,11 +95,11 @@ test('it should set icon and right icon in component with lg size', function () 
 
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
 
-    expect('<x-badge :size="$size" :icon="$icon" :right-icon="$rightIcon" />')
+    expect('<x-badge :$size :$icon :$rightIcon />')
         ->render(compact('size', 'icon', 'rightIcon'))
         ->toContain($sizeClasses)
-        ->toContain(Blade::render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
-        ->toContain(Blade::render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
+        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
+        ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
 test('it should set specific color in component with variant outline', function () {
@@ -117,7 +116,7 @@ test('it should set specific color in component with variant outline', function 
 
     expect($this->component->colorClasses)->toBe($class = (new Outline())->get(Packs\Color::INFO));
 
-    expect('<x-badge :color="$color" :variant="$variant" />')->render(compact('color', 'variant'))->toContain($class);
+    expect('<x-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
 });
 
 test('it should set rounded full in component', function () {

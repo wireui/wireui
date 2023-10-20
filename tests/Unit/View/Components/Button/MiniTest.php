@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\View\Components\Button;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Enum\Packs;
 use WireUi\View\Components\Button\Mini;
 use WireUi\WireUi\Button\Color\Outline;
@@ -58,14 +57,14 @@ test('it should not have properties in component', function () {
 
 test('it should render button like link', function () {
     $this->setAttributes($this->component, [
-        'href' => $link = fake()->url(),
+        'href' => $href = fake()->url(),
     ]);
 
     $this->runWireUiComponent($this->component);
 
     expect($this->component->tag)->toBe('a');
 
-    expect('<x-mini-button :href="$link" />')->render(compact('link'))->toContain($link);
+    expect('<x-mini-button :$href />')->render(compact('href'))->toContain($href);
 });
 
 test('it should set specific label in component', function () {
@@ -77,7 +76,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-mini-button :label="$label" />')->render(compact('label'))->toContain($label);
+    expect('<x-mini-button :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with lg size', function () {
@@ -98,10 +97,10 @@ test('it should set icon and right icon in component with lg size', function () 
 
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
 
-    expect('<x-mini-button :size="$size" :icon="$icon" />')
+    expect('<x-mini-button :$size :$icon />')
         ->render(compact('size', 'icon'))
         ->toContain($sizeClasses)
-        ->toContain(Blade::render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
+        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
 });
 
 test('it should set specific color in component with variant outline', function () {
@@ -120,7 +119,7 @@ test('it should set specific color in component with variant outline', function 
 
     expect($this->component->colorClasses)->toBe($class = $this->serializeColorClasses($class));
 
-    expect('<x-mini-button :color="$color" :variant="$variant" />')
+    expect('<x-mini-button :$color :$variant />')
         ->render(compact('color', 'variant'))
         ->toContain(...collect($class)->flatten()->toArray());
 });
