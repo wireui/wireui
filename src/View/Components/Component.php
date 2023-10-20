@@ -4,14 +4,13 @@ namespace WireUi\View\Components;
 
 use Illuminate\View;
 use Illuminate\View\ComponentAttributeBag;
-use WireUi\Support\Html;
 
 abstract class Component extends View\Component
 {
     protected function extractBladeViewFromString($contents)
     {
         if ($contents instanceof \Illuminate\Contracts\View\View) {
-            return new Html($contents->render());
+            return $contents;
         }
 
         return parent::extractBladeViewFromString($contents);
