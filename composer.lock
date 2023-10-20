@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5765511d76ecaedd2f78edd200fc3c16",
+    "content-hash": "6e0c99f8e6078281dabd3b6f1ef97c55",
     "packages": [
         {
             "name": "brick/math",
@@ -6949,24 +6949,24 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.23.2",
+            "version": "v2.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "b126e8e6e4afd6562e80c5dafcc2a973f17a09b3"
+                "reference": "811ef27ee4741661f70f629a10e31269d2e2895a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/b126e8e6e4afd6562e80c5dafcc2a973f17a09b3",
-                "reference": "b126e8e6e4afd6562e80c5dafcc2a973f17a09b3",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/811ef27ee4741661f70f629a10e31269d2e2895a",
+                "reference": "811ef27ee4741661f70f629a10e31269d2e2895a",
                 "shasum": ""
             },
             "require": {
                 "brianium/paratest": "^7.3.0",
-                "nunomaduro/collision": "^7.9.0|^8.0.0",
+                "nunomaduro/collision": "^7.10.0|^8.0.0",
                 "nunomaduro/termwind": "^1.15.1|^2.0.0",
                 "pestphp/pest-plugin": "^2.1.1",
-                "pestphp/pest-plugin-arch": "^2.4.0",
+                "pestphp/pest-plugin-arch": "^2.4.1",
                 "php": "^8.1.0",
                 "phpunit/phpunit": "^10.4.1"
             },
@@ -7036,7 +7036,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.23.2"
+                "source": "https://github.com/pestphp/pest/tree/v2.24.0"
             },
             "funding": [
                 {
@@ -7048,7 +7048,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-10T15:40:34+00:00"
+            "time": "2023-10-17T09:07:18+00:00"
         },
         {
             "name": "pestphp/pest-plugin",

@@ -9,9 +9,7 @@ use WireUi\WireUi\Shadow;
 use WireUi\WireUi\Wrapper\{Color, Rounded};
 
 beforeEach(function () {
-    $this->component = new Number();
-
-    $this->component->componentName = 'number';
+    $this->component = (new Number())->withName('number');
 });
 
 test('it should have array properties', function () {
@@ -21,7 +19,7 @@ test('it should have array properties', function () {
 
     $props = $this->invokeProperty($this->component, 'props');
 
-    expect($props)->toBe(['shadowless', 'icon' => 'minus', 'right-icon' => 'plus']);
+    expect($props)->toBe(['shadowless' => false, 'icon' => 'minus', 'right-icon' => 'plus']);
 });
 
 test('it should have properties in component', function () {
@@ -55,7 +53,7 @@ test('it should not have properties in component', function () {
     ]);
 });
 
-test('it should set specific icons in component', function () {
+test('it should set icon and right icon in component', function () {
     $this->setAttributes($this->component, [
         'icon'       => $icon      = $this->getRandomIcon(),
         'right-icon' => $rightIcon = $this->getRandomIcon(),
@@ -66,9 +64,29 @@ test('it should set specific icons in component', function () {
     expect($this->component->icon)->toBe($icon);
 
     expect($this->component->rightIcon)->toBe($rightIcon);
+
+    expect(Blade::render("<x-number icon=\"{$icon}\" rightIcon=\"{$rightIcon}\" />"))
+        ->toContain(Blade::render("<x-icon name=\"{$icon}\" class=\"w-4 h-4 shrink-0\" />"))
+        ->toContain(Blade::render("<x-icon name=\"{$rightIcon}\" class=\"w-4 h-4 shrink-0\" />"));
 });
 
 test('it should set specific shadow in component', function () {
+    $this->setAttributes($this->component, [
+        'shadow' => Packs\Shadow::MD,
+    ]);
+
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->shadowless)->toBeFalse();
+
+    expect($this->component->shadow)->toBe(Packs\Shadow::MD);
+
+    expect($this->component->shadowClasses)->toBe($class = (new Shadow())->get(Packs\Shadow::MD));
+
+    expect(Blade::render('<x-number shadow="md" />'))->toContain($class);
+});
+
+test('it should remove shadow in component when is shadowless', function () {
     $this->setAttributes($this->component, [
         'shadowless' => true,
         'shadow'     => Packs\Shadow::MD,
@@ -80,7 +98,9 @@ test('it should set specific shadow in component', function () {
 
     expect($this->component->shadow)->toBe(Packs\Shadow::MD);
 
-    expect($this->component->shadowClasses)->toBe((new Shadow())->get(Packs\Shadow::MD));
+    expect($this->component->shadowClasses)->toBe($class = (new Shadow())->get(Packs\Shadow::MD));
+
+    expect(Blade::render('<x-number shadowless shadow="md" />'))->not->toContain($class);
 });
 
 test('it should set specific color in component', function () {
@@ -90,28 +110,41 @@ test('it should set specific color in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->color)->toBe(Packs\Color::INFO);
+    expect($this->component->color)->toBe($pack = Packs\Color::INFO);
 
-    expect($this->component->colorClasses)->toBe((new Color())->get(Packs\Color::INFO));
+    expect($this->component->colorClasses)->toBe($class = (new Color())->get(Packs\Color::INFO));
+
+    expect(Blade::render("<x-number color=\"{$pack}\" />"))->toContain(data_get($class, 'input'));
 });
 
-test('it should set specific rounded in component', function () {
+test('it should set rounded full in component', function () {
     $this->setAttributes($this->component, [
         'rounded' => true,
-        'squared' => true,
     ]);
 
     $this->runWireUiComponent($this->component);
 
     expect($this->component->rounded)->toBeTrue();
 
-    expect($this->component->squared)->toBeTrue();
+    expect($this->component->squared)->toBeFalse();
 
-    expect($this->component->roundedClasses)->toBe((new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+
+    expect(Blade::render('<x-number rounded />'))->toContain(data_get($class, 'input'));
 });
 
-// test('it should render component', function(){
-//     $html = Blade::renderComponent($this->component);
+test('it should set squared in component', function () {
+    $this->setAttributes($this->component, [
+        'squared' => true,
+    ]);
 
-//     dd($html);
-// });
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->squared)->toBeTrue();
+
+    expect($this->component->rounded)->toBeFalse();
+
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+
+    expect(Blade::render('<x-number squared />'))->toContain(data_get($class, 'input'));
+});

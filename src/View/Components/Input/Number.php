@@ -16,7 +16,7 @@ class Number extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless',
+        'shadowless' => false,
         'icon'       => 'minus',
         'right-icon' => 'plus',
     ];

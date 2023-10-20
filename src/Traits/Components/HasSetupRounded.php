@@ -6,9 +6,9 @@ use WireUi\Support\ComponentPack;
 
 trait HasSetupRounded
 {
-    public mixed $squared = null;
+    public bool $squared = false;
 
-    public mixed $rounded = null;
+    public bool $rounded = false;
 
     public mixed $roundedClasses = null;
 
@@ -17,9 +17,9 @@ trait HasSetupRounded
         /** @var ComponentPack $roundedPack */
         $roundedPack = resolve(config("wireui.{$this->config}.packs.rounders"));
 
-        $this->squared = $this->attributes->get('squared');
+        $this->squared = $this->attributes->get('squared', false);
 
-        $this->rounded = $this->attributes->get('rounded');
+        $this->rounded = $this->attributes->get('rounded', false);
 
         $this->getRoundedClasses($roundedPack);
 
