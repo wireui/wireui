@@ -11,7 +11,7 @@ trait ManageProps
 
     protected array $props = [];
 
-    protected function executeProps(): void
+    protected function setupProps(): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);

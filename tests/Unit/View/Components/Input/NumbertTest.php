@@ -45,6 +45,8 @@ test('it should have properties in component', function () {
     expect($this->component->icon)->toBe('minus');
 
     expect($this->component->rightIcon)->toBe('plus');
+
+    expect($this->component->shadowless)->toBeFalse();
 });
 
 test('it should not have properties in component', function () {
@@ -114,11 +116,11 @@ test('it should set specific color in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->color)->toBe($pack = Packs\Color::INFO);
+    expect($this->component->color)->toBe($color = Packs\Color::INFO);
 
     expect($this->component->colorClasses)->toBe($class = (new Color())->get(Packs\Color::INFO));
 
-    expect(Blade::render("<x-number color=\"{$pack}\" />"))->toContain(data_get($class, 'input'));
+    expect(Blade::render("<x-number color=\"{$color}\" />"))->toContain(data_get($class, 'input'));
 });
 
 test('it should set rounded full in component', function () {

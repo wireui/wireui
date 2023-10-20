@@ -19,7 +19,6 @@ class Base extends WireUiComponent
         'full'       => false,
         'icon'       => null,
         'label'      => null,
-        'iconless'   => false,
         'right-icon' => null,
     ];
 
