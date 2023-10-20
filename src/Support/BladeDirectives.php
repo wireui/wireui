@@ -78,13 +78,24 @@ class BladeDirectives
         return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
     }
 
+    /**
+     * This function overwrite the original entangle directive from Livewire
+     */
     public function entangleable(mixed $expression): string
     {
         $fallback = (string) Str::of($expression)->after(',')->trim();
         $property = (string) Str::of($expression)->before(',')->trim();
 
         return <<<EOT
-        <?php if (!isset(\$__livewire)): ?>@toJs({$fallback})<?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>@entangle({$property}).live<?php else: ?>@entangle({$property})<?php endif; ?>
+        <?php if (!isset(\$__livewire)): ?>
+            <?php if (is_object({$fallback}) || is_array({$fallback})) { echo "JSON.parse(atob('".base64_encode(json_encode({$fallback}))."'))"; } elseif (is_string({$fallback})) { echo "'".str_replace("'", "\'", {$fallback})."'"; } else { echo json_encode({$fallback}); } ?>
+        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>
+            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property}->value() }}').live
+        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective) : ?>
+            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property}->value() }}'){{ {$property}->hasModifier('live') ? '.live' : '' }}
+        <?php else : ?>
+            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property} }}')
+        <?php endif; ?>
         EOT;
     }
 
