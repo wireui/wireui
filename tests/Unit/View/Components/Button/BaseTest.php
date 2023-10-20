@@ -73,7 +73,7 @@ test('it should render button like link', function () {
 
     expect($this->component->tag)->toBe('a');
 
-    expect(Blade::render("<x-mini-button href=\"{$link}\" />"))->toContain($link);
+    expect(Blade::render("<x-button href=\"{$link}\" />"))->toContain($link);
 });
 
 test('it should set specific label in component', function () {
