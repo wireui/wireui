@@ -21,16 +21,16 @@ class EntangleableTest extends UnitTestCase
     public function fallbackValuesProvider(): array
     {
         return [
-            ['null', '@toJs(null)'],
-            ['true', '@toJs(true)'],
-            ['false', '@toJs(false)'],
-            ['1', '@toJs(1)'],
-            ['0', '@toJs(0)'],
-            ['"foo"', '@toJs("foo")'],
-            ['["foo", "bar"]', '@toJs(["foo", "bar"])'],
-            ['["foo" => "bar"]', '@toJs(["foo" => "bar"])'],
-            ['["foo" => ["bar" => "baz"]]', '@toJs(["foo" => ["bar" => "baz"]])'],
-            ['["foo" => ["bar" => ["baz" => "qux"]]]', '@toJs(["foo" => ["bar" => ["baz" => "qux"]]])'],
+            ['null', 'null'],
+            ['true', 'true'],
+            ['false', 'false'],
+            ['1', '1'],
+            ['0', '0'],
+            ['"foo"', '\'foo\''],
+            ['["foo", "bar"]', 'JSON.parse(atob(\'WyJmb28iLCJiYXIiXQ==\'))'],
+            ['["foo" => "bar"]', 'JSON.parse(atob(\'eyJmb28iOiJiYXIifQ==\'))'],
+            ['["foo" => ["bar" => "baz"]]', 'JSON.parse(atob(\'eyJmb28iOnsiYmFyIjoiYmF6In19\'))'],
+            ['["foo" => ["bar" => ["baz" => "qux"]]]', 'JSON.parse(atob(\'eyJmb28iOnsiYmFyIjp7ImJheiI6InF1eCJ9fX0=\'))'],
         ];
     }
 
@@ -46,7 +46,7 @@ class EntangleableTest extends UnitTestCase
 
         View::share('__livewire', new TestComponent());
 
-        $this->blade($blade)->assertSee("@entangle('name')", escape: false);
+        $this->blade($blade)->assertSee("window.Livewire.find('fake-id').entangle('name')", escape: false);
     }
 
     public function test_it_should_render_the_entangle_directive_from_the_wire_model_attribute()
@@ -62,7 +62,7 @@ class EntangleableTest extends UnitTestCase
         View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model' => 'name']));
 
-        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
+        $this->blade($blade)->assertSee("window.Livewire.find('fake-id').entangle('name')", escape: false);
     }
 
     public function test_it_should_render_the_entangle_directive_from_the_wire_model_live_attribute()
@@ -78,7 +78,7 @@ class EntangleableTest extends UnitTestCase
         View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model.live' => 'name']));
 
-        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model'))", escape: false);
+        $this->blade($blade)->assertSee("window.Livewire.find('fake-id').entangle('name').live", escape: false);
     }
 
     public function test_it_should_render_the_entangle_directive_from_the_wire_model_blur_attribute()
@@ -94,6 +94,6 @@ class EntangleableTest extends UnitTestCase
         View::share('__livewire', new TestComponent());
         View::share('attributes', new ComponentAttributeBag(['wire:model.blur' => 'name']));
 
-        $this->blade($blade)->assertSee("@entangle(\$attributes->wire('model')).live", escape: false);
+        $this->blade($blade)->assertSee("window.Livewire.find('fake-id').entangle('name').live", escape: false);
     }
 }
