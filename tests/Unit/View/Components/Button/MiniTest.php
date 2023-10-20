@@ -65,7 +65,7 @@ test('it should render button like link', function () {
 
     expect($this->component->tag)->toBe('a');
 
-    expect(Blade::render("<x-mini-button href=\"{$link}\" />"))->toContain($link);
+    expect('<x-mini-button :href="$link" />')->render(compact('link'))->toContain($link);
 });
 
 test('it should set specific label in component', function () {
@@ -77,7 +77,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect(Blade::render("<x-mini-button label=\"{$label}\" />"))->toContain($label);
+    expect('<x-mini-button :label="$label" />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with lg size', function () {
@@ -98,9 +98,10 @@ test('it should set icon and right icon in component with lg size', function () 
 
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
 
-    expect(Blade::render("<x-mini-button size=\"{$size}\" icon=\"{$icon}\" />"))
+    expect('<x-mini-button :size="$size" :icon="$icon" />')
+        ->render(compact('size', 'icon'))
         ->toContain($sizeClasses)
-        ->toContain(Blade::render("<x-icon name=\"{$icon}\" class=\"{$iconSizeClasses} shrink-0\" />"));
+        ->toContain(Blade::render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
 });
 
 test('it should set specific color in component with variant outline', function () {
@@ -119,9 +120,9 @@ test('it should set specific color in component with variant outline', function 
 
     expect($this->component->colorClasses)->toBe($class = $this->serializeColorClasses($class));
 
-    expect(Blade::render("<x-mini-button variant=\"{$variant}\" color=\"{$color}\" />"))->toContain(
-        ...collect($class)->flatten()->toArray(),
-    );
+    expect('<x-mini-button :color="$color" :variant="$variant" />')
+        ->render(compact('color', 'variant'))
+        ->toContain(...collect($class)->flatten()->toArray());
 });
 
 test('it should set rounded full in component', function () {
@@ -137,7 +138,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
 
-    expect(Blade::render('<x-mini-button rounded />'))->toContain($class);
+    expect('<x-mini-button rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -153,7 +154,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
 
-    expect(Blade::render('<x-mini-button squared />'))->toContain($class);
+    expect('<x-mini-button squared />')->render()->toContain($class);
 });
 
 test('it should custom rounded in component', function () {
@@ -169,5 +170,5 @@ test('it should custom rounded in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(Blade::render('<x-mini-button rounded="rounded-[40px]" />'))->toContain($class);
+    expect('<x-mini-button rounded="rounded-[40px]" />')->render()->toContain($class);
 });
