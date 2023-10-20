@@ -1,4 +1,4 @@
-<div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
+<div {{ $attributes->only(['class', 'wire:key'])->class('relative w-full') }}
     x-data="wireui_select({
         @if ($attributes->wire('model')->value())
             wireModel: @entangleable($attributes->wire('model')),

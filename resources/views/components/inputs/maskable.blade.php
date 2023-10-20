@@ -3,7 +3,7 @@
     model: @entangleable($attributes->wire('model')),
     emitFormatted: @boolean($emitFormatted),
     mask: {{ $mask }},
-})" {{ $attributes->only('wire:key') }}>
+})" {{ $attributes->only('wire:key')->class('w-full') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
         :borderless="$borderless"

@@ -1,4 +1,4 @@
-<div x-data="wireui_inputs_password" {{ $attributes->only('wire:key') }}>
+<div x-data="wireui_inputs_password" {{ $attributes->only('wire:key')->class('w-full') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
         {{ $attributes->except('wire:key') }}
