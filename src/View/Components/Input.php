@@ -2,8 +2,7 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Stringable;
+use Illuminate\Support\{Str, Stringable};
 
 class Input extends FormComponent
 {
@@ -50,17 +49,17 @@ class Input extends FormComponent
     ) {
         $this->borderless = $borderless;
         $this->shadowless = $shadowless;
-        $this->label = $label;
-        $this->hint = $hint;
+        $this->label      = $label;
+        $this->hint       = $hint;
         $this->cornerHint = $cornerHint;
-        $this->icon = $icon;
-        $this->rightIcon = $rightIcon;
-        $this->prefix = $prefix;
-        $this->suffix = $suffix;
-        $this->prepend = $prepend;
-        $this->append = $append;
-        $this->errorless = $errorless;
-        $this->spinner = $spinner;
+        $this->icon       = $icon;
+        $this->rightIcon  = $rightIcon;
+        $this->prefix     = $prefix;
+        $this->suffix     = $suffix;
+        $this->prepend    = $prepend;
+        $this->append     = $append;
+        $this->errorless  = $errorless;
+        $this->spinner    = $spinner;
     }
 
     protected function getView(): string
