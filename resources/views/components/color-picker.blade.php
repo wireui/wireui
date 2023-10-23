@@ -55,19 +55,24 @@
 
     <x-wireui::parts.popover
         :margin="(bool) $label"
-        class="
-            max-h-56 py-3 px-2 sm:py-2 sm:px-1 sm:w-72 sm:rounded-xl
-            overflow-y-auto soft-scrollbar border border-secondary-200
-        ">
-        <div class="flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 max-w-[18rem] mx-auto">
+        @class([
+            'max-h-64 select-none overflow-hidden',
+            'sm:w-auto sm:max-w-[19rem]',
+        ])
+    >
+        <div @class([
+            'max-h-60 overflow-y-auto overscroll-contain soft-scrollbar py-2 px-1',
+            'flex flex-wrap items-center justify-center gap-1 sm:gap-0.5 mx-auto',
+        ])>
             <span class="sr-only">dropdown-open</span>
 
             <template x-for="(color, index) in colors" :key="index">
-                <button class="
-                        w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer
-                        hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 sdark:focus:ring-gray-400
-                        dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400
-                    "
+                <button
+                    @class([
+                        'w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
+                        'hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400',
+                        'dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400',
+                    ])
                     :style="{ 'background-color': color.value }"
                     x-on:click="select(color)"
                     :title="color.name"
