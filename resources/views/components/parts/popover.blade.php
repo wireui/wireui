@@ -17,7 +17,7 @@
     <div
         @class([
             'fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden',
-            'dark:bg-secondary-700 dark:bg-opacity-60',
+            'pointer-events-auto dark:bg-secondary-700 dark:bg-opacity-60',
         ])
         x-show="popover"
         x-transition:enter="ease-out duration-300"
