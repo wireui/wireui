@@ -60,7 +60,7 @@ class Component extends \Livewire\Component
         $this->notification()->confirm([
             'title'       => 'Confirm It Jetete',
             'description' => 'Description can be null like title',
-            'timeout'     => 300,
+            'timeout'     => 500,
             'accept'      => [
                 'label'  => 'Accept',
                 'method' => 'setValue',
