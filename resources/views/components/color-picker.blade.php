@@ -57,7 +57,7 @@
         :margin="(bool) $label"
         @class([
             'max-h-64 select-none overflow-hidden',
-            'sm:w-auto sm:max-w-[19rem]',
+            'sm:max-w-[19rem]',
         ])
     >
         <div @class([
