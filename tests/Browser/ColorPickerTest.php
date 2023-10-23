@@ -67,10 +67,12 @@ class ColorPickerTest extends BrowserTestCase
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
+                ->pause(600)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
                 ->click('div[id="color-picker"] button[title="White"')
+                ->pause(600)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertInputValue('color-picker', '#fff');
                 });
@@ -86,10 +88,12 @@ class ColorPickerTest extends BrowserTestCase
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
+                ->pause(600)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
                 ->click('div[id="color-picker"] button[title="White"')
+                ->pause(600)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertInputValue('color-picker', '#fff');
                 })
@@ -97,11 +101,12 @@ class ColorPickerTest extends BrowserTestCase
                     return $browser->assertDontSee('dropdown-open');
                 })
                 ->click('div[id="color-picker"] button[trigger]')
+                ->pause(600)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSee('dropdown-open');
                 })
                 ->click('div[id="color-picker"] button[title="Black"')
-                ->pause(100)
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertInputValue('color-picker', '#000');
                 });
@@ -117,10 +122,13 @@ class ColorPickerTest extends BrowserTestCase
 
             $testable
                 ->clear('color-picker')
+                ->pause(400)
                 ->assertInputValue('color-picker', null)
                 ->type('color-picker', 'ABC')
+                ->pause(400)
                 ->assertInputValue('color-picker', '#ABC')
                 ->type('color-picker', '123456789')
+                ->pause(400)
                 ->assertInputValue('color-picker', '#123456');
         });
     }
