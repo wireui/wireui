@@ -2,8 +2,8 @@
 
 <div
     @class([
-        'fixed inset-0 z-20 flex items-end sm:z-10 sm:absolute sm:inset-auto',
-        'transition-all ease-linear duration-150',
+        'fixed inset-0 z-20 flex sm:w-full sm:justify-end items-end sm:z-10 sm:absolute sm:inset-auto',
+        'pointer-events-none transition-all ease-linear duration-150',
         'sm:top-0 sm:right-0',
         $rootClass,
     ])
@@ -17,7 +17,7 @@
     <div
         @class([
             'fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden',
-            'dark:bg-secondary-700 dark:bg-opacity-60',
+            'pointer-events-auto dark:bg-secondary-700 dark:bg-opacity-60',
         ])
         x-show="positionable.state"
         x-transition:enter="ease-out duration-300"
@@ -34,6 +34,7 @@
         {{ $attributes->class([
             'w-full rounded-t-md sm:rounded-xl border border-secondary-200 bg-white shadow-lg',
             'dark:bg-secondary-800 dark:border-secondary-600 transition-all relative overflow-hidden',
+            'pointer-events-auto',
         ]) }}
         x-show="positionable.state"
         tabindex="-1"
