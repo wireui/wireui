@@ -16,6 +16,10 @@ class DatetimePicker extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
+    protected array $props = [
+        'shadowless' => false,
+    ];
+
     public ?Carbon $min;
 
     public ?Carbon $max;

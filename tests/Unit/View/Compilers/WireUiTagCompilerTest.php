@@ -35,8 +35,10 @@ test('it dont have matches', function () {
 
 test('it should match rendered scripts link', function () {
     $bladeDirectives = new BladeDirectives();
-    $hooksScript     = $bladeDirectives->hooksScript();
-    $wireuiScript    = '<script src="/wireui/assets/scripts" defer ></script>';
+
+    $hooksScript = $bladeDirectives->hooksScript();
+
+    $wireuiScript = '<script src="/wireui/assets/scripts" defer ></script>';
 
     if ($version = $bladeDirectives->getManifestVersion('wireui.js')) {
         $wireuiScript = str_replace('assets/scripts', "assets/scripts?id={$version}", $wireuiScript);
@@ -45,12 +47,14 @@ test('it should match rendered scripts link', function () {
     $scripts = $bladeDirectives->scripts($absolute = false);
 
     expect($scripts)->toContain($hooksScript);
+
     expect($scripts)->toContain($wireuiScript);
 });
 
 test('it should match rendered styles link', function () {
     $bladeDirectives = new BladeDirectives();
-    $expected        = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
+
+    $expected = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
 
     if ($version = $bladeDirectives->getManifestVersion('wireui.css')) {
         $expected = str_replace('assets/styles', "assets/styles?id={$version}", $expected);
@@ -63,5 +67,6 @@ test('it should render all wireui scripts variation', function (string $text) {
     $html = Blade::render($text);
 
     expect($html)->toContain('<script src="');
+
     expect($html)->toContain('/wireui/assets/scripts');
 })->with('wireui::scripts');

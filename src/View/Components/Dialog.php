@@ -12,12 +12,12 @@ class Dialog extends WireUiComponent
     protected array $packs = ['align', 'blur', 'width', 'type'];
 
     protected array $props = [
-        'id',
-        'title',
-        'spacing',
-        'z-index',
-        'blurless',
-        'description',
+        'id'          => null,
+        'title'       => null,
+        'spacing'     => null,
+        'z-index'     => null,
+        'blurless'    => false,
+        'description' => null,
     ];
 
     protected function processed(): void

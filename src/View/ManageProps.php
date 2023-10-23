@@ -22,10 +22,8 @@ trait ManageProps
         }
     }
 
-    protected function manageProps(mixed $key, mixed $value): void
+    private function manageProps(string $key, mixed $value): void
     {
-        [$key, $value] = $this->serialize($key, $value);
-
         $field = Str::camel($key);
 
         $this->{$field} = $this->getData(attribute: $field, default: $value);
@@ -33,7 +31,7 @@ trait ManageProps
         $this->setVariables($field);
     }
 
-    protected function managePacks(string $value): void
+    private function managePacks(string $value): void
     {
         $field = Str::camel($value);
 
@@ -47,10 +45,5 @@ trait ManageProps
         $this->{"{$field}Classes"} = $pack->get($this->{$field});
 
         $this->setVariables([$field, "{$field}Classes"]);
-    }
-
-    private function serialize(mixed $key, mixed $value): array
-    {
-        return is_int($key) ? [$value, null] : [$key, $value];
     }
 }

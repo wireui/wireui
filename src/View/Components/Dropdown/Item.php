@@ -7,7 +7,11 @@ use WireUi\View\Components\WireUiComponent;
 
 class Item extends WireUiComponent
 {
-    protected array $props = ['icon', 'label', 'separator' => false];
+    protected array $props = [
+        'icon'      => null,
+        'label'     => null,
+        'separator' => false,
+    ];
 
     public function blade(): View
     {

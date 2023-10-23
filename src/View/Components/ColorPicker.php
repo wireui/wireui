@@ -15,6 +15,10 @@ class ColorPicker extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
+    protected array $props = [
+        'shadowless' => false,
+    ];
+
     public function __construct(
         public $rightIcon = 'swatch',
         public array|Collection $colors = [],
