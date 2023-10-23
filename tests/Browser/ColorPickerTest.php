@@ -45,13 +45,16 @@ class ColorPickerTest extends BrowserTestCase
 
             $testable
                 ->click('div[id="color-picker"] button[trigger]')
-                ->waitUsing(7, 100, function () use ($browser) {
-                    return $browser->assertSee('dropdown-open');
-                })
+                ->pause(600)
+                ->assertScript(<<<JS
+                    document.querySelector('div[id="color-picker"] div[x-ref="popover"]').style.display === ''
+                JS)
                 ->click('div[id="color-picker"] button[trigger]')
-                ->waitUsing(7, 100, function () use ($browser) {
-                    return $browser->assertDontSee('dropdown-open');
-                });
+                ->pause(600)
+                ->assertScript(<<<JS
+                    document.querySelector('div[id="color-picker"] div[x-ref="popover"]').style.display === 'none'
+                JS)
+            ;
         });
     }
 

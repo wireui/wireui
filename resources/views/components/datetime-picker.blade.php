@@ -70,7 +70,11 @@
         @endif
     </x-dynamic-component>
 
-    <x-wireui::parts.popover :margin="(bool) $label" class="max-h-96 overflow-y-auto p-3 sm:w-72">
+    <x-wireui::parts.popover
+        :margin="(bool) $label"
+        root-class="sm:!w-72 ml-auto"
+        class="max-h-96 overflow-y-auto p-3 sm:w-72"
+    >
         <div x-show="tab === 'date'" class="space-y-5">
             @unless ($withoutTips)
                 <div class="grid grid-cols-3 gap-x-2 text-center text-secondary-600">
