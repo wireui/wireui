@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "@floating-ui/dom": "^1.5.3",
-        "@types/lodash.throttle": "^4.1.7",
         "@types/lodash.debounce": "^4.0.8",
+        "@types/lodash.throttle": "^4.1.7",
         "@wireui/alpinejs-hold-directive": "^1.0.1",
         "alpinejs": "^3.13.2",
         "dayjs": "^1.11.10",
@@ -24,7 +24,6 @@
         "qs": "^6.11.2"
     },
     "devDependencies": {
-        "@tailwindcss/forms": "^0.5.6",
         "@types/jest": "^29.5.6",
         "@types/tailwindcss": "^3.1.0",
         "@typescript-eslint/eslint-plugin": "^6.8.0",
