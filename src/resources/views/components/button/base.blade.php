@@ -25,12 +25,13 @@
     {{ $label ?? $slot }}
 
     @if ($rightIcon)
+        @php($spinnerRemove = $spinnerRemove->merge([
+            'name' => $rightIcon,
+            'class' => "{$iconSizeClasses} shrink-0",
+        ]))
         <x-dynamic-component
             :component="WireUi::component('icon')"
-            {{ $spinnerRemove->merge([
-                'name' => $rightIcon,
-                'class' => "{$iconSizeClasses} shrink-0",
-            ]) }}
+            :attributes="$spinnerRemove"
         />
     @elseif (isset($append))
         <div {{ $append->attributes }} {{ $spinnerRemove }}>

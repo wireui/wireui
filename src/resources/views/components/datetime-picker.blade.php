@@ -66,8 +66,9 @@
     />
 
     <x-wireui::parts.popover
-        class="p-3 overflow-y-auto max-h-96 sm:w-72"
         :margin="(bool) $label"
+        root-class="sm:!w-72 ml-auto"
+        class="p-3 overflow-y-auto max-h-96 sm:w-72"
     >
         <div x-show="tab === 'date'" class="space-y-5">
             @unless ($withoutTips)

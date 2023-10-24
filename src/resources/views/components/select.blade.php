@@ -173,7 +173,7 @@
                         :component="WireUi::component('input')"
                         class="bg-slate-100"
                         x-ref="search"
-                        x-model.debounce.{{ $asyncData ? 750 : 0 }}ms="search"
+                        x-model.debounce.500ms="search"
                         x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                         x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                         shadowless
