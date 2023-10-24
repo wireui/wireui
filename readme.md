@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-    <a href="https://v1.wireui.dev" target="_blank">📚 Documentation</a>
+    <a href="https://wireui.dev" target="_blank">📚 Documentation</a>
 </p>
 
 # V2 Warning: This is a work in progress. Please use the V1 version for now.
@@ -69,7 +69,7 @@ All contributions are welcome!
 MIT
 
 [TALL stack]: https://tallstack.dev
-[Get Started]: https://v1.wireui.dev/docs/get-started
-[Documentation]: https://v1.wireui.dev
+[Get Started]: https://wireui.dev/docs/get-started
+[Documentation]: https://wireui.dev
 [@ph7jack]: https://twitter.com/ph7jack
 [Pedro Oliveira]: https://github.com/PH7-Jack
