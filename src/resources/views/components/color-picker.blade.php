@@ -15,7 +15,7 @@
 
     <x-slot:prefix x-show="selected.value">
         <div
-            class="w-4 h-4 rounded shadow border"
+            class="w-4 h-4 border rounded shadow"
             :style="{ 'background-color': selected.value }"
         ></div>
     </x-slot:prefix>
