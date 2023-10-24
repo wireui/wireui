@@ -1,4 +1,4 @@
-<div {{ $attributes->only(['class', 'wire:key'])->class('relative') }}
+<div {{ $attributes->only(['class', 'wire:key'])->class('relative w-full') }}
     x-data="wireui_select({
         @if ($attributes->wire('model')->value())
             wireModel: @entangleable($attributes->wire('model')),
@@ -60,7 +60,8 @@
                 ->except(['class'])
                 ->class(['pl-8' => $icon])
                 ->whereDoesntStartWith(['wire:model', 'type', 'wire:key'])
-            }}>
+            }}
+        >
             <x-slot name="prepend">
                 <div :class="{
                     'pointer-events-none': config.readonly,
@@ -176,19 +177,22 @@
         @endif
     </div>
 
-    <x-wireui::parts.popover :margin="(bool) $label" root-class="sm:w-full">
+    <x-wireui::parts.popover
+        :margin="(bool) $label"
+        class="sm:max-w-xs"
+    >
         <template x-if="asyncData.api || (config.searchable && options.length >= @toJs($minItemsForSearch))">
             <div class="px-2 my-2" wire:key="search.options.{{ $name }}">
                 <x-dynamic-component
                     :component="WireUi::component('input')"
+                    :placeholder="trans('wireui::messages.searchHere')"
                     class="bg-slate-100"
                     x-ref="search"
-                    x-model.debounce.{{ $asyncData ? 750 : 0 }}ms="search"
+                    x-model.debounce.500ms="search"
                     x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
                     x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                     shadowless
                     right-icon="search"
-                    :placeholder="trans('wireui::messages.searchHere')"
                 />
             </div>
         </template>

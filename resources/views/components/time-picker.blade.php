@@ -60,7 +60,7 @@
     </div>
 
     <x-wireui::parts.popover
-        class="p-2.5"
+        class="p-2.5 sm:max-w-[15rem]"
         :margin="(bool) $label"
         x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
         x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"

@@ -59,6 +59,7 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->type('model', 'wireui@livewire-wireui.com')
+                ->pause(500)
                 ->waitForTextIn('@model-value', 'wireui@livewire-wireui.com');
         });
     }

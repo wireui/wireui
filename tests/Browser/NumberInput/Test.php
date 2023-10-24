@@ -67,6 +67,7 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->type('number', 8)
+                ->pause(500)
                 ->waitForTextIn('@number-value', 8);
         });
     }
