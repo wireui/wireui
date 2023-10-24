@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Traits\Components\Concerns;
+namespace WireUi\Traits\Components;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ViewErrorBag;

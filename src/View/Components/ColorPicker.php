@@ -4,7 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
-use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
 class ColorPicker extends WireUiComponent
