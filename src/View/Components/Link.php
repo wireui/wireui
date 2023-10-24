@@ -11,10 +11,10 @@ class Link extends WireUiComponent
     use HasSetupColor;
     use HasSetupSize;
 
-    protected array $props = ['label'];
+    protected array $packs = ['underline'];
 
-    protected array $packs = [
-        'underline' => null,
+    protected array $props = [
+        'label' => null,
     ];
 
     public function blade(): View
