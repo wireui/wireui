@@ -27,6 +27,7 @@ abstract class WireUiComponent extends Component
         $this->config = WireUi::components()->resolveByAlias($this->componentName);
     }
 
+    // todo: remove it
     abstract protected function blade(): View;
 
     public function render(): Closure
@@ -34,6 +35,19 @@ abstract class WireUiComponent extends Component
         return function (array $data) {
             return $this->blade()->with($this->runWireUiComponent($data));
         };
+    }
+
+    public function resolveView(): Closure|View
+    {
+        $view = $this->render();
+
+        if ($view instanceof View) {
+            return $view;
+        }
+
+        $resolver = fn (View $view) => new Html($view->render());
+
+        return fn (array $data = []) => $resolver($view($data));
     }
 
     private function runWireUiComponent(array $data): array
@@ -133,17 +147,5 @@ abstract class WireUiComponent extends Component
     protected function getMatchModifier(array $keys): ?string
     {
         return array_key_first($this->attributes->only($keys)->getAttributes());
-    }
-
-    /**
-     * Overwrite the default method to allow Blade Views as component content.
-     */
-    protected function extractBladeViewFromString($contents)
-    {
-        if ($contents instanceof View) {
-            return new Html($contents->render());
-        }
-
-        return parent::extractBladeViewFromString($contents);
     }
 }
