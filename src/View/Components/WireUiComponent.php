@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
@@ -10,6 +11,7 @@ use WireUi\Facades\WireUi;
 use WireUi\Support\{ComponentPack, Html};
 use WireUi\View\ManageProps;
 
+#[AllowDynamicProperties]
 abstract class WireUiComponent extends Component
 {
     use ManageProps;
@@ -138,7 +140,7 @@ abstract class WireUiComponent extends Component
      */
     protected function extractBladeViewFromString($contents)
     {
-        if ($contents instanceof \Illuminate\Contracts\View\View) {
+        if ($contents instanceof View) {
             return new Html($contents->render());
         }
 
