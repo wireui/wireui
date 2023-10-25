@@ -60,8 +60,7 @@
                         :component="WireUi::component('icon')"
                         :name="$rightIcon"
                         class="w-5 h-5"
-                        @if ($spinner) :wire:loading.remove="(bool) $spinner" @endif
-
+                        :wire:loading.remove="(bool) $spinner"
                     />
                 @elseif ($suffix)
                     <span class="flex items-center justify-center pr-1">
