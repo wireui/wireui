@@ -33,7 +33,7 @@
             @if ($clearable)
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
-                    class="w-4 h-4 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
+                    class="w-4 h-4 mr-2 transition-colors duration-150 ease-in-out cursor-pointer text-gray-400 hover:text-negative-500"
                     x-cloak
                     name="x-mark"
                     x-show="model"
@@ -78,7 +78,7 @@
             :margin="(bool) $label"
             class="overflow-hidden max-h-96 sm:w-72"
             x-bind:class="{ 'p-2.5': tab === 'date' }"
-            root-class="justify-end sm:w-full"
+            root-class="justify-end sm:!w-72 ml-auto sm:w-full"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
