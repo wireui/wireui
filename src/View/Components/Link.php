@@ -13,7 +13,9 @@ class Link extends WireUiComponent
 
     protected array $props = ['label'];
 
-    protected array $packs = ['underline'];
+    protected array $packs = [
+        'underline' => null,
+    ];
 
     public function blade(): View
     {

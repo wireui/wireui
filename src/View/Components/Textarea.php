@@ -14,6 +14,10 @@ class Textarea extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
+    protected array $props = [
+        'shadowless' => false,
+    ];
+
     protected function except(): array
     {
         return ['icon', 'right-icon', 'prefix', 'suffix'];

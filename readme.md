@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-    <a href="https://livewire-wireui.com" target="_blank">📚 Documentation</a>
+    <a href="https://wireui.dev" target="_blank">📚 Documentation</a>
 </p>
 
 # V2 Warning: This is a work in progress. Please use the V1 version for now.
@@ -21,6 +21,11 @@ Wire UI is a library of components and resources to empower your Laravel and Liv
 
 Starting a new project with Livewire can be time-consuming when you have to create all the components from scratch. Wire UI helps to skip this step and get you straight to the development phase.
 
+<div align="center">
+    <p>
+        <img  src="resources/images/features.png" alt="Wire UI Features"/>
+    </p>
+</div>
 
 🔥 You get with Wire UI:
 
@@ -31,7 +36,7 @@ Starting a new project with Livewire can be time-consuming when you have to crea
 - All Heroicons
 - All Phosphor icons
 
-🌱 WireUI is in active development. Track all changes in the project [Changelog].
+🌱 Wire UI is in active development. Track all changes in the project in GH releases
 
 <br/>
 
@@ -64,8 +69,7 @@ All contributions are welcome!
 MIT
 
 [TALL stack]: https://tallstack.dev
-[Changelog]: https://github.com/wireui/wireui/releases
-[Get Started]: https://livewire-wireui.com/docs/get-started
-[Documentation]: https://livewire-wireui.com
+[Get Started]: https://wireui.dev/docs/get-started
+[Documentation]: https://wireui.dev
 [@ph7jack]: https://twitter.com/ph7jack
 [Pedro Oliveira]: https://github.com/PH7-Jack

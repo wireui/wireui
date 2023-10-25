@@ -15,11 +15,10 @@ class Alert extends WireUiComponent
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
-        'icon',
-        'title',
-        'iconless',
-        'right-icon',
-        'shadowless',
+        'icon'       => null,
+        'title'      => null,
+        'iconless'   => false,
+        'shadowless' => false,
     ];
 
     public function getUseIcon(): mixed

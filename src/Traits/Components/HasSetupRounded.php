@@ -17,9 +17,9 @@ trait HasSetupRounded
         /** @var ComponentPack $roundedPack */
         $roundedPack = resolve(config("wireui.{$this->config}.packs.rounders"));
 
-        $this->squared = $this->attributes->get('squared');
+        $this->squared = $this->attributes->get('squared', false);
 
-        $this->rounded = $this->attributes->get('rounded');
+        $this->rounded = $this->attributes->get('rounded', false);
 
         $this->getRoundedClasses($roundedPack);
 

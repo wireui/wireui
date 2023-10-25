@@ -18,6 +18,7 @@ class DatetimePicker extends WireUiComponent
     protected array $props = [
         'right-icon'       => 'calendar',
         'clearable'        => true,
+        'shadowless'       => false,
         'without-tips'     => false,
         'without-timezone' => false,
         'without-time'     => false,

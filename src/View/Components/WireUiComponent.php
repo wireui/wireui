@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
 use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
-use WireUi\Support\ComponentPack;
+use WireUi\Support\{ComponentPack, Html};
 use WireUi\View\ManageProps;
 
 abstract class WireUiComponent extends Component
@@ -30,7 +30,7 @@ abstract class WireUiComponent extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return $this->blade()->with($this->runWireUiComponent($data))->render();
+            return $this->blade()->with($this->runWireUiComponent($data));
         };
     }
 
@@ -96,7 +96,7 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        if ($attribute === 'icon-size' && property_exists($this, 'size') && $this->size) {
+        if ($kebab === 'icon-size' && property_exists($this, 'size') && $this->size) {
             return $this->size;
         }
 
@@ -131,5 +131,17 @@ abstract class WireUiComponent extends Component
     protected function getMatchModifier(array $keys): ?string
     {
         return array_key_first($this->attributes->only($keys)->getAttributes());
+    }
+
+    /**
+     * Overwrite the default method to allow Blade Views as component content.
+     */
+    protected function extractBladeViewFromString($contents)
+    {
+        if ($contents instanceof \Illuminate\Contracts\View\View) {
+            return new Html($contents->render());
+        }
+
+        return parent::extractBladeViewFromString($contents);
     }
 }

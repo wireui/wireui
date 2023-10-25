@@ -19,6 +19,7 @@ class Currency extends WireUiComponent
         'decimal'        => '.',
         'precision'      => 2,
         'thousands'      => ',',
+        'shadowless'     => false,
         'emit-formatted' => false,
     ];
 

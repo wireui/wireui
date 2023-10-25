@@ -17,13 +17,14 @@ class TimePicker extends WireUiComponent
     public const FORMAT_24H     = '24';
     public const DEFAULT_FORMAT = self::FORMAT_12H;
 
+    protected array $packs = ['shadow'];
+
     protected array $props = [
         'format'     => self::DEFAULT_FORMAT,
         'interval'   => self::INTERVAL,
         'right-icon' => 'clock',
+        'shadowless' => false,
     ];
-
-    protected array $packs = ['shadow'];
 
     protected function blade(): View
     {

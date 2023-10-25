@@ -13,9 +13,9 @@ class Card extends WireUiComponent
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
-        'title',
-        'borderless',
-        'shadowless',
+        'title'      => null,
+        'borderless' => false,
+        'shadowless' => false,
     ];
 
     public function blade(): View
