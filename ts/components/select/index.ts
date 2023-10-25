@@ -71,7 +71,7 @@ export default (initOptions: InitOptions): Select => ({
     const config = {
       root: this.$refs.optionsContainer,
       rootMargin: '20px',
-      threshold: 1.0
+      threshold: 0.9
     }
 
     const observer = new IntersectionObserver((entries, observer) => {
