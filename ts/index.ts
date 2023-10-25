@@ -1,14 +1,15 @@
-import './alpine/directives'
+import './global'
+import './components'
 import './alpine/magic'
 import './alpine/store'
 import './browserSupport'
-import './components'
-import { Alpine } from './components/alpine'
-import { showConfirmDialog, ShowConfirmDialog, showDialog, ShowDialog } from './dialog'
+import './alpine/directives'
 import './directives/confirm'
 import { WireUiHooks } from './hooks'
-import { Confirm, confirmNotification, Notify, notify } from './notifications'
+import { Alpine } from './components/alpine'
 import { dataGet, DataGet } from './utils/dataGet'
+import { Confirm, confirmNotification, Notify, notify } from './notifications'
+import { showConfirmDialog, ShowConfirmDialog, showDialog, ShowDialog } from './dialog'
 
 export interface WireUi {
   notify: Notify
