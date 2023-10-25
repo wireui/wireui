@@ -5,7 +5,7 @@ namespace WireUi\View\Components\Wrapper;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use WireUi\Support\WrapperData;
-use WireUi\Traits\Components\Concerns\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithErrors;
 
 class Base extends Component
 {
