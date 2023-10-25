@@ -2,22 +2,28 @@
 
 namespace WireUi\View\Components;
 
+use Closure;
+use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\View;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\Html;
 
 abstract class Component extends View\Component
 {
-    protected function extractBladeViewFromString($contents)
+    protected const DEFAULT = 'default';
+
+    public function resolveView(): Closure|ViewContract
     {
-        if ($contents instanceof \Illuminate\Contracts\View\View) {
-            return new Html($contents->render());
+        $view = $this->render();
+
+        if ($view instanceof ViewContract) {
+            return $view;
         }
 
-        return parent::extractBladeViewFromString($contents);
-    }
+        $resolver = fn (ViewContract $view) => new Html($view->render());
 
-    protected const DEFAULT = 'default';
+        return fn (array $data = []) => $resolver($view($data));
+    }
 
     protected function classes(array $classList): string
     {
