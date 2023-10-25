@@ -11,9 +11,7 @@ class DatetimePicker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use IsFormComponent {
-        finished as finishedForm; // todo: change this
-    }
+    use IsFormComponent;
 
     protected array $props = [
         'right-icon'       => 'calendar',
@@ -36,13 +34,11 @@ class DatetimePicker extends WireUiComponent
 
     protected array $packs = ['shadow'];
 
-    protected function finished(array &$data): void
+    protected function processed(): void
     {
-        $this->finishedForm($data);
-
-        $data['timezone'] ??= config('app.timezone', 'UTC');
-        $data['min'] = Carbon::make($data['min']);
-        $data['max'] = Carbon::make($data['max']);
+        $this->timezone ??= config('app.timezone', 'UTC');
+        $this->min = Carbon::make($this->min);
+        $this->max = Carbon::make($this->max);
     }
 
     protected function blade(): View
