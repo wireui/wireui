@@ -2,12 +2,28 @@
 
 namespace WireUi\View\Components;
 
+use Closure;
+use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\View;
 use Illuminate\View\ComponentAttributeBag;
+use WireUi\Support\Html;
 
 abstract class Component extends View\Component
 {
     protected const DEFAULT = 'default';
+
+    public function resolveView(): Closure|ViewContract
+    {
+        $view = $this->render();
+
+        if ($view instanceof ViewContract) {
+            return $view;
+        }
+
+        $resolver = fn (ViewContract $view) => new Html($view->render());
+
+        return fn (array $data = []) => $resolver($view($data));
+    }
 
     protected function classes(array $classList): string
     {

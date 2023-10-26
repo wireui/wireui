@@ -61,6 +61,7 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->type('password', 'password')
+                ->pause(500)
                 ->waitForTextIn('@password-value', 'password');
         });
     }

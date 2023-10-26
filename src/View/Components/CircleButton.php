@@ -41,7 +41,7 @@ class CircleButton extends Button
     public function render(): Closure
     {
         return function (array $data) {
-            return view('wireui::components.circle-button', $this->mergeData($data))->render();
+            return view('wireui::components.circle-button', $this->mergeData($data));
         };
     }
 

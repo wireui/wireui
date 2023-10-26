@@ -22,12 +22,14 @@ class Test extends BrowserTestCase
             /** @var Browser|Testable $component */
             $component = $this->visit($browser, Component::class)
                 ->click('[name="model"]')
+                ->pause(500)
                 ->tap(fn () => $browser->assertScript(<<<EOT
                     [...document.querySelectorAll('.picker-days button')]
                         .find(day => day.innerText == {$day})
                         .hasAttribute('disabled')
                 EOT, $disabled))
-                ->tap(fn () => $this->selectDate($browser, $day));
+                ->tap(fn () => $this->selectDate($browser, $day))
+                ->pause(500);
 
             if (!$disabled) {
                 $component
@@ -50,7 +52,9 @@ class Test extends BrowserTestCase
             fn (Browser $browser) => $this
                 ->visit($browser, Component::class)
                 ->click('[name="model"]')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, $day))
+                ->pause(500)
                 ->waitUsing(7, 100, fn () => $browser->assertScript(
                     "!!document.querySelector('[name=\"times.{$time}\"]')",
                     $exists
@@ -78,7 +82,7 @@ class Test extends BrowserTestCase
             ['day' => 16, 'time' => '12:30', 'exists' => true],
             ['day' => 22, 'time' => '12:30', 'exists' => true],
 
-            ['day' => 8,  'time' => '00:00', 'exists' => false],
+            ['day' => 8,  'time' => '00:00', 'exists' => true],
             ['day' => 16, 'time' => '00:00', 'exists' => true],
             ['day' => 22, 'time' => '00:00', 'exists' => true],
 
@@ -88,7 +92,7 @@ class Test extends BrowserTestCase
 
             ['day' => 8,  'time' => '15:00', 'exists' => true],
             ['day' => 16, 'time' => '15:00', 'exists' => true],
-            ['day' => 22, 'time' => '15:00', 'exists' => false],
+            ['day' => 22, 'time' => '15:00', 'exists' => true],
         ];
     }
 

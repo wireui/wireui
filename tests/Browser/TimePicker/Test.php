@@ -13,11 +13,13 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->type('timeAmPm', '144')
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('timeAmPm', '1:44')
                         ->assertSeeIn('@timeAmPm', '01:44');
                 })->type('timeAmPm', '1:59 PM')
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('timeAmPm', '1:59 PM')
@@ -28,7 +30,7 @@ class Test extends BrowserTestCase
                         input.value = ""
                         input.dispatchEvent(new Event("input"))
                     ');
-                })->waitUsing(7, 100, function () use ($browser) {
+                })->pause(500)->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('timeAmPm', '')
                         ->assertDontSeeIn('@timeAmPm', '13:59');
@@ -42,11 +44,13 @@ class Test extends BrowserTestCase
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->type('time24H', '12:44')
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('time24H', '12:44')
                         ->assertSeeIn('@time24H', '12:44');
                 })->type('time24H', '17:59')
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('time24H', '17:59')
@@ -57,7 +61,7 @@ class Test extends BrowserTestCase
                         input.value = ""
                         input.dispatchEvent(new Event("input"))
                     ');
-                })->waitUsing(7, 100, function () use ($browser) {
+                })->pause(500)->waitUsing(7, 100, function () use ($browser) {
                     return $browser
                         ->assertInputValue('time24H', '')
                         ->assertDontSeeIn('@time24H', '17:59');

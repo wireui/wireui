@@ -1,7 +1,7 @@
 <div x-data="wireui_inputs_number({
     disabled: @boolean($disabled),
     readonly: @boolean($readonly),
-})" {{ $attributes->only('wire:key') }}>
+})" {{ $attributes->only('wire:key')->class('w-full') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
         x-ref="input"
@@ -9,7 +9,7 @@
         inputmode="numeric"
         {{ $attributes
             ->class('text-center appearance-number-none')
-            ->whereDoesntStartWith('wire:key')
+            ->except('wire:key')
             ->except($except) }}
         :borderless="$borderless"
         :shadowless="$shadowless"

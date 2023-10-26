@@ -15,7 +15,9 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('withoutTimezone', '2021-05-22 02:48')
                 ->click('[id="withoutTimezone"]')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, 'withoutTimezone', 5))
+                ->pause(500)
                 ->waitForTextIn('@withoutTimezone', '2021-05-05T02:48:00Z')
                 ->assertInputValue('withoutTimezone', '2021-05-05 02:48')
         );
@@ -33,7 +35,9 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('utcTimezone', '2021-07-21 21:30')
                 ->click('[id="utcTimezone"] input')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, 'utcTimezone', 31))
+                ->pause(500)
                 ->waitForTextIn('@utcTimezone', '2021-08-01T00:30:00Z')
                 ->assertInputValue('utcTimezone', '2021-07-31 21:30')
         );
@@ -50,7 +54,9 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('tokyoTimezone', '2021-07-25 22:00')
                 ->click('[id="tokyoTimezone"] input')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, 'tokyoTimezone', 31))
+                ->pause(500)
                 ->waitForTextIn('@tokyoTimezone', '2021-08-01T10:00:00+09:00')
                 ->assertInputValue('tokyoTimezone', '2021-07-31 22:00')
         );
@@ -67,7 +73,9 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('customFormat', '29-2021-09 59:13')
                 ->click('[id="customFormat"] input')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, 'customFormat', 10))
+                ->pause(500)
                 ->waitForTextIn('@customFormat', '10-2021-09 59:13')
                 ->assertInputValue('customFormat', '10-2021-09 59:13')
         );
@@ -81,8 +89,9 @@ class Test extends BrowserTestCase
                 ->visit($browser, Component::class)
                 ->assertInputValue('dateAndTime', '25-12-2021 00:00')
                 ->click('[id="dateAndTime"] input')
+                ->pause(500)
                 ->tap(fn () => $this->selectDate($browser, 'dateAndTime', 11))
-                ->tap(fn () => $browser->waitForLivewire())
+                ->pause(500)
                 ->waitForTextIn('@dateAndTime', '2021-12-11T00:00:00Z')
                 ->assertInputValue('dateAndTime', '11-12-2021 00:00')
                 ->pause(1000)
@@ -93,6 +102,7 @@ class Test extends BrowserTestCase
                         .find(time => time.innerText.includes('5:50 AM'))
                         .click()
                 EOT))
+                ->pause(500)
                 ->waitForTextIn('@dateAndTime', '2021-12-11T05:50:00Z')
                 ->assertInputValue('dateAndTime', '11-12-2021 05:50')
         );

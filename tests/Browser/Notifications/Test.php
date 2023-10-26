@@ -63,10 +63,10 @@ class Test extends BrowserTestCase
 
             $this->visit($browser, Component::class)
                 ->click($duskButton)
-                ->tap(fn () => $browser->waitForLivewire())
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->script('getElementByXPath("//button[text()=\'Accept\']").click();');
                 })
+                ->pause(300)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSeeIn('@value', 'Jetete');
                 })
@@ -89,9 +89,9 @@ class Test extends BrowserTestCase
                     return $browser->assertSeeIn('@events', 'onClose,onDismiss');
                 })
                 ->click('@button.clear_events')
-                ->pause(100)
                 ->waitUsing(7, 100, fn () => $browser->assertMissing('onClose,onDismiss'))
                 ->click($duskButton)
+                ->pause(500)
                 ->waitUsing(7, 100, function () use ($browser) {
                     return $browser->assertSeeIn('@events', 'onClose,onTimeout');
                 });

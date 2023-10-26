@@ -1,7 +1,7 @@
-<div x-data="wireui_inputs_password" {{ $attributes->only('wire:key') }}>
+<div x-data="wireui_inputs_password" {{ $attributes->only('wire:key')->class('w-full') }}>
     <x-dynamic-component
         :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith('wire:key') }}
+        {{ $attributes->except('wire:key') }}
         :borderless="$borderless"
         :shadowless="$shadowless"
         :label="$label"
@@ -11,6 +11,7 @@
         :prefix="$prefix"
         :prepend="$prepend"
         x-bind:type="type"
+        type="password"
     >
         <x-slot name="append">
             <div class="absolute inset-y-0 right-0 pr-2.5 flex items-center">

@@ -21,7 +21,7 @@ class IconsControllerTest extends UnitTestCase
      * @test
      * @dataProvider iconsProvider
      */
-    public function test_it_should_ensure_($style, $icon)
+    public function test_it_should_ensure_icon_can_render($style, $icon)
     {
         $this->getJson(route('wireui.icons', ['style' => $style, 'icon' => $icon]))
             ->assertStatus(200)
