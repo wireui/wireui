@@ -2,7 +2,7 @@
 
 namespace WireUi\View;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\{Arr, Str};
 use WireUi\Support\ComponentPack;
 
 trait ManageProps
@@ -11,22 +11,26 @@ trait ManageProps
 
     protected array $props = [];
 
-    protected function setupProps(): void
+    protected function setupProps(array $data): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);
         }
 
         foreach ($this->props as $key => $prop) {
-            $this->manageProps($key, $prop);
+            $this->manageProps($key, $prop, $data);
         }
     }
 
-    private function manageProps(string $key, mixed $value): void
+    private function manageProps(string $key, mixed $value, array $data): void
     {
         $field = Str::camel($key);
 
         $this->{$field} = $this->getData(attribute: $field, default: $value);
+
+        if (is_null($this->{$field}) && Arr::has($data, $key)) {
+            $this->{$field} = Arr::get($data, $key);
+        }
 
         $this->setVariables($field);
     }
