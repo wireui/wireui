@@ -17,6 +17,7 @@ export interface Props {
     max?: string | null
     minTime?: string | number
     maxTime?: string | number
+    disabledDays: Array<string | number>
   }
   withoutTimezone: boolean
   timezone: string
