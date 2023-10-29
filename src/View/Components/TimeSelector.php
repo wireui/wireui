@@ -3,14 +3,19 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\{HasSetupRounded, IsFormComponent};
 
 class TimeSelector extends WireUiComponent
 {
+    use HasSetupRounded;
+    use IsFormComponent;
+
     protected array $props = [
-        'format'        => 'HH:mm:ss',
         'military-time' => false,
-        'disabled'      => false,
-        'readonly'      => false,
+        'format'        => 'HH:mm:ss',
+        'borderless'    => false,
+        'squared'       => false,
+        'shadowless'    => false,
     ];
 
     protected function blade(): View

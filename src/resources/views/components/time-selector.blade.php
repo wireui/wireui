@@ -3,7 +3,9 @@
         'relative w-full h-72 select-none overflow-hidden',
         'flex items-center text-center px-4',
         'text-gray-400',
-        'bg-white border border-gray-200 rounded-md shadow-sm',
+        'bg-white border border-gray-200' => !$borderless,
+        $roundedClasses                   => !$squared,
+        $shadowClasses                    => !$shadowless,
     ])->whereDoesntStartWith(['wire:model', 'x-model']) }}
     x-data="wireui_time_selector"
     x-props="{{ WireUi::toJs([

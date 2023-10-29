@@ -201,7 +201,17 @@ class WireUiConfig
 
     public static function timeSelector(array $options = []): array
     {
-        return self::mix(['default' => []], $options);
+        return self::mix([
+            'default' => [
+                'borderless' => false,
+                'squared'    => false,
+                'shadowless' => false,
+            ],
+            'packs' => [
+                'shadows'  => WireUi\Shadow::class,
+                'rounders' => WireUi\Rounded::class,
+            ],
+        ], $options);
     }
 
     public static function wrapper(array $options = []): array
