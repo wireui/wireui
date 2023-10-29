@@ -38,6 +38,6 @@
         class="w-full h-full flex flex-col justify-center"
         style="top: 14px"
         x-ref="period"
-        x-show="!isMilitaryTime"
+        x-show="!config.military"
     ></ul>
 </div>

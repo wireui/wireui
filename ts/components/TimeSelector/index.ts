@@ -45,9 +45,8 @@ export default class TimeSelector extends AlpineComponent {
     period: 'AM'
   }
 
-  public isMilitaryTime: boolean = false
-
   public config = {
+    military: false,
     seconds: false
   }
 
@@ -60,16 +59,14 @@ export default class TimeSelector extends AlpineComponent {
   }
 
   init (): void {
-    this.isMilitaryTime = this.$props.militaryTime
-    this.config.seconds = this.$props.format.includes('ss')
+    this.syncProps()
 
     this.fillSelectionFromInput()
 
     this.makeOptions()
 
     watchProps(this, () => {
-      this.isMilitaryTime = this.$props.militaryTime
-      this.config.seconds = this.$props.format.includes('ss')
+      this.syncProps()
 
       this.scrollable.hours
         .setElements(this.getHoursOptions())
@@ -80,6 +77,11 @@ export default class TimeSelector extends AlpineComponent {
         )
         .render()
     })
+  }
+
+  private syncProps () {
+    this.config.military = this.$props.militaryTime
+    this.config.seconds = this.$props.format.includes('ss')
   }
 
   private fillSelectionFromInput (): void {
