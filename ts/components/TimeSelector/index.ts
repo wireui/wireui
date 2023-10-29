@@ -97,7 +97,7 @@ export default class TimeSelector extends AlpineComponent {
       .useCustomTopGap(function (this: ScrollableOptions) {
         return this.current === 'AM' ? 14 : -15
       })
-      .onChange(period => {
+      .onChange((period: Period) => {
         this.selection.period = period
       })
       .start()
