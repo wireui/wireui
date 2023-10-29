@@ -47,6 +47,10 @@ export default class TimeSelector extends AlpineComponent {
 
   public isMilitaryTime: boolean = false
 
+  public config = {
+    seconds: false
+  }
+
   get value (): string {
     this.date.setHours(toMilitaryFormat(this.selection.period, this.selection.hours))
     this.date.setMinutes(this.selection.minutes)
@@ -57,6 +61,7 @@ export default class TimeSelector extends AlpineComponent {
 
   init (): void {
     this.isMilitaryTime = this.$props.militaryTime
+    this.config.seconds = this.$props.format.includes('ss')
 
     this.fillSelectionFromInput()
 
@@ -64,6 +69,7 @@ export default class TimeSelector extends AlpineComponent {
 
     watchProps(this, () => {
       this.isMilitaryTime = this.$props.militaryTime
+      this.config.seconds = this.$props.format.includes('ss')
 
       this.scrollable.hours
         .setElements(this.getHoursOptions())

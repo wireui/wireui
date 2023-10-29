@@ -25,8 +25,15 @@
     ])></div>
 
     <ul class="w-full" x-ref="hours"></ul>
+
     <ul class="w-full" x-ref="minutes"></ul>
-    <ul class="w-full" x-ref="seconds"></ul>
+
+    <ul
+        class="w-full"
+        x-ref="seconds"
+        x-show="config.seconds"
+    ></ul>
+
     <ul
         class="w-full h-full flex flex-col justify-center"
         style="top: 14px"
