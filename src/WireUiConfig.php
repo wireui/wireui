@@ -366,6 +366,10 @@ class WireUiConfig
                 'class' => Components\TimePicker::class,
                 'alias' => 'time-picker',
             ],
+            'time-selector' => [
+                'class' => Components\TimeSelector::class,
+                'alias' => 'time-selector',
+            ],
             'toggle' => [
                 'class' => Components\Toggle::class,
                 'alias' => 'toggle',
