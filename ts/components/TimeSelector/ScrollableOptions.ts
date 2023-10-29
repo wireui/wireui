@@ -30,7 +30,7 @@ export default class ScrollableOptions {
     this.draggable = new Draggable(this.container)
   }
 
-  start () {
+  start (): this {
     this.container.style.top = `${this.customTopGapCallback()}px`
     this.container.classList.add('relative', 'space-y-1.5')
 
@@ -85,9 +85,11 @@ export default class ScrollableOptions {
           this.container.style.transition = ''
         }, 100)
       })
+
+    return this
   }
 
-  render () {
+  render (): void {
     const SELECTED_CSS = [
       'py-1.5',
       'text-primary-700',
@@ -142,6 +144,22 @@ export default class ScrollableOptions {
     }
 
     return result
+  }
+
+  value (): any {
+    return this.current
+  }
+
+  setElements (elements: any[]): this {
+    this.elements = elements
+
+    return this
+  }
+
+  setCurrent (current: any): this {
+    this.current = current
+
+    return this
   }
 
   setInfinity (value: boolean): this {

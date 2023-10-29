@@ -7,9 +7,10 @@
     ])->whereDoesntStartWith(['wire:model', 'x-model']) }}
     x-data="wireui_time_selector"
     x-props="{{ WireUi::toJs([
-        'format'   => $format,
-        'disabled' => $disabled,
-        'readonly' => $readonly,
+        'militaryTime' => $militaryTime,
+        'format'       => $format,
+        'disabled'     => $disabled,
+        'readonly'     => $readonly,
     ]) }}"
 >
     <input
@@ -30,5 +31,6 @@
         class="w-full h-full flex flex-col justify-center"
         style="top: 14px"
         x-ref="period"
+        x-show="!isMilitaryTime"
     ></ul>
 </div>
