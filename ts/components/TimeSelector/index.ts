@@ -6,6 +6,7 @@ export default class TimeSelector extends AlpineComponent {
     hours: HTMLUListElement
     minutes: HTMLUListElement
     seconds: HTMLUListElement
+    period: HTMLUListElement
   }
 
   init () {
@@ -20,6 +21,12 @@ export default class TimeSelector extends AlpineComponent {
     new ScrollableOptions(this.$refs.hours, hours, 1).start()
     new ScrollableOptions(this.$refs.minutes, minutes, 0).start()
     new ScrollableOptions(this.$refs.seconds, seconds, 0).start()
+    new ScrollableOptions(this.$refs.period, ['AM', 'PM'], 'AM')
+      .setInfinity(false)
+      .useCustomTopGap(function (this: ScrollableOptions) {
+        return this.current === 'AM' ? 14 : -15 
+      })
+      .start()
   }
 
   makeArray (length: number): number[] {

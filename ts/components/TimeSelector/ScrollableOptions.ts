@@ -1,46 +1,56 @@
 import { Draggable } from '@/components/TimeSelector/Draggable'
 
 export default class ScrollableOptions {
-  private container: HTMLElement
+  protected container: HTMLElement
 
-  private elements: any[]
+  protected elements: any[]
 
-  private pagination: any[] = []
+  protected pagination: any[] = []
 
-  private current: any
+  protected current: any
 
-  private threshold: number = 0
+  protected threshold: number = 0
 
-  private draggable: Draggable
+  protected draggable: Draggable
+
+  protected infinity: boolean = true
+
+  protected customTopGapCallback: CallableFunction = () => 0
 
   constructor (
     container: HTMLElement,
     elements: any[],
     current: any,
-    threshold: number = 38
+    threshold: number = 37
   ) {
     this.container = container
     this.elements = elements
     this.current = current
     this.threshold = threshold
     this.draggable = new Draggable(this.container)
-
-    this.container.style.top = '0px'
-    this.container.classList.add('relative', 'space-y-1.5')
   }
 
   start () {
+    this.container.classList.add('relative', 'space-y-1.5')
+
     this.render()
 
     this.draggable
       .onDragging(({ current }) => {
-        this.container.style.top = `${current}px`
+        const top = this.customTopGapCallback()
+
+        this.container.style.top = `${top + current}px`
 
         if (Math.abs(current) >= this.threshold) {
-          this.container.style.top = '0px'
+          if (top === 0) {
+            this.container.style.top = '0px'
+          }
 
           const currentIndex = this.pagination.indexOf(this.current)
-          let newIndex = current < 0 ? currentIndex + 1 : currentIndex - 1
+
+          let newIndex = current < 0
+            ? currentIndex + 1
+            : currentIndex - 1
 
           if (newIndex < 0) {
             newIndex = this.pagination.length - 1
@@ -50,7 +60,7 @@ export default class ScrollableOptions {
             newIndex = 0
           }
 
-          this.current = this.pagination[newIndex]
+          this.current = this.pagination[newIndex] ?? this.current
 
           this.render()
         }
@@ -65,8 +75,10 @@ export default class ScrollableOptions {
         }
       })
       .onStop(() => {
+        const top = this.customTopGapCallback()
+
         this.container.style.transition = 'all 0.1s ease-in-out'
-        this.container.style.top = '0px'
+        this.container.style.top = `${top}px`
 
         setTimeout(() => {
           this.container.style.transition = ''
@@ -85,11 +97,11 @@ export default class ScrollableOptions {
       'ease-in-out'
     ]
 
-    const paddedElements = this.padCurrent(this.elements, this.current)
+    this.infinity
+      ? this.pagination = this.padCurrent(this.elements)
+      : this.pagination = this.elements
 
-    this.pagination = paddedElements
-
-    paddedElements.forEach((value, index) => {
+    this.pagination.forEach((value, index) => {
       const li = this.container.children[index] || document.createElement('li')
 
       li.innerHTML = value?.toString()
@@ -108,21 +120,37 @@ export default class ScrollableOptions {
     })
   }
 
-  padCurrent (elements: any[], current: any): any[] {
-    if (elements.length === 2) return elements
+  padCurrent (elements: any[]): any[] {
+    let currentIndex = elements.indexOf(this.current)
 
-    const currentIndex = elements.indexOf(current)
-
-    if (currentIndex === -1) throw new Error('Current value not found in elements array')
+    if (currentIndex === -1) {
+      currentIndex = 0
+    }
 
     const length = elements.length
     const result: any[] = []
+    const padding = Math.min(Math.floor(length / 2), 5)
 
-    for (let i = -5; i <= 5; i++) {
+    for (let i = -padding; i <= padding; i++) {
       const index = (currentIndex + i + length) % length
-      result.push(elements[index])
+
+      if (index > -1 && index < length) {
+        result.push(elements[index])
+      }
     }
 
     return result
+  }
+
+  setInfinity (value: boolean): this {
+    this.infinity = value
+
+    return this
+  }
+
+  useCustomTopGap (callback: CallableFunction): this {
+    this.customTopGapCallback = callback
+
+    return this
   }
 }
