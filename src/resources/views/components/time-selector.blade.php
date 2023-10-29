@@ -7,6 +7,13 @@
     ]) }}
     x-data="wireui_time_selector"
 >
+    <input
+        {{ $attributes->whereStartsWith(['value', 'wire:model', 'x-model'])}}
+        x-ref="input"
+        :value="value"
+        type="hidden"
+    />
+
     <div @class([
         'absolute bg-primary-50 left-0 h-10 w-full transform transition-opacity',
     ])></div>
