@@ -1,7 +1,9 @@
 import { watchProps } from '@/alpine/magic/props'
+import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 import { AlpineComponent } from '@/components/alpine2'
 import { toAmPmFormat, toMilitaryFormat } from '@/components/TimeSelector/helpers'
 import ScrollableOptions from '@/components/TimeSelector/ScrollableOptions'
+import { WireModel } from '@/livewire'
 import FluentDate from '@/utils/date'
 
 export type Selection = {
@@ -23,6 +25,7 @@ export default class TimeSelector extends AlpineComponent {
   }
 
   declare $props: {
+    wireModel: WireModel
     militaryTime: boolean
     format: string
     disabled: boolean
@@ -36,7 +39,9 @@ export default class TimeSelector extends AlpineComponent {
     period: ScrollableOptions
   }
 
-  private date: FluentDate = new FluentDate(new Date())
+  private date = new FluentDate(new Date())
+
+  public entangleable = new Entangleable()
 
   public selection: Selection = {
     hours: 12,
@@ -59,6 +64,14 @@ export default class TimeSelector extends AlpineComponent {
   }
 
   init (): void {
+    this.entangleable.watch(() => this.syncSelection())
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    new SupportsAlpine(this.entangleable, this.$refs.input)
+
     this.syncProps()
 
     this.fillSelectionFromInput()
@@ -84,14 +97,8 @@ export default class TimeSelector extends AlpineComponent {
     this.config.seconds = this.$props.format.includes('ss')
   }
 
-  private fillSelectionFromInput (): void {
-    const value = this.$refs.input.value
-
-    if (!value) {
-      return
-    }
-
-    const [rawHours, minutes, seconds] = value.split(':')
+  private syncSelection (): void { 
+    const [rawHours, minutes, seconds] = this.entangleable.get()?.split(':') ?? []
 
     const hours = Number(rawHours) || 0
     const period = hours >= 12 ? 'PM' : 'AM'
@@ -100,6 +107,16 @@ export default class TimeSelector extends AlpineComponent {
     this.selection.minutes = Number(minutes) || 0
     this.selection.seconds = Number(seconds) || 0
     this.selection.period = period
+  }
+
+  private fillSelectionFromInput (): void {
+    const value = this.$refs.input.value
+
+    if (!value) {
+      return
+    }
+
+    this.entangleable.set(value)
   }
 
   private makeOptions (): void {
@@ -139,6 +156,8 @@ export default class TimeSelector extends AlpineComponent {
     )
       .onChange((minutes: number) => {
         this.selection.minutes = minutes
+
+        this.entangleable.set(this.value)
       })
       .start()
   }
@@ -153,6 +172,8 @@ export default class TimeSelector extends AlpineComponent {
     )
       .onChange((seconds: number) => {
         this.selection.seconds = seconds
+
+        this.entangleable.set(this.value)
       })
       .start()
   }
@@ -169,6 +190,8 @@ export default class TimeSelector extends AlpineComponent {
       })
       .onChange((period: Period) => {
         this.selection.period = period
+
+        this.entangleable.set(this.value)
       })
       .start()
   }

@@ -13,10 +13,11 @@
         'format'       => $format,
         'disabled'     => $disabled,
         'readonly'     => $readonly,
+        'wireModel'    => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ]) }}"
 >
     <input
-        {{ $attributes->whereStartsWith(['value', 'wire:model', 'x-model'])}}
+        {{ $attributes->whereDoesntStartWith('wire:model') }}
         x-ref="input"
         :value="value"
         type="hidden"
