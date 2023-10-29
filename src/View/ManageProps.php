@@ -11,26 +11,22 @@ trait ManageProps
 
     protected array $props = [];
 
-    protected function setupProps(array $data): void
+    protected function setupProps(): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);
         }
 
         foreach ($this->props as $key => $prop) {
-            $this->manageProps($key, $prop, $data);
+            $this->manageProps($key, $prop);
         }
     }
 
-    private function manageProps(string $key, mixed $value, array $data): void
+    private function manageProps(string $key, mixed $value): void
     {
         $field = Str::camel($key);
 
         $this->{$field} = $this->getData(attribute: $field, default: $value);
-
-        if (is_null($this->{$field}) && Arr::has($data, $key)) {
-            $this->{$field} = Arr::get($data, $key);
-        }
 
         $this->setVariables($field);
     }
