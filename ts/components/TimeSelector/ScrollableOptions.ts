@@ -32,12 +32,15 @@ export default class ScrollableOptions {
 
   start (): this {
     this.container.style.top = `${this.customTopGapCallback()}px`
-    this.container.classList.add('relative', 'space-y-1.5')
+    this.container.classList.add('relative', 'space-y-1.5', 'cursor-grab')
 
     this.render()
 
     this.draggable
       .onDragging(({ current }) => {
+        this.container.classList.remove('cursor-grab')
+        this.container.classList.add('cursor-grabbing')
+
         const top = this.customTopGapCallback()
 
         this.container.style.top = `${top + current}px`
@@ -76,6 +79,9 @@ export default class ScrollableOptions {
         }
       })
       .onStop(() => {
+        this.container.classList.add('cursor-grab')
+        this.container.classList.remove('cursor-grabbing')
+
         const top = this.customTopGapCallback()
 
         this.container.style.transition = 'all 0.1s ease-in-out'
