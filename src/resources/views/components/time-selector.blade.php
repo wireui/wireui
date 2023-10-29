@@ -4,8 +4,13 @@
         'flex items-center text-center px-4',
         'text-gray-400',
         'bg-white border border-gray-200 rounded-md shadow-sm',
-    ]) }}
+    ])->whereDoesntStartWith(['wire:model', 'x-model']) }}
     x-data="wireui_time_selector"
+    x-props="{{ WireUi::toJs([
+        'format'   => $format,
+        'disabled' => $disabled,
+        'readonly' => $readonly,
+    ]) }}"
 >
     <input
         {{ $attributes->whereStartsWith(['value', 'wire:model', 'x-model'])}}
