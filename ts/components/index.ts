@@ -11,6 +11,7 @@ import modal from './modal'
 import notifications from './notifications'
 import select from './select'
 import timePicker from './time-picker'
+import TimeSelector from './TimeSelector'
 
 document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_modal', modal)
@@ -26,4 +27,5 @@ document.addEventListener('alpine:init', () => {
 
   window.Alpine.data('wireui_dropdown', () => classToObject(new Dropdown()))
   window.Alpine.data('wireui_color_picker', () => classToObject(new ColorPicker()))
+  window.Alpine.data('wireui_time_selector', () => classToObject(new TimeSelector()))
 })
