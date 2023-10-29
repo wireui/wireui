@@ -114,6 +114,8 @@ return [
 
     'time-picker' => Config::timePicker(),
 
+    'time-selector' => Config::timeSelector(),
+
     // 'toggle' => [
     //     //
     // ],

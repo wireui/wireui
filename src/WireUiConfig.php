@@ -199,6 +199,11 @@ class WireUiConfig
         ], $options));
     }
 
+    public static function timeSelector(array $options = []): array
+    {
+        return self::mix(['default' => []], $options);
+    }
+
     public static function wrapper(array $options = []): array
     {
         return self::mix([
