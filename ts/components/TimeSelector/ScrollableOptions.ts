@@ -31,6 +31,7 @@ export default class ScrollableOptions {
   }
 
   start () {
+    this.container.style.top = `${this.customTopGapCallback()}px`
     this.container.classList.add('relative', 'space-y-1.5')
 
     this.render()
@@ -125,6 +126,7 @@ export default class ScrollableOptions {
 
     if (currentIndex === -1) {
       currentIndex = 0
+      this.current = elements[0]
     }
 
     const length = elements.length
@@ -150,6 +152,14 @@ export default class ScrollableOptions {
 
   useCustomTopGap (callback: CallableFunction): this {
     this.customTopGapCallback = callback
+
+    return this
+  }
+
+  onChange (callback: CallableFunction): this {
+    this.draggable.onStop(() => {
+      callback(this.current)
+    })
 
     return this
   }
