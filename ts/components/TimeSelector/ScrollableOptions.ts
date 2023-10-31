@@ -31,7 +31,7 @@ export default class ScrollableOptions {
   }
 
   start (): this {
-    this.container.style.top = `${this.customTopGapCallback()}px`
+    this.resetTopPosition()
     this.container.classList.add('relative', 'space-y-1.5', 'cursor-grab')
 
     this.render()
@@ -95,10 +95,11 @@ export default class ScrollableOptions {
     return this
   }
 
-  render (): void {
+  render (): this {
     const SELECTED_CSS = [
       'py-1.5',
       'text-primary-700',
+      'dark:text-primary-500',
       'font-semibold',
       'text-lg',
       'transition-all',
@@ -127,6 +128,8 @@ export default class ScrollableOptions {
         this.container.appendChild(li)
       }
     })
+
+    return this
   }
 
   padCurrent (elements: any[]): any[] {
@@ -184,6 +187,12 @@ export default class ScrollableOptions {
     this.draggable.onStop(() => {
       callback(this.current)
     })
+
+    return this
+  }
+
+  resetTopPosition (): this {
+    this.container.style.top = `${this.customTopGapCallback()}px`
 
     return this
   }
