@@ -6,6 +6,10 @@ export const onlyNumbers = (value: string | null): string => {
   return str(value).replace(/\D+/g, '')
 }
 
+export function onlyLetters (value: string): string {
+  return value.replace(/[^a-zA-Z]/g, '')
+}
+
 export interface OccurrenceCount {
   (haystack: string, needle: string | number | null): number
 }
