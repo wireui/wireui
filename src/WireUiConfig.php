@@ -163,6 +163,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'z-index'  => 'z-50',
                 'position' => Packs\Position::TOP_END,
             ],
             'packs' => [

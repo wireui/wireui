@@ -9,7 +9,7 @@ class Notifications extends WireUiComponent
     protected array $packs = ['position'];
 
     protected array $props = [
-        'z-index' => false,
+        'z-index' => null,
     ];
 
     public function blade(): View
