@@ -58,7 +58,7 @@ export default class TimePicker extends AlpineComponent {
           .setHours(
             this.$props.militaryTime
               ? Number(hours) || 0
-              : toMilitaryFormat(this.input?.includes('AM') ? 'AM' : 'PM', Number(hours) || 0)
+              : toMilitaryFormat(this.input?.includes('PM') ? 'PM' : 'AM', Number(hours) || 0)
           )
           .setMinutes(Number(minutes) || 0)
           .setSeconds(Number(onlyNumbers(seconds)) || 0)
