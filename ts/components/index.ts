@@ -10,7 +10,7 @@ import password from './inputs/password'
 import modal from './modal'
 import notifications from './notifications'
 import select from './select'
-import timePicker from './time-picker'
+import TimePicker from './TimePicker'
 import TimeSelector from './TimeSelector'
 
 document.addEventListener('alpine:init', () => {
@@ -22,10 +22,10 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_inputs_number', number)
   window.Alpine.data('wireui_inputs_password', password)
   window.Alpine.data('wireui_select', select)
-  window.Alpine.data('wireui_timepicker', timePicker)
   window.Alpine.data('wireui_datetime_picker', datetimePicker)
 
   window.Alpine.data('wireui_dropdown', () => classToObject(new Dropdown()))
   window.Alpine.data('wireui_color_picker', () => classToObject(new ColorPicker()))
   window.Alpine.data('wireui_time_selector', () => classToObject(new TimeSelector()))
+  window.Alpine.data('wireui_time_picker', () => classToObject(new TimePicker()))
 })

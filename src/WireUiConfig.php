@@ -178,8 +178,8 @@ class WireUiConfig
                 'without-tips'     => false,
                 'without-timezone' => false,
                 'without-time'     => false,
-                'interval'         => Components\TimePicker::INTERVAL,
-                'time-format'      => Components\TimePicker::DEFAULT_FORMAT,
+                'interval'         => 10,
+                'time-format'      => 12,
                 'parse-format'     => null,
                 'display-format'   => null,
                 'timezone'         => null,
@@ -192,9 +192,9 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
-                'format'     => Components\TimePicker::DEFAULT_FORMAT,
-                'interval'   => Components\TimePicker::INTERVAL,
-                'right-icon' => 'clock',
+                'military-time'   => false,
+                'without-seconds' => false,
+                'right-icon'      => 'clock',
             ],
         ], $options));
     }
@@ -203,9 +203,11 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'borderless' => false,
-                'squared'    => false,
-                'shadowless' => false,
+                'military-time'   => false,
+                'without-seconds' => false,
+                'borderless'      => false,
+                'squared'         => false,
+                'shadowless'      => false,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
