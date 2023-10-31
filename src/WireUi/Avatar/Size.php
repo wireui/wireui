@@ -21,7 +21,7 @@ class Size extends ComponentPack
             Packs\Size::MD  => 'w-10 h-10',
             Packs\Size::LG  => 'w-12 h-12',
             Packs\Size::XL  => 'w-14 h-14',
-            Packs\Size::XL2 => 'w-18 h-18',
+            Packs\Size::XL2 => 'w-16 h-16',
         ];
     }
 }

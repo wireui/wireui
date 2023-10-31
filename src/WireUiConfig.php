@@ -34,6 +34,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'size'    => Packs\Size::MD,
                 'border'  => Packs\Border::THIN,
                 'rounded' => Packs\Rounded::FULL,
                 'color'   => Packs\Color::SECONDARY,
