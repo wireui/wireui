@@ -5,7 +5,7 @@ namespace WireUi\View\Components\Input;
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
-use WireUi\Traits\Components\Concerns\IsFormComponent;
+use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\Components\WireUiComponent;
 

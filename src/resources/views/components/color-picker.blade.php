@@ -87,7 +87,6 @@
                          :style="{ 'background-color': color.value }"
                          x-on:click="select(color)"
                          :title="color.name"
-                         :focusable-id="color.value + color.name"
                          type="button"
                      ></button>
                  </template>

@@ -10,9 +10,33 @@ export abstract class AlpineComponent {
   declare $watch: (name: string, callback: CallableFunction) => void
   declare $props: any
 
-  destroyCallbacks: CallableFunction[] = []
+  protected skipWatchers: { [name: string]: boolean } = {}
+
+  protected destroyCallbacks: CallableFunction[] = []
 
   init?(): void
+
+  protected $safeWatch (property: string, callback: CallableFunction): void {
+    this.$watch(property, value => {
+      if (this.skipWatchers[property]) {
+        this.skipWatchers[property] = false
+
+        return
+      }
+
+      callback(value)
+    })
+  }
+
+  protected $skipNextWatcher (property: string, callback: CallableFunction): void {
+    this.skipWatchers[property] = true
+
+    callback()
+
+    this.$nextTick(() => {
+      this.skipWatchers[property] = false
+    })
+  }
 
   $destroy (callback: CallableFunction): void {
     this.destroyCallbacks.push(callback)

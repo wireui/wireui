@@ -18,8 +18,8 @@ class WireUiConfig
             'default' => [
                 'color'   => self::GLOBAL,
                 'rounded' => self::GLOBAL,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -34,6 +34,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'size'    => Packs\Size::MD,
                 'border'  => Packs\Border::THIN,
                 'rounded' => Packs\Rounded::FULL,
                 'color'   => Packs\Color::SECONDARY,
@@ -90,8 +91,8 @@ class WireUiConfig
             'default' => [
                 'rounded' => self::GLOBAL,
                 'color'   => Packs\Color::BASE,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -170,22 +171,48 @@ class WireUiConfig
         ], $options);
     }
 
-    // @todo: merge options from wrapper
+    public static function dateTimePicker(array $options = []): array
+    {
+        return self::wrapper(self::mix([
+            'default' => [
+                'right-icon'       => 'calendar',
+                'without-tips'     => false,
+                'without-timezone' => false,
+                'without-time'     => false,
+                'interval'         => 10,
+                'time-format'      => 12,
+                'parse-format'     => null,
+                'display-format'   => null,
+                'timezone'         => null,
+                'user-timezone'    => null,
+            ],
+        ], $options));
+    }
+
     public static function timePicker(array $options = []): array
+    {
+        return self::wrapper(self::mix([
+            'default' => [
+                'military-time'   => false,
+                'without-seconds' => false,
+                'right-icon'      => 'clock',
+            ],
+        ], $options));
+    }
+
+    public static function timeSelector(array $options = []): array
     {
         return self::mix([
             'default' => [
-                'format'     => Components\TimePicker::DEFAULT_FORMAT,
-                'interval'   => Components\TimePicker::INTERVAL,
-                'right-icon' => 'clock',
-                'color'      => self::GLOBAL,
-                'shadow'     => self::GLOBAL,
-                'rounded'    => self::GLOBAL,
+                'military-time'   => false,
+                'without-seconds' => false,
+                'borderless'      => false,
+                'squared'         => false,
+                'shadowless'      => false,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'colors'   => WireUi\Wrapper\Color::class,
-                'rounders' => WireUi\Wrapper\Rounded::class,
+                'rounders' => WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -351,6 +378,10 @@ class WireUiConfig
             'time-picker' => [
                 'class' => Components\TimePicker::class,
                 'alias' => 'time-picker',
+            ],
+            'time-selector' => [
+                'class' => Components\TimeSelector::class,
+                'alias' => 'time-selector',
             ],
             'toggle' => [
                 'class' => Components\Toggle::class,

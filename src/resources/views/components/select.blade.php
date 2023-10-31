@@ -18,7 +18,7 @@
         'template'          => $template,
     ])"
 >
-    <div hidden x-ref="json">@toJs($optionsToArray())</div>
+    <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
 
     @if (app()->runningUnitTests())

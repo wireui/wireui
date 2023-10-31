@@ -1,5 +1,3 @@
-import chunkArray from '@/utils/chunk'
-
 export type Direction = 'up'|'down'|'left'|'right'
 
 export default class Walk {
@@ -27,43 +25,51 @@ export default class Walk {
       return
     }
 
-    const matrix = chunkArray(elements, this.countFirstRowElements())
+    const matrix = this.chunkElementsByRow()
 
-    const focusableId = target.getAttribute('focusable-id') ?? ''
+    const focusableId = target as HTMLElement
 
     const closest = this.getClosestElement(direction, matrix, focusableId)
 
     closest?.focus()
   }
 
-  private countFirstRowElements (): number {
+  private chunkElementsByRow (): HTMLElement[][] {
     const container = this.container
+    const elements = Array.from(container.querySelectorAll(this.selector)) as HTMLElement[]
 
-    const items = container.querySelectorAll(this.selector)
+    const rowMap: { [key: number]: HTMLElement[] } = {}
 
-    let firstRowItemCount = 0
+    elements.forEach(element => {
+      const rect = element.getBoundingClientRect()
+      let top = rect.top
 
-    let firstItemTop: number|null = null
-
-    items.forEach(item => {
-      const rect = item.getBoundingClientRect()
-
-      if (firstItemTop === null) {
-        firstItemTop = rect.top
+      if (top === 0) {
+        return
       }
 
-      if (rect.top === firstItemTop) {
-        firstRowItemCount++
+      const relatedPosition = Object.keys(rowMap).find(key => {
+        return Math.abs(Number(key) - Number(top)) <= 7
+      })
+
+      if (Number(relatedPosition)) {
+        top = Number(relatedPosition)
       }
+
+      if (!rowMap[top]) {
+        rowMap[top] = []
+      }
+
+      rowMap[top].push(element)
     })
 
-    return firstRowItemCount
+    return Object.values(rowMap)
   }
 
-  private findElementIndex (matrix: HTMLElement[][], focusableId: string) {
+  private findElementIndex (matrix: HTMLElement[][], target: HTMLElement) {
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[i].length; j++) {
-        if (matrix[i][j]?.getAttribute('focusable-id') === focusableId) {
+        if (matrix[i][j] === target) {
           return { row: i, col: j }
         }
       }
@@ -75,9 +81,9 @@ export default class Walk {
   private getClosestElement (
     direction: Direction,
     matrix: HTMLElement[][],
-    focusableId: string
+    target: HTMLElement
   ): HTMLElement|null {
-    let { row, col } = this.findElementIndex(matrix, focusableId) || {}
+    let { row, col } = this.findElementIndex(matrix, target) || {}
 
     if (
       row === undefined
@@ -92,13 +98,13 @@ export default class Walk {
 
     if (direction === 'up') {
       const upRow = row === 0 ? numRows - 1 : row - 1
-      col = this.getApproximateIndex(matrix[row].length, matrix[upRow].length, col, true)
+      col = this.getApproximateIndex(matrix[row].length, matrix[upRow].length, col, 'up')
       row = upRow
     }
 
     if (direction === 'down') {
       const downRow = row === numRows - 1 ? 0 : row + 1
-      col = this.getApproximateIndex(matrix[row].length, matrix[downRow].length, col, false)
+      col = this.getApproximateIndex(matrix[row].length, matrix[downRow].length, col, 'down')
       row = downRow
     }
 
@@ -117,8 +123,16 @@ export default class Walk {
     sourceLength: number,
     targetLength: number,
     sourceIndex: number,
-    isUp: boolean
+    direction: Direction
   ) {
+    if (direction === 'down' && sourceIndex === 0) {
+      return 0
+    }
+
+    if (direction === 'down' && sourceIndex === sourceLength - 1) {
+      return targetLength - 1
+    }
+
     // Calculate the offsets considering the elements are center-aligned
     const sourceOffset = Math.floor((sourceLength - 1) / 2) - sourceIndex
     const targetOffset = Math.floor((targetLength - 1) / 2)
@@ -126,12 +140,12 @@ export default class Walk {
     let targetIndex = targetOffset - sourceOffset
 
     // When moving down, assign the left elements to the first element in the current row
-    if (!isUp && targetIndex < 0) {
+    if (direction === 'down' && targetIndex < 0) {
       targetIndex = 0
     }
 
     // When moving up, do the reverse
-    if (isUp && targetIndex >= targetLength) {
+    if (direction === 'up' && targetIndex >= targetLength) {
       targetIndex = targetLength - 1
     }
 

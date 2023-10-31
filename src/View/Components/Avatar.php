@@ -20,6 +20,11 @@ class Avatar extends WireUiComponent
         'borderless' => false,
     ];
 
+    protected function processed(array $data): void
+    {
+        $this->label ??= data_get($data, 'label');
+    }
+
     public function blade(): View
     {
         return view('wireui::components.avatar');

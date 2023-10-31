@@ -1,5 +1,6 @@
 import { Component } from '@/components/alpine'
 import { AlpineComponent } from '@/components/alpine2'
+import toggleScrollbar from '@/utils/scrollbar'
 import { autoUpdate, computePosition, flip, hide, offset, Placement, shift } from '@floating-ui/dom'
 
 export type Position = Placement
@@ -35,6 +36,10 @@ export default class Positionable {
     this.target = target
 
     this.watch(state => {
+      if (window.innerWidth < 640) {
+        toggleScrollbar(state)
+      }
+
       if (!state && this.cleanupPosition) {
         this.cleanupPosition()
 

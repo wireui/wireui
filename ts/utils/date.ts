@@ -1,8 +1,9 @@
 import dayjs, { ConfigType, Dayjs, UnitType } from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
@@ -26,6 +27,7 @@ export type Dateable = {
   getTime (timezone?: string): string
   getHours (): number
   getMinutes (): number
+  getSeconds (): number
   getNativeDate (): Date
   setYear (year: number): Dateable
   setMonth (month: number): Dateable
@@ -33,6 +35,7 @@ export type Dateable = {
   setTime (time: string): Dateable
   setHours (hours: number): Dateable
   setMinutes (minutes: number): Dateable
+  setSeconds (seconds: number): Dateable
   setTimezone (timezone: string): Dateable
   format (format: string, timezone?: string): string
   clone (): Dateable
@@ -139,6 +142,10 @@ export class FluentDate implements Dateable {
     return this.date.get('minutes')
   }
 
+  getSeconds (): number {
+    return this.date.get('seconds')
+  }
+
   getNativeDate (): Date {
     return this.date.toDate()
   }
@@ -178,6 +185,12 @@ export class FluentDate implements Dateable {
 
   setMinutes (minutes: number): Dateable {
     this.date = this.date.set('minutes', minutes)
+
+    return this
+  }
+
+  setSeconds (seconds: number): Dateable {
+    this.date = this.date.set('seconds', seconds)
 
     return this
   }

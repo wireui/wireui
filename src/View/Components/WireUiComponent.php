@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components;
 
+use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, Str};
@@ -10,6 +11,7 @@ use WireUi\Facades\WireUi;
 use WireUi\Support\{ComponentPack, Html};
 use WireUi\View\ManageProps;
 
+#[AllowDynamicProperties]
 abstract class WireUiComponent extends Component
 {
     use ManageProps;
@@ -110,7 +112,7 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        if ($kebab === 'icon-size' && property_exists($this, 'size') && $this->size) {
+        if ($kebab === 'icon-size' && property_exists($this, 'size')) {
             return $this->size;
         }
 

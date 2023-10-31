@@ -72,7 +72,7 @@ return [
 
     'color-picker' => Config::wrapper(),
 
-    'datetime-picker' => Config::wrapper(),
+    'datetime-picker' => Config::dateTimePicker(),
 
     'dialog' => Config::modal(),
 
@@ -113,6 +113,8 @@ return [
     'textarea' => Config::wrapper(),
 
     'time-picker' => Config::timePicker(),
+
+    'time-selector' => Config::timeSelector(),
 
     // 'toggle' => [
     //     //
