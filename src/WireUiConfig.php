@@ -18,8 +18,8 @@ class WireUiConfig
             'default' => [
                 'color'   => self::GLOBAL,
                 'rounded' => self::GLOBAL,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -91,8 +91,8 @@ class WireUiConfig
             'default' => [
                 'rounded' => self::GLOBAL,
                 'color'   => Packs\Color::BASE,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,

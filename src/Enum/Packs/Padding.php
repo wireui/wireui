@@ -4,5 +4,8 @@ namespace WireUi\Enum\Packs;
 
 class Padding
 {
-    public const BASE = 'base';
+    public const NONE   = 'none';
+    public const SMALL  = 'small';
+    public const MEDIUM = 'medium';
+    public const LARGE  = 'large';
 }
