@@ -39,17 +39,18 @@ class WireUiSupport
 
     public function toJs(array $data = []): string
     {
+        if (count(array_filter(array_keys($data), 'is_string')) === 0) {
+            return "JSON.parse(atob('" . base64_encode(json_encode($data)) . "'))";
+        }
+
         $expressions = '';
 
         $parse = function ($value) {
             return match (true) {
                 is_array($value),
-                is_object($value)  => "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))",
-                is_string($value)  => "'" . str_replace("'", "\'", $value) . "'",
-                is_bool($value)    => $value ? 'true' : 'false',
-                $value === null    => 'null',
-                is_numeric($value) => (string) $value,
-                default            => json_encode($value),
+                is_object($value) => "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))",
+                is_string($value) => "'" . str_replace("'", "\'", $value) . "'",
+                default           => json_encode($value),
             };
         };
 
