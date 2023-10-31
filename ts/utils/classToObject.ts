@@ -1,14 +1,17 @@
 export default function classToObject<Type> (component: Type): Type {
-  const prototype = Object.getPrototypeOf(component)
-  const object = Object.assign({}, component)
+  let prototype = Object.getPrototypeOf(component)
+  const object: Type = Object.assign({}, component)
 
-  Object.getOwnPropertyNames(prototype)
-    .filter(method => method !== 'constructor')
-    .forEach(method => {
-      const descriptor: any = Object.getOwnPropertyDescriptor(prototype, method)
+  while (prototype && prototype !== Object.prototype) {
+    Object.getOwnPropertyNames(prototype)
+      .filter(method => method !== 'constructor')
+      .forEach(method => {
+        const descriptor: any = Object.getOwnPropertyDescriptor(prototype, method)
+        Object.defineProperty(object, method, descriptor)
+      })
 
-      Object.defineProperty(object, method, descriptor)
-    })
+    prototype = Object.getPrototypeOf(prototype)
+  }
 
   return object
 }
