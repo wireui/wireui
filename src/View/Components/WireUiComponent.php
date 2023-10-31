@@ -112,7 +112,7 @@ abstract class WireUiComponent extends Component
             return $this->attributes->get($camel);
         }
 
-        if ($kebab === 'icon-size' && property_exists($this, 'size') && $this->size) {
+        if ($kebab === 'icon-size' && property_exists($this, 'size')) {
             return $this->size;
         }
 

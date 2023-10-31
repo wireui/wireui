@@ -62,11 +62,6 @@ class ServiceProvider extends Support\ServiceProvider
             [$this->srcDir('config.php') => $this->app->configPath('wireui.php')],
             'wireui.config',
         );
-
-        $this->publishes(
-            [$this->srcDir('resources/views') => $this->app->resourcePath('views/vendor/wireui')],
-            'wireui.views',
-        );
     }
 
     private function registerWireUI(): void

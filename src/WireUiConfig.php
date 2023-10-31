@@ -18,8 +18,8 @@ class WireUiConfig
             'default' => [
                 'color'   => self::GLOBAL,
                 'rounded' => self::GLOBAL,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -34,6 +34,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'size'    => Packs\Size::MD,
                 'border'  => Packs\Border::THIN,
                 'rounded' => Packs\Rounded::FULL,
                 'color'   => Packs\Color::SECONDARY,
@@ -90,8 +91,8 @@ class WireUiConfig
             'default' => [
                 'rounded' => self::GLOBAL,
                 'color'   => Packs\Color::BASE,
-                'padding' => Packs\Padding::BASE,
                 'variant' => Packs\Variant::FLAT,
+                'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
