@@ -2,7 +2,10 @@
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :x-data="WireUi::alpine('wireui_select', [
-        'wireModel' => null,
+        'wireModel' => isset($__livewire)
+            ? '$wire.entangle(\''. $name .'\')'
+                . ($attributes->wire('model')->hasModifier('live') ? '.live' : '')
+            : null,
     ])"
     :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
@@ -17,6 +20,7 @@
         'placeholder'       => $placeholder,
         'template'          => $template,
     ])"
+    x-ref="container"
 >
     <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
     <div hidden x-ref="slot">{{ $slot }}</div>
@@ -38,7 +42,7 @@
         <template x-if="!config.multiselect">
             <div
                 @class([
-                    'absolute left-0 inset-y-0 w-[calc(100%-3.5rem)] flex items-center',
+                    'flex items-center',
                     'pl-3.5' => !$icon,
                     'pl-2.5' =>  $icon,
                 ])
@@ -62,7 +66,7 @@
 
         <template x-if="config.multiselect">
             <div
-                class="absolute left-0 pl-2.5 inset-y-0 w-full h-full flex items-center overflow-hidden"
+                class="pl-2.5 w-full h-full flex items-center overflow-hidden"
                 x-on:click="toggle"
             >
                 <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
@@ -114,7 +118,6 @@
     <x-wireui::wrapper.element
         x-ref="input"
         x-on:click="toggle"
-        x-on:focus="open"
         x-on:blur.debounce.750ms="closeIfNotFocused"
         x-on:keydown.enter.stop.prevent="toggle"
         x-on:keydown.space.stop.prevent="toggle"
@@ -124,7 +127,7 @@
         x-bind:value="getSelectedValue"
         inputmode="none"
         readonly
-        autocomplete="disabled"
+        autocomplete="off"
         :attributes="$attrs
             ->except('class')
             ->class('cursor-pointer overflow-hidden !text-transparent !dark:text-transparent selection:bg-transparent')

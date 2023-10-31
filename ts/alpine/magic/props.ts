@@ -35,9 +35,15 @@ export function watchProps (component: Component|AlpineComponent, callback: Call
 
   observer.observe(component.$root, { attributes: true })
 
-  if (component instanceof AlpineComponent) {
+  // @ts-ignore
+  if (component.$destroy) {
+    // @ts-ignore
     component.$destroy(() => observer.disconnect())
-  } else {
+  }
+
+  // @ts-ignore
+  if (component.$cleanup) {
+    // @ts-ignore
     component.$cleanup(() => observer.disconnect())
   }
 }

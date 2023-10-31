@@ -53,6 +53,7 @@
                 Arr::get($colorClasses, 'input', ''),
                 $shadowClasses => !$shadowless,
 
+                'bg-background-white dark:bg-background-dark',
                 'relative flex gap-x-2 items-center',
                 'transition-all ease-in-out duration-150',
                 'ring-1 ring-inset ring-gray-300 focus-within:ring-2',

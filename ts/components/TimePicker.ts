@@ -78,7 +78,7 @@ export default class TimePicker extends AlpineComponent {
       let format = this.$props.militaryTime ? 'H:mm:ss' : 'h:mm:ss A'
 
       if (this.$props.withoutSeconds) {
-        format = format.replace(':s', '')
+        format = format.replace(':ss', '')
       }
 
       this.$skipNextWatcher('input', () => {
