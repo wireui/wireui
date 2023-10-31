@@ -1,7 +1,7 @@
 import { watchProps } from '@/alpine/magic/props'
 import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 import { AlpineComponent } from '@/components/alpine2'
-import { toAmPmFormat, toMilitaryFormat } from '@/components/TimeSelector/helpers'
+import { Period, toMilitaryFormat, toStandardFormat } from '@/components/TimeSelector/helpers'
 import ScrollableOptions from '@/components/TimeSelector/ScrollableOptions'
 import { WireModel } from '@/livewire'
 import FluentDate from '@/utils/date'
@@ -12,8 +12,6 @@ export type Selection = {
   seconds: number
   period: Period
 }
-
-export type Period = 'AM'|'PM'
 
 export default class TimeSelector extends AlpineComponent {
   declare $refs: {
@@ -27,7 +25,7 @@ export default class TimeSelector extends AlpineComponent {
   declare $props: {
     wireModel: WireModel
     militaryTime: boolean
-    format: string
+    withoutSeconds: boolean
     disabled: boolean
     readonly: boolean
   }
@@ -43,6 +41,8 @@ export default class TimeSelector extends AlpineComponent {
 
   public entangleable = new Entangleable()
 
+  public timeInput: string|null = null
+
   public selection: Selection = {
     hours: 12,
     minutes: 0,
@@ -55,28 +55,36 @@ export default class TimeSelector extends AlpineComponent {
     seconds: false
   }
 
-  get value (): string {
-    this.date.setHours(toMilitaryFormat(this.selection.period, this.selection.hours))
-    this.date.setMinutes(this.selection.minutes)
-    this.date.setSeconds(this.selection.seconds)
-
-    return this.date.format(this.$props.format)
-  }
-
   init (): void {
-    this.entangleable.watch(() => this.syncSelection())
+    this.syncProps()
+    this.makeOptions()
+
+    if (!this.timeInput && this.$refs.input.value) {
+      this.timeInput = this.$refs.input.value
+    }
+
+    if (this.timeInput) {
+      this.syncTimeSelection(this.timeInput)
+    }
+
+    this.$safeWatch('selection', () => {
+      this.$skipNextWatcher('timeInput', () => {
+        this.timeInput = this.makeTime()
+        this.entangleable.set(this.timeInput)
+      })
+    })
+
+    this.$safeWatch('timeInput', () => {
+      this.syncTimeSelection(this.timeInput)
+    })
+
+    this.entangleable.watch((time: string|null) => this.syncTimeSelection(time))
 
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
     new SupportsAlpine(this.entangleable, this.$refs.input)
-
-    this.syncProps()
-
-    this.fillSelectionFromInput()
-
-    this.makeOptions()
 
     watchProps(this, () => {
       this.syncProps()
@@ -94,29 +102,35 @@ export default class TimeSelector extends AlpineComponent {
 
   private syncProps () {
     this.config.military = this.$props.militaryTime
-    this.config.seconds = this.$props.format.includes('ss')
+    this.config.seconds = !this.$props.withoutSeconds
   }
 
-  private syncSelection (): void { 
-    const [rawHours, minutes, seconds] = this.entangleable.get()?.split(':') ?? []
+  private syncTimeSelection (time: string|null): void {
+    const [rawHours, minutes, seconds] = time?.split(':') ?? []
 
-    const hours = Number(rawHours) || 0
-    const period = hours >= 12 ? 'PM' : 'AM'
+    const { period, hours } = toStandardFormat(Number(rawHours))
 
-    this.selection.hours = toAmPmFormat(period, hours)
-    this.selection.minutes = Number(minutes) || 0
-    this.selection.seconds = Number(seconds) || 0
-    this.selection.period = period
+    this.$skipNextWatcher('selection', () => {
+      this.selection = {
+        minutes: Number(minutes) || 0,
+        seconds: Number(seconds) || 0,
+        hours,
+        period
+      }
+    })
+
+    this.scrollable.hours.setCurrent(this.selection.hours).render()
+    this.scrollable.minutes.setCurrent(this.selection.minutes).render()
+    this.scrollable.seconds.setCurrent(this.selection.seconds).render()
+    this.scrollable.period.setCurrent(this.selection.period).resetTopPosition().render()
   }
 
-  private fillSelectionFromInput (): void {
-    const value = this.$refs.input.value
+  private makeTime (): string|null {
+    this.date.setHours(toMilitaryFormat(this.selection.period, this.selection.hours))
+    this.date.setMinutes(this.selection.minutes)
+    this.date.setSeconds(this.selection.seconds)
 
-    if (!value) {
-      return
-    }
-
-    this.entangleable.set(value)
+    return this.date.format('HH:mm:ss')
   }
 
   private makeOptions (): void {
@@ -134,14 +148,16 @@ export default class TimeSelector extends AlpineComponent {
     this.scrollable.hours = new ScrollableOptions(
       this.$refs.hours,
       hours,
-      this.getMilitaryHour()
+      this.selection.hours
     )
-      .onChange((hours: number) => {
-        this.selection.period = hours >= 12 ? 'PM' : 'AM'
+      .onChange((rawHours: number) => {
+        const { period, hours } = toStandardFormat(rawHours)
 
-        this.selection.hours = this.$props.militaryTime
-          ? toMilitaryFormat(this.selection.period, hours)
-          : toAmPmFormat(this.selection.period, hours)
+        this.selection = {
+          ...this.selection,
+          period,
+          hours
+        }
       })
       .start()
   }
@@ -156,8 +172,6 @@ export default class TimeSelector extends AlpineComponent {
     )
       .onChange((minutes: number) => {
         this.selection.minutes = minutes
-
-        this.entangleable.set(this.value)
       })
       .start()
   }
@@ -172,8 +186,6 @@ export default class TimeSelector extends AlpineComponent {
     )
       .onChange((seconds: number) => {
         this.selection.seconds = seconds
-
-        this.entangleable.set(this.value)
       })
       .start()
   }
@@ -190,8 +202,6 @@ export default class TimeSelector extends AlpineComponent {
       })
       .onChange((period: Period) => {
         this.selection.period = period
-
-        this.entangleable.set(this.value)
       })
       .start()
   }
@@ -200,12 +210,6 @@ export default class TimeSelector extends AlpineComponent {
     return this.$props.militaryTime
       ? this.makeArray(24).map(hour => hour)
       : this.makeArray(12).map(hour => ++hour)
-  }
-
-  private getMilitaryHour (): number {
-    return this.$props.militaryTime
-      ? toMilitaryFormat(this.selection.period, this.selection.hours)
-      : toAmPmFormat(this.selection.period, this.selection.hours)
   }
 
   private makeArray (length: number): number[] {

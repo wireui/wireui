@@ -11,11 +11,11 @@ class TimeSelector extends WireUiComponent
     use IsFormComponent;
 
     protected array $props = [
-        'military-time' => false,
-        'format'        => 'HH:mm:ss',
-        'borderless'    => false,
-        'squared'       => false,
-        'shadowless'    => false,
+        'military-time'   => false,
+        'without-seconds' => false,
+        'borderless'      => false,
+        'squared'         => false,
+        'shadowless'      => false,
     ];
 
     protected function blade(): View
