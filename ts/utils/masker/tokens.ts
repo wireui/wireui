@@ -1,4 +1,4 @@
-import { hour24Token, hour12Token, minutesToken } from './timeTokens'
+import { hour12Token, hour24Token, minutesToken, periodToken } from './timeTokens'
 
 export interface TokenCallable {
   (value: string, iValue: number): boolean
@@ -24,6 +24,8 @@ export type MaskerTokens = {
   'H': Token
   'h': Token
   'm': Token
+  's': Token
+  'P': Token
   '!': Token
 }
 
@@ -36,7 +38,9 @@ export const tokens: MaskerTokens = {
   '!': { escape: true },
   'H': hour24Token,
   'h': hour12Token,
-  'm': minutesToken
+  'm': minutesToken,
+  's': minutesToken,
+  'P': periodToken
 }
 
 export default tokens

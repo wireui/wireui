@@ -1,5 +1,5 @@
+import { onlyLetters, onlyNumbers } from '../helpers'
 import { Token } from './tokens'
-import { onlyNumbers } from '../helpers'
 
 const getOutput = (value: string, iValue: number, pattern?: RegExp): string => {
   const digits = onlyNumbers(value.slice(iValue, iValue + 2))
@@ -54,5 +54,22 @@ export const minutesToken: Token = {
   },
   output (value, iValue): string {
     return getOutput(value, iValue, this.pattern)
+  }
+}
+
+export const periodToken: Token = {
+  pattern: /^(a|p|am|pm)$/i,
+  validate (value, iValue): boolean {
+    const period = onlyLetters(value.slice(iValue, iValue + 2)).toLowerCase()
+
+    return /^(am|pm)$/.test(period)
+  },
+  output (value, iValue): string {
+    const period = onlyLetters(value.slice(iValue, iValue + 2)).toLowerCase()
+
+    return period.toUpperCase()
+  },
+  transform (value: string): string {
+    return value.toUpperCase()
   }
 }
