@@ -1,7 +1,7 @@
 <div {{ $attributes->class([
+    Arr::get($roundedClasses, 'root', ''),
     Arr::get($colorClasses, 'root', ''),
     $shadowClasses => !$shadowless,
-    $roundedClasses,
 ]) }}>
     @isset($header)
         <div {{ $header->attributes }}>
@@ -11,6 +11,7 @@
         <div @class([
             Arr::get($colorClasses, 'border', '') => !$borderless,
             'px-4 py-2.5 flex justify-between items-center',
+            Arr::get($roundedClasses, 'header', ''),
             'border-b' => !$borderless,
         ])>
             @if (check_slot($title))
@@ -58,9 +59,10 @@
     @isset($footer)
         <div {{ $footer->attributes->class([
             Arr::get($colorClasses, 'border', '') => !$borderless,
+            Arr::get($roundedClasses, 'footer', ''),
             Arr::get($colorClasses, 'footer', ''),
-            'px-4 py-4 sm:px-6 bg-clip-content',
             'border-t' => !$borderless,
+            'px-4 py-4 sm:px-6',
         ]) }}>
             {{ $footer }}
         </div>

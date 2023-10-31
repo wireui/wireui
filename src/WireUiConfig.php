@@ -96,9 +96,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'rounders' => WireUi\Rounded::class,
                 'colors'   => WireUi\Card\Color::class,
                 'paddings' => WireUi\Card\Padding::class,
+                'rounders' => WireUi\Card\Rounded::class,
             ],
         ], $options);
     }
