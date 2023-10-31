@@ -62,5 +62,6 @@ export type Refs = PositioningRefs & {
   json: HTMLElement
   slot: HTMLElement
   optionsContainer?: HTMLElement
-  listing: Element
+  listing: HTMLElement
+  container: HTMLElement
 }
