@@ -39,20 +39,16 @@ test('it should add the publish groups', function () {
 
     expect($publishGroups)->toHaveKeys([
         'wireui.config',
-        'wireui.views',
         'wireui.lang',
     ]);
 
     expect($publishGroups['wireui.config'])->toBeArray()->toHaveCount(1);
-    expect($publishGroups['wireui.views'])->toBeArray()->toHaveCount(1);
     expect($publishGroups['wireui.lang'])->toBeArray()->toHaveCount(1);
 
     expect(array_key_first($publishGroups['wireui.config']))->toBeFile();
-    expect(array_key_first($publishGroups['wireui.views']))->toBeDirectory();
     expect(array_key_first($publishGroups['wireui.lang']))->toBeDirectory();
 
     expect(array_values($publishGroups['wireui.config'])[0])->toEndWith('wireui.php');
-    expect(array_values($publishGroups['wireui.views'])[0])->toEndWith('resources/views/vendor/wireui');
     expect(array_values($publishGroups['wireui.lang'])[0])->toEndWith('lang/vendor/wireui');
 });
 

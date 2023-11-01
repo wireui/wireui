@@ -21,11 +21,12 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'full'              => false,
-        'icon'              => null,
-        'label'             => null,
-        'right-icon'        => null,
-        'wire-load-enabled' => false,
+        'full'                  => false,
+        'icon'                  => null,
+        'label'                 => null,
+        'right-icon'            => null,
+        'wire-load-enabled'     => false,
+        'use-validation-colors' => false,
     ]);
 });
 
