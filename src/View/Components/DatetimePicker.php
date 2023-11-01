@@ -37,6 +37,7 @@ class DatetimePicker extends WireUiComponent
     protected function processed(): void
     {
         $this->timezone ??= config('app.timezone', 'UTC');
+
         $this->min = Carbon::make($this->min);
         $this->max = Carbon::make($this->max);
     }

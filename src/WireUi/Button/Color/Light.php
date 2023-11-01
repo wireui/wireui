@@ -115,26 +115,14 @@ class Light extends ComponentPack
                 ],
             ],
             Color::WHITE => [
-                'base'  => "{$this->base}",
-                'hover' => [
-                    "{$this->hover}",
-                    '',
-                ],
-                'focus' => [
-                    "{$this->focus}",
-                    '',
-                ],
+                'base'  => "{$this->base} text-white bg-white/20",
+                'hover' => "{$this->hover} hover:bg-white/30",
+                'focus' => "{$this->focus} focus:bg-white/35 focus:ring-white/60",
             ],
             Color::BLACK => [
-                'base'  => "{$this->base}",
-                'hover' => [
-                    "{$this->hover}",
-                    '',
-                ],
-                'focus' => [
-                    "{$this->focus}",
-                    '',
-                ],
+                'base'  => "{$this->base} text-black bg-black/20",
+                'hover' => "{$this->hover} hover:bg-black/30",
+                'focus' => "{$this->focus} focus:bg-black/35 focus:ring-black/60",
             ],
             Color::SLATE => [
                 'base'  => "{$this->base} text-slate-600 bg-slate-300 dark:bg-slate-500 dark:text-slate-400",

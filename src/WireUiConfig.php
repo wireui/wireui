@@ -106,7 +106,7 @@ class WireUiConfig
             'default' => [
                 'width'    => Packs\Width::LG,
                 'height'   => Packs\Height::XL3,
-                'position' => Packs\Position::BOTTOM_END,
+                'position' => Packs\Position::BOTTOM_START,
             ],
             'packs' => [
                 'widths'  => WireUi\Dropdown\Width::class,

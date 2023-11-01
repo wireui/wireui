@@ -1,24 +1,24 @@
 <div
-    class="relative inline-block text-left"
     x-data="wireui_dropdown"
     x-props="{
         position: '{{ $position }}',
     }"
+    class="relative inline-block text-left"
     x-on:click.outside="positionable.close()"
     x-on:keydown.escape.window="positionable.close()"
     {{ $attributes->only('wire:key') }}
 >
     <div
-        class="cursor-pointer focus:outline-none"
-        x-on:click="positionable.toggle()"
         x-ref="triggerContainer"
+        x-on:click="positionable.toggle()"
+        class="cursor-pointer focus:outline-none"
     >
         @if (isset($trigger))
             {{ $trigger }}
         @else
             <x-dynamic-component
                 :component="WireUi::component('icon')"
-                :name="$icon ?? 'ellipsis-vertical'"
+                :name="$icon"
                 @class([
                     'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
                     'w-4 h-4 text-secondary-500 hover:text-secondary-700',
@@ -28,8 +28,8 @@
     </div>
 
     <div
-        x-show="positionable.state"
         x-ref="popover"
+        x-show="positionable.state"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100"
