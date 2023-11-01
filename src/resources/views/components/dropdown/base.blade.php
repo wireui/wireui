@@ -18,7 +18,7 @@
         @else
             <x-dynamic-component
                 :component="WireUi::component('icon')"
-                name="ellipsis-vertical"
+                :name="$icon ?? 'ellipsis-vertical'"
                 @class([
                     'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
                     'w-4 h-4 text-secondary-500 hover:text-secondary-700',

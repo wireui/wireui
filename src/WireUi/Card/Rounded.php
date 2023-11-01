@@ -20,7 +20,7 @@ class Rounded extends ComponentPack
                 'header' => 'rounded-t-none',
                 'footer' => 'rounded-b-none',
             ],
-            Packs\Rounded::SM   => [
+            Packs\Rounded::SM => [
                 'root'   => 'rounded-sm',
                 'header' => 'rounded-t-sm',
                 'footer' => 'rounded-b-sm',
@@ -30,32 +30,32 @@ class Rounded extends ComponentPack
                 'header' => 'rounded-t',
                 'footer' => 'rounded-b',
             ],
-            Packs\Rounded::MD   => [
+            Packs\Rounded::MD => [
                 'root'   => 'rounded-md',
                 'header' => 'rounded-t-md',
                 'footer' => 'rounded-b-md',
             ],
-            Packs\Rounded::LG   => [
+            Packs\Rounded::LG => [
                 'root'   => 'rounded-lg',
                 'header' => 'rounded-t-lg',
                 'footer' => 'rounded-b-lg',
             ],
-            Packs\Rounded::XL   => [
+            Packs\Rounded::XL => [
                 'root'   => 'rounded-xl',
                 'header' => 'rounded-t-xl',
                 'footer' => 'rounded-b-xl',
             ],
-            Packs\Rounded::XL2  => [
+            Packs\Rounded::XL2 => [
                 'root'   => 'rounded-2xl',
                 'header' => 'rounded-t-2xl',
                 'footer' => 'rounded-b-2xl',
             ],
-            Packs\Rounded::XL3  => [
+            Packs\Rounded::XL3 => [
                 'root'   => 'rounded-3xl',
                 'header' => 'rounded-t-3xl',
                 'footer' => 'rounded-b-3xl',
             ],
-            Packs\Rounded::FULL  => [
+            Packs\Rounded::FULL => [
                 'root'   => 'rounded-3xl',
                 'header' => 'rounded-t-3xl',
                 'footer' => 'rounded-b-3xl',
