@@ -158,9 +158,8 @@
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
                     @class([
-                        'w-5 h-5',
-                        'text-negative-400 dark:text-negative-600' =>  $invalidated,
-                        'text-secondary-400'                       => !$invalidated,
+                        'w-5 h-5 text-secondary-400',
+                        'invalidated:text-negative-400 invalidated:dark:text-negative-600',
                     ])
                     :name="$rightIcon"
                 />

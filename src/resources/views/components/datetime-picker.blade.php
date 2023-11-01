@@ -58,6 +58,7 @@
                     @class([
                         'w-4 h-4 group-focus:text-primary-700 text-gray-400 dark:text-gray-600',
                         'dark:group-hover:text-gray-500 dark:group-focus:text-primary-500',
+                        'invalidated:text-negative-500 invalidated:group-hover:text-negative-500 invalidated:group-focus:text-negative-500',
                     ])
                 />
             </x-dynamic-component>
