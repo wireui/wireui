@@ -15,10 +15,10 @@ class TimePicker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'military-time'   => false,
-        'without-seconds' => false,
         'right-icon'      => 'clock',
         'shadowless'      => false,
+        'military-time'   => false,
+        'without-seconds' => false,
     ];
 
     protected function blade(): View

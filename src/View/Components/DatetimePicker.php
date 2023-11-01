@@ -13,26 +13,26 @@ class DatetimePicker extends WireUiComponent
     use HasSetupRounded;
     use IsFormComponent;
 
+    protected array $packs = ['shadow'];
+
     protected array $props = [
-        'right-icon'       => 'calendar',
-        'clearable'        => true,
-        'shadowless'       => false,
-        'without-tips'     => false,
-        'without-timezone' => false,
-        'without-time'     => false,
+        'max'              => null,
+        'min'              => null,
         'interval'         => 10,
+        'max-time'         => 24,
+        'min-time'         => 0,
+        'timezone'         => null,
+        'clearable'        => true,
+        'right-icon'       => 'calendar',
+        'shadowless'       => false,
         'time-format'      => 12,
         'parse-format'     => null,
-        'display-format'   => null,
-        'timezone'         => null,
+        'without-time'     => false,
+        'without-tips'     => false,
         'user-timezone'    => null,
-        'min-time'         => 0,
-        'max-time'         => 24,
-        'min'              => null,
-        'max'              => null,
+        'display-format'   => null,
+        'without-timezone' => false,
     ];
-
-    protected array $packs = ['shadow'];
 
     protected function processed(): void
     {

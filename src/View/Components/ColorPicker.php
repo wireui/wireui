@@ -3,7 +3,6 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
@@ -16,15 +15,11 @@ class ColorPicker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless' => false,
+        'colors'              => [],
+        'shadowless'          => false,
+        'right-icon'          => 'swatch',
+        'color-name-as-value' => false,
     ];
-
-    public function __construct(
-        public $rightIcon = 'swatch',
-        public array|Collection $colors = [],
-        public bool $colorNameAsValue = false,
-    ) {
-    }
 
     public function getColors(): array
     {

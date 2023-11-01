@@ -70,11 +70,13 @@ abstract class WireUiComponent extends Component
             $data[$attribute] = $this->{$attribute};
         }
 
-        if (method_exists($this, 'finished')) {
-            $this->finished($data);
-        }
+        $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
-        return Arr::set($data, 'attributes', $this->attributes->except($this->smartAttributes));
+        return tap($data, function (array &$data) {
+            if (method_exists($this, 'finished')) {
+                $this->finished($data);
+            }
+        });
     }
 
     private function getMethods(): array
