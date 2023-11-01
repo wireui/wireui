@@ -3,49 +3,56 @@
 namespace WireUi\WireUi\Radio;
 
 use Illuminate\Support\Arr;
+use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Color extends ComponentPack
 {
     protected function default(): string
     {
-        return 'primary';
+        return config('wireui.style.color') ?? Packs\Color::PRIMARY;
     }
 
     public function all(): array
     {
         return [
-            'primary' => Arr::toCssClasses([
+            Packs\Color::INVALIDATED => Arr::toCssClasses([
+                'invalidated:focus:ring-negative-500 invalidated:ring-negative-500 invalidated:border-negative-400 invalidated:text-negative-600',
+                'invalidated:focus:border-negative-400 invalidated:dark:focus:border-negative-600 invalidated:dark:ring-negative-600',
+                'invalidated:dark:border-negative-600 invalidated:dark:bg-negative-700 invalidated:dark:checked:bg-negative-700',
+                'invalidated:dark:focus:ring-offset-secondary-800 invalidated:dark:checked:border-negative-700',
+            ]),
+            Packs\Color::PRIMARY => Arr::toCssClasses([
                 'border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
                 'dark:focus:ring-offset-secondary-800',
             ]),
-            'secondary' => Arr::toCssClasses([
+            Packs\Color::SECONDARY => Arr::toCssClasses([
                 'border-secondary-300 text-secondary-600 focus:ring-secondary-600 focus:border-secondary-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
                 'dark:focus:ring-offset-secondary-800',
             ]),
-            'positive' => Arr::toCssClasses([
+            Packs\Color::POSITIVE => Arr::toCssClasses([
                 'border-secondary-300 text-positive-600 focus:ring-positive-600 focus:border-positive-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
                 'dark:focus:ring-offset-secondary-800',
             ]),
-            'negative' => Arr::toCssClasses([
+            Packs\Color::NEGATIVE => Arr::toCssClasses([
                 'border-secondary-300 text-negative-600 focus:ring-negative-600 focus:border-negative-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
                 'dark:focus:ring-offset-secondary-800',
             ]),
-            'warning' => Arr::toCssClasses([
+            Packs\Color::WARNING => Arr::toCssClasses([
                 'border-secondary-300 text-warning-600 focus:ring-warning-600 focus:border-warning-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
                 'dark:focus:ring-offset-secondary-800',
             ]),
-            'info' => Arr::toCssClasses([
+            Packs\Color::INFO => Arr::toCssClasses([
                 'border-secondary-300 text-info-600 focus:ring-info-600 focus:border-info-400',
                 'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
                 'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',

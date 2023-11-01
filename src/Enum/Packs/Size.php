@@ -4,7 +4,7 @@ namespace WireUi\Enum\Packs;
 
 class Size
 {
-    public const XXS = '2xs';
+    public const XS2 = '2xs';
     public const XS  = 'xs';
     public const SM  = 'sm';
     public const MD  = 'md';

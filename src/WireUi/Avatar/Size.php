@@ -15,7 +15,7 @@ class Size extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Size::XXS => 'w-6 h-6',
+            Packs\Size::XS2 => 'w-6 h-6',
             Packs\Size::XS  => 'w-7 h-7',
             Packs\Size::SM  => 'w-8 h-8',
             Packs\Size::MD  => 'w-10 h-10',

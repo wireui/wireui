@@ -218,11 +218,15 @@ class WireUiConfig
     public static function checkbox(array $options = []): array
     {
         return self::mix([
-            'default' => [],
-            'packs'   => [
+            'default' => [
+                'color'   => self::GLOBAL,
+                'size'    => Packs\Size::SM,
+                'rounded' => Packs\Rounded::BASE,
+            ],
+            'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'colors'   => WireUi\Checkbox\Color::class,
                 'sizes'    => WireUi\Checkbox\Size::class,
+                'colors'   => WireUi\Checkbox\Color::class,
             ],
         ], $options);
     }
@@ -230,11 +234,15 @@ class WireUiConfig
     public static function toggle(array $options = []): array
     {
         return self::mix([
-            'default' => [],
-            'packs'   => [
+            'default' => [
+                'color'   => self::GLOBAL,
+                'size'    => Packs\Size::SM,
+                'rounded' => Packs\Rounded::FULL,
+            ],
+            'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'colors'   => WireUi\Toggle\Color::class,
                 'sizes'    => WireUi\Toggle\Size::class,
+                'colors'   => WireUi\Toggle\Color::class,
             ],
         ], $options);
     }
@@ -243,6 +251,8 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'color'   => self::GLOBAL,
+                'size'    => Packs\Size::SM,
                 'rounded' => Packs\Rounded::FULL,
             ],
             'packs' => [

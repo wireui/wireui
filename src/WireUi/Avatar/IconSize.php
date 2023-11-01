@@ -15,7 +15,7 @@ class IconSize extends ComponentPack
     public function all(): array
     {
         return [
-            Size::XXS => [
+            Size::XS2 => [
                 'icon'  => 'w-4 h-4',
                 'label' => 'text-2xs',
             ],

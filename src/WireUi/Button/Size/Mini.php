@@ -15,7 +15,7 @@ class Mini extends ComponentPack
     public function all(): array
     {
         return [
-            Size::XXS => 'text-2xs w-5 h-5',
+            Size::XS2 => 'text-2xs w-5 h-5',
             Size::XS  => 'text-xs w-7 h-7',
             Size::SM  => 'text-sm w-8 h-8',
             Size::MD  => 'text-sm w-9 h-9',
