@@ -10,6 +10,7 @@ class Base extends WireUiComponent
     protected array $packs = ['width', 'height'];
 
     protected array $props = [
+        'icon'       => null,
         'position'   => null,
         'persistent' => false,
     ];
