@@ -11,7 +11,7 @@
             'aria-disabled:pointer-events-none aria-disabled:select-none',
             'aria-disabled:opacity-60 aria-disabled:cursor-not-allowed',
             'aria-readonly:pointer-events-none aria-readonly:select-none',
-            'w-full relative',
+            'relative',
         ])
         ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
 >
