@@ -4,36 +4,89 @@ namespace Tests\Unit\View\Components;
 
 use WireUi\View\Components\ColorPicker;
 
+beforeEach(function () {
+    $this->component = (new ColorPicker())->withName('color-picker');
+});
+
+test('it should have array properties', function () {
+    $packs = $this->invokeProperty($this->component, 'packs');
+
+    expect($packs)->toBe(['shadow']);
+
+    $props = $this->invokeProperty($this->component, 'props');
+
+    expect($props)->toBe([
+        'colors'              => [],
+        'shadowless'          => false,
+        'right-icon'          => 'swatch',
+        'color-name-as-value' => false,
+    ]);
+});
+
+test('it should have properties in component', function () {
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component)->toHaveProperties([
+        'colors',
+        'shadow',
+        'rightIcon',
+        'shadowless',
+        'shadowClasses',
+        'colorNameAsValue',
+    ]);
+
+    expect($this->component->shadowless)->toBeFalse();
+});
+
+test('it should not have properties in component', function () {
+    expect($this->component)->not->toHaveProperties([
+        'colors',
+        'shadow',
+        'rightIcon',
+        'shadowless',
+        'shadowClasses',
+        'colorNameAsValue',
+    ]);
+});
+
 test('it can be instantiated with default parameters', function () {
-    $colorPicker = new ColorPicker();
+    $this->runWireUiComponent($this->component);
 
-    expect($colorPicker->rightIcon)->toBe('swatch');
+    expect($this->component->colors)->toBe([]);
 
-    expect($colorPicker->colors)->toBe([]);
+    expect($this->component->rightIcon)->toBe('swatch');
 
-    expect($colorPicker->colorNameAsValue)->toBe(false);
+    expect($this->component->colorNameAsValue)->toBe(false);
 });
 
 test('it can be instantiated with custom parameters', function () {
     $colors = collect(['red' => '#ff0000', 'green' => '#00ff00', 'blue' => '#0000ff']);
 
-    $colorPicker = new ColorPicker('icon', $colors, true);
+    $this->setAttributes($this->component, [
+        'colors'              => $colors,
+        'color-name-as-value' => true,
+        'right-icon'          => $icon = $this->getRandomIcon(),
+    ]);
 
-    expect($colorPicker->rightIcon)->toBe('icon');
+    $this->runWireUiComponent($this->component);
 
-    expect($colorPicker->colors)->toBe($colors);
+    expect($this->component->colors)->toBe($colors);
 
-    expect($colorPicker->colorNameAsValue)->toBe(true);
+    expect($this->component->rightIcon)->toBe($icon);
+
+    expect($this->component->colorNameAsValue)->toBe(true);
 });
 
 test('it transforms colors correctly', function () {
     $colors = ['red' => '#ff0000', 'green' => '#00ff00', '#0000ff'];
 
-    $colorPicker = new ColorPicker(colors: $colors);
+    $this->setAttributes($this->component, [
+        'colors' => $colors,
+    ]);
 
-    $transformedColors = $colorPicker->getColors();
+    $this->runWireUiComponent($this->component);
 
-    expect($transformedColors)->toBe([
+    expect($this->component->getColors())->toBe([
         ['name' => 'red', 'value' => '#ff0000'],
         ['name' => 'green', 'value' => '#00ff00'],
         ['name' => '#0000ff', 'value' => '#0000ff'],
@@ -41,61 +94,57 @@ test('it transforms colors correctly', function () {
 });
 
 test('it returns an empty array when no colors are provided', function () {
-    $colorPicker = new ColorPicker();
+    $this->runWireUiComponent($this->component);
 
-    $colors = $colorPicker->getColors();
-
-    expect($colors)->toBe([]);
+    expect($this->component->getColors())->toBe([]);
 });
 
 test('it handles colors as string correctly', function () {
     $colors = ['red', 'green', 'blue'];
 
-    $colorPicker = new ColorPicker(colors: $colors);
+    $this->setAttributes($this->component, [
+        'colors' => $colors,
+    ]);
 
-    $expected = [
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->getColors())->toBe([
         ['name' => 'red', 'value' => 'red'],
         ['name' => 'green', 'value' => 'green'],
         ['name' => 'blue', 'value' => 'blue'],
-    ];
-
-    expect($colorPicker->getColors())->toBe($expected);
+    ]);
 });
 
 test('it handles colors as associative array correctly', function () {
-    $colors = [
-        'red'   => '#ff0000',
-        'green' => '#00ff00',
-        'blue'  => '#0000ff',
-    ];
+    $colors = ['red' => '#ff0000', 'green' => '#00ff00', 'blue' => '#0000ff'];
 
-    $colorPicker = new ColorPicker(colors: $colors);
+    $this->setAttributes($this->component, [
+        'colors' => $colors,
+    ]);
 
-    $expected = [
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->getColors())->toBe([
         ['name' => 'red', 'value' => '#ff0000'],
         ['name' => 'green', 'value' => '#00ff00'],
         ['name' => 'blue', 'value' => '#0000ff'],
-    ];
-
-    expect($colorPicker->getColors())->toBe($expected);
+    ]);
 });
 
 test('it handles mixed types in colors array correctly', function () {
-    $colors = [
-        'red' => '#ff0000',
-        '#00ff00',
-        'blue' => '#0000ff',
-    ];
+    $colors = ['red' => '#ff0000', '#00ff00', 'blue' => '#0000ff'];
 
-    $colorPicker = new ColorPicker(colors: $colors);
+    $this->setAttributes($this->component, [
+        'colors' => $colors,
+    ]);
 
-    $expected = [
+    $this->runWireUiComponent($this->component);
+
+    expect($this->component->getColors())->toBe([
         ['name' => 'red', 'value' => '#ff0000'],
         ['name' => '#00ff00', 'value' => '#00ff00'],
         ['name' => 'blue', 'value' => '#0000ff'],
-    ];
-
-    expect($colorPicker->getColors())->toBe($expected);
+    ]);
 });
 
 test('it should pass custom colors to js component data', function () {
