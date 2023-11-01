@@ -1,10 +1,10 @@
 <x-dynamic-component
     :component="WireUi::component('modal')"
-    :attributes="$attributes->only(['id', 'blur', 'name', 'show', 'type', 'align', 'width', 'spacing', 'z-index', 'blurless', 'persistent'])"
+    :attributes="$attributes->except(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
 >
     <x-dynamic-component
         :component="WireUi::component('card')"
-        :attributes="$attributes->only(['icon', 'title', 'shadow', 'padding', 'iconless', 'shadowless'])"
+        :attributes="$attributes->only(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
     >
         @if(!$hideClose)
             @slot('action')
