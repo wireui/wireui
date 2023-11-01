@@ -1,31 +1,17 @@
 @if ((bool) $count())
     <x-dynamic-component
         :component="WireUi::component('alert')"
-        {{ $attributes->merge($getArray($title)) }}
+        :attributes="$attributes->merge($getArray($title))"
     >
-        @if(check_slot($title))
-            @slot('title', null, $title->attributes->getAttributes())
-                {{ $title }}
-            @endslot
-        @endif
-
-        @isset($action)
-            @slot('action', null, $action->attributes->getAttributes())
-                {{ $action }}
-            @endslot
-        @endisset
-
         <ul class="space-y-1 list-disc">
             @foreach ($getErrorMessages() as $message)
                 <li>{{ head($message) }}</li>
             @endforeach
         </ul>
 
-        @isset($footer)
-            @slot('footer', null, $footer->attributes->getAttributes())
-                {{ $footer }}
-            @endslot
-        @endisset
+        @foreach($__laravel_slots as $key => $value)
+            @slot($key, $value)
+        @endforeach
     </x-dynamic-component>
 @else
     <div class="hidden"></div>

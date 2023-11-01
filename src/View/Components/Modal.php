@@ -9,7 +9,6 @@ class Modal extends WireUiComponent
     protected array $packs = ['align', 'blur', 'width', 'type'];
 
     protected array $props = [
-        'id'         => null,
         'name'       => null,
         'show'       => false,
         'spacing'    => null,

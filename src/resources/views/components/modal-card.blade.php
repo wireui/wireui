@@ -1,26 +1,12 @@
 <x-dynamic-component
     :component="WireUi::component('modal')"
-    {{ $attributes }}
-    :spacing="$fullscreen ? '' : $spacing"
-    :z-index="$zIndex"
-    :max-width="$maxWidth"
-    :align="$align"
-    :blur="$blur"
+    :attributes="$attributes->only(['id', 'blur', 'name', 'show', 'type', 'align', 'width', 'spacing', 'z-index', 'blurless', 'persistent'])"
 >
     <x-dynamic-component
         :component="WireUi::component('card')"
-        :title="$title"
-        :rounded="$squared || $fullscreen ? '' : $rounded"
-        :card-classes="$fullscreen ? 'min-h-screen' : ''"
-        :color="$color"
-        :shadow="$shadow"
-        :padding="$padding"
+        :attributes="$attributes->only(['icon', 'title', 'shadow', 'padding', 'iconless', 'shadowless'])"
     >
-        @if (isset($header))
-            @slot('header', null, $header->attributes->getAttributes())
-                {{ $header }}
-            @endslot
-        @elseif(!$hideClose)
+        @if(!$hideClose)
             @slot('action')
                 <button class="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-200 text-secondary-300"
                     x-on:click="close"
@@ -37,10 +23,8 @@
 
         {{ $slot }}
 
-        @if(isset($footer))
-            @slot('footer', null, $footer->attributes->getAttributes())
-                {{ $footer }}
-            @endslot
-        @endif
+        @foreach($__laravel_slots as $key => $value)
+            @slot($key, $value)
+        @endforeach
     </x-dynamic-component>
 </x-dynamic-component>
