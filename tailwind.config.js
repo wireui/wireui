@@ -53,6 +53,7 @@ module.exports = {
     }
   },
   plugins: [
+    require('@tailwindcss/forms'),
     require('./ts/tailwindcss/plugins/hideScrollbar'),
     require('./ts/tailwindcss/plugins/softScrollbar'),
     require('./ts/tailwindcss/plugins/appearance-none'),

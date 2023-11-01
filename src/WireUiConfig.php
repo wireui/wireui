@@ -242,8 +242,10 @@ class WireUiConfig
     public static function radio(array $options = []): array
     {
         return self::mix([
-            'default' => [],
-            'packs'   => [
+            'default' => [
+                'rounded' => Packs\Rounded::FULL,
+            ],
+            'packs' => [
                 'rounders' => WireUi\Rounded::class,
                 'colors'   => WireUi\Radio\Color::class,
                 'sizes'    => WireUi\Radio\Size::class,
