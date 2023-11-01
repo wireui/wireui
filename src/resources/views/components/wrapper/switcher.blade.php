@@ -15,7 +15,7 @@
         ])
         ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
 >
-    <div class="inline-flex items-center gap-x-2">
+    <div class="flex items-center gap-x-2">
         @if ($label)
             <x-wireui::form.label
                 :attributes="WireUi::extractAttributes($label)"
