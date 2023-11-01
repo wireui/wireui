@@ -1,50 +1,28 @@
-<div>
-    <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
-        <div class="relative flex items-start">
-            @if ($leftLabel)
-                <div class="mr-2 text-sm text-right">
-                    <x-dynamic-component
-                        :component="WireUi::component('label')"
-                        class=""
-                        :for="$id"
-                        :label="$leftLabel"
-                        :has-error="$errors->has($name)"
-                    />
-                    @if($description)
-                        <div class="text-gray-500">{{ $description }}</div>
-                    @endif
-                </div>
-            @endif
+<x-wrapper.switcher
+    :attributes="$attributes->only(['wire:key'])"
+    :data="$wrapperData"
+>
+    @include('wireui::components.wrapper.slots')
 
-            <div class="flex items-center h-5">
-                <input {{ $attributes->class([
-                        $getClasses($errors->has($name)),
-                    ])->merge([
-                        'type'  => 'checkbox',
-                    ]) }} />
-            </div>
+    <input
+        {{ $attributes
+            ->class([
+                'form-checkbox transition ease-in-out duration-100',
+                'border-secondary-300 text-primary-600 focus:ring-primary-600 focus:border-primary-400',
+                'dark:border-secondary-500 dark:checked:border-secondary-600 dark:focus:ring-secondary-600',
+                'dark:focus:border-secondary-500 dark:bg-secondary-600 dark:text-secondary-600',
+                'dark:focus:ring-offset-secondary-800',
 
-            @if ($label)
-                <div class="ml-2 text-sm">
-                    <x-dynamic-component
-                        :component="WireUi::component('label')"
-                        class=""
-                        :for="$id"
-                        :label="$label"
-                        :has-error="$errors->has($name)"
-                    />
-                    @if($description)
-                        <div class="text-gray-500">{{ $description }}</div>
-                    @endif
-                </div>
-            @endif
-        </div>
-    </label>
+                'invalidated:focus:ring-negative-500 invalidated:ring-negative-500 invalidated:border-negative-400 invalidated:text-negative-600',
+                'invalidated:focus:border-negative-400 invalidated:dark:focus:border-negative-600 invalidated:dark:ring-negative-600',
+                'invalidated:dark:border-negative-600 invalidated:dark:bg-negative-700 invalidated:dark:checked:bg-negative-700',
+                'invalidated:dark:focus:ring-offset-secondary-800 invalidated:dark:checked:border-negative-700',
 
-    @if ($name)
-        <x-dynamic-component
-            :component="WireUi::component('error')"
-            :name="$name"
-        />
-    @endif
-</div>
+                $roundedClasses,
+                $colorClasses,
+                $sizeClasses,
+            ])
+            ->merge(['type' => 'checkbox'])
+        }}
+    />
+</x-wrapper.switcher>
