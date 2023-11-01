@@ -9,9 +9,6 @@ class WireUiConfig
 {
     public const GLOBAL = 'global';
 
-    /**
-     * Default Configuration to Components.
-     */
     public static function alert(array $options = []): array
     {
         return self::mix([
@@ -270,9 +267,6 @@ class WireUiConfig
         ], $options);
     }
 
-    /**
-     * Default Components.
-     */
     public static function defaultComponents(array $options = []): array
     {
         return self::mix([
@@ -427,6 +421,10 @@ class WireUiConfig
             'wrapper' => [
                 'class' => Components\Wrapper\Base::class,
                 'alias' => 'wrapper',
+            ],
+            'wrapper.switcher' => [
+                'class' => Components\Wrapper\Switcher::class,
+                'alias' => 'wrapper.switcher',
             ],
         ], $options);
     }

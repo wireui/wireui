@@ -56,6 +56,7 @@ class WrapperData
             'icon',
             'color',
             'label',
+            'right-label',
             'corner',
             'prefix',
             'shadow',
