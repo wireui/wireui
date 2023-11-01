@@ -94,9 +94,7 @@ return [
 
     'modal' => Config::modal(),
 
-    // 'modal-card' => [
-    //     //
-    // ],
+    'modal-card' => Config::modal(),
 
     'native-select' => Config::wrapper(),
 

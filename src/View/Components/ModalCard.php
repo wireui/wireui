@@ -23,18 +23,9 @@ class ModalCard extends Modal
         public bool $squared = false,
         public bool $hideClose = false,
     ) {
-        parent::__construct(
-            name: $name,
-            zIndex: $zIndex,
-            maxWidth: $fullscreen ? '' : $maxWidth,
-            spacing: $spacing,
-            align: $align,
-            blur: $blur,
-            state: $state,
-        );
     }
 
-    public function render(): View
+    public function blade(): View
     {
         return view('wireui::components.modal-card');
     }
