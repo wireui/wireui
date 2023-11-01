@@ -41,12 +41,12 @@
     }">
         <template x-if="!config.multiselect">
             <div
-                @class([
-                    'flex items-center',
-                    'pl-3.5' => !$icon,
-                    'pl-2.5' =>  $icon,
-                ])
+                class="flex items-center"
                 x-on:click="toggle"
+                :class="{
+                    'pl-3': @json(!$icon) && !isEmpty(),
+                    'pl-2': @json($icon != null) && !isEmpty(),
+                }"
             >
                 @if ($icon != null)
                     <x-dynamic-component

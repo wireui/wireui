@@ -31,8 +31,8 @@ class Size extends ComponentPack
                 'circle'     => 'checked:translate-x-4 left-0.5 w-4 h-4',
             ],
             'xl' => [
-                'background' => 'h-4 w-7',
-                'circle'     => 'checked:translate-x-3 w-3 h-3',
+                'background' => 'h-7 w-12',
+                'circle'     => 'checked:translate-x-5.5 left-0.5 w-4 h-4',
             ],
         ];
     }
