@@ -218,6 +218,42 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function checkbox(array $options = []): array
+    {
+        return self::mix([
+            'default' => [],
+            'packs'   => [
+                'rounders' => WireUi\Rounded::class,
+                'colors'   => WireUi\Checkbox\Color::class,
+                'sizes'    => WireUi\Checkbox\Size::class,
+            ],
+        ], $options);
+    }
+
+    public static function toggle(array $options = []): array
+    {
+        return self::mix([
+            'default' => [],
+            'packs'   => [
+                'rounders' => WireUi\Rounded::class,
+                'colors'   => WireUi\Toggle\Color::class,
+                'sizes'    => WireUi\Toggle\Size::class,
+            ],
+        ], $options);
+    }
+
+    public static function radio(array $options = []): array
+    {
+        return self::mix([
+            'default' => [],
+            'packs'   => [
+                'rounders' => WireUi\Rounded::class,
+                'colors'   => WireUi\Radio\Color::class,
+                'sizes'    => WireUi\Radio\Size::class,
+            ],
+        ], $options);
+    }
+
     public static function wrapper(array $options = []): array
     {
         return self::mix([

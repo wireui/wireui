@@ -66,9 +66,7 @@ return [
 
     'card' => Config::card(),
 
-    // 'checkbox' => [
-    //     //
-    // ],
+    'checkbox' => Config::checkbox(),
 
     'color-picker' => Config::wrapper(),
 
@@ -104,9 +102,7 @@ return [
 
     'notifications' => Config::notifications(),
 
-    // 'radio' => [
-    //     //
-    // ],
+    'radio' => Config::radio(),
 
     'select' => Config::wrapper(),
 
@@ -116,9 +112,7 @@ return [
 
     'time-selector' => Config::timeSelector(),
 
-    // 'toggle' => [
-    //     //
-    // ],
+    'toggle' => Config::toggle(),
 
     /*
     |--------------------------------------------------------------------------
