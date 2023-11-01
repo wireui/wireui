@@ -3,15 +3,23 @@
 namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\{Collection, Str, ViewErrorBag};
+use Illuminate\Support\{Collection, Str};
+use WireUi\Traits\Components\InteractsWithErrors;
 
 class Errors extends WireUiComponent
 {
-    public function __construct(
-        public mixed $only = [],
-        public ?string $title = null,
-    ) {
+    use InteractsWithErrors;
+
+    protected array $props = [
+        'only'  => [],
+        'title' => null,
+    ];
+
+    protected function processed(array $data): void
+    {
         $this->initOnly();
+
+        $this->title ??= data_get($data, 'title');
     }
 
     private function initOnly(): void
@@ -25,33 +33,33 @@ class Errors extends WireUiComponent
         $this->only = collect($this->only);
     }
 
-    public function count(ViewErrorBag $errors): int
+    public function count(): int
     {
-        return $this->getErrorMessages($errors)->count();
+        return $this->getErrorMessages()->count();
     }
 
-    public function getArray(mixed $title, ViewErrorBag $errors): array
+    public function getArray(mixed $title): array
     {
         return check_slot($title) ? [
             'color' => 'negative',
         ] : [
             'color' => 'negative',
-            'title' => $this->getTitle($errors),
+            'title' => $this->getTitle(),
         ];
     }
 
-    public function getErrorMessages(ViewErrorBag $errors): Collection
+    public function getErrorMessages(): Collection
     {
-        $messages = $errors->getMessages();
+        $messages = $this->errors()->getMessages();
 
         return $this->only->isNotEmpty() ? collect($messages)->only($this->only) : collect($messages);
     }
 
-    public function getTitle(ViewErrorBag $errors): string
+    private function getTitle(): string
     {
-        $title = $this->title ?? trans_choice('wireui::messages.errors.title', $this->count($errors));
+        $title = $this->title ?? trans_choice('wireui::messages.errors.title', $this->count());
 
-        return Str::replace('{errors}', $this->count($errors), $title);
+        return Str::replace('{errors}', $this->count(), $title);
     }
 
     public function blade(): View

@@ -1,7 +1,7 @@
-@if ((bool) $count($errors))
+@if ((bool) $count())
     <x-dynamic-component
         :component="WireUi::component('alert')"
-        {{ $attributes->merge($getArray($title, $errors)) }}
+        {{ $attributes->merge($getArray($title)) }}
     >
         @if(check_slot($title))
             @slot('title', null, $title->attributes->getAttributes())
@@ -16,7 +16,7 @@
         @endisset
 
         <ul class="space-y-1 list-disc">
-            @foreach ($getErrorMessages($errors) as $message)
+            @foreach ($getErrorMessages() as $message)
                 <li>{{ head($message) }}</li>
             @endforeach
         </ul>
