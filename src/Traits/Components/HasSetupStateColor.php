@@ -3,6 +3,7 @@
 namespace WireUi\Traits\Components;
 
 use Illuminate\Support\Arr;
+use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
@@ -79,7 +80,9 @@ trait HasSetupStateColor
         }
 
         foreach ($modifiers as $modifier) {
-            $this->colorClasses[$modifier] = data_get($colorPack->get($modifierColor), $modifier);
+            $modifierClasses = $colorPack->mergeIf($this->useValidation(), Color::INVALIDATED, $modifierColor);
+
+            $this->colorClasses[$modifier] = data_get($modifierClasses, $modifier);
         }
 
         $this->smartAttributes($attribute->directive());

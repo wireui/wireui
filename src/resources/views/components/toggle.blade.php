@@ -31,6 +31,10 @@
             data_get($sizeClasses, 'background'),
             $roundedClasses,
             $colorClasses,
+
+            'invalidated:bg-negative-600 invalidated:peer-focus:bg-negative-600 invalidated:peer-focus:ring-negative-600 invalidated:dark:bg-negative-700',
+            'invalidated:group-focus:ring-negative-600 invalidated:dark:group-focus:ring-negative-700',
+            'invalidated:dark:peer-focus:ring-negative-700 invalidated:dark:peer-focus:ring-offset-secondary-800',
         ])></div>
     </label>
 </x-wrapper.switcher>

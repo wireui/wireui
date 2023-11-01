@@ -75,11 +75,9 @@
                 name="form.wrapper.container.prefix"
                 {{ WireUi::extractAttributes($prefix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'prepend', ''),
                     Arr::get($colorClasses, 'prepend', ''),
-                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
-                    'invalidated:text-negative-500',
                 ]) }}
             >
                 @if ($icon)
@@ -110,8 +108,7 @@
                 name="form.wrapper.container.suffix"
                 {{ WireUi::extractAttributes($suffix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'input-focus:text-primary-500 invalidated:input-focus:text-negative-500',
-                    'invalidated:text-negative-500',
+                    'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'append', ''),
                     Arr::get($colorClasses, 'append', ''),
                 ]) }}

@@ -28,6 +28,17 @@ abstract class ComponentPack
         return data_get($this->all(), $attribute) ?? $attribute;
     }
 
+    public function mergeIf(bool $check, string $merge, mixed $attribute = null): mixed
+    {
+        if (!$check) {
+            return $this->get($attribute);
+        }
+
+        $this->checkAttribute($merge);
+
+        return collect($this->get($merge))->mergeRecursive($this->get($attribute))->toArray();
+    }
+
     public function keys(): array
     {
         return array_keys($this->all());

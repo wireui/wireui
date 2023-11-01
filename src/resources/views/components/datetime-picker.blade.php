@@ -33,7 +33,7 @@
             @if ($clearable)
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
-                    class="w-4 h-4 mr-2 transition-colors duration-150 ease-in-out cursor-pointer text-gray-400 hover:text-negative-500"
+                    class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
                     x-cloak
                     name="x-mark"
                     x-show="model"
@@ -46,6 +46,7 @@
                 class="h-full"
                 :color="$color ?? 'primary'"
                 :rounded="Arr::get($roundedClasses, 'append', '')"
+                use-validation-colors
                 flat
                 x-on:click="toggle"
                 :disabled="$disabled"
@@ -248,7 +249,7 @@
                             x-on:keydown.enter="selectTime(time)"
                             x-on:click="selectTime(time)"
                         >
-                            <span x-text="time.label" class="text-left block font-normal truncate"></span>
+                            <span x-text="time.label" class="block font-normal text-left truncate"></span>
 
                             <span
                                 @class([

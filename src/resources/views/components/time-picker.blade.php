@@ -40,6 +40,7 @@
             class="h-full"
             :color="$color ?? 'primary'"
             :rounded="Arr::get($roundedClasses, 'append', '')"
+            use-validation-colors
             flat
             x-on:click="positionable.toggle()"
             :disabled="$disabled"

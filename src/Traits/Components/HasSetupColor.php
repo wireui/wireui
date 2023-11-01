@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupColor
@@ -26,7 +27,7 @@ trait HasSetupColor
 
         $this->color = $this->getDataModifier('color', $colorPack);
 
-        $this->colorClasses = $colorPack->get($this->color);
+        $this->colorClasses = $colorPack->mergeIf($this->useValidation(), Color::INVALIDATED, $this->color);
 
         if (method_exists($this, 'setColorPack')) {
             $this->setColorPack($colorPack);

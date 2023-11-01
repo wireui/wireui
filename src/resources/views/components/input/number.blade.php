@@ -19,6 +19,7 @@
             x-hold.click.delay.repeat.100ms="minus"
             x-bind:disabled="disableMinus"
             x-on:keydown.enter="minus"
+            use-validation-colors
             :icon="$icon"
             flat
         />
@@ -44,6 +45,7 @@
             :rounded="Arr::get($roundedClasses, 'append', '')"
             x-bind:disabled="disablePlus"
             x-on:keydown.enter="plus"
+            use-validation-colors
             :icon="$rightIcon"
             flat
         />

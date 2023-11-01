@@ -16,11 +16,6 @@ class Color extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Color::INVALIDATED => Arr::toCssClasses([
-                'invalidated:bg-negative-600 invalidated:peer-focus:bg-negative-600 invalidated:peer-focus:ring-negative-600 invalidated:dark:bg-negative-700',
-                'invalidated:group-focus:ring-negative-600 invalidated:dark:group-focus:ring-negative-700',
-                'invalidated:dark:peer-focus:ring-negative-700 invalidated:dark:peer-focus:ring-offset-secondary-800',
-            ]),
             Packs\Color::PRIMARY => Arr::toCssClasses([
                 'bg-secondary-200 peer-checked:bg-primary-600 peer-focus:ring-primary-600',
                 'group-focus:ring-primary-600 dark:group-focus:ring-secondary-600',

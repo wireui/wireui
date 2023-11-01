@@ -148,4 +148,9 @@ abstract class WireUiComponent extends Component
     {
         return array_key_first($this->attributes->only($keys)->getAttributes());
     }
+
+    protected function useValidation(): bool
+    {
+        return property_exists($this, 'useValidationColors') && $this->useValidationColors;
+    }
 }
