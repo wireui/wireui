@@ -19,7 +19,7 @@
                     data_get($sizeClasses, 'circle'),
                     $roundedClasses,
                 ])
-                ->merge(['type' => 'radio'])
+                ->merge(['type' => 'checkbox'])
             }}
         />
 
