@@ -2,15 +2,34 @@
 
 namespace WireUi\Support;
 
-use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class BladeDirectives
 {
+    public function confirmAction(string $expression): string
+    {
+        return "onclick=\"window.\$wireui.confirmAction({$expression}, '{{ \$__livewire->getId() }}')\"";
+    }
+
+    public function notify(string $expression): string
+    {
+        return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$__livewire->getId() }}')\"";
+    }
+
+    public function styles(bool $absolute = true): string
+    {
+        $route = route('wireui.assets.styles', [], $absolute);
+
+        $this->getManifestVersion('wireui.css', $route);
+
+        return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
+    }
+
     public function scripts(bool $absolute = true, array $attributes = []): string
     {
-        $route = route('wireui.assets.scripts', $parameters = [], $absolute);
+        $route = route('wireui.assets.scripts', [], $absolute);
+
         $this->getManifestVersion('wireui.js', $route);
 
         $attributes = new ComponentAttributeBag($attributes);
@@ -25,6 +44,7 @@ class BladeDirectives
     {
         $scripts = <<<JS
             window.Wireui = {
+                cache: {},
                 hook(hook, callback) {
                     window.addEventListener(`wireui:\${hook}`, () => callback())
                 },
@@ -37,14 +57,6 @@ class BladeDirectives
         return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
     }
 
-    public function styles(bool $absolute = true): string
-    {
-        $route = route('wireui.assets.styles', $parameters = [], $absolute);
-        $this->getManifestVersion('wireui.css', $route);
-
-        return "<link href=\"{$route}\" rel=\"stylesheet\" type=\"text/css\">";
-    }
-
     public function getManifestVersion(string $file, ?string &$route = null): ?string
     {
         $manifestPath = dirname(__DIR__, 2) . '/dist/mix-manifest.json';
@@ -54,55 +66,11 @@ class BladeDirectives
         }
 
         $manifest = json_decode(file_get_contents($manifestPath), $assoc = true);
-        $version  = last(explode('=', $manifest["/{$file}"]));
 
-        if ($route) {
-            $route .= "?id={$version}";
-        }
+        $version = last(explode('=', $manifest["/{$file}"]));
+
+        $route = $route ? "{$route}?id={$version}" : $route;
 
         return $version;
-    }
-
-    public function confirmAction(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.confirmAction($expression, '{{ \$__livewire->getId() }}')\"";
-    }
-
-    public function notify(string $expression): string
-    {
-        return "onclick=\"window.\$wireui.notify($expression, '{{ \$__livewire->getId() }}')\"";
-    }
-
-    public function boolean(string $value): string
-    {
-        return "<?= json_encode(filter_var($value, FILTER_VALIDATE_BOOLEAN)); ?>";
-    }
-
-    /**
-     * This function overwrite the original entangle directive from Livewire
-     */
-    public function entangleable(mixed $expression): string
-    {
-        $fallback = (string) Str::of($expression)->after(',')->trim();
-        $property = (string) Str::of($expression)->before(',')->trim();
-
-        return <<<EOT
-        <?php if (!isset(\$__livewire)): ?>
-            <?php if (is_object({$fallback}) || is_array({$fallback})) { echo "JSON.parse(atob('".base64_encode(json_encode({$fallback}))."'))"; } elseif (is_string({$fallback})) { echo "'".str_replace("'", "\'", {$fallback})."'"; } else { echo json_encode({$fallback}); } ?>
-        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective && {$property}->hasModifier('blur')): ?>
-            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property}->value() }}').live
-        <?php elseif ((object) ({$property}) instanceof \Livewire\WireDirective) : ?>
-            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property}->value() }}'){{ {$property}->hasModifier('live') ? '.live' : '' }}
-        <?php else : ?>
-            window.Livewire.find('{{ \$__livewire->getId() }}').entangle('{{ {$property} }}')
-        <?php endif; ?>
-        EOT;
-    }
-
-    public function toJs(mixed $expression): string
-    {
-        return <<<EOT
-        <?php if (is_object({$expression}) || is_array({$expression})) { echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))"; } elseif (is_string({$expression})) { echo "'".str_replace("'", "\'", {$expression})."'"; } else { echo json_encode({$expression}); } ?>
-        EOT;
     }
 }

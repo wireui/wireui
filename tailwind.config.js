@@ -3,10 +3,11 @@ const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './ts/**/*.ts',
-    './js/**/*.js',
-    './resources/views/**/*.blade.php',
-    './src/**/*.php'
+    './ts/**/*.{ts,js}',
+    './src/resources/views/**/*.php',
+    './src/Traits/**/*.php',
+    './src/View/**/*.php',
+    './src/WireUi/**/*.php'
   ],
   darkMode: 'class',
   theme: {
@@ -17,7 +18,16 @@ module.exports = {
         positive: colors.emerald,
         negative: colors.red,
         warning: colors.amber,
-        info: colors.blue
+        info: colors.blue,
+
+        /** background colors used in ring-offset-color */
+        background: {
+          white: colors.white,
+          dark: colors.slate[800]
+        }
+      },
+      opacity: {
+        '15': '.15'
       },
       fontSize: {
         '3xs': '0.5rem',
@@ -44,8 +54,10 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms')({ strategy: 'class' }),
-    require('./js/tailwindcss/plugins/hideScrollbar'),
-    require('./js/tailwindcss/plugins/softScrollbar'),
-    require('./js/tailwindcss/plugins/appearance-none')
+    require('./ts/tailwindcss/plugins/hideScrollbar'),
+    require('./ts/tailwindcss/plugins/softScrollbar'),
+    require('./ts/tailwindcss/plugins/appearance-none'),
+    require('./ts/tailwindcss/plugins/form/validation'),
+    require('./ts/tailwindcss/plugins/form/input-state')
   ]
 }

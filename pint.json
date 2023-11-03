@@ -1,0 +1,140 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "Laravel/laravel_phpdoc_alignment": false,
+        "align_multiline_comment": true,
+        "single_trait_insert_per_statement": true,
+        "no_trailing_comma_in_singleline": true,
+        "no_whitespace_before_comma_in_array": true,
+        "nullable_type_declaration_for_default_null_value": true,
+        "array_indentation": true,
+        "array_syntax": {
+            "syntax": "short"
+        },
+        "assign_null_coalescing_to_coalesce_equal": true,
+        "binary_operator_spaces": {
+            "default": "align_single_space_minimal"
+        },
+        "blank_line_after_namespace": true,
+        "blank_line_after_opening_tag": true,
+        "blank_line_before_statement": {
+            "statements": [
+                "break",
+                "continue",
+                "declare",
+                "default",
+                "do",
+                "exit",
+                "for",
+                "foreach",
+                "goto",
+                "if",
+                "return",
+                "switch",
+                "throw",
+                "try",
+                "while",
+                "yield_from"
+            ]
+        },
+        "blank_line_between_import_groups": true,
+        "braces": {
+            "allow_single_line_closure": false,
+            "position_after_anonymous_constructs": "same",
+            "position_after_control_structures": "same",
+            "position_after_functions_and_oop_constructs": "next"
+        },
+        "cast_spaces": {
+            "space": "single"
+        },
+        "class_attributes_separation": {
+            "elements": {
+                "method": "one",
+                "property": "one"
+            }
+        },
+        "class_keyword_remove": false,
+        "class_reference_name_casing": true,
+        "clean_namespace": true,
+        "combine_consecutive_issets": false,
+        "combine_consecutive_unsets": false,
+        "combine_nested_dirname": false,
+        "comment_to_phpdoc": false,
+        "compact_nullable_typehint": true,
+        "concat_space": {
+            "spacing": "one"
+        },
+        "constant_case": {
+            "case": "lower"
+        },
+        "control_structure_braces": true,
+        "date_time_immutable": false,
+        "declare_equal_normalize": {
+            "space": "single"
+        },
+        "declare_strict_types": false,
+        "dir_constant": false,
+        "doctrine_annotation_indentation": {
+            "ignored_tags": [],
+            "indent_mixed_lines": true
+        },
+        "doctrine_annotation_spaces": {
+            "after_argument_assignments": false,
+            "after_array_assignments_colon": false,
+            "after_array_assignments_equals": false
+        },
+        "elseif": false,
+        "encoding": true,
+        "explicit_string_variable": true,
+        "fully_qualified_strict_types": true,
+        "group_import": true,
+        "heredoc_to_nowdoc": false,
+        "indentation_type": true,
+        "lowercase_cast": true,
+        "lowercase_keywords": true,
+        "lowercase_static_reference": true,
+        "magic_constant_casing": true,
+        "magic_method_casing": true,
+        "multiline_whitespace_before_semicolons": true,
+        "native_function_casing": true,
+        "new_with_braces": true,
+        "no_extra_blank_lines": true,
+        "no_multiline_whitespace_around_double_arrow": true,
+        "no_short_bool_cast": true,
+        "no_singleline_whitespace_before_semicolons": true,
+        "no_spaces_around_offset": true,
+        "no_unused_imports": true,
+        "no_useless_else": true,
+        "no_useless_return": true,
+        "not_operator_with_space": false,
+        "not_operator_with_successor_space": false,
+        "no_multiple_statements_per_line": true,
+        "ordered_imports": {
+            "imports_order": [
+                "const",
+                "class",
+                "function"
+            ],
+            "sort_algorithm": "alpha"
+        },
+        "php_unit_method_casing": {
+            "case": "snake_case"
+        },
+        "simplified_if_return": true,
+        "single_import_per_statement": false,
+        "single_quote": true,
+        "ternary_operator_spaces": true,
+        "ternary_to_null_coalescing": true,
+        "trailing_comma_in_multiline": {
+            "elements": [
+                "arguments",
+                "arrays",
+                "match",
+                "parameters"
+            ]
+        },
+        "trim_array_spaces": true,
+        "unary_operator_spaces": true,
+        "whitespace_after_comma_in_array": true
+    }
+}

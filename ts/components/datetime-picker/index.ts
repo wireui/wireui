@@ -1,15 +1,24 @@
-import { applyMask } from '@/utils/masker'
-import { getLocalTimezone, date as parseDate } from '@/utils/date'
-import { CurrentDate, DateTimePicker, InitOptions, LocaleDateConfig, NextDate, PreviousDate, Props, Refs } from './interfaces'
-import { makeTimes, Time } from './makeTimes'
-import { convertStandardTimeToMilitary } from '@/utils/time'
-import { baseComponent } from '@/components/alpine'
-import { positioning } from '@/components/modules/positioning'
 import { watchProps } from '@/alpine/magic/props'
+import { Focusable } from '@/alpine/modules/Focusable'
+import Positionable from '@/alpine/modules/Positionable'
+import { baseComponent } from '@/components/alpine'
+import { date as parseDate, getLocalTimezone } from '@/utils/date'
+import { applyMask } from '@/utils/masker'
+import { convertStandardTimeToMilitary } from '@/utils/time'
+import {
+  CurrentDate,
+  DateTimePicker,
+  InitOptions,
+  LocaleDateConfig,
+  NextDate,
+  PreviousDate,
+  Props,
+  Refs
+} from './interfaces'
+import { makeTimes, Time } from './makeTimes'
 
 export default (options: InitOptions): DateTimePicker => ({
   ...baseComponent,
-  ...positioning,
   $refs: {} as Refs,
   $props: {} as Props,
   model: options.model,
@@ -52,19 +61,27 @@ export default (options: InitOptions): DateTimePicker => ({
   year: 0,
   minDate: null,
   maxDate: null,
+  positionable: new Positionable(),
+  focusable: new Focusable(),
 
   get dates () {
     return [...this.previousDates, ...this.currentDates, ...this.nextDates]
   },
 
   init () {
+    this.positionable
+      .start(this, this.$refs.container, this.$refs.popover)
+      .position('bottom')
+
+    this.focusable.start(this.$refs.optionsContainer, 'button, input')
+
     watchProps(this, this.syncProps.bind(this))
+
     this.syncProps()
     this.initComponent()
-    this.initPositioningSystem()
 
-    this.$watch('popover', popover => {
-      if (popover) {
+    this.positionable.watch(state => {
+      if (state) {
         this.syncPickerDates()
 
         if (!this.withoutTime) {
@@ -72,7 +89,7 @@ export default (options: InitOptions): DateTimePicker => ({
         }
       }
 
-      if (!popover && this.tab !== 'date') {
+      if (!state && this.tab !== 'date') {
         setTimeout(() => (this.tab = 'date'), 500)
       }
     })
@@ -130,7 +147,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.syncDateLimits()
 
-    if (this.popover) {
+    if (this.positionable.isOpen()) {
       this.syncPickerDates()
     }
   },
@@ -162,17 +179,17 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.syncDateLimits()
 
-    this.popover = !this.popover
+    this.positionable.toggle()
     this.monthsPicker = false
   },
   close () {
-    this.popover = false
+    this.positionable.close()
     this.monthsPicker = false
   },
   handleEscape () {
     if (this.monthsPicker) return (this.monthsPicker = false)
 
-    this.popover = false
+    this.positionable.close()
   },
   syncCalendar () {
     if (!this.input?.getYear || !this.input?.getMonth) return
@@ -383,7 +400,7 @@ export default (options: InitOptions): DateTimePicker => ({
 
     !this.withoutTime
       ? this.tab = 'time'
-      : this.popover = false
+      : this.positionable.close()
   },
   selectTime (time) {
     if (!this.withoutTimezone) {
@@ -397,7 +414,7 @@ export default (options: InitOptions): DateTimePicker => ({
     }
 
     this.syncWireModel()
-    this.popover = false
+    this.positionable.close()
   },
   today () {
     return parseDate(new Date(), this.timezone)

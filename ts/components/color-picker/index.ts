@@ -1,108 +1,101 @@
-import debounce from '@/utils/debounce'
-import { applyMask, masker, Masker } from '@/utils/masker'
-import { baseComponent, Component, Entangle, WireModifiers } from '@/components/alpine'
-import { Positioning, positioning, PositioningRefs } from '@/components/modules/positioning'
+import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { Focusable } from '@/alpine/modules/Focusable'
+import Positionable from '@/alpine/modules/Positionable'
+import { AlpineComponent } from '@/components/alpine2'
+import { WireModel } from '@/livewire'
+import { applyMask } from '@/utils/masker'
 
 export type Color = {
-  name: string | null
-  value: string | null
+  name: string
+  value: string
 }
 
-export type InitOptions = {
-  colorNameAsValue: boolean
-  wireModifiers?: WireModifiers
-  wireModel?: Entangle
-  colors?: Color[]
-}
+export default class ColorPicker extends AlpineComponent {
+  declare $refs: {
+    input: HTMLInputElement
+    popover: HTMLElement
+    container: HTMLLabelElement
+    colorsContainer: HTMLDivElement
+  }
 
-export type Refs = PositioningRefs & {
-  input: HTMLInputElement
-}
+  declare $props: {
+    colorNameAsValue: boolean
+    wireModel: WireModel
+    colors: Color[]
+  }
 
-export interface ColorPicker extends Component, Positioning {
-  $refs: Refs
-  selected: Color
-  masker: Masker
-  wireModel: Entangle
+  selected: Color = { value: '', name: '' }
 
-  get colors (): Color[]
+  entangleable: Entangleable = new Entangleable()
 
-  init (): void
-  initWireModel (): void
-  select: (color: Color) => void
-  setColor (value: string | null): void
-  emitInput (): void
-}
+  positionable: Positionable = new Positionable()
 
-export default (options: InitOptions = { colorNameAsValue: false }): ColorPicker => ({
-  ...baseComponent,
-  ...positioning,
-  $refs: {} as Refs,
-  selected: { value: null, name: null },
-  masker: masker('!#XXXXXX', null),
-  wireModel: options.wireModel ?? null,
+  focusable: Focusable = new Focusable()
 
   get colors (): Color[] {
-    if (options.colors) return options.colors
+    if (this.$props?.colors?.length) {
+      return this.$props.colors
+    }
 
     return window.Alpine.store('wireui:color-picker')?.colors ?? []
-  },
+  }
 
   init () {
-    this.initPositioningSystem()
+    this.positionable
+      .start(this, this.$refs.container, this.$refs.popover)
+      .position('bottom')
 
-    if (this.$refs.input.value) {
-      this.setColor(this.$refs.input.value)
+    this.focusable.start(this.$refs.colorsContainer, 'button')
+
+    this.entangleable.watch(() => this.syncSelected())
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    if (options.wireModel !== undefined) {
-      this.initWireModel()
-    }
-  },
-  initWireModel () {
-    this.setColor(this.wireModel)
-    const emitInput = this.emitInput.bind(this)
+    new SupportsAlpine(this.entangleable, this.$refs.input)
+  }
 
-    if (options.wireModifiers?.blur) {
-      this.$refs.input.addEventListener('blur', emitInput)
-      this.$cleanup(() => this.$refs.input.removeEventListener('blur', emitInput))
-    } else if (options.wireModifiers?.debounce?.exists) {
-      this.$watch(
-        'selected',
-        debounce(emitInput, options.wireModifiers.debounce.delay)
-      )
-    } else {
-      this.$watch('selected', debounce(emitInput, 300))
-    }
+  syncSelected () {
+    const value = this.entangleable.get()
 
-    this.$watch('wireModel', (color: string | null) => this.setColor(color))
-  },
-  select (color) {
-    this.selected = color
-    this.emitInput()
-    this.close()
-  },
-  setColor (value) {
-    if (!options.colorNameAsValue) {
-      value = applyMask('!#XXXXXX', value)
-    }
+    const selectedColor = this.colors.find(color => {
+      if (this.$props.colorNameAsValue) {
+        return color.name === value
+      }
 
-    const color = this.colors.find(c => {
-      if (options.colorNameAsValue) return c.name === value
-
-      return applyMask('!#XXXXXX', c.value) === value
+      return applyMask('!#XXXXXX', color.value) === value
     })
 
     this.selected = {
-      value: color?.value ?? value,
-      name: color?.name ?? value
+      value: selectedColor?.value ?? value ?? '',
+      name: selectedColor?.name ?? value ?? ''
     }
-  },
-  emitInput () {
-    if (options.colorNameAsValue) {
-      return (this.wireModel = this.selected.name)
+  }
+
+  select (color: Color) {
+    this.selected = { ...color }
+
+    const value = this.$props.colorNameAsValue
+      ? color.name
+      : color.value
+
+    this.entangleable.set(value, { force: true, triggerBlur: true })
+
+    this.positionable?.close()
+  }
+
+  setColor (color: string | null) {
+    if (!this.$props.colorNameAsValue) {
+      color = applyMask('!#XXXXXX', color)
     }
 
-    this.wireModel = this.selected.value
+    this.entangleable.set(color)
+
+    this.syncSelected()
   }
-})
+
+  onBlur (color: string | null) {
+    this.entangleable.set(color, { force:true, triggerBlur: true })
+  }
+}

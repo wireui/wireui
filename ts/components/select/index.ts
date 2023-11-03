@@ -1,14 +1,14 @@
-import { stringify } from 'qs'
+import { watchProps } from '@/alpine/magic/props'
 import { focusables } from '@/components/modules/focusables'
+import { positioning } from '@/components/modules/positioning'
+import { notify } from '@/notifications'
+import dataGet from '@/utils/dataGet'
+import { jsonParse } from '@/utils/helpers'
+import { stringify } from 'qs'
 import { Select } from './interfaces'
 import { templates } from './templates'
-import { InitOptions, Option, Options, Props, Refs } from './types'
 import baseTemplate from './templates/baseTemplate'
-import dataGet from '@/utils/dataGet'
-import { notify } from '@/notifications'
-import { watchProps } from '@/alpine/magic/props'
-import { jsonParse } from '@/utils/helpers'
-import { positioning } from '@/components/modules/positioning'
+import { InitOptions, Option, Options, Props, Refs } from './types'
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -224,6 +224,9 @@ export default (initOptions: InitOptions): Select => ({
       childList: true,
       subtree: true
     })
+  },
+  rootContainer () {
+    return this.$refs.container
   },
   shouldSyncProps (mutations: MutationRecord[] = []) {
     return mutations.some(mutation => {

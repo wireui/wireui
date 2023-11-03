@@ -18,7 +18,6 @@
         // Possible Errors
         "no-extra-parens": ["error", "all", { "returnAssign": false }],
         "import/first": "off",
-        "import/named": "error",
         "import/namespace": "error",
         "import/default": "error",
         "import/export": "error",
@@ -30,7 +29,7 @@
 
         // Best Practices
         "eqeqeq": "error",
-        "no-invalid-this": "error",
+//        "no-invalid-this": "error",
         "no-return-assign": ["error", "except-parens"],
         "no-unused-expressions": ["error", { "allowTernary": true }],
         "no-useless-concat": "error",
@@ -107,8 +106,11 @@
             "plugins": ["@typescript-eslint"],
             "rules": {
                 "indent": "off",
+                "no-use-before-define": "off",
+                "@typescript-eslint/ban-ts-comment": "warn",
                 "@typescript-eslint/no-explicit-any": "off",
-                "@typescript-eslint/indent": ["error", 2]
+                "@typescript-eslint/indent": ["error", 2],
+                "@typescript-eslint/no-use-before-define": "error"
             }
         }
     ]

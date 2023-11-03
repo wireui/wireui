@@ -13,7 +13,7 @@ export const colors = {
 
 export const icons = {
   'success': { name: 'check-circle', color: colors['success'] },
-  'error': { name: 'exclamation', color: colors['error'] },
+  'error': { name: 'exclamation-triangle', color: colors['error'] },
   'info': { name: 'information-circle', color: colors['info'] },
   'warning': { name: 'exclamation-circle', color: colors['warning'] },
   'question': { name: 'question-mark-circle', color: colors['question'] }

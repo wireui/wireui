@@ -1,9 +1,10 @@
 import { props, watchProps } from '@/alpine/magic/props'
-import { Component } from '@/components/alpine'
-import { AlpineMock, mockAlpineComponent, sleep } from '@tests/helpers'
+import { AlpineComponent } from '@/components/alpine2'
+import { AlpineMock, mockAlpineComponent, sleep, WireuiMock } from '@tests/helpers'
 
 describe('Testing the props magic helper', () => {
   beforeEach(() => {
+    window.Wireui = WireuiMock
     window.Alpine = AlpineMock
   })
 
@@ -16,22 +17,34 @@ describe('Testing the props magic helper', () => {
     $root.appendChild(el)
 
     expect(props(el)).toEqual({ foo: 'bar' })
-    expect(window.Alpine.evaluate).toHaveBeenNthCalledWith(1, el, '$root')
-    expect(window.Alpine.evaluate).toHaveBeenNthCalledWith(2, $root, '{ foo: "bar" }')
+    expect(window.Alpine.evaluate).toHaveBeenCalledExactlyOnceWith($root, '{ foo: "bar" }')
+  })
+
+  it('should get the props from cache', () => {
+    const $root = document.createElement('div')
+    const el = document.createElement('div')
+
+    $root.setAttribute('x-data', '{}')
+    $root.setAttribute('x-props', '{ foo: "bar" }')
+    $root.appendChild(el)
+
+    window.Wireui.cache['x-props:{ foo: "bar" }'] = { foo: 'bar' }
+
+    expect(props(el)).toEqual({ foo: 'bar' })
+    expect(window.Alpine.evaluate).not.toHaveBeenCalled()
   })
 
   it('should return an empty object if the attribute is not present or the root parent not exists', () => {
     const el = document.createElement('div')
 
     expect(props(el)).toEqual({})
-    expect(window.Alpine.evaluate).toHaveBeenCalledWith(el, '$root')
-    expect(window.Alpine.evaluate).toBeCalledTimes(1)
+    expect(window.Alpine.evaluate).not.toHaveBeenCalled()
   })
 
   it('should run the callback when the props is changed', async () => {
     const $root = document.createElement('div')
     const callback = jest.fn()
-    const component = mockAlpineComponent({} as Component)
+    const component = mockAlpineComponent({} as AlpineComponent)
     component.$root = $root
 
     $root.setAttribute('x-props', '{ foo: false }')

@@ -4,9 +4,10 @@ namespace WireUi\Support;
 
 use Illuminate\Contracts\Support\Htmlable;
 
-class Html implements Htmlable {
+class Html implements Htmlable
+{
     public function __construct(
-        public string $html
+        public string $html,
     ) {
     }
 

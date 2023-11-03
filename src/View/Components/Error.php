@@ -2,18 +2,15 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
+use Illuminate\Contracts\View\View;
 
-class Error extends Component
+class Error extends WireUiComponent
 {
-    public string $name;
+    protected array $props = [
+        'name' => null,
+    ];
 
-    public function __construct(string $name)
-    {
-        $this->name = $name;
-    }
-
-    public function render()
+    public function blade(): View
     {
         return view('wireui::components.error');
     }

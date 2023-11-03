@@ -2,34 +2,32 @@
 
 namespace WireUi\View\Components;
 
-use WireUi\Actions;
+use Illuminate\Contracts\View\View;
+use WireUi\Actions\Dialog as DialogAction;
 
-class Dialog extends Modal
+class Dialog extends WireUiComponent
 {
-    public string $dialog;
+    public string $dialog = '';
 
-    public ?string $title;
+    protected array $packs = ['align', 'blur', 'width', 'type'];
 
-    public ?string $description;
+    protected array $props = [
+        'id'          => null,
+        'title'       => null,
+        'spacing'     => null,
+        'z-index'     => null,
+        'blurless'    => false,
+        'description' => null,
+    ];
 
-    public function __construct(
-        ?string $zIndex = null,
-        ?string $maxWidth = null,
-        ?string $spacing = null,
-        ?string $align = null,
-        ?string $id = null,
-        ?string $title = null,
-        ?string $description = null,
-        ?string $blur = null
-    ) {
-        parent::__construct('', $zIndex, $maxWidth, $spacing, $align, $blur);
+    protected function processed(): void
+    {
+        $this->dialog = DialogAction::makeEventName($this->id);
 
-        $this->title       = $title;
-        $this->dialog      = Actions\Dialog::makeEventName($id);
-        $this->description = $description;
+        $this->setVariables('dialog');
     }
 
-    public function render()
+    public function blade(): View
     {
         return view('wireui::components.dialog');
     }

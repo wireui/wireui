@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" backupStaticAttributes="false" colors="true" verbose="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-    <coverage>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    bootstrap="vendor/autoload.php"
+    backupGlobals="false"
+    colors="true"
+    processIsolation="false"
+    stopOnFailure="false"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
+    cacheDirectory=".phpunit.cache"
+    backupStaticProperties="false"
+>
+    <source>
         <include>
             <directory suffix=".php">src/</directory>
-            <directory suffix=".blade.php">resources/views/</directory>
         </include>
-    </coverage>
+
+        <exclude>
+            <file>src/config.php</file>
+            <directory suffix=".php">src/lang/</directory>
+            <directory suffix=".blade.php">src/resources/views/</directory>
+        </exclude>
+    </source>
+
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
+
         <testsuite name="Browser">
             <directory suffix="Test.php">./tests/Browser</directory>
         </testsuite>
     </testsuites>
+
     <php>
-        <env name="DB_CONNECTION" value="testing" />
-        <env name="APP_KEY" value="base64:k41qv6M3iCm985CMRBFNPUgsxU2GUXQsBNNBTSGeraU=" />
+        <env name="DB_CONNECTION" value="testing"/>
+        <env name="APP_KEY" value="base64:k41qv6M3iCm985CMRBFNPUgsxU2GUXQsBNNBTSGeraU="/>
     </php>
 </phpunit>

@@ -2,54 +2,69 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\Support\ViewErrorBag;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\{Collection, Str};
+use WireUi\Facades\WireUi;
+use WireUi\Traits\Components\InteractsWithErrors;
 
-class Errors extends Component
+class Errors extends WireUiComponent
 {
-    public string $title;
+    use InteractsWithErrors;
 
-    public array $only;
+    protected array $props = [
+        'only'  => [],
+        'title' => null,
+    ];
 
-    /**
-     * @param string $title
-     * @param string|array|null $only
-     */
-    public function __construct(
-        ?string $title = null,
-        $only = []
-    ) {
-        if (is_string($only)) {
-            $only = explode('|', $only);
-            $only = array_map(fn (string $name) => trim($name), $only);
-        }
+    protected function processed(array $data): void
+    {
+        $this->initOnly();
 
-        $this->title = $title ?? __('wireui::messages.errors.title');
-        $this->only  = $only;
+        $this->title ??= data_get($data, 'title');
     }
 
-    public function render()
+    private function initOnly(): void
+    {
+        if (is_string($this->only)) {
+            $this->only = str($this->only)->explode('|');
+
+            $this->only->transform(fn (string $name) => trim($name));
+        }
+
+        $this->only = collect($this->only);
+    }
+
+    public function count(): int
+    {
+        return $this->getErrorMessages()->count();
+    }
+
+    public function getArray(mixed $title): array
+    {
+        return WireUi::checkSlot($title) ? [
+            'color' => 'negative',
+        ] : [
+            'color' => 'negative',
+            'title' => $this->getTitle(),
+        ];
+    }
+
+    public function getErrorMessages(): Collection
+    {
+        $messages = $this->errors()->getMessages();
+
+        return $this->only->isNotEmpty() ? collect($messages)->only($this->only) : collect($messages);
+    }
+
+    private function getTitle(): string
+    {
+        $title = $this->title ?? trans_choice('wireui::messages.errors.title', $this->count());
+
+        return Str::replace('{errors}', $this->count(), $title);
+    }
+
+    public function blade(): View
     {
         return view('wireui::components.errors');
-    }
-
-    public function hasErrors(ViewErrorBag $errors): bool
-    {
-        return (bool) $this->count($errors);
-    }
-
-    public function count(ViewErrorBag $errors): int
-    {
-        return count($this->getErrorMessages($errors));
-    }
-
-    public function getErrorMessages(ViewErrorBag $errors): array
-    {
-        $messages = $errors->getMessages();
-
-        if (!$this->only) {
-            return $messages;
-        }
-
-        return array_filter($messages, fn ($name) => in_array($name, $this->only), ARRAY_FILTER_USE_KEY);
     }
 }

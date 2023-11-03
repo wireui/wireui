@@ -2,10 +2,10 @@
 
 return [
     'empty_options' => 'Prázdne možnosti',
-    'searchHere'    => 'Hľadajte tu',
-    'datePicker'    => [
-        'months'    => "['Január', 'Február', 'Marec', 'Apríl', 'Máj', 'Jún', 'Júl', 'August', 'September', 'Október', 'November', 'December']",
-        'days'      => "['Ne', 'Po', 'Ut', 'St', 'Št', 'Pi', 'So']",
+    'search_here'   => 'Hľadajte tu',
+    'date_picker'   => [
+        'months'    => ['Január', 'Február', 'Marec', 'Apríl', 'Máj', 'Jún', 'Júl', 'August', 'September', 'Október', 'November', 'December'],
+        'days'      => ['Ne', 'Po', 'Ut', 'St', 'Št', 'Pi', 'So'],
         'tomorrow'  => 'Zajtra',
         'today'     => 'Dnes',
         'yesterday' => 'Včera',

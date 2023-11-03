@@ -2,38 +2,13 @@
 
 namespace WireUi\View\Components;
 
-use Illuminate\View\Component;
+use WireUi\Enum\Packs;
+use WireUi\Heroicons;
 
-class Icon extends Component
+class Icon extends Heroicons\Icon
 {
-    public function __construct(
-        public string $name,
-        public ?string $style = null,
-        public bool $solid = false,
-        public bool $outline = false,
-    ) {
-        $this->style = $this->getStyle();
-    }
-
-    public function render()
+    protected function defaultVariant(): string
     {
-        return view('wireui::components.icon');
-    }
-
-    private function getStyle(): string
-    {
-        if ($this->style) {
-            return $this->style;
-        }
-
-        if ($this->solid) {
-            return 'solid';
-        }
-
-        if ($this->outline) {
-            return 'outline';
-        }
-
-        return config('wireui.icons.style');
+        return config('wireui.icon.variant') ?? Packs\Icon::OUTLINE;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace WireUi\View\Components\Select;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Option extends Component
@@ -12,11 +13,11 @@ class Option extends Component
         public mixed $value = null,
         public ?string $label = null,
         public ?string $description = null,
-        public mixed $option = []
+        public mixed $option = [],
     ) {
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.select.option');
     }

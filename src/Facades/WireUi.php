@@ -3,17 +3,24 @@
 namespace WireUi\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use WireUi\Support\{BladeDirectives, ComponentResolver};
+use Illuminate\View\ComponentAttributeBag;
+use Livewire\Component;
+use WireUi\Support\{BladeDirectives, ComponentResolver, WireUiSupport};
 
 /**
- * @method static string component(string $name)
  * @method static ComponentResolver components()
  * @method static BladeDirectives directives()
+ * @method static string component(string $name)
+ * @method static bool checkSlot(mixed $slot)
+ * @method static ComponentAttributeBag extractAttributes(mixed $property)
+ * @method static string alpine(string $component, array $data = [])
+ * @method static string toJs(array $data = [])
+ * @method static array wireModel(?Component $component, ComponentAttributeBag $attributes)
  */
 class WireUi extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \WireUi\Wireui::class;
+        return WireUiSupport::class;
     }
 }

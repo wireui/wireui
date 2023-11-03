@@ -17,7 +17,7 @@ export const icons = {
     background: 'p-2 bg-positive-50 dark:bg-secondary-700 border dark:border-0 rounded-3xl'
   },
   'error': {
-    name: 'exclamation',
+    name: 'exclamation-triangle',
     color: colors['error'],
     background: 'p-2 bg-negative-50 dark:bg-secondary-700 border dark:border-0 rounded-3xl'
   },

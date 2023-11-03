@@ -2,6 +2,8 @@
 
 namespace WireUi\View\Components\Select;
 
+use Illuminate\Contracts\View\View;
+
 class UserOption extends Option
 {
     public function __construct(
@@ -15,7 +17,7 @@ class UserOption extends Option
     ) {
     }
 
-    public function render()
+    public function render(): View
     {
         return view('wireui::components.select.user-option');
     }

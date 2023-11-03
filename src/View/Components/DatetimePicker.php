@@ -3,87 +3,47 @@
 namespace WireUi\View\Components;
 
 use Carbon\Carbon;
-use DateTimeInterface;
+use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 
-class DatetimePicker extends Input
+class DatetimePicker extends WireUiComponent
 {
-    public bool $clearable;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use IsFormComponent;
 
-    public bool $withoutTips;
+    protected array $packs = ['shadow'];
 
-    public bool $withoutTimezone;
+    protected array $props = [
+        'max'              => null,
+        'min'              => null,
+        'interval'         => 10,
+        'max-time'         => 24,
+        'min-time'         => 0,
+        'timezone'         => null,
+        'clearable'        => true,
+        'right-icon'       => 'calendar',
+        'shadowless'       => false,
+        'time-format'      => 12,
+        'parse-format'     => null,
+        'without-time'     => false,
+        'without-tips'     => false,
+        'user-timezone'    => null,
+        'display-format'   => null,
+        'without-timezone' => false,
+    ];
 
-    public bool $withoutTime;
+    protected function processed(): void
+    {
+        $this->timezone ??= config('app.timezone', 'UTC');
 
-    public int $interval;
-
-    public string $timeFormat;
-
-    public string $timezone;
-
-    public ?string $userTimezone;
-
-    public ?string $parseFormat;
-
-    public ?string $displayFormat;
-
-    public string|int $minTime;
-
-    public string|int $maxTime;
-
-    public ?Carbon $min;
-
-    public ?Carbon $max;
-
-    /**
-     * @param Carbon|DateTimeInterface|string|int|null $min
-     * @param Carbon|DateTimeInterface|string|int|null $max
-     */
-    public function __construct(
-        bool $clearable = true,
-        bool $borderless = false,
-        bool $shadowless = false,
-        bool $withoutTips = false,
-        bool $withoutTimezone = false,
-        bool $withoutTime = false,
-        int $interval = TimePicker::INTERVAL,
-        string $timeFormat = TimePicker::DEFAULT_FORMAT,
-        ?string $parseFormat = null,
-        ?string $displayFormat = null,
-        ?string $rightIcon = 'calendar',
-        ?string $timezone = null,
-        ?string $userTimezone = null,
-        ?string $label = null,
-        ?string $hint = null,
-        ?string $cornerHint = null,
-        ?string $icon = null,
-        ?string $prefix = null,
-        ?string $prepend = null,
-        string|int $minTime = 0,
-        string|int $maxTime = 24,
-        $min = null,
-        $max = null,
-    ) {
-        parent::__construct($borderless, $shadowless, $label, $hint, $cornerHint, $icon, $rightIcon, $prefix, $suffix = null, $prepend, $append = null);
-
-        $this->clearable       = $clearable;
-        $this->withoutTips     = $withoutTips;
-        $this->withoutTimezone = $withoutTimezone;
-        $this->withoutTime     = $withoutTime;
-        $this->timeFormat      = $timeFormat;
-        $this->interval        = $interval;
-        $this->timezone        = $timezone ?? config('app.timezone', 'UTC');
-        $this->userTimezone    = $userTimezone;
-        $this->parseFormat     = $parseFormat;
-        $this->displayFormat   = $displayFormat;
-        $this->minTime         = $minTime;
-        $this->maxTime         = $maxTime;
-        $this->min             = $min ? Carbon::parse($min) : null;
-        $this->max             = $max ? Carbon::parse($max) : null;
+        $this->min = Carbon::make($this->min);
+        $this->max = Carbon::make($this->max);
     }
 
-    protected function getView(): string
+    protected function blade(): View
     {
-        return 'wireui::components.datetime-picker';
+        return view('wireui::components.datetime-picker');
     }
 }
