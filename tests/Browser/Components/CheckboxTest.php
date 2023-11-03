@@ -2,14 +2,15 @@
 
 namespace Tests\Browser\Components;
 
+use Laravel\Dusk\Browser;
 use Livewire\{Attributes\Rule, Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class CheckboxTest extends BrowserTestCase
 {
-    public function test_it_should_render_with_label_and_change_value()
+    public function component(): Browser
     {
-        Livewire::visit(new class() extends Component
+        return Livewire::visit(new class() extends Component
         {
             #[Rule('accepted')]
             public bool $checkbox = false;
@@ -38,7 +39,12 @@ class CheckboxTest extends BrowserTestCase
                 </div>
                 BLADE;
             }
-        })
+        });
+    }
+
+    public function test_it_should_render_with_label_and_change_value()
+    {
+        $this->component()
             ->assertSee('Remember me')
             ->check('checkbox')
             ->assertChecked('checkbox')
