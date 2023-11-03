@@ -1,6 +1,6 @@
 <x-wrapper.switcher
     :data="$wrapperData"
-    :attributes="$attributes->only(['wire:key'])"
+    :attributes="$attrs->only(['wire:key'])"
 >
     @include('wireui::components.wrapper.slots')
 
@@ -10,18 +10,17 @@
         class="relative flex items-center select-none group"
     >
         <input
-            {{ $attributes->merge([
-                'name' => $name,
-                'id'   => $id,
-            ])->class([
-                'translate-x-0 transform transition ease-in-out duration-200 cursor-pointer shadow',
-                'checked:bg-none peer focus:ring-0 focus:ring-offset-0 focus:outline-none bg-white',
-                'absolute mx-0.5 my-auto inset-y-0 border-0 appearance-none',
-                'checked:text-white dark:bg-secondary-200',
-                data_get($sizeClasses, 'circle'),
-                $roundedClasses,
-            ]) }}
-            type="checkbox"
+            {{ $attrs
+                ->class([
+                    'translate-x-0 transform transition ease-in-out duration-200 cursor-pointer shadow',
+                    'checked:bg-none peer focus:ring-0 focus:ring-offset-0 focus:outline-none bg-white',
+                    'absolute mx-0.5 my-auto inset-y-0 border-0 appearance-none',
+                    'checked:text-white dark:bg-secondary-200',
+                    data_get($sizeClasses, 'circle'),
+                    $roundedClasses,
+                ])
+                ->merge(['type' => 'radio'])
+            }}
         />
 
         <div @class([

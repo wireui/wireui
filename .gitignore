@@ -4,6 +4,7 @@ coverage
 tests/Browser/console
 tests/Browser/screenshots
 tests/Browser/source
+tests/Browser/tmp
 .phpunit.result.cache
 .phpunit.cache/
 yarn-error.log

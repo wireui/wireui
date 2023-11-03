@@ -1,13 +1,11 @@
-@dump($attributes)
-
 <x-wrapper.switcher
     :data="$wrapperData"
-    :attributes="$attributes->only(['wire:key'])"
+    :attributes="$attrs->only(['wire:key'])"
 >
     @include('wireui::components.wrapper.slots')
 
     <input
-        {{ $attributes
+        {{ $attrs
             ->class([
                 'form-checkbox transition ease-in-out duration-100',
                 $roundedClasses,
