@@ -27,7 +27,7 @@ class PositionableTest extends BrowserTestCase
             ->assertPopoverIsClosed($name);
     }
 
-    public function components(): array
+    public static function components(): array
     {
         return [
             'ColorPicker' => ['<x-color-picker name="testing" />'],

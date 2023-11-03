@@ -6,7 +6,7 @@ use Tests\Browser\BrowserTestCase;
 
 class SupportsAlpineTest extends BrowserTestCase
 {
-    public function componentsInXData(): array
+    public static function componentsInXData(): array
     {
         return [
             'ColorPicker' => [
@@ -30,7 +30,7 @@ class SupportsAlpineTest extends BrowserTestCase
             ->assertInputValue('value', $value);
     }
 
-    public function components(): array
+    public static function components(): array
     {
         return [
             'ColorPicker' => [
