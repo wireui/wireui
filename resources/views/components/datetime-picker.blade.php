@@ -119,7 +119,7 @@
                     </button>
                     <input class="w-14 appearance-none p-0 ring-0 border-none focus:ring-0 focus:outline-none dark:bg-secondary-800"
                            x-model="year"
-                           x-on:input.debounce.500ms="fillPickerDates"
+                           x-on:input.debounce.500ms="if (year.length === 4) fillPickerDates()"
                            type="number"
                     />
                 </div>
