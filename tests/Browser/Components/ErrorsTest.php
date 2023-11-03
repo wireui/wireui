@@ -2,14 +2,15 @@
 
 namespace Tests\Browser\Components;
 
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class ErrorsTest extends BrowserTestCase
 {
-    public function test_it_should_render_all_errors_and_render_filtered_errors()
+    public function component(): Testable
     {
-        Livewire::test(new class() extends Component
+        return Livewire::test(new class() extends Component
         {
             public array $only = [];
 
@@ -42,7 +43,12 @@ class ErrorsTest extends BrowserTestCase
                 </div>
                 BLADE;
             }
-        })
+        });
+    }
+
+    public function test_it_should_render_all_errors_and_render_filtered_errors()
+    {
+        $this->component()
             ->assertSee('first error')
             ->assertSee('second error')
             ->assertSee('third error')

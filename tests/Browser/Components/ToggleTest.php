@@ -8,9 +8,9 @@ use Tests\Browser\BrowserTestCase;
 
 class ToggleTest extends BrowserTestCase
 {
-    public function test_it_should_render_label_and_change_value()
+    public function component(): Browser
     {
-        Livewire::visit(new class() extends Component
+        return Livewire::visit(new class() extends Component
         {
             public $toggle = false;
 
@@ -38,7 +38,12 @@ class ToggleTest extends BrowserTestCase
                 </div>
                 BLADE;
             }
-        })
+        });
+    }
+
+    public function test_it_should_render_label_and_change_value()
+    {
+        $this->component()
             ->assertSee('Enable Notifications')
             ->tap(fn (Browser $browser) => $browser->script("document.getElementById('toggle').click()"))
             ->assertChecked('toggle')
