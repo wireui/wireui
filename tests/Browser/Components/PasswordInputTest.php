@@ -75,14 +75,14 @@ class PasswordInputTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_see_label_and_corner_hint()
+    public function test_it_should_see_label_and_corner_hint(): void
     {
         $this->component()
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
 
-    public function test_it_should_see_hint_and_prefix_and_not_see_suffix()
+    public function test_it_should_see_hint_and_prefix_and_not_see_suffix(): void
     {
         $this->component()
             ->assertSee('Hint 1')
@@ -90,7 +90,7 @@ class PasswordInputTest extends BrowserTestCase
             ->assertDontSee('Suffix 1');
     }
 
-    public function test_it_should_not_see_prepend_and_append_slots()
+    public function test_it_should_not_see_prepend_and_append_slots(): void
     {
         $this->component()
             ->assertSee('prepend 1')
@@ -99,7 +99,7 @@ class PasswordInputTest extends BrowserTestCase
             ->assertDontSeeHtml('<a>append 1</a>');
     }
 
-    public function test_it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots()
+    public function test_it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots(): void
     {
         $this->component()
             ->assertSee('prefix 2')
@@ -108,7 +108,7 @@ class PasswordInputTest extends BrowserTestCase
             ->assertDontSeeHtml('<a>append 2</a>');
     }
 
-    public function test_it_should_see_input_error()
+    public function test_it_should_see_input_error(): void
     {
         $this->component()
             ->call('validateInput')
@@ -117,14 +117,14 @@ class PasswordInputTest extends BrowserTestCase
             ->assertDontSee('input cant be empty');
     }
 
-    public function test_it_should_set_model_value_to_livewire()
+    public function test_it_should_set_model_value_to_livewire(): void
     {
         $this->component()
             ->type('password', 'password')
             ->waitForTextIn('@password-value', 'password');
     }
 
-    public function test_it_should_change_the_input_type_when_clicking_on_the_view_password_icon()
+    public function test_it_should_change_the_input_type_when_clicking_on_the_view_password_icon(): void
     {
         $this->component()
             ->assertSee('Show Password')

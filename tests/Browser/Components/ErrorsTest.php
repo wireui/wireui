@@ -46,7 +46,7 @@ class ErrorsTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_render_all_errors_and_render_filtered_errors()
+    public function test_it_should_render_all_errors_and_render_filtered_errors(): void
     {
         $this->component()
             ->assertSee('first error')

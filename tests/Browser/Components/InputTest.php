@@ -3,14 +3,15 @@
 namespace Tests\Browser\Components;
 
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class InputTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function component(): Testable
     {
-        return Livewire::visit(new class() extends Component
+        return Livewire::test(new class() extends Component
         {
             public $model = null;
 
@@ -42,11 +43,11 @@ class InputTest extends BrowserTestCase
                 <div>
                     <h1>Input test</h1>
 
-                    // test it_should_see_label_and_corner_hint
-                    <x-input label="Input 1" corner-hint="Corner 1" />
+                    // test it_should_see_label_and_corner
+                    <x-input label="Input 1" corner="Corner 1" />
 
-                    // test it_should_see_hint_prefix_and_suffix
-                    <x-input label="Input 1" corner-hint="Corner 1" hint="Hint 1" prefix="Prefix 1" suffix="Suffix 1" />
+                    // test it_should_see_description_prefix_and_suffix
+                    <x-input label="Input 1" corner="Corner 1" prefix="Prefix 1" suffix="Suffix 1" description="Description 1" />
 
                     // test it_should_see_append_and_prepend_slots
                     <x-input>
@@ -70,52 +71,69 @@ class InputTest extends BrowserTestCase
                         </x-slot>
                     </x-input>
 
-                    // test it_should_set_model_value_to_livewire
-                    <x-input dusk="input" wire:model.live="model" label="Model Input" />
-
-                    <span dusk="model-value">{{ $model }}</span>
+                    // test it_should_see_input_error
+                    <x-input wire:model.live="model" label="Model Input" />
 
                     // test it_should_dont_see_the_input_error_message
                     <x-input wire:model.live="errorless" label="Test error less" :errorless="true" />
                 </div>
-
                 BLADE;
             }
         });
     }
 
-    public function test_it_should_see_label_and_corner_hint()
+    public function componentDusk(): Browser
+    {
+        return Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    // test it_should_set_model_value_to_livewire
+                    <x-input dusk="input" wire:model.live="model" label="Model Input" />
+
+                    <span dusk="model-value">{{ $model }}</span>
+                </div>
+                BLADE;
+            }
+        });
+    }
+
+    public function test_it_should_see_label_and_corner(): void
     {
         $this->component()
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
 
-    public function test_it_should_see_hint_prefix_and_suffix()
+    public function test_it_should_see_description_prefix_and_suffix(): void
     {
         $this->component()
-            ->assertSee('Hint 1')
             ->assertSee('Prefix 1')
-            ->assertSee('Suffix 1');
+            ->assertSee('Suffix 1')
+            ->assertSee('Description 1');
     }
 
-    public function test_it_should_see_append_and_prepend_slots()
+    public function test_it_should_see_append_and_prepend_slots(): void
     {
         $this->component()
             ->assertSeeHtml('<a>prepend</a>')
             ->assertSeeHtml('<a>append</a>');
     }
 
-    public function test_it_should_see_prefix_and_suffix_instead_append_or_prepend_slots()
+    public function test_it_should_see_prefix_and_suffix_instead_append_or_prepend_slots(): void
     {
         $this->component()
-            ->assertSee('prefix 2')
-            ->assertSee('suffix 2')
-            ->assertDontSeeHtml('<a>prepend 2</a>')
-            ->assertDontSeeHtml('<a>append 2</a>');
+            ->assertDontSee('prefix 2')
+            ->assertDontSee('suffix 2')
+            ->assertSeeHtml('<a>prepend 2</a>')
+            ->assertSeeHtml('<a>append 2</a>');
     }
 
-    public function test_it_should_see_input_error()
+    public function test_it_should_see_input_error(): void
     {
         $this->component()
             ->call('validateInput')
@@ -124,18 +142,18 @@ class InputTest extends BrowserTestCase
             ->assertDontSee('input cant be empty');
     }
 
-    public function test_it_should_set_model_value_to_livewire()
-    {
-        $this->component()
-            ->type('model', 'wireui@livewire-wireui.com')
-            ->waitForTextIn('@model-value', 'wireui@livewire-wireui.com');
-    }
-
-    public function test_it_should_dont_see_the_input_error_message()
+    public function test_it_should_dont_see_the_input_error_message(): void
     {
         $this->component()
             ->call('validateInput')
             ->assertDontSee('input is required')
             ->assertHasErrors('errorless');
+    }
+
+    public function test_it_should_set_model_value_to_livewire(): void
+    {
+        $this->componentDusk()
+            ->type('model', 'wireui@livewire-wireui.com')
+            ->waitForTextIn('@model-value', 'wireui@livewire-wireui.com');
     }
 }

@@ -113,7 +113,7 @@ class NativeTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_render_select_with_slot_options_and_show_error_message()
+    public function test_it_should_render_select_with_slot_options_and_show_error_message(): void
     {
         $this->component()
             ->assertSelectHasOptions('model', ['Slot Option 1', 'Slot Option 2', 'Slot Option 3'])
@@ -128,7 +128,7 @@ class NativeTest extends BrowserTestCase
             ->assertSee('select a value');
     }
 
-    public function test_it_should_render_select_with_give_array_options()
+    public function test_it_should_render_select_with_give_array_options(): void
     {
         $this->component()->assertSelectHasOptions(
             'arrayOptionsModel',
@@ -140,7 +140,7 @@ class NativeTest extends BrowserTestCase
         );
     }
 
-    public function test_it_should_render_select_with_give_collection_options()
+    public function test_it_should_render_select_with_give_collection_options(): void
     {
         $this->component()->assertSelectHasOptions(
             'collectionOptionsModel',
@@ -152,7 +152,7 @@ class NativeTest extends BrowserTestCase
         );
     }
 
-    public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys()
+    public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys(): void
     {
         $this->component()->assertSelectHasOptions(
             'arrayWithLabelAndValueKeys',
@@ -164,7 +164,7 @@ class NativeTest extends BrowserTestCase
         );
     }
 
-    public function test_it_should_render_select_with_give_array_options_using_key_as_value()
+    public function test_it_should_render_select_with_give_array_options_using_key_as_value(): void
     {
         $this->component()->assertSelectHasOptions(
             'option-key-value',
@@ -176,7 +176,7 @@ class NativeTest extends BrowserTestCase
         );
     }
 
-    public function test_it_should_render_select_with_give_array_options_using_key_as_label()
+    public function test_it_should_render_select_with_give_array_options_using_key_as_label(): void
     {
         $this->component()->assertSelectHasOptions(
             'option-key-label',

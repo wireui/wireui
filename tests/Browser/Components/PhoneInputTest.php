@@ -44,7 +44,7 @@ class PhoneInputTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_type_formatted_phone_number()
+    public function test_it_should_type_formatted_phone_number(): void
     {
         $this->component()
             ->type('phone', '0123456789')
@@ -60,7 +60,7 @@ class PhoneInputTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_type_custom_masked_phone_number()
+    public function test_it_should_type_custom_masked_phone_number(): void
     {
         $this->component()
             ->type('customPhone', '0123456789')

@@ -55,14 +55,14 @@ class MaskableInputTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_start_input_with_formatted_value()
+    public function test_it_should_start_input_with_formatted_value(): void
     {
         $this->component()
             ->assertSeeIn('@singleMaskValue', '1234')
             ->assertInputValue('singleMask', '12.34');
     }
 
-    public function test_it_should_type_input_value_and_emit_formatted_value()
+    public function test_it_should_type_input_value_and_emit_formatted_value(): void
     {
         $this->component()
             ->type('singleFormattedMask', '3245ABCD')
@@ -73,7 +73,7 @@ class MaskableInputTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_type_input_value_and_apply_multiples_masks()
+    public function test_it_should_type_input_value_and_apply_multiples_masks(): void
     {
         $this->component()
             ->type('multipleMask', '9876')

@@ -206,7 +206,7 @@ class NotificationsTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_show_notification_from_directive_and_call_accept_and_reject_methods()
+    public function test_it_should_show_notification_from_directive_and_call_accept_and_reject_methods(): void
     {
         $this->component()
             ->assertSee('notifications test')
@@ -219,7 +219,7 @@ class NotificationsTest extends BrowserTestCase
             ->waitForTextIn('@value', 'Rejected');
     }
 
-    public function test_it_should_show_simple_notification_from_component_call()
+    public function test_it_should_show_simple_notification_from_component_call(): void
     {
         $this->component()
             ->click('@button.test.simple_notification')
@@ -232,7 +232,7 @@ class NotificationsTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_show_confirmation_with_single_callback_from_component_call()
+    public function test_it_should_show_confirmation_with_single_callback_from_component_call(): void
     {
         $this->component()
             ->click('@button.test.call_confirm_action_with_single_callback')
@@ -245,7 +245,7 @@ class NotificationsTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_show_confirmation_with_multiple_callbacks_and_events_from_component_call()
+    public function test_it_should_show_confirmation_with_multiple_callbacks_and_events_from_component_call(): void
     {
         $duskButton = '@button.test.call_confirm_action_with_multiples_callbacks_and_events';
 
@@ -285,14 +285,14 @@ class NotificationsTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_show_simple_notification_from_js_call()
+    public function test_it_should_show_simple_notification_from_js_call(): void
     {
         $this->component()
             ->click('@button.test.js.simple_notification')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('My Simple Notification from js'));
     }
 
-    public function test_it_should_show_complex_notification_from_js_call()
+    public function test_it_should_show_complex_notification_from_js_call(): void
     {
         $duskButton = '@button.test.js.complex_notification';
 
@@ -313,7 +313,7 @@ class NotificationsTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_redirect_when_notification_is_closed()
+    public function test_it_should_redirect_when_notification_is_closed(): void
     {
         $this->component()
             ->click('@button.test.redirect_on_close_notification')

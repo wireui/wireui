@@ -11,7 +11,7 @@ class ColorPickerTest extends BrowserTestCase
     public const HTML = '<x-color-picker label="Color Picker" name="color" />';
     public const NAME = 'color';
 
-    public function test_it_should_select_a_color()
+    public function test_it_should_select_a_color(): void
     {
         $this->render(self::HTML)
             ->openPopover(self::NAME)
@@ -27,7 +27,7 @@ class ColorPickerTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#f3e8ff'));
     }
 
-    public function test_it_should_type_the_color_value()
+    public function test_it_should_type_the_color_value(): void
     {
         $this->render(self::HTML)
             ->clear(self::NAME)
@@ -38,14 +38,14 @@ class ColorPickerTest extends BrowserTestCase
             ->assertInputValue(self::NAME, '#123456');
     }
 
-    public function test_it_should_auto_fill_the_color_from_input_element_value_as_color_title()
+    public function test_it_should_auto_fill_the_color_from_input_element_value_as_color_title(): void
     {
         $this->render('<x-color-picker color-name-as-value name="color" value="Black" />')
             ->waitForAlpineJs()
             ->assertInputValue('color', 'Black');
     }
 
-    public function test_auto_fill_from_wire_model()
+    public function test_auto_fill_from_wire_model(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -60,7 +60,7 @@ class ColorPickerTest extends BrowserTestCase
             ->assertInputValue('color', '#FFF');
     }
 
-    public function test_wire_model_defer()
+    public function test_wire_model_defer(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -94,7 +94,7 @@ class ColorPickerTest extends BrowserTestCase
             ->waitForTextIn('@value', '#000');
     }
 
-    public function test_wire_model_live()
+    public function test_wire_model_live(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -122,7 +122,7 @@ class ColorPickerTest extends BrowserTestCase
             ->waitForTextIn('@value', '#000');
     }
 
-    public function test_wire_model_live_blur()
+    public function test_wire_model_live_blur(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -150,7 +150,7 @@ class ColorPickerTest extends BrowserTestCase
             ->waitForTextIn('@value', '#FFF');
     }
 
-    public function test_wire_model_debounce()
+    public function test_wire_model_debounce(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -182,7 +182,7 @@ class ColorPickerTest extends BrowserTestCase
             ->assertSeeIn('@value', '#000');
     }
 
-    public function test_wire_model_throttle()
+    public function test_wire_model_throttle(): void
     {
         Livewire::visit(new class() extends Component
         {

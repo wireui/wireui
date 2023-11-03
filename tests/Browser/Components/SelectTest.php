@@ -166,14 +166,14 @@ class SelectTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_show_validation_message()
+    public function test_it_should_show_validation_message(): void
     {
         $this->component()
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Select any value'));
     }
 
-    public function test_it_should_select_one_option_from_simples_options_list()
+    public function test_it_should_select_one_option_from_simples_options_list(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -192,7 +192,7 @@ class SelectTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model', 'Array Option 1'));
     }
 
-    public function test_it_should_select_one_option_from_labeled_options_list()
+    public function test_it_should_select_one_option_from_labeled_options_list(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
@@ -209,7 +209,7 @@ class SelectTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model2', '1'));
     }
 
-    public function test_it_should_select_and_unselect_multiples_options()
+    public function test_it_should_select_and_unselect_multiples_options(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -233,7 +233,7 @@ class SelectTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model3', 'B'));
     }
 
-    public function test_it_should_select_from_slot_list()
+    public function test_it_should_select_from_slot_list(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -248,7 +248,7 @@ class SelectTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model4', 'E'));
     }
 
-    public function test_it_should_cannot_select_readonly_and_disabled_options()
+    public function test_it_should_cannot_select_readonly_and_disabled_options(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -267,7 +267,7 @@ class SelectTest extends BrowserTestCase
             ->assertSeeIn('@model5', 'normal');
     }
 
-    public function test_it_should_load_and_search_options_from_the_api()
+    public function test_it_should_load_and_search_options_from_the_api(): void
     {
         $this->component()
             ->openSelect('asyncModel')
@@ -283,7 +283,7 @@ class SelectTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@asyncModel', 2));
     }
 
-    public function test_it_should_load_from_the_api_with_nested_data()
+    public function test_it_should_load_from_the_api_with_nested_data(): void
     {
         $this->component()
             ->openSelect('asyncModelNestedData')

@@ -55,7 +55,7 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
+    ): void {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
@@ -78,7 +78,7 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
+    ): void {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('showDialog', { options: {
@@ -100,7 +100,7 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
+    ): void {
         $this->component()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
@@ -116,7 +116,7 @@ class DialogTest extends BrowserTestCase
             ->assertSee($description);
     }
 
-    public function test_it_should_close_when_timeout_is_end()
+    public function test_it_should_close_when_timeout_is_end(): void
     {
         $title = 'Autoclosing...';
 
@@ -130,7 +130,7 @@ class DialogTest extends BrowserTestCase
             ->assertDontSee($title);
     }
 
-    public function test_it_should_call_callable_events_actions()
+    public function test_it_should_call_callable_events_actions(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
@@ -198,7 +198,7 @@ class DialogTest extends BrowserTestCase
         ];
     }
 
-    public function test_it_should_perform_accept_and_reject_action()
+    public function test_it_should_perform_accept_and_reject_action(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
@@ -214,7 +214,7 @@ class DialogTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'accepted, rejected'));
     }
 
-    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action()
+    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action(): void
     {
         $this->component()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))

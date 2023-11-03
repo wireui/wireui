@@ -58,7 +58,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js()
+    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js(): void
     {
         $this->component()
             ->click('@button.alpine')
@@ -68,7 +68,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
             ->waitForTextIn('@value', 'Accepted by Alpine');
     }
 
-    public function test_it_should_call_confirm_notification_by_directive_js()
+    public function test_it_should_call_confirm_notification_by_directive_js(): void
     {
         $this->component()
             ->click('@button.js')

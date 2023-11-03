@@ -48,7 +48,7 @@ class CurrencyInputTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_mask_currency_value()
+    public function test_it_should_mask_currency_value(): void
     {
         $this->component()
             ->type('currency', '123456')
@@ -59,7 +59,7 @@ class CurrencyInputTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('currency', '12.5'));
     }
 
-    public function test_it_should_follow_livewire_model_changes()
+    public function test_it_should_follow_livewire_model_changes(): void
     {
         $this->component()
             ->clear('currency')
@@ -67,7 +67,7 @@ class CurrencyInputTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('currency', '12,345.67'));
     }
 
-    public function test_it_should_type_currency_value_and_emit_formatted_value()
+    public function test_it_should_type_currency_value_and_emit_formatted_value(): void
     {
         $this->component()
             ->clear('formattedCurrency')
@@ -79,7 +79,7 @@ class CurrencyInputTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_parse_custom_currencies_like_brazilian_real()
+    public function test_it_should_parse_custom_currencies_like_brazilian_real(): void
     {
         $this->component()
             ->assertInputValue('brazilCurrency', '123.456,99')

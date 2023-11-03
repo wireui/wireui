@@ -41,7 +41,7 @@ class ToggleTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_render_label_and_change_value()
+    public function test_it_should_render_label_and_change_value(): void
     {
         $this->component()
             ->assertSee('Enable Notifications')

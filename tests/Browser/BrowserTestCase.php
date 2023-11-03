@@ -2,6 +2,7 @@
 
 namespace Tests\Browser;
 
+use Closure;
 use Illuminate\Support\Facades\{Artisan, File};
 use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
@@ -56,7 +57,7 @@ class BrowserTestCase extends TestCase
         parent::tearDown();
     }
 
-    protected function makeACleanSlate()
+    protected function makeACleanSlate(): void
     {
         Artisan::call('view:clear');
 
@@ -69,9 +70,10 @@ class BrowserTestCase extends TestCase
         File::ensureDirectoryExists(self::tmpPath());
     }
 
-    public static function tweakApplicationHook()
+    public static function tweakApplicationHook(): Closure
     {
         return function () {
+            //
         };
     }
 

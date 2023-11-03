@@ -52,7 +52,7 @@ class TimePickerTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_select_time_and_clear_am_pm_time()
+    public function test_it_should_select_time_and_clear_am_pm_time(): void
     {
         $this->component()
             ->type('timeAmPm', '144')
@@ -78,7 +78,7 @@ class TimePickerTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_select_time_and_clear_24h_time()
+    public function test_it_should_select_time_and_clear_24h_time(): void
     {
         $this->component()
             ->type('time24H', '12:44')
@@ -109,7 +109,7 @@ class TimePickerTest extends BrowserTestCase
      *
      * @warn can't use .live if using model property as datetime, datetime cannot has empty hours
      * */
-    public function it_should_select_time_using_model_property_datetime()
+    public function it_should_select_time_using_model_property_datetime(): void
     {
         $this->component()
             ->assertInputValue('birthday', '11:05 PM')
