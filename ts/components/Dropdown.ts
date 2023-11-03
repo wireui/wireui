@@ -16,6 +16,8 @@ export default class Dropdown extends AlpineComponent {
 
   init () {
     this.positionable
+      .toggleScrollbar(false)
+      .mobilePositioning(true)
       .start(this, this.$refs.triggerContainer, this.$refs.popover)
       .position(this.$props.position)
       .offset(8)
