@@ -17,18 +17,6 @@ class BladeDirectives
         return "onclick=\"window.\$wireui.notify({$expression}, '{{ \$__livewire->getId() }}')\"";
     }
 
-    public function boolean(string $value): string
-    {
-        return "<?= json_encode(filter_var({$value}, FILTER_VALIDATE_BOOLEAN)); ?>";
-    }
-
-    public function toJs(mixed $expression): string
-    {
-        return <<<EOT
-        <?php if (is_object({$expression}) || is_array({$expression})) { echo "JSON.parse(atob('".base64_encode(json_encode({$expression}))."'))"; } elseif (is_string({$expression})) { echo "'".str_replace("'", "\'", {$expression})."'"; } else { echo json_encode({$expression}); } ?>
-        EOT;
-    }
-
     public function styles(bool $absolute = true): string
     {
         $route = route('wireui.assets.styles', [], $absolute);

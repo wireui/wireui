@@ -9,24 +9,27 @@ class ErrorsTest extends BrowserTestCase
 {
     public function test_it_should_render_all_errors_and_render_filtered_errors()
     {
-        Livewire::visit(new class() extends Component
+        Livewire::test(new class() extends Component
         {
             public array $only = [];
 
-            protected $listeners = ['showDialog', 'addEvent'];
-
-            public function addErrors()
+            public function mount()
             {
-                $this->addError('first', 'first error');
-                $this->addError('second', 'second error');
-                $this->addError('third', 'third error');
+                $this->addErrors();
             }
 
-            public function addFilterErrors(string $event)
+            public function addFilterErrors()
             {
                 $this->only = ['first', 'second'];
 
                 $this->addErrors();
+            }
+
+            private function addErrors()
+            {
+                $this->addError('first', 'first error');
+                $this->addError('second', 'second error');
+                $this->addError('third', 'third error');
             }
 
             public function render(): string
@@ -40,7 +43,6 @@ class ErrorsTest extends BrowserTestCase
                 BLADE;
             }
         })
-            ->call('addErrors')
             ->assertSee('first error')
             ->assertSee('second error')
             ->assertSee('third error')

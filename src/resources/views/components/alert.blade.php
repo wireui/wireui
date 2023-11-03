@@ -26,7 +26,7 @@
                     />
                 @endif
 
-                @if (check_slot($title))
+                @if (WireUi::checkSlot($title))
                     <div {{ $title->attributes->class([
                         'font-semibold' => $slot->isNotEmpty(),
                         Arr::get($colorClasses, 'text', ''),
@@ -56,7 +56,7 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        @if (check_slot($slot))
+        @if (WireUi::checkSlot($slot))
             <div {{ $slot->attributes->class([
                 Arr::get($colorClasses, 'text', ''),
                 $paddingClasses,

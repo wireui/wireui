@@ -14,7 +14,7 @@
             Arr::get($roundedClasses, 'header', ''),
             'border-b' => !$borderless,
         ])>
-            @if (check_slot($title))
+            @if (WireUi::checkSlot($title))
                 <div {{ $title->attributes->class([
                     'font-medium text-base whitespace-normal',
                     Arr::get($colorClasses, 'text', ''),
@@ -38,7 +38,7 @@
         </div>
     @endisset
 
-    @if (check_slot($slot))
+    @if (WireUi::checkSlot($slot))
         <div {{ $slot->attributes->class([
             Arr::get($colorClasses, 'text', ''),
             $paddingClasses,

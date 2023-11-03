@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str};
+use WireUi\Facades\WireUi;
 use WireUi\Traits\Components\InteractsWithErrors;
 
 class Errors extends WireUiComponent
@@ -40,7 +41,7 @@ class Errors extends WireUiComponent
 
     public function getArray(mixed $title): array
     {
-        return check_slot($title) ? [
+        return WireUi::checkSlot($title) ? [
             'color' => 'negative',
         ] : [
             'color' => 'negative',

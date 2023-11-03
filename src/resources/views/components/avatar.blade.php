@@ -7,7 +7,7 @@
     $roundedClasses,
 ]) }}>
     @if ($label)
-        @if (check_slot($label))
+        @if (WireUi::checkSlot($label))
             <div {{ $label->attributes->class([
                 Arr::get($iconSizeClasses, 'label', 'text-base'),
                 'font-medium text-white dark:text-gray-200',

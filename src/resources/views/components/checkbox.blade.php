@@ -1,3 +1,5 @@
+@dump($attributes)
+
 <x-wrapper.switcher
     :data="$wrapperData"
     :attributes="$attributes->only(['wire:key'])"

@@ -8,9 +8,6 @@ use WireUi\Support\BladeDirectives;
 /**
  * @method static string confirmAction(string $expression)
  * @method static string notify(string $expression)
- * @method static string boolean(string $value)
- * @method static string toJs(mixed $expression)
- * @method static string entangleable(string $expression)
  * @method static string styles(bool $absolute = true)
  * @method static string scripts(bool $absolute = true, array $attributes = [])
  * @method static string hooksScript()

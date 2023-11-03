@@ -23,11 +23,14 @@ class WireUiSupport
         return (new static())->components()->resolve($name);
     }
 
+    public function checkSlot(mixed $slot): bool
+    {
+        return $slot instanceof ComponentSlot;
+    }
+
     public function extractAttributes(mixed $property): ComponentAttributeBag
     {
-        return $property instanceof ComponentSlot
-            ? $property->attributes
-            : new ComponentAttributeBag();
+        return $property instanceof ComponentSlot ? $property->attributes : new ComponentAttributeBag();
     }
 
     public function alpine(string $component, array $data = []): string
@@ -61,7 +64,7 @@ class WireUiSupport
         return "{{$expressions}}";
     }
 
-    public static function wireModel(?Component $component, ComponentAttributeBag $attributes)
+    public static function wireModel(?Component $component, ComponentAttributeBag $attributes): array
     {
         $exists = count($attributes->whereStartsWith('wire:model')->getAttributes()) > 0;
 
