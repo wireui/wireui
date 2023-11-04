@@ -159,7 +159,7 @@ class PasswordTest extends BrowserTestCase
             ->assertInputValue('show-password', '')
             ->type('show-password', 'secret')
             ->assertDontSee('secret')
-            ->click('div[wire\\:key="show-password"] > div > div.relative > div.absolute > div > svg:not([style*=\'none\'])')
+            ->click('div[wire\\:key="show-password"] > label > div[name="form.wrapper.container.append"] > button > svg:not([style*=\'none\'])')
             ->assertAttribute('input[name="show-password"]', 'type', 'text')
             ->assertInputValue('show-password', 'secret');
     }

@@ -166,11 +166,10 @@ class NumberTest extends BrowserTestCase
         $this->browser()
             ->assertSee('Show Number')
             ->assertInputValue('show-number', '')
-            ->type('show-number', '2')
-            ->click('div[wire\\:key="show-number"] > div > div.relative > div.right-0 > button')
-            ->click('div[wire\\:key="show-number"] > div > div.relative > div.right-0 > button')
+            ->type('show-number', 2)
+            ->doubleClick('div[wire\\:key="show-number"] > label > div[name="form.wrapper.container.append"] > button')
             ->assertInputValue('show-number', '4')
-            ->click('div[wire\\:key="show-number"] > div > div.relative > div.left-0 > button')
+            ->click('div[wire\\:key="show-number"] > label > div[name="form.wrapper.container.prepend"] > button')
             ->assertInputValue('show-number', '3');
     }
 }
