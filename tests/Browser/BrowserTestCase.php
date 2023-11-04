@@ -20,11 +20,9 @@ class BrowserTestCase extends TestCase
 
     protected function setUp(): void
     {
-        // if (isset($_SERVER['CI'])) {
-        //     Options::withoutUI();
-        // }
-
-        Options::withoutUI();
+        if (isset($_SERVER['CI'])) {
+            Options::withoutUI();
+        }
 
         Browser::$waitSeconds = 7;
 
