@@ -38,12 +38,12 @@ class CurrencyTest extends BrowserTestCase
                     </button>
 
                     // test it_should_type_currency_value_and_emit_formatted_value
-                    <x-currency label="Formatted Currency" emit-formatted wire:model.live="formattedCurrency" />
+                    <x-currency label="Formatted Currency" wire:model.live="formattedCurrency" emit-formatted />
 
                     <span dusk="formattedCurrency">{{ $formattedCurrency }}</span>
 
                     // test it_should_parse_custom_currencies_like_brazilian_real
-                    <x-currency thousands="." decimal="," precision="2" wire:model.live="brazilCurrency" />
+                    <x-currency wire:model.live="brazilCurrency" thousands="." decimal="," precision="2" />
                 </div>
                 BLADE;
             }

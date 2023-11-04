@@ -5,10 +5,10 @@ namespace WireUi\View\Components;
 use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\{Arr, Str};
+use Illuminate\Support\{Arr, HtmlString, Str};
 use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
-use WireUi\Support\{ComponentPack, Html};
+use WireUi\Support\{ComponentPack};
 use WireUi\View\ManageProps;
 
 #[AllowDynamicProperties]
@@ -45,7 +45,7 @@ abstract class WireUiComponent extends Component
             return $view;
         }
 
-        $resolver = fn (View $view) => new Html($view->render());
+        $resolver = fn (View $view) => new HtmlString($view->render());
 
         return fn (array $data = []) => $resolver($view($data));
     }
