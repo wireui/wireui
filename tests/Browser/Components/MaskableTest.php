@@ -26,6 +26,7 @@ class MaskableTest extends BrowserTestCase
 
                     // test it_should_start_input_with_formatted_value
                     <span dusk="singleMaskValue">{{ $singleMask }}</span>
+
                     <x-maskable
                         label="Maskable"
                         mask="##.##"
@@ -34,6 +35,7 @@ class MaskableTest extends BrowserTestCase
 
                     // test it_should_type_input_value_and_emit_formatted_value
                     <span dusk="singleFormattedMaskValue">{{ $singleFormattedMask }}</span>
+
                     <x-maskable
                         label="Maskable"
                         mask="##.##.SS"
@@ -43,9 +45,10 @@ class MaskableTest extends BrowserTestCase
 
                     // test it_should_type_input_value_and_apply_multiples_masks
                     <span dusk="multipleMaskValue">{{ $multipleMask }}</span>
+
                     <x-maskable
                         label="Maskable"
-                        mask="['##.##', '##.##.##', '##.##.###']"
+                        :mask="['##.##', '##.##.##', '##.##.###']"
                         wire:model.live="multipleMask"
                         emit-formatted
                     />

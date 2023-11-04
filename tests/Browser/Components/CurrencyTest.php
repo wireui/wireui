@@ -6,7 +6,7 @@ use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class CurrencyInputTest extends BrowserTestCase
+class CurrencyTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
@@ -32,12 +32,14 @@ class CurrencyInputTest extends BrowserTestCase
                     // test it_should_mask_currency_value
                     // test it_should_follow_livewire_model_changes
                     <x-currency label="Currency" wire:model.live="currency" />
+
                     <button dusk="button.change.currency" wire:click="changeCurrency">
                         change
                     </button>
 
                     // test it_should_type_currency_value_and_emit_formatted_value
                     <x-currency label="Formatted Currency" emit-formatted wire:model.live="formattedCurrency" />
+
                     <span dusk="formattedCurrency">{{ $formattedCurrency }}</span>
 
                     // test it_should_parse_custom_currencies_like_brazilian_real
