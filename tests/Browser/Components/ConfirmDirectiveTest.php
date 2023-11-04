@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 
 class ConfirmDirectiveTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -23,7 +23,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Confirm Directive test</h1>
+                    <h1>Confirm Directive Browser Test</h1>
 
                     <span dusk="value">{{ $value }}</span>
 
@@ -58,9 +58,9 @@ class ConfirmDirectiveTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js()
+    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.alpine')
             ->waitForText('Alpine Confirmation')
             ->waitForText('AcceptAlpine')
@@ -68,9 +68,9 @@ class ConfirmDirectiveTest extends BrowserTestCase
             ->waitForTextIn('@value', 'Accepted by Alpine');
     }
 
-    public function test_it_should_call_confirm_notification_by_directive_js()
+    public function test_it_should_call_confirm_notification_by_directive_js(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.js')
             ->waitForText('JS Confirmation')
             ->waitForText('AcceptJS')

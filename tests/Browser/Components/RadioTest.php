@@ -8,9 +8,9 @@ use Tests\Browser\BrowserTestCase;
 
 class RadioTest extends BrowserTestCase
 {
-    public function test_it_should_render_with_label_and_change_value()
+    public function browser(): Browser
     {
-        Livewire::visit(new class() extends Component
+        return Livewire::visit(new class() extends Component
         {
             public $radio = null;
 
@@ -27,7 +27,7 @@ class RadioTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Radio Test</h1>
+                    <h1>Radio Browser Test</h1>
 
                     <span dusk="radio">@json($radio)</span>
 
@@ -39,7 +39,12 @@ class RadioTest extends BrowserTestCase
                 </div>
                 BLADE;
             }
-        })
+        });
+    }
+
+    public function test_it_should_render_with_label_and_change_value(): void
+    {
+        $this->browser()
             ->assertSee('Laravel')
             ->assertSee('Livewire')
             ->click('@validate')

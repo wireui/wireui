@@ -9,7 +9,7 @@ use WireUi\Traits\WireUiActions;
 
 class DialogTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -33,7 +33,7 @@ class DialogTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Dialog test</h1>
+                    <h1>Dialog Browser Test</h1>
 
                     <x-dialog id="custom">
                         my slot
@@ -55,8 +55,8 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
-        $this->component()
+    ): void {
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     icon: "{$icon}",
@@ -78,8 +78,8 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
-        $this->component()
+    ): void {
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('showDialog', { options: {
                     icon: "{$icon}",
@@ -100,8 +100,8 @@ class DialogTest extends BrowserTestCase
         string $icon,
         string $title,
         string $description,
-    ) {
-        $this->component()
+    ): void {
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({
                     id: 'custom',
@@ -116,11 +116,11 @@ class DialogTest extends BrowserTestCase
             ->assertSee($description);
     }
 
-    public function test_it_should_close_when_timeout_is_end()
+    public function test_it_should_close_when_timeout_is_end(): void
     {
         $title = 'Autoclosing...';
 
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
             EOT))
@@ -130,9 +130,9 @@ class DialogTest extends BrowserTestCase
             ->assertDontSee($title);
     }
 
-    public function test_it_should_call_callable_events_actions()
+    public function test_it_should_call_callable_events_actions(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(400)
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
@@ -198,9 +198,9 @@ class DialogTest extends BrowserTestCase
         ];
     }
 
-    public function test_it_should_perform_accept_and_reject_action()
+    public function test_it_should_perform_accept_and_reject_action(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
             ->pause(200)
             ->assertSee('This is a title')
@@ -214,9 +214,9 @@ class DialogTest extends BrowserTestCase
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'accepted, rejected'));
     }
 
-    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action()
+    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
 
             ->waitForText($title = 'This is a title')

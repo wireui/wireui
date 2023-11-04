@@ -20,7 +20,7 @@ class DropdownTest extends BrowserTestCase
     </x-dropdown>
     BLADE;
 
-    public function test_it_should_open_the_dropdown()
+    public function test_it_should_open_the_dropdown(): void
     {
         $this->render(self::HTML)
             ->waitForAlpineJs()
@@ -31,7 +31,7 @@ class DropdownTest extends BrowserTestCase
             ->assertSee('purple-100');
     }
 
-    public function test_dropdown_should_close_when_click_outside()
+    public function test_dropdown_should_close_when_click_outside(): void
     {
         $this->render(self::HTML)
             ->waitForAlpineJs()

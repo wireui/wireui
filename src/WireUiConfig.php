@@ -359,7 +359,7 @@ class WireUiConfig
                 'alias' => 'currency',
             ],
             'maskable' => [
-                'class' => Components\Input\MaskableInput::class,
+                'class' => Components\Input\Maskable::class,
                 'alias' => 'maskable',
             ],
             'number' => [

@@ -2,6 +2,7 @@
 
 namespace WireUi\Support;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use Livewire\{Component, WireDirective};
@@ -50,10 +51,11 @@ class WireUiSupport
 
         $parse = function ($value) {
             return match (true) {
-                is_array($value),
-                is_object($value) => "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))",
-                is_string($value) => "'" . str_replace("'", "\'", $value) . "'",
-                default           => json_encode($value),
+                $value instanceof WireDirective => $this->entangle($value),
+                is_array($value)                => $this->jsonParse($value),
+                is_object($value)               => $this->jsonParse($value),
+                is_string($value)               => "'" . str_replace("'", "\'", $value) . "'",
+                default                         => json_encode($value),
             };
         };
 
@@ -62,6 +64,20 @@ class WireUiSupport
         }
 
         return "{{$expressions}}";
+    }
+
+    private function jsonParse(array|string $value): string
+    {
+        return "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))";
+    }
+
+    private function entangle(WireDirective $value): string
+    {
+        if ($value->hasModifier('blur')) {
+            return Blade::render("@entangle('{$value}').live");
+        }
+
+        return Blade::render("@entangle('{$value}')");
     }
 
     public static function wireModel(?Component $component, ComponentAttributeBag $attributes): array

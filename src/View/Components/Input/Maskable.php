@@ -4,12 +4,11 @@ namespace WireUi\View\Components\Input;
 
 use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Str;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\Components\WireUiComponent;
 
-abstract class Maskable extends WireUiComponent
+class Maskable extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -25,19 +24,10 @@ abstract class Maskable extends WireUiComponent
 
     protected function processed(): void
     {
-        $this->mask = $this->formatMask($this->mask ?: $this->getInputMask());
+        $this->mask ??= $this->getInputMask();
     }
 
-    private function formatMask(string $mask): string
-    {
-        if (Str::startsWith($mask, '[')) {
-            return $mask;
-        }
-
-        return "'{$mask}'";
-    }
-
-    protected function getInputMask(): string
+    protected function getInputMask(): array|string
     {
         throw new Exception('Implement this method [getInputMask] on your component or pass [mask] in parameters');
     }

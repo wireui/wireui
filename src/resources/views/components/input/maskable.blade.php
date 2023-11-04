@@ -1,12 +1,12 @@
 <x-wrapper
+    :data="$wrapperData"
+    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :x-data="WireUi::alpine('wireui_inputs_maskable', [
         'isBlur'        => $attrs->wire('model')->hasModifier('blur'),
-        'model'         => null,
+        'model'         => $attrs->wire('model'),
         'emitFormatted' => $emitFormatted,
         'mask'          => $mask,
     ])"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >
     @include('wireui::components.wrapper.slots')
 

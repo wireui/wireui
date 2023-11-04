@@ -29,7 +29,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
         };
     }
 
-    public function openSelect()
+    public function openSelect(): Closure
     {
         return function (string $name) {
             /** @var Browser $this */
@@ -39,7 +39,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
         };
     }
 
-    public function wireuiSelectValue()
+    public function wireuiSelectValue(): Closure
     {
         return function (string $name, int $index) {
             /** @var Browser $this */

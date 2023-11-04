@@ -18,7 +18,7 @@ class RegisterBladeComponentsTest extends TestCase
         });
     }
 
-    public function test_should_register_the_input_component_with_a_custom_alias()
+    public function test_should_register_the_input_component_with_a_custom_alias(): void
     {
         /** @var BladeCompiler $bladeCompiler */
         $bladeCompiler = resolve(BladeCompiler::class);

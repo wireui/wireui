@@ -9,7 +9,7 @@ use Tests\Browser\BrowserTestCase;
 
 class TimePickerTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -32,7 +32,7 @@ class TimePickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Time Picker test</h1>
+                    <h1>Time Picker Browser Test</h1>
 
                     // test it_should_select_time_and_clear_am_pm_time
                     <x-time-picker placeholder="12:00 AM" wire:model.live="timeAmPm" label="Time AM/PM" />
@@ -52,9 +52,9 @@ class TimePickerTest extends BrowserTestCase
         });
     }
 
-    public function test_it_should_select_time_and_clear_am_pm_time()
+    public function test_it_should_select_time_and_clear_am_pm_time(): void
     {
-        $this->component()
+        $this->browser()
             ->type('timeAmPm', '144')
             ->waitTo(function (Browser $browser) {
                 return $browser
@@ -78,9 +78,9 @@ class TimePickerTest extends BrowserTestCase
             });
     }
 
-    public function test_it_should_select_time_and_clear_24h_time()
+    public function test_it_should_select_time_and_clear_24h_time(): void
     {
-        $this->component()
+        $this->browser()
             ->type('time24H', '12:44')
             ->waitTo(function (Browser $browser) {
                 return $browser
@@ -109,9 +109,9 @@ class TimePickerTest extends BrowserTestCase
      *
      * @warn can't use .live if using model property as datetime, datetime cannot has empty hours
      * */
-    public function it_should_select_time_using_model_property_datetime()
+    public function it_should_select_time_using_model_property_datetime(): void
     {
-        $this->component()
+        $this->browser()
             ->assertInputValue('birthday', '11:05 PM')
             ->clear('birthday')
             ->typeSlowly('birthday', '12:45 AM', 50)
