@@ -6,9 +6,9 @@ use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class MaskableInputTest extends BrowserTestCase
+class MaskableTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -22,7 +22,7 @@ class MaskableInputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Maskable Input test</h1>
+                    <h1>Maskable Browser test</h1>
 
                     // test it_should_start_input_with_formatted_value
                     <span dusk="singleMaskValue">{{ $singleMask }}</span>
@@ -57,14 +57,14 @@ class MaskableInputTest extends BrowserTestCase
 
     public function test_it_should_start_input_with_formatted_value(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSeeIn('@singleMaskValue', '1234')
             ->assertInputValue('singleMask', '12.34');
     }
 
     public function test_it_should_type_input_value_and_emit_formatted_value(): void
     {
-        $this->component()
+        $this->browser()
             ->type('singleFormattedMask', '3245ABCD')
             ->waitTo(function (Browser $browser) {
                 return $browser
@@ -75,7 +75,7 @@ class MaskableInputTest extends BrowserTestCase
 
     public function test_it_should_type_input_value_and_apply_multiples_masks(): void
     {
-        $this->component()
+        $this->browser()
             ->type('multipleMask', '9876')
             ->waitForTextIn('@multipleMaskValue', '98.76')
             ->type('multipleMask', '987662')

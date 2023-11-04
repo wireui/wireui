@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 
 class SelectTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -77,7 +77,7 @@ class SelectTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Select test</h1>
+                    <h1>Select Browser Test</h1>
 
                     <span dusk="model">{{ $model }}</span>
                     <span dusk="model2">{{ $model2 }}</span>
@@ -168,14 +168,14 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_show_validation_message(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Select any value'));
     }
 
     public function test_it_should_select_one_option_from_simples_options_list(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('input[name="model"]').click();
             JS))
@@ -194,7 +194,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_select_one_option_from_labeled_options_list(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('[name="wireui.select.options.model2"]', 'Label Option 2'))
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
@@ -211,7 +211,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_select_and_unselect_multiples_options(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('input[name="model3"]').click();
             JS))
@@ -235,7 +235,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_select_from_slot_list(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('input[name="model4"]').click();
             JS))
@@ -250,7 +250,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_cannot_select_readonly_and_disabled_options(): void
     {
-        $this->component()
+        $this->browser()
             ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('input[name="model5"]').click();
             JS))
@@ -269,7 +269,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_load_and_search_options_from_the_api(): void
     {
-        $this->component()
+        $this->browser()
             ->openSelect('asyncModel')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Pedro'))
             ->wireuiSelectValue('asyncModel', 0)
@@ -285,7 +285,7 @@ class SelectTest extends BrowserTestCase
 
     public function test_it_should_load_from_the_api_with_nested_data(): void
     {
-        $this->component()
+        $this->browser()
             ->openSelect('asyncModelNestedData')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Tommy'));
     }

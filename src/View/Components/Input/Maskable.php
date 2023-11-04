@@ -9,7 +9,7 @@ use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\Components\WireUiComponent;
 
-abstract class Maskable extends WireUiComponent
+class Maskable extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;

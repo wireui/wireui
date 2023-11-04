@@ -3,14 +3,40 @@
 namespace Tests\Browser\Components;
 
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class NumberTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
+        {
+            public $number = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <h1>Number Browser Test</h1>
+
+                    // test it_should_set_model_value_to_livewire
+                    <x-number dusk="input" wire:model.live="number" label="Model Input" />
+
+                    <span dusk="number-value">{{ $number }}</span>
+
+                    // test it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon
+                    <x-number wire:key="show-number" name="show-number" label="Show Number" />
+                </div>
+                BLADE;
+            }
+        });
+    }
+
+    public function component(): Testable
+    {
+        return Livewire::test(new class() extends Component
         {
             public $number = null;
 
@@ -36,16 +62,16 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Number Input test</h1>
+                    <h1>Number Livewire Test</h1>
 
-                    // test it_should_see_label_and_corner_hint
-                    <x-number label="Input 1" corner-hint="Corner 1" />
+                    // test it_should_see_label_and_corner_description
+                    <x-number label="Input 1" corner="Corner 1" />
 
-                    // test it_should_see_hint_and_not_see_prefix_and_suffix
+                    // test it_should_see_description_and_not_see_prefix_and_suffix
                     <x-number
                         label="Input 1"
-                        corner-hint="Corner 1"
-                        hint="Hint 1"
+                        corner="Corner 1"
+                        description="Description 1"
                         prefix="Prefix 1"
                         suffix="Suffix 1"
                     />
@@ -72,31 +98,27 @@ class NumberTest extends BrowserTestCase
                         </x-slot>
                     </x-number>
 
-                    // test it_should_set_model_value_to_livewire
-                    <x-number dusk="input" wire:model.live="number" label="Model Input" />
-                    <span dusk="number-value">{{ $number }}</span>
-
-                    // test it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon
-                    <x-number wire:key="show-number" name="show-number" label="Show Number" />
+                    // test it_should_see_input_error
+                    <x-number wire:model.live="number" label="Model Input" />
                 </div>
                 BLADE;
             }
         });
     }
 
-    public function test_it_should_see_label_and_corner_hint(): void
+    public function test_it_should_see_label_and_corner_description(): void
     {
         $this->component()
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
 
-    public function test_it_should_see_hint_and_not_see_prefix_and_suffix(): void
+    public function test_it_should_see_description_and_not_see_prefix_and_suffix(): void
     {
         $this->component()
-            ->assertSee('Hint 1')
             ->assertDontSee('Prefix 1')
-            ->assertDontSee('Suffix 1');
+            ->assertDontSee('Suffix 1')
+            ->assertSee('Description 1');
     }
 
     public function test_it_should_not_see_prepend_and_append_slots(): void
@@ -134,14 +156,14 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        $this->component()
+        $this->browser()
             ->type('number', 8)
             ->waitForTextIn('@number-value', 8);
     }
 
     public function test_it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSee('Show Number')
             ->assertInputValue('show-number', '')
             ->type('show-number', '2')

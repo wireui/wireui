@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 
 class CurrencyInputTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -27,7 +27,7 @@ class CurrencyInputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Currency Input test</h1>
+                    <h1>Currency Browser Test</h1>
 
                     // test it_should_mask_currency_value
                     // test it_should_follow_livewire_model_changes
@@ -50,7 +50,7 @@ class CurrencyInputTest extends BrowserTestCase
 
     public function test_it_should_mask_currency_value(): void
     {
-        $this->component()
+        $this->browser()
             ->type('currency', '123456')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('currency', '123,456'))
             ->clear('currency')
@@ -61,7 +61,7 @@ class CurrencyInputTest extends BrowserTestCase
 
     public function test_it_should_follow_livewire_model_changes(): void
     {
-        $this->component()
+        $this->browser()
             ->clear('currency')
             ->click('@button.change.currency')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('currency', '12,345.67'));
@@ -69,7 +69,7 @@ class CurrencyInputTest extends BrowserTestCase
 
     public function test_it_should_type_currency_value_and_emit_formatted_value(): void
     {
-        $this->component()
+        $this->browser()
             ->clear('formattedCurrency')
             ->type('formattedCurrency', '123456')
             ->waitTo(function (Browser $browser) {
@@ -81,7 +81,7 @@ class CurrencyInputTest extends BrowserTestCase
 
     public function test_it_should_parse_custom_currencies_like_brazilian_real(): void
     {
-        $this->component()
+        $this->browser()
             ->assertInputValue('brazilCurrency', '123.456,99')
             ->append('brazilCurrency', '66')
             ->assertInputValue('brazilCurrency', '12.345.699,66');

@@ -37,7 +37,7 @@ class ErrorsTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Errors test</h1>
+                    <h1>Errors Livewire Test</h1>
 
                     <x-errors :only="$only" />
                 </div>

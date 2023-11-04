@@ -9,7 +9,7 @@ use Tests\Browser\BrowserTestCase;
 
 class DatetimePickerTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -36,7 +36,7 @@ class DatetimePickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>LiveTest</h1>
+                    <h1>Datetime Picker Browser Test</h1>
 
                     // test it_should_select_date_without_timezone_difference
                     <div id="withoutTimezone">
@@ -116,7 +116,7 @@ class DatetimePickerTest extends BrowserTestCase
 
     public function test_it_should_select_date_without_timezone_difference(): void
     {
-        $this->component()
+        $this->browser()
             ->assertInputValue('withoutTimezone', '2021-05-22 02:48')
             ->click('[id="withoutTimezone"]')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'withoutTimezone', 5))
@@ -130,7 +130,7 @@ class DatetimePickerTest extends BrowserTestCase
         // UTC is default timezone
         // ref https://www.zeitverschiebung.net/en/timezone/america--sao_paulo
 
-        $this->component()
+        $this->browser()
             ->assertInputValue('utcTimezone', '2021-07-21 21:30')
             ->click('[id="utcTimezone"] input')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'utcTimezone', 31))
@@ -143,7 +143,7 @@ class DatetimePickerTest extends BrowserTestCase
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
-        $this->component()
+        $this->browser()
             ->assertInputValue('tokyoTimezone', '2021-07-25 22:00')
             ->click('[id="tokyoTimezone"] input')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'tokyoTimezone', 31))
@@ -156,7 +156,7 @@ class DatetimePickerTest extends BrowserTestCase
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
-        $this->component()
+        $this->browser()
             ->assertInputValue('customFormat', '29-2021-09 59:13')
             ->click('[id="customFormat"] input')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'customFormat', 10))
@@ -166,7 +166,7 @@ class DatetimePickerTest extends BrowserTestCase
 
     public function test_it_should_select_date_and_time(): void
     {
-        $this->component()
+        $this->browser()
             ->assertInputValue('dateAndTime', '25-12-2021 00:00')
             ->click('[id="dateAndTime"] input')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'dateAndTime', 11))
@@ -192,7 +192,7 @@ class DatetimePickerTest extends BrowserTestCase
      */
     public function it_should_select_only_the_dates_inside_a_range_min_and_max(bool $disabled, int $day, string $model, string $input)
     {
-        $component = $this->component()
+        $browser = $this->browser()
             ->click('[name="model"]')
             ->tap(fn (Browser $browser) => $browser->assertScript(<<<EOT
                     [...document.querySelectorAll('.picker-days button')]
@@ -202,7 +202,7 @@ class DatetimePickerTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'minMaxLimits', $day));
 
         if (!$disabled) {
-            $component
+            $browser
                 ->waitForTextIn('@value', $model)
                 ->assertInputValue('model', $input);
         }
@@ -215,7 +215,7 @@ class DatetimePickerTest extends BrowserTestCase
      */
     public function it_should_select_only_times_inside_the_limit(int $day, string $time, bool $exists)
     {
-        $this->component()
+        $this->browser()
             ->click('[name="model"]')
             ->tap(fn (Browser $browser) => $this->selectDate($browser, 'minMaxLimits', $day))
             ->waitUsing(7, 100, fn (Browser $browser) => $browser->assertScript(

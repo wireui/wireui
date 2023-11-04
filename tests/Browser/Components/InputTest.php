@@ -9,6 +9,28 @@ use Tests\Browser\BrowserTestCase;
 
 class InputTest extends BrowserTestCase
 {
+    public function browser(): Browser
+    {
+        return Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <h1>Input Browser Test</h1>
+
+                    // test it_should_set_model_value_to_livewire
+                    <x-input dusk="input" wire:model.live="model" label="Model Input" />
+
+                    <span dusk="model-value">{{ $model }}</span>
+                </div>
+                BLADE;
+            }
+        });
+    }
+
     public function component(): Testable
     {
         return Livewire::test(new class() extends Component
@@ -41,7 +63,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Input test</h1>
+                    <h1>Input Livewire Test</h1>
 
                     // test it_should_see_label_and_corner
                     <x-input label="Input 1" corner="Corner 1" />
@@ -76,26 +98,6 @@ class InputTest extends BrowserTestCase
 
                     // test it_should_dont_see_the_input_error_message
                     <x-input wire:model.live="errorless" label="Test error less" :errorless="true" />
-                </div>
-                BLADE;
-            }
-        });
-    }
-
-    public function componentDusk(): Browser
-    {
-        return Livewire::visit(new class() extends Component
-        {
-            public $model = null;
-
-            public function render(): string
-            {
-                return <<<'BLADE'
-                <div>
-                    // test it_should_set_model_value_to_livewire
-                    <x-input dusk="input" wire:model.live="model" label="Model Input" />
-
-                    <span dusk="model-value">{{ $model }}</span>
                 </div>
                 BLADE;
             }
@@ -152,7 +154,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        $this->componentDusk()
+        $this->browser()
             ->type('model', 'wireui@livewire-wireui.com')
             ->waitForTextIn('@model-value', 'wireui@livewire-wireui.com');
     }

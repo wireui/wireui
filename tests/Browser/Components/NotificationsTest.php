@@ -9,7 +9,7 @@ use WireUi\Traits\WireUiActions;
 
 class NotificationsTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -90,7 +90,7 @@ class NotificationsTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>notifications test</h1>
+                    <h1>Notifications Browser Test</h1>
 
                     <span dusk="value">{{ $value }}</span>
                     <span dusk="events">{{ implode(',', $events) }}</span>
@@ -208,7 +208,7 @@ class NotificationsTest extends BrowserTestCase
 
     public function test_it_should_show_notification_from_directive_and_call_accept_and_reject_methods(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSee('notifications test')
             ->click('@button.test.directive')
             ->waitForText('Confirm Directive')
@@ -221,7 +221,7 @@ class NotificationsTest extends BrowserTestCase
 
     public function test_it_should_show_simple_notification_from_component_call(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.test.simple_notification')
             ->tap(fn (Browser $browser) => $browser->waitForLivewire())
             ->pause(100)
@@ -234,7 +234,7 @@ class NotificationsTest extends BrowserTestCase
 
     public function test_it_should_show_confirmation_with_single_callback_from_component_call(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.test.call_confirm_action_with_single_callback')
             ->waitForLivewire()
             ->waitTo(function (Browser $browser) {
@@ -249,7 +249,7 @@ class NotificationsTest extends BrowserTestCase
     {
         $duskButton = '@button.test.call_confirm_action_with_multiples_callbacks_and_events';
 
-        $this->component()
+        $this->browser()
             ->click($duskButton)
             ->tap(fn (Browser $browser) => $browser->waitForLivewire())
             ->waitTo(function (Browser $browser) {
@@ -287,7 +287,7 @@ class NotificationsTest extends BrowserTestCase
 
     public function test_it_should_show_simple_notification_from_js_call(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.test.js.simple_notification')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('My Simple Notification from js'));
     }
@@ -296,7 +296,7 @@ class NotificationsTest extends BrowserTestCase
     {
         $duskButton = '@button.test.js.complex_notification';
 
-        $this->component()
+        $this->browser()
             ->click($duskButton)
             ->waitTo(fn (Browser $browser) => $browser->assertSee('My Complex Notification from js'))
             ->waitTo(function (Browser $browser) {
@@ -315,7 +315,7 @@ class NotificationsTest extends BrowserTestCase
 
     public function test_it_should_redirect_when_notification_is_closed(): void
     {
-        $this->component()
+        $this->browser()
             ->click('@button.test.redirect_on_close_notification')
             ->waitTo(function (Browser $browser) {
                 return $browser->script('getElementByXPath("//span[text()=\'Close\']").parentNode.click();');

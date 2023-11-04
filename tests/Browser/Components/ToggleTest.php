@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 
 class ToggleTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -27,7 +27,7 @@ class ToggleTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Toggle test</h1>
+                    <h1>Toggle Browser Test</h1>
 
                     <span dusk="toggle">@json($toggle)</span>
 
@@ -43,7 +43,7 @@ class ToggleTest extends BrowserTestCase
 
     public function test_it_should_render_label_and_change_value(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSee('Enable Notifications')
             ->tap(fn (Browser $browser) => $browser->script("document.getElementById('toggle').click()"))
             ->assertChecked('toggle')

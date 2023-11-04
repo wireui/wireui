@@ -3,14 +3,40 @@
 namespace Tests\Browser\Components;
 
 use Laravel\Dusk\Browser;
+use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class PasswordInputTest extends BrowserTestCase
+class PasswordTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
+        {
+            public $password = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <h1>Password Browser Test</h1>
+
+                    // test it_should_set_model_value_to_livewire
+                    <x-password dusk="input" wire:model.live="password" label="Model Input" />
+
+                    <span dusk="password-value">{{ $password }}</span>
+
+                    // test it_should_change_the_input_type_when_clicking_on_the_view_password_icon
+                    <x-password wire:key="show-password" name="show-password" label="Show Password" />
+                </div>
+                BLADE;
+            }
+        });
+    }
+
+    public function component(): Testable
+    {
+        return Livewire::test(new class() extends Component
         {
             public $password = null;
 
@@ -23,11 +49,16 @@ class PasswordInputTest extends BrowserTestCase
                 $this->validate();
             }
 
+            public function resetInputValidation()
+            {
+                $this->resetValidation();
+            }
+
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Password Input test</h1>
+                    <h1>Password Livewire Test</h1>
 
                     // test it_should_see_label_and_corner_hint
                     <x-password label="Input 1" corner-hint="Corner 1" />
@@ -63,12 +94,8 @@ class PasswordInputTest extends BrowserTestCase
                         </x-slot>
                     </x-password>
 
-                    // test it_should_set_model_value_to_livewire
-                    <x-password dusk="input" wire:model.live="password" label="Model Input" />
-                    <span dusk="password-value">{{ $password }}</span>
-
-                    // test it_should_change_the_input_type_when_clicking_on_the_view_password_icon
-                    <x-password wire:key="show-password" name="show-password" label="Show Password" />
+                    // test it_should_see_input_error
+                    <x-password wire:model.live="password" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -95,16 +122,16 @@ class PasswordInputTest extends BrowserTestCase
         $this->component()
             ->assertSee('prepend 1')
             ->assertDontSee('append 1')
-            ->assertDontSeeHtml('<a>prepend 1</a>')
+            ->assertSeeHtml('<a>prepend 1</a>')
             ->assertDontSeeHtml('<a>append 1</a>');
     }
 
     public function test_it_should_see_prefix_and_not_see_suffix_instead_append_or_prepend_slots(): void
     {
         $this->component()
-            ->assertSee('prefix 2')
+            ->assertDontSee('prefix 2')
             ->assertDontSee('suffix 2')
-            ->assertDontSeeHtml('<a>prepend 2</a>')
+            ->assertSeeHtml('<a>prepend 2</a>')
             ->assertDontSeeHtml('<a>append 2</a>');
     }
 
@@ -119,14 +146,14 @@ class PasswordInputTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        $this->component()
+        $this->browser()
             ->type('password', 'password')
             ->waitForTextIn('@password-value', 'password');
     }
 
     public function test_it_should_change_the_input_type_when_clicking_on_the_view_password_icon(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSee('Show Password')
             ->assertAttribute('input[name="show-password"]', 'type', 'password')
             ->assertInputValue('show-password', '')

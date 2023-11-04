@@ -8,7 +8,7 @@ use Tests\Browser\BrowserTestCase;
 
 class CheckboxTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -28,7 +28,7 @@ class CheckboxTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Checkbox Test</h1>
+                    <h1>Checkbox Browser Test</h1>
 
                     <span dusk="checkbox">@json($checkbox)</span>
 
@@ -44,7 +44,7 @@ class CheckboxTest extends BrowserTestCase
 
     public function test_it_should_render_with_label_and_change_value(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSee('Remember me')
             ->check('checkbox')
             ->assertChecked('checkbox')

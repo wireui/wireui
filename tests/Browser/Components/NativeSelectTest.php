@@ -6,9 +6,9 @@ use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class NativeTest extends BrowserTestCase
+class NativeSelectTest extends BrowserTestCase
 {
-    public function component(): Browser
+    public function browser(): Browser
     {
         return Livewire::visit(new class() extends Component
         {
@@ -65,7 +65,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Native Select test</h1>
+                    <h1>Native Select Browser Test</h1>
 
                     <span dusk="value">{{ $model }}</span>
 
@@ -115,7 +115,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_slot_options_and_show_error_message(): void
     {
-        $this->component()
+        $this->browser()
             ->assertSelectHasOptions('model', ['Slot Option 1', 'Slot Option 2', 'Slot Option 3'])
             ->select('model', 'Slot Option 2')
             ->assertSelected('model', 'Slot Option 2')
@@ -130,7 +130,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options(): void
     {
-        $this->component()->assertSelectHasOptions(
+        $this->browser()->assertSelectHasOptions(
             'arrayOptionsModel',
             [
                 'Array Option 1',
@@ -142,7 +142,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_collection_options(): void
     {
-        $this->component()->assertSelectHasOptions(
+        $this->browser()->assertSelectHasOptions(
             'collectionOptionsModel',
             collect([
                 'Collection Option 1',
@@ -154,7 +154,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys(): void
     {
-        $this->component()->assertSelectHasOptions(
+        $this->browser()->assertSelectHasOptions(
             'arrayWithLabelAndValueKeys',
             [
                 'Label Option 1' => 1,
@@ -166,7 +166,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_value(): void
     {
-        $this->component()->assertSelectHasOptions(
+        $this->browser()->assertSelectHasOptions(
             'option-key-value',
             [
                 'Array Option 1' => 0,
@@ -178,7 +178,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_label(): void
     {
-        $this->component()->assertSelectHasOptions(
+        $this->browser()->assertSelectHasOptions(
             'option-key-label',
             [
                 0 => 'Array Option 1',
