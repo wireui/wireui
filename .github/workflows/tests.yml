@@ -65,6 +65,6 @@ jobs:
           yarn test
 
       - name: Run PHPUnit tests
-        run: composer test
+        run: composer test:ci
         env:
-          RUNNING_IN_CI: true
+          CI: true
