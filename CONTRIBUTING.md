@@ -18,25 +18,31 @@ This document provides guidelines and steps for contributing to WireUI.
 ## Setting Up Your Environment
 
 1. **Clone the repository and install dependencies:**
-
     ```shell
     git clone git@github.com:wireui/wireui.git
     cd wireui
     composer install
     yarn install
     ```
-   
-2. **Running Tests:**
-Make sure you have a chromium-based browser installed for running tests.
 
+2. **Build assets:**
+    ```shell
+    yarn build
+    ```
+    2.1 **Watch and build assets:**
+    ```shell
+    yarn build
+    ```
+   
+3. **Running Tests:**
+Make sure you have a chromium-based browser installed for running tests.
     ```shell
     composer test 
     yarn test  
     ```
    
-3. **Code Formatting:**
+4. **Code Formatting:**
 We adhere to a coding standard to maintain consistency. Before submitting your PR, ensure your code is formatted by running:
-
     ```shell
     composer pint
     yarn lint
@@ -65,7 +71,7 @@ We adhere to a coding standard to maintain consistency. Before submitting your P
 
 4. **Complete the setup:**
 
-    Follow the WireUI [installation instructions](https://wireui.dev/docs/installation) to finish the setup.
+    Follow the WireUI [installation instructions](https://wireui.dev/getting-started) to finish the setup.
 
 
 5. **You're ready to contribute! 🎉**
