@@ -18,12 +18,15 @@ class Checkbox extends FormComponent
 
     public ?string $description;
 
+    public bool $errorless;
+
     public function __construct(
         bool $md = false,
         bool $lg = false,
         ?string $label = null,
         ?string $leftLabel = null,
-        ?string $description = null
+        ?string $description = null,
+        bool $errorless = false
     ) {
         $this->sm          = !$md && !$lg;
         $this->md          = $md;
@@ -31,6 +34,7 @@ class Checkbox extends FormComponent
         $this->label       = $label;
         $this->leftLabel   = $leftLabel;
         $this->description = $description;
+        $this->errorless   = $errorless;
     }
 
     protected function getView(): string

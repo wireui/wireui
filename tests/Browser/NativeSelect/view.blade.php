@@ -41,4 +41,7 @@
         option-key-label
         :options="$options"
     />
+
+    // test it_should_dont_see_the_input_error_message
+    <x-native-select label="Test error less" wire:model.live="errorless" :options="$options" :errorless="true" />
 </div>

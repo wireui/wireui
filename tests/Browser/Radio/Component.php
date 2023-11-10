@@ -8,9 +8,17 @@ class Component extends \Livewire\Component
 {
     public $radio = null;
 
-    protected array $rules = ['radio' => 'required'];
+    public $errorless = null;
 
-    protected array $messages = ['radio.required' => 'select one'];
+    protected array $rules = [
+        'radio' => 'required',
+        'errorless' => 'required',
+    ];
+
+    protected array $messages = [
+        'radio.required' => 'select one',
+        'errorless.required' => 'input is required',
+    ];
 
     public function render()
     {

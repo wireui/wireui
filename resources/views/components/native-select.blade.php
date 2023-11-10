@@ -1,18 +1,22 @@
+@php
+    $hasError = !$errorless && $name && $errors->has($name);
+@endphp
+
 <div class="w-full @if($disabled) opacity-60 @endif">
     @if ($label)
         <x-dynamic-component
             :component="WireUi::component('label')"
             class="mb-1"
             :label="$label"
-            :has-error="$errors->has($name)"
+            :has-error="$hasError"
             :for="$id"
         />
     @endif
 
     <select {{ $attributes->class([
         $defaultClasses(),
-        $errorClasses() =>  $errors->has($name),
-        $colorClasses() => !$errors->has($name),
+        $errorClasses() =>  $hasError,
+        $colorClasses() => !$hasError,
     ]) }}>
         @if ($options->isNotEmpty())
             @if ($placeholder)
@@ -40,7 +44,7 @@
         </label>
     @endif
 
-    @if ($name)
+    @if ($name && !$errorless)
         <x-dynamic-component
             :component="WireUi::component('error')"
             :name="$name"

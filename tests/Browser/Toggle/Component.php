@@ -8,9 +8,17 @@ class Component extends \Livewire\Component
 {
     public $toggle = false;
 
-    protected array $rules = ['toggle' => 'accepted'];
+    public $errorless = null;
 
-    protected array $messages = ['toggle.accepted' => 'accept it'];
+    protected array $rules = [
+        'toggle' => 'accepted',
+        'errorless' => 'required',
+    ];
+
+    protected array $messages = [
+        'toggle.accepted' => 'accept it',
+        'errorless.required' => 'input is required',
+    ];
 
     public function render()
     {

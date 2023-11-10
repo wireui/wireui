@@ -1,3 +1,7 @@
+@php
+    $hasError = !$errorless && $name && $errors->has($name);
+@endphp
+
 <div>
     <div class="flex items-center">
         @if ($leftLabel)
@@ -6,7 +10,7 @@
                 :for="$id"
                 class="mr-2"
                 :label="$leftLabel"
-                :has-error="$errors->has($name)"
+                :has-error="$hasError"
             />
         @endif
 
@@ -19,7 +23,7 @@
                 type="checkbox"
             />
 
-            <div class="{{ $backgroundClasses($errors->has($name)) }}"></div>
+            <div class="{{ $backgroundClasses($hasError) }}"></div>
         </label>
 
         @if ($label)
@@ -28,12 +32,12 @@
                 :for="$id"
                 class="ml-2"
                 :label="$label"
-                :has-error="$errors->has($name)"
+                :has-error="$hasError"
             />
         @endif
     </div>
 
-    @if ($name)
+    @if ($name && !$errorless)
         <x-dynamic-component
             :component="WireUi::component('error')"
             :name="$name"

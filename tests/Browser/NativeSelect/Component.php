@@ -19,13 +19,21 @@ class Component extends \Livewire\Component
         ['label' => 'Label Option 3', 'value' => 3],
     ];
 
-    protected array $rules = ['model' => 'required'];
+    protected array $rules = [
+        'model' => 'required',
+        'errorless' => 'required',
+    ];
 
-    protected array $messages = ['model.required' => 'select a value'];
+    protected array $messages = [
+        'model.required' => 'select a value',
+        'errorless.required' => 'input is required',
+    ];
 
     public array $options = self::ARRAY_OPTIONS;
 
     public Collection $collectionOptions;
+
+    public $errorless = null;
 
     public $model = null;
 

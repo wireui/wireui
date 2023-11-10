@@ -1,3 +1,7 @@
+@php
+    $hasError = !$errorless && $name && $errors->has($name);
+@endphp
+
 <div
     x-data="wireui_timepicker({
         model: @entangleable($attributes->wire('model')),
@@ -34,8 +38,8 @@
                 <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
                     <div @class([
                         'flex items-center gap-x-2 my-auto',
-                        'text-negative-400 dark:text-negative-600' => $name && $errors->has($name),
-                        'text-secondary-400'                         => $name && $errors->has($name),
+                        'text-negative-400 dark:text-negative-600' => $hasError,
+                        'text-secondary-400'                       => $hasError,
                     ])>
                         <x-dynamic-component
                             :component="WireUi::component('icon')"

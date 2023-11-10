@@ -82,4 +82,13 @@
         option-label="name"
         wire:key="asyncModelNestedData"
     />
+
+    // test it_should_dont_see_the_input_error_message
+    <x-select
+        :options="$this::ARRAY_OPTIONS"
+        placeholder="Select Single Value"
+        label="Test error less"
+        wire:model.live="errorless"
+        :errorless="true"
+    />
 </div>

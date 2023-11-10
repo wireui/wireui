@@ -25,9 +25,17 @@ class Component extends \Livewire\Component
         ['label' => 'Normal Option 3', 'value' => 'normal'],
     ];
 
-    protected array $rules = ['model' => 'required'];
+    protected array $rules = [
+        'model' => 'required',
+        'errorless' => 'required',
+    ];
 
-    protected array $messages = ['model.required' => 'Select any value'];
+    protected array $messages = [
+        'model.required' => 'Select any value',
+        'errorless.required' => 'input is required',
+    ];
+
+    public $errorless = null;
 
     public $model = null;
 

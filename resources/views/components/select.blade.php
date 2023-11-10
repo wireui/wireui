@@ -1,3 +1,7 @@
+@php
+    $hasError = !$errorless && $name && $errors->has($name);
+@endphp
+
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative w-full') }}
     x-data="wireui_select({
         @if ($attributes->wire('model')->value())
@@ -32,7 +36,7 @@
                 :component="WireUi::component('label')"
                 class="mb-1"
                 :label="$label"
-                :has-error="$name && $errors->has($name)"
+                :has-error="$hasError"
                 :disabled="$disabled"
                 x-on:click="toggle"
                 :wire:key="'select.label.' . $name"
@@ -159,7 +163,7 @@
                         <x-dynamic-component
                             :component="WireUi::component('icon')"
                             class="w-5 h-5
-                            {{ $name && $errors->has($name)
+                            {{ $hasError
                                 ? 'text-negative-400 dark:text-negative-600'
                                 : 'text-secondary-400'
                             }}"

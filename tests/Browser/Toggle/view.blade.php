@@ -6,5 +6,8 @@
     // test it_should_render_label_and_change_value
     <x-toggle label="Enable Notifications" wire:model.live="toggle" />
 
+    // test it_should_dont_see_the_input_error_message
+    <x-toggle label="Test error less" wire:model.live="errorless" :errorless="true" />
+
     <button wire:click="validateToggle" dusk="validate">validate</button>
 </div>

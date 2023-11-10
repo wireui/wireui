@@ -3,6 +3,7 @@
 namespace Tests\Browser\Checkbox;
 
 use Laravel\Dusk\Browser;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
@@ -23,5 +24,14 @@ class Test extends BrowserTestCase
                 ->click('@validate')
                 ->waitForText('accept it')
         );
+    }
+
+    /** @test */
+    public function it_should_dont_see_the_input_error_message()
+    {
+        Livewire::test(CheckComponent::class)
+            ->call('validateCheckbox')
+            ->assertDontSee('input is required')
+            ->assertHasErrors('errorless');
     }
 }

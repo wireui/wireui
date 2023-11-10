@@ -24,6 +24,7 @@ class Select extends NativeSelect
         public bool $hideEmptyMessage = false,
         public bool $flipOptions = false,
         public bool $optionKeyValue = false,
+        public bool $errorless = false,
         public bool $alwaysFetch = false,
         public string|array|null $asyncData = null,
         public string|array|null $template = null,
@@ -41,6 +42,7 @@ class Select extends NativeSelect
             hideEmptyMessage: $hideEmptyMessage,
             flipOptions: $flipOptions,
             optionKeyValue: $optionKeyValue,
+            errorless: $errorless,
             options: $options,
         );
 

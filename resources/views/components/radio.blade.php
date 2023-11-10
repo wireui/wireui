@@ -1,5 +1,9 @@
+@php
+    $hasError = !$errorless && $name && $errors->has($name);
+@endphp
+
 <div>
-    <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600':'' }}">
+    <label for="{{ $id }}" class="flex items-center {{ $hasError ? 'text-negative-600' : '' }}">
         <div class="relative flex items-start">
         @if ($leftLabel)
             <div class="mr-2 text-sm text-right">
@@ -8,7 +12,7 @@
                     class=""
                     :for="$id"
                     :label="$leftLabel"
-                    :has-error="$errors->has($name)"
+                    :has-error="$hasError"
                 />
                 @if($description)
                     <div id="{{ $id }} . comments-description" class="text-gray-500">{{ $description }}</div>
@@ -18,7 +22,7 @@
 
         <div class="flex items-center h-5">
             <input {{ $attributes->class([
-                    $getClasses($errors->has($name)),
+                    $getClasses($hasError),
                 ])->merge([
                     'type'  => 'radio',
                 ]) }} />
@@ -31,7 +35,7 @@
                     class=""
                     :for="$id"
                     :label="$label"
-                    :has-error="$errors->has($name)"
+                    :has-error="$hasError"
                 />
                 @if($description)
                     <div id="{{ $id }} . comments-description" class="text-gray-500">{{ $description }}</div>
@@ -41,7 +45,7 @@
         </div>
     </label>
 
-    @if ($name)
+    @if ($name && !$errorless)
         <x-dynamic-component
             :component="WireUi::component('error')"
             :name="$name"
