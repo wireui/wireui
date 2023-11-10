@@ -8,7 +8,14 @@ import { stringify } from 'qs'
 import { Select } from './interfaces'
 import { templates } from './templates'
 import baseTemplate from './templates/baseTemplate'
-import { InitOptions, Option, Options, Props, Refs } from './types'
+import { Option, Options, Props, Refs } from './types'
+import { Entangle, WireModifiers } from '@/components/alpine'
+import debounce from '@/utils/debounce'
+
+export type InitOptions = {
+  wireModifiers?: WireModifiers
+  wireModel?: Entangle
+}
 
 export default (initOptions: InitOptions): Select => ({
   ...focusables,
@@ -148,7 +155,13 @@ export default (initOptions: InitOptions): Select => ({
     if (this.hasWireModel && this.config.multiselect) {
       this.$watch('selectedOptions', (options: Options, oldOptions: Options) => {
         if (this.mustSyncWireModel()) {
-          this.wireModel = options.map((option: Option) => option.value)
+          if (initOptions.wireModifiers?.debounce?.exists) {
+            debounce(() => {
+              this.wireModel = options.map((option: Option) => option.value)
+            }, initOptions.wireModifiers.debounce.delay)
+          } else {
+            this.wireModel = options.map((option: Option) => option.value)
+          }
         }
 
         if (JSON.stringify(options) !== JSON.stringify(oldOptions)) {
@@ -175,7 +188,13 @@ export default (initOptions: InitOptions): Select => ({
 
     if (this.hasWireModel && !this.config.multiselect) {
       this.$watch('selected', (option?: Option, oldOption?: Option) => {
-        this.wireModel = option?.value ?? null
+        if (initOptions.wireModifiers?.debounce?.exists) {
+            debounce(() => {
+              this.wireModel = option?.value ?? null
+            }, initOptions.wireModifiers.debounce.delay)
+        } else {
+          this.wireModel = option?.value ?? null
+        }
 
         if (oldOption?.value !== option?.value) {
           this.syncSelectedOptions()
