@@ -183,9 +183,12 @@ class Test extends BrowserTestCase
     /** @test */
     public function it_should_dont_see_the_input_error_message()
     {
-        Livewire::test(Component::class)
-            ->call('validateSelect')
-            ->assertDontSee('input is required')
-            ->assertHasErrors('errorless');
+        $this->browse(function (Browser $browser) {
+            $this->visit($browser, Component::class)
+                ->click('@validate')
+                ->pause(500)
+                ->waitUsing(7, 100, fn () => $browser->assertDontSee('input is required'))
+                ->assertHasErrors('errorless');
+        });
     }
 }
