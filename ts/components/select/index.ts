@@ -189,9 +189,9 @@ export default (initOptions: InitOptions): Select => ({
     if (this.hasWireModel && !this.config.multiselect) {
       this.$watch('selected', (option?: Option, oldOption?: Option) => {
         if (initOptions.wireModifiers?.debounce?.exists) {
-            debounce(() => {
-              this.wireModel = option?.value ?? null
-            }, initOptions.wireModifiers.debounce.delay)
+          debounce(() => {
+            this.wireModel = option?.value ?? null
+          }, initOptions.wireModifiers.debounce.delay)
         } else {
           this.wireModel = option?.value ?? null
         }
