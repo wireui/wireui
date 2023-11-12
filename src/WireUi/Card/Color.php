@@ -21,6 +21,12 @@ class Color extends ComponentPack
                 'text'   => 'text-secondary-700 dark:text-secondary-400',
                 'border' => 'border-secondary-200 dark:border-secondary-600',
             ],
+            Packs\Color::SECONDARY => [
+                'root'   => 'bg-white dark:bg-secondary-900',
+                'footer' => 'bg-transparent',
+                'text'   => 'text-secondary-700 dark:text-secondary-400',
+                'border' => 'border-secondary-200 dark:border-secondary-600',
+            ],
         ];
     }
 }
