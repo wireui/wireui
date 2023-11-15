@@ -15,6 +15,7 @@
 
     <x-slot name="append">
         <button
+            type="button"
             x-on:click="toggle"
             @class([
                 'text-gray-400 cursor-pointer mr-2',
