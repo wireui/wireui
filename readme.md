@@ -69,7 +69,7 @@ All contributions are welcome!
 MIT
 
 [TALL stack]: https://tallstack.dev
-[Get Started]: https://wireui.dev/docs/get-started
+[Get Started]: https://wireui.dev/getting-started
 [Documentation]: https://wireui.dev
 [@ph7jack]: https://twitter.com/ph7jack
 [Pedro Oliveira]: https://github.com/PH7-Jack
