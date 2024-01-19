@@ -8,21 +8,11 @@ use Tests\Browser\BrowserTestCase;
 
 class TextareaTest extends BrowserTestCase
 {
-    public function component(): Testable
+    public function rowAttributeComponent(): Testable
     {
         return Livewire::test(new class() extends Component
         {
             public $model = null;
-
-            public function validateTextarea()
-            {
-                $this->validate();
-            }
-
-            public function resetTextareaValidation()
-            {
-                $this->resetValidation();
-            }
 
             public function render(): string
             {
@@ -31,7 +21,24 @@ class TextareaTest extends BrowserTestCase
                     <h1>Textarea Livewire Test</h1>
 
                     // test it_should_see_the_rows_attribute
-                    <x-textarea rows="10" cols="auto" wire:model.live="errorless" />
+                    <x-textarea rows="10" wire:model.live="errorless" />
+                </div>
+                BLADE;
+            }
+        });
+    }
+
+    public function colAttributeComponent(): Testable
+    {
+        return Livewire::test(new class() extends Component
+        {
+            public $model = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <h1>Textarea Livewire Test</h1>
 
                     // test it_should_see_the_cols_attribute
                     <x-textarea rows="10" cols="10" wire:model.live="errorless" />
@@ -43,22 +50,23 @@ class TextareaTest extends BrowserTestCase
 
     public function test_it_should_see_the_rows_attribute(): void
     {
-        $this->component()
+        $this->rowAttributeComponent()
             ->assertSeeHtml('rows="10"');
     }
 
     public function test_it_should_see_the_cols_attribute(): void
     {
-        $this->component()
+        $this->colAttributeComponent()
             ->assertSeeHtml('cols="10"');
     }
 
     public function test_cols_should_default_to_auto_attribute(): void
     {
-        $this->component()
+        // rowAttributeComponent doesn't have cols attribute set, thus it should be auto and w-full
+        $this->rowAttributeComponent()
             ->assertSeeHtml('cols="auto"');
 
-        $this->component()
+        $this->rowAttributeComponent()
             ->assertSeeHtml('w-full');
     }
 }
