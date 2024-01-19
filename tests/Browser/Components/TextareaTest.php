@@ -2,35 +2,12 @@
 
 namespace Tests\Browser\Components;
 
-use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class TextareaTest extends BrowserTestCase
 {
-    public function browser(): Browser
-    {
-        return Livewire::visit(new class() extends Component
-        {
-            public $model = null;
-
-            public function render(): string
-            {
-                return <<<'BLADE'
-                <div>
-                    <h1>Textarea Browser Test</h1>
-
-                    // test it_should_set_model_value_to_livewire
-                    <x-textarea dusk="textarea" wire:model.live="model" label="Model Textarea" />
-
-                    <span dusk="model-value">{{ $model }}</span>
-                </div>
-                BLADE;
-            }
-        });
-    }
-
     public function component(): Testable
     {
         return Livewire::test(new class() extends Component
