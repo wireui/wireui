@@ -16,8 +16,8 @@ class Textarea extends WireUiComponent
 
     protected array $props = [
         'shadowless' => false,
-        'rows' => 4,
-        'cols' => 'auto',
+        'rows'       => 4,
+        'cols'       => 'auto',
     ];
 
     protected function except(): array

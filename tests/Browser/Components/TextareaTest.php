@@ -11,7 +11,8 @@ class TextareaTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
-        return Livewire::visit(new class () extends Component {
+        return Livewire::visit(new class() extends Component
+        {
             public $model = null;
 
             public function render(): string
@@ -32,7 +33,8 @@ class TextareaTest extends BrowserTestCase
 
     public function component(): Testable
     {
-        return Livewire::test(new class () extends Component {
+        return Livewire::test(new class() extends Component
+        {
             public $model = null;
 
             public function validateTextarea()
@@ -72,7 +74,6 @@ class TextareaTest extends BrowserTestCase
     {
         $this->component()
             ->assertSeeHtml('cols="10"');
-
     }
 
     public function test_cols_should_default_to_auto_attribute(): void
