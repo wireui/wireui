@@ -2,8 +2,7 @@
 
 namespace WireUi\Components\Button;
 
-use Illuminate\Contracts\View\View as BaseView;
-use Illuminate\Support\Facades\View;
+use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
 use WireUi\View\WireUiComponent;
 
@@ -26,8 +25,8 @@ class Mini extends WireUiComponent
         'use-validation-colors' => false,
     ];
 
-    public function blade(): BaseView
+    public function blade(): View
     {
-        return View::file(__DIR__ . '/views/mini.blade.php');
+        return view('wireui-button::mini');
     }
 }

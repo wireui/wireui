@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\View\Components\Button;
+namespace WireUi\Components\Button\tests\Unit;
 
 use WireUi\Components\Button\Mini;
 use WireUi\Components\Button\WireUi\Color\Outline;

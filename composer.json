@@ -16,16 +16,16 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.5",
-        "phpunit/phpunit": "^10.0",
-        "orchestra/testbench": "^8.0",
-        "orchestra/testbench-dusk": "^8.0",
+        "phpunit/phpunit": "^10.4",
+        "orchestra/testbench": "^8.14",
+        "orchestra/testbench-dusk": "^8.14",
         "psy/psysh": "^0.11.12",
-        "pestphp/pest": "^2.24",
+        "pestphp/pest": "^2.26",
         "pestphp/pest-plugin-livewire": "^2.1",
-        "pestphp/pest-plugin-laravel": "^2.0",
-        "laravel/pint": "^1.10",
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "laravel/pint": "^1.13",
         "livewire/volt": "^1.3",
-        "livewire/livewire": "^3.1"
+        "livewire/livewire": "^3.4"
     },
     "authors": [
         {

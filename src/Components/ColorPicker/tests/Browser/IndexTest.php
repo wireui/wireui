@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\ColorPicker\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class ColorPickerTest extends BrowserTestCase
+class IndexTest extends BrowserTestCase
 {
     public const HTML = '<x-color-picker label="Color Picker" name="color" />';
     public const NAME = 'color';

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bd2bbd2886537a62dc208602a7476c0",
+    "content-hash": "3fca9ec5628f56f39781d61e77e9344e",
     "packages": [
         {
             "name": "brick/math",
@@ -5879,16 +5879,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v1.13.5",
+            "version": "v1.13.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423"
+                "reference": "e2b5060885694ca30ac008c05dc9d47f10ed1abf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
-                "reference": "df105cf8ce7a8f0b8a9425ff45cd281a5448e423",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/e2b5060885694ca30ac008c05dc9d47f10ed1abf",
+                "reference": "e2b5060885694ca30ac008c05dc9d47f10ed1abf",
                 "shasum": ""
             },
             "require": {
@@ -5899,13 +5899,13 @@
                 "php": "^8.1.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.34.1",
-                "illuminate/view": "^10.26.2",
-                "laravel-zero/framework": "^10.1.2",
-                "mockery/mockery": "^1.6.6",
-                "nunomaduro/larastan": "^2.6.4",
+                "friendsofphp/php-cs-fixer": "^3.47.1",
+                "illuminate/view": "^10.41.0",
+                "larastan/larastan": "^2.8.1",
+                "laravel-zero/framework": "^10.3.0",
+                "mockery/mockery": "^1.6.7",
                 "nunomaduro/termwind": "^1.15.1",
-                "pestphp/pest": "^2.20.0"
+                "pestphp/pest": "^2.31.0"
             },
             "bin": [
                 "builds/pint"
@@ -5941,7 +5941,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2023-10-26T09:26:10+00:00"
+            "time": "2024-01-22T09:04:15+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6014,35 +6014,36 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v3.1.0",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "db1e02c645ae12a7cdee9b1ea0d65bf3aafc0f08"
+                "reference": "fd74e6b31c96c40bb36c99e79d5c62460b31ec6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/db1e02c645ae12a7cdee9b1ea0d65bf3aafc0f08",
-                "reference": "db1e02c645ae12a7cdee9b1ea0d65bf3aafc0f08",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/fd74e6b31c96c40bb36c99e79d5c62460b31ec6b",
+                "reference": "fd74e6b31c96c40bb36c99e79d5c62460b31ec6b",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "^10.0",
-                "illuminate/support": "^10.0",
-                "illuminate/validation": "^10.0",
+                "illuminate/database": "^10.0|^11.0",
+                "illuminate/routing": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/validation": "^10.0|^11.0",
                 "league/mime-type-detection": "^1.9",
                 "php": "^8.1",
-                "symfony/http-kernel": "^6.2"
+                "symfony/http-kernel": "^6.2|^7.0"
             },
             "require-dev": {
                 "calebporzio/sushi": "^2.1",
-                "laravel/framework": "^10.0",
+                "laravel/framework": "^10.0|^11.0",
                 "laravel/prompts": "^0.1.6",
                 "mockery/mockery": "^1.3.1",
-                "orchestra/testbench": "^8.0",
-                "orchestra/testbench-dusk": "^8.0",
-                "phpunit/phpunit": "^9.0",
-                "psy/psysh": "@stable"
+                "orchestra/testbench": "8.20.0|^9.0",
+                "orchestra/testbench-dusk": "8.20.0|^9.0",
+                "phpunit/phpunit": "^10.4",
+                "psy/psysh": "^0.11.22|^0.12"
             },
             "type": "library",
             "extra": {
@@ -6076,7 +6077,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.1.0"
+                "source": "https://github.com/livewire/livewire/tree/v3.4.1"
             },
             "funding": [
                 {
@@ -6084,7 +6085,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-03T15:05:18+00:00"
+            "time": "2024-01-24T13:56:12+00:00"
         },
         {
             "name": "livewire/volt",
@@ -6665,16 +6666,16 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v8.14.0",
+            "version": "v8.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "7dacad632a5f48830443f739cd846212c174448a"
+                "reference": "887556915aed4278ddd97e64f88c2172ab2ff708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/7dacad632a5f48830443f739cd846212c174448a",
-                "reference": "7dacad632a5f48830443f739cd846212c174448a",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/887556915aed4278ddd97e64f88c2172ab2ff708",
+                "reference": "887556915aed4278ddd97e64f88c2172ab2ff708",
                 "shasum": ""
             },
             "require": {
@@ -6682,8 +6683,8 @@
                 "fakerphp/faker": "^1.21",
                 "laravel/framework": "^10.23.1",
                 "mockery/mockery": "^1.5.1",
-                "orchestra/testbench-core": ">=8.14.0 <8.15.0",
-                "orchestra/workbench": "^1.0",
+                "orchestra/testbench-core": ">=8.14.4 <8.15.0",
+                "orchestra/workbench": "^1.0 || ^8.0",
                 "php": "^8.1",
                 "phpunit/phpunit": "^9.6 || ^10.1",
                 "spatie/laravel-ray": "^1.32.4",
@@ -6715,9 +6716,9 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v8.14.0"
+                "source": "https://github.com/orchestral/testbench/tree/v8.14.1"
             },
-            "time": "2023-10-24T04:44:26+00:00"
+            "time": "2023-11-07T09:03:19+00:00"
         },
         {
             "name": "orchestra/testbench-core",
@@ -6947,16 +6948,16 @@
         },
         {
             "name": "pestphp/pest",
-            "version": "v2.24.2",
+            "version": "v2.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pestphp/pest.git",
-                "reference": "0a680dd06e02bdc58132d6bb3f155498355160a5"
+                "reference": "90fb8c602cf982ec973c2d13b31ce7510154ebc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pestphp/pest/zipball/0a680dd06e02bdc58132d6bb3f155498355160a5",
-                "reference": "0a680dd06e02bdc58132d6bb3f155498355160a5",
+                "url": "https://api.github.com/repos/pestphp/pest/zipball/90fb8c602cf982ec973c2d13b31ce7510154ebc2",
+                "reference": "90fb8c602cf982ec973c2d13b31ce7510154ebc2",
                 "shasum": ""
             },
             "require": {
@@ -6975,7 +6976,7 @@
             },
             "require-dev": {
                 "pestphp/pest-dev-tools": "^2.16.0",
-                "pestphp/pest-plugin-type-coverage": "^2.4.0",
+                "pestphp/pest-plugin-type-coverage": "^2.5.0",
                 "symfony/process": "^6.3.4"
             },
             "bin": [
@@ -7039,7 +7040,7 @@
             ],
             "support": {
                 "issues": "https://github.com/pestphp/pest/issues",
-                "source": "https://github.com/pestphp/pest/tree/v2.24.2"
+                "source": "https://github.com/pestphp/pest/tree/v2.26.0"
             },
             "funding": [
                 {
@@ -7051,7 +7052,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-01T23:10:11+00:00"
+            "time": "2023-11-29T09:09:09+00:00"
         },
         {
             "name": "pestphp/pest-plugin",

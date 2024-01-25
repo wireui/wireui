@@ -13,7 +13,9 @@ use WireUi\ServiceProvider;
 
 use function Livewire\trigger;
 
-/** @link https://github.com/livewire/livewire/blob/main/tests/BrowserTestCase.php */
+/**
+ * @link https://github.com/livewire/livewire/blob/main/tests/BrowserTestCase.php
+ */
 class BrowserTestCase extends TestCase
 {
     use BrowserFunctions;
@@ -80,8 +82,8 @@ class BrowserTestCase extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            LivewireServiceProvider::class,
             ServiceProvider::class,
+            LivewireServiceProvider::class,
             HeroiconsServiceProvider::class,
         ];
     }

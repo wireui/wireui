@@ -18,9 +18,9 @@ use Tests\Unit\TestCase;
 |
 */
 
-uses(TestCase::class)->group('unit')->in('Unit');
-
 uses(BrowserTestCase::class)->group('browser')->in('Browser');
+
+uses(TestCase::class)->group('unit')->in('Unit');
 
 /*
 |--------------------------------------------------------------------------

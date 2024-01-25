@@ -316,7 +316,7 @@ class WireUiConfig
                 'alias' => 'checkbox',
             ],
             'color-picker' => [
-                'class' => Components\ColorPicker::class,
+                'class' => Test\ColorPicker\Index::class,
                 'alias' => 'color-picker',
             ],
             'datetime-picker' => [
