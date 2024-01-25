@@ -1,7 +1,5 @@
 <?php
 
-array_map(fn ($file) => require $file, glob(__DIR__ . '/../src/Components/*/tests/Pest.php'));
-
 use Illuminate\Support\Facades\Blade;
 use Pest\Expectation;
 use Tests\Browser\BrowserTestCase;
@@ -18,9 +16,13 @@ use Tests\Unit\TestCase;
 |
 */
 
+uses(TestCase::class)->group('unit')->in('Unit');
+
 uses(BrowserTestCase::class)->group('browser')->in('Browser');
 
-uses(TestCase::class)->group('unit')->in('Unit');
+uses(TestCase::class)->group('unit-components')->in('../src/Components/*/tests/Unit');
+
+uses(BrowserTestCase::class)->group('browser-components')->in('../src/Components/*/tests/Browser');
 
 /*
 |--------------------------------------------------------------------------

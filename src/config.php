@@ -1,8 +1,7 @@
 <?php
 
-use WireUi\Components;
 use WireUi\Enum\Packs;
-use WireUi\{WireUi, WireUiConfig as Config};
+use WireUi\{Components, WireUiConfig as Config};
 
 return [
 
@@ -50,19 +49,11 @@ return [
 
     'badge' => Config::badge(),
 
-    'mini-badge' => Config::badge([
-        'packs' => [
-            'sizes' => WireUi\Badge\Size\Mini::class,
-        ],
-    ]),
+    'mini-badge' => Config::miniBadge(),
 
     'button' => Config::button(),
 
-    'mini-button' => Config::button([
-        'packs' => [
-            'sizes' => Components\Button\WireUi\Size\Mini::class,
-        ],
-    ]),
+    'mini-button' => Config::miniButton(),
 
     'card' => Config::card(),
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\TimePicker;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class TimePicker extends WireUiComponent
+class Index extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -24,6 +24,6 @@ class TimePicker extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.time-picker');
+        return view('wireui-time-picker::index');
     }
 }

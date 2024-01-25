@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\TimePicker\tests\Browser;
 
 use Carbon\Carbon;
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class TimePickerTest extends BrowserTestCase
+class IndexTest extends BrowserTestCase
 {
     public function browser(): Browser
     {

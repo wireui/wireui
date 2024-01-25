@@ -65,6 +65,15 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function miniBadge(array $options = []): array
+    {
+        return self::badge(self::mix([
+            'packs' => [
+                'sizes' => WireUi\Badge\Size\Mini::class,
+            ],
+        ], $options));
+    }
+
     public static function button(array $options = []): array
     {
         return self::mix([
@@ -81,6 +90,15 @@ class WireUiConfig
                 'sizes'      => Test\Button\WireUi\Size\Base::class,
             ],
         ], $options);
+    }
+
+    public static function miniButton(array $options = []): array
+    {
+        return self::button(self::mix([
+            'packs' => [
+                'sizes' => Test\Button\WireUi\Size\Mini::class,
+            ],
+        ], $options));
     }
 
     public static function card(array $options = []): array
@@ -420,11 +438,11 @@ class WireUiConfig
                 'alias' => 'textarea',
             ],
             'time-picker' => [
-                'class' => Components\TimePicker::class,
+                'class' => Test\TimePicker\Index::class,
                 'alias' => 'time-picker',
             ],
             'time-selector' => [
-                'class' => Components\TimeSelector::class,
+                'class' => Test\TimePicker\Selector::class,
                 'alias' => 'time-selector',
             ],
             'toggle' => [
