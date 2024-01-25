@@ -87,9 +87,9 @@ test('it transforms colors correctly', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->getColors())->toBe([
-        ['value' => '#ff0000', 'name' => 'red'],
-        ['value' => '#00ff00', 'name' => 'green'],
-        ['value' => '#0000ff', 'name' => '#0000ff'],
+        ['name' => 'red', 'value' => '#ff0000'],
+        ['name' => 'green', 'value' => '#00ff00'],
+        ['name' => '#0000ff', 'value' => '#0000ff'],
     ]);
 });
 
@@ -109,9 +109,9 @@ test('it handles colors as string correctly', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->getColors())->toBe([
-        ['value' => 'red', 'name' => 'red'],
-        ['value' => 'green', 'name' => 'green'],
-        ['value' => 'blue', 'name' => 'blue'],
+        ['name' => 'red', 'value' => 'red'],
+        ['name' => 'green', 'value' => 'green'],
+        ['name' => 'blue', 'value' => 'blue'],
     ]);
 });
 
@@ -125,9 +125,9 @@ test('it handles colors as associative array correctly', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->getColors())->toBe([
-        ['value' => '#ff0000', 'name' => 'red'],
-        ['value' => '#00ff00', 'name' => 'green'],
-        ['value' => '#0000ff', 'name' => 'blue'],
+        ['name' => 'red', 'value' => '#ff0000'],
+        ['name' => 'green', 'value' => '#00ff00'],
+        ['name' => 'blue', 'value' => '#0000ff'],
     ]);
 });
 
@@ -141,9 +141,9 @@ test('it handles mixed types in colors array correctly', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->getColors())->toBe([
-        ['value' => '#ff0000', 'name' => 'red'],
-        ['value' => '#00ff00', 'name' => '#00ff00'],
-        ['value' => '#0000ff', 'name' => 'blue'],
+        ['name' => 'red', 'value' => '#ff0000'],
+        ['name' => '#00ff00', 'value' => '#00ff00'],
+        ['name' => 'blue', 'value' => '#0000ff'],
     ]);
 });
 

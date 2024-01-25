@@ -26,8 +26,8 @@ class Index extends WireUiComponent
     {
         return collect($this->colors)->map(function ($color, $index) {
             return is_array($color) ? $color : [
-                'value' => $color,
                 'name'  => is_numeric($index) ? $color : $index,
+                'value' => $color,
             ];
         })->values()->toArray();
     }
