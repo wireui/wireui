@@ -1,5 +1,7 @@
 <?php
 
+array_map(fn ($file) => require $file, glob(__DIR__ . '/../src/Components/*/tests/Pest.php'));
+
 use Illuminate\Support\Facades\Blade;
 use Pest\Expectation;
 use Tests\Browser\BrowserTestCase;

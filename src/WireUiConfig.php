@@ -2,6 +2,7 @@
 
 namespace WireUi;
 
+use WireUi\Components as Test;
 use WireUi\Enum\Packs;
 use WireUi\View\Components;
 
@@ -75,9 +76,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'variants'   => WireUi\Button\Variant::class,
-                'icon-sizes' => WireUi\Button\IconSize::class,
-                'sizes'      => WireUi\Button\Size\Base::class,
+                'variants'   => Test\Button\WireUi\Variant::class,
+                'icon-sizes' => Test\Button\WireUi\IconSize::class,
+                'sizes'      => Test\Button\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -299,11 +300,11 @@ class WireUiConfig
                 'alias' => 'mini-badge',
             ],
             'button' => [
-                'class' => Components\Button\Base::class,
+                'class' => Test\Button\Base::class,
                 'alias' => 'button',
             ],
             'mini-button' => [
-                'class' => Components\Button\Mini::class,
+                'class' => Test\Button\Mini::class,
                 'alias' => 'mini-button',
             ],
             'card' => [

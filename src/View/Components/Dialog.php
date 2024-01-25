@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
+use WireUi\View\WireUiComponent;
 
 class Dialog extends WireUiComponent
 {

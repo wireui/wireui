@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Compilers;
+namespace WireUi\View;
 
 use Illuminate\View\Compilers\ComponentTagCompiler;
 use WireUi\Facades\WireUiDirectives;

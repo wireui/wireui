@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Button\Color;
+namespace WireUi\Components\Button\WireUi\Color;
 
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;

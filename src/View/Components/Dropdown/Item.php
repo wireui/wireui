@@ -3,7 +3,7 @@
 namespace WireUi\View\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
-use WireUi\View\Components\WireUiComponent;
+use WireUi\View\WireUiComponent;
 
 class Item extends WireUiComponent
 {

@@ -1,7 +1,7 @@
 <?php
 
+use WireUi\Components;
 use WireUi\Enum\Packs;
-use WireUi\View\Components;
 use WireUi\{WireUi, WireUiConfig as Config};
 
 return [
@@ -60,7 +60,7 @@ return [
 
     'mini-button' => Config::button([
         'packs' => [
-            'sizes' => WireUi\Button\Size\Mini::class,
+            'sizes' => Components\Button\WireUi\Size\Mini::class,
         ],
     ]),
 

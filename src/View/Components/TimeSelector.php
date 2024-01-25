@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupRounded, IsFormComponent};
+use WireUi\View\WireUiComponent;
 
 class TimeSelector extends WireUiComponent
 {

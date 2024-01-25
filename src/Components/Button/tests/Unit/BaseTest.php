@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\View\Components\Button;
 
+use WireUi\Components\Button\Base;
+use WireUi\Components\Button\WireUi\Color\Outline;
+use WireUi\Components\Button\WireUi\IconSize;
+use WireUi\Components\Button\WireUi\Size\Base as SizeBase;
 use WireUi\Enum\Packs;
-use WireUi\View\Components\Button\Base;
-use WireUi\WireUi\Button\Color\Outline;
-use WireUi\WireUi\Button\IconSize;
-use WireUi\WireUi\Button\Size\Base as SizeBase;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {

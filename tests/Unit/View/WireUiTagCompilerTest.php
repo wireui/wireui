@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Unit\View\Compilers;
+namespace Tests\Unit\View;
 
 use Illuminate\Support\Facades\Blade;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\BladeDirectives;
-use WireUi\View\Compilers\WireUiTagCompiler;
+use WireUi\View\WireUiTagCompiler;
 
 test('it should match scripts and styles tags', function () {
     $compiler = resolve(WireUiTagCompiler::class);

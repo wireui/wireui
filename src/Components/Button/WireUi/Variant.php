@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\WireUi\Button;
+namespace WireUi\Components\Button\WireUi;
 
+use WireUi\Components\Button\WireUi\Color\{Flat, Light, Outline, Solid};
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Button\Color\{Flat, Light, Outline, Solid};
 
 class Variant extends ComponentPack
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Button\Size;
+namespace WireUi\Components\Button\WireUi\Size;
 
 use WireUi\Enum\Packs\Size;
 use WireUi\Support\ComponentPack;

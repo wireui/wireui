@@ -4,7 +4,7 @@ namespace WireUi\View\Components\Badge;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupVariant};
-use WireUi\View\Components\WireUiComponent;
+use WireUi\View\WireUiComponent;
 
 class Mini extends WireUiComponent
 {

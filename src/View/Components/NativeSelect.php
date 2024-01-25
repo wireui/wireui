@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
+use WireUi\View\WireUiComponent;
 
 class NativeSelect extends WireUiComponent
 {

@@ -6,6 +6,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str};
 use WireUi\Facades\WireUi;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\View\WireUiComponent;
 
 class Errors extends WireUiComponent
 {

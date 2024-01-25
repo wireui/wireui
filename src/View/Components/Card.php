@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
+use WireUi\View\WireUiComponent;
 
 class Card extends WireUiComponent
 {

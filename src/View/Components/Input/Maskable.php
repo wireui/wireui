@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
-use WireUi\View\Components\WireUiComponent;
+use WireUi\View\WireUiComponent;
 
 class Maskable extends WireUiComponent
 {

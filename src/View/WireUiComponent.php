@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\View;
 
 use AllowDynamicProperties;
 use Closure;
@@ -9,7 +9,6 @@ use Illuminate\Support\{Arr, HtmlString, Str};
 use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\{ComponentPack};
-use WireUi\View\ManageProps;
 
 #[AllowDynamicProperties]
 abstract class WireUiComponent extends Component

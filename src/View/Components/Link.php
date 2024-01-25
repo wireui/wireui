@@ -4,6 +4,7 @@ namespace WireUi\View\Components;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize};
+use WireUi\View\WireUiComponent;
 
 class Link extends WireUiComponent
 {

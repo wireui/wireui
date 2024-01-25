@@ -9,7 +9,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
 use WireUi\Providers\{BladeDirectives, CustomMacros};
 use WireUi\Support\ComponentResolver;
-use WireUi\View\Compilers\WireUiTagCompiler;
+use WireUi\View\WireUiTagCompiler;
 
 /**
  * @property Application $app

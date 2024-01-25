@@ -5,6 +5,7 @@ namespace WireUi\View\Components;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupVariant};
+use WireUi\View\WireUiComponent;
 
 class Alert extends WireUiComponent
 {
