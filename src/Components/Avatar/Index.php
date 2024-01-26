@@ -1,12 +1,12 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Avatar;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
 use WireUi\View\WireUiComponent;
 
-class Avatar extends WireUiComponent
+class Index extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -28,6 +28,6 @@ class Avatar extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.avatar');
+        return view('wireui-avatar::index');
     }
 }

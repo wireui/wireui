@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\WireUi\Alert;
+namespace WireUi\Components\Alert\WireUi;
 
+use WireUi\Components\Alert\WireUi\Color\{Flat, Outline, Solid};
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Alert\Color\{Flat, Outline, Solid};
 
 class Variant extends ComponentPack
 {

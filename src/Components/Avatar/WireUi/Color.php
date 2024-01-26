@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Avatar;
+namespace WireUi\Components\Avatar\WireUi;
 
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;

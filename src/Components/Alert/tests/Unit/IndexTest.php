@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\View\Components;
+namespace WireUi\Components\Alert\tests\Unit;
 
+use WireUi\Components\Alert\Index as Alert;
+use WireUi\Components\Alert\WireUi\Color\{Flat, Outline};
 use WireUi\Enum\Packs;
-use WireUi\View\Components\Alert;
-use WireUi\WireUi\Alert\Color\{Flat, Outline};
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {

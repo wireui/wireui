@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\View\Components;
+namespace WireUi\Components\Avatar\tests\Unit;
 
+use WireUi\Components\Avatar\Index as Avatar;
+use WireUi\Components\Avatar\WireUi\{IconSize, Size};
 use WireUi\Enum\Packs;
-use WireUi\View\Components\Avatar;
-use WireUi\WireUi\Avatar\{IconSize, Size};
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {

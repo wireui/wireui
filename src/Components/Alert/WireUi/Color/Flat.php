@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Alert\Color;
+namespace WireUi\Components\Alert\WireUi\Color;
 
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;

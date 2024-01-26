@@ -22,8 +22,8 @@ class WireUiConfig
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
                 'rounders' => WireUi\Rounded::class,
-                'paddings' => WireUi\Alert\Padding::class,
-                'variants' => WireUi\Alert\Variant::class,
+                'paddings' => Test\Alert\WireUi\Padding::class,
+                'variants' => Test\Alert\WireUi\Variant::class,
             ],
         ], $options);
     }
@@ -39,10 +39,10 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'sizes'      => WireUi\Avatar\Size::class,
-                'colors'     => WireUi\Avatar\Color::class,
-                'borders'    => WireUi\Avatar\Border::class,
-                'icon-sizes' => WireUi\Avatar\IconSize::class,
+                'sizes'      => Test\Avatar\WireUi\Size::class,
+                'colors'     => Test\Avatar\WireUi\Color::class,
+                'borders'    => Test\Avatar\WireUi\Border::class,
+                'icon-sizes' => Test\Avatar\WireUi\IconSize::class,
             ],
         ], $options);
     }
@@ -302,11 +302,11 @@ class WireUiConfig
     {
         return self::mix([
             'alert' => [
-                'class' => Components\Alert::class,
+                'class' => Test\Alert\Index::class,
                 'alias' => 'alert',
             ],
             'avatar' => [
-                'class' => Components\Avatar::class,
+                'class' => Test\Avatar\Index::class,
                 'alias' => 'avatar',
             ],
             'badge' => [

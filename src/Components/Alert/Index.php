@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupVariant};
 use WireUi\View\WireUiComponent;
 
-class Alert extends WireUiComponent
+class Index extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -34,6 +34,6 @@ class Alert extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.alert');
+        return view('wireui-alert::index');
     }
 }
