@@ -1,12 +1,12 @@
 <?php
 
-namespace WireUi\Components\Actions;
+namespace WireUi\Components\Dialog;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
 use WireUi\View\WireUiComponent;
 
-class Dialog extends WireUiComponent
+class Index extends WireUiComponent
 {
     public string $dialog = '';
 
@@ -30,6 +30,6 @@ class Dialog extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui-actions::dialog');
+        return view('wireui-dialog::index');
     }
 }

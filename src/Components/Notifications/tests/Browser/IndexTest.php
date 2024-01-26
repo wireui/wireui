@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\Components\Actions\tests\Browser;
+namespace WireUi\Components\Notifications\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\{Attributes\On, Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 use WireUi\Traits\WireUiActions;
 
-class NotificationsTest extends BrowserTestCase
+class IndexTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
@@ -39,8 +39,8 @@ class NotificationsTest extends BrowserTestCase
             public function showSimpleNotification(): void
             {
                 $this->notification()->success(
-                    $title       = 'Success title',
-                    $description = 'Success description',
+                    title: 'Success title',
+                    description: 'Success description',
                 );
             }
 
@@ -111,7 +111,7 @@ class NotificationsTest extends BrowserTestCase
                                 params: 'Rejected'
                             }
                         })>
-                        Confirm action dialog
+                        Confirm Action Notification
                     </button>
 
                     <button
@@ -209,7 +209,7 @@ class NotificationsTest extends BrowserTestCase
     public function test_it_should_show_notification_from_directive_and_call_accept_and_reject_methods(): void
     {
         $this->browser()
-            ->assertSee('notifications test')
+            ->assertSee('Confirm Action Notification')
             ->click('@button.test.directive')
             ->waitForText('Confirm Directive')
             ->press('Confirm Directive')

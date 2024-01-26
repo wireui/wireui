@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\Components\Actions;
+namespace WireUi\Components\Notifications;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class Notifications extends WireUiComponent
+class Index extends WireUiComponent
 {
     protected array $packs = ['position'];
 
@@ -15,6 +15,6 @@ class Notifications extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui-actions::notifications');
+        return view('wireui-notifications::index');
     }
 }

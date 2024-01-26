@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Components\Actions\tests\Browser;
+namespace WireUi\Components\Dialog\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};

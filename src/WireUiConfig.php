@@ -2,7 +2,7 @@
 
 namespace WireUi;
 
-use WireUi\Components\{Actions, Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dropdown, Errors, Icon, Label, Link, Modal, Popover, Select, Switcher, TextField, Textarea, TimePicker, Wrapper};
+use WireUi\Components\{Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dialog, Dropdown, Errors, Icon, Label, Link, Modal, Notifications, Popover, Select, Switcher, TextField, Textarea, TimePicker, Wrapper};
 use WireUi\Enum\Packs;
 
 class WireUiConfig
@@ -182,7 +182,7 @@ class WireUiConfig
                 'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
-                'positions' => Actions\WireUi\Position::class,
+                'positions' => Notifications\WireUi\Position::class,
             ],
         ], $options);
     }
@@ -341,7 +341,7 @@ class WireUiConfig
                 'alias' => 'datetime-picker',
             ],
             'dialog' => [
-                'class' => Actions\Dialog::class,
+                'class' => Dialog\Index::class,
                 'alias' => 'dialog',
             ],
             'dropdown' => [
@@ -413,7 +413,7 @@ class WireUiConfig
                 'alias' => 'native-select',
             ],
             'notifications' => [
-                'class' => Actions\Notifications::class,
+                'class' => Notifications\Index::class,
                 'alias' => 'notifications',
             ],
             'radio' => [
