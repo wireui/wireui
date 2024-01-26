@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Toggle;
+namespace WireUi\Components\Switcher\WireUi\Toggle;
 
 use Illuminate\Support\Arr;
 use WireUi\Enum\Packs;

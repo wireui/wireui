@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Checkbox;
+namespace WireUi\Components\Switcher\WireUi\Radio;
 
 use Illuminate\Support\Arr;
 use WireUi\Enum\Packs;

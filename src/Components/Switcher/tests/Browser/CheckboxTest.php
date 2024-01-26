@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\Switcher\tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Livewire\{Attributes\Rule, Component, Livewire};
+use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class CheckboxTest extends BrowserTestCase
@@ -12,12 +12,11 @@ class CheckboxTest extends BrowserTestCase
     {
         return Livewire::visit(new class() extends Component
         {
-            #[Rule('accepted')]
             public bool $checkbox = false;
 
-            protected array $messages = [
-                'checkbox.accepted' => 'accept it',
-            ];
+            protected $rules = ['checkbox' => 'accepted'];
+
+            protected $messages = ['checkbox.accepted' => 'accept it'];
 
             public function validateCheckbox()
             {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\View\Components;
+namespace WireUi\Components\Switcher\tests\Unit;
 
 test('example', function () {
     expect(true)->toBeTrue();

@@ -244,8 +244,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => WireUi\Checkbox\Size::class,
-                'colors'   => WireUi\Checkbox\Color::class,
+                'sizes'    => Test\Switcher\WireUi\Checkbox\Size::class,
+                'colors'   => Test\Switcher\WireUi\Checkbox\Color::class,
             ],
         ], $options);
     }
@@ -260,8 +260,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => WireUi\Toggle\Size::class,
-                'colors'   => WireUi\Toggle\Color::class,
+                'sizes'    => Test\Switcher\WireUi\Toggle\Size::class,
+                'colors'   => Test\Switcher\WireUi\Toggle\Color::class,
             ],
         ], $options);
     }
@@ -276,8 +276,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'colors'   => WireUi\Radio\Color::class,
-                'sizes'    => WireUi\Radio\Size::class,
+                'colors'   => Test\Switcher\WireUi\Radio\Color::class,
+                'sizes'    => Test\Switcher\WireUi\Radio\Size::class,
             ],
         ], $options);
     }
@@ -330,7 +330,7 @@ class WireUiConfig
                 'alias' => 'card',
             ],
             'checkbox' => [
-                'class' => Components\Checkbox::class,
+                'class' => Test\Switcher\Checkbox::class,
                 'alias' => 'checkbox',
             ],
             'color-picker' => [
@@ -418,7 +418,7 @@ class WireUiConfig
                 'alias' => 'notifications',
             ],
             'radio' => [
-                'class' => Components\Radio::class,
+                'class' => Test\Switcher\Radio::class,
                 'alias' => 'radio',
             ],
             'select' => [
@@ -446,7 +446,7 @@ class WireUiConfig
                 'alias' => 'time-selector',
             ],
             'toggle' => [
-                'class' => Components\Toggle::class,
+                'class' => Test\Switcher\Toggle::class,
                 'alias' => 'toggle',
             ],
             'wrapper' => [
