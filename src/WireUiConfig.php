@@ -3,20 +3,17 @@
 namespace WireUi;
 
 use WireUi\Components\{Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dialog, Dropdown, Errors, Icon, Label, Link, Modal, Notifications, Popover, Select, Switcher, TextField, Textarea, TimePicker, Wrapper};
-use WireUi\Enum\Packs;
 
 class WireUiConfig
 {
-    public const GLOBAL = 'global';
-
     public static function alert(array $options = []): array
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'rounded' => self::GLOBAL,
-                'variant' => Packs\Variant::FLAT,
-                'padding' => Packs\Padding::MEDIUM,
+                'variant' => 'flat',
+                'color'   => 'global',
+                'rounded' => 'global',
+                'padding' => 'medium',
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -31,10 +28,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'size'    => Packs\Size::MD,
-                'border'  => Packs\Border::THIN,
-                'rounded' => Packs\Rounded::FULL,
-                'color'   => Packs\Color::SECONDARY,
+                'size'    => 'md',
+                'border'  => 'thin',
+                'rounded' => 'full',
+                'color'   => 'secondary',
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
@@ -50,10 +47,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'rounded' => self::GLOBAL,
-                'size'    => Packs\Size::SM,
-                'variant' => Packs\Variant::SOLID,
+                'size'    => 'sm',
+                'variant' => 'solid',
+                'color'   => 'global',
+                'rounded' => 'global',
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
@@ -77,10 +74,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'rounded' => self::GLOBAL,
-                'size'    => Packs\Size::MD,
-                'variant' => Packs\Variant::SOLID,
+                'size'    => 'md',
+                'variant' => 'solid',
+                'color'   => 'global',
+                'rounded' => 'global',
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
@@ -104,10 +101,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'rounded' => self::GLOBAL,
-                'color'   => Packs\Color::BASE,
-                'variant' => Packs\Variant::FLAT,
-                'padding' => Packs\Padding::MEDIUM,
+                'color'   => 'base',
+                'variant' => 'flat',
+                'rounded' => 'global',
+                'padding' => 'medium',
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -122,9 +119,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'width'    => Packs\Width::LG,
-                'height'   => Packs\Height::XL3,
-                'position' => Packs\Position::BOTTOM_START,
+                'width'    => 'lg',
+                'height'   => '3xl',
+                'position' => 'bottom-start',
             ],
             'packs' => [
                 'widths'  => Dropdown\WireUi\Width::class,
@@ -136,7 +133,7 @@ class WireUiConfig
     public static function icon(array $options = []): array
     {
         return self::mix([
-            'variant' => Packs\Icon::OUTLINE,
+            'variant' => 'outline',
         ], $options);
     }
 
@@ -144,9 +141,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'size'      => Packs\Size::MD,
-                'color'     => Packs\Color::PRIMARY,
-                'underline' => Packs\Underline::HOVER,
+                'size'      => 'md',
+                'underline' => 'hover',
+                'color'     => 'primary',
             ],
             'packs' => [
                 'sizes'      => Link\WireUi\Size::class,
@@ -160,10 +157,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'blur'  => Packs\Blur::NONE,
-                'type'  => Packs\Type::BASE,
-                'width' => Packs\Width::XL2,
-                'align' => Packs\Align::START,
+                'width' => '2xl',
+                'blur'  => 'none',
+                'type'  => 'base',
+                'align' => 'start',
             ],
             'packs' => [
                 'blurs'  => Modal\WireUi\Blur::class,
@@ -179,7 +176,7 @@ class WireUiConfig
         return self::mix([
             'default' => [
                 'z-index'  => 'z-50',
-                'position' => Packs\Position::TOP_END,
+                'position' => 'top-end',
             ],
             'packs' => [
                 'positions' => Notifications\WireUi\Position::class,
@@ -191,16 +188,16 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
-                'right-icon'       => 'calendar',
-                'without-tips'     => false,
-                'without-timezone' => false,
-                'without-time'     => false,
                 'interval'         => 10,
                 'time-format'      => 12,
-                'parse-format'     => null,
-                'display-format'   => null,
                 'timezone'         => null,
+                'parse-format'     => null,
                 'user-timezone'    => null,
+                'display-format'   => null,
+                'without-timezone' => false,
+                'without-time'     => false,
+                'without-tips'     => false,
+                'right-icon'       => 'calendar',
             ],
         ], $options));
     }
@@ -220,11 +217,11 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'squared'         => false,
+                'borderless'      => false,
+                'shadowless'      => false,
                 'military-time'   => false,
                 'without-seconds' => false,
-                'borderless'      => false,
-                'squared'         => false,
-                'shadowless'      => false,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -237,14 +234,14 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
-                'rounded' => Packs\Rounded::BASE,
+                'size'    => 'sm',
+                'rounded' => 'base',
+                'color'   => 'global',
             ],
             'packs' => [
-                'rounders' => WireUi\Rounded::class,
                 'sizes'    => Switcher\WireUi\Checkbox\Size::class,
                 'colors'   => Switcher\WireUi\Checkbox\Color::class,
+                'rounders' => WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -253,9 +250,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
-                'rounded' => Packs\Rounded::FULL,
+                'size'    => 'sm',
+                'rounded' => 'full',
+                'color'   => 'global',
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
@@ -269,9 +266,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
-                'rounded' => Packs\Rounded::FULL,
+                'size'    => 'sm',
+                'rounded' => 'full',
+                'color'   => 'global',
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
@@ -285,9 +282,9 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'shadow'  => self::GLOBAL,
-                'rounded' => self::GLOBAL,
+                'color'   => 'global',
+                'shadow'  => 'global',
+                'rounded' => 'global',
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,

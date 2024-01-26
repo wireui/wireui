@@ -3,23 +3,22 @@
 namespace WireUi\Components\Button\WireUi;
 
 use WireUi\Components\Button\WireUi\Color\{Flat, Light, Outline, Solid};
-use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Variant extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Variant::SOLID;
+        return 'solid';
     }
 
     public function all(): array
     {
         return [
-            Packs\Variant::FLAT    => Flat::class,
-            Packs\Variant::LIGHT   => Light::class,
-            Packs\Variant::OUTLINE => Outline::class,
-            Packs\Variant::SOLID   => Solid::class,
+            'flat'    => Flat::class,
+            'light'   => Light::class,
+            'solid'   => Solid::class,
+            'outline' => Outline::class,
         ];
     }
 }

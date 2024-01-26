@@ -2,23 +2,22 @@
 
 namespace WireUi\Components\Avatar\WireUi;
 
-use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Border extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Border::THIN;
+        return 'thin';
     }
 
     public function all(): array
     {
         return [
-            Packs\Border::NONE  => 'border-0',
-            Packs\Border::THIN  => 'border',
-            Packs\Border::BASE  => 'border-2',
-            Packs\Border::THICK => 'border-4',
+            'none'  => 'border-0',
+            'thin'  => 'border',
+            'base'  => 'border-2',
+            'thick' => 'border-4',
         ];
     }
 }

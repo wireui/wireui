@@ -6,7 +6,6 @@ use WireUi\Components\Badge\Base;
 use WireUi\Components\Badge\WireUi\Color\Outline;
 use WireUi\Components\Badge\WireUi\IconSize;
 use WireUi\Components\Badge\WireUi\Size\Base as SizeBase;
-use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -76,7 +75,7 @@ test('it should set specific label in component', function () {
 
 test('it should set icon and right icon in component with lg size', function () {
     $this->setAttributes($this->component, [
-        'size'       => $size      = Packs\Size::LG,
+        'size'       => $size      = 'lg',
         'icon'       => $icon      = $this->getRandomIcon(),
         'right-icon' => $rightIcon = $this->getRandomIcon(),
     ]);
@@ -104,17 +103,17 @@ test('it should set icon and right icon in component with lg size', function () 
 
 test('it should set specific color in component with variant outline', function () {
     $this->setAttributes($this->component, [
-        'color'   => Packs\Color::INFO,
-        'variant' => Packs\Variant::OUTLINE,
+        'color'   => 'info',
+        'variant' => 'outline',
     ]);
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->color)->toBe($color = Packs\Color::INFO);
+    expect($this->component->color)->toBe($color = 'info');
 
-    expect($this->component->variant)->toBe($variant = Packs\Variant::OUTLINE);
+    expect($this->component->variant)->toBe($variant = 'outline');
 
-    expect($this->component->colorClasses)->toBe($class = (new Outline())->get(Packs\Color::INFO));
+    expect($this->component->colorClasses)->toBe($class = (new Outline())->get('info'));
 
     expect('<x-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
 });
@@ -130,7 +129,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->squared)->toBeFalse();
 
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get('full'));
 
     expect('<x-badge rounded />')->render()->toContain($class);
 });
@@ -146,7 +145,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->rounded)->toBeFalse();
 
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get('none'));
 
     expect('<x-badge squared />')->render()->toContain($class);
 });

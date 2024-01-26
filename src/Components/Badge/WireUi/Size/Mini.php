@@ -2,22 +2,21 @@
 
 namespace WireUi\Components\Badge\WireUi\Size;
 
-use WireUi\Enum\Packs\Size;
 use WireUi\Support\ComponentPack;
 
 class Mini extends ComponentPack
 {
     protected function default(): string
     {
-        return Size::SM;
+        return 'sm';
     }
 
     public function all(): array
     {
         return [
-            Size::SM => 'w-6 h-6',
-            Size::MD => 'w-7 h-7',
-            Size::LG => 'w-8 h-8',
+            'sm' => 'w-6 h-6',
+            'md' => 'w-7 h-7',
+            'lg' => 'w-8 h-8',
         ];
     }
 }

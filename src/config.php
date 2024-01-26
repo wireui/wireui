@@ -1,6 +1,5 @@
 <?php
 
-use WireUi\Enum\Packs;
 use WireUi\{Components, WireUiConfig as Config};
 
 return [
@@ -29,9 +28,9 @@ return [
      */
 
     'style' => [
-        'shadow'  => Packs\Shadow::BASE,
-        'rounded' => Packs\Rounded::MD,
-        'color'   => Packs\Color::PRIMARY,
+        'color'   => 'primary',
+        'shadow'  => 'base',
+        'rounded' => 'md',
     ],
 
     /*

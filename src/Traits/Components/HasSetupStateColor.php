@@ -80,7 +80,7 @@ trait HasSetupStateColor
         }
 
         foreach ($modifiers as $modifier) {
-            $modifierClasses = $colorPack->mergeIf($this->useValidation(), Color::INVALIDATED, $modifierColor);
+            $modifierClasses = $colorPack->mergeIf($this->useValidation(), 'invalidated', $modifierColor);
 
             $this->colorClasses[$modifier] = data_get($modifierClasses, $modifier);
         }

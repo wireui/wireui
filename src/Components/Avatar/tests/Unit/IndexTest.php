@@ -4,7 +4,6 @@ namespace WireUi\Components\Avatar\tests\Unit;
 
 use WireUi\Components\Avatar\Index as Avatar;
 use WireUi\Components\Avatar\WireUi\{IconSize, Size};
-use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -90,7 +89,7 @@ test('it should render link photo in component', function () {
 test('it should render icon in component', function () {
     $this->setAttributes($this->component, [
         'icon' => $icon = $this->getRandomIcon(),
-        'size' => $size = Packs\Size::SM,
+        'size' => $size = 'sm',
     ]);
 
     $this->runWireUiComponent($this->component);
@@ -126,7 +125,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->squared)->toBeFalse();
 
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get('full'));
 
     expect('<x-avatar rounded />')->render()->toContain($class);
 });
@@ -142,7 +141,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->rounded)->toBeFalse();
 
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get('none'));
 
     expect('<x-avatar squared />')->render()->toContain($class);
 });

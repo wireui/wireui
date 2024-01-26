@@ -2,20 +2,19 @@
 
 namespace WireUi\Components\Card\WireUi;
 
-use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Color extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Color::BASE;
+        return 'base';
     }
 
     public function all(): array
     {
         return [
-            Packs\Color::BASE => [
+            'base' => [
                 'root'   => 'bg-white dark:bg-secondary-800',
                 'footer' => 'bg-secondary-50 dark:bg-secondary-800',
                 'text'   => 'text-secondary-700 dark:text-secondary-400',

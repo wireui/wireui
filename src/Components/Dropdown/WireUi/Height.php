@@ -2,29 +2,28 @@
 
 namespace WireUi\Components\Dropdown\WireUi;
 
-use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
 class Height extends ComponentPack
 {
     protected function default(): string
     {
-        return Packs\Height::XL3;
+        return '3xl';
     }
 
     public function all(): array
     {
         return [
-            Packs\Height::SM  => 'max-h-40',
-            Packs\Height::MD  => 'max-h-44',
-            Packs\Height::LG  => 'max-h-48',
-            Packs\Height::XL  => 'max-h-52',
-            Packs\Height::XL2 => 'max-h-56',
-            Packs\Height::XL3 => 'max-h-60',
-            Packs\Height::XL4 => 'max-h-64',
-            Packs\Height::XL5 => 'max-h-72',
-            Packs\Height::XL6 => 'max-h-80',
-            Packs\Height::XL7 => 'max-h-96',
+            'sm'  => 'max-h-40',
+            'md'  => 'max-h-44',
+            'lg'  => 'max-h-48',
+            'xl'  => 'max-h-52',
+            '2xl' => 'max-h-56',
+            '3xl' => 'max-h-60',
+            '4xl' => 'max-h-64',
+            '5xl' => 'max-h-72',
+            '6xl' => 'max-h-80',
+            '7xl' => 'max-h-96',
         ];
     }
 }
