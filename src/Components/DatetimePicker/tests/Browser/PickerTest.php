@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\DatetimePicker\tests\Browser;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class DatetimePickerTest extends BrowserTestCase
+class PickerTest extends BrowserTestCase
 {
     public function browser(): Browser
     {

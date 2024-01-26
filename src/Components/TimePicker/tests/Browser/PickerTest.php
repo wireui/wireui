@@ -2,7 +2,7 @@
 
 namespace WireUi\Components\TimePicker\tests\Browser;
 
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;

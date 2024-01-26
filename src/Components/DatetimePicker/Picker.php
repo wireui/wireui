@@ -1,14 +1,14 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\DatetimePicker;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Carbon;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class DatetimePicker extends WireUiComponent
+class Picker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -45,6 +45,6 @@ class DatetimePicker extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.datetime-picker');
+        return view('wireui-datetime-picker::picker');
     }
 }

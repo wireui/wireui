@@ -338,7 +338,7 @@ class WireUiConfig
                 'alias' => 'color-picker',
             ],
             'datetime-picker' => [
-                'class' => Components\DatetimePicker::class,
+                'class' => Test\DatetimePicker\Picker::class,
                 'alias' => 'datetime-picker',
             ],
             'dialog' => [
