@@ -150,9 +150,9 @@ class WireUiConfig
                 'underline' => Packs\Underline::HOVER,
             ],
             'packs' => [
-                'sizes'      => WireUi\Link\Size::class,
-                'colors'     => WireUi\Link\Color::class,
-                'underlines' => WireUi\Link\Underline::class,
+                'sizes'      => Test\Link\WireUi\Size::class,
+                'colors'     => Test\Link\WireUi\Color::class,
+                'underlines' => Test\Link\WireUi\Underline::class,
             ],
         ], $options);
     }
@@ -398,7 +398,7 @@ class WireUiConfig
                 'alias' => 'label',
             ],
             'link' => [
-                'class' => Components\Link::class,
+                'class' => Test\Link\Index::class,
                 'alias' => 'link',
             ],
             'modal' => [
@@ -434,7 +434,7 @@ class WireUiConfig
                 'alias' => 'select.user-option',
             ],
             'textarea' => [
-                'class' => Components\Textarea::class,
+                'class' => Test\Textarea\Index::class,
                 'alias' => 'textarea',
             ],
             'time-picker' => [

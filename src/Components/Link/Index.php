@@ -1,12 +1,12 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Link;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize};
 use WireUi\View\WireUiComponent;
 
-class Link extends WireUiComponent
+class Index extends WireUiComponent
 {
     use HasSetupButton;
     use HasSetupColor;
@@ -20,6 +20,6 @@ class Link extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.link');
+        return view('wireui-link::index');
     }
 }
