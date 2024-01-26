@@ -410,7 +410,7 @@ class WireUiConfig
                 'alias' => 'modal-card',
             ],
             'native-select' => [
-                'class' => Components\NativeSelect::class,
+                'class' => Test\Select\Native::class,
                 'alias' => 'native-select',
             ],
             'notifications' => [
@@ -422,15 +422,15 @@ class WireUiConfig
                 'alias' => 'radio',
             ],
             'select' => [
-                'class' => Components\Select::class,
+                'class' => Test\Select\Base::class,
                 'alias' => 'select',
             ],
             'select.option' => [
-                'class' => Components\Select\Option::class,
+                'class' => Test\Select\Option::class,
                 'alias' => 'select.option',
             ],
             'select.user-option' => [
-                'class' => Components\Select\UserOption::class,
+                'class' => Test\Select\UserOption::class,
                 'alias' => 'select.user-option',
             ],
             'textarea' => [

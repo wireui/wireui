@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Select;
+namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -19,7 +19,7 @@ class Option extends Component
 
     public function render(): View
     {
-        return view('wireui::components.select.option');
+        return view('wireui-select::option');
     }
 
     public function toArray(): array

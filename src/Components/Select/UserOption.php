@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Select;
+namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
 
@@ -19,6 +19,6 @@ class UserOption extends Option
 
     public function render(): View
     {
-        return view('wireui::components.select.user-option');
+        return view('wireui-select::user-option');
     }
 }

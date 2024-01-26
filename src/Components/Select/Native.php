@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -9,7 +9,7 @@ use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class NativeSelect extends WireUiComponent
+class Native extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -119,6 +119,6 @@ class NativeSelect extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.native-select');
+        return view('wireui-select::native');
     }
 }

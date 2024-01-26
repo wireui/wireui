@@ -1,12 +1,12 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Select;
 
 use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 
-class Select extends NativeSelect
+class Base extends Native
 {
     public function __construct(
         public bool $clearable = true,
@@ -72,7 +72,7 @@ class Select extends NativeSelect
 
     protected function blade(): View
     {
-        return view('wireui::components.select');
+        return view('wireui-select::base');
     }
 
     public function getOptionLabel(mixed $option): string

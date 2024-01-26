@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\Select\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class SelectTest extends BrowserTestCase
+class BaseTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
