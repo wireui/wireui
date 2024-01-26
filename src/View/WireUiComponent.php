@@ -2,7 +2,6 @@
 
 namespace WireUi\View;
 
-use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, HtmlString, Str};
@@ -10,7 +9,14 @@ use Illuminate\View\Component;
 use WireUi\Facades\WireUi;
 use WireUi\Support\{ComponentPack};
 
-#[AllowDynamicProperties]
+/**
+ * @property mixed $size
+ * @property mixed $useValidationColors
+ *
+ * @method void mounted(array $data)
+ * @method void processed(array $data)
+ * @method void finished(array $data)
+ */
 abstract class WireUiComponent extends Component
 {
     use ManageProps;
@@ -26,7 +32,6 @@ abstract class WireUiComponent extends Component
         $this->config = WireUi::components()->resolveByAlias($this->componentName);
     }
 
-    // todo: remove it
     abstract protected function blade(): View;
 
     public function render(): Closure

@@ -23,7 +23,7 @@
 
     @if ($spinner)
         <x-wireui-icon::spinner
-            {{ $spinner }}
+            :attributes="$spinner"
             @class([$iconSizeClasses, 'shrink-0 animate-spin'])
         />
     @endif

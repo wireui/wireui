@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\Support; // todo: move to View namespace
+namespace WireUi\View;
 
 use Illuminate\View\ComponentAttributeBag;
 
-class ComponentAttributesBag extends ComponentAttributeBag
+class WireUiAttributeBag extends ComponentAttributeBag
 {
     public function __construct(array $attributes = [])
     {
