@@ -464,11 +464,11 @@ class WireUiConfig
              */
             'switcher' => [
                 'class' => Test\Wrapper\Switcher::class,
-                'alias' => 'wrapper.switcher',
+                'alias' => 'switcher',
             ],
             'text-field' => [
                 'class' => Test\Wrapper\TextField::class,
-                'alias' => 'wrapper',
+                'alias' => 'text-field',
             ],
         ], $options);
     }

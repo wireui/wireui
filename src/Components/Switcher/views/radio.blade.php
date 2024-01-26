@@ -1,4 +1,4 @@
-<x-wrapper.switcher
+<x-switcher
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key'])"
 >
@@ -20,4 +20,4 @@
             ->merge(['type' => 'radio'])
         }}
     />
-</x-wrapper.switcher>
+</x-switcher>

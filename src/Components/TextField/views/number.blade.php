@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :right-icon="$rightIcon"
     :attributes="$attrs->only(['wire:key', 'class'])"
@@ -50,4 +50,4 @@
             flat
         />
     </x-slot:append>
-</x-wrapper>
+</x-text-field>

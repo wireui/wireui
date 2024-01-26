@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :attributes="$attributes->only(['wire:key', 'class'])"
     x-data="wireui_color_picker"
@@ -94,4 +94,4 @@
              </div>
         </x-popover2>
     </x-slot:after>
-</x-wrapper>
+</x-text-field>

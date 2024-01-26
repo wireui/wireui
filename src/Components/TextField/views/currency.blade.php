@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
     :x-data="WireUi::alpine('wireui_inputs_currency', [
@@ -20,4 +20,4 @@
             ->whereDoesntStartWith(['wire:model'])
             ->except(['type', 'wire:key', 'x-data', 'class'])"
     />
-</x-wrapper>
+</x-text-field>

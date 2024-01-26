@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :x-data="WireUi::alpine('wireui_inputs_maskable', [
@@ -19,4 +19,4 @@
             ->except(['class', 'wire:key'])
         "
     />
-</x-wrapper>
+</x-text-field>

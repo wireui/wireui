@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
         'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
@@ -75,4 +75,4 @@
             />
         </x-popover2>
     </x-slot:after>
-</x-wrapper>
+</x-text-field>

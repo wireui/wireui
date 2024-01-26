@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :x-data="WireUi::alpine('wireui_datetime_picker', [
         'model' => null
     ])"
@@ -271,4 +271,4 @@
             </div>
         </x-popover2>
     </x-slot:after>
-</x-wrapper>
+</x-text-field>

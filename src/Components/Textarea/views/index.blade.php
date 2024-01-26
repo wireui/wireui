@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
@@ -24,4 +24,4 @@
                 'invalidated:placeholder-negative-400 invalidated:dark:placeholder-negative-600/70',
             ]) }}
     >{{ $slot }}</textarea>
-</x-wrapper>
+</x-text-field>

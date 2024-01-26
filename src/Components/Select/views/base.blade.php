@@ -1,4 +1,4 @@
-<x-wrapper
+<x-text-field
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :x-data="WireUi::alpine('wireui_select', [
@@ -240,4 +240,4 @@
             </div>
         </x-popover>
     </x-slot:after>
-</x-wrapper>
+</x-text-field>

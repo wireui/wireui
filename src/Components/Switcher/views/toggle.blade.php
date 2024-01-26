@@ -1,4 +1,4 @@
-<x-wrapper.switcher
+<x-switcher
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key'])"
 >
@@ -36,4 +36,4 @@
             'invalidated:dark:peer-focus:ring-negative-700 invalidated:dark:peer-focus:ring-offset-secondary-800',
         ])></div>
     </label>
-</x-wrapper.switcher>
+</x-switcher>
