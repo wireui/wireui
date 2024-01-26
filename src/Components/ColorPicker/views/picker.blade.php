@@ -9,7 +9,7 @@
     ])"
     x-ref="container"
 >
-    @include('wireui::components.wrapper.slots', [
+    @include('wireui-wrapper::components.slots', [
         'except' => ['prefix', 'append']
     ])
 
@@ -20,7 +20,7 @@
         ></div>
     </x-slot:prefix>
 
-    <x-wireui::wrapper.element
+    <x-wireui-wrapper::element
         x-model.fill="selected.value"
         x-on:input="setColor($event.target.value)"
         x-on:blur="onBlur($event.target.value)"

@@ -7,7 +7,7 @@
         'readonly' => $readonly,
     ])"
 >
-    @include('wireui::components.wrapper.slots', [
+    @include('wireui-wrapper::components.slots', [
         'except' => ['prepend', 'append'],
     ])
 
@@ -25,7 +25,7 @@
         />
     </x-slot:prepend>
 
-    <x-wireui::wrapper.element
+    <x-wireui-wrapper::element
         :attributes="$attrs
             ->except(['class', 'wire:key', 'x-data'])
             ->class('text-center appearance-number-none')

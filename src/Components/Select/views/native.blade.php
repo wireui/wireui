@@ -3,7 +3,7 @@
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
 >
-    @include('wireui::components.wrapper.slots')
+    @include('wireui-wrapper::components.slots')
 
     <select {{ $attrs
         ->except(['class', 'wire:key', 'x-data'])

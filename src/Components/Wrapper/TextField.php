@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\View\Components\Wrapper;
+namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use WireUi\Support\WrapperData;
 use WireUi\Traits\Components\InteractsWithErrors;
 
-class Base extends Component
+class TextField extends Component
 {
     use InteractsWithErrors;
 
@@ -63,6 +63,6 @@ class Base extends Component
 
     public function render(): View
     {
-        return view('wireui::components.wrapper.base');
+        return view('wireui-wrapper::text-field');
     }
 }

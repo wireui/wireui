@@ -26,7 +26,7 @@
     ])"
     x-ref="container"
 >
-    @include('wireui::components.wrapper.slots')
+    @include('wireui-wrapper::components.slots')
 
     @if (!$readonly && !$disabled)
         <x-slot:append class="flex items-center">
@@ -65,7 +65,7 @@
         </x-slot:append>
     @endif
 
-    <x-wireui::wrapper.element
+    <x-wireui-wrapper::element
         readonly
         x-on:click="toggle"
         x-bind:value="model ? getDisplayValue() : null"

@@ -25,21 +25,21 @@
             name="form.wrapper.header"
         >
             @if ($label)
-                <x-wireui::form.label
+                <x-wireui-wrapper::form.label
                     :attributes="WireUi::extractAttributes($label)"
                     :for="$id"
                 >
                     {{ $label }}
-                </x-wireui::form.label>
+                </x-wireui-wrapper::form.label>
             @endif
 
             @if ($corner)
-                <x-wireui::form.label
+                <x-wireui-wrapper::form.label
                     :attributes="WireUi::extractAttributes($corner)"
                     :for="$id"
                 >
                     {{ $corner }}
-                </x-wireui::form.label>
+                </x-wireui-wrapper::form.label>
             @endif
         </div>
     @endif
@@ -143,15 +143,15 @@
     </label>
 
     @if ($description && !$invalidated)
-        <x-wireui::form.description
+        <x-wireui-wrapper::form.description
             class="mt-2"
             :for="$id"
             name="form.wrapper.description"
         >
             {{ $description }}
-        </x-wireui::form.description>
+        </x-wireui-wrapper::form.description>
     @elseif (!$errorless && $invalidated)
-        <x-wireui::form.error
+        <x-wireui-wrapper::form.error
             class="mt-2"
             :for="$id"
             :message="$errors->first($name)"

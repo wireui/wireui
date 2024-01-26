@@ -4,7 +4,7 @@
     :with-error-icon="false"
     padding="none"
 >
-    @include('wireui::components.wrapper.slots', [
+    @include('wireui-wrapper::components.slots', [
         'except' => ['prepend', 'append'],
     ])
 

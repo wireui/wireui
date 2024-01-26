@@ -17,36 +17,36 @@
 >
     <div class="flex items-center gap-x-2">
         @if ($label)
-            <x-wireui::form.label
+            <x-wireui-wrapper::form.label
                 :attributes="WireUi::extractAttributes($label)"
                 :for="$id"
             >
                 {{ $label }}
-            </x-wireui::form.label>
+            </x-wireui-wrapper::form.label>
         @endif
 
         {{ $slot }}
 
         @if ($rightLabel)
-            <x-wireui::form.label
+            <x-wireui-wrapper::form.label
                 :attributes="WireUi::extractAttributes($rightLabel)"
                 :for="$id"
             >
                 {{ $rightLabel }}
-            </x-wireui::form.label>
+            </x-wireui-wrapper::form.label>
         @endif
     </div>
 
     @if ($description && !$invalidated)
-        <x-wireui::form.description
+        <x-wireui-wrapper::form.description
             class="mt-2"
             :for="$id"
             name="form.wrapper.description"
         >
             {{ $description }}
-        </x-wireui::form.description>
+        </x-wireui-wrapper::form.description>
     @elseif (!$errorless && $invalidated)
-        <x-wireui::form.error
+        <x-wireui-wrapper::form.error
             class="mt-2"
             :for="$id"
             :message="$errors->first($name)"

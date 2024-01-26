@@ -2,7 +2,7 @@
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key'])"
 >
-    @include('wireui::components.wrapper.slots')
+    @include('wireui-wrapper::components.slots')
 
     <input
         {{ $attrs

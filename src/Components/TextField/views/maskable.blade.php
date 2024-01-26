@@ -8,9 +8,9 @@
         'mask'          => $mask,
     ])"
 >
-    @include('wireui::components.wrapper.slots')
+    @include('wireui-wrapper::components.slots')
 
-    <x-wireui::wrapper.element
+    <x-wireui-wrapper::element
         x-model="input"
         x-on:input="onInput($event.target.value)"
         x-on:blur="emitInput"

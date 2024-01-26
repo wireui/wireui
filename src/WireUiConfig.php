@@ -292,8 +292,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'colors'   => WireUi\Wrapper\Color::class,
-                'rounders' => WireUi\Wrapper\Rounded::class,
+                'colors'   => Test\Wrapper\WireUi\Color::class,
+                'rounders' => Test\Wrapper\WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -449,13 +449,16 @@ class WireUiConfig
                 'class' => Test\Switcher\Toggle::class,
                 'alias' => 'toggle',
             ],
-            'wrapper' => [
-                'class' => Components\Wrapper\Base::class,
-                'alias' => 'wrapper',
-            ],
-            'wrapper.switcher' => [
-                'class' => Components\Wrapper\Switcher::class,
+            /**
+             * Wrappers
+             */
+            'switcher' => [
+                'class' => Test\Wrapper\Switcher::class,
                 'alias' => 'wrapper.switcher',
+            ],
+            'text-field' => [
+                'class' => Test\Wrapper\TextField::class,
+                'alias' => 'wrapper',
             ],
         ], $options);
     }

@@ -11,9 +11,9 @@
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     x-ref="container"
 >
-    @include('wireui::components.wrapper.slots')
+    @include('wireui-wrapper::components.slots')
 
-    <x-wireui::wrapper.element
+    <x-wireui-wrapper::element
         x-model.fill="input"
         x-ref="input"
         x-on:blur="onBlur"

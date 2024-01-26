@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Wrapper;
+namespace WireUi\Components\Wrapper\WireUi;
 
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
