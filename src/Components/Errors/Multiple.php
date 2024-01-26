@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Errors;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str};
@@ -8,7 +8,7 @@ use WireUi\Facades\WireUi;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\View\WireUiComponent;
 
-class Errors extends WireUiComponent
+class Multiple extends WireUiComponent
 {
     use InteractsWithErrors;
 
@@ -66,6 +66,6 @@ class Errors extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.errors');
+        return view('wireui-errors::multiple');
     }
 }

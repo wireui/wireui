@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Errors;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class Error extends WireUiComponent
+class Single extends WireUiComponent
 {
     protected array $props = [
         'name' => null,
@@ -13,6 +13,6 @@ class Error extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.error');
+        return view('wireui-errors::single');
     }
 }

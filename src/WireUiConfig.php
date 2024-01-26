@@ -358,11 +358,11 @@ class WireUiConfig
                 'alias' => 'dropdown.header',
             ],
             'error' => [
-                'class' => Components\Error::class,
+                'class' => Test\Errors\Single::class,
                 'alias' => 'error',
             ],
             'errors' => [
-                'class' => Components\Errors::class,
+                'class' => Test\Errors\Multiple::class,
                 'alias' => 'errors',
             ],
             'icon' => [

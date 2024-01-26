@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\Errors\tests\Browser;
 
 use Livewire\Features\SupportTesting\Testable;
 use Livewire\{Component, Livewire};
