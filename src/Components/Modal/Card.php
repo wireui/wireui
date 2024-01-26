@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Modal;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class ModalCard extends WireUiComponent
+class Card extends WireUiComponent
 {
     protected array $props = [
         'hide-close' => false,
@@ -13,6 +13,6 @@ class ModalCard extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.modal-card');
+        return view('wireui-modal::card');
     }
 }

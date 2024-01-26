@@ -167,10 +167,10 @@ class WireUiConfig
                 'align' => Packs\Align::START,
             ],
             'packs' => [
-                'blurs'  => WireUi\Modal\Blur::class,
-                'types'  => WireUi\Modal\Type::class,
-                'widths' => WireUi\Modal\Width::class,
-                'aligns' => WireUi\Modal\Align::class,
+                'blurs'  => Test\Modal\WireUi\Blur::class,
+                'types'  => Test\Modal\WireUi\Type::class,
+                'widths' => Test\Modal\WireUi\Width::class,
+                'aligns' => Test\Modal\WireUi\Align::class,
             ],
         ], $options);
     }
@@ -402,11 +402,11 @@ class WireUiConfig
                 'alias' => 'link',
             ],
             'modal' => [
-                'class' => Components\Modal::class,
+                'class' => Test\Modal\Index::class,
                 'alias' => 'modal',
             ],
             'modal-card' => [
-                'class' => Components\ModalCard::class,
+                'class' => Test\Modal\Card::class,
                 'alias' => 'modal-card',
             ],
             'native-select' => [

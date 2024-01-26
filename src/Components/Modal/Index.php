@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Modal;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class Modal extends WireUiComponent
+class Index extends WireUiComponent
 {
     protected array $packs = ['align', 'blur', 'width', 'type'];
 
@@ -20,6 +20,6 @@ class Modal extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.modal');
+        return view('wireui-modal::index');
     }
 }
