@@ -2,7 +2,7 @@
 
 namespace WireUi;
 
-use WireUi\Components as Test;
+use WireUi\Components\{Actions, Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dropdown, Errors, Icon, Label, Link, Modal, Popover, Select, Switcher, TextField, Textarea, TimePicker, Wrapper};
 use WireUi\Enum\Packs;
 
 class WireUiConfig
@@ -21,8 +21,8 @@ class WireUiConfig
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
                 'rounders' => WireUi\Rounded::class,
-                'paddings' => Test\Alert\WireUi\Padding::class,
-                'variants' => Test\Alert\WireUi\Variant::class,
+                'paddings' => Alert\WireUi\Padding::class,
+                'variants' => Alert\WireUi\Variant::class,
             ],
         ], $options);
     }
@@ -38,10 +38,10 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'sizes'      => Test\Avatar\WireUi\Size::class,
-                'colors'     => Test\Avatar\WireUi\Color::class,
-                'borders'    => Test\Avatar\WireUi\Border::class,
-                'icon-sizes' => Test\Avatar\WireUi\IconSize::class,
+                'sizes'      => Avatar\WireUi\Size::class,
+                'colors'     => Avatar\WireUi\Color::class,
+                'borders'    => Avatar\WireUi\Border::class,
+                'icon-sizes' => Avatar\WireUi\IconSize::class,
             ],
         ], $options);
     }
@@ -57,9 +57,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'variants'   => Test\Badge\WireUi\Variant::class,
-                'icon-sizes' => Test\Badge\WireUi\IconSize::class,
-                'sizes'      => Test\Badge\WireUi\Size\Base::class,
+                'variants'   => Badge\WireUi\Variant::class,
+                'icon-sizes' => Badge\WireUi\IconSize::class,
+                'sizes'      => Badge\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -68,7 +68,7 @@ class WireUiConfig
     {
         return self::badge(self::mix([
             'packs' => [
-                'sizes' => Test\Badge\WireUi\Size\Mini::class,
+                'sizes' => Badge\WireUi\Size\Mini::class,
             ],
         ], $options));
     }
@@ -84,9 +84,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'variants'   => Test\Button\WireUi\Variant::class,
-                'icon-sizes' => Test\Button\WireUi\IconSize::class,
-                'sizes'      => Test\Button\WireUi\Size\Base::class,
+                'variants'   => Button\WireUi\Variant::class,
+                'icon-sizes' => Button\WireUi\IconSize::class,
+                'sizes'      => Button\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -95,7 +95,7 @@ class WireUiConfig
     {
         return self::button(self::mix([
             'packs' => [
-                'sizes' => Test\Button\WireUi\Size\Mini::class,
+                'sizes' => Button\WireUi\Size\Mini::class,
             ],
         ], $options));
     }
@@ -111,9 +111,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'colors'   => Test\Card\WireUi\Color::class,
-                'paddings' => Test\Card\WireUi\Padding::class,
-                'rounders' => Test\Card\WireUi\Rounded::class,
+                'colors'   => Card\WireUi\Color::class,
+                'paddings' => Card\WireUi\Padding::class,
+                'rounders' => Card\WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -127,8 +127,8 @@ class WireUiConfig
                 'position' => Packs\Position::BOTTOM_START,
             ],
             'packs' => [
-                'widths'  => Test\Dropdown\WireUi\Width::class,
-                'heights' => Test\Dropdown\WireUi\Height::class,
+                'widths'  => Dropdown\WireUi\Width::class,
+                'heights' => Dropdown\WireUi\Height::class,
             ],
         ], $options);
     }
@@ -149,9 +149,9 @@ class WireUiConfig
                 'underline' => Packs\Underline::HOVER,
             ],
             'packs' => [
-                'sizes'      => Test\Link\WireUi\Size::class,
-                'colors'     => Test\Link\WireUi\Color::class,
-                'underlines' => Test\Link\WireUi\Underline::class,
+                'sizes'      => Link\WireUi\Size::class,
+                'colors'     => Link\WireUi\Color::class,
+                'underlines' => Link\WireUi\Underline::class,
             ],
         ], $options);
     }
@@ -166,10 +166,10 @@ class WireUiConfig
                 'align' => Packs\Align::START,
             ],
             'packs' => [
-                'blurs'  => Test\Modal\WireUi\Blur::class,
-                'types'  => Test\Modal\WireUi\Type::class,
-                'widths' => Test\Modal\WireUi\Width::class,
-                'aligns' => Test\Modal\WireUi\Align::class,
+                'blurs'  => Modal\WireUi\Blur::class,
+                'types'  => Modal\WireUi\Type::class,
+                'widths' => Modal\WireUi\Width::class,
+                'aligns' => Modal\WireUi\Align::class,
             ],
         ], $options);
     }
@@ -182,7 +182,7 @@ class WireUiConfig
                 'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
-                'positions' => Test\Actions\WireUi\Position::class,
+                'positions' => Actions\WireUi\Position::class,
             ],
         ], $options);
     }
@@ -243,8 +243,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => Test\Switcher\WireUi\Checkbox\Size::class,
-                'colors'   => Test\Switcher\WireUi\Checkbox\Color::class,
+                'sizes'    => Switcher\WireUi\Checkbox\Size::class,
+                'colors'   => Switcher\WireUi\Checkbox\Color::class,
             ],
         ], $options);
     }
@@ -259,8 +259,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => Test\Switcher\WireUi\Toggle\Size::class,
-                'colors'   => Test\Switcher\WireUi\Toggle\Color::class,
+                'sizes'    => Switcher\WireUi\Toggle\Size::class,
+                'colors'   => Switcher\WireUi\Toggle\Color::class,
             ],
         ], $options);
     }
@@ -275,8 +275,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'colors'   => Test\Switcher\WireUi\Radio\Color::class,
-                'sizes'    => Test\Switcher\WireUi\Radio\Size::class,
+                'colors'   => Switcher\WireUi\Radio\Color::class,
+                'sizes'    => Switcher\WireUi\Radio\Size::class,
             ],
         ], $options);
     }
@@ -291,8 +291,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'colors'   => Test\Wrapper\WireUi\Color::class,
-                'rounders' => Test\Wrapper\WireUi\Rounded::class,
+                'colors'   => Wrapper\WireUi\Color::class,
+                'rounders' => Wrapper\WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -301,173 +301,173 @@ class WireUiConfig
     {
         return self::mix([
             'alert' => [
-                'class' => Test\Alert\Index::class,
+                'class' => Alert\Index::class,
                 'alias' => 'alert',
             ],
             'avatar' => [
-                'class' => Test\Avatar\Index::class,
+                'class' => Avatar\Index::class,
                 'alias' => 'avatar',
             ],
             'badge' => [
-                'class' => Test\Badge\Base::class,
+                'class' => Badge\Base::class,
                 'alias' => 'badge',
             ],
             'mini-badge' => [
-                'class' => Test\Badge\Mini::class,
+                'class' => Badge\Mini::class,
                 'alias' => 'mini-badge',
             ],
             'button' => [
-                'class' => Test\Button\Base::class,
+                'class' => Button\Base::class,
                 'alias' => 'button',
             ],
             'mini-button' => [
-                'class' => Test\Button\Mini::class,
+                'class' => Button\Mini::class,
                 'alias' => 'mini-button',
             ],
             'card' => [
-                'class' => Test\Card\Index::class,
+                'class' => Card\Index::class,
                 'alias' => 'card',
             ],
             'checkbox' => [
-                'class' => Test\Switcher\Checkbox::class,
+                'class' => Switcher\Checkbox::class,
                 'alias' => 'checkbox',
             ],
             'color-picker' => [
-                'class' => Test\ColorPicker\Picker::class,
+                'class' => ColorPicker\Picker::class,
                 'alias' => 'color-picker',
             ],
             'datetime-picker' => [
-                'class' => Test\DatetimePicker\Picker::class,
+                'class' => DatetimePicker\Picker::class,
                 'alias' => 'datetime-picker',
             ],
             'dialog' => [
-                'class' => Test\Actions\Dialog::class,
+                'class' => Actions\Dialog::class,
                 'alias' => 'dialog',
             ],
             'dropdown' => [
-                'class' => Test\Dropdown\Base::class,
+                'class' => Dropdown\Base::class,
                 'alias' => 'dropdown',
             ],
             'dropdown.item' => [
-                'class' => Test\Dropdown\Item::class,
+                'class' => Dropdown\Item::class,
                 'alias' => 'dropdown.item',
             ],
             'dropdown.header' => [
-                'class' => Test\Dropdown\Header::class,
+                'class' => Dropdown\Header::class,
                 'alias' => 'dropdown.header',
             ],
             'error' => [
-                'class' => Test\Errors\Single::class,
+                'class' => Errors\Single::class,
                 'alias' => 'error',
             ],
             'errors' => [
-                'class' => Test\Errors\Multiple::class,
+                'class' => Errors\Multiple::class,
                 'alias' => 'errors',
             ],
             'icon' => [
-                'class' => Test\Icon\Index::class,
+                'class' => Icon\Index::class,
                 'alias' => 'icon',
             ],
             'input' => [
-                'class' => Test\TextField\Input::class,
+                'class' => TextField\Input::class,
                 'alias' => 'input',
             ],
             'currency' => [
-                'class' => Test\TextField\Currency::class,
+                'class' => TextField\Currency::class,
                 'alias' => 'currency',
             ],
             'maskable' => [
-                'class' => Test\TextField\Maskable::class,
+                'class' => TextField\Maskable::class,
                 'alias' => 'maskable',
             ],
             'number' => [
-                'class' => Test\TextField\Number::class,
+                'class' => TextField\Number::class,
                 'alias' => 'number',
             ],
             'password' => [
-                'class' => Test\TextField\Password::class,
+                'class' => TextField\Password::class,
                 'alias' => 'password',
             ],
             'phone' => [
-                'class' => Test\TextField\Phone::class,
+                'class' => TextField\Phone::class,
                 'alias' => 'phone',
             ],
             'label' => [
-                'class' => Test\Label\Index::class,
+                'class' => Label\Index::class,
                 'alias' => 'label',
             ],
             'link' => [
-                'class' => Test\Link\Index::class,
+                'class' => Link\Index::class,
                 'alias' => 'link',
             ],
             'modal' => [
-                'class' => Test\Modal\Index::class,
+                'class' => Modal\Index::class,
                 'alias' => 'modal',
             ],
             'modal-card' => [
-                'class' => Test\Modal\Card::class,
+                'class' => Modal\Card::class,
                 'alias' => 'modal-card',
             ],
             'native-select' => [
-                'class' => Test\Select\Native::class,
+                'class' => Select\Native::class,
                 'alias' => 'native-select',
             ],
             'notifications' => [
-                'class' => Test\Actions\Notifications::class,
+                'class' => Actions\Notifications::class,
                 'alias' => 'notifications',
             ],
             'radio' => [
-                'class' => Test\Switcher\Radio::class,
+                'class' => Switcher\Radio::class,
                 'alias' => 'radio',
             ],
             'select' => [
-                'class' => Test\Select\Base::class,
+                'class' => Select\Base::class,
                 'alias' => 'select',
             ],
             'select.option' => [
-                'class' => Test\Select\Option::class,
+                'class' => Select\Option::class,
                 'alias' => 'select.option',
             ],
             'select.user-option' => [
-                'class' => Test\Select\UserOption::class,
+                'class' => Select\UserOption::class,
                 'alias' => 'select.user-option',
             ],
             'textarea' => [
-                'class' => Test\Textarea\Index::class,
+                'class' => Textarea\Index::class,
                 'alias' => 'textarea',
             ],
             'time-picker' => [
-                'class' => Test\TimePicker\Picker::class,
+                'class' => TimePicker\Picker::class,
                 'alias' => 'time-picker',
             ],
             'time-selector' => [
-                'class' => Test\TimePicker\Selector::class,
+                'class' => TimePicker\Selector::class,
                 'alias' => 'time-selector',
             ],
             'toggle' => [
-                'class' => Test\Switcher\Toggle::class,
+                'class' => Switcher\Toggle::class,
                 'alias' => 'toggle',
             ],
             /**
              * Popovers
              */
             'popover' => [
-                'class' => Test\Popover\Type1::class,
+                'class' => Popover\Type1::class,
                 'alias' => 'popover',
             ],
             'popover2' => [
-                'class' => Test\Popover\Type2::class,
+                'class' => Popover\Type2::class,
                 'alias' => 'popover2',
             ],
             /**
              * Wrappers
              */
             'switcher' => [
-                'class' => Test\Wrapper\Switcher::class,
+                'class' => Wrapper\Switcher::class,
                 'alias' => 'switcher',
             ],
             'text-field' => [
-                'class' => Test\Wrapper\TextField::class,
+                'class' => Wrapper\TextField::class,
                 'alias' => 'text-field',
             ],
         ], $options);
