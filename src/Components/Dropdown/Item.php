@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Dropdown;
+namespace WireUi\Components\Dropdown;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
@@ -15,6 +15,6 @@ class Item extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.dropdown.item');
+        return view('wireui-dropdown::item');
     }
 }

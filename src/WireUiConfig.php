@@ -128,8 +128,8 @@ class WireUiConfig
                 'position' => Packs\Position::BOTTOM_START,
             ],
             'packs' => [
-                'widths'  => WireUi\Dropdown\Width::class,
-                'heights' => WireUi\Dropdown\Height::class,
+                'widths'  => Test\Dropdown\WireUi\Width::class,
+                'heights' => Test\Dropdown\WireUi\Height::class,
             ],
         ], $options);
     }
@@ -346,15 +346,15 @@ class WireUiConfig
                 'alias' => 'dialog',
             ],
             'dropdown' => [
-                'class' => Components\Dropdown\Base::class,
+                'class' => Test\Dropdown\Base::class,
                 'alias' => 'dropdown',
             ],
             'dropdown.item' => [
-                'class' => Components\Dropdown\Item::class,
+                'class' => Test\Dropdown\Item::class,
                 'alias' => 'dropdown.item',
             ],
             'dropdown.header' => [
-                'class' => Components\Dropdown\Header::class,
+                'class' => Test\Dropdown\Header::class,
                 'alias' => 'dropdown.header',
             ],
             'error' => [

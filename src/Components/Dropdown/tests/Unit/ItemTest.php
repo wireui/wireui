@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\View\Components\Dropdown;
+namespace WireUi\Components\Dropdown\tests\Unit;
 
 test('example', function () {
     expect(true)->toBeTrue();

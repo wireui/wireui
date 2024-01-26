@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Dropdown;
+namespace WireUi\Components\Dropdown\WireUi;
 
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;

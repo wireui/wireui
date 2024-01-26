@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\Dropdown\tests\Browser;
 
 use Tests\Browser\BrowserTestCase;
 
