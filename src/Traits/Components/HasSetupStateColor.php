@@ -3,7 +3,6 @@
 namespace WireUi\Traits\Components;
 
 use Illuminate\Support\Arr;
-use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
