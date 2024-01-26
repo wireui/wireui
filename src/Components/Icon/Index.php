@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Icon;
 
 use WireUi\Enum\Packs;
 use WireUi\Heroicons;
 
-class Icon extends Heroicons\Icon
+class Index extends Heroicons\Icon
 {
     protected function defaultVariant(): string
     {

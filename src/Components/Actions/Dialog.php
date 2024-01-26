@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Actions;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
@@ -30,6 +30,6 @@ class Dialog extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.dialog');
+        return view('wireui-actions::dialog');
     }
 }

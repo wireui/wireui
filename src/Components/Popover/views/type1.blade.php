@@ -1,5 +1,3 @@
-@props(['margin' => false, 'rootClass' => null])
-
 <div
     x-cloak
     x-show="popover"

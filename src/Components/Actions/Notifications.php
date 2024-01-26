@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Actions;
 
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
@@ -15,6 +15,6 @@ class Notifications extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.notifications');
+        return view('wireui-actions::notifications');
     }
 }

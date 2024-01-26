@@ -168,7 +168,7 @@
     </x-slot>
 
     <x-slot:after>
-        <x-wireui::parts.popover :margin="(bool) $label" root-class="sm:w-full">
+        <x-popover :margin="(bool) $label" root-class="sm:w-full">
             <template x-if="asyncData.api || (config.searchable && options.length >= @js($minItemsForSearch))">
                 <div class="px-2 my-2" wire:key="search.options.{{ $name }}">
                     <x-dynamic-component
@@ -238,6 +238,6 @@
                     </div>
                 @endisset
             </div>
-        </x-wireui::parts.popover>
+        </x-popover>
     </x-slot:after>
 </x-wrapper>

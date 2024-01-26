@@ -55,7 +55,7 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-wireui::parts.popover2
+        <x-popover2
             :margin="(bool) $label"
             root-class="justify-end sm:w-full"
             @class([
@@ -92,6 +92,6 @@
                      ></button>
                  </template>
              </div>
-        </x-wireui::parts.popover2>
+        </x-popover2>
     </x-slot:after>
 </x-wrapper>

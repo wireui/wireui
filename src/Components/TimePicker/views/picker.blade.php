@@ -62,7 +62,7 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-wireui::parts.popover2 :margin="(bool) $label">
+        <x-popover2 :margin="(bool) $label">
             <x-time-selector
                 :name="$name . ':raw'"
                 x-modelable="value"
@@ -73,6 +73,6 @@
                 borderless
                 shadowless
             />
-        </x-wireui::parts.popover2>
+        </x-popover2>
     </x-slot:after>
 </x-wrapper>

@@ -4,7 +4,6 @@ namespace WireUi;
 
 use WireUi\Components as Test;
 use WireUi\Enum\Packs;
-use WireUi\View\Components;
 
 class WireUiConfig
 {
@@ -183,7 +182,7 @@ class WireUiConfig
                 'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
-                'positions' => WireUi\Notification\Position::class,
+                'positions' => Test\Actions\WireUi\Position::class,
             ],
         ], $options);
     }
@@ -342,7 +341,7 @@ class WireUiConfig
                 'alias' => 'datetime-picker',
             ],
             'dialog' => [
-                'class' => Components\Dialog::class,
+                'class' => Test\Actions\Dialog::class,
                 'alias' => 'dialog',
             ],
             'dropdown' => [
@@ -366,7 +365,7 @@ class WireUiConfig
                 'alias' => 'errors',
             ],
             'icon' => [
-                'class' => Components\Icon::class,
+                'class' => Test\Icon\Index::class,
                 'alias' => 'icon',
             ],
             'input' => [
@@ -394,7 +393,7 @@ class WireUiConfig
                 'alias' => 'phone',
             ],
             'label' => [
-                'class' => Components\Label::class,
+                'class' => Test\Label\Index::class,
                 'alias' => 'label',
             ],
             'link' => [
@@ -414,7 +413,7 @@ class WireUiConfig
                 'alias' => 'native-select',
             ],
             'notifications' => [
-                'class' => Components\Notifications::class,
+                'class' => Test\Actions\Notifications::class,
                 'alias' => 'notifications',
             ],
             'radio' => [
@@ -448,6 +447,17 @@ class WireUiConfig
             'toggle' => [
                 'class' => Test\Switcher\Toggle::class,
                 'alias' => 'toggle',
+            ],
+            /**
+             * Popovers
+             */
+            'popover' => [
+                'class' => Test\Popover\Type1::class,
+                'alias' => 'popover',
+            ],
+            'popover2' => [
+                'class' => Test\Popover\Type2::class,
+                'alias' => 'popover2',
             ],
             /**
              * Wrappers

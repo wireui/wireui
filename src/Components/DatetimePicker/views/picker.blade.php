@@ -76,7 +76,7 @@
     />
 
     <x-slot:after>
-        <x-wireui::parts.popover2
+        <x-popover2
             :margin="(bool) $label"
             class="overflow-hidden max-h-96 sm:w-72"
             x-bind:class="{ 'p-2.5': tab === 'date' }"
@@ -269,6 +269,6 @@
                     </template>
                 </div>
             </div>
-        </x-wireui::parts.popover2>
+        </x-popover2>
     </x-slot:after>
 </x-wrapper>
