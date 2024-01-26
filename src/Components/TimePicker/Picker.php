@@ -7,7 +7,7 @@ use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class Index extends WireUiComponent
+class Picker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -24,6 +24,6 @@ class Index extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui-time-picker::index');
+        return view('wireui-time-picker::picker');
     }
 }

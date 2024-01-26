@@ -2,10 +2,10 @@
 
 namespace WireUi\Components\ColorPicker\tests\Unit;
 
-use WireUi\Components\ColorPicker\Index as ColorPicker;
+use WireUi\Components\ColorPicker\Picker;
 
 beforeEach(function () {
-    $this->component = (new ColorPicker())->withName('color-picker');
+    $this->component = (new Picker())->withName('color-picker');
 });
 
 test('it should have array properties', function () {

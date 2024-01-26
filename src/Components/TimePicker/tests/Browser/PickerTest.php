@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class IndexTest extends BrowserTestCase
+class PickerTest extends BrowserTestCase
 {
     public function browser(): Browser
     {

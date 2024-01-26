@@ -334,7 +334,7 @@ class WireUiConfig
                 'alias' => 'checkbox',
             ],
             'color-picker' => [
-                'class' => Test\ColorPicker\Index::class,
+                'class' => Test\ColorPicker\Picker::class,
                 'alias' => 'color-picker',
             ],
             'datetime-picker' => [
@@ -438,7 +438,7 @@ class WireUiConfig
                 'alias' => 'textarea',
             ],
             'time-picker' => [
-                'class' => Test\TimePicker\Index::class,
+                'class' => Test\TimePicker\Picker::class,
                 'alias' => 'time-picker',
             ],
             'time-selector' => [

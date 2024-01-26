@@ -6,7 +6,7 @@ use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
-class IndexTest extends BrowserTestCase
+class PickerTest extends BrowserTestCase
 {
     public const HTML = '<x-color-picker label="Color Picker" name="color" />';
     public const NAME = 'color';
