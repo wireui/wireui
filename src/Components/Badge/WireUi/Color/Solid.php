@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Badge\Color;
+namespace WireUi\Components\Badge\WireUi\Color;
 
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;

@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Unit\View\Components\Badge;
+namespace WireUi\Components\Badge\tests\Unit;
 
+use WireUi\Components\Badge\Base;
+use WireUi\Components\Badge\WireUi\Color\Outline;
+use WireUi\Components\Badge\WireUi\IconSize;
+use WireUi\Components\Badge\WireUi\Size\Base as SizeBase;
 use WireUi\Enum\Packs;
-use WireUi\View\Components\Badge\Mini;
-use WireUi\WireUi\Badge\Color\Outline;
-use WireUi\WireUi\Badge\IconSize;
-use WireUi\WireUi\Badge\Size\Mini as SizeMini;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Mini())->withName('mini-badge');
+    $this->component = (new Base())->withName('badge');
 });
 
 test('it should have array properties', function () {
@@ -21,8 +21,10 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'  => null,
-        'label' => null,
+        'full'       => false,
+        'icon'       => null,
+        'label'      => null,
+        'right-icon' => null,
     ]);
 });
 
@@ -30,6 +32,7 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        'full',
         'icon',
         'size',
         'color',
@@ -38,18 +41,23 @@ test('it should have properties in component', function () {
         'squared',
         'variant',
         'iconSize',
+        'rightIcon',
         'sizeClasses',
         'colorClasses',
         'roundedClasses',
         'iconSizeClasses',
     ]);
+
+    expect($this->component->full)->toBeFalse();
 });
 
 test('it should not have properties in component', function () {
     expect($this->component)->not->toHaveProperties([
+        'full',
         'icon',
         'label',
         'iconSize',
+        'rightIcon',
         'iconSizeClasses',
     ]);
 });
@@ -63,13 +71,14 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-mini-badge :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-badge :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with lg size', function () {
     $this->setAttributes($this->component, [
-        'size' => $size = Packs\Size::LG,
-        'icon' => $icon = $this->getRandomIcon(),
+        'size'       => $size      = Packs\Size::LG,
+        'icon'       => $icon      = $this->getRandomIcon(),
+        'right-icon' => $rightIcon = $this->getRandomIcon(),
     ]);
 
     $this->runWireUiComponent($this->component);
@@ -80,14 +89,17 @@ test('it should set icon and right icon in component with lg size', function () 
 
     expect($this->component->iconSize)->toBe($size);
 
-    expect($this->component->sizeClasses)->toBe($sizeClasses = (new SizeMini())->get($size));
+    expect($this->component->rightIcon)->toBe($rightIcon);
+
+    expect($this->component->sizeClasses)->toBe($sizeClasses = (new SizeBase())->get($size));
 
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
 
-    expect('<x-mini-badge :$size :$icon />')
-        ->render(compact('size', 'icon'))
+    expect('<x-badge :$size :$icon :$rightIcon />')
+        ->render(compact('size', 'icon', 'rightIcon'))
         ->toContain($sizeClasses)
-        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
+        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
+        ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
 test('it should set specific color in component with variant outline', function () {
@@ -104,7 +116,7 @@ test('it should set specific color in component with variant outline', function 
 
     expect($this->component->colorClasses)->toBe($class = (new Outline())->get(Packs\Color::INFO));
 
-    expect('<x-mini-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
+    expect('<x-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
 });
 
 test('it should set rounded full in component', function () {
@@ -120,7 +132,7 @@ test('it should set rounded full in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
 
-    expect('<x-mini-badge rounded />')->render()->toContain($class);
+    expect('<x-badge rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -136,7 +148,7 @@ test('it should set squared in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
 
-    expect('<x-mini-badge squared />')->render()->toContain($class);
+    expect('<x-badge squared />')->render()->toContain($class);
 });
 
 test('it should custom rounded in component', function () {
@@ -152,5 +164,5 @@ test('it should custom rounded in component', function () {
 
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-mini-badge rounded="rounded-[40px]" />')->render()->toContain($class);
+    expect('<x-badge rounded="rounded-[40px]" />')->render()->toContain($class);
 });

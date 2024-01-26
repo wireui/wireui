@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\WireUi\Badge\Size;
+namespace WireUi\Components\Badge\WireUi\Size;
 
 use WireUi\Enum\Packs\Size;
 use WireUi\Support\ComponentPack;

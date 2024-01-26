@@ -1,11 +1,11 @@
 <?php
 
-namespace WireUi\WireUi\Badge;
+namespace WireUi\Components\Badge\WireUi\Size;
 
 use WireUi\Enum\Packs\Size;
 use WireUi\Support\ComponentPack;
 
-class IconSize extends ComponentPack
+class Mini extends ComponentPack
 {
     protected function default(): string
     {
@@ -15,9 +15,9 @@ class IconSize extends ComponentPack
     public function all(): array
     {
         return [
-            Size::SM => 'w-3 h-3',
-            Size::MD => 'w-4 h-4',
-            Size::LG => 'w-5 h-5',
+            Size::SM => 'w-6 h-6',
+            Size::MD => 'w-7 h-7',
+            Size::LG => 'w-8 h-8',
         ];
     }
 }

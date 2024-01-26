@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Badge;
+namespace WireUi\Components\Badge;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupVariant};
@@ -24,6 +24,6 @@ class Base extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.badge.base');
+        return view('wireui-badge::base');
     }
 }

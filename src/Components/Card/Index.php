@@ -1,12 +1,12 @@
 <?php
 
-namespace WireUi\View\Components;
+namespace WireUi\Components\Card;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class Card extends WireUiComponent
+class Index extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -26,6 +26,6 @@ class Card extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.card');
+        return view('wireui-card::index');
     }
 }

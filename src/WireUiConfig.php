@@ -58,9 +58,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders'   => WireUi\Rounded::class,
-                'variants'   => WireUi\Badge\Variant::class,
-                'icon-sizes' => WireUi\Badge\IconSize::class,
-                'sizes'      => WireUi\Badge\Size\Base::class,
+                'variants'   => Test\Badge\WireUi\Variant::class,
+                'icon-sizes' => Test\Badge\WireUi\IconSize::class,
+                'sizes'      => Test\Badge\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -69,7 +69,7 @@ class WireUiConfig
     {
         return self::badge(self::mix([
             'packs' => [
-                'sizes' => WireUi\Badge\Size\Mini::class,
+                'sizes' => Test\Badge\WireUi\Size\Mini::class,
             ],
         ], $options));
     }
@@ -112,9 +112,9 @@ class WireUiConfig
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
-                'colors'   => WireUi\Card\Color::class,
-                'paddings' => WireUi\Card\Padding::class,
-                'rounders' => WireUi\Card\Rounded::class,
+                'colors'   => Test\Card\WireUi\Color::class,
+                'paddings' => Test\Card\WireUi\Padding::class,
+                'rounders' => Test\Card\WireUi\Rounded::class,
             ],
         ], $options);
     }
@@ -310,11 +310,11 @@ class WireUiConfig
                 'alias' => 'avatar',
             ],
             'badge' => [
-                'class' => Components\Badge\Base::class,
+                'class' => Test\Badge\Base::class,
                 'alias' => 'badge',
             ],
             'mini-badge' => [
-                'class' => Components\Badge\Mini::class,
+                'class' => Test\Badge\Mini::class,
                 'alias' => 'mini-badge',
             ],
             'button' => [
@@ -326,7 +326,7 @@ class WireUiConfig
                 'alias' => 'mini-button',
             ],
             'card' => [
-                'class' => Components\Card::class,
+                'class' => Test\Card\Index::class,
                 'alias' => 'card',
             ],
             'checkbox' => [

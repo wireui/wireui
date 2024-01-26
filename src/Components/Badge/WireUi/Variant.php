@@ -1,10 +1,10 @@
 <?php
 
-namespace WireUi\WireUi\Badge;
+namespace WireUi\Components\Badge\WireUi;
 
+use WireUi\Components\Badge\WireUi\Color\{Flat, Outline, Solid};
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
-use WireUi\WireUi\Badge\Color\{Flat, Outline, Solid};
 
 class Variant extends ComponentPack
 {
