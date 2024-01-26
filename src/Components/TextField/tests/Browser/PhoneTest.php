@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\Components;
+namespace WireUi\Components\TextField\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};

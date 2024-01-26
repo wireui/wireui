@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Input;
+namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
@@ -23,6 +23,6 @@ class Number extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.input.number');
+        return view('wireui-text-field::number');
     }
 }

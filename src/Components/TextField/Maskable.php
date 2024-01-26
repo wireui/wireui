@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Input;
+namespace WireUi\Components\TextField;
 
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -34,6 +34,6 @@ class Maskable extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui::components.input.maskable');
+        return view('wireui-text-field::maskable');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\View\Components\Input;
+namespace WireUi\Components\TextField\tests\Unit;
 
 test('example', function () {
     expect(true)->toBeTrue();

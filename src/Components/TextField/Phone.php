@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Input;
+namespace WireUi\Components\TextField;
 
 class Phone extends Maskable
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\View\Components\Input;
+namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
@@ -21,6 +21,6 @@ class Password extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui::components.input.password');
+        return view('wireui-text-field::password');
     }
 }

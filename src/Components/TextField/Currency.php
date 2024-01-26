@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\View\Components\Input;
+namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class Base extends WireUiComponent
+class Currency extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -16,11 +16,15 @@ class Base extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless' => false,
+        'decimal'        => '.',
+        'precision'      => 2,
+        'thousands'      => ',',
+        'shadowless'     => false,
+        'emit-formatted' => false,
     ];
 
     protected function blade(): View
     {
-        return view('wireui::components.input.base');
+        return view('wireui-text-field::currency');
     }
 }

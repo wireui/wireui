@@ -370,27 +370,27 @@ class WireUiConfig
                 'alias' => 'icon',
             ],
             'input' => [
-                'class' => Components\Input\Base::class,
+                'class' => Test\TextField\Input::class,
                 'alias' => 'input',
             ],
             'currency' => [
-                'class' => Components\Input\Currency::class,
+                'class' => Test\TextField\Currency::class,
                 'alias' => 'currency',
             ],
             'maskable' => [
-                'class' => Components\Input\Maskable::class,
+                'class' => Test\TextField\Maskable::class,
                 'alias' => 'maskable',
             ],
             'number' => [
-                'class' => Components\Input\Number::class,
+                'class' => Test\TextField\Number::class,
                 'alias' => 'number',
             ],
             'password' => [
-                'class' => Components\Input\Password::class,
+                'class' => Test\TextField\Password::class,
                 'alias' => 'password',
             ],
             'phone' => [
-                'class' => Components\Input\Phone::class,
+                'class' => Test\TextField\Phone::class,
                 'alias' => 'phone',
             ],
             'label' => [

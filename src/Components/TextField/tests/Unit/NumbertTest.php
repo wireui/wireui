@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\View\Components\Input;
+namespace WireUi\Components\TextField\tests\Unit;
 
 use Illuminate\Support\Facades\Blade;
+use WireUi\Components\TextField\Number;
 use WireUi\Enum\Packs;
-use WireUi\View\Components\Input\Number;
 use WireUi\WireUi\Shadow;
 use WireUi\WireUi\Wrapper\{Color, Rounded};
 
