@@ -3,41 +3,24 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
+use WireUi\Components\Select\Traits\FilterOptions;
+use WireUi\View\WireUiComponent;
 
-class Option extends Component
+class Option extends WireUiComponent
 {
-    public function __construct(
-        public bool $readonly = false,
-        public bool $disabled = false,
-        public mixed $value = null,
-        public ?string $label = null,
-        public ?string $description = null,
-        public mixed $option = [],
-    ) {
-    }
+    use FilterOptions;
 
-    public function render(): View
+    protected array $props = [
+        'value'       => null,
+        'label'       => null,
+        'option'      => [],
+        'disabled'    => false,
+        'readonly'    => false,
+        'description' => null,
+    ];
+
+    public function blade(): View
     {
         return view('wireui-select::option');
-    }
-
-    public function toArray(): array
-    {
-        $option = array_merge((array) $this->option, [
-            'label'       => $this->label,
-            'value'       => $this->value,
-            'disabled'    => $this->disabled,
-            'readonly'    => $this->readonly || $this->disabled,
-            'description' => $this->description,
-        ]);
-
-        return array_filter($option, function ($value, $index) {
-            if (in_array($index, ['label', 'value'])) {
-                return $value !== null;
-            }
-
-            return (bool) $value;
-        }, ARRAY_FILTER_USE_BOTH);
     }
 }

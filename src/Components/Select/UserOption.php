@@ -3,21 +3,21 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Components\Select\Traits\FilterOptions;
+use WireUi\View\WireUiComponent;
 
-class UserOption extends Option
+class UserOption extends WireUiComponent
 {
-    public function __construct(
-        public bool $readonly = false,
-        public bool $disabled = false,
-        public mixed $value = null,
-        public ?string $label = null,
-        public ?string $description = null,
-        public mixed $option = null,
-        public ?string $src = null,
-    ) {
-    }
+    use FilterOptions;
 
-    public function render(): View
+    protected array $props = [
+        'src'         => null,
+        'label'       => null,
+        'option'      => [],
+        'description' => null,
+    ];
+
+    public function blade(): View
     {
         return view('wireui-select::user-option');
     }

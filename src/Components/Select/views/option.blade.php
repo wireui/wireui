@@ -1,5 +1,8 @@
 <div name="wireui.select.option">
-    <span name="wireui.select.option.data">{{ WireUi::toJs($toArray()) }}</span>
+    <span name="wireui.select.option.data">
+        {{ WireUi::toJs($toArray()) }}
+    </span>
+
     @if (app()->runningUnitTests())
         <div dusk="select.option">
             {!! json_encode($toArray()) !!}
