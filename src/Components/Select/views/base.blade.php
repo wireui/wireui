@@ -1,4 +1,5 @@
 <x-text-field
+    x-ref="container"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :x-data="WireUi::alpine('wireui_select', [
@@ -20,7 +21,6 @@
         'placeholder'       => $placeholder,
         'template'          => $template,
     ])"
-    x-ref="container"
 >
     <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
     <div hidden x-ref="slot">{{ $slot }}</div>

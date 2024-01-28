@@ -1,14 +1,10 @@
 <x-dynamic-component
     :component="WireUi::component('select.option')"
-    :value="$value"
-    :label="$label"
-    :description="$description"
-    :disabled="$disabled"
-    :readonly="$readonly"
-    :option="$option"
+    :attributes="$attributes->except(['src'])"
+    :label="$label" :option="$option" :description="$description"
 >
     <div class="flex items-center gap-x-3">
-        <img src="{{ data_get($option, 'src', $src) }}" class="shrink-0 h-6 w-6 object-cover rounded-full">
+        <img src="{{ data_get($option, 'src', $src) }}" class="object-cover w-6 h-6 rounded-full shrink-0">
 
         <span @class(['text-sm' => (bool) $description])>
             {{ $label }}

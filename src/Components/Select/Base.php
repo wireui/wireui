@@ -2,51 +2,52 @@
 
 namespace WireUi\Components\Select;
 
-use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
+use WireUi\Components\Select\Traits\CheckOptions;
+use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, IsFormComponent};
+use WireUi\View\WireUiComponent;
 
-class Base extends Native
+class Base extends WireUiComponent
 {
-    public function __construct(
-        public bool $clearable = true,
-        public bool $searchable = true,
-        public bool $multiselect = false,
-        public bool $withoutItemsCount = false,
-        public string $rightIcon = 'chevron-up-down',
-        public ?string $placeholder = null,
-        public ?string $optionValue = null,
-        public ?string $optionLabel = null,
-        public ?string $optionDescription = null,
-        public ?string $emptyMessage = null,
-        public bool $hideEmptyMessage = false,
-        public bool $flipOptions = false,
-        public bool $optionKeyValue = false,
-        public bool $alwaysFetch = false,
-        public string|array|null $asyncData = null,
-        public string|array|null $template = null,
-        Collection|array|null $options = null,
-        public ?int $minItemsForSearch = 11,
-    ) {
-        parent::__construct(
-            placeholder: $placeholder,
-            optionValue: $optionValue,
-            optionLabel: $optionLabel,
-            optionDescription: $optionDescription,
-            emptyMessage: $emptyMessage,
-            hideEmptyMessage: $hideEmptyMessage,
-            flipOptions: $flipOptions,
-            optionKeyValue: $optionKeyValue,
-            options: $options,
-        );
+    use CheckOptions;
+    use HasSetupColor;
+    use HasSetupRounded;
+    use IsFormComponent;
 
-        if (gettype($template) === 'string') {
-            $this->template = ['name' => $template];
+    protected array $packs = ['shadow'];
+
+    protected array $props = [
+        'options'              => null,
+        'template'             => null,
+        'clearable'            => true,
+        'async-data'           => null,
+        'right-icon'           => 'chevron-up-down',
+        'searchable'           => true,
+        'multiselect'          => false,
+        'placeholder'          => null,
+        'always-fetch'         => false,
+        'flip-options'         => false,
+        'option-label'         => null,
+        'option-value'         => null,
+        'empty-message'        => null,
+        'option-key-value'     => false,
+        'hide-empty-message'   => false,
+        'option-description'   => null,
+        'without-items-count'  => false,
+        'min-items-for-search' => 11,
+    ];
+
+    protected function processed(): void
+    {
+        $this->serializeOptions();
+
+        if (gettype($this->template) === 'string') {
+            $this->template = ['name' => $this->template];
         }
 
-        if (gettype($asyncData) === 'string' || $asyncData === null) {
+        if (gettype($this->asyncData) === 'string' || $this->asyncData === null) {
             $this->asyncData = [
-                'api'         => $asyncData,
+                'api'         => $this->asyncData,
                 'method'      => 'GET',
                 'params'      => [],
                 'alwaysFetch' => $this->alwaysFetch,
@@ -54,25 +55,8 @@ class Base extends Native
         }
 
         $this->ensureAsyncData();
+
         $this->validateConfig();
-    }
-
-    private function ensureAsyncData(): void
-    {
-        data_set($this->asyncData, 'method', data_get($this->asyncData, 'method', 'GET'));
-        data_set($this->asyncData, 'params', data_get($this->asyncData, 'params', []));
-    }
-
-    private function validateConfig(): void
-    {
-        if ($this->options->isNotEmpty() && $this->asyncData['api']) {
-            throw new Exception('The {async-data} attribute cannot be used with {options} attribute.');
-        }
-    }
-
-    protected function blade(): View
-    {
-        return view('wireui-select::base');
     }
 
     public function getOptionLabel(mixed $option): string
@@ -119,5 +103,17 @@ class Base extends Native
             })
             ->values()
             ->toArray();
+    }
+
+    private function ensureAsyncData(): void
+    {
+        data_set($this->asyncData, 'method', data_get($this->asyncData, 'method', 'GET'));
+
+        data_set($this->asyncData, 'params', data_get($this->asyncData, 'params', []));
+    }
+
+    protected function blade(): View
+    {
+        return view('wireui-select::base');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace WireUi\View;
 
+use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Arr, HtmlString, Str};
@@ -10,13 +11,11 @@ use WireUi\Facades\WireUi;
 use WireUi\Support\{ComponentPack};
 
 /**
- * @property mixed $size
- * @property mixed $useValidationColors
- *
  * @method void mounted(array $data)
  * @method void processed(array $data)
  * @method void finished(array $data)
  */
+#[AllowDynamicProperties]
 abstract class WireUiComponent extends Component
 {
     use ManageProps;

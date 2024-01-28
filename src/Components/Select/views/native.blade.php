@@ -1,7 +1,7 @@
 <x-text-field
     :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
+    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
 >
     @include('wireui-wrapper::components.slots')
 
