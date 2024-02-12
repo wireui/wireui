@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    bootstrap="vendor/autoload.php"
-    backupGlobals="false"
-    colors="true"
-    processIsolation="false"
-    stopOnFailure="false"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
-    cacheDirectory=".phpunit.cache"
-    backupStaticProperties="false"
->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Browser">
+            <directory suffix="Test.php">./tests/Browser</directory>
+        </testsuite>
+        <testsuite name="Unit Components">
+            <directory suffix="Test.php">./src/Components/**/tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Browser Components">
+            <directory suffix="Test.php">./src/Components/**/tests/Browser</directory>
+        </testsuite>
+    </testsuites>
+
     <source>
         <include>
             <directory suffix=".php">src/</directory>
@@ -21,16 +26,6 @@
             <directory suffix=".blade.php">src/resources/views/</directory>
         </exclude>
     </source>
-
-    <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
-        </testsuite>
-
-        <testsuite name="Browser">
-            <directory suffix="Test.php">./tests/Browser</directory>
-        </testsuite>
-    </testsuites>
 
     <php>
         <env name="DB_CONNECTION" value="testing"/>
