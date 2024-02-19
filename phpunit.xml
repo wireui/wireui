@@ -22,6 +22,7 @@
 
         <exclude>
             <file>src/config.php</file>
+            <directory suffix="Test.php">src</directory>
             <directory suffix=".php">src/lang/</directory>
             <directory suffix=".blade.php">src/resources/views/</directory>
         </exclude>
