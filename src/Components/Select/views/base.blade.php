@@ -57,7 +57,10 @@
                 @endif
 
                 <span
-                    class="text-sm truncate text-secondary-700 dark:text-secondary-400"
+                    class="
+                        text-sm truncate text-secondary-700 dark:text-secondary-400
+                        invalidated:text-negative-700 invalidated:dark:text-negative-400
+                    "
                     x-show="!isEmpty()"
                     x-html="getSelectedDisplayText()"
                 ></span>
@@ -148,7 +151,10 @@
                 >
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
-                        class="w-4 h-4 text-secondary-400 hover:text-negative-400"
+                        @class([
+                            'w-4 h-4 text-secondary-400 hover:text-negative-400',
+                            'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                        ])
                         name="x-mark"
                     />
                 </button>
