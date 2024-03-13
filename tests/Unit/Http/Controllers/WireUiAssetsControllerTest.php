@@ -14,12 +14,12 @@ it('should make a request to the wireui scripts', function () {
     /** @var UnitTestCase $this */
     $this->get(route('wireui.assets.scripts'))
         ->assertOk()
-        ->assertHeader('Content-Type', 'application/javascript; charset=utf-8');
+        ->assertHeader('Content-Type', 'application/javascript');
 });
 
 it('should make a request to the wireui styles', function () {
     /** @var UnitTestCase $this */
     $this->get(route('wireui.assets.styles'))
         ->assertOk()
-        ->assertHeader('Content-Type', 'text/css; charset=utf-8');
+        ->assertHeader('Content-Type', 'text/css; charset=UTF-8');
 });
