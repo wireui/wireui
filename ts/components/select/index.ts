@@ -8,9 +8,10 @@ import { stringify } from 'qs'
 import { Select } from './interfaces'
 import { templates } from './templates'
 import baseTemplate from './templates/baseTemplate'
-import { InitOptions, Option, Options, Props, Refs } from './types'
+import { Option, Options, Props, Refs } from './types'
+import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 
-export default (initOptions: InitOptions): Select => ({
+export default (): Select => ({
   ...focusables,
   ...positioning,
   focusableSelector: 'div[tabindex="0"][select-option], input',
@@ -38,14 +39,16 @@ export default (initOptions: InitOptions): Select => ({
     template: templates['default']()
   },
   search: '',
-  wireModel: initOptions.wireModel,
+  entangleable: new Entangleable(),
   selected: undefined,
   selectedOptions: [],
   displayOptions: [],
   options: [],
-  get hasWireModel () {
-    return this.wireModel !== undefined
+
+  get hasWireModel (): boolean {
+    return this.$props.wireModel.exists
   },
+
   init () {
     this.initWatchers()
     this.syncProps()
@@ -60,6 +63,8 @@ export default (initOptions: InitOptions): Select => ({
     } else if (!this.hasWireModel && this.asyncData.api) {
       this.fetchSelected()
     }
+
+    new SupportsAlpine(this.entangleable, this.$refs.input)
 
     this.hasWireModel
       ? this.initWireModel()
@@ -143,12 +148,16 @@ export default (initOptions: InitOptions): Select => ({
     this.$watch('asyncData.method', () => (this.options = []))
   },
   initWireModel () {
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
     this.syncSelectedFromWireModel()
 
-    if (this.hasWireModel && this.config.multiselect) {
+    if (this.config.multiselect) {
       this.$watch('selectedOptions', (options: Options, oldOptions: Options) => {
         if (this.mustSyncWireModel()) {
-          this.wireModel = options.map((option: Option) => option.value)
+          this.entangleable.set(options.map((option: Option) => option.value))
         }
 
         if (JSON.stringify(options) !== JSON.stringify(oldOptions)) {
@@ -156,7 +165,7 @@ export default (initOptions: InitOptions): Select => ({
         }
       })
 
-      this.$watch('wireModel', (options: any[]) => {
+      this.entangleable.watch((options: any[]) => {
         if (!Array.isArray(options)) {
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
@@ -168,37 +177,37 @@ export default (initOptions: InitOptions): Select => ({
         }
       })
 
-      if (this.wireModel?.length > 0 && this.asyncData.api) {
+      if (this.entangleable.get()?.length > 0 && this.asyncData.api) {
         this.fetchSelected()
       }
+
+      return
     }
 
-    if (this.hasWireModel && !this.config.multiselect) {
-      this.$watch('selected', (option?: Option, oldOption?: Option) => {
-        this.wireModel = option?.value ?? null
+    this.$watch('selected', (option?: Option, oldOption?: Option) => {
+      this.entangleable.set(option?.value ?? null)
 
-        if (oldOption?.value !== option?.value) {
-          this.syncSelectedOptions()
-        }
-      })
+      if (oldOption?.value !== option?.value) {
+        this.syncSelectedOptions()
+      }
+    })
 
-      this.$watch('wireModel', value => {
-        if (value === null || value === '') {
-          return (this.selected = undefined)
-        }
+    this.entangleable.watch(value => {
+      if (value === null || value === '') {
+        return (this.selected = undefined)
+      }
 
-        const selected = this.options.find(option => option.value === value)
+      const selected = this.options.find(option => option.value === value)
 
-        if (value && selected) {
-          this.selected = selected
-        } else if (value && !selected && this.asyncData.api) {
-          this.fetchSelected()
-        }
-      })
-
-      if (this.wireModel && this.asyncData.api) {
+      if (value && selected) {
+        this.selected = selected
+      } else if (value && !selected && this.asyncData.api) {
         this.fetchSelected()
       }
+    })
+
+    if (this.entangleable.get() && this.asyncData.api) {
+      this.fetchSelected()
     }
   },
   initOptionsObserver () {
@@ -466,11 +475,11 @@ export default (initOptions: InitOptions): Select => ({
   },
   syncSelectedFromWireModel () {
     if (this.config.multiselect) {
-      if (!Array.isArray(this.wireModel)) {
-        this.wireModel = [this.wireModel]
+      if (!Array.isArray(this.entangleable.get())) {
+        this.entangleable.set([this.entangleable.get()])
       }
 
-      return (this.selectedOptions = this.wireModel.flatMap(value => {
+      return (this.selectedOptions = this.entangleable.get().flatMap(value => {
         const original = this.selectedOptions.find(option => option.value === value)
 
         if (original) return original
@@ -479,12 +488,12 @@ export default (initOptions: InitOptions): Select => ({
       }))
     }
 
-    if (this.selected?.value !== this.wireModel) {
-      this.selected = this.options.find(option => option.value === this.wireModel)
+    if (this.selected?.value !== this.entangleable.get()) {
+      this.selected = this.options.find(option => option.value === this.entangleable.get())
     }
   },
   mustSyncWireModel () {
-    return this.wireModel?.toString() !== this.selectedOptions.map(option => option.value).toString()
+    return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
   },
   searchOptions (search) {
     return this.options.filter(option => {
@@ -508,7 +517,7 @@ export default (initOptions: InitOptions): Select => ({
   getValue () {
     try {
       const values = this.hasWireModel
-        ? this.wireModel
+        ? this.entangleable.get()
         : jsonParse(this.$refs.input.value)
 
       if (!values) return []

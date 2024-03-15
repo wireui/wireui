@@ -1,7 +1,7 @@
-import { Entangle } from '@/components/alpine'
 import { Focusables } from '@/components/modules/focusables'
 import { Positioning } from '@/components/modules/positioning'
 import { AsyncData, Config, Option, Options, Props, Refs } from './types'
+import { Entangleable } from '@/alpine/modules/entangleable'
 
 export interface Select extends Focusables, Positioning {
   $refs: Refs
@@ -9,12 +9,14 @@ export interface Select extends Focusables, Positioning {
   asyncData: AsyncData
   config: Config
   search: string | null
-  wireModel?: Entangle
+  entangleable: Entangleable
   selected?: Option
   selectedOptions: Options
   options: Options
   displayOptions: Options
+
   get hasWireModel (): boolean
+
   init (): void
   initRenderObserver (): void
   initWatchers (): void

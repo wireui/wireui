@@ -2,12 +2,7 @@
     x-ref="container"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    :x-data="WireUi::alpine('wireui_select', [
-        'wireModel' => isset($__livewire)
-            ? '$wire.entangle(\''. $name .'\')'
-                . ($attributes->wire('model')->hasModifier('live') ? '.live' : '')
-            : null,
-    ])"
+    x-data="wireui_select"
     :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,
@@ -20,6 +15,7 @@
         'readonly'          => $readonly || $disabled,
         'placeholder'       => $placeholder,
         'template'          => $template,
+        'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
 >
     <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
