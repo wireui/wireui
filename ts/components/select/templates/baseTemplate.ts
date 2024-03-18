@@ -1,6 +1,7 @@
 export default (slot: string) => `
-<div class="
-        py-2 px-3 focus:outline-none all-colors ease-in-out duration-150 relative group
+<div
+    class="
+        py-2 px-3 border-0 outline-none transition-all ease-in-out duration-150 relative group
         text-secondary-600 dark:text-secondary-400 flex items-center justify-between
     "
     :class="{
