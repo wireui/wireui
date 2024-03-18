@@ -24,6 +24,7 @@
         @endif
     @elseif ($src)
         <img
+            alt="{{ $alt }}"
             src="{{ $src }}"
             @class([
                 'shrink-0 object-cover object-center',
