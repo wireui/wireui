@@ -31,7 +31,7 @@
         'except' => ['append', 'prepend']
     ])
 
-    <x-slot:prepend x-bind:class="{
+    <x-slot:prepend class="w-full" x-bind:class="{
         'pointer-events-none': config.readonly,
         'cursor-pointer': !config.readonly,
     }">
@@ -64,11 +64,8 @@
         </template>
 
         <template x-if="config.multiselect">
-            <div
-                class="pl-2.5 w-full h-full flex items-center overflow-hidden"
-                x-on:click="toggle"
-            >
-                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
+            <div class="px-2.5 w-full h-full flex items-center overflow-hidden">
+                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full pr-2.5">
                     @if ($icon)
                         <x-dynamic-component
                             :component="WireUi::component('icon')"
@@ -94,18 +91,20 @@
                             ">
                                 <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
 
-                                <button
-                                    class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
-                                    x-on:click.stop="unSelect(option)"
-                                    tabindex="-1"
-                                    type="button"
-                                >
-                                    <x-dynamic-component
-                                        :component="WireUi::component('icon')"
-                                        class="w-3 h-3"
-                                        name="x-mark"
-                                    />
-                                </button>
+                                @if ($clearable && !($readonly || $disabled))
+                                    <button
+                                        class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                        x-on:click.stop="unSelect(option)"
+                                        tabindex="-1"
+                                        type="button"
+                                    >
+                                        <x-dynamic-component
+                                            :component="WireUi::component('icon')"
+                                            class="w-3 h-3"
+                                            name="x-mark"
+                                        />
+                                    </button>
+                                @endif
                             </span>
                         </template>
                     </div>
