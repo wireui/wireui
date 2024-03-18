@@ -1,7 +1,6 @@
 {
     "preset": "laravel",
     "rules": {
-        "Laravel/laravel_phpdoc_alignment": false,
         "align_multiline_comment": true,
         "single_trait_insert_per_statement": true,
         "no_trailing_comma_in_singleline": true,

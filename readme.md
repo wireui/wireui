@@ -29,12 +29,12 @@ Starting a new project with Livewire can be time-consuming when you have to crea
 
 🔥 You get with Wire UI:
 
-- Form and UI components
-- Notifications
-- Confirmation notifications
-- Card, modals, avatar, buttons, badges, dropdowns, and more
-- All Heroicons
-- All Phosphor icons
+-   Form and UI components
+-   Notifications
+-   Confirmation notifications
+-   Card, modals, avatar, buttons, badges, dropdowns, and more
+-   All Heroicons
+-   All Phosphor icons
 
 🌱 Wire UI is in active development. Track all changes in the project in GH releases
 
@@ -69,7 +69,7 @@ All contributions are welcome!
 MIT
 
 [TALL stack]: https://tallstack.dev
-[Get Started]: https://wireui.dev/docs/get-started
+[Get Started]: https://wireui.dev/getting-started
 [Documentation]: https://wireui.dev
 [@ph7jack]: https://twitter.com/ph7jack
 [Pedro Oliveira]: https://github.com/PH7-Jack

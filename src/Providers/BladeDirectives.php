@@ -22,7 +22,7 @@ class BladeDirectives
         });
 
         Blade::directive('attributes', static function (string $attributes): string {
-            return "<?= new \WireUi\Support\ComponentAttributesBag({$attributes}) ?>";
+            return "<?= new \WireUi\View\WireUiAttributeBag({$attributes}) ?>";
         });
 
         Blade::directive('wireUiScripts', static function (?string $attributes = ''): string {

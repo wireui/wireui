@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Traits\Components;
 
-use WireUi\View\Components\Button\Base;
+use WireUi\Components\Button\Base;
 
 beforeEach(function () {
     $this->component = (new Base())->withName('button');

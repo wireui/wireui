@@ -20,6 +20,10 @@ uses(TestCase::class)->group('unit')->in('Unit');
 
 uses(BrowserTestCase::class)->group('browser')->in('Browser');
 
+uses(TestCase::class)->group('unit-components')->in('../src/Components/*/tests/Unit');
+
+uses(BrowserTestCase::class)->group('browser-components')->in('../src/Components/*/tests/Browser');
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
