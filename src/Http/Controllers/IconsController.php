@@ -5,7 +5,7 @@ namespace WireUi\Http\Controllers;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
-use WireUi\View\Components\Icon;
+use WireUi\Components\Icon\Index as Icon;
 
 class IconsController extends Controller
 {

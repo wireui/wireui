@@ -1,0 +1,24 @@
+<?php
+
+namespace WireUi\Components\Badge\WireUi;
+
+use WireUi\Components\Badge\WireUi\Color\{Flat, Outline, Solid};
+use WireUi\Enum\Packs;
+use WireUi\Support\ComponentPack;
+
+class Variant extends ComponentPack
+{
+    protected function default(): string
+    {
+        return Packs\Variant::SOLID;
+    }
+
+    public function all(): array
+    {
+        return [
+            Packs\Variant::FLAT    => Flat::class,
+            Packs\Variant::OUTLINE => Outline::class,
+            Packs\Variant::SOLID   => Solid::class,
+        ];
+    }
+}

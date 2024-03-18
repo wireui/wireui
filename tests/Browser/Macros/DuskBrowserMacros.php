@@ -8,7 +8,6 @@ use Livewire\Features\SupportTesting\DuskBrowserMacros as BaseDuskBrowserMacros;
 
 class DuskBrowserMacros extends BaseDuskBrowserMacros
 {
-    use ColorPickerMacros;
     use PopoverMacros;
 
     public function waitTo(): Closure
@@ -46,6 +45,16 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             return $this->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelectorAll("div[name=\"wireui.select.options.{$name}\"] [select-option]")[{$index}].click();
             JS));
+        };
+    }
+
+    public function selectColorByTitle(): Closure
+    {
+        return function (string $name, string $title) {
+            /** @var Browser $this */
+            return $this->click(
+                "[form-wrapper=\"{$name}\"] [x-ref=\"colorsContainer\"] button[title=\"{$title}\"]",
+            );
         };
     }
 }
