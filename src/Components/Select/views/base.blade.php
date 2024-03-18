@@ -119,8 +119,7 @@
         x-on:blur.debounce.750ms="closeIfNotFocused"
         x-on:keydown.enter.stop.prevent="toggle"
         x-on:keydown.space.stop.prevent="toggle"
-        x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-        x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
+        x-on:keydown.arrow-down.prevent="positionable.open()"
         x-bind:placeholder="getPlaceholder"
         x-bind:value="getSelectedValue"
         inputmode="none"
@@ -169,7 +168,16 @@
     </x-slot>
 
     <x-slot:after>
-        <x-popover :margin="(bool) $label" root-class="sm:w-full">
+        <x-popover2
+            :margin="(bool) $label"
+            class="w-full max-h-64 select-none overflow-hidden"
+            x-ref="optionsContainer"
+            tabindex="-1"
+            x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
+            x-on:keydown.shift.tab.prevent="focusable.previous()?.focus()"
+            x-on:keydown.arrow-up.prevent="focusable.previous()?.focus()"
+            x-on:keydown.arrow-down.prevent="focusable.next()?.focus()"
+        >
             <template x-if="asyncData.api || (config.searchable && options.length >= @js($minItemsForSearch))">
                 <div class="px-2 my-2" wire:key="search.options.{{ $name }}">
                     <x-dynamic-component
@@ -177,8 +185,6 @@
                         class="bg-slate-100"
                         x-ref="search"
                         x-model.debounce.500ms="search"
-                        x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-                        x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
                         shadowless
                         right-icon="magnifying-glass"
                         :placeholder="trans('wireui::messages.search_here')"
@@ -189,12 +195,7 @@
             <div
                 class="overflow-y-auto select-none max-h-64 sm:max-h-60 overscroll-contain soft-scrollbar"
                 tabindex="-1"
-                x-ref="optionsContainer"
                 name="wireui.select.options.{{ $name }}"
-                x-on:keydown.tab.prevent="$event.shiftKey || getNextFocusable().focus()"
-                x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
-                x-on:keydown.shift.tab.prevent="getPrevFocusable().focus()"
-                x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()"
             >
                 <div
                     class="w-full h-0.5 rounded-full relative overflow-hidden"
@@ -239,6 +240,6 @@
                     </div>
                 @endisset
             </div>
-        </x-popover>
+        </x-popover2>
     </x-slot:after>
 </x-text-field>
