@@ -56,6 +56,12 @@ export default (): Select => ({
 
     watchProps(this, this.syncProps.bind(this))
 
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    new SupportsAlpine(this.entangleable, this.$refs.input)
+
     if (!this.asyncData.api) {
       this.config.hasSlot
         ? this.initSlotObserver()
@@ -63,8 +69,6 @@ export default (): Select => ({
     } else if (!this.hasWireModel && this.asyncData.api) {
       this.fetchSelected()
     }
-
-    new SupportsAlpine(this.entangleable, this.$refs.input)
 
     this.hasWireModel
       ? this.initWireModel()
@@ -148,10 +152,6 @@ export default (): Select => ({
     this.$watch('asyncData.method', () => (this.options = []))
   },
   initWireModel () {
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-    }
-
     this.syncSelectedFromWireModel()
 
     if (this.config.multiselect) {
