@@ -484,7 +484,13 @@ export default (): Select => ({
 
         if (original) return original
 
-        return this.options.find(option => option.value === value) ?? []
+        const option = this.options.find(option => option.value === value);
+
+        if (!option) return [];
+
+        option.isSelected = true;
+
+        return option;
       }))
     }
 
