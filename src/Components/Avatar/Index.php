@@ -15,6 +15,7 @@ class Index extends WireUiComponent
     protected array $packs = ['border', 'icon-size'];
 
     protected array $props = [
+        'alt'        => null,
         'src'        => null,
         'icon'       => null,
         'label'      => null,
