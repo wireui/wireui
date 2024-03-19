@@ -1,8 +1,9 @@
 @props(['margin' => false, 'rootClass' => null])
 
 <div
-    style="display: none;"
     x-cloak
+    style="display: none;"
+    :style="positionable.styles"
     x-show="positionable.state"
     x-ref="popover"
     x-on:click.outside.prevent="positionable.close()"

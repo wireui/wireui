@@ -15,6 +15,8 @@ type Config = {
 export default class Positionable {
   state: boolean = false
 
+  styles: Partial<CSSStyleDeclaration> = {}
+
   private config: Config = {
     position: 'bottom',
     offset: 4,
@@ -130,9 +132,7 @@ export default class Positionable {
         offset(this.config.offset),
         flip({ padding: 5 }),
         shift(),
-        hide({
-          padding: -100
-        })
+        hide({ padding: -100 })
       ]
     }).then(({ x, y, middlewareData }) => {
       const { referenceHidden } = middlewareData.hide ?? {}
@@ -141,7 +141,7 @@ export default class Positionable {
         this.component.$nextTick(() => this.close())
       }
 
-      return Object.assign(this.target.style, {
+      this.styles = Object.assign(this.target.style, {
         position: 'absolute',
         left: `${x}px`,
         top: `${y}px`
