@@ -524,7 +524,7 @@ export default class Select extends AlpineComponent {
 
   syncSelectedFromWireModel (): void {
     if (this.config.multiselect) {
-      if (!Array.isArray(this.entangleable.get())) {
+      if (this.entangleable.get() && !Array.isArray(this.entangleable.get())) {
         this.entangleable.set([this.entangleable.get()])
       }
 
