@@ -76,7 +76,7 @@
 
                     @if (!$withoutItemsCount)
                         <span
-                            class="inline-flex text-sm text-secondary-700 dark:text-secondary-400"
+                            class="inline-flex text-sm text-secondary-700 dark:text-secondary-400 select-none"
                             x-show="selectedOptions.length"
                             x-text="selectedOptions.length"
                         ></span>
@@ -89,7 +89,7 @@
                                 border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
                                 dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
                             ">
-                                <span style="max-width: 5rem" class="truncate" x-text="option.label"></span>
+                                <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
                                 @if ($clearable && !($readonly || $disabled))
                                     <button
