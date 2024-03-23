@@ -4,6 +4,10 @@ namespace WireUi\View;
 
 use Illuminate\Support\{Collection, Str};
 
+/**
+ * This class is a refactored version of Livewire\WireDirective
+ * @see https://github.com/livewire/livewire/blob/main/src/WireDirective.php
+ */
 final class Attribute
 {
     private readonly ?string $name;
