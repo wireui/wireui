@@ -1,7 +1,7 @@
 <x-text-field
     x-ref="container"
     :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])->class([
+    :attributes="$attrs->class([
         'cursor-pointer' => !$disabled && !$readonly,
     ])"
     x-data="wireui_select"

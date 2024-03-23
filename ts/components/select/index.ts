@@ -153,7 +153,7 @@ export default class Select extends AlpineComponent {
         })
       }
 
-      this.$refs.input.dispatchEvent(new Event(state ? 'open' : 'close'))
+      this.$refs.container.dispatchEvent(new Event(state ? 'open' : 'close'))
     })
 
     this.$watch('search', (search: string) => {
@@ -652,7 +652,7 @@ export default class Select extends AlpineComponent {
 
       if (exists) return this.unSelect(option)
 
-      this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: option }))
+      this.$refs.container.dispatchEvent(new CustomEvent('selected', { detail: window.Alpine.raw(option) }))
 
       option.isSelected = true
 
@@ -669,7 +669,9 @@ export default class Select extends AlpineComponent {
       ? undefined
       : option
 
-    this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: this.selected }))
+    this.selected
+      ? this.$refs.container.dispatchEvent(new CustomEvent('selected', { detail: window.Alpine.raw(option) }))
+      : this.$refs.container.dispatchEvent(new CustomEvent('un-selected'))
 
     this.positionable.close()
   }
@@ -683,7 +685,7 @@ export default class Select extends AlpineComponent {
 
     option.isSelected = false
 
-    this.$refs.input.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
+    this.$refs.container.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
   }
 
   resetSearch (): void {
@@ -699,7 +701,7 @@ export default class Select extends AlpineComponent {
       ? this.selectedOptions = []
       : this.selected = undefined
 
-    this.$refs.input.dispatchEvent(new Event('clear'))
+    this.$refs.container.dispatchEvent(new Event('clear'))
   }
 
   isEmpty (): boolean {
