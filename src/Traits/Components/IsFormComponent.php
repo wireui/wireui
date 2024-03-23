@@ -5,6 +5,7 @@ namespace WireUi\Traits\Components;
 use Illuminate\Support\Str;
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Support\WrapperData;
+use WireUi\View\Attribute;
 
 trait IsFormComponent
 {
@@ -84,8 +85,14 @@ trait IsFormComponent
 
     private function injectModel(ComponentAttributeBag $attributes): void
     {
-        /** @var ?string $model */
+        /** @var string|null $model */
         $model = $attributes->wire('model')->value();
+
+        if (!$model) {
+            /** @var Attribute|null $xModel */
+            $xModel = $attributes->attribute('x-model');
+            $model  = $xModel?->expression();
+        }
 
         /** @var ?string $name */
         $name = $attributes->get('name', $model);
