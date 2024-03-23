@@ -23,7 +23,7 @@
     x-bind:class="{
         'ring-2 ring-primary-600': positionable.isOpen(),
     }"
-    x-on:click.stop="toggle"
+    x-on:click="toggle"
     x-on:keydown.enter.stop.prevent="toggle"
     x-on:keydown.space.stop.prevent="toggle"
     x-on:keydown.arrow-down.prevent="positionable.open()"
