@@ -55,6 +55,7 @@ export type MagicAlpineHelpers = {
 
 export interface Alpine {
   raw (data: any): any
+  $data (el: HTMLElement): any
   data (name: string, data: any): void
   store (name: 'wireui:color-picker', data?: ColorsStore): ColorsStore
   store (name: 'wireui:modal', data?: ModalStore): ModalStore
