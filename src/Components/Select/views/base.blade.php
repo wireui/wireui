@@ -218,7 +218,7 @@
                     <div
                         class="px-3 py-12 text-center cursor-pointer sm:py-2 sm:px-3 sm:text-left text-secondary-500"
                         x-show="displayOptions.length === 0"
-                        x-on:click="resetSearch()"
+                        x-on:click="search ? resetSearch() : positionable.close()"
                     >
                         {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                     </div>
