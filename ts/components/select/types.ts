@@ -1,6 +1,6 @@
 import { PositioningRefs } from '@/components/modules/positioning'
 import { Template, TemplateName } from './templates'
-import { WireModel } from '@/components/alpine'
+import { AlpineModel, WireModel } from '@/components/alpine'
 
 export type Option = {
   [index: string]: any
@@ -51,6 +51,7 @@ export type Props = Config & {
   asyncData: AsyncDataConfig
   template: TemplateConfig
   wireModel: WireModel
+  alpineModel: AlpineModel
 }
 
 export type Refs = PositioningRefs & {

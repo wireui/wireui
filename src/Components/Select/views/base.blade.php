@@ -18,6 +18,7 @@
         'placeholder'       => $placeholder,
         'template'          => $template,
         'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'       => WireUi::alpineModel($attributes),
     ])"
     x-on:click.stop="toggle"
     x-on:keydown.enter.stop.prevent="toggle"
@@ -61,7 +62,7 @@
         for="{{ $id }}"
         tabindex="-1"
     >
-        <template x-if="entangleable.isEmpty()">
+        <template x-if="isEmpty()">
             <span class="select-none text-gray-400 text-sm truncate" x-text="getPlaceholder"></span>
         </template>
 

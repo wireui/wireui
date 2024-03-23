@@ -65,10 +65,6 @@ export default class Select extends AlpineComponent {
 
   options: Option[] = []
 
-  get hasWireModel (): boolean {
-    return this.$props.wireModel.exists
-  }
-
   init (): void {
     this.initWatchers()
     this.syncProps()
@@ -81,23 +77,25 @@ export default class Select extends AlpineComponent {
 
     watchProps(this, this.syncProps.bind(this))
 
+    this.fillSelectedFromInputValue()
+
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    new SupportsAlpine(this.entangleable, this.$refs.input)
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
+    }
 
     if (!this.asyncData.api) {
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
-    } else if (!this.hasWireModel && this.asyncData.api) {
+    } else if (this.asyncData.api) {
       this.fetchSelected()
     }
 
-    this.hasWireModel
-      ? this.initWireModel()
-      : this.fillSelectedFromInputValue()
+    this.initModelWatchers()
 
     this.initDeferredWatchers()
   }
@@ -180,12 +178,12 @@ export default class Select extends AlpineComponent {
     this.$watch('asyncData.method', () => (this.options = []))
   }
 
-  initWireModel (): void {
-    this.syncSelectedFromWireModel()
+  initModelWatchers (): void {
+    this.syncSelectedValues()
 
     if (this.config.multiselect) {
       this.$watch('selectedOptions', (options: Options, oldOptions: Options) => {
-        if (this.mustSyncWireModel()) {
+        if (this.mustSyncEntangleableValue()) {
           this.entangleable.set(options.map((option: Option) => option.value))
         }
 
@@ -199,10 +197,10 @@ export default class Select extends AlpineComponent {
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
 
-        if (this.mustSyncWireModel()) {
+        if (this.mustSyncEntangleableValue()) {
           this.asyncData.api
             ? this.fetchSelected()
-            : this.syncSelectedFromWireModel()
+            : this.syncSelectedValues()
         }
       })
 
@@ -310,9 +308,7 @@ export default class Select extends AlpineComponent {
   syncJsonOptions (): void {
     this.setOptions(window.Alpine.evaluate(this, this.$refs.json.innerText))
 
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
+    this.syncSelectedValues()
   }
 
   syncSlotOptions (): void {
@@ -332,9 +328,7 @@ export default class Select extends AlpineComponent {
 
     this.setOptions(options)
 
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
+    this.syncSelectedValues()
   }
 
   makeRequest (params = {}): Request {
@@ -523,7 +517,7 @@ export default class Select extends AlpineComponent {
     }
   }
 
-  syncSelectedFromWireModel (): void {
+  syncSelectedValues (): void {
     if (this.config.multiselect) {
       if (this.entangleable.get() && !Array.isArray(this.entangleable.get())) {
         this.entangleable.set([this.entangleable.get()])
@@ -553,7 +547,7 @@ export default class Select extends AlpineComponent {
     }
   }
 
-  mustSyncWireModel (): boolean {
+  mustSyncEntangleableValue (): boolean {
     return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
   }
 
@@ -583,13 +577,9 @@ export default class Select extends AlpineComponent {
 
   getValue (): any[] {
     try {
-      const values = this.hasWireModel
-        ? this.entangleable.get()
-        : jsonParse(this.$refs.input.value)
+      if (this.entangleable.isEmpty()) return []
 
-      if (!values) return []
-
-      return [values].flat()
+      return [this.entangleable.get()].flat()
     } catch (error) {
       reportError(error)
 
@@ -697,11 +687,17 @@ export default class Select extends AlpineComponent {
 
     this.syncSelectedOptions()
 
+    if (this.selected) {
+      this.selected.isSelected = false
+    }
+
     this.config.multiselect
       ? this.selectedOptions = []
       : this.selected = undefined
 
     this.$refs.container.dispatchEvent(new Event('clear'))
+
+    this.positionable.close()
   }
 
   isEmpty (): boolean {
