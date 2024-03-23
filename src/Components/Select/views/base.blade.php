@@ -1,7 +1,9 @@
 <x-text-field
     x-ref="container"
     :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
+    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])->class([
+        'cursor-pointer' => !$disabled && !$readonly,
+    ])"
     x-data="wireui_select"
     :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
@@ -17,78 +19,83 @@
         'template'          => $template,
         'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
     ])"
+    x-on:click.stop="toggle"
+    x-on:keydown.enter.stop.prevent="toggle"
+    x-on:keydown.space.stop.prevent="toggle"
+    x-on:keydown.arrow-down.prevent="positionable.open()"
+    tabindex="0"
 >
-    <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
-    <div hidden x-ref="slot">{{ $slot }}</div>
+    <div class="hidden" hidden>
+        <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
+        <div hidden x-ref="slot">{{ $slot }}</div>
 
-    @if (app()->runningUnitTests())
-        <div dusk="select.{{ $name }}">
-            {!! json_encode($optionsToArray()) !!}
-        </div>
-    @endif
+        <x-wireui-wrapper::element
+            :id="$id"
+            :name="$name"
+            :value="old($name)"
+            x-bind:value="getSelectedValue"
+            x-ref="input"
+            type="hidden"
+        />
+
+        @if (app()->runningUnitTests())
+            <div dusk="select.{{ $name }}">
+                {!! json_encode($optionsToArray()) !!}
+            </div>
+        @endif
+    </div>
 
     @include('wireui-wrapper::components.slots', [
-        'except' => ['append', 'prepend']
+        'except' => ['append', 'label', 'beforeOptions', 'afterOptions'],
     ])
 
-    <x-slot:prepend class="w-full" x-bind:class="{
-        'pointer-events-none': config.readonly,
-        'cursor-pointer': !config.readonly,
-    }">
-        <template x-if="!config.multiselect">
-            <div
-                class="flex items-center"
-                x-on:click="toggle"
-                :class="{
-                    'pl-3': @json(!$icon) && !isEmpty(),
-                    'pl-2': @json($icon != null) && !isEmpty(),
-                }"
-            >
-                @if ($icon != null)
-                    <x-dynamic-component
-                        :component="WireUi::component('icon')"
-                        :name="$icon"
-                        class="w-5 h-5 mr-1 text-gray-400 dark:text-gray-600"
-                    />
-                @endif
+    @if ($label)
+        <x-slot:label class="cursor-pointer select-none" x-on:click="toggle">
+            {{ $label }}
+        </x-slot:label>
+    @endif
 
-                <span
-                    class="
-                        text-sm truncate text-secondary-700 dark:text-secondary-400
-                        invalidated:text-negative-700 invalidated:dark:text-negative-400
-                    "
-                    x-show="!isEmpty()"
-                    x-html="getSelectedDisplayText()"
-                ></span>
-            </div>
+    <button
+        type="button"
+        class="w-full truncate flex items-center outline-0 border-0"
+        for="{{ $id }}"
+        tabindex="-1"
+    >
+        <template x-if="entangleable.isEmpty()">
+            <span class="select-none text-gray-400 text-sm truncate" x-text="getPlaceholder"></span>
         </template>
 
-        <template x-if="config.multiselect">
-            <div class="px-2.5 w-full h-full flex items-center overflow-hidden">
-                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full pr-2.5">
-                    @if ($icon)
-                        <x-dynamic-component
-                            :component="WireUi::component('icon')"
-                            :name="$icon"
-                            class="w-5 h-5 text-gray-400 dark:text-gray-600"
-                        />
-                    @endif
+        <template x-if="!config.multiselect && isNotEmpty()">
+            <span
+                class="
+                    text-sm truncate text-secondary-600 dark:text-secondary-400
+                    invalidated:text-negative-600 invalidated:dark:text-negative-400
+                "
+                x-html="getSelectedDisplayText()"
+            ></span>
+        </template>
 
-                    @if (!$withoutItemsCount)
+        <template x-if="config.multiselect && isNotEmpty()">
+            <div @class([
+                'w-full flex items-center overflow-hidden',
+                'cursor-pointer' => !$readonly && !$disabled
+            ])>
+                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full">
+                    @unless ($withoutItemsCount)
                         <span
                             class="inline-flex text-sm text-secondary-700 dark:text-secondary-400 select-none"
                             x-show="selectedOptions.length"
                             x-text="selectedOptions.length"
                         ></span>
-                    @endif
+                    @endunless
 
                     <div wire:ignore class="flex items-center gap-1 flex-nowrap">
                         <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
-                            <span class="
-                                inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
-                                border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
-                                dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
-                            ">
+                            <span @class([
+                                'inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium',
+                                'border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700',
+                                'dark:bg-secondary-700 dark:text-secondary-400 dark:border-none',
+                            ])>
                                 <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
                                 @if ($clearable && !($readonly || $disabled))
@@ -111,60 +118,38 @@
                 </div>
             </div>
         </template>
-    </x-slot:prepend>
+    </button>
 
-    <x-wireui-wrapper::element
-        x-ref="input"
-        x-on:click="toggle"
-        x-on:blur.debounce.750ms="closeIfNotFocused"
-        x-on:keydown.enter.stop.prevent="toggle"
-        x-on:keydown.space.stop.prevent="toggle"
-        x-on:keydown.arrow-down.prevent="positionable.open()"
-        x-bind:placeholder="getPlaceholder"
-        x-bind:value="getSelectedValue"
-        inputmode="none"
-        readonly
-        autocomplete="off"
-        :attributes="$attrs
-            ->except('class')
-            ->class('cursor-pointer overflow-hidden !text-transparent !dark:text-transparent selection:bg-transparent')
-            ->whereDoesntStartWith(['wire:model', 'type', 'wire:key'])
-            ->except(['wire:key', 'x-data'])
-        "
-    />
-
-    <x-slot name="append">
-        <div class="flex items-center pr-2 gap-x-2">
-            @if ($clearable && !$readonly && !$disabled)
-                <button
-                    x-show="!isEmpty()"
-                    x-on:click="clear"
-                    tabindex="-1"
-                    type="button"
-                    x-cloak
-                >
-                    <x-dynamic-component
-                        :component="WireUi::component('icon')"
-                        @class([
-                            'w-4 h-4 text-secondary-400 hover:text-negative-400',
-                            'invalidated:text-negative-400 invalidated:dark:text-negative-600',
-                        ])
-                        name="x-mark"
-                    />
-                </button>
-            @endif
-
-            <button tabindex="-1" x-on:click="toggle" type="button">
+    <x-slot name="append" class="flex items-center pr-2.5 gap-x-1">
+        @if ($clearable && !$readonly && !$disabled)
+            <button
+                x-show="isNotEmpty()"
+                x-on:click.stop="clear"
+                tabindex="-1"
+                type="button"
+                x-cloak
+            >
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
                     @class([
-                        'w-5 h-5 text-secondary-400',
+                        'w-4 h-4 text-secondary-400 hover:text-negative-400',
                         'invalidated:text-negative-400 invalidated:dark:text-negative-600',
                     ])
-                    :name="$rightIcon"
+                    name="x-mark"
                 />
             </button>
-        </div>
+        @endif
+
+        <button tabindex="-1" type="button">
+            <x-dynamic-component
+                :component="WireUi::component('icon')"
+                @class([
+                    'w-5 h-5 text-secondary-400',
+                    'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                ])
+                :name="$rightIcon"
+            />
+        </button>
     </x-slot>
 
     <x-slot:after>
@@ -228,7 +213,7 @@
                     <div
                         class="px-3 py-12 text-center cursor-pointer sm:py-2 sm:px-3 sm:text-left text-secondary-500"
                         x-show="displayOptions.length === 0"
-                        x-on:click="close"
+                        x-on:click="resetSearch()"
                     >
                         {{ $emptyMessage ?? trans('wireui::messages.empty_options') }}
                     </div>

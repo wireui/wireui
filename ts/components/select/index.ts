@@ -10,6 +10,7 @@ import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules
 import { AlpineComponent } from '@/components/alpine2'
 import { Focusable } from '@/alpine/modules/Focusable'
 import Positionable from '@/alpine/modules/Positionable'
+import DeviceDetector from '@/utils/DeviceDetector'
 
 export default class Select extends AlpineComponent {
   declare $refs: {
@@ -533,13 +534,13 @@ export default class Select extends AlpineComponent {
 
         if (original) return original
 
-        const option = this.options.find(option => option.value === value);
+        const option = this.options.find(option => option.value === value)
 
-        if (!option) return [];
+        if (!option) return []
 
-        option.isSelected = true;
+        option.isSelected = true
 
-        return option;
+        return option
       }))
     }
 
@@ -575,7 +576,9 @@ export default class Select extends AlpineComponent {
 
     this.positionable.toggle()
 
-    this.$refs.input.focus()
+    if (DeviceDetector.isDesktop()) {
+      this.$nextTick(() => this.$refs.search?.focus())
+    }
   }
 
   getValue (): any[] {
@@ -606,7 +609,9 @@ export default class Select extends AlpineComponent {
 
   getSelectedDisplayText (): string {
     if (!this.selected || this.config.multiselect) return ''
+
     if (this.selected.html) return this.selected.html
+
     if (this.selected.template) {
       const config = this.config.template.config ?? {}
       const template = templates[this.selected.template](config)
@@ -615,6 +620,7 @@ export default class Select extends AlpineComponent {
         return template.renderSelected(this.selected)
       }
     }
+
     if (this.config.template.renderSelected) {
       return this.config.template.renderSelected(this.selected)
     }
@@ -639,7 +645,7 @@ export default class Select extends AlpineComponent {
   select (option: Option): void {
     if (this.config.readonly || option.disabled || option.readonly) return
 
-    this.search = ''
+    this.resetSearch()
 
     if (this.config.multiselect) {
       const exists = this.selectedOptions.some(({ value }) => value === option.value)
@@ -680,8 +686,12 @@ export default class Select extends AlpineComponent {
     this.$refs.input.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
   }
 
-  clear (): void {
+  resetSearch (): void {
     this.search = ''
+  }
+
+  clear (): void {
+    this.resetSearch()
 
     this.syncSelectedOptions()
 
@@ -698,6 +708,10 @@ export default class Select extends AlpineComponent {
     }
 
     return this.selected === undefined
+  }
+
+  isNotEmpty (): boolean {
+    return !this.isEmpty()
   }
 
   renderOption (option: Option): string {
