@@ -136,13 +136,15 @@ export default class Select extends AlpineComponent {
           this.fetchOptions()
         }
 
-        this.$nextTick(() => {
-          if (window.innerWidth >= 1024) {
-            setTimeout(() => this.$refs.search?.focus(), 100)
-          }
-        })
+        if (DeviceDetector.isDesktop()) {
+          this.$nextTick(() => this.$refs.search?.focus())
+        }
 
         this.$nextTick(() => this.initRenderObserver())
+      }
+
+      if (this.positionable.isClosed()) {
+        this.$refs.container.focus()
       }
 
       if (this.asyncData.api && this.asyncData.alwaysFetch && !state) {
@@ -569,10 +571,6 @@ export default class Select extends AlpineComponent {
     if (this.config.readonly) return
 
     this.positionable.toggle()
-
-    if (this.positionable.isOpen() && DeviceDetector.isDesktop()) {
-      this.$nextTick(() => this.$refs.search?.focus())
-    }
   }
 
   getValue (): any[] {
@@ -698,6 +696,8 @@ export default class Select extends AlpineComponent {
     this.$refs.container.dispatchEvent(new Event('clear'))
 
     this.positionable.close()
+
+    this.$refs.container.focus()
   }
 
   isEmpty (): boolean {

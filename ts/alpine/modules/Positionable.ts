@@ -104,6 +104,10 @@ export default class Positionable {
     return this.state
   }
 
+  isClosed () {
+    return !this.isOpen()
+  }
+
   watch (callback: (value: boolean) => void): this {
     queueMicrotask(() => {
       this.component.$watch(

@@ -20,6 +20,9 @@
         'wireModel'         => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'alpineModel'       => WireUi::alpineModel($attributes),
     ])"
+    x-bind:class="{
+        'ring-2 ring-primary-600': positionable.isOpen(),
+    }"
     x-on:click.stop="toggle"
     x-on:keydown.enter.stop.prevent="toggle"
     x-on:keydown.space.stop.prevent="toggle"
@@ -174,6 +177,7 @@
                         shadowless
                         right-icon="magnifying-glass"
                         :placeholder="trans('wireui::messages.search_here')"
+                        type="search"
                     />
                 </div>
             </template>
