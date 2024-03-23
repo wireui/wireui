@@ -66,7 +66,10 @@
         tabindex="-1"
     >
         <template x-if="isEmpty()">
-            <span class="select-none text-gray-400 text-sm truncate" x-text="getPlaceholder"></span>
+            <span
+                class="select-none text-gray-400 invalidated:text-negative-400 invalidated:dark:text-negative-400 text-sm truncate"
+                x-text="getPlaceholder"
+            ></span>
         </template>
 
         <template x-if="!config.multiselect && isNotEmpty()">
