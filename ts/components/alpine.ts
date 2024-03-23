@@ -3,8 +3,7 @@ import { ModalStore } from '@/alpine/store/modal'
 
 export type Entangle = any
 
-export type WireModifiers = {
-  live: boolean
+export type ModelModifiers = {
   blur: boolean
   debounce: {
     exists: boolean
@@ -16,11 +15,21 @@ export type WireModifiers = {
   }
 }
 
+export type WireModifiers = ModelModifiers & {
+  live: boolean
+}
+
 export interface WireModel {
   exists: boolean
   livewireId: string
   name: string
   modifiers: WireModifiers
+}
+
+export interface AlpineModel {
+  exists: boolean
+  name: string
+  modifiers: ModelModifiers
 }
 
 export interface DirectiveUtilities {

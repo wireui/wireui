@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use Livewire\{Component, WireDirective};
+use WireUi\View\Attribute;
 
 class WireUiSupport
 {
@@ -97,6 +98,34 @@ class WireUiSupport
             'livewireId' => $component->id(),
             'modifiers'  => [
                 'live'     => $model->modifiers()->contains('live'),
+                'blur'     => $model->modifiers()->contains('blur'),
+                'debounce' => [
+                    'exists' => $model->modifiers()->contains('debounce'),
+                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                ],
+                'throttle' => [
+                    'exists' => $model->modifiers()->contains('throttle'),
+                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                ],
+            ],
+        ];
+    }
+
+    public static function alpineModel(ComponentAttributeBag $attributes): array
+    {
+        $exists = count($attributes->whereStartsWith('x-model')->getAttributes()) > 0;
+
+        if (!$exists) {
+            return ['exists' => false];
+        }
+
+        /** @var Attribute $model */
+        $model = $attributes->attribute('x-model');
+
+        return [
+            'exists'    => $exists,
+            'name'      => $model->expression(),
+            'modifiers' => [
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
