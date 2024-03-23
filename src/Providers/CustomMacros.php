@@ -19,7 +19,7 @@ class CustomMacros
                 return null;
             }
 
-            return new Attribute($attributes->keys()->first(), $attributes->first());
+            return new Attribute($attributes->keys()->sort()->first(), $attributes->first());
         });
 
         ComponentAttributeBag::macro('wireModifiers', function () {
