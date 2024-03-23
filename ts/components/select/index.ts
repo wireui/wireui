@@ -570,7 +570,7 @@ export default class Select extends AlpineComponent {
 
     this.positionable.toggle()
 
-    if (DeviceDetector.isDesktop()) {
+    if (this.positionable.isOpen() && DeviceDetector.isDesktop()) {
       this.$nextTick(() => this.$refs.search?.focus())
     }
   }
