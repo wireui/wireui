@@ -46,6 +46,7 @@
 
     <label
         {{ $attributes
+            ->whereDoesntStartWith(['x-model', 'wire:model'])
             ->except(['wire:key', 'form-wrapper', 'x-data', 'x-props'])
             ->merge(['for' => $id])
             ->class([
