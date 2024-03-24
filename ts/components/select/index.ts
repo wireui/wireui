@@ -553,9 +553,18 @@ export default class Select extends AlpineComponent {
     return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
   }
 
+  private normalizeText(str: string) {
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+  }
+
   searchOptions (search: string): Option[] {
+    search = this.normalizeText(search)
+
     return this.options.filter(option => {
-      const label = option.label.toLocaleLowerCase()
+      const label = this.normalizeText(option.label.toLocaleLowerCase())
 
       return label.includes(search)
     })
