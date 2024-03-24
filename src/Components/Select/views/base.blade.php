@@ -62,25 +62,22 @@
     <button
         type="button"
         class="w-full truncate flex items-center outline-0 border-0"
-        for="{{ $id }}"
         tabindex="-1"
     >
-        <template x-if="isEmpty()">
-            <span
-                class="select-none text-gray-400 invalidated:text-negative-400 invalidated:dark:text-negative-400 text-sm truncate"
-                x-text="getPlaceholder"
-            ></span>
-        </template>
+        <span
+            class="select-none text-gray-400 invalidated:text-negative-400 invalidated:dark:text-negative-400 text-sm truncate"
+            x-show="isEmpty()"
+            x-text="getPlaceholder"
+        ></span>
 
-        <template x-if="!config.multiselect && isNotEmpty()">
-            <span
-                class="
-                    text-sm truncate text-secondary-600 dark:text-secondary-400
-                    invalidated:text-negative-600 invalidated:dark:text-negative-400
-                "
-                x-html="getSelectedDisplayText()"
-            ></span>
-        </template>
+        <span
+            class="
+                text-sm truncate text-secondary-600 dark:text-secondary-400
+                invalidated:text-negative-600 invalidated:dark:text-negative-400
+            "
+            x-show="!config.multiselect && isNotEmpty()"
+            x-html="getSelectedDisplayText()"
+        ></span>
 
         <template x-if="config.multiselect && isNotEmpty()">
             <div @class([
