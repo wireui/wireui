@@ -9,8 +9,7 @@
         ->only(['wire:key', 'form-wrapper', 'x-data', 'x-props'])
         ->merge(['form-wrapper' => $id ?: 'true'])
         ->class([
-            'aria-disabled:pointer-events-none aria-disabled:select-none',
-            'aria-disabled:opacity-60 aria-disabled:cursor-not-allowed',
+            'aria-disabled:pointer-events-none aria-disabled:select-none aria-disabled:opacity-60',
             'aria-readonly:pointer-events-none aria-readonly:select-none',
             'w-full relative',
         ]) }}
@@ -59,6 +58,8 @@
                 'transition-all ease-in-out duration-150',
                 'ring-1 ring-inset ring-gray-300 focus-within:ring-2',
                 'outline-0',
+
+                '!bg-gray-100' => $disabled,
 
                 $padding =>  $padding,
                 'pl-3'   => !$padding && !isset($prepend),
