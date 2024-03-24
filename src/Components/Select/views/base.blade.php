@@ -162,7 +162,7 @@
     <x-slot:after>
         <x-popover2
             :margin="(bool) $label"
-            class="w-full max-h-64 select-none overflow-hidden"
+            class="w-full max-h-64 sm:max-h-80 select-none overflow-hidden"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
@@ -186,7 +186,7 @@
             </template>
 
             <div
-                class="overflow-y-auto select-none max-h-64 sm:max-h-60 overscroll-contain soft-scrollbar"
+                class="overflow-y-auto select-none max-h-64 sm:max-h-60 snap-y snap-proximity overscroll-contain soft-scrollbar"
                 tabindex="-1"
                 name="wireui.select.options.{{ $name }}"
             >

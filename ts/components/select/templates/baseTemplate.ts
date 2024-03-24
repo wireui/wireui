@@ -2,7 +2,7 @@ export default (slot: string) => `
 <div
     class="
         py-2 px-3 border-0 outline-none transition-all ease-in-out duration-150 relative group
-        text-secondary-600 dark:text-secondary-400 flex items-center justify-between
+        text-secondary-600 dark:text-secondary-400 flex items-center justify-between snap-start
     "
     :class="{
         'cursor-pointer focus:bg-primary-100 focus:text-primary-800 hover:text-white dark:focus:bg-secondary-700': !option.readonly,
