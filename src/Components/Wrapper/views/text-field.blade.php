@@ -59,7 +59,7 @@
                 'ring-1 ring-inset ring-gray-300 focus-within:ring-2',
                 'outline-0',
 
-                '!bg-gray-100' => $disabled,
+                '!bg-gray-100' => $disabled && !$invalidated,
 
                 $padding =>  $padding,
                 'pl-3'   => !$padding && !isset($prepend),
