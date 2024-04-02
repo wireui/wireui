@@ -12,7 +12,7 @@ export default (options: InitOptions): DateTimePicker => ({
   ...positioning,
   $refs: {} as Refs,
   $props: {} as Props,
-  model: options.model,
+  model: null,
   config: {
     interval: 10,
     is12H: false,
@@ -58,6 +58,10 @@ export default (options: InitOptions): DateTimePicker => ({
   },
 
   init () {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    this.model = this.$wire.entangle(options.model)
+
     watchProps(this, this.syncProps.bind(this))
     this.syncProps()
     this.initComponent()

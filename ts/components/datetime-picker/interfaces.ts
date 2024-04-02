@@ -1,10 +1,10 @@
 import { Dateable } from '@/utils/date'
-import { Component, Entangle } from '@/components/alpine'
+import { Component } from '@/components/alpine'
 import { Time } from './makeTimes'
 import { Positioning, PositioningRefs } from '@/components/modules/positioning'
 
 export interface InitOptions {
-  model: Entangle
+  model: string|null|undefined
 }
 
 export interface Props {

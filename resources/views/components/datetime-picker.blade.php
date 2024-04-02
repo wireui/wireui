@@ -1,6 +1,6 @@
 <div
     x-data="wireui_datetime_picker({
-        model: @entangleable($attributes->wire('model')),
+        model: '{{ $attributes->wire('model')->value() }}'
     })"
     x-props="{
         config: {
