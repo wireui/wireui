@@ -24,7 +24,7 @@
     }"
     {{ $attributes
         ->only('wire:key')
-        ->class('relative w-full')
+        ->class('relative')
         ->merge(['wire:key' => "datepicker::{$name}"]) }}
 >
     <x-dynamic-component
