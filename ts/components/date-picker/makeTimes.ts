@@ -14,7 +14,7 @@ export interface MakeTimes {
   (config: Config): Time[]
 }
 
-const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
+export const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
   const [minHours = 0, minMinutes = 0] = min.toString().split(':')
   const [maxHours = 0, maxMinutes = 0] = max.toString().split(':')
 
@@ -50,5 +50,3 @@ const makeTimes: MakeTimes = ({ time12H, interval, min = 0, max = 24 }) => {
 
   return times
 }
-
-export { makeTimes }

@@ -17,22 +17,31 @@ class Picker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'max'              => null,
-        'min'              => null,
-        'interval'         => 10,
-        'max-time'         => 24,
-        'min-time'         => 0,
-        'timezone'         => null,
-        'clearable'        => true,
-        'right-icon'       => 'calendar',
-        'shadowless'       => false,
-        'time-format'      => 12,
-        'parse-format'     => null,
-        'without-time'     => false,
-        'without-tips'     => false,
-        'user-timezone'    => null,
-        'display-format'   => null,
-        'without-timezone' => false,
+        'max'                   => null,
+        'min'                   => null,
+        'interval'              => 10,
+        'max-time'              => 24,
+        'min-time'              => 0,
+        'timezone'              => null,
+        'clearable'             => true,
+        'right-icon'            => 'calendar',
+        'shadowless'            => false,
+        'time-format'           => 12,
+        'parse-format'          => null,
+        'without-time'          => false,
+        'without-tips'          => false,
+        'start-of-week'         => Carbon::SUNDAY,
+        'user-timezone'         => null,
+        'display-format'        => null,
+        'without-timezone'      => false,
+        'requires-confirmation' => false,
+
+        'disabled-years'     => [],    // [YYYY, [YYYY, YYYY]]
+        'disabled-months'    => [],    // [1, 2]
+        'disabled-weekdays'  => [],    // [0, 1]
+        'disabled-dates'     => [],    // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
+        'disable-past-dates' => false, // YYYY-MM-DD or boolean
+        'allowed-dates'      => []     // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
     ];
 
     protected function processed(): void

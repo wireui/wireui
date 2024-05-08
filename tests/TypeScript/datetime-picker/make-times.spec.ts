@@ -1,4 +1,4 @@
-import { makeTimes } from '@/components/datetime-picker/makeTimes'
+import { makeTimes } from '@/components/date-picker/makeTimes'
 
 describe('Test the make times function', () => {
   it('should generate AM/PM times for a given interval', () => {

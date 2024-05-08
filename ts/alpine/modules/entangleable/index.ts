@@ -50,4 +50,8 @@ export class Entangleable {
   isEmpty (): boolean {
     return isEmpty(this.value)
   }
+
+  isNotEmpty (): boolean {
+    return !this.isEmpty()
+  }
 }
