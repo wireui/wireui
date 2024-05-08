@@ -63,7 +63,7 @@ return [
 
     'datetime-picker' => Config::dateTimePicker(),
 
-    'dialog' => Config::modal(),
+    'dialog' => Config::dialog(),
 
     'dropdown' => Config::dropdown(),
 
