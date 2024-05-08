@@ -131,7 +131,7 @@ export default class Select extends AlpineComponent {
 
   initWatchers (): void {
     this.positionable.watch((state: boolean) => {
-      if (state) {
+      if (this.positionable.isOpen()) {
         if (this.asyncData.api && (this.asyncData?.alwaysFetch || this.options.length === 0)) {
           this.fetchOptions()
         }
@@ -147,9 +147,9 @@ export default class Select extends AlpineComponent {
         this.$refs.container.focus()
       }
 
-      if (this.asyncData.api && this.asyncData.alwaysFetch && !state) {
+      if (this.asyncData.api && this.asyncData.alwaysFetch && this.positionable.isClosed()) {
         this.$nextTick(() => {
-          setTimeout(() => (this.options = []), 150)
+          setTimeout(() => (this.options = []), 350)
         })
       }
 
@@ -642,8 +642,6 @@ export default class Select extends AlpineComponent {
   select (option: Option): void {
     if (this.config.readonly || option.disabled || option.readonly) return
 
-    this.resetSearch()
-
     if (this.config.multiselect) {
       const exists = this.selectedOptions.some(({ value }) => value === option.value)
 
@@ -662,6 +660,8 @@ export default class Select extends AlpineComponent {
       return this.positionable.close()
     }
 
+    this.positionable.close()
+
     this.selected = option.value === this.selected?.value
       ? undefined
       : option
@@ -670,7 +670,7 @@ export default class Select extends AlpineComponent {
       ? this.$refs.container.dispatchEvent(new CustomEvent('selected', { detail: window.Alpine.raw(option) }))
       : this.$refs.container.dispatchEvent(new CustomEvent('un-selected'))
 
-    this.positionable.close()
+    setTimeout(() => this.$nextTick(() => this.resetSearch()), 1000)
   }
 
   unSelect (option: Option): void {
