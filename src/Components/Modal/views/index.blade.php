@@ -9,7 +9,7 @@
     @class([
         'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
-        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-50'),
+        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-40'),
         'fixed inset-0 overflow-y-auto',
     ])
     x-on:keydown.escape.window="handleEscape"

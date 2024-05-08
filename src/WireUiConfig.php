@@ -174,6 +174,25 @@ class WireUiConfig
         ], $options);
     }
 
+    public static function dialog(array $options = []): array
+    {
+        return self::mix([
+            'default' => [
+                'z-index' => 'z-50',
+                'blur'    => Packs\Blur::NONE,
+                'type'    => Packs\Type::BASE,
+                'width'   => Packs\Width::XL2,
+                'align'   => Packs\Align::START,
+            ],
+            'packs' => [
+                'blurs'  => Modal\WireUi\Blur::class,
+                'types'  => Modal\WireUi\Type::class,
+                'widths' => Modal\WireUi\Width::class,
+                'aligns' => Modal\WireUi\Align::class,
+            ],
+        ], $options);
+    }
+
     public static function notifications(array $options = []): array
     {
         return self::mix([

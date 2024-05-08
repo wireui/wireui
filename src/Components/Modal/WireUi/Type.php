@@ -16,19 +16,19 @@ class Type extends ComponentPack
     {
         return [
             Packs\Type::BASE => [
-                'z-index'        => 'z-50',
+                'z-index'        => 'z-40',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => false,
                 'hide-scrollbar' => false,
             ],
             Packs\Type::SOFT => [
-                'z-index'        => 'z-50',
+                'z-index'        => 'z-40',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => true,
                 'hide-scrollbar' => false,
             ],
             Packs\Type::HIDE => [
-                'z-index'        => 'z-50',
+                'z-index'        => 'z-40',
                 'spacing'        => 'p-4',
                 'soft-scrollbar' => false,
                 'hide-scrollbar' => true,
