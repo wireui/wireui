@@ -30,6 +30,10 @@ export default class DatetimePicker extends AlpineComponent {
       server: string
     }
     calendar: {
+      multiple: {
+        enabled: boolean
+        max: number
+      }
       weekDays: string[]
       startOfWeek: number
       monthNames: string[]
@@ -92,6 +96,8 @@ export default class DatetimePicker extends AlpineComponent {
 
   selected: FluentDate|null = null
 
+  selectedDates: FluentDate[] = []
+
   get localeDateConfig (): Intl.DateTimeFormatOptions {
     const config: Intl.DateTimeFormatOptions = {
       year: 'numeric',
@@ -127,6 +133,12 @@ export default class DatetimePicker extends AlpineComponent {
     }
 
     return weekDays.slice(startOfWeek).concat(weekDays.slice(0, startOfWeek))
+  }
+
+  get isMaxMultipleReached () {
+    return this.$props.calendar.multiple.enabled
+      && this.$props.calendar.multiple.max > 0
+      && this.selectedDates.length >= this.$props.calendar.multiple.max
   }
 
   init () {
@@ -185,13 +197,17 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   selectDay (day: Day) {
-    this.selected = new FluentDate(day.date)
-    this.calendar.year = this.selected.getYear()
-    this.calendar.month = this.selected.getMonth()
-
     if (document.activeElement) {
       (document.activeElement as HTMLElement).blur()
     }
+
+    if (this.$props.calendar.multiple.enabled) {
+      return this.toggleSelectedDay(day)
+    }
+
+    this.selected = new FluentDate(day.date)
+    this.calendar.year = this.selected.getYear()
+    this.calendar.month = this.selected.getMonth()
 
     this.$events.dispatch('selected::day', day)
 
@@ -202,6 +218,23 @@ export default class DatetimePicker extends AlpineComponent {
     if (!this.$props.config.requiresConfirmation) {
       this.positionable.close()
     }
+  }
+
+  private toggleSelectedDay (day: Day) {
+    const date = new FluentDate(day.date)
+    const index = this.selectedDates.findIndex(selected => selected.isSame(date))
+    const shouldSelect = index === -1 && !this.isMaxMultipleReached
+    const shouldRemove = index !== -1
+
+    if (shouldSelect) {
+      this.selectedDates.push(date)
+    }
+
+    if (shouldRemove) {
+      this.selectedDates.splice(index, 1)
+    }
+
+    this.$events.dispatch('selected::day', day)
   }
 
   selectMonth (month: number) {

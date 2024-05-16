@@ -78,7 +78,9 @@ export default class Calendar extends Feature {
   }
 
   private isSelected (day: FluentDate): boolean {
-    // if ([12, 13, 14, 15, 16, 16, 17, 18].includes(day.getDay())) return true
+    if (this.component.$props.calendar.multiple.enabled) {
+      return this.component.selectedDates.some(date => date.isSame(day, 'day'))
+    }
 
     return Boolean(this.component.selected?.isSame(day, 'day'))
   }

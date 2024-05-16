@@ -35,6 +35,8 @@ class Picker extends WireUiComponent
         'display-format'        => null,
         'without-timezone'      => false,
         'requires-confirmation' => false,
+        'multiple'              => false, // boolean
+        'multiple-max'          => 0,     // integer
 
         'disabled-years'     => [],    // [YYYY, [YYYY, YYYY]]
         'disabled-months'    => [],    // [1, 2]

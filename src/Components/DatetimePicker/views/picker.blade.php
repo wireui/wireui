@@ -19,6 +19,10 @@
             'min'           => $min?->format('Y-m-d\TH:i'),
             'max'           => $max?->format('Y-m-d\TH:i'),
             'allowedDates'  => $allowedDates,
+            'multiple'      => [
+                'enabled' => $multiple,
+                'max'     => $multipleMax,
+            ],
             'disabled'      => [
                 'years'     => $disabledYears,
                 'months'    => $disabledMonths,
@@ -28,7 +32,7 @@
             ],
         ],
         'timePicker' => [
-            'enabled'  => $withoutTime === false,
+            'enabled'  => $withoutTime === false && $multiple === false,
             'interval' => $interval,
             'is12H'    => $timeFormat == '12',
             'min'      => $minTime,

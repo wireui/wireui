@@ -6,7 +6,7 @@ export default abstract class Feature {
     this.init()
   }
 
-  get $events(): Events {
+  get $events (): Events {
     return this.component.$events
   }
 
