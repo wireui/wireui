@@ -1,7 +1,6 @@
 node_modules
 vendor
 coverage
-dist
 tests/Browser/console
 tests/Browser/screenshots
 tests/Browser/source
