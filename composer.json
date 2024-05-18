@@ -29,7 +29,11 @@
     "authors": [
         {
             "name": "Pedro Oliveira",
-            "email": "pedrolivertwd@gmail.com"
+            "email": "pedro@wireui.dev"
+        },
+        {
+            "name": "João Pedro Lopes",
+            "email": "joao.lopes@wireui.dev"
         }
     ],
     "license": "MIT",
