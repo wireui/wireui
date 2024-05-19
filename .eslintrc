@@ -30,7 +30,7 @@
         // Best Practices
         "eqeqeq": "error",
         // "no-invalid-this": "error",
-        "no-return-assign": ["error", "except-parens"],
+        // "no-return-assign": ["error", "except-parens"],
         "no-unused-expressions": ["error", { "allowTernary": true }],
         "no-useless-concat": "error",
         "no-useless-return": "error",
