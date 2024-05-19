@@ -1,4 +1,4 @@
-import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { Entangleable, SupportsLivewire } from '@/alpine/modules/entangleable'
 import { Focusable } from '@/alpine/modules/Focusable'
 import Positionable from '@/alpine/modules/Positionable'
 import { AlpineComponent } from '@/components/alpine2'
@@ -53,7 +53,7 @@ export default class ColorPicker extends AlpineComponent {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    new SupportsAlpine(this.entangleable, this.$refs.input)
+    // new SupportsAlpine(this.entangleable, this.$refs.input)
   }
 
   syncSelected () {

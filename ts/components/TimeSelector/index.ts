@@ -5,6 +5,7 @@ import { Period, toMilitaryFormat, toStandardFormat } from '@/components/TimeSel
 import ScrollableOptions from '@/components/TimeSelector/ScrollableOptions'
 import { WireModel } from '@/livewire'
 import FluentDate from '@/utils/date'
+import { AlpineModel } from '@/components/alpine'
 
 export type Selection = {
   hours: number
@@ -23,11 +24,12 @@ export default class TimeSelector extends AlpineComponent {
   }
 
   declare $props: {
-    wireModel: WireModel
     militaryTime: boolean
     withoutSeconds: boolean
     disabled: boolean
     readonly: boolean
+    wireModel: WireModel
+    alpineModel: AlpineModel
   }
 
   declare private scrollable: {
@@ -84,7 +86,9 @@ export default class TimeSelector extends AlpineComponent {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    new SupportsAlpine(this.entangleable, this.$refs.input)
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
+    }
 
     watchProps(this, () => {
       this.syncProps()

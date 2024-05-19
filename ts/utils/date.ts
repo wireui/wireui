@@ -153,10 +153,11 @@ export class FluentDate {
   }
 
   setTime (time: string): FluentDate {
-    const [hours = 0, minutes = 0] = time.split(':')
+    const [hours = 0, minutes = 0, seconds = 0] = time.split(':')
 
     this.setHours(Number(hours))
     this.setMinutes(Number(minutes))
+    this.setSeconds(Number(seconds))
 
     return this
   }
@@ -258,6 +259,10 @@ export class FluentDate {
 
   toDateString(): string {
     return this.date.format('YYYY-MM-DD')
+  }
+
+  toString (): string {
+    return this.toJson()
   }
 }
 

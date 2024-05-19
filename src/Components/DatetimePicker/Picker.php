@@ -29,6 +29,7 @@ class Picker extends WireUiComponent
         'time-format'           => 12,
         'parse-format'          => null,
         'without-time'          => false,
+        'without-time-seconds'  => false,
         'without-tips'          => false,
         'start-of-week'         => Carbon::SUNDAY,
         'user-timezone'         => null,

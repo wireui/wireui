@@ -54,7 +54,7 @@ class ServiceProvider extends Support\ServiceProvider
 
         $this->mergeConfigFrom($this->srcDir('config.php'), 'wireui');
 
-        $this->loadViewsFrom($this->srcDir('resources/views'), 'wireui');
+        // $this->loadViewsFrom($this->srcDir('Components'), 'wireui');
 
         $this->publishes(
             [$this->srcDir('lang') => $this->app->langPath('vendor/wireui')],

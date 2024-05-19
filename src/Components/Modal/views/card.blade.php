@@ -1,10 +1,12 @@
 <x-dynamic-component
     :component="WireUi::component('modal')"
     :attributes="$attributes->except(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
+    width="xl"
 >
     <x-dynamic-component
         :component="WireUi::component('card')"
         :attributes="$attributes->only(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
+        class="w-full"
     >
         @if(!$hideClose)
             @slot('action')

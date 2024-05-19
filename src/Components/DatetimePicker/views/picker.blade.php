@@ -56,7 +56,7 @@
                     :component="WireUi::component('icon')"
                     class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
                     name="x-mark"
-                    x-show="selected || entangleable.isNotEmpty()"
+                    x-show="selected"
                     x-on:click="clear"
                     x-cloak
                 />
@@ -89,7 +89,7 @@
     <x-wireui-wrapper::element
         x-on:click="positionable.toggle()"
         x-bind:value="display"
-        :attributes="$attributes"
+        :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
         readonly
     />
 
@@ -310,11 +310,12 @@
                 </template>
 
                 <template x-if="tab === 'time-picker'">
-                    <x-time-selector
+                    <x-dynamic-component
+                        :component="WireUi::component('time-selector')"
                         class="!mt-0"
-                        x-modelable="value"
+                        x-model="time"
                         :military-time="false"
-                        :without-seconds="false"
+                        :without-seconds="$withoutTimeSeconds"
                         borderless
                         shadowless
                     />

@@ -1,7 +1,7 @@
 import { Focusable } from '@/alpine/modules/Focusable'
 import Positionable from '@/alpine/modules/Positionable'
 import FluentDate from '@/utils/date'
-import { CalendarConfig, Day, Tab, TimePicker } from './interfaces'
+import { CalendarConfig, Day, Tab } from './interfaces'
 import { AlpineComponent } from '@/components/alpine2'
 import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 import { AlpineModel, WireModel } from '@/components/alpine'
@@ -72,11 +72,6 @@ export default class DatetimePicker extends AlpineComponent {
     year: FluentDate.now().getYear(),
   }
 
-  timePicker: TimePicker = {
-    times: [],
-    filteredTimes: [],
-  }
-
   declare features: {
     monthSelector: MonthSelector
     yearsSelector: YearsSelector
@@ -93,6 +88,8 @@ export default class DatetimePicker extends AlpineComponent {
   focusable = new Focusable()
 
   entangleable = new Entangleable()
+
+  time: string|null = null
 
   selected: FluentDate|null = null
 
@@ -152,6 +149,57 @@ export default class DatetimePicker extends AlpineComponent {
       if (state) {
         this.tab = 'calendar'
       }
+    })
+
+    this.entangleable.watch((date: string|null) => {
+      console.log(`entangleable.watch ${this.$props.wireModel.name}`, date)
+
+      // if (this.$props.input.parseFormat) {
+      //   return this.selected = date ? new FluentDate(date, this.$props.timezone.server, this.$props.input.parseFormat) : null
+      // }
+
+      if (this.$props.timePicker.enabled) {
+        const d = new FluentDate(date, this.$props.timezone.server)
+
+        if (this.selected) {
+          this.selected.setYear(d.getYear())
+          this.selected.setMonth(d.getMonth())
+          this.selected.setDay(d.getDay())
+          this.selected.setTime(d.getTime())
+        } else {
+          this.selected = d
+        }
+
+        // return this.selected = date
+        //   ? new FluentDate(date, this.$props.timezone.server)
+        //   : null
+      }
+
+      // this.selected = date ? new FluentDate(date, this.$props.timezone.server) : null
+    })
+
+    this.$watch('selected', (date: FluentDate|null) => {
+      console.log(`selected ${this.$props.wireModel.name}`, date)
+
+      if (this.$props.input.parseFormat) {
+        return this.entangleable.set(
+          date?.format(this.$props.input.parseFormat)
+        )
+      }
+
+      if (this.$props.timePicker.enabled) {
+        this.entangleable.set(date?.format('YYYY-MM-DD HH:mm:ss'))
+
+        return (this.time = date?.format('HH:mm:ss') ?? null)
+      }
+
+      this.entangleable.set(date?.toDateString())
+    })
+
+    this.$watch('time', time => {
+      this.selected?.setTime(time)
+
+      this.entangleable.set(this.selected?.toJson())
     })
 
     this.focusable.start(this.$refs.optionsContainer, 'button, input')

@@ -1,4 +1,4 @@
-import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { Entangleable, SupportsLivewire } from '@/alpine/modules/entangleable'
 import Positionable from '@/alpine/modules/Positionable'
 import { AlpineComponent } from '@/components/alpine2'
 import { toMilitaryFormat } from '@/components/TimeSelector/helpers'
@@ -46,7 +46,7 @@ export default class TimePicker extends AlpineComponent {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    new SupportsAlpine(this.entangleable, this.$refs.input)
+    // new SupportsAlpine(this.entangleable, this.$refs.input)
 
     this.$safeWatch('input', (input: string|null) => {
       this.input = this.maskInput(input)
