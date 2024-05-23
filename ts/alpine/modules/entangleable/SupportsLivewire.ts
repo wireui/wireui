@@ -5,13 +5,16 @@ import throttle from '@/utils/throttle'
 import { Entangleable } from './index'
 
 export default class SupportsLivewire {
-  private entangleable: Entangleable
-
-  private wireModel: WireModel
-
   private livewire: any
 
-  constructor (entangleable: Entangleable, wireModel: WireModel) {
+  private toLivewireCallback: CallableFunction|null = null
+
+  private fromLivewireCallback: CallableFunction|null = null
+
+  constructor (
+    private entangleable: Entangleable<any>,
+    private wireModel: WireModel,
+  ) {
     this.entangleable = entangleable
     this.wireModel = wireModel
     this.livewire = window.Livewire.find(wireModel.livewireId)
@@ -25,7 +28,15 @@ export default class SupportsLivewire {
 
   private init () {
     this.livewire.watch(this.wireModel.name, (value: any) => {
+      if (this.fromLivewireCallback) {
+        value = this.fromLivewireCallback(value)
+      }
+
       this.entangleable.set(value)
+    })
+
+    this.entangleable.onClear(() => {
+      this.livewire.$set(this.wireModel.name, null)
     })
 
     const IN_LIVE = true
@@ -59,10 +70,28 @@ export default class SupportsLivewire {
     }
   }
 
-  set (value: any, isLive: boolean) {
-    if (this.livewire.get(this.wireModel.name) === value) return
+  set (value: any, isLive: boolean): this {
+    if (this.toLivewireCallback) {
+      value = this.toLivewireCallback(value)
+    }
 
-    this.livewire.set(this.wireModel.name, value, isLive)
+    if (this.livewire.get(this.wireModel.name) === value) return this
+
+    this.livewire.$set(this.wireModel.name, value, isLive)
+
+    return this
+  }
+
+  toLivewire (callback: CallableFunction): this {
+    this.toLivewireCallback = callback
+
+    return this
+  }
+
+  fromLivewire (callback: CallableFunction): this {
+    this.fromLivewireCallback = callback
+
+    return this
   }
 
   private fillValueFromLivewire () {
