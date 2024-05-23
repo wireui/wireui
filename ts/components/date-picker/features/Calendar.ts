@@ -41,7 +41,7 @@ export default class Calendar extends Feature {
     }
   }
 
-  private refreshCalendar () {
+  refreshCalendar () {
     this.component.calendar.dates = this.generate()
   }
 
@@ -60,88 +60,13 @@ export default class Calendar extends Feature {
     date.subDays(subDays)
 
     for (let i = 0; i < 42; i++) {
-      days.push({
-        date: date.toDateString(),
-        year: date.getYear(),
-        month: date.getMonth(),
-        number: date.getDay(),
-        isDisabled: this.isDisabled(date),
-        isToday: date.isToday(),
-        isSelected: this.isSelected(date),
-        isSelectedMonth: date.getMonth() === month,
-      })
+      days.push(
+        this.component.fluentDateToDay(date)
+      )
 
       date.addDay()
     }
 
     return days
-  }
-
-  private isSelected (day: FluentDate): boolean {
-    if (this.component.$props.calendar.multiple.enabled) {
-      return this.component.selectedDates.some(date => date.isSame(day, 'day'))
-    }
-
-    return Boolean(this.component.selected?.isSame(day, 'day'))
-  }
-
-  private isDisabled (day: FluentDate): boolean {
-    const allowedDates = this.component.$props.calendar.allowedDates
-
-    if (allowedDates.length) {
-      return !allowedDates.some((date: string|string[]) => {
-        if (date instanceof Array) {
-          return day.isBetween(date[0], date[1])
-        }
-
-        return day.isSame(date, 'day')
-      })
-    }
-
-    const disabled = this.component.$props.calendar.disabled
-
-    if (disabled.pastDates) {
-      if (typeof disabled.pastDates === 'boolean') {
-        return day.isBefore(FluentDate.now(), 'day')
-      }
-
-      return day.isSameOrBefore(disabled.pastDates, 'day')
-    }
-
-    if (disabled.dates.length) {
-      return disabled.dates.some((date: string|string[]) => {
-        if (date instanceof Array) {
-          return day.isBetween(date[0], date[1])
-        }
-
-        return day.isSame(date, 'day')
-      })
-    }
-
-    if (disabled.weekdays.length) {
-      return disabled.weekdays.includes(day.getDayOfWeek())
-    }
-
-    if (disabled.months.length) {
-      return disabled.months.includes(day.getRealMonth())
-    }
-
-    if (disabled.years.length) {
-      return disabled.years.some((year: number|number[]) => {
-        if (year instanceof Array) {
-          return day.getYear() >= year[0] && day.getYear() <= year[1]
-        }
-
-        return day.getYear() === year
-      })
-    }
-
-    const { min, max } = this.component.$props.calendar
-
-    if (min && max) return day.isBetween(min, 'day')
-    if (min) return day.isBefore(min, 'day')
-    if (max) return day.isAfter(max, 'day')
-
-    return false
   }
 }
