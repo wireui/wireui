@@ -26,11 +26,11 @@ export default class ColorPicker extends AlpineComponent {
 
   selected: Color = { value: '', name: '' }
 
-  entangleable: Entangleable = new Entangleable()
+  entangleable = new Entangleable<string>()
 
-  positionable: Positionable = new Positionable()
+  positionable = new Positionable()
 
-  focusable: Focusable = new Focusable()
+  focusable = new Focusable()
 
   get colors (): Color[] {
     if (this.$props?.colors?.length) {

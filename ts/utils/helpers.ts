@@ -28,7 +28,7 @@ export const jsonParse = (value?: string | null, fallback: any = null): any => {
   }
 }
 
-export const isEmpty = (value: any): boolean => {
+export const isEmpty = (value: any): value is null => {
   if (value === null || value === undefined || value === '') {
     return true
   }

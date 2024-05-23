@@ -25,9 +25,9 @@ export default class TimePicker extends AlpineComponent {
 
   private date = new FluentDate(new Date())
 
-  entangleable: Entangleable = new Entangleable()
+  entangleable = new Entangleable<string>()
 
-  positionable: Positionable = new Positionable()
+  positionable = new Positionable()
 
   input: string|null = null
 

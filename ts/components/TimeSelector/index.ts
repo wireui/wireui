@@ -41,7 +41,7 @@ export default class TimeSelector extends AlpineComponent {
 
   private date = new FluentDate(new Date())
 
-  public entangleable = new Entangleable()
+  public entangleable = new Entangleable<string>()
 
   public timeInput: string|null = null
 
@@ -80,7 +80,7 @@ export default class TimeSelector extends AlpineComponent {
       this.syncTimeSelection(this.timeInput)
     })
 
-    this.entangleable.watch((time: string|null) => this.syncTimeSelection(time))
+    this.entangleable.watch(time => this.syncTimeSelection(time))
 
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
