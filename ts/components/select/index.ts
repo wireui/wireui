@@ -51,11 +51,11 @@ export default class Select extends AlpineComponent {
 
   search: string|null = ''
 
-  entangleable = new Entangleable()
+  entangleable = new Entangleable<string|number|string[]|number[]|(string|number)[]>()
 
-  positionable: Positionable = new Positionable()
+  positionable = new Positionable()
 
-  focusable: Focusable = new Focusable()
+  focusable = new Focusable()
 
   selected?: Option = undefined
 
@@ -194,7 +194,7 @@ export default class Select extends AlpineComponent {
         }
       })
 
-      this.entangleable.watch((options: any[]) => {
+      this.entangleable.watch(options => {
         if (!Array.isArray(options)) {
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
@@ -206,7 +206,9 @@ export default class Select extends AlpineComponent {
         }
       })
 
-      if (this.entangleable.get()?.length > 0 && this.asyncData.api) {
+      const selected = this.entangleable.get()
+
+      if (Array.isArray(selected) && selected?.length > 0 && this.asyncData.api) {
         this.fetchSelected()
       }
 
@@ -519,13 +521,19 @@ export default class Select extends AlpineComponent {
     }
   }
 
-  syncSelectedValues (): void {
+  syncSelectedValues () {
     if (this.config.multiselect) {
-      if (this.entangleable.get() && !Array.isArray(this.entangleable.get())) {
-        this.entangleable.set([this.entangleable.get()])
+      const selected = this.entangleable.get()
+
+      if (selected && !Array.isArray(selected)) {
+        this.entangleable.set([selected])
       }
 
-      return (this.selectedOptions = this.entangleable.get().flatMap((value: any) => {
+      if (!Array.isArray(selected)) {
+        return (this.selectedOptions = [])
+      }
+
+      return (this.selectedOptions = selected?.flatMap((value: any) => {
         const original = this.selectedOptions.find(option => option.value === value)
 
         if (original) return original
@@ -553,7 +561,7 @@ export default class Select extends AlpineComponent {
     return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
   }
 
-  private normalizeText(str: string) {
+  private normalizeText (str: string) {
     return str
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
