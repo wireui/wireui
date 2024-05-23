@@ -115,7 +115,7 @@ export class FluentDate {
       return this.clone().setTimezone(timezone).getTime()
     }
 
-    return this.date.format('HH:mm')
+    return this.date.format('HH:mm:ss')
   }
 
   getHours (): number {
@@ -196,7 +196,7 @@ export class FluentDate {
   }
 
   clone (): FluentDate {
-    return new FluentDate(this.date, this.timezone)
+    return new FluentDate(this.date.clone(), this.timezone)
   }
 
   isValid (): boolean {
@@ -255,6 +255,10 @@ export class FluentDate {
 
   toJson (): string {
     return this.date.toJSON()
+  }
+
+  toIsoString (timezone?: string): string {
+    return this.format('YYYY-MM-DDTHH:mm:ssZ', timezone)
   }
 
   toDateString(): string {
