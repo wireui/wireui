@@ -18,14 +18,14 @@ export default class Rollback extends Feature {
   }
 
   private watchPopover (state: boolean): void {
-    this.selectedRollback = state && this.component.selected
-      ? this.component.selected.clone()
+    this.selectedRollback = state && this.component.entangleable.isNotEmpty()
+      ? this.component.entangleable.get()?.clone() ?? null
       : null
   }
 
   rollback (): void {
     if (this.selectedRollback) {
-      this.component.selected = this.selectedRollback
+      this.component.entangleable.set(this.selectedRollback)
     }
   }
 }
