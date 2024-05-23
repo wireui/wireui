@@ -44,7 +44,7 @@ class Picker extends WireUiComponent
         'disabled-weekdays'  => [],    // [0, 1]
         'disabled-dates'     => [],    // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
         'disable-past-dates' => false, // YYYY-MM-DD or boolean
-        'allowed-dates'      => []     // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
+        'allowed-dates'      => [],    // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
     ];
 
     protected function processed(): void
