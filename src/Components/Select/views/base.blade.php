@@ -36,7 +36,7 @@
         <x-wireui-wrapper::element
             :id="$id"
             :name="$name"
-            :value="old($name)"
+            :value="$name ? old($name) : null"
             x-bind:value="getSelectedValue"
             x-ref="input"
             type="hidden"
