@@ -6,7 +6,7 @@
         'aria-readonly'          => $readonly,
     ])
     {{ $attributes
-        ->only(['wire:key', 'form-wrapper', 'x-data', 'x-props'])
+        ->only(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
         ->merge(['form-wrapper' => $id ?: 'true'])
         ->class([
             'aria-disabled:pointer-events-none aria-disabled:select-none aria-disabled:opacity-60',
@@ -46,7 +46,7 @@
     <label
         {{ $attributes
             ->whereDoesntStartWith(['x-model', 'wire:model'])
-            ->except(['wire:key', 'form-wrapper', 'x-data', 'x-props'])
+            ->except(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
             ->merge(['for' => $id])
             ->class([
                 Arr::get($roundedClasses, 'input', ''),
