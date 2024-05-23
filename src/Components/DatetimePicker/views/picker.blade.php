@@ -1,7 +1,7 @@
 <x-text-field
     x-data="wireui_date_picker"
     :data="$wrapperData"
-    :attributes="$attrs->only('wire:key')"
+    :attributes="$attrs->only(['wire:key', 'class'])"
     :x-props="WireUi::toJs([
         'config' => [
             'requiresConfirmation' => $requiresConfirmation,
@@ -42,8 +42,8 @@
             'parseFormat'   => $parseFormat,
             'displayFormat' => $displayFormat,
         ],
-        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
-        'alpineModel' => WireUi::alpineModel($attributes),
+        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attrs),
+        'alpineModel' => WireUi::alpineModel($attrs),
     ])"
     x-ref="container"
 >
@@ -56,7 +56,7 @@
                     :component="WireUi::component('icon')"
                     class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
                     name="x-mark"
-                    x-show="selected"
+                    x-show="entangleable.isNotEmpty()"
                     x-on:click="clear"
                     x-cloak
                 />
@@ -253,7 +253,7 @@
                     </div>
                 </template>
 
-                <template x-if="tab === 'calendar'">
+                <div x-show="tab === 'calendar'">
                     <div class="grid grid-cols-7 gap-1">
                         <template x-for="day in weekDays" :key="`week-day.${day}`">
                             <span
@@ -298,7 +298,7 @@
 
                                 <div
                                     x-show="day.isToday"
-                                    class="absolute size-[3px] rounded-full bottom-1"
+                                    class="absolute size-1 rounded-full bottom-1"
                                     :class="{
                                         'bg-primary-600': !day.isSelected,
                                         'bg-white': day.isSelected,
@@ -307,7 +307,7 @@
                             </button>
                         </template>
                     </div>
-                </template>
+                </div>
 
                 <template x-if="tab === 'time-picker'">
                     <x-dynamic-component
