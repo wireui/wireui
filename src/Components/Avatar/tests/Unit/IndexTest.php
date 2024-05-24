@@ -19,6 +19,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
+        'alt'        => null,
         'src'        => null,
         'icon'       => null,
         'label'      => null,

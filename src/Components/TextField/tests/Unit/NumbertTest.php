@@ -4,9 +4,9 @@ namespace WireUi\Components\TextField\tests\Unit;
 
 use Illuminate\Support\Facades\Blade;
 use WireUi\Components\TextField\Number;
+use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
 use WireUi\Enum\Packs;
 use WireUi\WireUi\Shadow;
-use WireUi\WireUi\Wrapper\{Color, Rounded};
 
 beforeEach(function () {
     $this->component = (new Number())->withName('number');

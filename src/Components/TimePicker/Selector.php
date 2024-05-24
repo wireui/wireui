@@ -12,11 +12,10 @@ class Selector extends WireUiComponent
     use IsFormComponent;
 
     protected array $props = [
+        'borderless'      => false,
+        'shadowless'      => false,
         'military-time'   => false,
         'without-seconds' => false,
-        'borderless'      => false,
-        'squared'         => false,
-        'shadowless'      => false,
     ];
 
     protected function blade(): View

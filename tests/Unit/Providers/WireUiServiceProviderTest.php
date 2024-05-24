@@ -3,7 +3,8 @@
 namespace Tests\Unit\Providers;
 
 use Illuminate\Foundation\{AliasLoader, Application};
-use Illuminate\Support\Facades\{Blade, View};
+use Illuminate\Support\Facades\{Blade, File, View};
+use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
 use Tests\Unit\TestCase;
@@ -18,8 +19,15 @@ test('it should register the views paths', function () {
 
     /** @var FileViewFinder $finder */
     $finder = $view->getFinder();
-    expect($finder->getHints())->toHaveKey('wireui');
-    expect($finder->getHints()['wireui'][0])->toContain('src/resources/views');
+
+    $views = File::glob(__DIR__ . '/../../../src/Components/*/views');
+
+    collect($views)->each(function (string $path) use ($finder) {
+        $name = Str::kebab($basename = basename(dirname($path)));
+
+        expect($finder->getHints())->toHaveKey("wireui-{$name}");
+        expect($finder->getHints()["wireui-{$name}"][0])->toContain("src/Components/{$basename}/views");
+    });
 });
 
 test('it should merge the wireui config', function () {

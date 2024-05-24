@@ -16,9 +16,9 @@ class Index extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'shadowless' => false,
-        'rows'       => 4,
         'cols'       => 'auto',
+        'rows'       => 4,
+        'shadowless' => false,
     ];
 
     protected function except(): array
