@@ -318,6 +318,10 @@ export default (options: InitOptions): DateTimePicker => ({
     const model = parseDate(this.model, this.timezone, this.parseFormat)
     const compare = parseDate(date.date, this.userTimezone)
 
+    if (this.withoutTimezone) {
+      return model.isSame(compare, 'date')
+    }
+
     return model.setTimezone(this.userTimezone).isSame(compare, 'date')
   },
   isToday (day) {
