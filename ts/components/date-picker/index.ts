@@ -3,13 +3,14 @@ import Positionable from '@/alpine/modules/Positionable'
 import FluentDate from '@/utils/date'
 import { CalendarConfig, Day, Tab } from './interfaces'
 import { AlpineComponent } from '@/components/alpine2'
-import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { Entangleable } from '@/alpine/modules/entangleable'
 import { AlpineModel, WireModel } from '@/components/alpine'
 import Events from '@/components/date-picker/features/Events'
 import MonthSelector from '@/components/date-picker/features/header/MonthSelector'
 import YearsSelector from '@/components/date-picker/features/header/YearsSelector'
 import Calendar from '@/components/date-picker/features/Calendar'
 import Rollback from '@/components/date-picker/features/Rollback'
+import Watchers from '@/components/date-picker/features/Watchers'
 
 export default class DatetimePicker extends AlpineComponent {
   declare $refs: {
@@ -77,6 +78,7 @@ export default class DatetimePicker extends AlpineComponent {
     yearsSelector: YearsSelector
     calendar: Calendar
     rollback: Rollback
+    watchers: Watchers
   }
 
   tab: Tab = 'calendar'
@@ -87,11 +89,9 @@ export default class DatetimePicker extends AlpineComponent {
 
   focusable = new Focusable()
 
-  entangleable = new Entangleable()
+  entangleable = new Entangleable<FluentDate>()
 
   time: string|null = null
-
-  selected: FluentDate|null = null
 
   selectedDates: FluentDate[] = []
 
@@ -112,10 +112,12 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   get display (): string|null {
-    if (this.selected) {
+    const selected = this.entangleable.get()
+
+    if (selected) {
       return this.$props.input.displayFormat
-        ? this.selected.format(this.$props.input.displayFormat)
-        : this.selected.getNativeDate().toLocaleString(navigator.language, this.localeDateConfig)
+        ? selected.format(this.$props.input.displayFormat)
+        : selected.getNativeDate().toLocaleString(navigator.language, this.localeDateConfig)
     }
 
     return null
@@ -151,66 +153,7 @@ export default class DatetimePicker extends AlpineComponent {
       }
     })
 
-    this.entangleable.watch((date: string|null) => {
-      console.log(`entangleable.watch ${this.$props.wireModel.name}`, date)
-
-      // if (this.$props.input.parseFormat) {
-      //   return this.selected = date ? new FluentDate(date, this.$props.timezone.server, this.$props.input.parseFormat) : null
-      // }
-
-      if (this.$props.timePicker.enabled) {
-        const d = new FluentDate(date, this.$props.timezone.server)
-
-        if (this.selected) {
-          this.selected.setYear(d.getYear())
-          this.selected.setMonth(d.getMonth())
-          this.selected.setDay(d.getDay())
-          this.selected.setTime(d.getTime())
-        } else {
-          this.selected = d
-        }
-
-        // return this.selected = date
-        //   ? new FluentDate(date, this.$props.timezone.server)
-        //   : null
-      }
-
-      // this.selected = date ? new FluentDate(date, this.$props.timezone.server) : null
-    })
-
-    this.$watch('selected', (date: FluentDate|null) => {
-      console.log(`selected ${this.$props.wireModel.name}`, date)
-
-      if (this.$props.input.parseFormat) {
-        return this.entangleable.set(
-          date?.format(this.$props.input.parseFormat)
-        )
-      }
-
-      if (this.$props.timePicker.enabled) {
-        this.entangleable.set(date?.format('YYYY-MM-DD HH:mm:ss'))
-
-        return (this.time = date?.format('HH:mm:ss') ?? null)
-      }
-
-      this.entangleable.set(date?.toDateString())
-    })
-
-    this.$watch('time', time => {
-      this.selected?.setTime(time)
-
-      this.entangleable.set(this.selected?.toJson())
-    })
-
     this.focusable.start(this.$refs.optionsContainer, 'button, input')
-
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-    }
-
-    if (this.$props.alpineModel.exists) {
-      new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
-    }
 
     this.setup()
   }
@@ -221,11 +164,12 @@ export default class DatetimePicker extends AlpineComponent {
       yearsSelector: new YearsSelector(this),
       calendar: new Calendar(this),
       rollback: new Rollback(this),
+      watchers: new Watchers(this),
     }
   }
 
   clear () {
-    this.selected = null
+    this.entangleable.clear()
 
     this.$events.dispatch('clear')
   }
@@ -253,14 +197,22 @@ export default class DatetimePicker extends AlpineComponent {
       return this.toggleSelectedDay(day)
     }
 
-    this.selected = new FluentDate(day.date)
-    this.calendar.year = this.selected.getYear()
-    this.calendar.month = this.selected.getMonth()
+    const date = new FluentDate(day.date)
+
+    // if (this.$props.timePicker.enabled) {
+    //   this.time = this.entangleable.get()?.getTime() ?? '00:00:00'
+    //
+    //   date.setTime(this.time)
+    // }
+
+    this.entangleable.set(date)
+    this.calendar.year = day.year
+    this.calendar.month = day.month
 
     this.$events.dispatch('selected::day', day)
 
     if (this.$props.timePicker.enabled) {
-      return (this.tab = 'time-picker')
+      return this.tab = 'time-picker'
     }
 
     if (!this.$props.config.requiresConfirmation) {
@@ -322,5 +274,86 @@ export default class DatetimePicker extends AlpineComponent {
 
   shouldShowFooter () {
     return this.$props.config.requiresConfirmation
+  }
+
+  fluentDateToDay (date: FluentDate): Day {
+    return {
+      date: date.toDateString(),
+      year: date.getYear(),
+      month: date.getMonth(),
+      number: date.getDay(),
+      isDisabled: this.isDisabled(date),
+      isToday: date.isToday(),
+      isSelected: this.isSelected(date),
+      isSelectedMonth: date.getMonth() === this.calendar.month,
+    }
+  }
+
+  isSelected (day: FluentDate): boolean {
+    if (this.$props.calendar.multiple.enabled) {
+      return this.selectedDates.some(date => date.isSame(day, 'day'))
+    }
+
+    return Boolean(this.entangleable.get()?.isSame(day, 'day'))
+  }
+
+  isDisabled (day: FluentDate): boolean {
+    const allowedDates = this.$props.calendar.allowedDates
+
+    if (allowedDates.length) {
+      return !allowedDates.some((date: string|string[]) => {
+        if (date instanceof Array) {
+          return day.isBetween(date[0], date[1])
+        }
+
+        return day.isSame(date, 'day')
+      })
+    }
+
+    const disabled = this.$props.calendar.disabled
+
+    if (disabled.pastDates) {
+      if (typeof disabled.pastDates === 'boolean') {
+        return day.isBefore(FluentDate.now(), 'day')
+      }
+
+      return day.isSameOrBefore(disabled.pastDates, 'day')
+    }
+
+    if (disabled.dates.length) {
+      return disabled.dates.some((date: string|string[]) => {
+        if (date instanceof Array) {
+          return day.isBetween(date[0], date[1])
+        }
+
+        return day.isSame(date, 'day')
+      })
+    }
+
+    if (disabled.weekdays.length) {
+      return disabled.weekdays.includes(day.getDayOfWeek())
+    }
+
+    if (disabled.months.length) {
+      return disabled.months.includes(day.getRealMonth())
+    }
+
+    if (disabled.years.length) {
+      return disabled.years.some((year: number|number[]) => {
+        if (year instanceof Array) {
+          return day.getYear() >= year[0] && day.getYear() <= year[1]
+        }
+
+        return day.getYear() === year
+      })
+    }
+
+    const { min, max } = this.$props.calendar
+
+    if (min && max) return day.isBetween(min, 'day')
+    if (min) return day.isBefore(min, 'day')
+    if (max) return day.isAfter(max, 'day')
+
+    return false
   }
 }

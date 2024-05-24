@@ -258,7 +258,13 @@ export class FluentDate {
   }
 
   toIsoString (timezone?: string): string {
-    return this.format('YYYY-MM-DDTHH:mm:ssZ', timezone)
+    let format = 'YYYY-MM-DDTHH:mm:ss'
+
+    if (timezone) {
+      format += 'Z'
+    }
+
+    return this.format(format, timezone)
   }
 
   toDateString(): string {
