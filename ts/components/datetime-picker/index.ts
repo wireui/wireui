@@ -315,12 +315,12 @@ export default (options: InitOptions): DateTimePicker => ({
   isSelected (date) {
     if (!this.model) return false
 
+    if (this.withoutTimezone) {
+      return date.date === this.model.slice(0, 10)
+    }
+
     const model = parseDate(this.model, this.timezone, this.parseFormat)
     const compare = parseDate(date.date, this.userTimezone)
-
-    if (this.withoutTimezone) {
-      return model.isSame(compare, 'date')
-    }
 
     return model.setTimezone(this.userTimezone).isSame(compare, 'date')
   },
