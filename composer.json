@@ -1,13 +1,20 @@
 {
     "name": "wireui/wireui",
-    "description": "TallStack components",
     "type": "library",
+    "description": "TallStack components",
+    "license": "MIT",
     "keywords": [
-        "livewire components",
-        "livewire-ui",
         "wireui",
+        "livewire-ui",
+        "blade components",
         "laravel components",
-        "blade components"
+        "livewire components"
+    ],
+    "authors": [
+        {
+            "name": "Pedro Oliveira",
+            "email": "pedro@wireui.dev"
+        }
     ],
     "require": {
         "php": "^8.2|^8.3",
@@ -26,15 +33,6 @@
         "laravel/pint": "^1.13",
         "livewire/livewire": "^3.4"
     },
-    "authors": [
-        {
-            "name": "Pedro Oliveira",
-            "email": "pedrolivertwd@gmail.com"
-        }
-    ],
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "WireUi\\": "src/"
@@ -67,5 +65,7 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

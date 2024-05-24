@@ -1,33 +1,21 @@
-# WireUI
+<p align="center"><img src="https://wireui.dev/wireui/wireui-circle.png" height="100"></p>
+
+<h2><p align="center">WireUi</p></h2>
 
 <p align="center">
-    <a href="https://github.com/wireui/wireui/">
-    <img src="https://img.shields.io/packagist/dt/wireui/wireui" alt="Packagist Downloads" data-canonical-src="https://img.shields.io/packagist/dt/wireui/wireui" style="max-width:100%;" />
-    </a>
-    <a href="https://github.com/wireui/wireui/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/wireui/wireui" alt="GitHub license" data-canonical-src="https://img.shields.io/github/license/wireui/wireui" style="max-width:100%;" />
-    </a>
-    <a href="https://twitter.com/ph7jack"><img alt="Twitter" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2FPH7-Jack%2Fwireui"></a>
-    </a>
+<a href="https://github.com/wireui/wireui/actions"><img src="https://github.com/wireui/wireui/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+<a href="https://packagist.org/packages/wireui/wireui"><img src="https://img.shields.io/packagist/dt/wireui/wireui" alt="Downloads" /></a>
+<a href="license.md"><img src="https://img.shields.io/github/license/wireui/wireui" alt="License" /></a>
+<a href="https://x.com/Wire_Ui"><img src="https://img.shields.io/twitter/url?url=https://x.com/Wire_Ui" alt="Twitter"></a>
 </p>
 
-<p align="center">
-    <a href="https://wireui.dev" target="_blank">📚 Documentation</a>
-</p>
-
-# V2 Warning: This is a work in progress. Please use the V1 version for now.
+### 🚀 Introduction
 
 Wire UI is a library of components and resources to empower your Laravel and Livewire application development.
 
 Starting a new project with Livewire can be time-consuming when you have to create all the components from scratch. Wire UI helps to skip this step and get you straight to the development phase.
 
-<div align="center">
-    <p>
-        <img  src="resources/images/features.png" alt="Wire UI Features"/>
-    </p>
-</div>
-
-🔥 You get with Wire UI:
+#### 🔥 You get with Wire UI:
 
 -   Form and UI components
 -   Notifications
@@ -36,40 +24,24 @@ Starting a new project with Livewire can be time-consuming when you have to crea
 -   All Heroicons
 -   All Phosphor icons
 
-🌱 Wire UI is in active development. Track all changes in the project in GH releases
+### 📚 Documentation
 
-<br/>
+Documentation for WireUi can be found on the [WireUi website](https://wireui.dev).
 
-<h2> 🚀 Get Started</h2>
+### 🔧 Contributing
 
-Please visit our [Get Started] page for requirements and a step-by-step installation guide.
+Thank you for considering contributing to WireUi! The contribution guide can be found in the [WireUi documentation](https://wireui.dev/customize/contribution-guide).
 
-<br/>
+### 📣 Follow the WireUi
 
-<h2>📣 Follow the author</h2>
-
-Stay informed about WireUI, follow [@ph7jack] on Twitter.
+Stay informed about WireUI, follow [@Wire_Ui](https://x.com/Wire_Ui) on Twitter and [WireUi](https://www.linkedin.com/company/wireui) on LinkedIn.
 
 There will you see all the latest news about features, ideas, discussions and more...
 
-<br/>
+### 💡 Philosophy
 
-<h2>💡 Philosophy</h2>
+WireUI is and will always be FREE to anyone who would like to use it. This project is created by [Pedro Oliveira](https://github.com/PH7-Jack), and it is maintained by the author and your team with the help of the community. All contributions are welcome!
 
-WireUI is and will always be FREE to anyone who would like to use it.
+### 📝 License
 
-This project is created by [Pedro Oliveira], and it is maintained by the author with the help of the community.
-
-All contributions are welcome!
-
-<br/>
-
-## License
-
-MIT
-
-[TALL stack]: https://tallstack.dev
-[Get Started]: https://wireui.dev/getting-started
-[Documentation]: https://wireui.dev
-[@ph7jack]: https://twitter.com/ph7jack
-[Pedro Oliveira]: https://github.com/PH7-Jack
+WireUi is open-sourced software licensed under the [MIT license](license.md).
