@@ -22,9 +22,10 @@
 
         <exclude>
             <file>src/config.php</file>
-            <directory suffix="Test.php">src</directory>
-            <directory suffix=".php">src/lang/</directory>
-            <directory suffix=".blade.php">src/resources/views/</directory>
+            <directory>src/lang/</directory>
+            <directory>src/Components/*/tests/</directory>
+            <directory>src/Components/*/views/</directory>
+            <directory>src/Components/*/WireUi/</directory>
         </exclude>
     </source>
 

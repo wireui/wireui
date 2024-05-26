@@ -73,7 +73,7 @@ test('it should render label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-alert :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-avatar :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should render link photo in component', function () {
@@ -85,7 +85,7 @@ test('it should render link photo in component', function () {
 
     expect($this->component->src)->toBe($src);
 
-    expect('<x-alert :src="$src" />')->render(compact('src'))->toContain($src);
+    expect('<x-avatar :src="$src" />')->render(compact('src'))->toContain($src);
 });
 
 test('it should render icon in component', function () {
