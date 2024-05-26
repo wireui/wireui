@@ -1,4 +1,4 @@
-import { makeColors } from '@/components/color-picker/colors'
+import { makeColors } from '@components/ColorPicker/ts/colors'
 
 describe('Testing the colors generator', () => {
   it('should generate colors from the tailwind config', () => {

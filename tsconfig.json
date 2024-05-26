@@ -26,15 +26,18 @@
         "paths": {
             "*": ["node_modules/*"],
             "@/*": ["ts/*"],
-            "@tests/*": ["tests/TypeScript/*"]
+            "@tests/*": ["tests/TypeScript/*"],
+            "@components/*": ["src/Components/*"]
         },
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["ts/**/*.ts", "tests/TypeScript/**/*.ts"],
+    "include": [
+        "ts/**/*.ts",
+        "src/Components/**/*.ts",
+        "tests/TypeScript/**/*.ts",
+    ],
     "exclude": ["node_modules", "dist"],
-    "files": [
-      "tests/TypeScript/global.d.ts"
-    ]
+    "files": ["tests/TypeScript/global.d.ts"]
 }

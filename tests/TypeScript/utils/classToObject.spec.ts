@@ -1,4 +1,4 @@
-import ColorPicker from '@/components/color-picker'
+import ColorPicker from '@components/ColorPicker/ts'
 import Dropdown from '@/components/Dropdown'
 import TimeSelector from '@/components/TimeSelector'
 import classToObject from '@/utils/classToObject'

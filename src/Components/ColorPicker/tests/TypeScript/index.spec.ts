@@ -1,5 +1,5 @@
-import ColorPicker, { Color } from '@/components/color-picker'
-import { makeColors } from '@/components/color-picker/colors'
+import { makeColors } from '@components/ColorPicker/ts/colors'
+import ColorPicker, { Color } from '@components/ColorPicker/ts'
 import { AlpineMock, mockAlpineComponent } from '@tests/helpers'
 
 describe('Testing the color picker component', () => {

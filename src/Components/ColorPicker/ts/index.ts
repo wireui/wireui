@@ -1,9 +1,9 @@
-import { Entangleable, SupportsLivewire } from '@/alpine/modules/entangleable'
-import { Focusable } from '@/alpine/modules/Focusable'
-import Positionable from '@/alpine/modules/Positionable'
-import { AlpineComponent } from '@/components/alpine2'
 import { WireModel } from '@/livewire'
 import { applyMask } from '@/utils/masker'
+import { Focusable } from '@/alpine/modules/Focusable'
+import { AlpineComponent } from '@/components/alpine2'
+import Positionable from '@/alpine/modules/Positionable'
+import { Entangleable, SupportsLivewire } from '@/alpine/modules/entangleable'
 
 export type Color = {
   name: string

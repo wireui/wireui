@@ -1,5 +1,5 @@
 import classToObject from '@/utils/classToObject'
-import ColorPicker from './color-picker'
+import ColorPicker from '@components/ColorPicker/ts'
 import DatePicker from './date-picker'
 import dialog from './dialog'
 import Dropdown from './Dropdown'
