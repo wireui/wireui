@@ -13,21 +13,26 @@ class IndexTest extends BrowserTestCase
         {
             public bool $show = false;
 
+            public function toggle(): void
+            {
+                $this->show = !$this->show;
+            }
+
             public function render(): string
             {
                 return <<<'BLADE'
                     <div>
                         <x-alert>
                             <x-slot name="action">
-                                <button dusk="button" label="Click" />
+                                <x-button wire:click="toggle" dusk="button" label="Click" />
                             </x-slot>
 
-                            <x-slot id="open" name="title">
-                                Alert is open!
-                            </x-slot>
-
-                            <x-slot id="close" name="title">
-                                Alert is closed!
+                            <x-slot name="title" dusk="title">
+                                @if ($show)
+                                    Alert is open!
+                                @else
+                                    Alert is closed!
+                                @endif
                             </x-slot>
                         </x-alert>
                     </div>
@@ -35,15 +40,8 @@ class IndexTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
-            // ->pause(10000000000000)
-
-            ->typeSlowly('color', 'FFF')
-            ->assertInputValue('color', '#FFF')
-            ->waitForTextIn('@value', '#FFF')
-
-            ->typeSlowly('color', '000')
-            ->assertInputValue('color', '#000')
-            ->waitForTextIn('@value', '#000');
+            ->assertSeeIn('@title', 'Alert is closed!')
+            ->click('@button')
+            ->waitForTextIn('@title', 'Alert is open!');
     }
 }
