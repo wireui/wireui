@@ -42,6 +42,10 @@ export default (options: Options): Modal => ({
 
       this.$el.dispatchEvent(new Event(value ? 'open' : 'close'))
     })
+
+    if (this.show) {
+      this.store.setCurrent(this.id)
+    }
   },
   close () { this.show = false },
   open () { this.show = true },
