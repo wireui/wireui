@@ -29,6 +29,14 @@ export default class SupportsAlpine {
       try {
         let value = window.Alpine.$data(this.target)[this.config.name]
 
+        let entangleableValue = this.entangleable.get()
+
+        if (this.toAlpineCallback) {
+          entangleableValue = this.toAlpineCallback(entangleableValue)
+        }
+
+        if (entangleableValue === value) return
+
         if (this.fromAlpineCallback) {
           value = this.fromAlpineCallback(value)
         }
@@ -99,7 +107,11 @@ export default class SupportsAlpine {
   }
 
   private fillValueFromAlpine (): void {
-    const value = window.Alpine.evaluate(this.target, this.config.name)
+    let value = window.Alpine.evaluate(this.target, this.config.name)
+
+    if (this.fromAlpineCallback) {
+      value = this.fromAlpineCallback(value)
+    }
 
     if (isEmpty(value)) return
 

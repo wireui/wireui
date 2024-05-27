@@ -3,6 +3,14 @@ import FluentDate from '@/utils/date'
 import { SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 
 export default class Watchers extends Feature {
+  get dateFormat (): string {
+    return this.component.$props.input.parseFormat
+      ? this.component.$props.input.parseFormat
+      : this.component.$props.timePicker.enabled
+        ? 'YYYY-MM-DDTHH:mm:ss'
+        : 'YYYY-MM-DD'
+  }
+
   init (): void {
     this.component.$watch('time', (time: string|null) => {
       this.component.entangleable.get()?.setTime(time ?? '00:00:00')
@@ -50,40 +58,23 @@ export default class Watchers extends Feature {
 
   toComponent (value: string|null): FluentDate|null {
     if (this.component.$props.timezone.enabled) {
-      const format = this.component.$props.input.parseFormat
-        ? this.component.$props.input.parseFormat
-        : this.component.$props.timePicker.enabled
-          ? 'YYYY-MM-DDTHH:mm:ss'
-          : 'YYYY-MM-DD'
+      if (value) {
+        return new FluentDate(value, this.component.$props.timezone.server, this.dateFormat)
+          .setTimezone(this.component.localTimezone)
+      }
 
-      return value
-        ? new FluentDate(value, this.component.$props.timezone.server, format).setTimezone(this.component.localTimezone)
-        : null
+      return null
     }
 
-    // console.log('toComponent', value, new FluentDate(value).toIsoString())
-
-    const format = this.component.$props.input.parseFormat
-      ? this.component.$props.input.parseFormat
-      : this.component.$props.timePicker.enabled
-        ? 'YYYY-MM-DDTHH:mm:ss'
-        : 'YYYY-MM-DD'
-
     return value
-      ? new FluentDate(value, this.component.localTimezone, format)
+      ? new FluentDate(value, this.component.localTimezone, this.dateFormat)
       : null
   }
 
   fromComponent (value: FluentDate|null): string|null {
     if (this.component.$props.timezone.enabled) {
-      const format = this.component.$props.input.parseFormat
-        ? this.component.$props.input.parseFormat
-        : this.component.$props.timePicker.enabled
-          ? 'YYYY-MM-DDTHH:mm:ss'
-          : 'YYYY-MM-DD'
-
       return value
-        ? value.format(format, this.component.$props.timezone.server)
+        ? value.format(this.dateFormat, this.component.$props.timezone.server)
         : null
     }
 

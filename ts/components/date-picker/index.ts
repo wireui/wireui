@@ -199,11 +199,11 @@ export default class DatetimePicker extends AlpineComponent {
 
     const date = new FluentDate(day.date)
 
-    // if (this.$props.timePicker.enabled) {
-    //   this.time = this.entangleable.get()?.getTime() ?? '00:00:00'
-    //
-    //   date.setTime(this.time)
-    // }
+    if (this.$props.timePicker.enabled) {
+      this.time = this.entangleable.get()?.getTime() ?? '00:00:00'
+
+      date.setTime(this.time)
+    }
 
     this.entangleable.set(date)
     this.calendar.year = day.year

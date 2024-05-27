@@ -27,15 +27,18 @@ export default class SupportsLivewire {
   }
 
   private init () {
-    // let i = 0
     this.livewire.watch(this.wireModel.name, (value: any) => {
+      let entangleableValue = this.entangleable.get()
+
+      if (this.toLivewireCallback) {
+        entangleableValue = this.toLivewireCallback(entangleableValue)
+      }
+
+      if (entangleableValue === value) return
+
       if (this.fromLivewireCallback) {
         value = this.fromLivewireCallback(value)
       }
-
-      // i++
-      //
-      // if (i >= 5) return
 
       this.entangleable.set(value)
     })
@@ -80,7 +83,6 @@ export default class SupportsLivewire {
       value = this.toLivewireCallback(value)
     }
 
-    // console.log(this.livewire.get(this.wireModel.name), value, isLive)
     if (this.livewire.get(this.wireModel.name) === value) return this
 
     this.livewire.$set(this.wireModel.name, value, isLive)
@@ -101,7 +103,11 @@ export default class SupportsLivewire {
   }
 
   private fillValueFromLivewire () {
-    const value = this.livewire.get(this.wireModel.name)
+    let value = this.livewire.get(this.wireModel.name)
+
+    if (this.fromLivewireCallback) {
+      value = this.fromLivewireCallback(value)
+    }
 
     if (isEmpty(value)) return
 
