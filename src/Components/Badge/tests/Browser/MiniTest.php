@@ -12,10 +12,7 @@ class MiniTest extends BrowserTestCase
 {
     public function test_mini_badge_flat_component(): void
     {
-        $flat = collect((new Flat())->all())->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $flat = $this->getRandomPack(Flat::class);
 
         Livewire::visit(new class() extends Component
         {
@@ -47,10 +44,7 @@ class MiniTest extends BrowserTestCase
 
     public function test_mini_badge_solid_component(): void
     {
-        $solid = collect((new Solid())->all())->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $solid = $this->getRandomPack(Solid::class);
 
         Livewire::visit(new class() extends Component
         {
@@ -82,10 +76,7 @@ class MiniTest extends BrowserTestCase
 
     public function test_mini_badge_outline_component(): void
     {
-        $outline = collect((new Outline())->all())->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $outline = $this->getRandomPack(Outline::class);
 
         Livewire::visit(new class() extends Component
         {

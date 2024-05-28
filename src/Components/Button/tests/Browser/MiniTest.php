@@ -14,10 +14,7 @@ class MiniTest extends BrowserTestCase
 {
     public function test_mini_button_flat_component(): void
     {
-        $flat = collect((new Flat())->all())->except(Color::NONE)->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $flat = $this->getRandomPack(Flat::class, [Color::NONE]);
 
         Livewire::visit(new class() extends Component
         {
@@ -51,10 +48,7 @@ class MiniTest extends BrowserTestCase
 
     public function test_mini_button_solid_component(): void
     {
-        $solid = collect((new Solid())->all())->except(Color::NONE)->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $solid = $this->getRandomPack(Solid::class, [Color::NONE]);
 
         Livewire::visit(new class() extends Component
         {
@@ -88,10 +82,7 @@ class MiniTest extends BrowserTestCase
 
     public function test_mini_button_light_component(): void
     {
-        $light = collect((new Light())->all())->except(Color::NONE)->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $light = $this->getRandomPack(Light::class, [Color::NONE]);
 
         Livewire::visit(new class() extends Component
         {
@@ -125,10 +116,7 @@ class MiniTest extends BrowserTestCase
 
     public function test_mini_button_outline_component(): void
     {
-        $outline = collect((new Outline())->all())->except(Color::NONE)->map(fn ($value, $key) => [
-            'color' => $key,
-            'class' => $value,
-        ])->random();
+        $outline = $this->getRandomPack(Outline::class, [Color::NONE]);
 
         Livewire::visit(new class() extends Component
         {
