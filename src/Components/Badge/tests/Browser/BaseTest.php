@@ -38,8 +38,9 @@ class BaseTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@badge', 'class', data_get($flat, 'class'));
+            ->waitTo(fn (Browser $browser) => $browser->assertAttributeContains(
+                '@badge', 'class', data_get($flat, 'class'),
+            ));
     }
 
     public function test_base_badge_solid_component(): void
@@ -70,8 +71,9 @@ class BaseTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@badge', 'class', data_get($solid, 'class'));
+            ->waitTo(fn (Browser $browser) => $browser->assertAttributeContains(
+                '@badge', 'class', data_get($solid, 'class'),
+            ));
     }
 
     public function test_base_badge_outline_component(): void
@@ -102,7 +104,8 @@ class BaseTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@badge', 'class', data_get($outline, 'class'));
+            ->waitTo(fn (Browser $browser) => $browser->assertAttributeContains(
+                '@badge', 'class', data_get($outline, 'class'),
+            ));
     }
 }

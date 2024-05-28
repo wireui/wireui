@@ -40,10 +40,12 @@ class MiniTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.base')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.hover')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.focus')));
+            ->waitTo(function (Browser $browser) use ($flat) {
+                return $browser
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.base')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.hover')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.focus')));
+            });
     }
 
     public function test_mini_button_solid_component(): void
@@ -74,10 +76,12 @@ class MiniTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.base')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.hover')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.focus')));
+            ->waitTo(function (Browser $browser) use ($solid) {
+                return $browser
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.base')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.hover')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.focus')));
+            });
     }
 
     public function test_mini_button_light_component(): void
@@ -108,10 +112,12 @@ class MiniTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$light['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.base')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.hover')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.focus')));
+            ->waitTo(function (Browser $browser) use ($light) {
+                return $browser
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.base')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.hover')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.focus')));
+            });
     }
 
     public function test_mini_button_outline_component(): void
@@ -142,10 +148,12 @@ class MiniTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
                 window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
             EOT))
-            ->pause(500)
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.base')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.hover')))
-            ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.focus')));
+            ->waitTo(function (Browser $browser) use ($outline) {
+                return $browser
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.base')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.hover')))
+                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.focus')));
+            });
     }
 
     private function getClasses(mixed $class): string

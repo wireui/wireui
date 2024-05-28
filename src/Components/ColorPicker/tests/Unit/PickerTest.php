@@ -148,7 +148,9 @@ test('it handles mixed types in colors array correctly', function () {
 });
 
 test('it should pass custom colors to js component data', function () {
+    $colors = [['name' => 'FFF', 'value' => '#FFF']];
+
     expect('<x-color-picker :colors="$colors" />')
-        ->render(['colors' => [['name' => 'FFF', 'value' => '#FFF']]])
+        ->render(compact('colors'))
         ->toContain('colors:JSON.parse(atob(&#039;W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ==&#039;))');
 });
