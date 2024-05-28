@@ -47,7 +47,6 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->iconless)->toBeFalse();
-
     expect($this->component->shadowless)->toBeFalse();
 });
 

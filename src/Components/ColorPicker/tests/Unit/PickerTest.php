@@ -53,9 +53,7 @@ test('it can be instantiated with default parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe([]);
-
     expect($this->component->rightIcon)->toBe('swatch');
-
     expect($this->component->colorNameAsValue)->toBe(false);
 });
 
@@ -71,9 +69,7 @@ test('it can be instantiated with custom parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe($colors);
-
     expect($this->component->rightIcon)->toBe($icon);
-
     expect($this->component->colorNameAsValue)->toBe(true);
 });
 

@@ -49,7 +49,6 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->full)->toBeFalse();
-
     expect($this->component->wireLoadEnabled)->toBeFalse();
 });
 
