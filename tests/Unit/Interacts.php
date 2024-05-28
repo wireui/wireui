@@ -64,8 +64,8 @@ trait Interacts
         return collect((new $pack())->all())
             ->when(filled($except), fn ($values) => $values->except($except))
             ->map(fn ($value, $key) => [
-                'key'     => $key,
-                'classes' => $value,
+                'key'   => $key,
+                'class' => $value,
             ])->random();
     }
 

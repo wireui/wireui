@@ -98,7 +98,7 @@ test('it should render icon in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $sizeClasses     = data_get($pack, 'classes');
+    $sizeClasses     = data_get($pack, 'class');
     $iconSizeClasses = (new IconSize())->get($size);
 
     expect($this->component->icon)->toBe($icon);
@@ -124,9 +124,11 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::FULL);
+
     expect($this->component->rounded)->toBeTrue();
     expect($this->component->squared)->toBeFalse();
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-avatar rounded />')->render()->toContain($class);
 });
@@ -138,9 +140,11 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::NONE);
+
     expect($this->component->squared)->toBeTrue();
     expect($this->component->rounded)->toBeFalse();
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-avatar squared />')->render()->toContain($class);
 });
@@ -154,11 +158,11 @@ test('it should custom rounded in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $classes = data_get($pack, 'classes');
+    $class = data_get($pack, 'class');
 
     expect($this->component->squared)->toBeFalse();
     expect($this->component->rounded)->toBe($rounded);
-    expect($this->component->roundedClasses)->toBe($classes);
+    expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-avatar :$rounded />')->render(compact('rounded'))->toContain($classes);
+    expect('<x-avatar :$rounded />')->render(compact('rounded'))->toContain($class);
 });

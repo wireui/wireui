@@ -36,7 +36,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@badge', 'Flat')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$flat['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@badge', 'class', data_get($flat, 'class'));
@@ -68,7 +68,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@badge', 'Solid')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$solid['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@badge', 'class', data_get($solid, 'class'));
@@ -100,7 +100,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@badge', 'Outline')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$outline['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@badge', 'class', data_get($outline, 'class'));

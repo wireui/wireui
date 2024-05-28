@@ -92,9 +92,9 @@ test('it should set icon in component and using iconless', function () {
     expect($this->component->icon)->toBe($icon);
     expect($this->component->color)->toBe($color);
     expect($this->component->variant)->toBe($variant);
-    expect($this->component->colorClasses)->toBe(data_get($pack, 'classes'));
+    expect($this->component->colorClasses)->toBe(data_get($pack, 'class'));
 
-    $iconColor = data_get($pack, 'classes.iconColor');
+    $iconColor = data_get($pack, 'class.iconColor');
 
     $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
@@ -121,18 +121,18 @@ test('it should set random color and variant in component', function () {
 
     expect($this->component->color)->toBe($color);
     expect($this->component->variant)->toBe($variant);
-    expect($this->component->colorClasses)->toBe(data_get($pack, 'classes'));
+    expect($this->component->colorClasses)->toBe(data_get($pack, 'class'));
 
-    $icon      = data_get($pack, 'classes.icon');
-    $iconColor = data_get($pack, 'classes.iconColor');
+    $icon      = data_get($pack, 'class.icon');
+    $iconColor = data_get($pack, 'class.iconColor');
 
     $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
     expect('<x-alert :title="$title" :$color :$variant />')
         ->render(compact('title', 'color', 'variant'))
         ->toContain(...[
-            data_get($pack, 'classes.text'),
-            data_get($pack, 'classes.background'),
+            data_get($pack, 'class.text'),
+            data_get($pack, 'class.background'),
         ])->toContain($html);
 });
 
@@ -143,9 +143,11 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::FULL);
+
     expect($this->component->rounded)->toBeTrue();
     expect($this->component->squared)->toBeFalse();
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-alert rounded />')->render()->toContain($class);
 });
@@ -157,9 +159,11 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::NONE);
+
     expect($this->component->squared)->toBeTrue();
     expect($this->component->rounded)->toBeFalse();
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-alert squared />')->render()->toContain($class);
 });
@@ -173,11 +177,11 @@ test('it should custom rounded in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $classes = data_get($pack, 'classes');
+    $class = data_get($pack, 'class');
 
     expect($this->component->squared)->toBeFalse();
     expect($this->component->rounded)->toBe($rounded);
-    expect($this->component->roundedClasses)->toBe($classes);
+    expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-alert :$rounded />')->render(compact('rounded'))->toContain($classes);
+    expect('<x-alert :$rounded />')->render(compact('rounded'))->toContain($class);
 });

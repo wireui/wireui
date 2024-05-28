@@ -38,7 +38,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'Flat')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$flat['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.base')))
@@ -72,7 +72,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'Solid')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$solid['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.base')))
@@ -106,7 +106,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'Light')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$light['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$light['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.base')))
@@ -140,7 +140,7 @@ class BaseTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'Outline')
             ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                window.Livewire.dispatch('set-color', { color: '{$outline['color']}' })
+                window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
             EOT))
             ->pause(500)
             ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.base')))
