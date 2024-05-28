@@ -157,7 +157,7 @@ test('it should set squared in component', function () {
     expect('<x-mini-button squared />')->render()->toContain($class);
 });
 
-test('it should custom rounded in component', function () {
+test('it should set random rounded in component', function () {
     $pack = $this->getRandomPack(Rounded::class);
 
     $this->setAttributes($this->component, [
