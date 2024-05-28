@@ -31,8 +31,12 @@ export const convertStandardTimeToMilitary = (time: string): string => {
 
   let standardHour = Number(hour)
 
-  if (time.includes('PM')) {
+  if (time.includes('PM') && standardHour < 12) {
     standardHour += 12
+  }
+
+  if (time.includes('AM') && standardHour === 12) {
+    standardHour = 0
   }
 
   const militaryHour = standardHour.toString().padStart(2, '0')

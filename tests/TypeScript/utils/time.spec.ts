@@ -48,7 +48,7 @@ describe('Testing The time helpers', () => {
       { time: '9:45 AM', expected: '09:45' },
       { time: '10:50 AM', expected: '10:50' },
       { time: '11:55 AM', expected: '11:55' },
-      { time: '0:00 PM', expected: '12:00' },
+      { time: '12:00 PM', expected: '12:00' },
       { time: '1:05 PM', expected: '13:05' },
       { time: '2:10 PM', expected: '14:10' },
       { time: '3:15 PM', expected: '15:15' },
@@ -59,7 +59,9 @@ describe('Testing The time helpers', () => {
       { time: '8:40 PM', expected: '20:40' },
       { time: '9:45 PM', expected: '21:45' },
       { time: '10:50 PM', expected: '22:50' },
-      { time: '11:55 PM', expected: '23:55' }
+      { time: '11:55 PM', expected: '23:55' },
+      { time: '12:12 AM', expected: '00:12' },
+      { time: '12:12 PM', expected: '12:12' }
     ]
 
     times.forEach(({ time, expected }) => {
