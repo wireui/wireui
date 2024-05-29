@@ -34,7 +34,7 @@ export default class SupportsLivewire {
         entangleableValue = this.toLivewireCallback(entangleableValue)
       }
 
-      if (entangleableValue === value) return
+      if (JSON.stringify(entangleableValue) === JSON.stringify(value)) return
 
       if (this.fromLivewireCallback) {
         value = this.fromLivewireCallback(value)
@@ -102,7 +102,7 @@ export default class SupportsLivewire {
     return this
   }
 
-  private fillValueFromLivewire () {
+  fillValueFromLivewire () {
     let value = this.livewire.get(this.wireModel.name)
 
     if (this.fromLivewireCallback) {

@@ -35,7 +35,7 @@ export default class SupportsAlpine {
           entangleableValue = this.toAlpineCallback(entangleableValue)
         }
 
-        if (entangleableValue === value) return
+        if (JSON.stringify(entangleableValue) === JSON.stringify(value)) return
 
         if (this.fromAlpineCallback) {
           value = this.fromAlpineCallback(value)
@@ -106,7 +106,7 @@ export default class SupportsAlpine {
     return this
   }
 
-  private fillValueFromAlpine (): void {
+  fillValueFromAlpine (): void {
     let value = window.Alpine.evaluate(this.target, this.config.name)
 
     if (this.fromAlpineCallback) {
