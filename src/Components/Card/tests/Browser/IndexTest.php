@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\Components\Alert\tests\Browser;
+namespace WireUi\Components\Card\tests\Browser;
 
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class IndexTest extends BrowserTestCase
 {
-    public function test_alert_component(): void
+    public function test_card_component(): void
     {
         Livewire::visit(new class() extends Component
         {
@@ -22,26 +22,26 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-alert>
+                        <x-card>
                             <x-slot name="action">
                                 <x-button wire:click="toggle" dusk="button" label="Click" />
                             </x-slot>
 
                             <x-slot name="title" dusk="title">
                                 @if ($show)
-                                    Alert is open!
+                                    Card is open!
                                 @else
-                                    Alert is closed!
+                                    Card is closed!
                                 @endif
                             </x-slot>
-                        </x-alert>
+                        </x-card>
                     </div>
                 BLADE;
             }
         })
             ->waitForAlpineJs()
-            ->assertSeeIn('@title', 'Alert is closed!')
+            ->assertSeeIn('@title', 'Card is closed!')
             ->click('@button')
-            ->waitForTextIn('@title', 'Alert is open!');
+            ->waitForTextIn('@title', 'Card is open!');
     }
 }

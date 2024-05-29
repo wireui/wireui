@@ -57,6 +57,34 @@ trait Interacts
     }
 
     /**
+     * Get random pack from WireUi.
+     */
+    public function getRandomPack(string $pack, array $except = []): array
+    {
+        return collect((new $pack())->all())
+            ->when(filled($except), fn ($values) => $values->except($except))
+            ->map(fn ($value, $key) => [
+                'key'   => $key,
+                'class' => $value,
+            ])->random();
+    }
+
+    /**
+     * Get random variant pack from WireUi.
+     */
+    public function getVariantRandomPack(string $variant, array $except = []): array
+    {
+        $variant = collect((new $variant())->all())->map(fn ($value, $key) => [
+            'pack'    => $value,
+            'variant' => $key,
+        ])->random();
+
+        $pack = $this->getRandomPack(data_get($variant, 'pack'), $except);
+
+        return data_set($pack, 'variant', data_get($variant, 'variant'));
+    }
+
+    /**
      * Call protected/private method of a class.
      */
     public function invokeMethod(mixed $object, string $method, array $parameters = []): mixed

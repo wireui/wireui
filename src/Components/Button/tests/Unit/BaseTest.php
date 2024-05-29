@@ -3,9 +3,8 @@
 namespace WireUi\Components\Button\tests\Unit;
 
 use WireUi\Components\Button\Base;
-use WireUi\Components\Button\WireUi\Color\Outline;
-use WireUi\Components\Button\WireUi\IconSize;
 use WireUi\Components\Button\WireUi\Size\Base as SizeBase;
+use WireUi\Components\Button\WireUi\{IconSize, Variant};
 use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
@@ -50,7 +49,6 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->full)->toBeFalse();
-
     expect($this->component->wireLoadEnabled)->toBeFalse();
 });
 
@@ -88,26 +86,26 @@ test('it should set specific label in component', function () {
     expect('<x-button :$label />')->render(compact('label'))->toContain($label);
 });
 
-test('it should set icon and right icon in component with lg size', function () {
+test('it should set icon and right icon in component with random size', function () {
+    $pack = $this->getRandomPack(SizeBase::class);
+
     $this->setAttributes($this->component, [
-        'size'       => $size      = Packs\Size::LG,
+        'size'       => $size      = data_get($pack, 'key'),
         'icon'       => $icon      = $this->getRandomIcon(),
         'right-icon' => $rightIcon = $this->getRandomIcon(),
     ]);
 
     $this->runWireUiComponent($this->component);
 
+    $sizeClasses     = data_get($pack, 'class');
+    $iconSizeClasses = (new IconSize())->get($size);
+
     expect($this->component->icon)->toBe($icon);
-
     expect($this->component->size)->toBe($size);
-
     expect($this->component->iconSize)->toBe($size);
-
     expect($this->component->rightIcon)->toBe($rightIcon);
-
-    expect($this->component->sizeClasses)->toBe($sizeClasses = (new SizeBase())->get($size));
-
-    expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
+    expect($this->component->sizeClasses)->toBe($sizeClasses);
+    expect($this->component->iconSizeClasses)->toBe($iconSizeClasses);
 
     expect('<x-button :$size :$icon :$rightIcon />')
         ->render(compact('size', 'icon', 'rightIcon'))
@@ -116,25 +114,25 @@ test('it should set icon and right icon in component with lg size', function () 
         ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
-test('it should set specific color in component with variant outline', function () {
+test('it should set random color and variant in component', function () {
+    $pack = $this->getVariantRandomPack(Variant::class);
+
     $this->setAttributes($this->component, [
-        'color'   => Packs\Color::INFO,
-        'variant' => Packs\Variant::OUTLINE,
+        'color'   => $color   = data_get($pack, 'key'),
+        'variant' => $variant = data_get($pack, 'variant'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->color)->toBe($color = Packs\Color::INFO);
+    $class = data_get($pack, 'class');
 
-    expect($this->component->variant)->toBe($variant = Packs\Variant::OUTLINE);
-
-    $class = (new Outline())->get(Packs\Color::INFO);
-
+    expect($this->component->color)->toBe($color);
+    expect($this->component->variant)->toBe($variant);
     expect($this->component->colorClasses)->toBe($class = $this->serializeColorClasses($class));
 
     expect('<x-button :$color :$variant />')
         ->render(compact('color', 'variant'))
-        ->toContain(...collect($class)->flatten()->toArray());
+        ->toContain(...$class);
 });
 
 test('it should set rounded full in component', function () {
@@ -144,11 +142,11 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::FULL);
+
     expect($this->component->rounded)->toBeTrue();
-
     expect($this->component->squared)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-button rounded />')->render()->toContain($class);
 });
@@ -160,27 +158,29 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::NONE);
+
     expect($this->component->squared)->toBeTrue();
-
     expect($this->component->rounded)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-button squared />')->render()->toContain($class);
 });
 
-test('it should custom rounded in component', function () {
+test('it should set random rounded in component', function () {
+    $pack = $this->getRandomPack(Rounded::class);
+
     $this->setAttributes($this->component, [
-        'rounded' => $class = 'rounded-[40px]',
+        'rounded' => $rounded = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
+    $class = data_get($pack, 'class');
+
     expect($this->component->squared)->toBeFalse();
-
-    expect($this->component->rounded)->toBe($class);
-
+    expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-button rounded="rounded-[40px]" />')->render()->toContain($class);
+    expect('<x-button :$rounded />')->render(compact('rounded'))->toContain($class);
 });

@@ -22,16 +22,16 @@
         "wireui/heroicons": "^2.6"
     },
     "require-dev": {
-        "mockery/mockery": "^1.5",
-        "phpunit/phpunit": "^10.4",
+        "mockery/mockery": "^1.6",
+        "phpunit/phpunit": "^10.5",
         "orchestra/testbench": "^8.14|^9.0",
-        "orchestra/testbench-dusk": "^8.14",
-        "psy/psysh": "^0.11.12|^0.12",
-        "pestphp/pest": "^2.26",
+        "orchestra/testbench-dusk": "^8.14|^9.0",
+        "psy/psysh": "^0.12.3",
+        "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-livewire": "^2.1",
-        "pestphp/pest-plugin-laravel": "^2.2",
-        "laravel/pint": "^1.13",
-        "livewire/livewire": "^3.4"
+        "pestphp/pest-plugin-laravel": "^2.4",
+        "laravel/pint": "^1.16",
+        "livewire/livewire": "^3.5"
     },
     "autoload": {
         "psr-4": {

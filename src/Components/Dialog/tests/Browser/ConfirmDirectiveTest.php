@@ -2,15 +2,14 @@
 
 namespace WireUi\Components\Dialog\tests\Browser;
 
-use Laravel\Dusk\Browser;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class ConfirmDirectiveTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
             public string $value = '';
 
@@ -23,9 +22,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Confirm Directive Browser Test</h1>
-
-                    <span dusk="value">{{ $value }}</span>
+                    <x-badge dusk="value" :label="$value" />
 
                     <div x-data="{ title: 'Alpine Confirmation' }">
                         <x-button
@@ -40,6 +37,33 @@ class ConfirmDirectiveTest extends BrowserTestCase
                             }"
                         />
                     </div>
+                </div>
+                BLADE;
+            }
+        })
+            ->click('@button.alpine')
+            ->waitForText('Alpine Confirmation')
+            ->waitForText('AcceptAlpine')
+            ->press('AcceptAlpine')
+            ->waitForTextIn('@value', 'Accepted by Alpine');
+    }
+
+    public function test_it_should_call_confirm_notification_by_directive_js(): void
+    {
+        Livewire::visit(new class() extends Component
+        {
+            public string $value = '';
+
+            public function setValue(string $value): void
+            {
+                $this->value = $value;
+            }
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$value" />
 
                     <x-button
                         dusk="button.js"
@@ -55,22 +79,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js(): void
-    {
-        $this->browser()
-            ->click('@button.alpine')
-            ->waitForText('Alpine Confirmation')
-            ->waitForText('AcceptAlpine')
-            ->press('AcceptAlpine')
-            ->waitForTextIn('@value', 'Accepted by Alpine');
-    }
-
-    public function test_it_should_call_confirm_notification_by_directive_js(): void
-    {
-        $this->browser()
+        })
             ->click('@button.js')
             ->waitForText('JS Confirmation')
             ->waitForText('AcceptJS')

@@ -53,9 +53,7 @@ test('it can be instantiated with default parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe([]);
-
     expect($this->component->rightIcon)->toBe('swatch');
-
     expect($this->component->colorNameAsValue)->toBe(false);
 });
 
@@ -71,9 +69,7 @@ test('it can be instantiated with custom parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe($colors);
-
     expect($this->component->rightIcon)->toBe($icon);
-
     expect($this->component->colorNameAsValue)->toBe(true);
 });
 
@@ -148,7 +144,9 @@ test('it handles mixed types in colors array correctly', function () {
 });
 
 test('it should pass custom colors to js component data', function () {
+    $colors = [['name' => 'FFF', 'value' => '#FFF']];
+
     expect('<x-color-picker :colors="$colors" />')
-        ->render(['colors' => [['name' => 'FFF', 'value' => '#FFF']]])
+        ->render(compact('colors'))
         ->toContain('colors:JSON.parse(atob(&#039;W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ==&#039;))');
 });
