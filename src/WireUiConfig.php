@@ -2,7 +2,7 @@
 
 namespace WireUi;
 
-use WireUi\Components\{Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dialog, Dropdown, Errors, Icon, Label, Link, Modal, Notifications, Popover, Select, Switcher, TextField, Textarea, TimePicker, Wrapper};
+use WireUi\Components\{Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dialog, Dropdown, Errors, Icon, Label, Link, Modal, Notifications, Popover, Select, Switcher, TextField, TimePicker, Wrapper};
 use WireUi\Enum\Packs;
 
 class WireUiConfig
@@ -453,7 +453,7 @@ class WireUiConfig
                 'alias' => 'select.user-option',
             ],
             'textarea' => [
-                'class' => Textarea\Index::class,
+                'class' => TextField\Textarea::class,
                 'alias' => 'textarea',
             ],
             'time-picker' => [

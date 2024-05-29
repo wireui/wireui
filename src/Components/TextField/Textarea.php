@@ -1,13 +1,13 @@
 <?php
 
-namespace WireUi\Components\Textarea;
+namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
-class Index extends WireUiComponent
+class Textarea extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
@@ -28,6 +28,6 @@ class Index extends WireUiComponent
 
     protected function blade(): View
     {
-        return view('wireui-textarea::index');
+        return view('wireui-text-field::textarea');
     }
 }
