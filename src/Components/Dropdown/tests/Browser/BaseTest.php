@@ -2,16 +2,17 @@
 
 namespace WireUi\Components\Dropdown\tests\Browser;
 
+use Laravel\Dusk\Browser;
 use Tests\Browser\BrowserTestCase;
 
-class DropdownTest extends BrowserTestCase
+class BaseTest extends BrowserTestCase
 {
     public const HTML = <<<BLADE
-    <button dusk="outside">Outside</button>
+    <x-button dusk="outside" label="Outside" />
 
     <x-dropdown label="Color Picker">
         <x-slot:trigger>
-            <button dusk="toggle">Click me</button>
+            <x-button dusk="toggle" label="Click me" />
         </x-slot:trigger>
 
         <x-dropdown.item label="White" />
@@ -25,10 +26,9 @@ class DropdownTest extends BrowserTestCase
         $this->render(self::HTML)
             ->waitForAlpineJs()
             ->click('@toggle')
-            ->waitForText('White')
-            ->assertSee('White')
-            ->assertSee('Black')
-            ->assertSee('purple-100');
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('White'))
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('Black'))
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('purple-100'));
     }
 
     public function test_dropdown_should_close_when_click_outside(): void
@@ -36,10 +36,8 @@ class DropdownTest extends BrowserTestCase
         $this->render(self::HTML)
             ->waitForAlpineJs()
             ->click('@toggle')
-            ->waitForText('White')
-            ->assertSee('White')
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('White'))
             ->click('@outside')
-            ->waitUntilMissingText('White')
-            ->assertDontSee('White');
+            ->waitTo(fn (Browser $browser) => $browser->assertDontSee('White'));
     }
 }
