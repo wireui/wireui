@@ -1,16 +1,16 @@
-import { Focusable } from '@/alpine/modules/Focusable'
-import Positionable from '@/alpine/modules/Positionable'
 import FluentDate from '@/utils/date'
+import { Focusable, Positionable, Entangleable } from '@/alpine/modules'
 import { CalendarConfig, Day, Tab } from './interfaces'
 import { AlpineComponent } from '@/components/alpine2'
-import { Entangleable } from '@/alpine/modules/entangleable'
 import { AlpineModel, WireModel } from '@/components/alpine'
-import Events from '@/components/date-picker/features/Events'
-import MonthSelector from '@/components/date-picker/features/header/MonthSelector'
-import YearsSelector from '@/components/date-picker/features/header/YearsSelector'
-import Calendar from '@/components/date-picker/features/Calendar'
-import Rollback from '@/components/date-picker/features/Rollback'
-import Watchers from '@/components/date-picker/features/Watchers'
+import {
+  Events,
+  MonthSelector,
+  YearsSelector,
+  Calendar,
+  Rollback,
+  Watchers,
+} from '@/components/date-picker/features'
 
 export default class DatetimePicker extends AlpineComponent {
   declare $refs: {
@@ -89,11 +89,51 @@ export default class DatetimePicker extends AlpineComponent {
 
   focusable = new Focusable()
 
-  entangleable = new Entangleable<FluentDate>()
+  entangleable = new Entangleable<FluentDate|FluentDate[]>()
 
   time: string|null = null
 
-  selectedDates: FluentDate[] = []
+  get dateFormat (): string {
+    if (this.$props.input.parseFormat) {
+      return this.$props.input.parseFormat
+    }
+
+    if (this.$props.calendar.multiple.enabled) {
+      return 'YYYY-MM-DD'
+    }
+
+    return this.$props.timePicker.enabled
+      ? 'YYYY-MM-DDTHH:mm:ss'
+      : 'YYYY-MM-DD'
+  }
+
+  get selectedDates (): FluentDate[] {
+    if (this.$props.calendar.multiple.enabled) {
+      const dates = this.entangleable.get() ?? []
+
+      if (Array.isArray(dates)) {
+        return dates
+      }
+    }
+
+    return []
+  }
+
+  get selected (): FluentDate|null {
+    const date = this.entangleable.get()
+
+    return date instanceof FluentDate
+      ? date
+      : null
+  }
+
+  get selectedRawValue (): string {
+    if (this.$props.calendar.multiple.enabled) {
+      return JSON.stringify(this.selectedDates.map(date => date.format(this.dateFormat)))
+    }
+
+    return this.selected?.format(this.dateFormat) ?? ''
+  }
 
   get localeDateConfig (): Intl.DateTimeFormatOptions {
     const config: Intl.DateTimeFormatOptions = {
@@ -112,15 +152,42 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   get display (): string|null {
-    const selected = this.entangleable.get()
+    if (this.$props.calendar.multiple.enabled) {
+      return this.selectedDates.length ? ' ' : null
+    }
 
-    if (selected) {
+    if (this.selected) {
       return this.$props.input.displayFormat
-        ? selected.format(this.$props.input.displayFormat)
-        : selected.getNativeDate().toLocaleString(navigator.language, this.localeDateConfig)
+        ? this.selected.format(this.$props.input.displayFormat)
+        : this.selected.getNativeDate().toLocaleString(navigator.language, this.localeDateConfig)
     }
 
     return null
+  }
+
+  get selectedDatesDisplay (): string[] {
+    const config: Intl.DateTimeFormatOptions = {
+      year: undefined,
+      month: undefined,
+      day: 'numeric',
+      timeZone: this.localTimezone,
+    }
+
+    const hasMultipleYears = new Set(this.selectedDates.map(date => date.getYear())).size > 1
+    const hasMultipleMonths = new Set(this.selectedDates.map(date => date.getMonth())).size > 1
+
+    if (hasMultipleYears) {
+      config.year = 'numeric'
+      config.month = 'numeric'
+    }
+
+    if (hasMultipleMonths) {
+      config.month = 'numeric'
+    }
+
+    return this.selectedDates.map(date => {
+      return date.getNativeDate().toLocaleString(navigator.language, config)
+    })
   }
 
   get weekDays (): string[] {
@@ -189,9 +256,7 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   selectDay (day: Day) {
-    if (document.activeElement) {
-      (document.activeElement as HTMLElement).blur()
-    }
+    this.releaseActiveElementBlur()
 
     if (this.$props.calendar.multiple.enabled) {
       return this.toggleSelectedDay(day)
@@ -200,9 +265,11 @@ export default class DatetimePicker extends AlpineComponent {
     const date = new FluentDate(day.date)
 
     if (this.$props.timePicker.enabled) {
-      this.time = this.entangleable.get()?.getTime() ?? '00:00:00'
+      if (this.selected) {
+        this.time = this.selected.getTime()
 
-      date.setTime(this.time)
+        date.setTime(this.time)
+      }
     }
 
     this.entangleable.set(date)
@@ -221,20 +288,33 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   private toggleSelectedDay (day: Day) {
+    const dates = this.entangleable.get() as FluentDate[]
     const date = new FluentDate(day.date)
-    const index = this.selectedDates.findIndex(selected => selected.isSame(date))
+    const index = dates.findIndex(selected => selected.isSame(date, 'date'))
     const shouldSelect = index === -1 && !this.isMaxMultipleReached
     const shouldRemove = index !== -1
 
     if (shouldSelect) {
-      this.selectedDates.push(date)
+      dates.push(date)
     }
 
     if (shouldRemove) {
-      this.selectedDates.splice(index, 1)
+      dates.splice(index, 1)
     }
 
+    this.entangleable.set(dates, { force: true })
+
     this.$events.dispatch('selected::day', day)
+  }
+
+  removeSelectedDate (index: number) {
+    this.releaseActiveElementBlur()
+
+    const dates = this.entangleable.get() as FluentDate[]
+
+    dates.splice(index, 1)
+
+    this.entangleable.set(dates, { force: true })
   }
 
   selectMonth (month: number) {
@@ -274,6 +354,7 @@ export default class DatetimePicker extends AlpineComponent {
 
   shouldShowFooter () {
     return this.$props.config.requiresConfirmation
+      || this.$props.calendar.multiple.enabled
   }
 
   fluentDateToDay (date: FluentDate): Day {
@@ -289,12 +370,18 @@ export default class DatetimePicker extends AlpineComponent {
     }
   }
 
+  releaseActiveElementBlur (): void {
+    if (document.activeElement) {
+      (document.activeElement as HTMLElement).blur()
+    }
+  }
+
   isSelected (day: FluentDate): boolean {
     if (this.$props.calendar.multiple.enabled) {
       return this.selectedDates.some(date => date.isSame(day, 'day'))
     }
 
-    return Boolean(this.entangleable.get()?.isSame(day, 'day'))
+    return Boolean(this.selected?.isSame(day, 'day'))
   }
 
   isDisabled (day: FluentDate): boolean {

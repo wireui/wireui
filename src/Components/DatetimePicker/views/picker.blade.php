@@ -47,7 +47,53 @@
     ])"
     x-ref="container"
 >
-    @include('wireui-wrapper::components.slots')
+    <div class="hidden" hidden>
+        <x-wireui-wrapper::element
+            :id="$id"
+            :name="$name"
+            :value="$name ? old($name) : null"
+            x-bind:value="selectedRawValue"
+            type="hidden"
+        />
+    </div>
+
+    @include('wireui-wrapper::components.slots', ['except' => ['prepend', 'append']])
+
+    @if ($multiple)
+        <x-slot:prepend
+            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-auto"
+            x-bind:class="{
+                'ml-2 px-2': selectedDates.length > 0,
+            }"
+        >
+            <template x-for="(date, index) in selectedDatesDisplay" wire:key="date">
+                <button
+                    class="
+                        bg-slate-100 text-2xs px-1 py-0.5 rounded border border-slate-200
+                        flex items-center transition-all ease-in-out duration-150 cursor-pointer
+                        hover:bg-negative-100 hover:text-negative-600 hover:border-negative-200
+                        focus:bg-negative-100 focus:text-negative-600 focus:border-negative-200
+                        focus:ring-1 focus:ring-negative-500 focus:outline-none
+                        appearance-none outline-none
+                    "
+                    type="button"
+                    title="{{ __('wireui::messages.labels.remove') }}"
+                    x-on:click="removeSelectedDate(index)"
+                >
+                    <span x-text="date"></span>
+                </button>
+            </template>
+        </x-slot:prepend>
+    @endif
+
+    <x-wireui-wrapper::element
+        x-show="selectedDates.length === 0"
+        x-on:click="positionable.toggle()"
+        x-bind:value="display"
+        :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
+        autocomplete="off"
+        readonly
+    />
 
     @if (!$readonly && !$disabled)
         <x-slot:append class="flex items-center">
@@ -85,13 +131,6 @@
             </x-dynamic-component>
         </x-slot:append>
     @endif
-
-    <x-wireui-wrapper::element
-        x-on:click="positionable.toggle()"
-        x-bind:value="display"
-        :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
-        readonly
-    />
 
     <x-slot:after>
         <x-popover2
