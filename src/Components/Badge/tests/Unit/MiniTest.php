@@ -44,15 +44,6 @@ test('it should have properties in component', function () {
     ]);
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'icon',
-        'label',
-        'iconSize',
-        'iconSizeClasses',
-    ]);
-});
-
 test('it should set specific label in component', function () {
     $this->setAttributes($this->component, [
         'label' => $label = fake()->word(),

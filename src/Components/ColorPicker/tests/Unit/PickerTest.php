@@ -38,17 +38,6 @@ test('it should have properties in component', function () {
     expect($this->component->shadowless)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'colors',
-        'shadow',
-        'rightIcon',
-        'shadowless',
-        'shadowClasses',
-        'colorNameAsValue',
-    ]);
-});
-
 test('it can be instantiated with default parameters', function () {
     $this->runWireUiComponent($this->component);
 

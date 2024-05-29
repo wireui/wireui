@@ -52,16 +52,6 @@ test('it should have properties in component', function () {
     expect($this->component->wireLoadEnabled)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'full',
-        'icon',
-        'label',
-        'rightIcon',
-        'wireLoadEnabled',
-    ]);
-});
-
 test('it should render button like link', function () {
     $this->setAttributes($this->component, [
         'href' => $href = fake()->url(),

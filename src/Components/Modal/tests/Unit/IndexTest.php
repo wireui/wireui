@@ -119,7 +119,7 @@ test('it should set random type in component', function () {
 
     $this->setAttributes($this->component, [
         'z-index' => $zIndex = null,
-        'type'    => $type      = data_get($pack, 'key'),
+        'type'    => $type   = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);

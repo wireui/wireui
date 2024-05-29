@@ -37,9 +37,9 @@ class MiniTest extends BrowserTestCase
         })
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'F')
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
-            EOT))
+            JS))
             ->waitTo(function (Browser $browser) use ($flat) {
                 return $browser
                     ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.base')))
@@ -73,9 +73,9 @@ class MiniTest extends BrowserTestCase
         })
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'L')
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
-            EOT))
+            JS))
             ->waitTo(function (Browser $browser) use ($solid) {
                 return $browser
                     ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.base')))
@@ -109,9 +109,9 @@ class MiniTest extends BrowserTestCase
         })
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'S')
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('set-color', { color: '{$light['key']}' })
-            EOT))
+            JS))
             ->waitTo(function (Browser $browser) use ($light) {
                 return $browser
                     ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.base')))
@@ -145,9 +145,9 @@ class MiniTest extends BrowserTestCase
         })
             ->waitForAlpineJs()
             ->assertSeeIn('@button', 'O')
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
-            EOT))
+            JS))
             ->waitTo(function (Browser $browser) use ($outline) {
                 return $browser
                     ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.base')))

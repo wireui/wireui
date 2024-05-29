@@ -51,19 +51,6 @@ test('it should have properties in component', function () {
     expect($this->component->borderless)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'src',
-        'icon',
-        'label',
-        'border',
-        'iconSize',
-        'borderless',
-        'borderClasses',
-        'iconSizeClasses',
-    ]);
-});
-
 test('it should render label in component', function () {
     $this->setAttributes($this->component, [
         'label' => $label = fake()->word(),

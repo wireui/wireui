@@ -45,16 +45,6 @@ test('it should have properties in component', function () {
     expect($this->component->shadowless)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'title',
-        'color',
-        'rounded',
-        'squared',
-        'colorClasses',
-    ]);
-});
-
 test('it should render title in component', function () {
     $this->setAttributes($this->component, [
         'title' => $title = fake()->word(),

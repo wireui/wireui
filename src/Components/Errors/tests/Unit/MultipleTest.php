@@ -2,9 +2,17 @@
 
 namespace WireUi\Components\Alert\tests\Unit;
 
+use Illuminate\Support\Facades\{View};
+use Illuminate\Support\{MessageBag, ViewErrorBag};
 use WireUi\Components\Errors\Multiple as Errors;
 
 beforeEach(function () {
+    View::share('errors', (new ViewErrorBag())->put('default', new MessageBag([
+        'first'  => 'first error',
+        'second' => 'second error',
+        'third'  => 'third error',
+    ])));
+
     $this->component = (new Errors())->withName('errors');
 });
 
@@ -47,7 +55,7 @@ test('it should filter only specific errors', function () {
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->only)->toBe($only);
+    expect($this->component->only->toArray())->toBe($only);
 
     expect('<x-errors :$only />')
         ->render(compact('only'))

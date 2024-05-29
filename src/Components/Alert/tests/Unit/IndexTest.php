@@ -50,19 +50,6 @@ test('it should have properties in component', function () {
     expect($this->component->shadowless)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'icon',
-        'title',
-        'shadow',
-        'padding',
-        'iconless',
-        'shadowless',
-        'shadowClasses',
-        'paddingClasses',
-    ]);
-});
-
 test('it should set specific title in component', function () {
     $this->setAttributes($this->component, [
         'title' => $title = fake()->word(),

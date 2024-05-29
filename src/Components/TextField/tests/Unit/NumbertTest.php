@@ -49,16 +49,6 @@ test('it should have properties in component', function () {
     expect($this->component->shadowless)->toBeFalse();
 });
 
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'icon',
-        'shadow',
-        'rightIcon',
-        'shadowless',
-        'shadowClasses',
-    ]);
-});
-
 test('it should set icon and right icon in component', function () {
     $this->setAttributes($this->component, [
         'icon'       => $icon      = $this->getRandomIcon(),

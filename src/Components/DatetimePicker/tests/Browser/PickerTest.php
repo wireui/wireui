@@ -174,13 +174,13 @@ class PickerTest extends BrowserTestCase
             ->waitForTextIn('@dateAndTime', '2021-12-11T00:00:00Z')
             ->assertInputValue('dateAndTime', '11-12-2021 00:00')
             ->pause(1000)
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
-                    console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
+                console.log(document.querySelectorAll('[id="dateAndTime"] .picker-times button'));
 
-                    [...document.querySelectorAll('[id="dateAndTime"] .picker-times button')]
-                        .find(time => time.innerText.includes('5:50 AM'))
-                        .click()
-                EOT))
+                [...document.querySelectorAll('[id="dateAndTime"] .picker-times button')]
+                    .find(time => time.innerText.includes('5:50 AM'))
+                    .click()
+            JS))
             ->waitForTextIn('@dateAndTime', '2021-12-11T05:50:00Z')
             ->assertInputValue('dateAndTime', '11-12-2021 05:50');
     }
@@ -260,10 +260,10 @@ class PickerTest extends BrowserTestCase
 
     private function selectDate(Browser $browser, string $id, int $day): array
     {
-        return $browser->script(<<<EOT
+        return $browser->script(<<<JS
             [...document.querySelectorAll('[id="{$id}"] .picker-days button')]
                 .find(day => day.innerText == {$day})
                 .click()
-        EOT);
+        JS);
     }
 }

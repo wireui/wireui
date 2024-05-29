@@ -57,13 +57,13 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 })
-            EOT))
+            JS))
             ->waitForText($title)->assertSee($title)
             ->waitForText($description)->assertSee($description);
     }
@@ -79,13 +79,13 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('showDialog', { options: {
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 }})
-            EOT))
+            JS))
             ->waitForText($title)->assertSee($title)
             ->waitForText($description)->assertSee($description);
     }
@@ -101,14 +101,14 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({
                     id: 'custom',
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 })
-            EOT))
+            JS))
             ->waitForText($title)->assertSee($title)
             ->waitForText($description)->assertSee($description);
     }
@@ -118,9 +118,9 @@ class IndexTest extends BrowserTestCase
         $title = 'Autoclosing...';
 
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
-            EOT))
+            JS))
             ->waitForText($title)->assertSee($title)
             ->waitUntilMissingText($title)->assertDontSee($title);
     }
@@ -130,15 +130,15 @@ class IndexTest extends BrowserTestCase
         $this->browser()
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(400)
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('button.dialog-button-close').click()
-            EOT))
+            JS))
             ->waitForTextIn('@events', 'onClose, onTimeout')
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(150)
-            ->tap(fn (Browser $browser) => $browser->script("
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('div.dialog-backdrop').click()
-            "))
+            JS))
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
     }
 
