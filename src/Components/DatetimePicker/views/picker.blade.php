@@ -46,6 +46,14 @@
         'alpineModel' => WireUi::alpineModel($attrs),
     ])"
     x-ref="container"
+    x-bind:class="{
+        'ring-2 ring-primary-600': positionable.isOpen(),
+    }"
+    x-on:click="positionable.toggle()"
+    x-on:keydown.enter.stop.prevent="positionable.toggle()"
+    x-on:keydown.space.stop.prevent="positionable.toggle()"
+    x-on:keydown.arrow-down.stop.prevent="positionable.open()"
+    tabindex="0"
 >
     <div class="hidden" hidden>
         <x-wireui-wrapper::element
@@ -61,7 +69,7 @@
 
     @if ($multiple)
         <x-slot:prepend
-            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-auto"
+            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-auto cursor-pointer"
             x-bind:class="{
                 'ml-2 px-2': selectedDates.length > 0,
             }"
@@ -78,7 +86,7 @@
                     "
                     type="button"
                     title="{{ __('wireui::messages.labels.remove') }}"
-                    x-on:click="removeSelectedDate(index)"
+                    x-on:click.stop.prevent="removeSelectedDate(index)"
                 >
                     <span x-text="date"></span>
                 </button>
@@ -87,8 +95,8 @@
     @endif
 
     <x-wireui-wrapper::element
+        class="cursor-pointer"
         x-show="selectedDates.length === 0"
-        x-on:click="positionable.toggle()"
         x-bind:value="display"
         :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
         autocomplete="off"
@@ -103,7 +111,7 @@
                     class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
                     name="x-mark"
                     x-show="entangleable.isNotEmpty()"
-                    x-on:click="clear"
+                    x-on:click.stop.prevent="clear"
                     x-cloak
                 />
             @endif
@@ -113,7 +121,6 @@
                 class="h-full"
                 :color="$color ?? 'primary'"
                 :rounded="Arr::get($roundedClasses, 'append', '')"
-                x-on:click="positionable.toggle()"
                 :disabled="$disabled"
                 x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
                 use-validation-colors
