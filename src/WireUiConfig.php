@@ -160,10 +160,11 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'blur'  => Packs\Blur::NONE,
-                'type'  => Packs\Type::BASE,
-                'width' => Packs\Width::XL2,
-                'align' => Packs\Align::START,
+                'z-index' => 'z-50',
+                'blur'    => Packs\Blur::NONE,
+                'type'    => Packs\Type::BASE,
+                'width'   => Packs\Width::XL2,
+                'align'   => Packs\Align::START,
             ],
             'packs' => [
                 'blurs'  => Modal\WireUi\Blur::class,
@@ -178,7 +179,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'z-index' => 'z-50',
+                'z-index' => 'z-60',
                 'blur'    => Packs\Blur::NONE,
                 'type'    => Packs\Type::BASE,
                 'width'   => Packs\Width::XL2,
