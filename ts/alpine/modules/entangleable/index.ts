@@ -59,3 +59,5 @@ export class Entangleable<TValue> {
     return !this.isEmpty()
   }
 }
+
+export default Entangleable

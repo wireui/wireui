@@ -51,3 +51,5 @@ export class Focusable {
     return 0
   }
 }
+
+export default Focusable
