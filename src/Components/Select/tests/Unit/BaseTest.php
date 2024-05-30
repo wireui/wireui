@@ -44,15 +44,8 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
-        // Packs
-        'color',
-        'shadow',
-        'rounded',
-        'squared',
-        'colorClasses',
-        'shadowClasses',
-        'roundedClasses',
-        // Props'options',
+        // Props
+        'options',
         'template',
         'asyncData',
         'clearable',
@@ -71,6 +64,14 @@ test('it should have properties in component', function () {
         'minItemsForSearch',
         'optionDescription',
         'withoutItemsCount',
+        // Packs
+        'color',
+        'shadow',
+        'rounded',
+        'squared',
+        'colorClasses',
+        'shadowClasses',
+        'roundedClasses',
     ]);
 
     expect($this->component->clearable)->toBeTrue();

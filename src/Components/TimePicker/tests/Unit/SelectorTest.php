@@ -28,15 +28,17 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
-        'shadow',
-        'rounded',
-        'squared',
+        // Props
         'borderless',
         'shadowless',
         'militaryTime',
+        'withoutSeconds',
+        // Packs
+        'shadow',
+        'rounded',
+        'squared',
         'shadowClasses',
         'roundedClasses',
-        'withoutSeconds',
     ]);
 
     expect($this->component->borderless)->toBeFalse();

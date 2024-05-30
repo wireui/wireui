@@ -22,6 +22,7 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'icon',
         'label',
         'separator',

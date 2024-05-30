@@ -30,16 +30,18 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
-        'blur',
+        // Props
         'name',
         'show',
-        'type',
-        'align',
-        'width',
         'zIndex',
         'spacing',
         'blurless',
         'persistent',
+        // Packs
+        'blur',
+        'type',
+        'align',
+        'width',
         'blurClasses',
         'typeClasses',
         'alignClasses',

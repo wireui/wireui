@@ -31,20 +31,24 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'icon',
+        'label',
+        'wireLoadEnabled',
+        'useValidationColors',
+        // Packs
         'size',
         'color',
-        'label',
         'rounded',
         'squared',
         'variant',
         'sizeClasses',
         'colorClasses',
         'roundedClasses',
-        'wireLoadEnabled',
     ]);
 
     expect($this->component->wireLoadEnabled)->toBeFalse();
+    expect($this->component->useValidationColors)->toBeFalse();
 });
 
 test('it should render button like link', function () {

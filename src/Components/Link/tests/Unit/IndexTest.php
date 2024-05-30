@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Components\Badge\tests\Unit;
+namespace WireUi\Components\Link\tests\Unit;
 
 use WireUi\Components\Link\Index as Link;
 use WireUi\Components\Link\WireUi\{Color, Size, Underline};
@@ -25,10 +25,12 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
+        'label',
+        // Packs
         'tag',
         'size',
         'color',
-        'label',
         'underline',
         'sizeClasses',
         'colorClasses',

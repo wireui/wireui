@@ -30,6 +30,11 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
+        'icon',
+        'title',
+        'iconless',
+        'shadowless',
         // Packs
         'color',
         'shadow',
@@ -41,11 +46,6 @@ test('it should have properties in component', function () {
         'shadowClasses',
         'paddingClasses',
         'roundedClasses',
-        // Props
-        'icon',
-        'title',
-        'iconless',
-        'shadowless',
     ]);
 
     expect($this->component->iconless)->toBeFalse();

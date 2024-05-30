@@ -53,12 +53,9 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'max',
         'min',
-        'color',
-        'shadow',
-        'rounded',
-        'squared',
         'maxTime',
         'minTime',
         'interval',
@@ -74,19 +71,24 @@ test('it should have properties in component', function () {
         'withoutTime',
         'withoutTips',
         'allowedDates',
-        'colorClasses',
         'userTimezone',
         'displayFormat',
-        'shadowClasses',
         'disabledDates',
         'disabledYears',
         'disabledMonths',
-        'roundedClasses',
         'withoutTimezone',
         'disabledWeekdays',
         'disablePastDates',
         'withoutTimeSeconds',
         'requiresConfirmation',
+        // Packs
+        'color',
+        'shadow',
+        'rounded',
+        'squared',
+        'colorClasses',
+        'shadowClasses',
+        'roundedClasses',
     ]);
 
     expect($this->component->shadowless)->toBeFalse();

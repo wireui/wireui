@@ -28,14 +28,16 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'title',
+        'borderless',
+        'shadowless',
+        // Packs
         'color',
         'shadow',
         'padding',
         'rounded',
         'squared',
-        'borderless',
-        'shadowless',
         'colorClasses',
         'shadowClasses',
         'paddingClasses',
