@@ -1,6 +1,7 @@
 import Feature from '@/components/date-picker/features/Feature'
 import FluentDate from '@/utils/date'
 import { SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { isNotEmpty } from '@/utils/helpers'
 
 export default class Watchers extends Feature {
   init (): void {
@@ -60,7 +61,7 @@ export default class Watchers extends Feature {
     }
 
     if (this.component.$props.timezone.enabled) {
-      if (typeof value === 'string') {
+      if (isNotEmpty(value) && typeof value === 'string') {
         return new FluentDate(value, this.component.$props.timezone.server, this.component.dateFormat)
           .setTimezone(this.component.localTimezone)
       }
@@ -68,7 +69,7 @@ export default class Watchers extends Feature {
       return null
     }
 
-    return typeof value === 'string'
+    return isNotEmpty(value) && typeof value === 'string'
       ? new FluentDate(value, this.component.localTimezone, this.component.dateFormat)
       : null
   }
