@@ -68,11 +68,9 @@
     @include('wireui-wrapper::components.slots', ['except' => ['prepend', 'append']])
 
     @if ($multiple)
-        <x-slot:prepend
-            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-auto cursor-pointer"
-            x-bind:class="{
-                'ml-2 px-2': selectedDates.length > 0,
-            }"
+        <div
+            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-full cursor-pointer"
+            x-show="selectedDates.length > 0"
         >
             <template x-for="(date, index) in selectedDatesDisplay" wire:key="date">
                 <button
@@ -91,7 +89,7 @@
                     <span x-text="date"></span>
                 </button>
             </template>
-        </x-slot:prepend>
+        </div>
     @endif
 
     <x-wireui-wrapper::element
