@@ -23,6 +23,7 @@ class Base extends WireUiComponent
         'async-data'           => null,
         'right-icon'           => 'chevron-up-down',
         'searchable'           => true,
+        'shadowless'           => false,
         'multiselect'          => false,
         'placeholder'          => null,
         'always-fetch'         => false,
