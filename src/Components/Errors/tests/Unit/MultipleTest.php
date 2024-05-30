@@ -2,16 +2,14 @@
 
 namespace WireUi\Components\Alert\tests\Unit;
 
-use Illuminate\Support\Facades\{View};
-use Illuminate\Support\{MessageBag, ViewErrorBag};
 use WireUi\Components\Errors\Multiple as Errors;
 
 beforeEach(function () {
-    View::share('errors', (new ViewErrorBag())->put('default', new MessageBag([
+    $this->withViewErrors([
         'first'  => 'first error',
         'second' => 'second error',
         'third'  => 'third error',
-    ])));
+    ]);
 
     $this->component = (new Errors())->withName('errors');
 });

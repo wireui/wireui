@@ -17,7 +17,7 @@ class ComponentResolver
     {
         $components = config('wireui.components');
 
-        return $components[$name]['class'];
+        return $components[$this->removePrefix($name)]['class'];
     }
 
     public function resolveByAlias(string $name): string

@@ -93,8 +93,6 @@ trait Interacts
 
         $method = $reflection->getMethod($method);
 
-        $method->setAccessible(true);
-
         return $method->invokeArgs($object, $parameters);
     }
 
@@ -106,8 +104,6 @@ trait Interacts
         $reflection = new ReflectionClass(get_class($object));
 
         $property = $reflection->getProperty($property);
-
-        $property->setAccessible(true);
 
         return $property->getValue($object);
     }
