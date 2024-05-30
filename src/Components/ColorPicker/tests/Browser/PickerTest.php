@@ -172,12 +172,12 @@ class PickerTest extends BrowserTestCase
             ->assertInputValue('color', '#FFF')
             ->assertSeeNothingIn('@value')
             ->pause(500)
-            ->assertSeeIn('@value', '#FFF')
+            ->waitForTextIn('@value', '#FFF')
             ->typeSlowly('color', '000')
             ->assertInputValue('color', '#000')
-            ->assertSeeIn('@value', '#FFF')
+            ->waitForTextIn('@value', '#FFF')
             ->pause(500)
-            ->assertSeeIn('@value', '#000');
+            ->waitForTextIn('@value', '#000');
     }
 
     public function test_wire_model_throttle(): void
@@ -200,12 +200,12 @@ class PickerTest extends BrowserTestCase
             ->waitForAlpineJs()
             ->typeSlowly('color', 'FFF', 40)
             ->assertInputValue('color', '#FFF')
-            ->assertSeeIn('@value', '#F')
+            ->waitForTextIn('@value', '#F')
             ->pause(500)
-            ->assertSeeIn('@value', '#FFF')
+            ->waitForTextIn('@value', '#FFF')
             ->typeSlowly('color', 'FFFF', 40)
             ->assertInputValue('color', '#FFFF')
             ->pause(500)
-            ->assertSeeIn('@value', '#FFFF');
+            ->waitForTextIn('@value', '#FFFF');
     }
 }
