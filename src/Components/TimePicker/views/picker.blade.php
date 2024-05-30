@@ -1,11 +1,12 @@
 <x-text-field
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
-        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'militaryTime'   => $militaryTime,
         'withoutSeconds' => $withoutSeconds,
         'disabled'       => $disabled,
         'readonly'       => $readonly,
+        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'    => WireUi::alpineModel($attributes),
     ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"

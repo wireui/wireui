@@ -6,6 +6,7 @@
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'      => WireUi::alpineModel($attributes),
     ])"
     x-ref="container"
 >

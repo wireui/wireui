@@ -5,8 +5,8 @@ import dialog from './dialog'
 import Dropdown from './Dropdown'
 import currency from './inputs/currency'
 import maskable from './inputs/maskable'
-import number from './inputs/number'
-import password from './inputs/password'
+import NumberInput from './inputs/number'
+import Password from './inputs/password'
 import modal from './modal'
 import notifications from './notifications'
 import Select from './select'
@@ -19,12 +19,12 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_notifications', notifications)
   window.Alpine.data('wireui_inputs_maskable', maskable)
   window.Alpine.data('wireui_inputs_currency', currency)
-  window.Alpine.data('wireui_inputs_number', number)
-  window.Alpine.data('wireui_inputs_password', password)
 
   window.Alpine.data('wireui_color_picker', () => classToObject(new ColorPicker()))
   window.Alpine.data('wireui_date_picker', () => classToObject(new DatePicker()))
   window.Alpine.data('wireui_dropdown', () => classToObject(new Dropdown()))
+  window.Alpine.data('wireui_inputs_number', () => classToObject(new NumberInput()))
+  window.Alpine.data('wireui_inputs_password', () => classToObject(new Password()))
   window.Alpine.data('wireui_select', () => classToObject(new Select()))
   window.Alpine.data('wireui_time_selector', () => classToObject(new TimeSelector()))
   window.Alpine.data('wireui_time_picker', () => classToObject(new TimePicker()))
