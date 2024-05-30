@@ -41,3 +41,7 @@ export const isEmpty = (value: any): value is null => {
 
   return typeof value === 'object' && Object.keys(value).length === 0
 }
+
+export const isNotEmpty = (value: any): boolean => {
+  return !isEmpty(value)
+}
