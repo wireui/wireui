@@ -18,7 +18,7 @@ class Maskable extends WireUiComponent
 
     protected array $props = [
         'mask'           => null,
-        'shadowless'     => null,
+        'shadowless'     => false,
         'emit-formatted' => false,
     ];
 

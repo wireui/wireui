@@ -2,10 +2,8 @@
 
 namespace WireUi\Components\TextField\tests\Unit;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Components\TextField\Number;
 use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
-use WireUi\Enum\Packs;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -43,9 +41,7 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->icon)->toBe('minus');
-
     expect($this->component->rightIcon)->toBe('plus');
-
     expect($this->component->shadowless)->toBeFalse();
 });
 
@@ -58,89 +54,64 @@ test('it should set icon and right icon in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->icon)->toBe($icon);
-
     expect($this->component->rightIcon)->toBe($rightIcon);
 
-    expect(Blade::render("<x-number icon=\"{$icon}\" rightIcon=\"{$rightIcon}\" />"))
-        ->toContain(Blade::render("<x-icon name=\"{$icon}\" class=\"w-4 h-4 shrink-0\" />"))
-        ->toContain(Blade::render("<x-icon name=\"{$rightIcon}\" class=\"w-4 h-4 shrink-0\" />"));
+    expect('<x-number :$icon :$rightIcon />')->render(compact('icon', 'rightIcon'))
+        ->toContain(render('<x-icon :name="$icon" class="w-4 h-4 shrink-0" />', compact('icon')))
+        ->toContain(render('<x-icon :name="$rightIcon" class="w-4 h-4 shrink-0" />', compact('rightIcon')));
 });
 
-test('it should set specific shadow in component', function () {
+test('it should set random color in component', function () {
+    $pack = $this->getRandomPack(Color::class);
+
     $this->setAttributes($this->component, [
-        'shadow' => Packs\Shadow::MD,
+        'color' => $color = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
+    $class = data_get($pack, 'class');
+
+    expect($this->component->color)->toBe($color);
+    expect($this->component->colorClasses)->toBe($class);
+
+    expect('<x-number :$color />')
+        ->render(compact('color'))
+        ->toContain(data_get($class, 'input'));
+});
+
+test('it should set random shadow in component', function () {
+    $pack = $this->getRandomPack(Shadow::class);
+
+    $this->setAttributes($this->component, [
+        'shadow' => $shadow = data_get($pack, 'key'),
+    ]);
+
+    $this->runWireUiComponent($this->component);
+
+    $class = data_get($pack, 'class');
+
+    expect($this->component->shadow)->toBe($shadow);
     expect($this->component->shadowless)->toBeFalse();
+    expect($this->component->shadowClasses)->toBe($class);
 
-    expect($this->component->shadow)->toBe(Packs\Shadow::MD);
-
-    expect($this->component->shadowClasses)->toBe($class = (new Shadow())->get(Packs\Shadow::MD));
-
-    expect(Blade::render('<x-number shadow="md" />'))->toContain($class);
+    expect('<x-number :$shadow />')->render(compact('shadow'))->toContain($class);
 });
 
-test('it should remove shadow in component when is shadowless', function () {
+test('it should set random rounded in component', function () {
+    $pack = $this->getRandomPack(Rounded::class);
+
     $this->setAttributes($this->component, [
-        'shadowless' => true,
-        'shadow'     => Packs\Shadow::MD,
+        'rounded' => $rounded = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->shadowless)->toBeTrue();
-
-    expect($this->component->shadow)->toBe(Packs\Shadow::MD);
-
-    expect($this->component->shadowClasses)->toBe($class = (new Shadow())->get(Packs\Shadow::MD));
-
-    expect(Blade::render('<x-number shadowless shadow="md" />'))->not->toContain($class);
-});
-
-test('it should set specific color in component', function () {
-    $this->setAttributes($this->component, [
-        'color' => Packs\Color::INFO,
-    ]);
-
-    $this->runWireUiComponent($this->component);
-
-    expect($this->component->color)->toBe($color = Packs\Color::INFO);
-
-    expect($this->component->colorClasses)->toBe($class = (new Color())->get(Packs\Color::INFO));
-
-    expect(Blade::render("<x-number color=\"{$color}\" />"))->toContain(data_get($class, 'input'));
-});
-
-test('it should set rounded full in component', function () {
-    $this->setAttributes($this->component, [
-        'rounded' => true,
-    ]);
-
-    $this->runWireUiComponent($this->component);
-
-    expect($this->component->rounded)->toBeTrue();
+    $class = data_get($pack, 'class');
 
     expect($this->component->squared)->toBeFalse();
+    expect($this->component->rounded)->toBe($rounded);
+    expect($this->component->roundedClasses)->toBe($class);
 
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
-
-    expect(Blade::render('<x-number rounded />'))->toContain(data_get($class, 'input'));
-});
-
-test('it should set squared in component', function () {
-    $this->setAttributes($this->component, [
-        'squared' => true,
-    ]);
-
-    $this->runWireUiComponent($this->component);
-
-    expect($this->component->squared)->toBeTrue();
-
-    expect($this->component->rounded)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
-
-    expect(Blade::render('<x-number squared />'))->toContain(data_get($class, 'input'));
+    expect('<x-number :$rounded />')->render(compact('rounded'))->toContain(...$class);
 });

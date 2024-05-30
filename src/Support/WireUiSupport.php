@@ -67,7 +67,7 @@ class WireUiSupport
         return "{{$expressions}}";
     }
 
-    private function jsonParse(array|string $value): string
+    private function jsonParse(mixed $value): string
     {
         return "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))";
     }
