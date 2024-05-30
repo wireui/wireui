@@ -11,6 +11,8 @@ class Selector extends WireUiComponent
     use HasSetupRounded;
     use IsFormComponent;
 
+    protected array $packs = ['shadow'];
+
     protected array $props = [
         'borderless'      => false,
         'shadowless'      => false,

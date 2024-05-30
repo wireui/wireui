@@ -39,7 +39,7 @@ test('it should have properties in component', function () {
 
 test('it should render label and description in component', function () {
     $this->setAttributes($this->component, [
-        'label'       => $label             = fake()->word(),
+        'label'       => $label       = fake()->word(),
         'description' => $description = fake()->sentence(),
     ]);
 

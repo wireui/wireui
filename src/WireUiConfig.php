@@ -211,16 +211,16 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
-                'right-icon'       => 'calendar',
-                'without-tips'     => false,
-                'without-timezone' => false,
-                'without-time'     => false,
                 'interval'         => 10,
+                'timezone'         => null,
+                'right-icon'       => 'calendar',
                 'time-format'      => 12,
                 'parse-format'     => null,
-                'display-format'   => null,
-                'timezone'         => null,
+                'without-time'     => false,
+                'without-tips'     => false,
                 'user-timezone'    => null,
+                'display-format'   => null,
+                'without-timezone' => false,
             ],
         ], $options));
     }
@@ -229,9 +229,9 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
+                'right-icon'      => 'clock',
                 'military-time'   => false,
                 'without-seconds' => false,
-                'right-icon'      => 'clock',
             ],
         ], $options));
     }
@@ -240,11 +240,10 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
+                'borderless'      => false,
+                'shadowless'      => false,
                 'military-time'   => false,
                 'without-seconds' => false,
-                'borderless'      => false,
-                'squared'         => false,
-                'shadowless'      => false,
             ],
             'packs' => [
                 'shadows'  => WireUi\Shadow::class,
@@ -295,8 +294,8 @@ class WireUiConfig
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'colors'   => Switcher\WireUi\Radio\Color::class,
                 'sizes'    => Switcher\WireUi\Radio\Size::class,
+                'colors'   => Switcher\WireUi\Radio\Color::class,
             ],
         ], $options);
     }

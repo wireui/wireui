@@ -2,12 +2,11 @@
 
 namespace WireUi\Components\TimePicker\tests\Unit;
 
-use WireUi\Components\TimePicker\Picker as TimePicker;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
-use WireUi\WireUi\Shadow;
+use WireUi\Components\TimePicker\Selector as TimeSelector;
+use WireUi\WireUi\{Rounded, Shadow};
 
 beforeEach(function () {
-    $this->component = (new TimePicker())->withName('time-picker');
+    $this->component = (new TimeSelector())->withName('time-selector');
 });
 
 test('it should have array properties', function () {
@@ -18,7 +17,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'right-icon'      => 'clock',
+        'borderless'      => false,
         'shadowless'      => false,
         'military-time'   => false,
         'without-seconds' => false,
@@ -29,42 +28,21 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
-        'color',
         'shadow',
         'rounded',
         'squared',
-        'rightIcon',
+        'borderless',
         'shadowless',
-        'colorClasses',
         'militaryTime',
         'shadowClasses',
         'roundedClasses',
         'withoutSeconds',
     ]);
 
+    expect($this->component->borderless)->toBeFalse();
     expect($this->component->shadowless)->toBeFalse();
-    expect($this->component->rightIcon)->toBe('clock');
     expect($this->component->militaryTime)->toBeFalse();
     expect($this->component->withoutSeconds)->toBeFalse();
-});
-
-test('it should set random color in component', function () {
-    $pack = $this->getRandomPack(Color::class);
-
-    $this->setAttributes($this->component, [
-        'color' => $color = data_get($pack, 'key'),
-    ]);
-
-    $this->runWireUiComponent($this->component);
-
-    $class = data_get($pack, 'class');
-
-    expect($this->component->color)->toBe($color);
-    expect($this->component->colorClasses)->toBe($class);
-
-    expect('<x-time-picker :$color />')
-        ->render(compact('color'))
-        ->toContain(data_get($class, 'input'));
 });
 
 test('it should set random shadow in component', function () {
@@ -82,7 +60,7 @@ test('it should set random shadow in component', function () {
     expect($this->component->shadowless)->toBeFalse();
     expect($this->component->shadowClasses)->toBe($class);
 
-    expect('<x-time-picker :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-time-selector :$shadow />')->render(compact('shadow'))->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -100,7 +78,7 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-time-picker :$rounded />')
+    expect('<x-time-selector :$rounded />')
         ->render(compact('rounded'))
         ->toContain(data_get($class, 'input'));
 });
