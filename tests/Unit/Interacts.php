@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\{Arr, Collection, Str};
+use Illuminate\Support\{Collection, Str};
 use Illuminate\View\{Component, ComponentAttributeBag};
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;
@@ -32,16 +32,6 @@ trait Interacts
     public function runWireUiComponent(Component &$component): void
     {
         $this->invokeMethod($component, 'runWireUiComponent', [$component->data()]);
-    }
-
-    /**
-     * Transform colors to css classes.
-     */
-    public function serializeColorClasses(array $colors): array
-    {
-        return collect($colors)->transform(
-            fn ($color) => Arr::toCssClasses($color),
-        )->toArray();
     }
 
     /**

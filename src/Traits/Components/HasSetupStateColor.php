@@ -2,7 +2,6 @@
 
 namespace WireUi\Traits\Components;
 
-use Illuminate\Support\Arr;
 use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
@@ -31,17 +30,6 @@ trait HasSetupStateColor
         $this->applyColorModifier(['hover'], 'hover');
         $this->applyColorModifier(['focus'], 'focus');
         $this->applyColorModifier(['hover', 'focus'], 'interaction');
-
-        $this->serializeColorClasses();
-
-        $this->setVariables(['colorClasses']);
-    }
-
-    private function serializeColorClasses(): void
-    {
-        $this->colorClasses = collect($this->colorClasses)->transform(
-            fn ($color) => Arr::toCssClasses($color),
-        )->toArray();
     }
 
     /**

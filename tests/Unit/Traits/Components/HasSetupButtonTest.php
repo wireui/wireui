@@ -2,22 +2,10 @@
 
 namespace Tests\Unit\Traits\Components;
 
-use Illuminate\View\{View};
-use WireUi\Traits\Components\HasSetupButton;
-use WireUi\View\WireUiComponent;
-
-class Example extends WireUiComponent
-{
-    use HasSetupButton;
-
-    public function blade(): View
-    {
-        return view('view');
-    }
-}
+use WireUi\Components\Button\Base as Button;
 
 beforeEach(function () {
-    $this->component = new Example();
+    $this->component = (new Button())->withName('button');
 });
 
 test('it should have all properties empty', function () {

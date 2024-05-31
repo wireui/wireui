@@ -1,3 +1,0 @@
-<div>
-    Test View
-</div>

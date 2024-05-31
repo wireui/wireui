@@ -2,6 +2,7 @@
 
 namespace WireUi\Components\Button\tests\Unit;
 
+use Illuminate\Support\Arr;
 use WireUi\Components\Button\Base;
 use WireUi\Components\Button\WireUi\Size\Base as SizeBase;
 use WireUi\Components\Button\WireUi\{IconSize, Variant};
@@ -122,11 +123,11 @@ test('it should set random color and variant in component', function () {
 
     expect($this->component->color)->toBe($color);
     expect($this->component->variant)->toBe($variant);
-    expect($this->component->colorClasses)->toBe($class = $this->serializeColorClasses($class));
+    expect($this->component->colorClasses)->toBe($class);
 
     expect('<x-button :$color :$variant />')
         ->render(compact('color', 'variant'))
-        ->toContain(...$class);
+        ->toContain(Arr::toRecursiveCssClasses($class));
 });
 
 test('it should set rounded full in component', function () {

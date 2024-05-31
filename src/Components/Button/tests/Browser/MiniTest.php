@@ -41,10 +41,9 @@ class MiniTest extends BrowserTestCase
                 window.Livewire.dispatch('set-color', { color: '{$flat['key']}' })
             JS))
             ->waitTo(function (Browser $browser) use ($flat) {
-                return $browser
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.base')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.hover')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($flat, 'class.focus')));
+                return $browser->assertAttributeContains(
+                    '@button', 'class', Arr::toRecursiveCssClasses(data_get($flat, 'class')),
+                );
             });
     }
 
@@ -77,10 +76,9 @@ class MiniTest extends BrowserTestCase
                 window.Livewire.dispatch('set-color', { color: '{$solid['key']}' })
             JS))
             ->waitTo(function (Browser $browser) use ($solid) {
-                return $browser
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.base')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.hover')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($solid, 'class.focus')));
+                return $browser->assertAttributeContains(
+                    '@button', 'class', Arr::toRecursiveCssClasses(data_get($solid, 'class')),
+                );
             });
     }
 
@@ -113,10 +111,9 @@ class MiniTest extends BrowserTestCase
                 window.Livewire.dispatch('set-color', { color: '{$light['key']}' })
             JS))
             ->waitTo(function (Browser $browser) use ($light) {
-                return $browser
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.base')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.hover')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($light, 'class.focus')));
+                return $browser->assertAttributeContains(
+                    '@button', 'class', Arr::toRecursiveCssClasses(data_get($light, 'class')),
+                );
             });
     }
 
@@ -149,15 +146,9 @@ class MiniTest extends BrowserTestCase
                 window.Livewire.dispatch('set-color', { color: '{$outline['key']}' })
             JS))
             ->waitTo(function (Browser $browser) use ($outline) {
-                return $browser
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.base')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.hover')))
-                    ->assertAttributeContains('@button', 'class', $this->getClasses(data_get($outline, 'class.focus')));
+                return $browser->assertAttributeContains(
+                    '@button', 'class', Arr::toRecursiveCssClasses(data_get($outline, 'class')),
+                );
             });
-    }
-
-    private function getClasses(mixed $class): string
-    {
-        return collect(Arr::wrap($class))->implode(' ');
     }
 }

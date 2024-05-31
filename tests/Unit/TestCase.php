@@ -32,11 +32,6 @@ class TestCase extends TestbenchTestCase
         base_path('src/routes/web.php');
     }
 
-    protected function defineEnvironment($app)
-    {
-        $app['view']->addLocation(__DIR__ . '/views');
-    }
-
     protected function getPackageProviders($app)
     {
         return [
