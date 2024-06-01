@@ -7,6 +7,7 @@ use WireUi\Components\Button\Mini;
 use WireUi\Components\Button\WireUi\Size\Mini as SizeMini;
 use WireUi\Components\Button\WireUi\{IconSize, Variant};
 use WireUi\Enum\Packs;
+use WireUi\Enum\Packs\Color;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -102,7 +103,7 @@ test('it should set icon in component with random size', function () {
 });
 
 test('it should set random color and variant in component', function () {
-    $pack = $this->getVariantRandomPack(Variant::class);
+    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
 
     $this->setAttributes($this->component, [
         'color'   => $color   = data_get($pack, 'key'),

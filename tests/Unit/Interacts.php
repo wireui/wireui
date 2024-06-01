@@ -71,7 +71,7 @@ trait Interacts
 
         $pack = $this->getRandomPack(data_get($variant, 'pack'), $except);
 
-        return data_set($pack, 'variant', data_get($variant, 'variant'));
+        return [...$pack, 'pack' => data_get($variant, 'pack'), 'variant' => data_get($variant, 'variant')];
     }
 
     /**

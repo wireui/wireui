@@ -5,6 +5,7 @@ namespace Tests\Unit\Traits\Components;
 use WireUi\Components\Button\Base as Button;
 use WireUi\Components\Button\WireUi\Color\Solid;
 use WireUi\Components\Button\WireUi\Variant;
+use WireUi\Enum\Packs\Color;
 
 beforeEach(function () {
     $this->component = (new Button())->withName('button');
@@ -39,7 +40,7 @@ test('it should set color resolve', function () {
 });
 
 test('it should setup color', function () {
-    $pack = $this->getVariantRandomPack(Variant::class);
+    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
 
     $color        = data_get($pack, 'key');
     $class        = data_get($pack, 'class');
