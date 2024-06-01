@@ -8,7 +8,7 @@
     <select {{ $attrs
         ->except(['class', 'wire:key', 'x-data'])
         ->class([
-            'bg-transparent w-full p-0 !border-0 !outline-0 !ring-0',
+            'bg-transparent w-full p-0 !border-0 !outline-none !ring-0',
             'sm:text-sm sm:leading-6 text-gray-900',
             'invalidated:text-negative-800 invalidated:dark:text-negative-600',
             'invalidated:placeholder-negative-400 invalidated:dark:placeholder-negative-600/70',
