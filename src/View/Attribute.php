@@ -71,7 +71,7 @@ final class Attribute
 
     private function extractValue(): ?string
     {
-        if (!str_contains($this->directive, ':')) {
+        if (!Str::contains($this->directive, ':')) {
             return null;
         }
 

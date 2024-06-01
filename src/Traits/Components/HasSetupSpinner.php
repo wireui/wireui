@@ -12,11 +12,6 @@ trait HasSetupSpinner
     {
         $this->spinnerRemove = new ComponentAttributeBag();
 
-        $this->setSpinnerVariables($data);
-    }
-
-    private function setSpinnerVariables(array &$data): void
-    {
         $data['spinner'] = $this->executeSpinner();
 
         $data['spinnerRemove'] = $this->spinnerRemove;
