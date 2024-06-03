@@ -33,7 +33,6 @@
         "
         x-on:keydown.down.stop.prevent="minus"
         x-on:keydown.up.stop.prevent="plus"
-        x-on:keydown.stop.prevent="handleInput($event.target.value)"
         inputmode="numeric"
         type="number"
         x-ref="input"

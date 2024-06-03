@@ -2,7 +2,7 @@ import { AlpineComponent } from '@/components/alpine2'
 
 export default class NumberInput extends AlpineComponent {
   declare $refs: {
-    input: HTMLInputElement
+    input?: HTMLInputElement
   }
 
   declare $props: {
@@ -13,14 +13,14 @@ export default class NumberInput extends AlpineComponent {
   value: number|null = null
 
   get min (): number {
-    return Number(this.$refs.input.min)
+    return Number(this.$refs.input?.min ?? 0)
   }
 
   get max (): number {
-    return Number(this.$refs.input.max)
+    return Number(this.$refs.input?.max ?? 0)
   }
 
-  get disablePlus () {
+  get disablePlus (): boolean {
     if (this.$props.disabled) return true
 
     return this.max
@@ -28,7 +28,7 @@ export default class NumberInput extends AlpineComponent {
       : false
   }
 
-  get disableMinus () {
+  get disableMinus (): boolean {
     if (this.$props.disabled) return true
 
     return this.min
@@ -36,12 +36,16 @@ export default class NumberInput extends AlpineComponent {
       : false
   }
 
+  get isDisabled (): boolean {
+    return this.$props.disabled || this.$props.readonly
+  }
+
   init () {
-    this.value = Number(this.$refs.input.value)
+    this.value = Number(this.$refs.input?.value ?? 0)
   }
 
   plus () {
-    if (this.$props.disabled || this.$props.readonly) return
+    if (this.isDisabled || !this.$refs.input) return
 
     this.$refs.input.stepUp()
 
@@ -51,7 +55,7 @@ export default class NumberInput extends AlpineComponent {
   }
 
   minus () {
-    if (this.$props.disabled || this.$props.readonly) return
+    if (this.isDisabled || !this.$refs.input) return
 
     this.$refs.input.stepDown()
 
