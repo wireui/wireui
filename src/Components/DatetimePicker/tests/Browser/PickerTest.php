@@ -116,12 +116,31 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_select_date_without_timezone_difference(): void
     {
-        $this->browser()
-            ->assertInputValue('withoutTimezone', '2021-05-22 02:48')
-            ->click('[id="withoutTimezone"]')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'withoutTimezone', 5))
-            ->waitForTextIn('@withoutTimezone', '2021-05-05T02:48:00Z')
-            ->assertInputValue('withoutTimezone', '2021-05-05 02:48');
+        Livewire::visit(new class() extends Component
+        {
+            public $model = '2021-05-22T02:48';
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div id="model">
+                    <x-badge dusk="model" :label="$model" />
+
+                    <x-datetime-picker
+                        wire:model.live="model"
+                        without-timezone
+                        label="Without Timezone"
+                        display-format="YYYY-MM-DD HH:mm"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->assertInputValue('model', '2021-05-22T02:48:00')
+            ->clickWrapper()
+            ->tap(fn (Browser $browser) => $browser->selectDate('model', 5))
+            ->waitForTextIn('@model', '2021-05-05T02:48:00')
+            ->assertInputValue('model', '2021-05-05T02:48:00');
     }
 
     public function test_it_should_select_date_with_utc_timezone_difference(): void
@@ -133,7 +152,7 @@ class PickerTest extends BrowserTestCase
         $this->browser()
             ->assertInputValue('utcTimezone', '2021-07-21 21:30')
             ->click('[id="utcTimezone"] input')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'utcTimezone', 31))
+            ->tap(fn (Browser $browser) => $browser->selectDate('utcTimezone', 31))
             ->waitForTextIn('@utcTimezone', '2021-08-01T00:30:00Z')
             ->assertInputValue('utcTimezone', '2021-07-31 21:30');
     }
@@ -146,7 +165,7 @@ class PickerTest extends BrowserTestCase
         $this->browser()
             ->assertInputValue('tokyoTimezone', '2021-07-25 22:00')
             ->click('[id="tokyoTimezone"] input')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'tokyoTimezone', 31))
+            ->tap(fn (Browser $browser) => $browser->selectDate('tokyoTimezone', 31))
             ->waitForTextIn('@tokyoTimezone', '2021-08-01T10:00:00+09:00')
             ->assertInputValue('tokyoTimezone', '2021-07-31 22:00');
     }
@@ -159,7 +178,7 @@ class PickerTest extends BrowserTestCase
         $this->browser()
             ->assertInputValue('customFormat', '29-2021-09 59:13')
             ->click('[id="customFormat"] input')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'customFormat', 10))
+            ->tap(fn (Browser $browser) => $browser->selectDate('customFormat', 10))
             ->waitForTextIn('@customFormat', '10-2021-09 59:13')
             ->assertInputValue('customFormat', '10-2021-09 59:13');
     }
@@ -169,7 +188,7 @@ class PickerTest extends BrowserTestCase
         $this->browser()
             ->assertInputValue('dateAndTime', '25-12-2021 00:00')
             ->click('[id="dateAndTime"] input')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'dateAndTime', 11))
+            ->tap(fn (Browser $browser) => $browser->selectDate('dateAndTime', 11))
             ->tap(fn (Browser $browser) => $browser->waitForLivewire())
             ->waitForTextIn('@dateAndTime', '2021-12-11T00:00:00Z')
             ->assertInputValue('dateAndTime', '11-12-2021 00:00')
@@ -199,7 +218,7 @@ class PickerTest extends BrowserTestCase
                         .find(day => day.innerText == {$day})
                         .hasAttribute('disabled')
                 EOT, $disabled))
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'minMaxLimits', $day));
+            ->tap(fn (Browser $browser) => $browser->selectDate('minMaxLimits', $day));
 
         if (!$disabled) {
             $browser
@@ -217,7 +236,7 @@ class PickerTest extends BrowserTestCase
     {
         $this->browser()
             ->click('[name="model"]')
-            ->tap(fn (Browser $browser) => $this->selectDate($browser, 'minMaxLimits', $day))
+            ->tap(fn (Browser $browser) => $browser->selectDate('minMaxLimits', $day))
             ->waitUsing(7, 100, fn (Browser $browser) => $browser->assertScript(
                 "!!document.querySelector('[name=\"times.{$time}\"]')",
                 $exists,
@@ -256,14 +275,5 @@ class PickerTest extends BrowserTestCase
             ['day' => 16, 'time' => '15:00', 'exists' => true],
             ['day' => 22, 'time' => '15:00', 'exists' => false],
         ];
-    }
-
-    private function selectDate(Browser $browser, string $id, int $day): array
-    {
-        return $browser->script(<<<JS
-            [...document.querySelectorAll('[id="{$id}"] .picker-days button')]
-                .find(day => day.innerText == {$day})
-                .click()
-        JS);
     }
 }

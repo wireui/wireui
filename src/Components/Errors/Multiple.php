@@ -17,11 +17,9 @@ class Multiple extends WireUiComponent
         'title' => null,
     ];
 
-    protected function processed(array $data): void
+    protected function processed(): void
     {
         $this->initOnly();
-
-        $this->title ??= data_get($data, 'title');
     }
 
     private function initOnly(): void

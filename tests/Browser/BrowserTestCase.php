@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\{Artisan, File};
 use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Dusk\{Options, TestCase};
-use Tests\Browser\Macros\DuskBrowserMacros;
 use Tests\Unit\Interacts;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\ServiceProvider;
