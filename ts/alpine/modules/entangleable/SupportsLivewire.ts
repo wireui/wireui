@@ -14,6 +14,7 @@ export default class SupportsLivewire {
   constructor (
     private entangleable: Entangleable<any>,
     private wireModel: WireModel,
+    preventInitialFill = false
   ) {
     this.entangleable = entangleable
     this.wireModel = wireModel
@@ -21,7 +22,7 @@ export default class SupportsLivewire {
 
     this.init()
 
-    if (isEmpty(this.entangleable.get())) {
+    if (!preventInitialFill && isEmpty(this.entangleable.get())) {
       this.fillValueFromLivewire()
     }
   }

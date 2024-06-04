@@ -18,6 +18,7 @@ export default class DatetimePicker extends AlpineComponent {
     timesContainer: HTMLElement
     container: HTMLDivElement
     optionsContainer: HTMLDivElement
+    rawInput: HTMLInputElement
   }
 
   declare $props: {

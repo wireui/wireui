@@ -59,8 +59,9 @@
         <x-wireui-wrapper::element
             :id="$id"
             :name="$name"
-            :value="$name ? old($name) : null"
+            :value="$name ? old($name) : $attributes->get('value')"
             x-bind:value="selectedRawValue"
+            x-ref="rawInput"
             type="hidden"
         />
     </div>
@@ -96,7 +97,7 @@
         class="cursor-pointer"
         x-show="selectedDates.length === 0"
         x-bind:value="display"
-        :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
+        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
         autocomplete="off"
         readonly
     />

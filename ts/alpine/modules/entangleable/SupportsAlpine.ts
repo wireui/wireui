@@ -13,13 +13,14 @@ export default class SupportsAlpine {
     private target: HTMLElement,
     private entangleable: Entangleable<any>,
     private config: AlpineModel,
+    preventInitialFill = false
   ) {
     this.entangleable = entangleable
     this.config = config
 
     this.init()
 
-    if (isEmpty(this.entangleable.get())) {
+    if (!preventInitialFill && isEmpty(this.entangleable.get())) {
       this.fillValueFromAlpine()
     }
   }

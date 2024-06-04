@@ -26,30 +26,45 @@ export default class Watchers extends Feature {
         day.isSelected = this.component.isSelected(new FluentDate(day.date))
       })
 
-      // if (date) {
-      //   this.calendar.month = date.getMonth()
-      //   this.calendar.year = date.getYear()
-      //
-      //   this.$events.dispatch(
-      //     'selected::month',
-      //     this.calendar.year,
-      //     this.calendar.month,
-      //   )
-      // }
+      if (isNotEmpty(date)) {
+        const selected = date instanceof FluentDate ? date : date[0]
+
+        this.component.calendar.month = selected.getMonth()
+        this.component.calendar.year = selected.getYear()
+
+        this.$events.dispatch(
+          'selected::month',
+          this.component.calendar.year,
+          this.component.calendar.month,
+        )
+      }
     })
 
+    const preventInitialFill = true
+
     if (this.component.$props.wireModel.exists) {
-      new SupportsLivewire(this.component.entangleable, this.component.$props.wireModel)
+      new SupportsLivewire(this.component.entangleable, this.component.$props.wireModel, preventInitialFill)
         .toLivewire((value: FluentDate|FluentDate[]|null) => this.fromComponent(value))
         .fromLivewire((value: string|string[]|null) => this.toComponent(value))
         .fillValueFromLivewire()
     }
 
     if (this.component.$props.alpineModel.exists) {
-      new SupportsAlpine(this.component.$root, this.component.entangleable, this.component.$props.alpineModel)
+      new SupportsAlpine(this.component.$root, this.component.entangleable, this.component.$props.alpineModel, preventInitialFill)
         .toAlpine((value: FluentDate|FluentDate[]|null) => this.fromComponent(value))
         .fromAlpine((value: string|string[]|null) => this.toComponent(value))
         .fillValueFromAlpine()
+    }
+
+    this.fillFromRawInput()
+  }
+
+  private fillFromRawInput (): void {
+    const value = this.component.$refs.rawInput.value
+
+    if (isNotEmpty(value)) {
+      const date = this.toComponent(value)
+      this.component.entangleable.set(date)
     }
   }
 
