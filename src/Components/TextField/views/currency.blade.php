@@ -21,6 +21,6 @@
         x-model="input"
         x-ref="input"
         x-on:blur="onBlur"
-        :attributes="$attrs->whereStartsWith(['placeholder', 'dusk', 'cy'])"
+        :attributes="$attrs->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
     />
 </x-text-field>
