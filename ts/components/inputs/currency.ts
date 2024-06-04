@@ -26,8 +26,6 @@ export default class Currency extends AlpineComponent {
   }
 
   init () {
-    this.entangleable.watch(() => Boolean())
-
     if (this.$props.wireModel.exists) {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
@@ -42,7 +40,9 @@ export default class Currency extends AlpineComponent {
         : this.mask(value)
     })
 
-    this.$watch('input', () => {
+    this.$safeWatch('input', () => {
+      this.input = this.mask(this.input)
+
       this.entangleable.set(this.value)
     })
   }
