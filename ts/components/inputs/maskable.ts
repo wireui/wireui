@@ -1,4 +1,4 @@
-import { Masker, masker } from '../../utils/masker'
+import { Masker, masker } from '@/utils/masker'
 import { Entangle } from '../alpine'
 
 export interface Options {

@@ -2,6 +2,7 @@
 
 namespace WireUi\Support;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
@@ -101,11 +102,11 @@ class WireUiSupport
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];
@@ -129,13 +130,22 @@ class WireUiSupport
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];
+    }
+
+    protected static function getAttributeDelay(Collection $modifiers): int
+    {
+        $delay = (int) Str::of($modifiers->last(default: '250'))
+            ->replaceMatches('/[^0-9]/', '')
+            ->toString();
+
+        return $delay ?: 250;
     }
 }
