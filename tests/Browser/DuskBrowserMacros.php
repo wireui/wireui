@@ -26,25 +26,37 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
         };
     }
 
-    public function openSelect(): Closure
+    public function toggleSelect(): Closure
+    {
+        return function (mixed $name = null) {
+            $name ??= 'form.wrapper.container';
+
+            /** @var Browser $this */
+            return $this->pause(500)->click("label[name=\"{$name}\"] > button");
+        };
+    }
+
+    public function toggleWrapper(): Closure
+    {
+        return function (mixed $name = null) {
+            $name ??= 'form.wrapper.container';
+
+            /** @var Browser $this */
+            return $this->pause(500)->click("label[name=\"{$name}\"] > input");
+        };
+    }
+
+    public function waitToSelectValue(): Closure
     {
         return function (string $name) {
             /** @var Browser $this */
-            return $this->tap(fn (Browser $browser) => $browser->script(<<<JS
-                Alpine.evaluate(document.querySelector("input[name=\"{$name}\"]"), 'open')
-            JS));
+            return $this->waitTo(function (Browser $browser) use ($name) {
+                return $browser->assertSeeIn('div[name="wireui.select.options.model"] > ul', $name);
+            });
         };
     }
 
-    public function clickWrapper(): Closure
-    {
-        return function () {
-            /** @var Browser $this */
-            return $this->click('[name="form.wrapper.container"] > input');
-        };
-    }
-
-    public function wireuiSelectValue(): Closure
+    public function wireUiSelectValue(): Closure
     {
         return function (string $name, int $index) {
             /** @var Browser $this */

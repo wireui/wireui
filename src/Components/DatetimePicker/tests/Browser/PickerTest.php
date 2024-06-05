@@ -137,7 +137,7 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->assertInputValue('model', '2021-05-22T02:48:00')
-            ->clickWrapper()
+            ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 5))
             ->waitForTextIn('@model', '2021-05-05T02:48:00')
             ->assertInputValue('model', '2021-05-05T02:48:00');

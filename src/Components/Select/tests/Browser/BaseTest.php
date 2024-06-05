@@ -3,30 +3,18 @@
 namespace WireUi\Components\Select\tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class BaseTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_it_should_show_validation_message(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
+            #[Validate('required', message: 'Select any value')]
             public $model = null;
-
-            public $model2 = null;
-
-            public $model3 = [];
-
-            public $model4 = null;
-
-            public $model5 = null;
-
-            public $asyncModel = null;
-
-            public $collectionOptions = null;
-
-            public $asyncModelNestedData = null;
 
             public $options = [
                 'Array Option 1',
@@ -34,259 +22,309 @@ class BaseTest extends BrowserTestCase
                 'Array Option 3',
             ];
 
-            public $labelOptions = [
-                ['label' => 'Label Option 1', 'value' => 1],
-                ['label' => 'Label Option 2', 'value' => 2],
-                ['label' => 'Label Option 3', 'value' => 3],
-            ];
-
-            public $disableOptions = [
-                ['label' => 'Disabled Option 1', 'value' => 'disabled', 'disabled' => true],
-                ['label' => 'Readonly Option 2', 'value' => 'readonly', 'readonly' => true],
-                ['label' => 'Normal Option 3', 'value' => 'normal'],
-            ];
-
-            protected $rules = [
-                'model' => 'required',
-            ];
-
-            protected $messages = [
-                'model.required' => 'Select any value',
-            ];
-
-            public function mount()
-            {
-                $this->collectionOptions = collect([
-                    ['label' => 'Option A', 'value' => 'A'],
-                    ['label' => 'Option B', 'value' => 'B'],
-                    ['label' => 'Option C', 'value' => 'C'],
-                ]);
-            }
-
-            public function validateSelect()
+            public function save(): void
             {
                 $this->validate();
-            }
-
-            public function resetInputValidation()
-            {
-                $this->resetValidation();
             }
 
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Select Browser Test</h1>
+                    <x-button dusk="validate" wire:click="save" label="Validate" />
 
-                    <span dusk="model">{{ $model }}</span>
-                    <span dusk="model2">{{ $model2 }}</span>
-                    <span dusk="model3">{{ implode(',', $model3) }}</span>
-                    <span dusk="model4">{{ $model4 }}</span>
-                    <span dusk="model5">{{ $model5 }}</span>
-                    <span dusk="asyncModel">{{ $asyncModel }}</span>
-
-                    <button dusk="validate" wire:click="validateSelect">validate</button>
-
-                    // test it_should_show_validation_message
-                    // test it_should_select_one_option_from_simples_options_list
                     <x-select
-                        :options="$options"
-                        placeholder="Select Single Value"
-                        label="Single Select"
                         wire:model.live="model"
-                    />
-
-                    // test it_should_select_one_option_from_labeled_options_list
-                    <x-select
-                        :options="$labelOptions"
-                        placeholder="Select Single Value"
                         label="Single Select"
-                        wire:model.live="model2"
-                        option-label="label"
-                        option-value="value"
-                    />
-
-                    // test it_should_select_and_unselect_multiples_options
-                    <x-select
-                        :options="$collectionOptions"
-                        placeholder="Select Multiples Values"
-                        multiselect
-                        label="Multiple Select"
-                        wire:model.live="model3"
-                        option-label="label"
-                        option-value="value"
-                    />
-
-                    // test it_should_select_from_slot_list
-                    <x-select
-                        placeholder="Slot Select"
-                        label="Slot Select"
-                        wire:model.live="model4"
-                    >
-                        <x-select.option label="Option D" value="D" />
-                        <x-select.option label="Option E" value="E" />
-                        <x-select.option label="Option F" value="F" />
-                    </x-select>
-
-                    // test it_should_cannot_select_readonly_and_disabled_options
-                    <x-select
-                        :options="$disableOptions"
-                        placeholder="Select With Readonly/Disabled"
-                        label="Select With Readonly/Disabled"
-                        wire:model.live="model5"
-                        option-label="label"
-                        option-value="value"
-                    />
-
-                    // test it_should_load_and_search_options_from_the_api
-                    <x-select
-                        label="Select From Async data"
-                        {{-- async-data="/api/options" --}}
-                        :async-data="route('api.options')"
-                        wire:model.live="asyncModel"
-                        option-value="id"
-                        option-label="name"
-                        wire:key="asyncModel"
-                    />
-
-                    // test it_should_load_from_the_api_with_nested_data
-                    <x-select
-                        label="Select From Async data"
-                        {{-- async-data="/api/options" --}}
-                        :async-data="['api' => route('api.options.nested'), 'optionsPath' => 'data.nested']"
-                        wire:model.live="asyncModelNestedData"
-                        option-value="id"
-                        option-label="name"
-                        wire:key="asyncModelNestedData"
+                        placeholder="Select Single Value"
+                        :options="$options"
                     />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_show_validation_message(): void
-    {
-        $this->browser()
+        })
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Select any value'));
     }
 
     public function test_it_should_select_one_option_from_simples_options_list(): void
     {
-        $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelector('input[name="model"]').click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('[name="wireui.select.options.model"] > ul', 'Array Option 2'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelectorAll('[name="wireui.select.options.model"] [select-option]')[1].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model', 'Array Option 2'))
-            ->tap(fn (Browser $browser) => $browser->openSelect('model'))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('[name="wireui.select.options.model"] > ul', 'Array Option 1'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelectorAll('[name="wireui.select.options.model"] [select-option]')[0].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model', 'Array Option 1'));
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                'Array Option 1',
+                'Array Option 2',
+                'Array Option 3',
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Single Select"
+                        placeholder="Select Single Value"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Array Option 2')
+            ->wireUiSelectValue('model', 1)
+            ->waitForTextIn('@value', 'Array Option 2')
+            ->toggleSelect('model')
+            ->waitToSelectValue('Array Option 1')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', 'Array Option 1');
     }
 
     public function test_it_should_select_one_option_from_labeled_options_list(): void
     {
-        $this->browser()
-            ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('[name="wireui.select.options.model2"]', 'Label Option 2'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelectorAll('[name="wireui.select.options.model2"] [select-option]')[1].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model2', '2'))
-            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model2', '2'))
-            ->tap(fn (Browser $browser) => $browser->openSelect('model2'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelectorAll('[name="wireui.select.options.model2"] [select-option]')[0].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model2', '1'));
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                ['label' => 'Label Option 1', 'value' => 1],
+                ['label' => 'Label Option 2', 'value' => 2],
+                ['label' => 'Label Option 3', 'value' => 3],
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Single Select"
+                        placeholder="Select Single Value"
+                        option-label="label"
+                        option-value="value"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Label Option 2')
+            ->wireUiSelectValue('model', 1)
+            ->waitForTextIn('@value', '2')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '2'))
+            ->toggleSelect('model')
+            ->waitToSelectValue('Label Option 1')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', '1')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '1'));
     }
 
     public function test_it_should_select_and_unselect_multiples_options(): void
     {
-        $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelector('input[name="model3"]').click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSee('A'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                const el = document.querySelector('div[name="wireui.select.options.model3"]');
-                el.querySelectorAll('[select-option]')[0].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model3', 'A'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                const el = document.querySelector('div[name="wireui.select.options.model3"]');
-                el.querySelectorAll('[select-option]')[1].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model3', 'A,B'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                const el = document.querySelector('div[name="wireui.select.options.model3"]');
-                el.querySelectorAll('[select-option]')[0].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model3', 'B'));
+        Livewire::visit(new class() extends Component
+        {
+            public $model = [];
+
+            public $options = null;
+
+            public function mount(): void
+            {
+                $this->options = collect([
+                    ['label' => 'Option A', 'value' => 'A'],
+                    ['label' => 'Option B', 'value' => 'B'],
+                    ['label' => 'Option C', 'value' => 'C'],
+                ]);
+            }
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="implode(',', $model)" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Multiple Select"
+                        placeholder="Select Multiples Values"
+                        option-label="label"
+                        option-value="value"
+                        :options="$options"
+                        multiselect
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Option A')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', 'A')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '["A"]'))
+            ->wireUiSelectValue('model', 1)
+            ->waitForTextIn('@value', 'A,B')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '["A","B"]'))
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', 'B')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '["B"]'));
     }
 
     public function test_it_should_select_from_slot_list(): void
     {
-        $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelector('input[name="model4"]').click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSee('Option E'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                const el = document.querySelector('div[name="wireui.select.options.model4"]');
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
 
-                el.querySelectorAll('[select-option]')[1].click();
-            JS))
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@model4', 'E'));
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Slot Select"
+                        placeholder="Slot Select"
+                    >
+                        <x-select.option label="Option D" value="D" />
+                        <x-select.option label="Option E" value="E" />
+                        <x-select.option label="Option F" value="F" />
+                    </x-select>
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Option E')
+            ->wireUiSelectValue('model', 1)
+            ->waitForTextIn('@value', 'E')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', 'E'))
+            ->toggleSelect('model')
+            ->waitToSelectValue('Option D')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', 'D')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', 'D'));
     }
 
     public function test_it_should_cannot_select_readonly_and_disabled_options(): void
     {
-        $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                document.querySelector('input[name="model5"]').click();
-            JS))
-            ->waitForText('Normal Option 3')
-            ->assertSee('Normal Option 3')
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
-                const el = document.querySelector('div[name="wireui.select.options.model5"]');
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
 
-                el.querySelectorAll('[select-option]')[2].click();
-                el.querySelectorAll('[select-option]')[1].click();
-                el.querySelectorAll('[select-option]')[0].click();
-            JS))
-            ->waitForTextIn('@model5', 'normal')
-            ->assertSeeIn('@model5', 'normal');
+            public $options = [
+                ['label' => 'Disabled Option 1', 'value' => 'disabled', 'disabled' => true],
+                ['label' => 'Readonly Option 2', 'value' => 'readonly', 'readonly' => true],
+                ['label' => 'Normal Option 3', 'value' => 'normal'],
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Select With Readonly/Disabled"
+                        placeholder="Select With Readonly/Disabled"
+                        option-label="label"
+                        option-value="value"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Normal Option 3')
+            ->wireUiSelectValue('model', 0)->assertSeeNothingIn('@value')
+            ->wireUiSelectValue('model', 1)->assertSeeNothingIn('@value')
+            ->wireUiSelectValue('model', 2)->waitForTextIn('@value', 'normal')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', 'normal'));
     }
 
     public function test_it_should_load_and_search_options_from_the_api(): void
     {
-        $this->browser()
-            ->openSelect('asyncModel')
-            ->waitTo(fn (Browser $browser) => $browser->assertSee('Pedro'))
-            ->wireuiSelectValue('asyncModel', 0)
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@asyncModel', 1))
-            ->openSelect('asyncModel')
-            ->waitTo(fn (Browser $browser) => $browser->assertSee('Pedro'))
-            ->typeSlowly('div[wire\\:key="asyncModel"] input[x-ref="search"]', 'kei')
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Select From Async data"
+                        placeholder="Select From Async data"
+                        option-value="id"
+                        option-label="name"
+                        :async-data="route('api.options')"
+                        {{-- async-data="/api/options" --}}
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Pedro')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', '1')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '1'))
+            ->toggleSelect('model')
+            ->waitToSelectValue('Pedro')
+            ->typeSlowly('input[x-ref="search"]', 'kei')
             ->pause(1000)
-            ->assertSee('Keithy')
-            ->wireuiSelectValue('asyncModel', 0)
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@asyncModel', 2));
+            ->waitToSelectValue('Keithy')
+            ->wireUiSelectValue('model', 0)
+            ->waitForTextIn('@value', '2')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '2'));
     }
 
     public function test_it_should_load_from_the_api_with_nested_data(): void
     {
-        $this->browser()
-            ->openSelect('asyncModelNestedData')
-            ->waitTo(fn (Browser $browser) => $browser->assertSee('Tommy'));
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$model" />
+
+                    <x-select
+                        wire:model.live="model"
+                        label="Select From Async data"
+                        placeholder="Select From Async data"
+                        option-value="id"
+                        option-label="name"
+                        {{-- async-data="/api/options" --}}
+                        :async-data="['api' => route('api.options.nested'), 'optionsPath' => 'data.nested']"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->toggleSelect('model')
+            ->waitToSelectValue('Tommy')
+            ->wireUiSelectValue('model', 4)
+            ->waitForTextIn('@value', '5')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '5'))
+            ->toggleSelect('model')
+            ->waitToSelectValue('Andre')
+            ->wireUiSelectValue('model', 3)
+            ->waitForTextIn('@value', '4')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '4'));
     }
 }
