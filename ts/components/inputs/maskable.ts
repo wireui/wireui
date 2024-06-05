@@ -4,6 +4,7 @@ import { WireModel } from '@/livewire'
 import { AlpineComponent } from '@/components/alpine2'
 import { Entangleable } from '@/alpine/modules'
 import { SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { isNotEmpty } from '@/utils/helpers'
 
 export default class Maskable extends AlpineComponent {
   declare $props: {
@@ -11,6 +12,11 @@ export default class Maskable extends AlpineComponent {
     mask: string
     wireModel: WireModel
     alpineModel: AlpineModel
+  }
+
+  declare $refs: {
+    input: HTMLInputElement
+    rawInput: HTMLInputElement
   }
 
   declare masker: Masker
@@ -48,6 +54,8 @@ export default class Maskable extends AlpineComponent {
 
       this.entangleable.set(this.value)
     })
+
+    this.fillFromRawInput()
   }
 
   onBlur (): void {
@@ -58,5 +66,13 @@ export default class Maskable extends AlpineComponent {
     }
 
     this.entangleable.set(value, { force: true, triggerBlur: true })
+  }
+
+  private fillFromRawInput (): void {
+    const value = this.$refs.rawInput.value
+
+    if (isNotEmpty(value)) {
+      this.input = value
+    }
   }
 }

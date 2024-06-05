@@ -14,7 +14,12 @@
     @include('wireui-wrapper::components.slots')
 
     <div class="hidden">
-        <x-wireui-wrapper::element x-bind:value="value" :name="$name" />
+        <x-wireui-wrapper::element
+            x-bind:value="value"
+            x-ref="rawInput"
+            :name="$name"
+            :value="$value"
+        />
     </div>
 
     <x-wireui-wrapper::element

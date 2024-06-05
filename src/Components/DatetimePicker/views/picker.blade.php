@@ -59,7 +59,7 @@
         <x-wireui-wrapper::element
             :id="$id"
             :name="$name"
-            :value="$name ? old($name) : $attributes->get('value')"
+            :value="$value"
             x-bind:value="selectedRawValue"
             x-ref="rawInput"
             type="hidden"

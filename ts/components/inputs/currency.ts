@@ -1,5 +1,5 @@
 import currency from '@/utils/currency'
-import { occurrenceCount } from '@/utils/helpers'
+import { isNotEmpty, occurrenceCount } from '@/utils/helpers'
 import { AlpineComponent } from '@/components/alpine2'
 import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 import { WireModel } from '@/livewire'
@@ -13,6 +13,11 @@ export default class Currency extends AlpineComponent {
     precision: number
     wireModel: WireModel
     alpineModel: AlpineModel
+  }
+
+  declare $refs: {
+    input: HTMLInputElement
+    rawInput: HTMLInputElement
   }
 
   input: string|null = null
@@ -45,6 +50,8 @@ export default class Currency extends AlpineComponent {
 
       this.entangleable.set(this.value)
     })
+
+    this.fillFromRawInput()
   }
 
   onBlur (): void {
@@ -75,5 +82,13 @@ export default class Currency extends AlpineComponent {
 
   unMask (value: string|null): number|null {
     return currency.unMask(value, this.$props)
+  }
+
+  private fillFromRawInput (): void {
+    const value = this.$refs.rawInput.value
+
+    if (isNotEmpty(value)) {
+      this.input = value
+    }
   }
 }
