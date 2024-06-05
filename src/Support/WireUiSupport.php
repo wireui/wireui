@@ -2,9 +2,8 @@
 
 namespace WireUi\Support;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
+use Illuminate\Support\{Collection, Str};
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use Livewire\{Component, WireDirective};
 use WireUi\View\Attribute;
