@@ -45,7 +45,7 @@ export default class Currency extends AlpineComponent {
         : this.mask(value)
     })
 
-    this.$safeWatch('input', () => {
+    this.$watch('input', () => {
       this.input = this.mask(this.input)
 
       this.entangleable.set(this.value)

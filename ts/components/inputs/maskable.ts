@@ -48,7 +48,7 @@ export default class Maskable extends AlpineComponent {
         : this.masker.apply(value).value
     })
 
-    this.$safeWatch('input', (value: string|null) => {
+    this.$watch('input', (value: string|null) => {
       this.masker.apply(value)
       this.input = this.masker.value
 
