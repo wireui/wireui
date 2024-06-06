@@ -30,6 +30,7 @@ export default class DatetimePicker extends AlpineComponent {
     timezone: {
       enabled: boolean
       server: string
+      user: string|null
     }
     calendar: {
       multiple: {
@@ -209,6 +210,11 @@ export default class DatetimePicker extends AlpineComponent {
   }
 
   init () {
+    if (this.$props.timezone.user) {
+      FluentDate.setLocalTimezone(this.$props.timezone.user)
+      this.localTimezone = this.$props.timezone.user
+    }
+
     this.positionable
       .start(this, this.$refs.container, this.$refs.popover)
       .position('bottom')

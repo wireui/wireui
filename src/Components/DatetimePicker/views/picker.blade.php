@@ -11,6 +11,7 @@
         'timezone' => [
             'enabled' => $withoutTimezone === false,
             'server'  => $timezone,
+            'user'    => $userTimezone,
         ],
         'calendar' => [
             'weekDays'      => trans('wireui::messages.date_picker.days'),
