@@ -76,11 +76,11 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Array Option 2')
+            ->waitForSelectValue('Array Option 2')
             ->wireUiSelectValue('model', 1)
             ->waitForTextIn('@value', 'Array Option 2')
             ->toggleSelect('model')
-            ->waitToSelectValue('Array Option 1')
+            ->waitForSelectValue('Array Option 1')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', 'Array Option 1');
     }
@@ -116,12 +116,12 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Label Option 2')
+            ->waitForSelectValue('Label Option 2')
             ->wireUiSelectValue('model', 1)
             ->waitForTextIn('@value', '2')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '2'))
             ->toggleSelect('model')
-            ->waitToSelectValue('Label Option 1')
+            ->waitForSelectValue('Label Option 1')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', '1')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '1'));
@@ -164,7 +164,7 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Option A')
+            ->waitForSelectValue('Option A')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', 'A')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '["A"]'))
@@ -202,12 +202,12 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Option E')
+            ->waitForSelectValue('Option E')
             ->wireUiSelectValue('model', 1)
             ->waitForTextIn('@value', 'E')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', 'E'))
             ->toggleSelect('model')
-            ->waitToSelectValue('Option D')
+            ->waitForSelectValue('Option D')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', 'D')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', 'D'));
@@ -244,7 +244,7 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Normal Option 3')
+            ->waitForSelectValue('Normal Option 3')
             ->wireUiSelectValue('model', 0)->assertSeeNothingIn('@value')
             ->wireUiSelectValue('model', 1)->assertSeeNothingIn('@value')
             ->wireUiSelectValue('model', 2)->waitForTextIn('@value', 'normal')
@@ -277,15 +277,15 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Pedro')
+            ->waitForSelectValue('Pedro')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', '1')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '1'))
             ->toggleSelect('model')
-            ->waitToSelectValue('Pedro')
+            ->waitForSelectValue('Pedro')
             ->typeSlowly('input[x-ref="search"]', 'kei')
             ->pause(1000)
-            ->waitToSelectValue('Keithy')
+            ->waitForSelectValue('Keithy')
             ->wireUiSelectValue('model', 0)
             ->waitForTextIn('@value', '2')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '2'));
@@ -317,12 +317,12 @@ class BaseTest extends BrowserTestCase
             }
         })
             ->toggleSelect('model')
-            ->waitToSelectValue('Tommy')
+            ->waitForSelectValue('Tommy')
             ->wireUiSelectValue('model', 4)
             ->waitForTextIn('@value', '5')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '5'))
             ->toggleSelect('model')
-            ->waitToSelectValue('Andre')
+            ->waitForSelectValue('Andre')
             ->wireUiSelectValue('model', 3)
             ->waitForTextIn('@value', '4')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue('model', '4'));

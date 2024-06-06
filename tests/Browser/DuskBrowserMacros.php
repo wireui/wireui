@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use Closure;
+use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\DuskBrowserMacros as BaseDuskBrowserMacros;
 
@@ -46,13 +47,23 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
         };
     }
 
-    public function waitToSelectValue(): Closure
+    public function waitForSelectValue(): Closure
     {
         return function (string $name) {
             /** @var Browser $this */
             return $this->waitTo(function (Browser $browser) use ($name) {
                 return $browser->assertSeeIn('div[name="wireui.select.options.model"] > ul', $name);
             });
+        };
+    }
+
+    public function waitForDatetimeValue(): Closure
+    {
+        return function (string $value, mixed $name = null) {
+            $name ??= 'form.wrapper.container';
+
+            /** @var Browser $this */
+            return $this->assertInputValue("label[name=\"{$name}\"] > input", $value);
         };
     }
 
@@ -79,13 +90,15 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
     public function selectDate(): Closure
     {
         return function (string $id, int $day) {
+            $random = Str::random(10);
+
             /** @var Browser $this */
             return $this->script(<<<JS
-                window.check{$id} = [...Array(31).keys().map((i, k) => ++k)];
+                window.check{$random} = [...Array(31).keys().map((i, k) => ++k)];
 
-                [...document.querySelectorAll('[id="{$id}"] [x-show="tab === \'calendar\'"] button')]
+                [...document.querySelectorAll('div[form-wrapper="{$id}"] [x-show="tab === \'calendar\'"] button')]
                     .filter((day) => {
-                        return day.innerText != window.check{$id}[0] ? false : Boolean(window.check{$id}.shift());
+                        return day.innerText != window.check{$random}[0] ? false : Boolean(window.check{$random}.shift());
                     })
                     .find(day => day.innerText == {$day})
                     .click();
