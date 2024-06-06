@@ -15,10 +15,10 @@
     @include('wireui-wrapper::components.slots')
 
     <x-wireui-wrapper::element
-        x-model.fill="input"
+        x-model="input"
         x-ref="input"
         x-on:blur="onBlur"
-        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
+        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
         x-on:keydown.arrow-up.prevent="positionable.close()"
         x-on:keydown.arrow-down.prevent="positionable.open()"
     />
@@ -48,7 +48,7 @@
             x-on:keydown.arrow-up.prevent="positionable.close()"
             x-on:keydown.arrow-down.prevent="
                 positionable.open();
-                focusable.next()?.focus();
+                $nextTick(() => focusable.next()?.focus())
             "
         >
             <x-dynamic-component
@@ -66,7 +66,7 @@
         <x-popover2 :margin="(bool) $label">
             <x-time-selector
                 :name="$name . ':raw'"
-                x-modelable="value"
+                x-model="value"
                 :military-time="$militaryTime"
                 :without-seconds="$withoutSeconds"
                 :disabled="$disabled"
