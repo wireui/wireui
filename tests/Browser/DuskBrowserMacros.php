@@ -21,9 +21,29 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
     {
         return function () {
             /** @var Browser $this */
-            return $this
-                ->waitUsing(30, 300, fn () => $this->assertScript('return !!window.Alpine?.initialized'))
-                ->pause(100);
+            return $this->waitUsing(30, 300,
+                fn () => $this->assertScript('return !!window.Alpine?.initialized'),
+            )->pause(100);
+        };
+    }
+
+    public function togglePrepend(): Closure
+    {
+        return function (mixed $name = null) {
+            $name ??= 'form.wrapper.container.prepend';
+
+            /** @var Browser $this */
+            return $this->pause(100)->click("div[name=\"{$name}\"] > button")->pause(100);
+        };
+    }
+
+    public function toggleAppend(): Closure
+    {
+        return function (mixed $name = null) {
+            $name ??= 'form.wrapper.container.append';
+
+            /** @var Browser $this */
+            return $this->pause(100)->click("div[name=\"{$name}\"] > button")->pause(100);
         };
     }
 
@@ -33,7 +53,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
-            return $this->pause(500)->click("label[name=\"{$name}\"] > button");
+            return $this->pause(100)->click("label[name=\"{$name}\"] > button")->pause(100);
         };
     }
 
@@ -43,27 +63,27 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
-            return $this->pause(500)->click("label[name=\"{$name}\"] > input");
+            return $this->pause(100)->click("label[name=\"{$name}\"] > input")->pause(100);
         };
     }
 
-    public function waitForSelectValue(): Closure
-    {
-        return function (string $name) {
-            /** @var Browser $this */
-            return $this->waitTo(function (Browser $browser) use ($name) {
-                return $browser->assertSeeIn('div[name="wireui.select.options.model"] > ul', $name);
-            });
-        };
-    }
-
-    public function waitForDatetimeValue(): Closure
+    public function waitForWrapperValue(): Closure
     {
         return function (string $value, mixed $name = null) {
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
             return $this->assertInputValue("label[name=\"{$name}\"] > input", $value);
+        };
+    }
+
+    public function waitForSelectOption(): Closure
+    {
+        return function (string $name) {
+            /** @var Browser $this */
+            return $this->waitTo(function (Browser $browser) use ($name) {
+                return $browser->assertSeeIn('div[name="wireui.select.options.model"] > ul', $name);
+            });
         };
     }
 
@@ -84,6 +104,18 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             return $this->click(
                 "[form-wrapper=\"{$name}\"] [x-ref=\"colorsContainer\"] button[title=\"{$title}\"]",
             );
+        };
+    }
+
+    public function downTimePicker(): Closure
+    {
+        return function (string $column, int $quantity = 1) {
+            /** @var Browser $this */
+            for ($i = 0; $i < $quantity; $i++) {
+                $this->clickAndHold("ul[x-ref=\"{$column}\"] > li:nth-child(2)")->moveMouse(0, 40)->releaseMouse()->pause(50);
+            }
+
+            return $this;
         };
     }
 

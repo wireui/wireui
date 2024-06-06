@@ -141,7 +141,7 @@ class PickerTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 5))
             ->waitForTextIn('@model', '2021-05-05T02:48:00')
             ->assertInputValue('model', '2021-05-05T02:48:00')
-            ->waitForDatetimeValue('2021-05-05 02:48');
+            ->waitForWrapperValue('2021-05-05 02:48');
     }
 
     public function test_it_should_select_date_with_utc_timezone_difference(): void
@@ -175,7 +175,7 @@ class PickerTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 31))
             ->waitForTextIn('@model', '2021-08-01T00:30:00')
             ->assertInputValue('model', '2021-07-31T21:30:00')
-            ->waitForDatetimeValue('2021-07-31 21:30');
+            ->waitForWrapperValue('2021-07-31 21:30');
     }
 
     public function test_it_should_select_date_with_default_timezone_and_auto_user_timezone(): void
@@ -209,7 +209,7 @@ class PickerTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 31))
             ->waitForTextIn('@model', '2021-08-01T10:00:00')
             ->assertInputValue('model', '2021-07-31T22:00:00')
-            ->waitForDatetimeValue('2021-07-31 22:00');
+            ->waitForWrapperValue('2021-07-31 22:00');
     }
 
     public function test_it_should_parse_date_in_custom_format(): void
@@ -243,7 +243,7 @@ class PickerTest extends BrowserTestCase
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 10))
             ->waitForTextIn('@model', '10-2021-09 59:13')
             ->assertInputValue('model', '10-2021-09 59:13')
-            ->waitForDatetimeValue('10-2021-09 59:13');
+            ->waitForWrapperValue('10-2021-09 59:13');
     }
 
     // public function test_it_should_select_date_and_time(): void
