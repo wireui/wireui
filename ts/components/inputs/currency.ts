@@ -31,14 +31,6 @@ export default class Currency extends AlpineComponent {
   }
 
   init () {
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-    }
-
-    if (this.$props.alpineModel.exists) {
-      new SupportsAlpine(this.$refs.input, this.entangleable, this.$props.alpineModel)
-    }
-
     this.entangleable.watch(value => {
       this.input = this.$props.emitFormatted
         ? String(value)
@@ -50,6 +42,14 @@ export default class Currency extends AlpineComponent {
 
       this.entangleable.set(this.value)
     })
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$refs.input, this.entangleable, this.$props.alpineModel)
+    }
 
     this.fillFromRawInput()
   }
