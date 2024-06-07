@@ -42,7 +42,7 @@ trait HasSetupColor
             return "wireui.{$this->config}.packs.colors.{$variant}";
         }
 
-        if (property_exists($this, 'variant')) {
+        if (property_exists($this, 'variant') && $this->variant) {
             return "wireui.{$this->config}.packs.colors.{$this->variant}";
         }
 

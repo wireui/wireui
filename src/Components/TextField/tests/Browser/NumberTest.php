@@ -2,72 +2,37 @@
 
 namespace WireUi\Components\TextField\tests\Browser;
 
-use Laravel\Dusk\Browser;
-use Livewire\Features\SupportTesting\Testable;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class NumberTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_it_should_see_label_and_corner_description(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::test(new class() extends Component
         {
-            public $number = null;
-
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Number Browser Test</h1>
-
-                    // test it_should_set_model_value_to_livewire
-                    <x-number dusk="input" wire:model.live="number" label="Model Input" />
-
-                    <span dusk="number-value">{{ $number }}</span>
-
-                    // test it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon
-                    <x-number wire:key="show-number" name="show-number" label="Show Number" />
+                    <x-number label="Input 1" corner="Corner 1" />
                 </div>
                 BLADE;
             }
-        });
+        })
+            ->assertSee('Input 1')
+            ->assertSee('Corner 1');
     }
 
-    public function component(): Testable
+    public function test_it_should_see_description_and_not_see_prefix_and_suffix(): void
     {
-        return Livewire::test(new class() extends Component
+        Livewire::test(new class() extends Component
         {
-            public $number = null;
-
-            protected $rules = ['number' => 'required|integer|between:5,10'];
-
-            protected $messages = [
-                'number.required' => 'input cant be empty',
-                'number.integer'  => 'input must be an integer',
-                'number.between'  => 'input must be within the specified range',
-            ];
-
-            public function validateInput()
-            {
-                $this->validate();
-            }
-
-            public function resetInputValidation()
-            {
-                $this->resetValidation();
-            }
-
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Number Livewire Test</h1>
-
-                    // test it_should_see_label_and_corner_description
-                    <x-number label="Input 1" corner="Corner 1" />
-
-                    // test it_should_see_description_and_not_see_prefix_and_suffix
                     <x-number
                         label="Input 1"
                         corner="Corner 1"
@@ -75,8 +40,23 @@ class NumberTest extends BrowserTestCase
                         prefix="Prefix 1"
                         suffix="Suffix 1"
                     />
+                </div>
+                BLADE;
+            }
+        })
+            ->assertDontSee('Prefix 1')
+            ->assertDontSee('Suffix 1')
+            ->assertSee('Description 1');
+    }
 
-                    // test it_should_not_see_prepend_and_append_slots
+    public function test_it_should_not_see_prepend_and_append_slots(): void
+    {
+        Livewire::test(new class() extends Component
+        {
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
                     <x-number>
                         <x-slot name="prepend">
                             <a>prepend</a>
@@ -86,8 +66,22 @@ class NumberTest extends BrowserTestCase
                             <a>append</a>
                         </x-slot>
                     </x-number>
+                </div>
+                BLADE;
+            }
+        })
+            ->assertDontSeeHtml('<a>prepend</a>')
+            ->assertDontSeeHtml('<a>append</a>');
+    }
 
-                    // test it_should_not_see_prefix_suffix_append_and_prepend
+    public function test_it_should_not_see_prefix_suffix_append_and_prepend(): void
+    {
+        Livewire::test(new class() extends Component
+        {
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
                     <x-number prefix="prefix 2" suffix="suffix 2">
                         <x-slot name="prepend">
                             <a>prepend 2</a>
@@ -97,40 +91,10 @@ class NumberTest extends BrowserTestCase
                             <a>append 2</a>
                         </x-slot>
                     </x-number>
-
-                    // test it_should_see_input_error
-                    <x-number wire:model.live="number" label="Model Input" />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_see_label_and_corner_description(): void
-    {
-        $this->component()
-            ->assertSee('Input 1')
-            ->assertSee('Corner 1');
-    }
-
-    public function test_it_should_see_description_and_not_see_prefix_and_suffix(): void
-    {
-        $this->component()
-            ->assertDontSee('Prefix 1')
-            ->assertDontSee('Suffix 1')
-            ->assertSee('Description 1');
-    }
-
-    public function test_it_should_not_see_prepend_and_append_slots(): void
-    {
-        $this->component()
-            ->assertDontSeeHtml('<a>prepend</a>')
-            ->assertDontSeeHtml('<a>append</a>');
-    }
-
-    public function test_it_should_not_see_prefix_suffix_append_and_prepend(): void
-    {
-        $this->component()
+        })
             ->assertDontSee('prefix 2')
             ->assertDontSee('suffix 2')
             ->assertDontSeeHtml('<a>prepend 2</a>')
@@ -139,16 +103,41 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_see_input_error(): void
     {
-        $this->component()
-            ->call('validateInput')
+        Livewire::test(new class() extends Component
+        {
+            #[Validate('required', message: 'input cant be empty')]
+            #[Validate('integer', message: 'input must be an integer')]
+            #[Validate('between:5,10', message: 'input must be within the specified range')]
+            public $number = null;
+
+            public function save(): void
+            {
+                $this->validate();
+            }
+
+            public function clear(): void
+            {
+                $this->resetValidation();
+            }
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-number wire:model.live="number" label="Model Input" />
+                </div>
+                BLADE;
+            }
+        })
+            ->call('save')
             ->assertSee('input cant be empty')
             ->set('number', 'text')
-            ->call('validateInput')
+            ->call('save')
             ->assertSee('input must be an integer')
             ->set('number', 11)
-            ->call('validateInput')
+            ->call('save')
             ->assertSee('input must be within the specified range')
-            ->call('resetInputValidation')
+            ->call('clear')
             ->assertDontSee('input cant be empty')
             ->assertDontSee('input must be an integer')
             ->assertDontSee('input must be within the specified range');
@@ -156,20 +145,44 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        $this->browser()
+        Livewire::visit(new class() extends Component
+        {
+            public $number = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$number" />
+
+                    <x-number wire:model.live="number" label="Model Input" />
+                </div>
+                BLADE;
+            }
+        })
             ->type('number', 8)
-            ->waitForTextIn('@number-value', 8);
+            ->waitForTextIn('@value', 8);
     }
 
     public function test_it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon(): void
     {
-        $this->browser()
+        Livewire::visit(new class() extends Component
+        {
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-number wire:key="number" name="number" label="Show Number" />
+                </div>
+                BLADE;
+            }
+        })
             ->assertSee('Show Number')
-            ->assertInputValue('show-number', '')
-            ->type('show-number', 2)
-            ->doubleClick('div[wire\\:key="show-number"] > label > div[name="form.wrapper.container.append"] > button')
-            ->assertInputValue('show-number', '4')
-            ->click('div[wire\\:key="show-number"] > label > div[name="form.wrapper.container.prepend"] > button')
-            ->assertInputValue('show-number', '3');
+            ->assertInputValue('number', '')
+            ->type('number', 2)
+            ->doubleClick('div[wire\\:key="number"] > label > div[name="form.wrapper.container.append"] > button')
+            ->assertInputValue('number', '4')
+            ->click('div[wire\\:key="number"] > label > div[name="form.wrapper.container.prepend"] > button')
+            ->assertInputValue('number', '3');
     }
 }

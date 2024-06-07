@@ -21,19 +21,19 @@ test('it should assert directives regex matches', function () {
 });
 
 test('it_should_assert_safe_eval_removes_risk_content', function () {
-    $html = '
-        {{{ $variable }}}
-        {{ $variable }}
-        {!! $variable !!}
+    $html = <<<EOT
+        {{{ \$variable }}}
+        {{ \$variable }}
+        {!! \$variable !!}
         <?php echo "text"; ?>
         <?= "text" ?>
         <? echo "text" ?>
 
         @directive() @endDirective
-        @directive($first, $second) @endDirective
+        @directive(\$first, \$second) @endDirective
         @directive() inside content @endDirective @endDirective
         @once
-    ';
+    EOT;
 
     $escaped = (new SafeEval())->evaluate($html);
 

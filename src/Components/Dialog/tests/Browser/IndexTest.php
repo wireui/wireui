@@ -57,16 +57,15 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 })
-            EOT))
-            ->pause(200)
-            ->assertSee($title)
-            ->assertSee($description);
+            JS))
+            ->waitForText($title)->assertSee($title)
+            ->waitForText($description)->assertSee($description);
     }
 
     /**
@@ -80,15 +79,15 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.Livewire.dispatch('showDialog', { options: {
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 }})
-            EOT))
-            ->waitTo(fn (Browser $browser) => $browser->assertSee($title))
-            ->assertSee($description);
+            JS))
+            ->waitForText($title)->assertSee($title)
+            ->waitForText($description)->assertSee($description);
     }
 
     /**
@@ -102,18 +101,16 @@ class IndexTest extends BrowserTestCase
         string $description,
     ): void {
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({
                     id: 'custom',
                     icon: "{$icon}",
                     title: "{$title}",
                     description: "{$description}",
                 })
-            EOT))
-            ->waitForText($title)
-            ->assertSee($title)
-            ->waitForText($description)
-            ->assertSee($description);
+            JS))
+            ->waitForText($title)->assertSee($title)
+            ->waitForText($description)->assertSee($description);
     }
 
     public function test_it_should_close_when_timeout_is_end(): void
@@ -121,13 +118,11 @@ class IndexTest extends BrowserTestCase
         $title = 'Autoclosing...';
 
         $this->browser()
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 window.\$wireui.dialog({ title: '{$title}', timeout: 400 })
-            EOT))
-            ->waitForText($title)
-            ->assertSee($title)
-            ->waitUntilMissingText($title)
-            ->assertDontSee($title);
+            JS))
+            ->waitForText($title)->assertSee($title)
+            ->waitUntilMissingText($title)->assertDontSee($title);
     }
 
     public function test_it_should_call_callable_events_actions(): void
@@ -135,16 +130,15 @@ class IndexTest extends BrowserTestCase
         $this->browser()
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(400)
-            ->tap(fn (Browser $browser) => $browser->script(<<<EOT
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('button.dialog-button-close').click()
-            EOT))
-            ->pause(100)
-            ->assertSeeIn('@events', 'onClose, onTimeout')
+            JS))
+            ->waitForTextIn('@events', 'onClose, onTimeout')
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(150)
-            ->tap(fn (Browser $browser) => $browser->script("
+            ->tap(fn (Browser $browser) => $browser->script(<<<JS
                 document.querySelector('div.dialog-backdrop').click()
-            "))
+            JS))
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
     }
 
@@ -203,34 +197,28 @@ class IndexTest extends BrowserTestCase
         $this->browser()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
             ->pause(200)
-            ->assertSee('This is a title')
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('This is a title'))
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Confirm it'))
-            ->assertSee('Confirm it')
             ->press('Confirm it')
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'accepted'))
+            ->waitForTextIn('@events', 'accepted')
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
             ->pause(200)
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('This is a title'))
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('Decline'))
             ->press('Decline')
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'accepted, rejected'));
+            ->waitForTextIn('@events', 'accepted, rejected');
     }
 
     public function test_it_should_prevent_twice_calls_on_accept_and_reject_action(): void
     {
         $this->browser()
             ->tap(fn (Browser $browser) => $this->showConfirmDialog($browser))
-
-            ->waitForText($title = 'This is a title')
-            ->assertSee($title)
-
-            ->waitForText($action = 'Confirm it')
-            ->assertSee($action)
-
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('This is a title'))
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('Confirm it'))
             ->press('Confirm it')
-            ->assertScript(<<<JS
-                document.querySelector('[x-ref="accept"]').firstElementChild.hasAttribute('disabled');
-                document.querySelector('[x-ref="reject"]').firstElementChild.hasAttribute('disabled');
-            JS)
-            ->press('Decline')
+            ->assertAttribute('[x-ref="accept"] > :first-child', 'disabled', 'true')
+            ->assertAttribute('[x-ref="reject"] > :first-child', 'disabled', 'true')
+            ->click('[x-ref="reject"] > :first-child')
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'accepted'));
     }
 

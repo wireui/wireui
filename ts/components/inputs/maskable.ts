@@ -1,59 +1,78 @@
-import { Masker, masker } from '../../utils/masker'
-import { Entangle } from '../alpine'
+import { Masker, masker } from '@/utils/masker'
+import { AlpineModel } from '../alpine'
+import { WireModel } from '@/livewire'
+import { AlpineComponent } from '@/components/alpine2'
+import { Entangleable } from '@/alpine/modules'
+import { SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { isNotEmpty } from '@/utils/helpers'
 
-export interface Options {
-  model: Entangle
-  emitFormatted: boolean
-  isBlur: boolean
-  mask: string
-}
+export default class Maskable extends AlpineComponent {
+  declare $props: {
+    emitFormatted: boolean
+    mask: string
+    wireModel: WireModel
+    alpineModel: AlpineModel
+  }
 
-export interface Config {
-  emitFormatted: boolean
-  isBlur: boolean
-  mask: string
-}
+  declare $refs: {
+    input: HTMLInputElement
+    rawInput: HTMLInputElement
+  }
 
-export interface Maskable {
-  [index: string]: any
+  declare masker: Masker
 
-  model: Entangle
-  input: string | null
-  masker: Masker
-  config: Config
+  input: string|null = null
 
-  init (): void
-  onInput (value: string | null): void
-  emitInput (): void
-}
+  entangleable = new Entangleable<string|null>()
 
-export default (options: Options): Maskable => ({
-  model: options.model,
-  input: null,
-  masker: masker(options.mask, null),
-  config: {
-    emitFormatted: options.emitFormatted,
-    isBlur: options.isBlur,
-    mask: options.mask
-  },
-
-  init () {
-    this.input = this.masker.apply(this.model).value
-
-    this.$watch('model', value => {
-      this.input = this.masker.apply(value).value
-    })
-  },
-  onInput (value: string | null) {
-    this.input = this.masker.apply(value).value
-
-    if (!this.config.isBlur) {
-      this.emitInput()
-    }
-  },
-  emitInput () {
-    this.model = this.config.emitFormatted
+  get value (): string|null {
+    return this.$props.emitFormatted
       ? this.masker.value
       : this.masker.getOriginal()
   }
-})
+
+  init () {
+    this.masker = masker(this.$props.mask, null)
+
+    this.entangleable.watch(value => {
+      this.input = this.$props.emitFormatted
+        ? String(value)
+        : this.masker.apply(value).value
+    })
+
+    this.$watch('input', (value: string|null) => {
+      this.masker.apply(value)
+      this.input = this.masker.value
+
+      this.entangleable.set(this.value)
+    })
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$refs.input, this.entangleable, this.$props.alpineModel)
+    }
+
+    this.fillFromRawInput()
+  }
+
+  onBlur (): void {
+    let value: string|null = this.input
+
+    if (!this.$props.emitFormatted && value) {
+      value = this.masker.getOriginal()
+    }
+
+    this.entangleable.set(value, { force: true, triggerBlur: true })
+  }
+
+  private fillFromRawInput (): void {
+    const value = this.$refs.rawInput.value
+
+    if (isNotEmpty(value)) {
+      this.input = value
+    }
+  }
+}

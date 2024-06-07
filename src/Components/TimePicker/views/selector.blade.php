@@ -9,11 +9,12 @@
     ])->whereDoesntStartWith(['wire:model', 'x-model']) }}
     x-data="wireui_time_selector"
     x-props="{{ WireUi::toJs([
-        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'militaryTime'   => $militaryTime,
         'withoutSeconds' => $withoutSeconds,
         'disabled'       => $disabled,
         'readonly'       => $readonly,
+        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'    => WireUi::alpineModel($attributes),
     ]) }}"
 >
     <input
@@ -27,14 +28,15 @@
         'absolute bg-primary-50 dark:bg-primary-200/10 left-0 h-10 w-full transform transition-opacity',
     ])></div>
 
-    <ul class="w-full" x-ref="hours"></ul>
+    <ul wire:ignore class="w-full" x-ref="hours"></ul>
 
-    <ul class="w-full" x-ref="minutes"></ul>
+    <ul wire:ignore class="w-full" x-ref="minutes"></ul>
 
     <ul
         class="w-full"
         x-ref="seconds"
         x-show="config.seconds"
+        wire:ignore
     ></ul>
 
     <ul
@@ -42,5 +44,6 @@
         style="top: 14px"
         x-ref="period"
         x-show="!config.military"
+        wire:ignore
     ></ul>
 </div>

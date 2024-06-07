@@ -3,22 +3,20 @@
 namespace WireUi\Components\Switcher\tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class ToggleTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_toggle_component(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
-            public $toggle = false;
+            #[Validate('accepted', message: 'accept it')]
+            public bool $toggle = false;
 
-            protected $rules = ['toggle' => 'accepted'];
-
-            protected $messages = ['toggle.accepted' => 'accept it'];
-
-            public function validateToggle()
+            public function save(): void
             {
                 $this->validate();
             }
@@ -27,29 +25,22 @@ class ToggleTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Toggle Browser Test</h1>
+                    <x-badge dusk="toggle" :label="json_encode($toggle)" />
 
-                    <span dusk="toggle">@json($toggle)</span>
+                    <x-toggle wire:model.live="toggle" label="Enable Notifications" />
 
-                    // test it_should_render_label_and_change_value
-                    <x-toggle label="Enable Notifications" wire:model.live="toggle" />
-
-                    <button wire:click="validateToggle" dusk="validate">validate</button>
+                    <x-button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_render_label_and_change_value(): void
-    {
-        $this->browser()
+        })
             ->assertSee('Enable Notifications')
-            ->tap(fn (Browser $browser) => $browser->script("document.getElementById('toggle').click()"))
+            ->click('#toggle')
             ->assertChecked('toggle')
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@toggle', 'true'))
-            ->tap(fn (Browser $browser) => $browser->script("document.getElementById('toggle').click()"))
+            ->waitForTextIn('@toggle', 'true')
+            ->click('#toggle')
             ->assertNotChecked('toggle')
+            ->waitForTextIn('@toggle', 'false')
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('accept it'));
     }

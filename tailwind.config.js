@@ -26,6 +26,9 @@ module.exports = {
           dark: colors.slate[800]
         }
       },
+      zIndex: {
+        '60': '60'
+      },
       opacity: {
         '15': '.15'
       },

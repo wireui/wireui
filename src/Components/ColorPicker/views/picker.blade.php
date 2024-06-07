@@ -6,6 +6,7 @@
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'      => WireUi::alpineModel($attributes),
     ])"
     x-ref="container"
 >
@@ -13,10 +14,10 @@
         'except' => ['prefix', 'append']
     ])
 
-    <x-slot:prefix x-show="selected.value">
+    <x-slot:prefix x-show="selected?.value">
         <div
             class="w-4 h-4 border rounded shadow"
-            :style="{ 'background-color': selected.value }"
+            :style="{ 'background-color': selected?.value }"
         ></div>
     </x-slot:prefix>
 

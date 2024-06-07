@@ -16,11 +16,11 @@ class Switcher extends Component
         public ?string $id = null,
         public ?string $name = null,
         public ?string $label = null,
-        public ?string $rightLabel = null,
         public ?bool $disabled = null,
         public ?bool $readonly = null,
         public ?bool $errorless = null,
         public ?bool $invalidated = null,
+        public ?string $leftLabel = null,
         public ?string $description = null,
         public ?bool $withValidationColors = null,
     ) {

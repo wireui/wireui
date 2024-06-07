@@ -8,82 +8,83 @@ use Tests\Browser\BrowserTestCase;
 
 class MaskableTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_it_should_start_input_with_formatted_value(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
-            public $singleMask = '1234';
-
-            public $multipleMask = null;
-
-            public $singleFormattedMask = null;
+            public $maskable = '1234';
 
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Maskable Browser test</h1>
+                    <x-badge dusk="value" :label="$maskable" />
 
-                    // test it_should_start_input_with_formatted_value
-                    <span dusk="singleMaskValue">{{ $singleMask }}</span>
+                    <x-maskable dusk="maskable" wire:model.live="maskable" label="Maskable" mask="##.##" />
+                </div>
+                BLADE;
+            }
+        })
+            ->assertSeeIn('@value', '1234')
+            ->assertInputValue('@maskable', '12.34');
+    }
+
+    public function test_it_should_type_input_value_and_emit_formatted_value(): void
+    {
+        Livewire::visit(new class() extends Component
+        {
+            public $maskable = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$maskable" />
 
                     <x-maskable
-                        label="Maskable"
-                        mask="##.##"
-                        wire:model.live="singleMask"
-                    />
-
-                    // test it_should_type_input_value_and_emit_formatted_value
-                    <span dusk="singleFormattedMaskValue">{{ $singleFormattedMask }}</span>
-
-                    <x-maskable
+                        dusk="maskable"
+                        wire:model.live="maskable"
                         label="Maskable"
                         mask="##.##.SS"
-                        wire:model.live="singleFormattedMask"
-                        emit-formatted
-                    />
-
-                    // test it_should_type_input_value_and_apply_multiples_masks
-                    <span dusk="multipleMaskValue">{{ $multipleMask }}</span>
-
-                    <x-maskable
-                        label="Maskable"
-                        :mask="['##.##', '##.##.##', '##.##.###']"
-                        wire:model.live="multipleMask"
                         emit-formatted
                     />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_start_input_with_formatted_value(): void
-    {
-        $this->browser()
-            ->assertSeeIn('@singleMaskValue', '1234')
-            ->assertInputValue('singleMask', '12.34');
-    }
-
-    public function test_it_should_type_input_value_and_emit_formatted_value(): void
-    {
-        $this->browser()
-            ->type('singleFormattedMask', '3245ABCD')
-            ->waitTo(function (Browser $browser) {
-                return $browser
-                    ->assertSeeIn('@singleFormattedMaskValue', '32.45.AB')
-                    ->assertInputValue('singleFormattedMask', '32.45.AB');
-            });
+        })
+            ->type('@maskable', '3245ABCD')
+            ->waitForTextIn('@value', '32.45.AB')
+            ->waitTo(fn (Browser $browser) => $browser->assertInputValue('@maskable', '32.45.AB'));
     }
 
     public function test_it_should_type_input_value_and_apply_multiples_masks(): void
     {
-        $this->browser()
-            ->type('multipleMask', '9876')
-            ->waitForTextIn('@multipleMaskValue', '98.76')
-            ->type('multipleMask', '987662')
-            ->waitForTextIn('@multipleMaskValue', '98.76.62')
-            ->type('multipleMask', '9876624')
-            ->waitForTextIn('@multipleMaskValue', '98.76.624');
+        Livewire::visit(new class() extends Component
+        {
+            public $maskable = null;
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="value" :label="$maskable" />
+
+                    <x-maskable
+                        dusk="maskable"
+                        wire:model.live="maskable"
+                        label="Maskable"
+                        :mask="['##.##', '##.##.##', '##.##.###']"
+                        emit-formatted
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->type('@maskable', '9876')
+            ->waitForTextIn('@value', '98.76')
+            ->type('@maskable', '987662')
+            ->waitForTextIn('@value', '98.76.62')
+            ->type('@maskable', '9876624')
+            ->waitForTextIn('@value', '98.76.624');
     }
 }

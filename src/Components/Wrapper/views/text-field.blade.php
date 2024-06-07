@@ -6,14 +6,13 @@
         'aria-readonly'          => $readonly,
     ])
     {{ $attributes
+        ->only(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
         ->merge(['form-wrapper' => $id ?: 'true'])
         ->class([
-            'aria-disabled:pointer-events-none aria-disabled:select-none',
-            'aria-disabled:opacity-60 aria-disabled:cursor-not-allowed',
+            'aria-disabled:pointer-events-none aria-disabled:select-none aria-disabled:opacity-60',
             'aria-readonly:pointer-events-none aria-readonly:select-none',
             'w-full relative',
-        ])
-        ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
+        ]) }}
 >
     @if ($label || $corner)
         <div
@@ -46,7 +45,8 @@
 
     <label
         {{ $attributes
-            ->except(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props'])
+            ->whereDoesntStartWith(['x-model', 'wire:model'])
+            ->except(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
             ->merge(['for' => $id])
             ->class([
                 Arr::get($roundedClasses, 'input', ''),
@@ -54,15 +54,18 @@
                 $shadowClasses => !$shadowless,
 
                 'bg-background-white dark:bg-background-dark',
-                'relative flex gap-x-2 items-center',
+                'relative flex justify-between gap-x-2 items-center',
                 'transition-all ease-in-out duration-150',
                 'ring-1 ring-inset ring-gray-300 focus-within:ring-2',
+                'outline-0',
+
+                '!bg-gray-100' => $disabled && !$invalidated,
 
                 $padding =>  $padding,
-                'pl-3' => !$padding && !isset($prepend),
-                'pr-3' => !$padding && !isset($append),
-                'py-2' => !$padding && !isset($prepend) && !isset($append),
-                'h-10' => isset($prepend) || isset($append),
+                'pl-3'   => !$padding && !isset($prepend),
+                'pr-3'   => !$padding && !isset($append),
+                'py-2'   => !$padding && !isset($prepend) && !isset($append),
+                'h-10'   => isset($prepend) || isset($append),
 
                 'invalidated:bg-negative-50 invalidated:ring-negative-500 invalidated:dark:ring-negative-700',
                 'invalidated:dark:bg-negative-700/10 invalidated:dark:ring-negative-600',
@@ -74,7 +77,7 @@
             <div
                 name="form.wrapper.container.prefix"
                 {{ WireUi::extractAttributes($prefix)->class([
-                    'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
+                    'text-gray-400 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
                     Arr::get($roundedClasses, 'prepend', ''),
                     Arr::get($colorClasses, 'prepend', ''),
@@ -84,7 +87,7 @@
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
                         :name="$icon"
-                        class="w-4.5 h-4.5"
+                        class="w-4.5 h-4.5 text-current"
                     />
                 @elseif($prefix)
                     {{ $prefix }}
@@ -133,7 +136,7 @@
             <div
                 name="form.wrapper.container.append"
                 {{ $append->attributes->class([
-                    'group/append wrapper-append-slot',
+                    'group/append shrink-0 wrapper-append-slot',
                     'flex h-full py-0.5 pr-0.5',
                 ]) }}
             >

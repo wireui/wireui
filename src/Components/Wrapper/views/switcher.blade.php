@@ -16,23 +16,23 @@
         ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
 >
     <div class="flex items-center gap-x-2">
+        @if ($leftLabel)
+            <x-wireui-wrapper::form.label
+                :attributes="WireUi::extractAttributes($leftLabel)"
+                :for="$id"
+            >
+                {{ $leftLabel }}
+            </x-wireui-wrapper::form.label>
+        @endif
+
+        {{ $slot }}
+
         @if ($label)
             <x-wireui-wrapper::form.label
                 :attributes="WireUi::extractAttributes($label)"
                 :for="$id"
             >
                 {{ $label }}
-            </x-wireui-wrapper::form.label>
-        @endif
-
-        {{ $slot }}
-
-        @if ($rightLabel)
-            <x-wireui-wrapper::form.label
-                :attributes="WireUi::extractAttributes($rightLabel)"
-                :for="$id"
-            >
-                {{ $rightLabel }}
             </x-wireui-wrapper::form.label>
         @endif
     </div>

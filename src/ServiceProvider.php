@@ -4,7 +4,7 @@ namespace WireUi;
 
 use Illuminate\Foundation\{AliasLoader, Application};
 use Illuminate\Support;
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\{Blade, File};
 use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
@@ -54,8 +54,6 @@ class ServiceProvider extends Support\ServiceProvider
 
         $this->mergeConfigFrom($this->srcDir('config.php'), 'wireui');
 
-        $this->loadViewsFrom($this->srcDir('resources/views'), 'wireui');
-
         $this->publishes(
             [$this->srcDir('lang') => $this->app->langPath('vendor/wireui')],
             'wireui.lang',
@@ -78,7 +76,7 @@ class ServiceProvider extends Support\ServiceProvider
 
     private function registerViews(): void
     {
-        $views = glob($this->srcDir('Components/*/views'));
+        $views = File::glob($this->srcDir('Components/*/views'));
 
         collect($views)->each(function (string $path) {
             $name = Str::kebab(basename(dirname($path)));

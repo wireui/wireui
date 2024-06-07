@@ -1,30 +1,41 @@
 import { watchProps } from '@/alpine/magic/props'
-import { focusables } from '@/components/modules/focusables'
-import { positioning } from '@/components/modules/positioning'
 import { notify } from '@/notifications'
 import dataGet from '@/utils/dataGet'
 import { jsonParse } from '@/utils/helpers'
 import { stringify } from 'qs'
-import { Select } from './interfaces'
 import { templates } from './templates'
 import baseTemplate from './templates/baseTemplate'
-import { InitOptions, Option, Options, Props, Refs } from './types'
+import { AsyncData, Config, Option, Options, Props } from './types'
+import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { AlpineComponent } from '@/components/alpine2'
+import { Focusable } from '@/alpine/modules/Focusable'
+import Positionable from '@/alpine/modules/Positionable'
+import DeviceDetector from '@/utils/DeviceDetector'
 
-export default (initOptions: InitOptions): Select => ({
-  ...focusables,
-  ...positioning,
-  focusableSelector: 'div[tabindex="0"][select-option], input',
-  $refs: {} as Refs,
-  $props: {} as Props,
-  asyncData: {
+export default class Select extends AlpineComponent {
+  declare $refs: {
+    popover: HTMLElement
+    search?: HTMLInputElement
+    input: HTMLInputElement
+    json: HTMLElement
+    slot: HTMLElement
+    optionsContainer: HTMLElement
+    listing: HTMLElement
+    container: HTMLElement
+  }
+
+  declare $props: Props
+
+  asyncData: AsyncData = {
     api: null,
     method: 'GET',
     optionsPath: null,
     fetching: false,
     params: {},
     alwaysFetch: false
-  },
-  config: {
+  }
+
+  config: Config = {
     hasSlot: false,
     searchable: false,
     multiselect: false,
@@ -36,39 +47,61 @@ export default (initOptions: InitOptions): Select => ({
     optionDescription: null,
     placeholder: null,
     template: templates['default']()
-  },
-  search: '',
-  wireModel: initOptions.wireModel,
-  selected: undefined,
-  selectedOptions: [],
-  displayOptions: [],
-  options: [],
-  get hasWireModel () {
-    return this.wireModel !== undefined
-  },
-  init () {
+  }
+
+  search: string|null = ''
+
+  entangleable = new Entangleable<string|number|string[]|number[]|(string|number)[]>()
+
+  positionable = new Positionable()
+
+  focusable = new Focusable()
+
+  selected?: Option = undefined
+
+  selectedOptions: Option[] = []
+
+  displayOptions: Option[] = []
+
+  options: Option[] = []
+
+  init (): void {
     this.initWatchers()
     this.syncProps()
-    this.initPositioningSystem()
+
+    this.positionable
+      .start(this, this.$refs.container, this.$refs.popover)
+      .position('bottom')
+
+    this.focusable.start(this.$refs.optionsContainer, 'div[tabindex="0"][select-option], input')
 
     watchProps(this, this.syncProps.bind(this))
+
+    this.fillSelectedFromInputValue()
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
+    }
 
     if (!this.asyncData.api) {
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
-    } else if (!this.hasWireModel && this.asyncData.api) {
+    } else if (this.asyncData.api) {
       this.fetchSelected()
     }
 
-    this.hasWireModel
-      ? this.initWireModel()
-      : this.fillSelectedFromInputValue()
+    this.initModelWatchers()
 
     this.initDeferredWatchers()
-  },
-  initRenderObserver () {
-    const config = {
+  }
+
+  initRenderObserver (): void {
+    const config: IntersectionObserverInit = {
       root: this.$refs.optionsContainer,
       rootMargin: '20px',
       threshold: 0.9
@@ -94,30 +127,33 @@ export default (initOptions: InitOptions): Select => ({
         li.setAttribute('rendered', 'false')
         observer.observe(li)
       })
-  },
-  initWatchers () {
-    this.$watch('popover', (state: boolean) => {
-      if (state) {
+  }
+
+  initWatchers (): void {
+    this.positionable.watch((state: boolean) => {
+      if (this.positionable.isOpen()) {
         if (this.asyncData.api && (this.asyncData?.alwaysFetch || this.options.length === 0)) {
           this.fetchOptions()
         }
 
-        this.$nextTick(() => {
-          if (window.innerWidth >= 1024) {
-            setTimeout(() => this.$refs.search?.focus(), 100)
-          }
-        })
+        if (DeviceDetector.isDesktop()) {
+          this.$nextTick(() => this.$refs.search?.focus())
+        }
 
         this.$nextTick(() => this.initRenderObserver())
       }
 
-      if (this.asyncData.api && this.asyncData.alwaysFetch && !state) {
+      if (this.positionable.isClosed()) {
+        this.$refs.container.focus()
+      }
+
+      if (this.asyncData.api && this.asyncData.alwaysFetch && this.positionable.isClosed()) {
         this.$nextTick(() => {
-          setTimeout(() => (this.options = []), 150)
+          setTimeout(() => (this.options = []), 350)
         })
       }
 
-      this.$refs.input.dispatchEvent(new Event(state ? 'open' : 'close'))
+      this.$refs.container.dispatchEvent(new Event(state ? 'open' : 'close'))
     })
 
     this.$watch('search', (search: string) => {
@@ -135,20 +171,22 @@ export default (initOptions: InitOptions): Select => ({
     this.$watch('options', (options: Options) => {
       this.displayOptions = options
     })
-  },
-  initDeferredWatchers () {
+  }
+
+  initDeferredWatchers (): void {
     this.$watch('asyncData.api', () => (this.options = []))
     this.$watch('asyncData.optionsPath', () => (this.options = []))
     this.$watch('asyncData.params', () => (this.options = []))
     this.$watch('asyncData.method', () => (this.options = []))
-  },
-  initWireModel () {
-    this.syncSelectedFromWireModel()
+  }
 
-    if (this.hasWireModel && this.config.multiselect) {
+  initModelWatchers (): void {
+    this.syncSelectedValues()
+
+    if (this.config.multiselect) {
       this.$watch('selectedOptions', (options: Options, oldOptions: Options) => {
-        if (this.mustSyncWireModel()) {
-          this.wireModel = options.map((option: Option) => option.value)
+        if (this.mustSyncEntangleableValue()) {
+          this.entangleable.set(options.map((option: Option) => option.value))
         }
 
         if (JSON.stringify(options) !== JSON.stringify(oldOptions)) {
@@ -156,52 +194,55 @@ export default (initOptions: InitOptions): Select => ({
         }
       })
 
-      this.$watch('wireModel', (options: any[]) => {
+      this.entangleable.watch(options => {
         if (!Array.isArray(options)) {
           throw new Error('The wire:model value must be an array to use the select as multiselect')
         }
 
-        if (this.mustSyncWireModel()) {
+        if (this.mustSyncEntangleableValue()) {
           this.asyncData.api
             ? this.fetchSelected()
-            : this.syncSelectedFromWireModel()
+            : this.syncSelectedValues()
         }
       })
 
-      if (this.wireModel?.length > 0 && this.asyncData.api) {
+      const selected = this.entangleable.get()
+
+      if (Array.isArray(selected) && selected?.length > 0 && this.asyncData.api) {
         this.fetchSelected()
       }
+
+      return
     }
 
-    if (this.hasWireModel && !this.config.multiselect) {
-      this.$watch('selected', (option?: Option, oldOption?: Option) => {
-        this.wireModel = option?.value ?? null
+    this.$watch('selected', (option?: Option, oldOption?: Option) => {
+      this.entangleable.set(option?.value ?? null)
 
-        if (oldOption?.value !== option?.value) {
-          this.syncSelectedOptions()
-        }
-      })
+      if (oldOption?.value !== option?.value) {
+        this.syncSelectedOptions()
+      }
+    })
 
-      this.$watch('wireModel', value => {
-        if (value === null || value === '') {
-          return (this.selected = undefined)
-        }
+    this.entangleable.watch(value => {
+      if (value === null || value === '') {
+        return (this.selected = undefined)
+      }
 
-        const selected = this.options.find(option => option.value === value)
+      const selected = this.options.find(option => option.value === value)
 
-        if (value && selected) {
-          this.selected = selected
-        } else if (value && !selected && this.asyncData.api) {
-          this.fetchSelected()
-        }
-      })
-
-      if (this.wireModel && this.asyncData.api) {
+      if (value && selected) {
+        this.selected = selected
+      } else if (value && !selected && this.asyncData.api) {
         this.fetchSelected()
       }
+    })
+
+    if (this.entangleable.get() && this.asyncData.api) {
+      this.fetchSelected()
     }
-  },
-  initOptionsObserver () {
+  }
+
+  initOptionsObserver (): void {
     this.syncJsonOptions()
 
     const observer = new MutationObserver(this.syncJsonOptions.bind(this))
@@ -211,9 +252,10 @@ export default (initOptions: InitOptions): Select => ({
       characterData: true
     })
 
-    this.$cleanup(() => observer.disconnect())
-  },
-  initSlotObserver () {
+    this.$destroy(() => observer.disconnect())
+  }
+
+  initSlotObserver (): void {
     this.syncSlotOptions()
 
     const element = this.$refs.slot
@@ -224,16 +266,15 @@ export default (initOptions: InitOptions): Select => ({
       childList: true,
       subtree: true
     })
-  },
-  rootContainer () {
-    return this.$refs.container
-  },
-  shouldSyncProps (mutations: MutationRecord[] = []) {
+  }
+
+  shouldSyncProps (mutations: MutationRecord[] = []): boolean {
     return mutations.some(mutation => {
       return mutation.attributeName === 'x-props'
     })
-  },
-  syncProps (mutations: MutationRecord[] = []) {
+  }
+
+  syncProps (mutations: MutationRecord[] = []): void {
     if (mutations.length && !this.shouldSyncProps(mutations)) return
 
     const props = this.$props
@@ -266,15 +307,15 @@ export default (initOptions: InitOptions): Select => ({
       alwaysFetch: props.asyncData.alwaysFetch,
       credentials: props.asyncData.credentials
     }
-  },
-  syncJsonOptions () {
+  }
+
+  syncJsonOptions (): void {
     this.setOptions(window.Alpine.evaluate(this, this.$refs.json.innerText))
 
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
-  },
-  syncSlotOptions () {
+    this.syncSelectedValues()
+  }
+
+  syncSlotOptions (): void {
     const elements = this.$refs.slot.querySelectorAll('[name="wireui.select.option"]')
 
     const options = Array.from(elements).flatMap(element => {
@@ -291,11 +332,10 @@ export default (initOptions: InitOptions): Select => ({
 
     this.setOptions(options)
 
-    if (this.hasWireModel) {
-      this.syncSelectedFromWireModel()
-    }
-  },
-  makeRequest (params = {}) {
+    this.syncSelectedValues()
+  }
+
+  makeRequest (params = {}): Request {
     const { api, method, credentials } = this.asyncData
 
     const url = new URL(api ?? '')
@@ -329,8 +369,9 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     return request
-  },
-  fetchOptions () {
+  }
+
+  fetchOptions (): void {
     if (!this.asyncData.api) return
 
     this.asyncData.fetching = true
@@ -364,8 +405,9 @@ export default (initOptions: InitOptions): Select => ({
       }).finally(() => {
         this.asyncData.fetching = false
       })
-  },
-  fetchSelected () {
+  }
+
+  fetchSelected (): void {
     const selected = this.getValue()
 
     if (selected.length === 0) {
@@ -391,8 +433,9 @@ export default (initOptions: InitOptions): Select => ({
       }).catch(error => {
         reportError(error)
       })
-  },
-  mapOption (rawOption) {
+  }
+
+  mapOption (rawOption: Record<string, any>): Option {
     const option: Option = {
       ...rawOption,
       label: dataGet(rawOption, this.config.optionLabel),
@@ -408,13 +451,15 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     return option
-  },
-  setOptions (options) {
+  }
+
+  setOptions (options: Option[]): void {
     this.options = options
 
     this.syncSelectedOptions()
-  },
-  syncSelectedOptions () {
+  }
+
+  syncSelectedOptions (): void {
     this.options
       .filter(option => option.isSelected)
       .forEach(option => (option.isSelected = false))
@@ -432,8 +477,9 @@ export default (initOptions: InitOptions): Select => ({
         this.options[index].isSelected = true
       }
     })
-  },
-  fillSelectedFromInputValue () {
+  }
+
+  fillSelectedFromInputValue (): void {
     this.selected = undefined
     this.selectedOptions = []
 
@@ -451,76 +497,112 @@ export default (initOptions: InitOptions): Select => ({
       // eslint-disable-next-line eqeqeq
       this.selected = this.options.find(option => option.value == inputValue)
 
+      if (this.selected) {
+        this.selected.isSelected = true
+      }
+
       return
     }
 
     try {
-      this.selectedOptions = jsonParse(inputValue, []).map(value => {
+      this.selectedOptions = jsonParse(inputValue, []).map((value: any) => {
         // eslint-disable-next-line eqeqeq
-        return this.options.find(option => option.value == value)
+        const selected = this.options.find(option => option.value == value)
+
+        if (selected) {
+          selected.isSelected = true
+        }
+
+        return selected
       })
     } catch (error) {
       this.selectedOptions = []
       reportError(error)
     }
-  },
-  syncSelectedFromWireModel () {
+  }
+
+  syncSelectedValues () {
     if (this.config.multiselect) {
-      if (!Array.isArray(this.wireModel)) {
-        this.wireModel = [this.wireModel]
+      const selected = this.entangleable.get()
+
+      if (selected && !Array.isArray(selected)) {
+        this.entangleable.set([selected])
       }
 
-      return (this.selectedOptions = this.wireModel.flatMap(value => {
+      if (!Array.isArray(selected)) {
+        return (this.selectedOptions = [])
+      }
+
+      return (this.selectedOptions = selected?.flatMap((value: any) => {
         const original = this.selectedOptions.find(option => option.value === value)
 
         if (original) return original
 
-        return this.options.find(option => option.value === value) ?? []
+        const option = this.options.find(option => option.value === value)
+
+        if (!option) return []
+
+        option.isSelected = true
+
+        return option
       }))
     }
 
-    if (this.selected?.value !== this.wireModel) {
-      this.selected = this.options.find(option => option.value === this.wireModel)
+    if (this.selected?.value !== this.entangleable.get()) {
+      this.selected = this.options.find(option => option.value === this.entangleable.get())
+
+      if (this.selected) {
+        this.selected.isSelected = true
+      }
     }
-  },
-  mustSyncWireModel () {
-    return this.wireModel?.toString() !== this.selectedOptions.map(option => option.value).toString()
-  },
-  searchOptions (search) {
+  }
+
+  mustSyncEntangleableValue (): boolean {
+    return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
+  }
+
+  private normalizeText (str: string) {
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+  }
+
+  searchOptions (search: string): Option[] {
+    search = this.normalizeText(search)
+
     return this.options.filter(option => {
-      const label = option.label.toLocaleLowerCase()
+      const label = this.normalizeText(option.label.toLocaleLowerCase())
 
       return label.includes(search)
     })
-  },
-  closeIfNotFocused () {
-    if (!this.$root.contains(document.activeElement) && this.popover) {
-      this.close()
+  }
+
+  closeIfNotFocused (): void {
+    if (!this.$root.contains(document.activeElement) && this.positionable.state) {
+      this.positionable.close()
     }
-  },
-  toggle () {
+  }
+
+  toggle (): void {
     if (this.config.readonly) return
 
-    this.popover = !this.popover
+    this.positionable.toggle()
+  }
 
-    this.$refs.input.focus()
-  },
-  getValue () {
+  getValue (): any[] {
     try {
-      const values = this.hasWireModel
-        ? this.wireModel
-        : jsonParse(this.$refs.input.value)
+      if (this.entangleable.isEmpty()) return []
 
-      if (!values) return []
-
-      return [values].flat()
+      return [this.entangleable.get()].flat()
     } catch (error) {
       reportError(error)
 
       return []
     }
-  },
-  getSelectedValue () {
+  }
+
+  getSelectedValue (): any {
     if (this.config.multiselect) {
       if (this.selectedOptions.length === 0) return null
 
@@ -528,10 +610,13 @@ export default (initOptions: InitOptions): Select => ({
     }
 
     return this.selected?.value ?? ''
-  },
-  getSelectedDisplayText () {
+  }
+
+  getSelectedDisplayText (): string {
     if (!this.selected || this.config.multiselect) return ''
+
     if (this.selected.html) return this.selected.html
+
     if (this.selected.template) {
       const config = this.config.template.config ?? {}
       const template = templates[this.selected.template](config)
@@ -540,54 +625,63 @@ export default (initOptions: InitOptions): Select => ({
         return template.renderSelected(this.selected)
       }
     }
+
     if (this.config.template.renderSelected) {
       return this.config.template.renderSelected(this.selected)
     }
 
     return this.selected.label ?? ''
-  },
-  getPlaceholder () {
+  }
+
+  getPlaceholder (): string {
     if (this.config.multiselect && this.selectedOptions.length > 0) return ''
 
     return this.config.placeholder ?? ''
-  },
-  isSelected (option) {
+  }
+
+  isSelected (option: Option): boolean {
     if (this.config.multiselect) {
       return this.selectedOptions.some(({ value }) => value === option.value)
     }
 
     return option.value === this.selected?.value
-  },
-  select (option) {
-    if (this.config.readonly || option.disabled || option.readonly) return
+  }
 
-    this.search = ''
+  select (option: Option): void {
+    if (this.config.readonly || option.disabled || option.readonly) return
 
     if (this.config.multiselect) {
       const exists = this.selectedOptions.some(({ value }) => value === option.value)
 
       if (exists) return this.unSelect(option)
 
-      this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: option }))
+      this.$refs.container.dispatchEvent(new CustomEvent('selected', { detail: window.Alpine.raw(option) }))
 
       option.isSelected = true
 
-      return this.selectedOptions.push(option)
+      this.selectedOptions.push(option)
+
+      return
     }
 
     if (!this.config.clearable && this.selected?.value === option.value) {
-      return this.close()
+      return this.positionable.close()
     }
+
+    this.positionable.close()
 
     this.selected = option.value === this.selected?.value
       ? undefined
       : option
 
-    this.$refs.input.dispatchEvent(new CustomEvent('selected', { detail: this.selected }))
+    this.selected
+      ? this.$refs.container.dispatchEvent(new CustomEvent('selected', { detail: window.Alpine.raw(option) }))
+      : this.$refs.container.dispatchEvent(new CustomEvent('un-selected'))
 
-    this.close()
-  },
-  unSelect (option) {
+    setTimeout(() => this.$nextTick(() => this.resetSearch()), 1000)
+  }
+
+  unSelect (option: Option): void {
     if (this.config.readonly || !this.config.clearable) return
 
     const index = this.selectedOptions.findIndex(({ value }) => value === option.value)
@@ -596,27 +690,46 @@ export default (initOptions: InitOptions): Select => ({
 
     option.isSelected = false
 
-    this.$refs.input.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
-  },
-  clear () {
+    this.$refs.container.dispatchEvent(new CustomEvent('un-selected', { detail: option }))
+  }
+
+  resetSearch (): void {
     this.search = ''
+  }
+
+  clear (): void {
+    this.resetSearch()
 
     this.syncSelectedOptions()
+
+    if (this.selected) {
+      this.selected.isSelected = false
+    }
 
     this.config.multiselect
       ? this.selectedOptions = []
       : this.selected = undefined
 
-    this.$refs.input.dispatchEvent(new Event('clear'))
-  },
-  isEmpty () {
+    this.$refs.container.dispatchEvent(new Event('clear'))
+
+    this.positionable.close()
+
+    this.$refs.container.focus()
+  }
+
+  isEmpty (): boolean {
     if (this.config.multiselect) {
       return this.selectedOptions.length === 0
     }
 
     return this.selected === undefined
-  },
-  renderOption (option) {
+  }
+
+  isNotEmpty (): boolean {
+    return !this.isEmpty()
+  }
+
+  renderOption (option: Option): string {
     if (option.html) {
       return baseTemplate(option.html)
     }
@@ -629,4 +742,4 @@ export default (initOptions: InitOptions): Select => ({
 
     return this.config.template.render(option)
   }
-})
+}

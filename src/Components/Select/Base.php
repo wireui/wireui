@@ -23,6 +23,7 @@ class Base extends WireUiComponent
         'async-data'           => null,
         'right-icon'           => 'chevron-up-down',
         'searchable'           => true,
+        'shadowless'           => false,
         'multiselect'          => false,
         'placeholder'          => null,
         'always-fetch'         => false,
@@ -33,7 +34,7 @@ class Base extends WireUiComponent
         'option-key-value'     => false,
         'hide-empty-message'   => false,
         'option-description'   => null,
-        'without-items-count'  => false,
+        'without-items-count'  => true,
         'min-items-for-search' => 11,
     ];
 

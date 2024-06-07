@@ -17,22 +17,33 @@ class Picker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'max'              => null,
-        'min'              => null,
-        'interval'         => 10,
-        'max-time'         => 24,
-        'min-time'         => 0,
-        'timezone'         => null,
-        'clearable'        => true,
-        'right-icon'       => 'calendar',
-        'shadowless'       => false,
-        'time-format'      => 12,
-        'parse-format'     => null,
-        'without-time'     => false,
-        'without-tips'     => false,
-        'user-timezone'    => null,
-        'display-format'   => null,
-        'without-timezone' => false,
+        'max'                   => null,
+        'min'                   => null,
+        'interval'              => 10,
+        'max-time'              => 24,
+        'min-time'              => 0,
+        'multiple'              => false, // boolean
+        'timezone'              => null,
+        'clearable'             => true,
+        'right-icon'            => 'calendar',
+        'shadowless'            => false,
+        'time-format'           => 12,
+        'multiple-max'          => 0, // integer
+        'parse-format'          => null,
+        'without-time'          => false,
+        'without-tips'          => false,
+        'allowed-dates'         => [], // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
+        'start-of-week'         => Carbon::SUNDAY,
+        'user-timezone'         => null,
+        'disabled-dates'        => [], // [YYYY-MM-DD, [YYYY-MM-DD, YYYY-MM-DD]]
+        'disabled-years'        => [], // [YYYY, [YYYY, YYYY]]
+        'display-format'        => null,
+        'disabled-months'       => [], // [1, 2]
+        'without-timezone'      => false,
+        'disabled-weekdays'     => [], // [0, 1]
+        'disable-past-dates'    => false, // YYYY-MM-DD or boolean
+        'without-time-seconds'  => false,
+        'requires-confirmation' => false,
     ];
 
     protected function processed(): void

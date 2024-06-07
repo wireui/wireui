@@ -9,8 +9,7 @@
     @class([
         'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
-        $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
-        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-50'),
+        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-40'),
         'fixed inset-0 overflow-y-auto',
     ])
     x-on:keydown.escape.window="handleEscape"
@@ -46,10 +45,11 @@
         x-show="show"
         @class([
             'w-full min-h-full transform flex items-end justify-center mx-auto',
+            $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
             $alignClasses,
             $widthClasses,
         ])
-        @unless($persistent) x-on:click="close" @endunless
+        @unless($persistent) x-on:click.self="close" @endunless
         x-transition:enter="ease-out duration-300"
         x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"

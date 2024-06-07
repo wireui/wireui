@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\View;
 
-use Illuminate\Support\Facades\Blade;
 use WireUi\Facades\WireUiDirectives;
 use WireUi\Support\BladeDirectives;
 use WireUi\View\WireUiTagCompiler;
@@ -64,7 +63,7 @@ test('it should match rendered styles link', function () {
 });
 
 test('it should render all wireui scripts variation', function (string $text) {
-    $html = Blade::render($text);
+    $html = render($text);
 
     expect($html)->toContain('<script src="');
 

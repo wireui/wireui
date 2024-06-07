@@ -4,38 +4,38 @@ import SupportsLivewire from './SupportsLivewire'
 
 export { SupportsLivewire, SupportsAlpine }
 
-export class Entangleable {
-  private onSetCallbacks: CallableFunction[] = []
+export class Entangleable<TValue> {
+  protected onSetCallbacks: CallableFunction[] = []
 
-  private onClearCallbacks: CallableFunction[] = []
+  protected onClearCallbacks: CallableFunction[] = []
 
-  private onBlurCallbacks: CallableFunction[] = []
+  protected onBlurCallbacks: CallableFunction[] = []
 
-  private value: any = null
+  protected value: TValue|null = null
 
-  set (value: any, { force = false, triggerBlur = false } = {}) {
+  set (value: TValue|null, { force = false, triggerBlur = false } = {}) {
     if (this.value === value && !force) return
 
     this.value = value
 
-    this.onSetCallbacks.forEach(callback => callback(value))
+    this.runSetCallbacks()
 
     if (triggerBlur) {
       this.onBlurCallbacks.forEach(callback => callback(this.value))
     }
   }
 
-  get () {
+  get (): TValue|null {
     return this.value
   }
 
-  clear ($default = null) {
+  clear ($default: TValue|null = null) {
     this.value = $default
 
     this.onClearCallbacks.forEach(callback => callback())
   }
 
-  watch (callback: CallableFunction) {
+  watch (callback: (value: TValue|null) => void) {
     this.onSetCallbacks.push(callback)
   }
 
@@ -43,11 +43,21 @@ export class Entangleable {
     this.onBlurCallbacks.push(callback)
   }
 
-  onClear (callback: CallableFunction) {
+  onClear (callback: (value: TValue|null) => void) {
     this.onClearCallbacks.push(callback)
+  }
+
+  runSetCallbacks () {
+    this.onSetCallbacks.forEach(callback => callback(this.value))
   }
 
   isEmpty (): boolean {
     return isEmpty(this.value)
   }
+
+  isNotEmpty (): boolean {
+    return !this.isEmpty()
+  }
 }
+
+export default Entangleable

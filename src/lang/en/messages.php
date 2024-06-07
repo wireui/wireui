@@ -11,8 +11,15 @@ return [
         'tomorrow'  => 'Tomorrow',
         'today'     => 'Today',
         'yesterday' => 'Yesterday',
+        'clear'     => 'Clear',
+        'close'     => 'Close',
+        'apply'     => 'Apply',
+        'cancel'    => 'Cancel',
     ],
     'errors' => [
         'title' => 'There was an error in your submission|There were {errors} errors in your submission',
+    ],
+    'labels' => [
+        'remove' => 'Remove',
     ],
 ];

@@ -4,6 +4,11 @@ namespace WireUi\View;
 
 use Illuminate\Support\{Collection, Str};
 
+/**
+ * This class is a refactored version of Livewire\WireDirective
+ *
+ * @see https://github.com/livewire/livewire/blob/main/src/WireDirective.php
+ */
 final class Attribute
 {
     private readonly ?string $name;
@@ -66,7 +71,7 @@ final class Attribute
 
     private function extractValue(): ?string
     {
-        if (!str_contains($this->directive, ':')) {
+        if (!Str::contains($this->directive, ':')) {
             return null;
         }
 

@@ -1,6 +1,8 @@
 import dayjs, { ConfigType, Dayjs, UnitType } from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import isBetween from 'dayjs/plugin/isBetween'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 
@@ -8,99 +10,83 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
 dayjs.extend(localizedFormat)
+dayjs.extend(isBetween)
+dayjs.extend(isSameOrBefore)
 
-export type Dateable = {
-  timezone: string
-  addMonth (): Dateable
-  addMonths (months: number): Dateable
-  addDay (): Dateable
-  addDays (days: number): Dateable
-  subMonth (): Dateable
-  subMonths (months: number): Dateable
-  subDay (): Dateable
-  subDays (days: number): Dateable
-  getMonthDays (): number
-  getYear (): number
-  getMonth (): number
-  getDay (): number
-  getDayOfWeek (): number
-  getTime (timezone?: string): string
-  getHours (): number
-  getMinutes (): number
-  getSeconds (): number
-  getNativeDate (): Date
-  setYear (year: number): Dateable
-  setMonth (month: number): Dateable
-  setDay (day: number): Dateable
-  setTime (time: string): Dateable
-  setHours (hours: number): Dateable
-  setMinutes (minutes: number): Dateable
-  setSeconds (seconds: number): Dateable
-  setTimezone (timezone: string): Dateable
-  format (format: string, timezone?: string): string
-  clone (): Dateable
-  isValid (): boolean
-  isInvalid (): boolean
-  isBefore (date: Dateable | string, unit?: UnitType): boolean
-  isSame (date: Dateable | string, unit?: UnitType): boolean
-  isAfter (date: Dateable | string, unit?: UnitType): boolean
-  toJson (): string
-}
-
-export class FluentDate implements Dateable {
-  timezone: string
+export class FluentDate {
   private date: Dayjs
 
-  constructor (date: ConfigType, timezone = 'UTC', format = '') {
-    this.timezone = timezone
+  static localTimezone: string|null = null
+
+  timezone: string
+
+  constructor (date: ConfigType, timezone: string|null = null, format: string|null = null) {
+    this.timezone = timezone || FluentDate.getLocalTimezone()
+
     this.date = format
-      ? dayjs.tz(date, format, timezone)
-      : dayjs.tz(date, timezone)
+      ? dayjs.tz(date, format, this.timezone)
+      : dayjs.tz(date, this.timezone)
   }
 
-  addDay (): Dateable {
+  static now (timezone: string|null = null, format: string|null = ''): FluentDate {
+    return new FluentDate(dayjs(), timezone, format)
+  }
+
+  static parse (date: ConfigType, timezone: string|null = null, format: string|null = ''): FluentDate {
+    return new FluentDate(date, timezone, format)
+  }
+
+  static getLocalTimezone (): string {
+    return FluentDate.localTimezone || dayjs.tz.guess()
+  }
+
+  static setLocalTimezone (timezone: string): void {
+    FluentDate.localTimezone = timezone
+  }
+
+  addDay (): FluentDate {
     this.date = this.date.add(1, 'day')
 
     return this
   }
 
-  addDays (days: number): Dateable {
+  addDays (days: number): FluentDate {
     this.date = this.date.add(days, 'day')
 
     return this
   }
 
-  addMonth (): Dateable {
+  addMonth (): FluentDate {
     this.date = this.date.add(1, 'month')
 
     return this
   }
 
-  addMonths (months: number): Dateable {
+  addMonths (months: number): FluentDate {
     this.date = this.date.add(months, 'month')
 
     return this
   }
 
-  subMonth (): Dateable {
+  subMonth (): FluentDate {
     this.date = this.date.subtract(1, 'month')
 
     return this
   }
 
-  subMonths (months: number): Dateable {
+  subMonths (months: number): FluentDate {
     this.date = this.date.subtract(months, 'month')
 
     return this
   }
 
-  subDay (): Dateable {
+  subDay (): FluentDate {
     this.date = this.date.subtract(1, 'day')
 
     return this
   }
 
-  subDays (days: number): Dateable {
+  subDays (days: number): FluentDate {
     this.date = this.date.subtract(days, 'day')
 
     return this
@@ -118,6 +104,10 @@ export class FluentDate implements Dateable {
     return this.date.month()
   }
 
+  getRealMonth (): number {
+    return this.date.month() + 1
+  }
+
   getDay (): number {
     return this.date.date()
   }
@@ -131,7 +121,7 @@ export class FluentDate implements Dateable {
       return this.clone().setTimezone(timezone).getTime()
     }
 
-    return this.date.format('HH:mm')
+    return this.date.format('HH:mm:ss')
   }
 
   getHours (): number {
@@ -150,52 +140,53 @@ export class FluentDate implements Dateable {
     return this.date.toDate()
   }
 
-  setYear (year: number): Dateable {
+  setYear (year: number): FluentDate {
     this.date = this.date.set('year', year)
 
     return this
   }
 
-  setMonth (month: number): Dateable {
+  setMonth (month: number): FluentDate {
     this.date = this.date.set('month', month)
 
     return this
   }
 
-  setDay (day: number): Dateable {
+  setDay (day: number): FluentDate {
     this.date = this.date.set('date', day)
 
     return this
   }
 
-  setTime (time: string): Dateable {
-    const [hours = 0, minutes = 0] = time.split(':')
+  setTime (time: string): FluentDate {
+    const [hours = 0, minutes = 0, seconds = 0] = time.split(':')
 
     this.setHours(Number(hours))
     this.setMinutes(Number(minutes))
+    this.setSeconds(Number(seconds))
 
     return this
   }
 
-  setHours (hours: number): Dateable {
+  setHours (hours: number): FluentDate {
     this.date = this.date.set('hours', hours)
 
     return this
   }
 
-  setMinutes (minutes: number): Dateable {
+  setMinutes (minutes: number): FluentDate {
     this.date = this.date.set('minutes', minutes)
 
     return this
   }
 
-  setSeconds (seconds: number): Dateable {
+  setSeconds (seconds: number): FluentDate {
     this.date = this.date.set('seconds', seconds)
 
     return this
   }
 
-  setTimezone (timezone: string): Dateable {
+  setTimezone (timezone: string): FluentDate {
     this.date = this.date.tz(timezone)
     this.timezone = timezone
 
@@ -210,8 +201,8 @@ export class FluentDate implements Dateable {
     return this.date.format(format)
   }
 
-  clone (): Dateable {
-    return new FluentDate(this.date, this.timezone)
+  clone (): FluentDate {
+    return new FluentDate(this.date.clone(), this.timezone)
   }
 
   isValid (): boolean {
@@ -222,7 +213,7 @@ export class FluentDate implements Dateable {
     return !this.isValid()
   }
 
-  isBefore (date: Dateable | string, unit?: UnitType): boolean {
+  isBefore (date: FluentDate|string, unit?: UnitType): boolean {
     if (date instanceof FluentDate) {
       return this.date.isBefore(date.date, unit)
     }
@@ -230,7 +221,15 @@ export class FluentDate implements Dateable {
     return this.date.isBefore(String(date), unit)
   }
 
-  isSame (date: Dateable | string, unit?: UnitType): boolean {
+  isSameOrBefore (date: FluentDate|string, unit?: UnitType): boolean {
+    if (date instanceof FluentDate) {
+      return this.date.isSameOrBefore(date.date, unit)
+    }
+
+    return this.date.isSameOrBefore(String(date), unit)
+  }
+
+  isSame (date: FluentDate|string, unit?: UnitType): boolean {
     if (date instanceof FluentDate) {
       return this.date.isSame(date.date, unit)
     }
@@ -238,7 +237,7 @@ export class FluentDate implements Dateable {
     return this.date.isSame(String(date), unit)
   }
 
-  isAfter (date: Dateable | string, unit?: UnitType): boolean {
+  isAfter (date: FluentDate|string, unit?: UnitType): boolean {
     if (date instanceof FluentDate) {
       return this.date.isAfter(date.date, unit)
     }
@@ -246,8 +245,40 @@ export class FluentDate implements Dateable {
     return this.date.isAfter(String(date), unit)
   }
 
+  isBetween (start: FluentDate|string, end: FluentDate|string): boolean {
+    if (start instanceof FluentDate && end instanceof FluentDate) {
+      return this.date.isBetween(start.date, end.date, 'day', '[]')
+    }
+
+    return this.date.isBetween(String(start), String(end), 'day', '[]')
+  }
+
+  isToday (): boolean {
+    const today = dayjs.tz(new Date(), this.timezone)
+
+    return this.date.isSame(today, 'date')
+  }
+
   toJson (): string {
     return this.date.toJSON()
+  }
+
+  toIsoString (timezone?: string): string {
+    let format = 'YYYY-MM-DDTHH:mm:ss'
+
+    if (timezone) {
+      format += 'Z'
+    }
+
+    return this.format(format, timezone)
+  }
+
+  toDateString(): string {
+    return this.date.format('YYYY-MM-DD')
+  }
+
+  toString (): string {
+    return this.toJson()
   }
 }
 
@@ -256,10 +287,11 @@ export const getLocalTimezone = (): string => {
 }
 
 export interface ParseDate {
-  (date: ConfigType, timezone?: string, format?: string): Dateable
+  (date: ConfigType, timezone?: string, format?: string): FluentDate
 }
 
-export const date: ParseDate = (date: ConfigType, timezone = 'UTC', format = ''): Dateable => {
+// todo: delete date helper
+export const date: ParseDate = (date: ConfigType, timezone: string|null = null, format: string|null = null): FluentDate => {
   return new FluentDate(date, timezone, format)
 }
 

@@ -32,6 +32,7 @@ export const WireuiMock: WireUiHooks = {
 
 export const AlpineMock: MockedAlpine = {
   raw: jest.fn(Alpine.raw),
+  $data: jest.fn(Alpine.$data),
   data: jest.fn(Alpine.data),
   store: jest.fn(Alpine.store),
   magic: jest.fn(Alpine.magic),

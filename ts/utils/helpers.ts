@@ -28,7 +28,7 @@ export const jsonParse = (value?: string | null, fallback: any = null): any => {
   }
 }
 
-export const isEmpty = (value: any): boolean => {
+export const isEmpty = (value: any): value is null => {
   if (value === null || value === undefined || value === '') {
     return true
   }
@@ -40,4 +40,8 @@ export const isEmpty = (value: any): boolean => {
   if (value instanceof Date) return false
 
   return typeof value === 'object' && Object.keys(value).length === 0
+}
+
+export const isNotEmpty = (value: any): boolean => {
+  return !isEmpty(value)
 }

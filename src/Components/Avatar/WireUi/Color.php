@@ -20,7 +20,7 @@ class Color extends ComponentPack
                 'border' => 'border-primary-200 dark:border-primary-500',
             ],
             Packs\Color::SECONDARY => [
-                'label'  => 'bg-secondary-500 dark:bg-secondary-600',
+                'label'  => 'bg-secondary-300 dark:bg-secondary-600',
                 'border' => 'border-secondary-200 dark:border-secondary-500',
             ],
             Packs\Color::POSITIVE => [

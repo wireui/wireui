@@ -1,6 +1,6 @@
-import { Entangle } from '@/components/alpine'
 import { PositioningRefs } from '@/components/modules/positioning'
 import { Template, TemplateName } from './templates'
+import { AlpineModel, WireModel } from '@/components/alpine'
 
 export type Option = {
   [index: string]: any
@@ -33,10 +33,6 @@ export type AsyncData = AsyncDataConfig & {
   fetching: boolean
 }
 
-export type InitOptions = {
-  wireModel?: Entangle
-}
-
 export type Config = {
   hasSlot: boolean
   searchable: boolean
@@ -54,6 +50,8 @@ export type Config = {
 export type Props = Config & {
   asyncData: AsyncDataConfig
   template: TemplateConfig
+  wireModel: WireModel
+  alpineModel: AlpineModel
 }
 
 export type Refs = PositioningRefs & {

@@ -1,17 +1,13 @@
-export interface Password {
-  status: boolean
+import { AlpineComponent } from '@/components/alpine2'
 
-  get type (): string
-  toggle (): void
-}
-
-export default (): Password => ({
-  status: false,
+export default class Password extends AlpineComponent {
+  status = false
 
   get type () {
     return this.status ? 'text' : 'password'
-  },
+  }
+
   toggle () {
     this.status = !this.status
   }
-})
+}

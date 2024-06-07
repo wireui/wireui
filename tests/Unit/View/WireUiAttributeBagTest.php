@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Unit\View;
+
+use WireUi\View\WireUiAttributeBag;
+
 test('it should parse boolean attributes', function () {
     $attributes = [
         'foo'    => true,
@@ -9,7 +13,7 @@ test('it should parse boolean attributes', function () {
         'sail'   => 'laravel',
     ];
 
-    $bag = new WireUi\View\WireUiAttributeBag($attributes);
+    $bag = new WireUiAttributeBag($attributes);
 
     expect($bag->getAttributes())->toBe([
         'foo'    => 'true',

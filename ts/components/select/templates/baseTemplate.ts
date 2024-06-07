@@ -1,7 +1,8 @@
 export default (slot: string) => `
-<div class="
-        py-2 px-3 focus:outline-none all-colors ease-in-out duration-150 relative group
-        text-secondary-600 dark:text-secondary-400 flex items-center justify-between
+<div
+    class="
+        py-2 px-3 border-0 outline-none transition-all ease-in-out duration-150 relative group
+        text-secondary-600 dark:text-secondary-400 flex items-center justify-between snap-start
     "
     :class="{
         'cursor-pointer focus:bg-primary-100 focus:text-primary-800 hover:text-white dark:focus:bg-secondary-700': !option.readonly,
@@ -18,7 +19,7 @@ export default (slot: string) => `
 
     <template x-if="option.isSelected">
         <div class="flex-shrink-0">
-            <svg class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white"
+            <svg class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white group-focus:text-primary-600"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor">

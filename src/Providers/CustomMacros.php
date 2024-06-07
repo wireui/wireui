@@ -2,7 +2,7 @@
 
 namespace WireUi\Providers;
 
-use Illuminate\Support\Str;
+use Illuminate\Support\{Arr, Str};
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\WireDirective;
 use WireUi\View\Attribute;
@@ -11,6 +11,12 @@ class CustomMacros
 {
     public static function register(): void
     {
+        Arr::macro('toRecursiveCssClasses', function (array $classes): string {
+            return Arr::toCssClasses(collect($classes)->map(
+                fn ($value) => Arr::toCssClasses(Arr::wrap($value)),
+            )->values()->toArray());
+        });
+
         ComponentAttributeBag::macro('attribute', function (string $name): ?Attribute {
             /** @var ComponentAttributeBag $this */
             $attributes = collect($this->whereStartsWith($name)->getAttributes());
@@ -19,7 +25,7 @@ class CustomMacros
                 return null;
             }
 
-            return new Attribute($attributes->keys()->first(), $attributes->first());
+            return new Attribute($attributes->keys()->sort()->first(), $attributes->first());
         });
 
         ComponentAttributeBag::macro('wireModifiers', function () {

@@ -4,6 +4,7 @@ import Positionable from '@/alpine/modules/Positionable'
 import { AlpineComponent } from '@/components/alpine2'
 import { WireModel } from '@/livewire'
 import { applyMask } from '@/utils/masker'
+import { AlpineModel } from '@/components/alpine'
 
 export type Color = {
   name: string
@@ -21,16 +22,17 @@ export default class ColorPicker extends AlpineComponent {
   declare $props: {
     colorNameAsValue: boolean
     wireModel: WireModel
+    alpineModel: AlpineModel
     colors: Color[]
   }
 
   selected: Color = { value: '', name: '' }
 
-  entangleable: Entangleable = new Entangleable()
+  entangleable = new Entangleable<string>()
 
-  positionable: Positionable = new Positionable()
+  positionable = new Positionable()
 
-  focusable: Focusable = new Focusable()
+  focusable = new Focusable()
 
   get colors (): Color[] {
     if (this.$props?.colors?.length) {
@@ -53,7 +55,9 @@ export default class ColorPicker extends AlpineComponent {
       new SupportsLivewire(this.entangleable, this.$props.wireModel)
     }
 
-    new SupportsAlpine(this.entangleable, this.$refs.input)
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$refs.input, this.entangleable, this.$props.alpineModel)
+    }
   }
 
   syncSelected () {

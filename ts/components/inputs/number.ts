@@ -1,63 +1,66 @@
-export type Refs = {
-  input: HTMLInputElement
-}
+import { AlpineComponent } from '@/components/alpine2'
 
-export interface InputNumber {
-  $refs: Refs,
-  min: string | null,
-  max: string | null,
-  value: string | null,
-  disabled: boolean,
-  readonly: boolean,
+export default class NumberInput extends AlpineComponent {
+  declare $refs: {
+    input?: HTMLInputElement
+  }
 
-  init(): void
-  plus(): void
-  minus(): void
-  get disablePlus(): boolean
-  get disableMinus(): boolean
-}
+  declare $props: {
+    disabled: boolean
+    readonly: boolean
+  }
 
-export default (params): InputNumber => ({
-  $refs: {} as Refs,
-  min: null,
-  max: null,
-  value: null,
-  disabled: params.disabled,
-  readonly: params.readonly,
+  value: number|null = null
+
+  get min (): number {
+    return Number(this.$refs.input?.min ?? 0)
+  }
+
+  get max (): number {
+    return Number(this.$refs.input?.max ?? 0)
+  }
+
+  get disablePlus (): boolean {
+    if (this.$props.disabled) return true
+
+    return this.max
+      ? Number(this.value) >= this.max
+      : false
+  }
+
+  get disableMinus (): boolean {
+    if (this.$props.disabled) return true
+
+    return this.min
+      ? Number(this.value) <= this.min
+      : false
+  }
+
+  get isDisabled (): boolean {
+    return this.$props.disabled || this.$props.readonly
+  }
 
   init () {
-    this.min = this.$refs.input.min
+    this.value = Number(this.$refs.input?.value ?? 0)
+  }
 
-    this.max = this.$refs.input.max
-
-    this.value = this.$refs.input.value
-  },
   plus () {
-    if (this.disabled || this.readonly) return
+    if (this.isDisabled || !this.$refs.input) return
 
     this.$refs.input.stepUp()
 
-    this.value = this.$refs.input.value
+    this.value = Number(this.$refs.input.value)
 
     this.$refs.input.dispatchEvent(new Event('input'))
-  },
+  }
+
   minus () {
-    if (this.disabled || this.readonly) return
+    if (this.isDisabled || !this.$refs.input) return
 
     this.$refs.input.stepDown()
 
-    this.value = this.$refs.input.value
+    this.value = Number(this.$refs.input.value)
 
     this.$refs.input.dispatchEvent(new Event('input'))
-  },
-  get disablePlus () {
-    if (this.disabled) return true
-
-    return this.max ? Number(this.value) >= Number(this.max) : false
-  },
-  get disableMinus () {
-    if (this.disabled) return true
-
-    return this.min ? Number(this.value) <= Number(this.min) : false
   }
-})
+}
