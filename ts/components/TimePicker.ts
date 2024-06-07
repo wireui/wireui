@@ -41,7 +41,6 @@ export default class TimePicker extends AlpineComponent {
       .position('bottom')
 
     this.$safeWatch('input', (input: string|null) => {
-      console.log('input', input)
       this.input = this.maskInput(input)
 
       this.$skipNextWatcher('value', () => {
