@@ -45,7 +45,7 @@
         @unless($persistent) x-on:click="positionable.close()" @endunless
     >
         <div @class([
-            'relative soft-scrollbar overflow-auto border border-secondary-200 rounded-lg',
+            'relative soft-scrollbar border border-secondary-200 rounded-lg',
             'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
             $heightClasses,
         ])>
