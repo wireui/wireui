@@ -11,7 +11,7 @@ export type Selection = {
   hours: number
   minutes: number
   seconds: number
-  period: Period
+  period: Period|false
 }
 
 export default class TimeSelector extends AlpineComponent {
@@ -32,12 +32,12 @@ export default class TimeSelector extends AlpineComponent {
     alpineModel: AlpineModel
   }
 
-  declare private scrollable: {
+  private scrollable: {
     hours: ScrollableOptions,
     minutes: ScrollableOptions,
     seconds: ScrollableOptions,
     period: ScrollableOptions
-  }
+  } = {} as any
 
   private date = new FluentDate(new Date())
 
@@ -90,35 +90,35 @@ export default class TimeSelector extends AlpineComponent {
       new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
     }
 
-    watchProps(this, () => {
-      this.syncProps()
-
-      this.scrollable.hours
-        .setElements(this.getHoursOptions())
-        .setCurrent(
-          this.scrollable.hours.value() >= 12
-            ? this.scrollable.hours.value() - 12
-            : this.scrollable.hours.value()
-        )
-        .render()
-    })
+    watchProps(this, () => this.syncProps())
   }
 
   private syncProps () {
     this.config.military = this.$props.militaryTime
     this.config.seconds = !this.$props.withoutSeconds
+
+    if (this.config.military) {
+      this.selection.period = false
+    }
   }
 
   private syncTimeSelection (time: string|null): void {
-    const [rawHours, minutes, seconds] = time?.split(':') ?? []
+    let [hours, minutes, seconds] = time?.split(':') ?? [0, 0, 0]
 
-    const { period, hours } = toStandardFormat(Number(rawHours))
+    let period: Period|false = false
+
+    if (!this.config.military) {
+      const timePeriod = toStandardFormat(Number(hours))
+
+      hours = timePeriod.hours
+      period = timePeriod.period
+    }
 
     this.$skipNextWatcher('selection', () => {
       this.selection = {
         minutes: Number(minutes) || 0,
         seconds: Number(seconds) || 0,
-        hours,
+        hours: Number(hours),
         period
       }
     })
@@ -130,7 +130,13 @@ export default class TimeSelector extends AlpineComponent {
   }
 
   private makeTime (): string|null {
-    this.date.setHours(toMilitaryFormat(this.selection.period, this.selection.hours))
+    let hours = this.selection.hours
+
+    if (!this.config.military && this.selection.period) {
+      hours = toMilitaryFormat(this.selection.period, this.selection.hours)
+    }
+
+    this.date.setHours(hours)
     this.date.setMinutes(this.selection.minutes)
     this.date.setSeconds(this.selection.seconds)
 
@@ -154,14 +160,8 @@ export default class TimeSelector extends AlpineComponent {
       hours,
       this.selection.hours
     )
-      .onChange((rawHours: number) => {
-        const { period, hours } = toStandardFormat(rawHours)
-
-        this.selection = {
-          ...this.selection,
-          period,
-          hours
-        }
+      .onChange((hours: number) => {
+        this.selection.hours = hours
       })
       .start()
   }

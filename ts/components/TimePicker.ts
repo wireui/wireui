@@ -11,6 +11,7 @@ import { AlpineModel } from '@/components/alpine'
 export default class TimePicker extends AlpineComponent {
   declare $refs: {
     popover: HTMLElement
+    rawInput: HTMLInputElement
     input: HTMLInputElement
     container: HTMLDivElement
     optionsContainer: HTMLDivElement
@@ -84,8 +85,8 @@ export default class TimePicker extends AlpineComponent {
       this.value = value
     })
 
-    if (!this.input && this.$refs.input.value) {
-      this.input = this.$refs.input.value
+    if (this.$refs.rawInput.value) {
+      this.value = this.$refs.rawInput.value
     }
 
     if (this.$props.wireModel.exists) {
