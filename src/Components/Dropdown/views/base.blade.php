@@ -45,8 +45,9 @@
         @unless($persistent) x-on:click="positionable.close()" @endunless
     >
         <div @class([
-            'relative soft-scrollbar overflow-auto border border-secondary-200 rounded-lg',
+            'soft-scrollbar overflow-auto' => $height !== WireUi\Enum\Packs\Height::AUTO,
             'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
+            'relative border border-secondary-200 rounded-lg',
             $heightClasses,
         ])>
             {{ $slot }}

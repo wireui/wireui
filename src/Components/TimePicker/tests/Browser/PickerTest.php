@@ -38,8 +38,8 @@ class PickerTest extends BrowserTestCase
             ->downTimePicker('minutes', 3)
             ->downTimePicker('seconds', 27)
             ->downTimePicker('period', 1)
-            ->waitForWrapperValue('4:52:33 PM')
-            ->waitForTextIn('@value', '16:52:33');
+            ->waitForWrapperValue('4:52:33 AM')
+            ->waitForTextIn('@value', '04:52:33');
     }
 
     public function test_it_should_select_time_and_clear_24h_time(): void
@@ -68,17 +68,12 @@ class PickerTest extends BrowserTestCase
             ->downTimePicker('hours', 5)
             ->downTimePicker('minutes', 5)
             ->downTimePicker('seconds', 27)
-            ->waitForWrapperValue('07:55:33')
-            ->waitForTextIn('@value', '07:55:33');
-        // ->downTimePicker('hours', 12)
-        // ->downTimePicker('minutes', 3)
-        // ->downTimePicker('seconds', 27)
-        // ->waitForWrapperValue('04:52:06')
-        // ->waitForTextIn('@value', '04:52:06');
+            ->waitForWrapperValue('19:55:33')
+            ->waitForTextIn('@value', '19:55:33')
+            ->downTimePicker('hours', 6)
+            ->downTimePicker('minutes', 3)
+            ->downTimePicker('seconds', 27)
+            ->waitForWrapperValue('13:52:06')
+            ->waitForTextIn('@value', '13:52:06');
     }
-
-    // public function test_it_should_select_time_using_model_property_datetime(): void
-    // {
-    //     //
-    // }
 }
