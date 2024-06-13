@@ -112,7 +112,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
         return function (string $column, int $quantity = 1) {
             /** @var Browser $this */
             for ($i = 0; $i < $quantity; $i++) {
-                $this->clickAndHold("ul[x-ref=\"{$column}\"] > li:nth-child(2)")->moveMouse(0, 40)->releaseMouse()->pause(50);
+                $this->clickAndHold("ul[x-ref=\"{$column}\"] > li:nth-child(2)")->moveMouse(0, 40)->releaseMouse()->pause(200);
             }
 
             return $this;
