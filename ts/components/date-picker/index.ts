@@ -444,7 +444,7 @@ export default class DatetimePicker extends AlpineComponent {
 
     const { min, max } = this.$props.calendar
 
-    if (min && max) return day.isBetween(min, 'day')
+    if (min && max) return !day.isBetween(min, max)
     if (min) return day.isBefore(min, 'day')
     if (max) return day.isAfter(max, 'day')
 
