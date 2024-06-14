@@ -32,22 +32,14 @@ class PickerTest extends BrowserTestCase
                         wire:model.live="model"
                         label="Min Max Limits"
                         without-timezone
-                        :min="$date->copy()->subDays(7)->setHour(12)->format('u')"
-                        :max="$date->copy()->addDays(7)->setHour(15)->format('u')"
+                        :min="$date->copy()->subDays(7)->toISOString()"
+                        :max="$date->copy()->addDays(7)->toISOString()"
                     />
                 </div>
                 BLADE;
             }
         });
     }
-
-    // <x-datetime-picker
-    //     wire:model.live="model"
-    //     label="Min Max Limits"
-    //     without-timezone
-    //     :min="$date->copy()->subDays(7)->setHour(12)->format('u')"
-    //     :max="$date->copy()->addDays(7)->setHour(15)->format('u')"
-    // />
 
     public function test_it_should_select_date_without_timezone_difference(): void
     {
@@ -222,69 +214,25 @@ class PickerTest extends BrowserTestCase
      *
      * @dataProvider datesProvider
      */
-    public function it_should_select_only_the_dates_inside_a_range_min_and_max(bool $disabled, int $day, string $model, string $input)
-    {
-        $browser = $this->browser()
-            ->toggleWrapper()
-            ->tap(fn (Browser $browser) => $browser->selectDate('model', $day))
-            ->pause(1000000);
-
-        // if (!$disabled) {
-        //     $browser
-        //         ->waitForTextIn('@value', $model)
-        //         ->assertInputValue('model', $input);
-        // }
-    }
-
-    /**
-     * @test
-     *
-     * @dataProvider timesProvider
-     */
-    public function it_should_select_only_times_inside_the_limit(int $day, string $time, bool $exists)
+    public function it_should_select_only_the_dates_inside_a_range_min_and_max(int $day, string $model)
     {
         $this->browser()
             ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', $day))
-            ->pause(1000000000);
-
-            // ->waitUsing(7, 100, fn (Browser $browser) => $browser->assertScript(
-            //     "!!document.querySelector('[name=\"times.{$time}\"]')",
-            //     $exists,
-            // ));
+            ->waitForTextIn('@model', $model)
+            ->assertInputValue('model', $model);
     }
 
     public static function datesProvider(): array
     {
         return [
-            ['disabled' => true,  'day' => 1,  'model' => '',                     'input' => ''],
-            ['disabled' => true,  'day' => 7,  'model' => '',                     'input' => ''],
-            ['disabled' => false, 'day' => 8,  'model' => '2021-12-08T10:30:00Z', 'input' => '12/8/2021, 10:30 AM'],
-            ['disabled' => false, 'day' => 16, 'model' => '2021-12-16T10:30:00Z', 'input' => '12/16/2021, 10:30 AM'],
-            ['disabled' => false, 'day' => 22, 'model' => '2021-12-22T10:30:00Z', 'input' => '12/22/2021, 10:30 AM'],
-            ['disabled' => true,  'day' => 23, 'model' => '',                     'input' => ''],
-            ['disabled' => true,  'day' => 30, 'model' => '',                     'input' => ''],
-        ];
-    }
-
-    public static function timesProvider(): array
-    {
-        return [
-            ['day' => 8,  'time' => '12:30', 'exists' => true],
-            ['day' => 16, 'time' => '12:30', 'exists' => true],
-            ['day' => 22, 'time' => '12:30', 'exists' => true],
-
-            ['day' => 8,  'time' => '00:00', 'exists' => false],
-            ['day' => 16, 'time' => '00:00', 'exists' => true],
-            ['day' => 22, 'time' => '00:00', 'exists' => true],
-
-            ['day' => 8,  'time' => '15:30', 'exists' => true],
-            ['day' => 16, 'time' => '15:30', 'exists' => true],
-            ['day' => 22, 'time' => '15:30', 'exists' => true],
-
-            ['day' => 8,  'time' => '15:00', 'exists' => true],
-            ['day' => 16, 'time' => '15:00', 'exists' => true],
-            ['day' => 22, 'time' => '15:00', 'exists' => false],
+            ['day' => 1,  'model' => '2021-12-15T10:30:00'], // Doesn't change
+            ['day' => 7,  'model' => '2021-12-15T10:30:00'], // Doesn't change
+            ['day' => 8,  'model' => '2021-12-08T10:30:00'],
+            ['day' => 16, 'model' => '2021-12-16T10:30:00'],
+            ['day' => 22, 'model' => '2021-12-22T10:30:00'],
+            ['day' => 23, 'model' => '2021-12-15T10:30:00'], // Doesn't change
+            ['day' => 30, 'model' => '2021-12-15T10:30:00'], // Doesn't change
         ];
     }
 }
