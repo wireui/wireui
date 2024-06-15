@@ -46,6 +46,8 @@ export default class Calendar extends Feature {
   }
 
   private generate (): Day[] {
+    if (this.component.positionable.isClosed()) return []
+
     const { year, month } = this.component.calendar
 
     const days: Day[] = []
