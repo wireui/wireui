@@ -24,12 +24,17 @@ trait ManageProps
         }
     }
 
+    private function getSlot(string $key, array $data): mixed
+    {
+        return in_array($key, $this->slots, true) ? Arr::get($data, $key) : null;
+    }
+
     private function manageProps(string $key, mixed $value, array $data): void
     {
         $field = Str::camel($key);
 
         $this->{$field} = tap($this->getData($field, $value), function (&$value) use ($key, $data) {
-            $slot = in_array($key, $this->slots) ? Arr::get($data, $key) : null;
+            $slot = $this->getSlot($key, $data);
 
             $value = $slot ?? $value;
         });
