@@ -33,11 +33,9 @@ trait ManageProps
     {
         $field = Str::camel($key);
 
-        $this->{$field} = tap($this->getData($field, $value), function (&$value) use ($key, $data) {
-            $slot = $this->getSlot($key, $data);
-
-            $value = $slot ?? $value;
-        });
+        $this->{$field} = with($this->getData($field, $value),
+            fn ($value) => $this->getSlot($key, $data) ?? $value,
+        );
 
         $this->setVariables($field);
     }
