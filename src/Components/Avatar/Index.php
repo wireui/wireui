@@ -12,6 +12,8 @@ class Index extends WireUiComponent
     use HasSetupRounded;
     use HasSetupSize;
 
+    protected array $slots = ['label'];
+
     protected array $packs = ['border', 'icon-size'];
 
     protected array $props = [
@@ -21,11 +23,6 @@ class Index extends WireUiComponent
         'label'      => null,
         'borderless' => false,
     ];
-
-    protected function processed(array $data): void
-    {
-        $this->label ??= data_get($data, 'label');
-    }
 
     public function blade(): View
     {

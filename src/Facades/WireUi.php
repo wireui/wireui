@@ -11,7 +11,6 @@ use WireUi\Support\{BladeDirectives, ComponentResolver, WireUiSupport};
  * @method static ComponentResolver components()
  * @method static BladeDirectives directives()
  * @method static string component(string $name)
- * @method static bool checkSlot(mixed $slot)
  * @method static ComponentAttributeBag extractAttributes(mixed $property)
  * @method static string alpine(string $component, array $data = [])
  * @method static string toJs(array $data = [])

@@ -13,6 +13,8 @@ class Index extends WireUiComponent
     use HasSetupRounded;
     use HasSetupVariant;
 
+    protected array $slots = ['title'];
+
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
@@ -22,14 +24,9 @@ class Index extends WireUiComponent
         'shadowless' => false,
     ];
 
-    protected function processed(array $data): void
+    protected function processed(): void
     {
-        $this->title ??= data_get($data, 'title');
-    }
-
-    public function getUseIcon(): mixed
-    {
-        return $this->icon ?? Arr::get($this->colorClasses, 'icon', 'bell');
+        $this->icon ??= Arr::get($this->colorClasses, 'icon', 'bell');
     }
 
     public function blade(): View

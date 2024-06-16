@@ -11,6 +11,8 @@ class Index extends WireUiComponent
     use HasSetupColor;
     use HasSetupRounded;
 
+    protected array $slots = ['title'];
+
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
@@ -18,11 +20,6 @@ class Index extends WireUiComponent
         'borderless' => false,
         'shadowless' => false,
     ];
-
-    protected function processed(array $data): void
-    {
-        $this->title ??= data_get($data, 'title');
-    }
 
     public function blade(): View
     {
