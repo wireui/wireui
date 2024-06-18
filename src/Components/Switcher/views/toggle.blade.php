@@ -1,4 +1,5 @@
-<x-switcher
+<x-dynamic-component
+    :component="WireUi::component('switcher')"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key'])"
 >
@@ -36,4 +37,4 @@
             'invalidated:dark:peer-focus:ring-negative-700 invalidated:dark:peer-focus:ring-offset-secondary-800',
         ])></div>
     </label>
-</x-switcher>
+</x-dynamic-component>

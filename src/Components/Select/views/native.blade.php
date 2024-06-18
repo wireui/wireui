@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :with-error-icon="false"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
@@ -35,4 +36,4 @@
             @endforelse
         @else {{ $slot }} @endif
     </select>
-</x-text-field>
+</x-dynamic-component>

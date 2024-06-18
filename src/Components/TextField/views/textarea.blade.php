@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     :with-error-icon="false"
@@ -26,4 +27,4 @@
                 'w-full' => $cols === 'auto'
             ]) }}
     >{{ $slot }}</textarea>
-</x-text-field>
+</x-dynamic-component>
