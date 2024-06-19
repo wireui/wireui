@@ -15,10 +15,10 @@
             'pb-3' => $slot->isNotEmpty(),
         ])>
             <div class="flex items-center">
-                @if ($getUseIcon() && !$iconless)
+                @if ($icon() && !$iconless)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
-                        :name="$getUseIcon()"
+                        :name="$icon()"
                         @class([
                             Arr::get($colorClasses, 'iconColor', ''),
                             'w-5 h-5 mr-3 shrink-0',
