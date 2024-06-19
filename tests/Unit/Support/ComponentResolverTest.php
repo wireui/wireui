@@ -12,7 +12,7 @@ beforeEach(function () {
 test('it should resolve the component', function () {
     $component = $this->resolver->resolve('button');
 
-    expect($component)->toBe('button');
+    expect($component)->toBe('wui:button');
 
     config(['wireui.prefix' => 'wire:']);
 
@@ -48,7 +48,7 @@ test('it should resolve the component by alias', function () {
 test('it should add the prefix', function () {
     $component = $this->resolver->addPrefix('button');
 
-    expect($component)->toBe('button');
+    expect($component)->toBe('wui:button');
 
     config(['wireui.prefix' => 'wire:']);
 

@@ -25,10 +25,10 @@ class RegisterBladeComponentsTest extends TestCase
 
         $aliases = $bladeCompiler->getClassComponentAliases();
 
-        $this->assertArrayHasKey('form.input', $aliases, 'The form.input should be registered');
+        $this->assertArrayHasKey('wui:form.input', $aliases, 'The form.input should be registered');
 
         $this->assertArrayNotHasKey('input', $aliases, "The input shouldn't be registered");
 
-        $this->assertSame($aliases['form.input'], Input::class);
+        $this->assertSame($aliases['wui:form.input'], Input::class);
     }
 }

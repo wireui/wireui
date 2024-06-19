@@ -64,9 +64,11 @@ test('it should register the blade components', function () {
     /** @var BladeCompiler $bladeCompiler */
     $bladeCompiler = resolve(BladeCompiler::class);
 
-    expect($bladeCompiler->getClassComponentAliases())->toMatchArray(
-        collect(config('wireui.components'))->pluck('class', 'alias')->toArray(),
-    );
+    $components = collect(config('wireui.components'))->pluck('class', 'alias')
+        ->mapWithKeys(fn ($value, $key) => ["wui:{$key}" => $value])
+        ->toArray();
+
+    expect($bladeCompiler->getClassComponentAliases())->toMatchArray($components);
 });
 
 test('it should register the icon component to wireui class', function () {
@@ -75,8 +77,8 @@ test('it should register the icon component to wireui class', function () {
 
     $aliases = $bladeCompiler->getClassComponentAliases();
 
-    expect($aliases)->toHaveKey('icon');
-    expect($aliases['icon'])->toBe(Icon::class);
+    expect($aliases)->toHaveKey('wui:icon');
+    expect($aliases['wui:icon'])->toBe(Icon::class);
 });
 
 test('it should register the WireUi singleton', function () {
