@@ -22,9 +22,9 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button wire:click="toggle" dusk="button" label="Click" />
+                        <x-wui:button wire:click="toggle" dusk="button" label="Click" />
 
-                        <x-avatar
+                        <x-wui:avatar
                             dusk="avatar"
                             :label="$show ? 'AB' : null"
                             :icon="!$show ? 'x-mark' : null"

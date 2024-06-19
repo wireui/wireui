@@ -30,7 +30,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="button" label="Flat" :color="$color" flat />
+                        <x-wui:button dusk="button" label="Flat" :color="$color" flat />
                     </div>
                 BLADE;
             }
@@ -65,7 +65,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="button" label="Solid" :color="$color" solid />
+                        <x-wui:button dusk="button" label="Solid" :color="$color" solid />
                     </div>
                 BLADE;
             }
@@ -100,7 +100,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="button" label="Light" :color="$color" light />
+                        <x-wui:button dusk="button" label="Light" :color="$color" light />
                     </div>
                 BLADE;
             }
@@ -135,7 +135,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="button" label="Outline" :color="$color" outline />
+                        <x-wui:button dusk="button" label="Outline" :color="$color" outline />
                     </div>
                 BLADE;
             }

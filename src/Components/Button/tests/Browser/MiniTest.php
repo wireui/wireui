@@ -30,7 +30,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-button dusk="button" label="F" :color="$color" flat />
+                        <x-wui:mini-button dusk="button" label="F" :color="$color" flat />
                     </div>
                 BLADE;
             }
@@ -65,7 +65,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-button dusk="button" label="L" :color="$color" solid />
+                        <x-wui:mini-button dusk="button" label="L" :color="$color" solid />
                     </div>
                 BLADE;
             }
@@ -100,7 +100,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-button dusk="button" label="S" :color="$color" light />
+                        <x-wui:mini-button dusk="button" label="S" :color="$color" light />
                     </div>
                 BLADE;
             }
@@ -135,7 +135,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-button dusk="button" label="O" :color="$color" outline />
+                        <x-wui:mini-button dusk="button" label="O" :color="$color" outline />
                     </div>
                 BLADE;
             }

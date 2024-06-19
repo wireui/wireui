@@ -16,13 +16,13 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button label="Open" x-on:click="$openModal('modal')" />
+                        <x-wui:button label="Open" x-on:click="$openModal('modal')" />
 
-                        <x-modal name="modal">
-                            <x-card title="Modal Title">
-                                <x-button label="Close" x-on:click="$closeModal('modal')" />
-                            </x-card>
-                        </x-modal>
+                        <x-wui:modal name="modal">
+                            <x-wui:card title="Modal Title">
+                                <x-wui:button label="Close" x-on:click="$closeModal('modal')" />
+                            </x-wui:card>
+                        </x-wui:modal>
                     </div>
                 BLADE;
             }
@@ -55,15 +55,15 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-badge dusk="show" :label="json_encode($show)" />
+                        <x-wui:badge dusk="show" :label="json_encode($show)" />
 
-                        <x-button label="Open" wire:click="open" />
+                        <x-wui:button label="Open" wire:click="open" />
 
-                        <x-modal wire:model="show">
-                            <x-card title="Modal Title">
-                                <x-button label="Close" wire:click="close" />
-                            </x-card>
-                        </x-modal>
+                        <x-wui:modal wire:model="show">
+                            <x-wui:card title="Modal Title">
+                                <x-wui:button label="Close" wire:click="close" />
+                            </x-wui:card>
+                        </x-wui:modal>
                     </div>
                 BLADE;
             }

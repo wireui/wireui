@@ -25,9 +25,9 @@ class CardTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button label="Open" x-on:click="$openModal('modalCard')" />
+                        <x-wui:button label="Open" x-on:click="$openModal('modalCard')" />
 
-                        <x-modal-card title="Modal Card Title" name="modalCard" :hide-close="$hideClose" />
+                        <x-wui:modal-card title="Modal Card Title" name="modalCard" :hide-close="$hideClose" />
                     </div>
                 BLADE;
             }

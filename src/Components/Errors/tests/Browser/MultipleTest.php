@@ -37,7 +37,7 @@ class MultipleTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-errors :only="$only" />
+                    <x-wui:errors :only="$only" />
                 </div>
                 BLADE;
             }
@@ -82,11 +82,11 @@ class MultipleTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-errors :only="$only">
+                    <x-wui:errors :only="$only">
                         <x-slot name="footer">
-                            <x-button wire:click="addFilterErrors" label="Filter" negative />
+                            <x-wui:button wire:click="addFilterErrors" label="Filter" negative />
                         </x-slot>
-                    </x-errors>
+                    </x-wui:errors>
                 </div>
                 BLADE;
             }

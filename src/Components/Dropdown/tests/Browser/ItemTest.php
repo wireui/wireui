@@ -17,17 +17,17 @@ class ItemTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="item" :label="$item" />
+                    <x-wui:badge dusk="item" :label="$item" />
 
-                    <x-dropdown label="Color Picker">
+                    <x-wui:dropdown label="Color Picker">
                         <x-slot:trigger>
-                            <x-button dusk="toggle" label="Click me" />
+                            <x-wui:button dusk="toggle" label="Click me" />
                         </x-slot:trigger>
 
-                        <x-dropdown.item dusk="item1" x-on:click.prevent="$wire.set('item', 1)" label="Item 1" />
-                        <x-dropdown.item dusk="item2" x-on:click.prevent="$wire.set('item', 2)" label="Item 2" />
-                        <x-dropdown.item dusk="item3" x-on:click.prevent="$wire.set('item', 3)" label="Item 3" />
-                    </x-dropdown>
+                        <x-wui:dropdown.item dusk="item1" x-on:click.prevent="$wire.set('item', 1)" label="Item 1" />
+                        <x-wui:dropdown.item dusk="item2" x-on:click.prevent="$wire.set('item', 2)" label="Item 2" />
+                        <x-wui:dropdown.item dusk="item3" x-on:click.prevent="$wire.set('item', 3)" label="Item 3" />
+                    </x-wui:dropdown>
                 </div>
                 BLADE;
             }

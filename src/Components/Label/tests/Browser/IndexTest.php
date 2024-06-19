@@ -17,9 +17,9 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-label dusk="label" :label="$label" />
+                        <x-wui:label dusk="label" :label="$label" />
 
-                        <x-button wire:click="$set('label', 'Label 2')" label="Change" />
+                        <x-wui:button wire:click="$set('label', 'Label 2')" label="Change" />
                     </div>
                 BLADE;
             }

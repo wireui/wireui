@@ -33,11 +33,9 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Dialog Browser Test</h1>
-
-                    <x-dialog id="custom">
+                    <x-wui:dialog id="custom">
                         my slot
-                    </x-dialog>
+                    </x-wui:dialog>
 
                     <span dusk="events">{{ implode(', ', $events) }}</span>
                 </div>

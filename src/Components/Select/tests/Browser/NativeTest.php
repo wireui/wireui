@@ -25,16 +25,16 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-button dusk="validate" wire:click="save" label="Validate" />
+                    <x-wui:button dusk="validate" wire:click="save" label="Validate" />
 
-                    <x-native-select wire:model.live="model" label="Select" placeholder="Select a value">
+                    <x-wui:native-select wire:model.live="model" label="Select" placeholder="Select a value">
                         <option value="">default</option>
                         <option>Slot Option 1</option>
                         <option>Slot Option 2</option>
                         <option>Slot Option 3</option>
-                    </x-native-select>
+                    </x-wui:native-select>
                 </div>
                 BLADE;
             }
@@ -66,7 +66,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-native-select
+                    <x-wui:native-select
                         wire:model.live="model"
                         label="Label"
                         :options="$options"
@@ -105,7 +105,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-native-select
+                    <x-wui:native-select
                         wire:model.live="model"
                         label="Label"
                         :options="$options"
@@ -139,7 +139,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-native-select
+                    <x-wui:native-select
                         wire:model.live="model"
                         label="Label"
                         option-label="label"
@@ -175,7 +175,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-native-select
+                    <x-wui:native-select
                         wire:model.live="model"
                         label="Label"
                         option-key-value
@@ -210,7 +210,7 @@ class NativeTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-native-select
+                    <x-wui:native-select
                         wire:model.live="model"
                         label="Label"
                         option-key-label

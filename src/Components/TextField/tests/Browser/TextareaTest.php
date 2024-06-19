@@ -17,7 +17,7 @@ class TextareaTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-textarea wire:model.live="model" rows="10" />
+                    <x-wui:textarea wire:model.live="model" rows="10" />
                 </div>
                 BLADE;
             }
@@ -35,7 +35,7 @@ class TextareaTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-textarea wire:model.live="model" rows="10" cols="10" />
+                    <x-wui:textarea wire:model.live="model" rows="10" cols="10" />
                 </div>
                 BLADE;
             }
@@ -54,7 +54,7 @@ class TextareaTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-textarea wire:model.live="model" rows="10" />
+                    <x-wui:textarea wire:model.live="model" rows="10" />
                 </div>
                 BLADE;
             }
@@ -69,7 +69,7 @@ class TextareaTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-textarea wire:model.live="model" rows="10" />
+                    <x-wui:textarea wire:model.live="model" rows="10" />
                 </div>
                 BLADE;
             }

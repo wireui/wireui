@@ -25,13 +25,13 @@ class RadioTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="radio" :label="json_encode($radio)" />
+                    <x-wui:badge dusk="radio" :label="json_encode($radio)" />
 
-                    <x-radio id="laravel" wire:model.live="radio" value="Laravel"  label="Laravel" />
+                    <x-wui:radio id="laravel" wire:model.live="radio" value="Laravel"  label="Laravel" />
 
-                    <x-radio id="livewire" wire:model.live="radio" value="Livewire" label="Livewire" />
+                    <x-wui:radio id="livewire" wire:model.live="radio" value="Livewire" label="Livewire" />
 
-                    <x-button dusk="validate" wire:click="save" label="Save" />
+                    <x-wui:button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }

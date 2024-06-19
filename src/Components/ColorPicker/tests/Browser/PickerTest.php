@@ -11,7 +11,7 @@ class PickerTest extends BrowserTestCase
     public const NAME = 'color';
 
     public const HTML = <<<'BLADE'
-        <x-color-picker label="Color Picker" name="color" />
+        <x-wui:color-picker label="Color Picker" name="color" />
     BLADE;
 
     public function test_it_should_select_a_color(): void
@@ -42,7 +42,7 @@ class PickerTest extends BrowserTestCase
     public function test_it_should_auto_fill_the_color_from_input_element_value_as_color_title(): void
     {
         $this->render(<<<'BLADE'
-            <x-color-picker color-name-as-value name="color" value="Black" />
+            <x-wui:color-picker color-name-as-value name="color" value="Black" />
         BLADE)
             ->waitForAlpineJs()
             ->assertInputValue('color', 'Black');
@@ -57,7 +57,7 @@ class PickerTest extends BrowserTestCase
             public function render(): string
             {
                 return <<<'BLADE'
-                    <x-color-picker wire:model="color" />
+                    <x-wui:color-picker wire:model="color" />
                 BLADE;
             }
         })
@@ -75,11 +75,11 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="refresh" wire:click="$refresh" label="Refresh" />
+                        <x-wui:button dusk="refresh" wire:click="$refresh" label="Refresh" />
 
-                        <x-button dusk="value" :label="$color" />
+                        <x-wui:button dusk="value" :label="$color" />
 
-                        <x-color-picker wire:model="color" />
+                        <x-wui:color-picker wire:model="color" />
                     </div>
                 BLADE;
             }
@@ -107,9 +107,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="value" :label="$color" />
+                        <x-wui:button dusk="value" :label="$color" />
 
-                        <x-color-picker name="color" wire:model.live="color" />
+                        <x-wui:color-picker name="color" wire:model.live="color" />
                     </div>
                 BLADE;
             }
@@ -133,11 +133,11 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="outside" label="Outside" />
+                        <x-wui:button dusk="outside" label="Outside" />
 
-                        <x-button dusk="value" :label="$color" />
+                        <x-wui:button dusk="value" :label="$color" />
 
-                        <x-color-picker name="color" wire:model.live.blur="color" />
+                        <x-wui:color-picker name="color" wire:model.live.blur="color" />
                     </div>
                 BLADE;
             }
@@ -160,9 +160,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="value" :label="$color" />
+                        <x-wui:button dusk="value" :label="$color" />
 
-                        <x-color-picker name="color" wire:model.live.debounce.300ms="color" />
+                        <x-wui:color-picker name="color" wire:model.live.debounce.300ms="color" />
                     </div>
                 BLADE;
             }
@@ -190,9 +190,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-button dusk="value" :label="$color" />
+                        <x-wui:button dusk="value" :label="$color" />
 
-                        <x-color-picker name="color" wire:model.live.throttle.500ms="color" />
+                        <x-wui:color-picker name="color" wire:model.live.throttle.500ms="color" />
                     </div>
                 BLADE;
             }

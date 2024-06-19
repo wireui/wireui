@@ -18,9 +18,9 @@ class MaskableTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$maskable" />
+                    <x-wui:badge dusk="value" :label="$maskable" />
 
-                    <x-maskable dusk="maskable" wire:model.live="maskable" label="Maskable" mask="##.##" />
+                    <x-wui:maskable dusk="maskable" wire:model.live="maskable" label="Maskable" mask="##.##" />
                 </div>
                 BLADE;
             }
@@ -39,9 +39,9 @@ class MaskableTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$maskable" />
+                    <x-wui:badge dusk="value" :label="$maskable" />
 
-                    <x-maskable
+                    <x-wui:maskable
                         dusk="maskable"
                         wire:model.live="maskable"
                         label="Maskable"
@@ -67,9 +67,9 @@ class MaskableTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$maskable" />
+                    <x-wui:badge dusk="value" :label="$maskable" />
 
-                    <x-maskable
+                    <x-wui:maskable
                         dusk="maskable"
                         wire:model.live="maskable"
                         label="Maskable"

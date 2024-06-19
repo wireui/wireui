@@ -12,7 +12,7 @@ class SupportsAlpineTest extends BrowserTestCase
             'ColorPicker' => [
                 'html' => <<<BLADE
                     <div x-data="{ color: '#000' }">
-                        <x-color-picker label="Color Picker" name="value" x-modelable="color" />
+                        <x-wui:color-picker label="Color Picker" name="value" x-modelable="color" />
                     </div>
                 BLADE,
                 'value' => '#000',
@@ -34,7 +34,7 @@ class SupportsAlpineTest extends BrowserTestCase
     {
         return [
             'ColorPicker' => [
-                'html'  => '<x-color-picker label="Color Picker" name="value" value="#000" />',
+                'html'  => '<x-wui:color-picker label="Color Picker" name="value" value="#000" />',
                 'value' => '#000',
             ],
         ];

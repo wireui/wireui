@@ -16,7 +16,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input label="Input 1" corner="Corner 1" />
+                    <x-wui:input label="Input 1" corner="Corner 1" />
                 </div>
                 BLADE;
             }
@@ -33,7 +33,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input label="Input 1" corner="Corner 1" prefix="Prefix 1" suffix="Suffix 1" description="Description 1" />
+                    <x-wui:input label="Input 1" corner="Corner 1" prefix="Prefix 1" suffix="Suffix 1" description="Description 1" />
                 </div>
                 BLADE;
             }
@@ -51,7 +51,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input>
+                    <x-wui:input>
                         <x-slot name="prepend">
                             <a>prepend</a>
                         </x-slot>
@@ -59,7 +59,7 @@ class InputTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append</a>
                         </x-slot>
-                    </x-input>
+                    </x-wui:input>
                 </div>
                 BLADE;
             }
@@ -76,7 +76,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input prefix="prefix 2" suffix="suffix 2">
+                    <x-wui:input prefix="prefix 2" suffix="suffix 2">
                         <x-slot name="prepend">
                             <a>prepend 2</a>
                         </x-slot>
@@ -84,7 +84,7 @@ class InputTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append 2</a>
                         </x-slot>
-                    </x-input>
+                    </x-wui:input>
                 </div>
                 BLADE;
             }
@@ -116,7 +116,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input wire:model.live="model" label="Model Input" />
+                    <x-wui:input wire:model.live="model" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -148,7 +148,7 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-input wire:model.live="model" label="Test error less" :errorless="true" />
+                    <x-wui:input wire:model.live="model" label="Test error less" :errorless="true" />
                 </div>
                 BLADE;
             }
@@ -168,9 +168,9 @@ class InputTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-input wire:model.live="model" label="Model Input" />
+                    <x-wui:input wire:model.live="model" label="Model Input" />
                 </div>
                 BLADE;
             }

@@ -28,7 +28,7 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-link dusk="badge" label="Flat" :color="$color" />
+                        <x-wui:link dusk="badge" label="Flat" :color="$color" />
                     </div>
                 BLADE;
             }
@@ -63,7 +63,7 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-link dusk="badge" label="Flat" :underline="$underline" />
+                        <x-wui:link dusk="badge" label="Flat" :underline="$underline" />
                     </div>
                 BLADE;
             }

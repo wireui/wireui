@@ -31,9 +31,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-button dusk="validate" wire:click="save" label="Validate" />
+                    <x-wui:button dusk="validate" wire:click="save" label="Validate" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Single Select"
                         placeholder="Select Single Value"
@@ -63,9 +63,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Single Select"
                         placeholder="Select Single Value"
@@ -101,9 +101,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Single Select"
                         placeholder="Select Single Value"
@@ -148,9 +148,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="implode(',', $model)" />
+                    <x-wui:badge dusk="value" :label="implode(',', $model)" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Multiple Select"
                         placeholder="Select Multiples Values"
@@ -186,17 +186,17 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Slot Select"
                         placeholder="Slot Select"
                     >
-                        <x-select.option label="Option D" value="D" />
-                        <x-select.option label="Option E" value="E" />
-                        <x-select.option label="Option F" value="F" />
-                    </x-select>
+                        <x-wui:select.option label="Option D" value="D" />
+                        <x-wui:select.option label="Option E" value="E" />
+                        <x-wui:select.option label="Option F" value="F" />
+                    </x-wui:select>
                 </div>
                 BLADE;
             }
@@ -229,9 +229,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Select With Readonly/Disabled"
                         placeholder="Select With Readonly/Disabled"
@@ -261,9 +261,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Select From Async data"
                         placeholder="Select From Async data"
@@ -301,9 +301,9 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$model" />
+                    <x-wui:badge dusk="value" :label="$model" />
 
-                    <x-select
+                    <x-wui:select
                         wire:model.live="model"
                         label="Select From Async data"
                         placeholder="Select From Async data"

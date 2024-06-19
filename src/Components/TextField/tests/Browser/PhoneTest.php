@@ -17,9 +17,9 @@ class PhoneTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$phone" />
+                    <x-wui:badge dusk="value" :label="$phone" />
 
-                    <x-phone dusk="phone" wire:model.live="phone" label="Phone" emit-formatted />
+                    <x-wui:phone dusk="phone" wire:model.live="phone" label="Phone" emit-formatted />
                 </div>
                 BLADE;
             }
@@ -42,9 +42,9 @@ class PhoneTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$phone" />
+                    <x-wui:badge dusk="value" :label="$phone" />
 
-                    <x-phone
+                    <x-wui:phone
                         dusk="phone"
                         wire:model.live="phone"
                         label="Phone"

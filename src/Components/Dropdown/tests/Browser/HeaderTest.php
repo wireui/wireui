@@ -8,18 +8,18 @@ use Tests\Browser\BrowserTestCase;
 class HeaderTest extends BrowserTestCase
 {
     public const HTML = <<<BLADE
-    <x-button dusk="outside" label="Outside" />
+    <x-wui:button dusk="outside" label="Outside" />
 
-    <x-dropdown label="Color Picker">
+    <x-wui:dropdown label="Color Picker">
         <x-slot:trigger>
-            <x-button dusk="toggle" label="Click me" />
+            <x-wui:button dusk="toggle" label="Click me" />
         </x-slot:trigger>
 
-        <x-dropdown.header label="Header">
-            <x-dropdown.item label="Item 1" />
-            <x-dropdown.item label="Item 2" />
-        </x-dropdown.header>
-    </x-dropdown>
+        <x-wui:dropdown.header label="Header">
+            <x-wui:dropdown.item label="Item 1" />
+            <x-wui:dropdown.item label="Item 2" />
+        </x-wui:dropdown.header>
+    </x-wui:dropdown>
     BLADE;
 
     public function test_it_should_open_the_dropdown_with_header(): void

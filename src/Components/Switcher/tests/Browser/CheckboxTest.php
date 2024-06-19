@@ -25,11 +25,11 @@ class CheckboxTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="checkbox" :label="json_encode($checkbox)" />
+                    <x-wui:badge dusk="checkbox" :label="json_encode($checkbox)" />
 
-                    <x-checkbox wire:model.live="checkbox" label="Checkbox" />
+                    <x-wui:checkbox wire:model.live="checkbox" label="Checkbox" />
 
-                    <x-button dusk="validate" wire:click="save" label="Save" />
+                    <x-wui:button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }

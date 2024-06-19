@@ -22,9 +22,9 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-card>
+                        <x-wui:card>
                             <x-slot name="action">
-                                <x-button wire:click="toggle" dusk="button" label="Click" />
+                                <x-wui:button wire:click="toggle" dusk="button" label="Click" />
                             </x-slot>
 
                             <x-slot name="title" dusk="title">
@@ -34,7 +34,7 @@ class IndexTest extends BrowserTestCase
                                     Card is closed!
                                 @endif
                             </x-slot>
-                        </x-card>
+                        </x-wui:card>
                     </div>
                 BLADE;
             }

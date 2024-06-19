@@ -100,6 +100,8 @@ class BrowserTestCase extends TestCase
 
             $config->set('app.debug', true);
 
+            $config->set('wireui.prefix', 'wui:');
+
             $config->set('view.paths', [__DIR__ . '/views', resource_path('views')]);
 
             $config->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');

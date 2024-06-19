@@ -30,7 +30,7 @@ class PositionableTest extends BrowserTestCase
     public static function components(): array
     {
         return [
-            'ColorPicker' => ['<x-color-picker name="testing" />'],
+            'ColorPicker' => ['<x-wui:color-picker name="testing" />'],
         ];
     }
 }

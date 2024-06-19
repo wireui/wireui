@@ -28,7 +28,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-badge dusk="badge" label="F" :color="$color" flat />
+                        <x-wui:mini-badge dusk="badge" label="F" :color="$color" flat />
                     </div>
                 BLADE;
             }
@@ -61,7 +61,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-badge dusk="badge" label="S" :color="$color" solid />
+                        <x-wui:mini-badge dusk="badge" label="S" :color="$color" solid />
                     </div>
                 BLADE;
             }
@@ -94,7 +94,7 @@ class MiniTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-mini-badge dusk="badge" label="O" :color="$color" outline />
+                        <x-wui:mini-badge dusk="badge" label="O" :color="$color" outline />
                     </div>
                 BLADE;
             }

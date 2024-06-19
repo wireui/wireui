@@ -18,9 +18,9 @@ class CurrencyTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$currency" />
+                    <x-wui:badge dusk="value" :label="$currency" />
 
-                    <x-currency dusk="currency" wire:model.live="currency" label="Currency" />
+                    <x-wui:currency dusk="currency" wire:model.live="currency" label="Currency" />
                 </div>
                 BLADE;
             }
@@ -50,11 +50,11 @@ class CurrencyTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$currency" />
+                    <x-wui:badge dusk="value" :label="$currency" />
 
-                    <x-button dusk="button.change" wire:click="change" label="Change" />
+                    <x-wui:button dusk="button.change" wire:click="change" label="Change" />
 
-                    <x-currency dusk="currency" wire:model.live="currency" label="Currency" />
+                    <x-wui:currency dusk="currency" wire:model.live="currency" label="Currency" />
                 </div>
                 BLADE;
             }
@@ -75,9 +75,9 @@ class CurrencyTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$currency" />
+                    <x-wui:badge dusk="value" :label="$currency" />
 
-                    <x-currency
+                    <x-wui:currency
                         dusk="currency"
                         wire:model.live="currency"
                         label="Currency"
@@ -103,9 +103,9 @@ class CurrencyTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$currency" />
+                    <x-wui:badge dusk="value" :label="$currency" />
 
-                    <x-currency
+                    <x-wui:currency
                         dusk="currency"
                         wire:model.live="currency"
                         label="Currency"

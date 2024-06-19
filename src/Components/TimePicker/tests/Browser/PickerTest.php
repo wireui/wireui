@@ -17,9 +17,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$time" />
+                    <x-wui:badge dusk="value" :label="$time" />
 
-                    <x-time-picker
+                    <x-wui:time-picker
                         wire:model.live="time"
                         label="Time AM/PM"
                         placeholder="12:00 AM"
@@ -52,9 +52,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$time" />
+                    <x-wui:badge dusk="value" :label="$time" />
 
-                    <x-time-picker
+                    <x-wui:time-picker
                         wire:model.live="time"
                         label="Time 24H"
                         placeholder="24:00"

@@ -26,9 +26,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         label="Min Max Limits"
                         without-timezone
@@ -51,9 +51,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         without-timezone
                         label="Without Timezone"
@@ -85,9 +85,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         label="UTC Timezone"
                         user-timezone="America/Sao_Paulo"
@@ -118,9 +118,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         label="Asia/Tokyo Timezone"
                         timezone="Asia/Tokyo"
@@ -152,9 +152,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         label="Without Timezone"
                         without-timezone
@@ -183,9 +183,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="model" :label="$model" />
+                    <x-wui:badge dusk="model" :label="$model" />
 
-                    <x-datetime-picker
+                    <x-wui:datetime-picker
                         wire:model.live="model"
                         label="Date and Time"
                         without-timezone

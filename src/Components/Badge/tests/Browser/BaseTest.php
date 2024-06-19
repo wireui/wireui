@@ -28,7 +28,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-badge dusk="badge" label="Flat" :color="$color" flat />
+                        <x-wui:badge dusk="badge" label="Flat" :color="$color" flat />
                     </div>
                 BLADE;
             }
@@ -61,7 +61,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-badge dusk="badge" label="Solid" :color="$color" solid />
+                        <x-wui:badge dusk="badge" label="Solid" :color="$color" solid />
                     </div>
                 BLADE;
             }
@@ -94,7 +94,7 @@ class BaseTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-badge dusk="badge" label="Outline" :color="$color" outline />
+                        <x-wui:badge dusk="badge" label="Outline" :color="$color" outline />
                     </div>
                 BLADE;
             }

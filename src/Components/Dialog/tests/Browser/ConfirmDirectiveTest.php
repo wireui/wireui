@@ -22,10 +22,10 @@ class ConfirmDirectiveTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$value" />
+                    <x-wui:badge dusk="value" :label="$value" />
 
                     <div x-data="{ title: 'Alpine Confirmation' }">
-                        <x-button
+                        <x-wui:button
                             dusk="button.alpine"
                             label="With Alpine"
                             x-on:confirm="{
@@ -63,9 +63,9 @@ class ConfirmDirectiveTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$value" />
+                    <x-wui:badge dusk="value" :label="$value" />
 
-                    <x-button
+                    <x-wui:button
                         dusk="button.js"
                         label="JS"
                         x-on:confirm="{

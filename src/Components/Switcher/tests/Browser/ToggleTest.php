@@ -25,11 +25,11 @@ class ToggleTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="toggle" :label="json_encode($toggle)" />
+                    <x-wui:badge dusk="toggle" :label="json_encode($toggle)" />
 
-                    <x-toggle wire:model.live="toggle" label="Enable Notifications" />
+                    <x-wui:toggle wire:model.live="toggle" label="Enable Notifications" />
 
-                    <x-button dusk="validate" wire:click="save" label="Save" />
+                    <x-wui:button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }

@@ -16,7 +16,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number label="Input 1" corner="Corner 1" />
+                    <x-wui:number label="Input 1" corner="Corner 1" />
                 </div>
                 BLADE;
             }
@@ -33,7 +33,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number
+                    <x-wui:number
                         label="Input 1"
                         corner="Corner 1"
                         description="Description 1"
@@ -57,7 +57,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number>
+                    <x-wui:number>
                         <x-slot name="prepend">
                             <a>prepend</a>
                         </x-slot>
@@ -65,7 +65,7 @@ class NumberTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append</a>
                         </x-slot>
-                    </x-number>
+                    </x-wui:number>
                 </div>
                 BLADE;
             }
@@ -82,7 +82,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number prefix="prefix 2" suffix="suffix 2">
+                    <x-wui:number prefix="prefix 2" suffix="suffix 2">
                         <x-slot name="prepend">
                             <a>prepend 2</a>
                         </x-slot>
@@ -90,7 +90,7 @@ class NumberTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append 2</a>
                         </x-slot>
-                    </x-number>
+                    </x-wui:number>
                 </div>
                 BLADE;
             }
@@ -124,7 +124,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number wire:model.live="number" label="Model Input" />
+                    <x-wui:number wire:model.live="number" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -153,9 +153,9 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$number" />
+                    <x-wui:badge dusk="value" :label="$number" />
 
-                    <x-number wire:model.live="number" label="Model Input" />
+                    <x-wui:number wire:model.live="number" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -172,7 +172,7 @@ class NumberTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-number wire:key="number" name="number" label="Show Number" />
+                    <x-wui:number wire:key="number" name="number" label="Show Number" />
                 </div>
                 BLADE;
             }

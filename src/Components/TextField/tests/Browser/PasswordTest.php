@@ -16,7 +16,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password label="Input 1" corner-hint="Corner 1" />
+                    <x-wui:password label="Input 1" corner-hint="Corner 1" />
                 </div>
                 BLADE;
             }
@@ -33,7 +33,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password
+                    <x-wui:password
                         label="Input 1"
                         corner-hint="Corner 1"
                         hint="Hint 1"
@@ -57,7 +57,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password>
+                    <x-wui:password>
                         <x-slot name="prepend">
                             <a>prepend 1</a>
                         </x-slot>
@@ -65,7 +65,7 @@ class PasswordTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append 1</a>
                         </x-slot>
-                    </x-password>
+                    </x-wui:password>
                 </div>
                 BLADE;
             }
@@ -84,7 +84,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password prefix="prefix 2" suffix="suffix 2">
+                    <x-wui:password prefix="prefix 2" suffix="suffix 2">
                         <x-slot name="prepend">
                             <a>prepend 2</a>
                         </x-slot>
@@ -92,7 +92,7 @@ class PasswordTest extends BrowserTestCase
                         <x-slot name="append">
                             <a>append 2</a>
                         </x-slot>
-                    </x-password>
+                    </x-wui:password>
                 </div>
                 BLADE;
             }
@@ -124,7 +124,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password wire:model.live="model" label="Model Input" />
+                    <x-wui:password wire:model.live="model" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -145,9 +145,9 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-badge dusk="value" :label="$password" />
+                    <x-wui:badge dusk="value" :label="$password" />
 
-                    <x-password wire:model.live="password" label="Model Input" />
+                    <x-wui:password wire:model.live="password" label="Model Input" />
                 </div>
                 BLADE;
             }
@@ -164,7 +164,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password wire:key="password" name="password" label="Show Password" />
+                    <x-wui:password wire:key="password" name="password" label="Show Password" />
                 </div>
                 BLADE;
             }
