@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <x-wireui:dialog />
-    <x-wireui:notifications />
+    <x-wui:dialog />
+    <x-wui:notifications />
 
     {!! $slot !!}
 
