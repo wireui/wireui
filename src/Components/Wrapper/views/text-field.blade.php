@@ -151,7 +151,7 @@
             :for="$id"
             name="form.wrapper.description"
         >
-            {{ $description }}
+            {!! $description !!}
         </x-wireui-wrapper::form.description>
     @elseif (!$errorless && $invalidated)
         <x-wireui-wrapper::form.error
