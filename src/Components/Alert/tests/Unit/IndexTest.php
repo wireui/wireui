@@ -61,7 +61,7 @@ test('it should set specific title in component', function () {
 
     expect($this->component->title)->toBe($title);
 
-    expect('<x-alert :title="$title" />')->render(compact('title'))->toContain($title);
+    expect('<x-wui:alert :title="$title" />')->render(compact('title'))->toContain($title);
 });
 
 test('it should set icon in component and using iconless', function () {
@@ -84,13 +84,13 @@ test('it should set icon in component and using iconless', function () {
 
     $iconColor = data_get($pack, 'class.iconColor');
 
-    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
+    $html = render('<x-wui:icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
-    expect('<x-alert :$icon :$color :$title :$variant />')
+    expect('<x-wui:alert :$icon :$color :$title :$variant />')
         ->render(compact('icon', 'color', 'title', 'variant'))
         ->toContain($html);
 
-    expect('<x-alert :$icon :$color :$title :$variant iconless />')
+    expect('<x-wui:alert :$icon :$color :$title :$variant iconless />')
         ->render(compact('icon', 'color', 'title', 'variant'))
         ->not->toContain($html);
 });
@@ -114,9 +114,9 @@ test('it should set random color and variant in component', function () {
     $icon      = data_get($pack, 'class.icon');
     $iconColor = data_get($pack, 'class.iconColor');
 
-    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
+    $html = render('<x-wui:icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
-    expect('<x-alert :title="$title" :$color :$variant />')
+    expect('<x-wui:alert :title="$title" :$color :$variant />')
         ->render(compact('title', 'color', 'variant'))
         ->toContain(...[
             data_get($pack, 'class.text'),
@@ -137,7 +137,7 @@ test('it should set rounded full in component', function () {
     expect($this->component->squared)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-alert rounded />')->render()->toContain($class);
+    expect('<x-wui:alert rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -153,7 +153,7 @@ test('it should set squared in component', function () {
     expect($this->component->rounded)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-alert squared />')->render()->toContain($class);
+    expect('<x-wui:alert squared />')->render()->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -171,5 +171,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-alert :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:alert :$rounded />')->render(compact('rounded'))->toContain($class);
 });

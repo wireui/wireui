@@ -39,8 +39,8 @@ test('it should set custom root class in component with slot', function () {
     expect($this->component->rootClass)->toBe($rootClass);
 
     expect(<<<EOT
-    <x-popover :\$rootClass>
+    <x-wui:popover :\$rootClass>
         Popover Slot
-    </x-popover>
+    </x-wui:popover>
     EOT)->render(compact('rootClass'))->toContain($rootClass, 'Popover Slot');
 });

@@ -62,7 +62,7 @@ test('it should render label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-avatar :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-wui:avatar :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should render link photo in component', function () {
@@ -74,7 +74,7 @@ test('it should render link photo in component', function () {
 
     expect($this->component->src)->toBe($src);
 
-    expect('<x-avatar :$src />')->render(compact('src'))->toContain($src);
+    expect('<x-wui:avatar :$src />')->render(compact('src'))->toContain($src);
 });
 
 test('it should render icon in component', function () {
@@ -98,9 +98,9 @@ test('it should render icon in component', function () {
 
     $iconSizeClasses = data_get($iconSizeClasses, 'icon');
 
-    $html = render('<x-icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
+    $html = render('<x-wui:icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
 
-    expect('<x-avatar :$icon :$size />')
+    expect('<x-wui:avatar :$icon :$size />')
         ->render(compact('icon', 'size'))
         ->toContain($html)
         ->toContain($sizeClasses);
@@ -119,7 +119,7 @@ test('it should set rounded full in component', function () {
     expect($this->component->squared)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-avatar rounded />')->render()->toContain($class);
+    expect('<x-wui:avatar rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -135,7 +135,7 @@ test('it should set squared in component', function () {
     expect($this->component->rounded)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-avatar squared />')->render()->toContain($class);
+    expect('<x-wui:avatar squared />')->render()->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -153,5 +153,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-avatar :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:avatar :$rounded />')->render(compact('rounded'))->toContain($class);
 });

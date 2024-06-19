@@ -55,7 +55,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-input :$color />')
+    expect('<x-wui:input :$color />')
         ->render(compact('color'))
         ->toContain(data_get($class, 'input'));
 });
@@ -75,7 +75,7 @@ test('it should set random shadow in component', function () {
     expect($this->component->shadowless)->toBeFalse();
     expect($this->component->shadowClasses)->toBe($class);
 
-    expect('<x-input :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-wui:input :$shadow />')->render(compact('shadow'))->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -93,7 +93,7 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-input :$rounded />')
+    expect('<x-wui:input :$rounded />')
         ->render(compact('rounded'))
         ->toContain(data_get($class, 'input'));
 });

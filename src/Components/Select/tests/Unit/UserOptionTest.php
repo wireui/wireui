@@ -53,7 +53,7 @@ test('it should render option with label, value and description', function () {
         'description' => $description,
     ]));
 
-    expect('<x-select.user-option :$label :$value :$description />')
+    expect('<x-wui:select.user-option :$label :$value :$description />')
         ->render(compact('label', 'value', 'description'))
         ->toContain($array);
 });
@@ -72,7 +72,7 @@ test('it should render option with disabled attribute', function () {
         'readonly' => true,
     ]));
 
-    expect('<x-select.user-option disabled />')->render()->toContain($array);
+    expect('<x-wui:select.user-option disabled />')->render()->toContain($array);
 });
 
 test('it should render option with readonly attribute', function () {
@@ -88,5 +88,5 @@ test('it should render option with readonly attribute', function () {
         'readonly' => true,
     ]));
 
-    expect('<x-select.user-option readonly />')->render()->toContain($array);
+    expect('<x-wui:select.user-option readonly />')->render()->toContain($array);
 });

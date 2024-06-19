@@ -47,7 +47,7 @@ test('it should set random position in component', function () {
     expect($this->component->position)->toBe($position);
     expect($this->component->positionClasses)->toBe($class);
 
-    expect('<x-notifications :$position />')->render(compact('position'))->toContain($class);
+    expect('<x-wui:notifications :$position />')->render(compact('position'))->toContain($class);
 });
 
 test('it should set random z-index in component', function () {
@@ -59,5 +59,5 @@ test('it should set random z-index in component', function () {
 
     expect($this->component->zIndex)->toBe($zIndex);
 
-    expect('<x-notifications :$zIndex />')->render(compact('zIndex'))->toContain($zIndex);
+    expect('<x-wui:notifications :$zIndex />')->render(compact('zIndex'))->toContain($zIndex);
 });

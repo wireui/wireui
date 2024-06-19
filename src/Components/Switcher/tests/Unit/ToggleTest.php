@@ -56,7 +56,7 @@ test('it should render label and description in component', function () {
     expect($this->component->label)->toBe($label);
     expect($this->component->description)->toBe($description);
 
-    expect('<x-toggle :$label :$description />')
+    expect('<x-wui:toggle :$label :$description />')
         ->render(compact('label', 'description'))
         ->toContain($label, $description);
 });
@@ -70,7 +70,7 @@ test('it should render left label in component', function () {
 
     expect($this->component->leftLabel)->toBe($leftLabel);
 
-    expect('<x-toggle :$leftLabel />')
+    expect('<x-wui:toggle :$leftLabel />')
         ->render(compact('leftLabel'))
         ->toContain($leftLabel);
 });
@@ -89,7 +89,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-toggle :$color />')->render(compact('color'))->toContain($class);
+    expect('<x-wui:toggle :$color />')->render(compact('color'))->toContain($class);
 });
 
 test('it should set random size in component', function () {
@@ -106,7 +106,7 @@ test('it should set random size in component', function () {
     expect($this->component->size)->toBe($size);
     expect($this->component->sizeClasses)->toBe($class);
 
-    expect('<x-toggle :$size />')->render(compact('size'))->toContain(...$class);
+    expect('<x-wui:toggle :$size />')->render(compact('size'))->toContain(...$class);
 });
 
 test('it should set random rounded in component', function () {
@@ -124,5 +124,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-toggle :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:toggle :$rounded />')->render(compact('rounded'))->toContain($class);
 });

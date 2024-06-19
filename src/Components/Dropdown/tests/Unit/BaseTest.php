@@ -54,13 +54,13 @@ test('it should set random icon in component with persistent', function () {
     expect($this->component->persistent)->toBeTrue();
 
     $html = render(<<<EOT
-    <x-icon :name="\$icon" @class([
+    <x-wui:icon :name="\$icon" @class([
         'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
         'w-4 h-4 text-secondary-500 hover:text-secondary-700',
     ]) />
     EOT, compact('icon'));
 
-    expect('<x-dropdown :$icon persistent />')
+    expect('<x-wui:dropdown :$icon persistent />')
         ->render(compact('icon'))->toContain($html)
         ->not->toContain('x-on:click="positionable.close()"');
 });
@@ -79,7 +79,7 @@ test('it should set random width in component', function () {
     expect($this->component->width)->toBe($width);
     expect($this->component->widthClasses)->toBe($class);
 
-    expect('<x-dropdown :$width />')->render(compact('width'))->toContain($class);
+    expect('<x-wui:dropdown :$width />')->render(compact('width'))->toContain($class);
 });
 
 test('it should set random height in component', function () {
@@ -96,5 +96,5 @@ test('it should set random height in component', function () {
     expect($this->component->height)->toBe($height);
     expect($this->component->heightClasses)->toBe($class);
 
-    expect('<x-dropdown :$height />')->render(compact('height'))->toContain($class);
+    expect('<x-wui:dropdown :$height />')->render(compact('height'))->toContain($class);
 });

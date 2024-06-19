@@ -44,7 +44,7 @@ test('it should set specific title in component', function () {
 
     expect($this->component->title)->toBe($title);
 
-    expect('<x-errors :$title />')->render(compact('title'))->toContain($title);
+    expect('<x-wui:errors :$title />')->render(compact('title'))->toContain($title);
 });
 
 test('it should filter only specific errors', function () {
@@ -56,7 +56,7 @@ test('it should filter only specific errors', function () {
 
     expect($this->component->only->toArray())->toBe($only);
 
-    expect('<x-errors :$only />')
+    expect('<x-wui:errors :$only />')
         ->render(compact('only'))
         ->not->toContain('third error')
         ->toContain('first error', 'second error');

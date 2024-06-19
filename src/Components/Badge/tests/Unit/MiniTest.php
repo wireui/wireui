@@ -55,7 +55,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-mini-badge :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-wui:mini-badge :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon in component with random size', function () {
@@ -77,10 +77,10 @@ test('it should set icon in component with random size', function () {
     expect($this->component->sizeClasses)->toBe($sizeClasses);
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses);
 
-    expect('<x-mini-badge :$size :$icon />')
+    expect('<x-wui:mini-badge :$size :$icon />')
         ->render(compact('size', 'icon'))
         ->toContain($sizeClasses)
-        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
+        ->toContain(render('<x-wui:icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
 });
 
 test('it should set random color and variant in component', function () {
@@ -99,7 +99,7 @@ test('it should set random color and variant in component', function () {
     expect($this->component->variant)->toBe($variant);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-mini-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
+    expect('<x-wui:mini-badge :$color :$variant />')->render(compact('color', 'variant'))->toContain($class);
 });
 
 test('it should set rounded full in component', function () {
@@ -115,7 +115,7 @@ test('it should set rounded full in component', function () {
     expect($this->component->squared)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-mini-badge rounded />')->render()->toContain($class);
+    expect('<x-wui:mini-badge rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -131,7 +131,7 @@ test('it should set squared in component', function () {
     expect($this->component->rounded)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-mini-badge squared />')->render()->toContain($class);
+    expect('<x-wui:mini-badge squared />')->render()->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -149,5 +149,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-mini-badge :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:mini-badge :$rounded />')->render(compact('rounded'))->toContain($class);
 });

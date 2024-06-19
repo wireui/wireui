@@ -55,7 +55,7 @@ test('it should render option with label, value and description', function () {
 
     $array = htmlspecialchars(WireUi::toJs($this->component->toArray()));
 
-    expect('<x-select.option :$label :$value :$description />')
+    expect('<x-wui:select.option :$label :$value :$description />')
         ->render(compact('label', 'value', 'description'))
         ->toContain($array);
 });
@@ -71,7 +71,7 @@ test('it should render option with disabled attribute', function () {
 
     $array = htmlspecialchars(WireUi::toJs($this->component->toArray()));
 
-    expect('<x-select.option disabled />')->render()->toContain($array);
+    expect('<x-wui:select.option disabled />')->render()->toContain($array);
 });
 
 test('it should render option with readonly attribute', function () {
@@ -85,5 +85,5 @@ test('it should render option with readonly attribute', function () {
 
     $array = htmlspecialchars(WireUi::toJs($this->component->toArray()));
 
-    expect('<x-select.option readonly />')->render()->toContain($array);
+    expect('<x-wui:select.option readonly />')->render()->toContain($array);
 });

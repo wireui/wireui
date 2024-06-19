@@ -58,9 +58,9 @@ test('it should set icon and right icon in component', function () {
     expect($this->component->icon)->toBe($icon);
     expect($this->component->rightIcon)->toBe($rightIcon);
 
-    expect('<x-number :$icon :$rightIcon />')->render(compact('icon', 'rightIcon'))
-        ->toContain(render('<x-icon :name="$icon" class="w-4 h-4 shrink-0" />', compact('icon')))
-        ->toContain(render('<x-icon :name="$rightIcon" class="w-4 h-4 shrink-0" />', compact('rightIcon')));
+    expect('<x-wui:number :$icon :$rightIcon />')->render(compact('icon', 'rightIcon'))
+        ->toContain(render('<x-wui:icon :name="$icon" class="w-4 h-4 shrink-0" />', compact('icon')))
+        ->toContain(render('<x-wui:icon :name="$rightIcon" class="w-4 h-4 shrink-0" />', compact('rightIcon')));
 });
 
 test('it should set random color in component', function () {
@@ -77,7 +77,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-number :$color />')
+    expect('<x-wui:number :$color />')
         ->render(compact('color'))
         ->toContain(data_get($class, 'input'));
 });
@@ -97,7 +97,7 @@ test('it should set random shadow in component', function () {
     expect($this->component->shadowless)->toBeFalse();
     expect($this->component->shadowClasses)->toBe($class);
 
-    expect('<x-number :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-wui:number :$shadow />')->render(compact('shadow'))->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -115,5 +115,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-number :$rounded />')->render(compact('rounded'))->toContain(...$class);
+    expect('<x-wui:number :$rounded />')->render(compact('rounded'))->toContain(...$class);
 });

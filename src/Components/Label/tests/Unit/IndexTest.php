@@ -34,5 +34,5 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-label :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-wui:label :$label />')->render(compact('label'))->toContain($label);
 });

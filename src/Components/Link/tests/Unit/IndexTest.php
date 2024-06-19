@@ -47,7 +47,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-link :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-wui:link :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set random size in component', function () {
@@ -64,7 +64,7 @@ test('it should set random size in component', function () {
     expect($this->component->size)->toBe($size);
     expect($this->component->sizeClasses)->toBe($sizeClasses);
 
-    expect('<x-link :$size />')->render(compact('size'))->toContain($sizeClasses);
+    expect('<x-wui:link :$size />')->render(compact('size'))->toContain($sizeClasses);
 });
 
 test('it should set random color in component', function () {
@@ -81,7 +81,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-link :$color />')->render(compact('color'))->toContain($class);
+    expect('<x-wui:link :$color />')->render(compact('color'))->toContain($class);
 });
 
 test('it should set random underline in component', function () {
@@ -98,5 +98,5 @@ test('it should set random underline in component', function () {
     expect($this->component->underline)->toBe($underline);
     expect($this->component->underlineClasses)->toBe($class);
 
-    expect('<x-link :$underline />')->render(compact('underline'))->toContain($class);
+    expect('<x-wui:link :$underline />')->render(compact('underline'))->toContain($class);
 });

@@ -42,7 +42,7 @@ test('it should set random label in component with separator', function () {
     expect($this->component->label)->toBe($label);
     expect($this->component->separator)->toBeTrue();
 
-    expect('<x-dropdown.item :$label separator />')
+    expect('<x-wui:dropdown.item :$label separator />')
         ->render(compact('label'))
         ->toContain($label, 'border');
 });

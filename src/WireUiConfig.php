@@ -468,15 +468,12 @@ class WireUiConfig
                 'alias' => 'toggle',
             ],
             /**
-             * Popovers
+             * Internal Components
              */
             'popover' => [
                 'class' => Popover\Index::class,
                 'alias' => 'popover',
             ],
-            /**
-             * Wrappers
-             */
             'switcher' => [
                 'class' => Wrapper\Switcher::class,
                 'alias' => 'switcher',

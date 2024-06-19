@@ -67,7 +67,7 @@ test('it should render button like link', function () {
 
     expect($this->component->tag)->toBe('a');
 
-    expect('<x-button :$href />')->render(compact('href'))->toContain($href);
+    expect('<x-wui:button :$href />')->render(compact('href'))->toContain($href);
 });
 
 test('it should set specific label in component', function () {
@@ -79,7 +79,7 @@ test('it should set specific label in component', function () {
 
     expect($this->component->label)->toBe($label);
 
-    expect('<x-button :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-wui:button :$label />')->render(compact('label'))->toContain($label);
 });
 
 test('it should set icon and right icon in component with random size', function () {
@@ -103,11 +103,11 @@ test('it should set icon and right icon in component with random size', function
     expect($this->component->sizeClasses)->toBe($sizeClasses);
     expect($this->component->iconSizeClasses)->toBe($iconSizeClasses);
 
-    expect('<x-button :$size :$icon :$rightIcon />')
+    expect('<x-wui:button :$size :$icon :$rightIcon />')
         ->render(compact('size', 'icon', 'rightIcon'))
         ->toContain($sizeClasses)
-        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
-        ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
+        ->toContain(render('<x-wui:icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
+        ->toContain(render('<x-wui:icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
 test('it should set random color and variant in component', function () {
@@ -126,7 +126,7 @@ test('it should set random color and variant in component', function () {
     expect($this->component->variant)->toBe($variant);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-button :$color :$variant />')
+    expect('<x-wui:button :$color :$variant />')
         ->render(compact('color', 'variant'))
         ->toContain(Arr::toRecursiveCssClasses($class));
 });
@@ -144,7 +144,7 @@ test('it should set rounded full in component', function () {
     expect($this->component->squared)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-button rounded />')->render()->toContain($class);
+    expect('<x-wui:button rounded />')->render()->toContain($class);
 });
 
 test('it should set squared in component', function () {
@@ -160,7 +160,7 @@ test('it should set squared in component', function () {
     expect($this->component->rounded)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-button squared />')->render()->toContain($class);
+    expect('<x-wui:button squared />')->render()->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -178,5 +178,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-button :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:button :$rounded />')->render(compact('rounded'))->toContain($class);
 });

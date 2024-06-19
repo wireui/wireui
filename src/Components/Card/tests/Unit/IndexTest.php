@@ -56,7 +56,7 @@ test('it should render title in component', function () {
 
     expect($this->component->title)->toBe($title);
 
-    expect('<x-card :$title />')->render(compact('title'))->toContain($title);
+    expect('<x-wui:card :$title />')->render(compact('title'))->toContain($title);
 });
 
 test('it should set rounded full in component', function () {
@@ -73,9 +73,9 @@ test('it should set rounded full in component', function () {
     expect($this->component->roundedClasses)->toBe($class);
 
     expect(<<<EOT
-    <x-card title="Title" rounded>
+    <x-wui:card title="Title" rounded>
         <x-slot name="footer">Footer</x-slot>
-    </x-card>
+    </x-wui:card>
     EOT)->render()->toContain(...$class);
 });
 
@@ -93,8 +93,8 @@ test('it should set squared in component', function () {
     expect($this->component->roundedClasses)->toBe($class);
 
     expect(<<<EOT
-    <x-card title="Title" squared>
+    <x-wui:card title="Title" squared>
         <x-slot name="footer">Footer</x-slot>
-    </x-card>
+    </x-wui:card>
     EOT)->render()->toContain(...$class);
 });

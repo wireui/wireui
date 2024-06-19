@@ -41,7 +41,7 @@ test('it should set modal card as fullscreen', function () {
 
     expect($this->component->fullscreen)->toBeTrue();
 
-    expect('<x-modal-card fullscreen />')->render()->toContain('p-0', 'w-full min-h-screen');
+    expect('<x-wui:modal-card fullscreen />')->render()->toContain('p-0', 'w-full min-h-screen');
 });
 
 test('it should hide close in modal card', function () {
@@ -53,5 +53,5 @@ test('it should hide close in modal card', function () {
 
     expect($this->component->hideClose)->toBeTrue();
 
-    expect('<x-modal-card title="Title" hide-close />')->render()->not->toContain('button');
+    expect('<x-wui:modal-card title="Title" hide-close />')->render()->not->toContain('button');
 });

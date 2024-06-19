@@ -79,7 +79,7 @@ test('it should set random align in component', function () {
     expect($this->component->align)->toBe($align);
     expect($this->component->alignClasses)->toBe($class);
 
-    expect('<x-modal :$align />')->render(compact('align'))->toContain($class);
+    expect('<x-wui:modal :$align />')->render(compact('align'))->toContain($class);
 });
 
 test('it should set random blur in component', function () {
@@ -96,7 +96,7 @@ test('it should set random blur in component', function () {
     expect($this->component->blur)->toBe($blur);
     expect($this->component->blurClasses)->toBe($class);
 
-    expect('<x-modal :$blur />')->render(compact('blur'))->toContain($class);
+    expect('<x-wui:modal :$blur />')->render(compact('blur'))->toContain($class);
 });
 
 test('it should set random width in component', function () {
@@ -113,7 +113,7 @@ test('it should set random width in component', function () {
     expect($this->component->width)->toBe($width);
     expect($this->component->widthClasses)->toBe($class);
 
-    expect('<x-modal :$width />')->render(compact('width'))->toContain($class);
+    expect('<x-wui:modal :$width />')->render(compact('width'))->toContain($class);
 });
 
 test('it should set random type in component', function () {
@@ -131,7 +131,7 @@ test('it should set random type in component', function () {
     expect($this->component->type)->toBe($type);
     expect($this->component->typeClasses)->toBe($class);
 
-    expect('<x-modal :$type :$zIndex />')->render(compact('type', 'zIndex'))->toContain(...[
+    expect('<x-wui:modal :$type :$zIndex />')->render(compact('type', 'zIndex'))->toContain(...[
         data_get($pack, 'class.z-index'),
         data_get($pack, 'class.spacing'),
     ]);

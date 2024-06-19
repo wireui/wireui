@@ -45,4 +45,11 @@ class TestCase extends TestbenchTestCase
     {
         Artisan::call('view:clear');
     }
+
+    protected function getEnvironmentSetUp($app)
+    {
+        tap($app['config'], function ($config) {
+            $config->set('wireui.prefix', 'wui:');
+        });
+    }
 }

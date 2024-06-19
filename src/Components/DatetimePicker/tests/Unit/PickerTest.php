@@ -108,7 +108,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-datetime-picker :$color />')
+    expect('<x-wui:datetime-picker :$color />')
         ->render(compact('color'))
         ->toContain(data_get($class, 'input'));
 });
@@ -128,7 +128,7 @@ test('it should set random shadow in component', function () {
     expect($this->component->shadowless)->toBeFalse();
     expect($this->component->shadowClasses)->toBe($class);
 
-    expect('<x-datetime-picker :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-wui:datetime-picker :$shadow />')->render(compact('shadow'))->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -146,7 +146,7 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-datetime-picker :$rounded />')
+    expect('<x-wui:datetime-picker :$rounded />')
         ->render(compact('rounded'))
         ->toContain(data_get($class, 'input'));
 });

@@ -50,7 +50,7 @@ test('it should render label and description in component', function () {
     expect($this->component->label)->toBe($label);
     expect($this->component->description)->toBe($description);
 
-    expect('<x-radio :$label :$description />')
+    expect('<x-wui:radio :$label :$description />')
         ->render(compact('label', 'description'))
         ->toContain($label, $description);
 });
@@ -64,7 +64,7 @@ test('it should render left label in component', function () {
 
     expect($this->component->leftLabel)->toBe($leftLabel);
 
-    expect('<x-radio :$leftLabel />')
+    expect('<x-wui:radio :$leftLabel />')
         ->render(compact('leftLabel'))
         ->toContain($leftLabel);
 });
@@ -83,7 +83,7 @@ test('it should set random color in component', function () {
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);
 
-    expect('<x-radio :$color />')->render(compact('color'))->toContain($class);
+    expect('<x-wui:radio :$color />')->render(compact('color'))->toContain($class);
 });
 
 test('it should set random size in component', function () {
@@ -100,7 +100,7 @@ test('it should set random size in component', function () {
     expect($this->component->size)->toBe($size);
     expect($this->component->sizeClasses)->toBe($class);
 
-    expect('<x-radio :$size />')->render(compact('size'))->toContain($class);
+    expect('<x-wui:radio :$size />')->render(compact('size'))->toContain($class);
 });
 
 test('it should set random rounded in component', function () {
@@ -118,5 +118,5 @@ test('it should set random rounded in component', function () {
     expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-radio :$rounded />')->render(compact('rounded'))->toContain($class);
+    expect('<x-wui:radio :$rounded />')->render(compact('rounded'))->toContain($class);
 });
