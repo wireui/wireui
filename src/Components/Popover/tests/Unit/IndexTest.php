@@ -2,10 +2,10 @@
 
 namespace WireUi\Components\Popover\tests\Unit;
 
-use WireUi\Components\Popover\Type2;
+use WireUi\Components\Popover\Index as Popover;
 
 beforeEach(function () {
-    $this->component = (new Type2())->withName('popover2');
+    $this->component = (new Popover())->withName('popover');
 });
 
 test('it should have array properties', function () {
@@ -39,8 +39,8 @@ test('it should set custom root class in component with slot', function () {
     expect($this->component->rootClass)->toBe($rootClass);
 
     expect(<<<EOT
-    <x-popover2 :\$rootClass>
+    <x-popover :\$rootClass>
         Popover Slot
-    </x-popover2>
+    </x-popover>
     EOT)->render(compact('rootClass'))->toContain($rootClass, 'Popover Slot');
 });
