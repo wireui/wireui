@@ -26,25 +26,14 @@
                     />
                 @endif
 
-                @if (WireUi::checkSlot($title))
-                    <div {{ $title->attributes->class([
-                        'font-semibold' => $slot->isNotEmpty(),
-                        Arr::get($colorClasses, 'text', ''),
-                        'font-normal' => $slot->isEmpty(),
-                        'text-sm whitespace-normal',
-                    ]) }}>
-                        {{ $title }}
-                    </div>
-                @else
-                    <h3 @class([
-                        'font-semibold' => $slot->isNotEmpty(),
-                        Arr::get($colorClasses, 'text', ''),
-                        'font-normal' => $slot->isEmpty(),
-                        'text-sm whitespace-normal',
-                    ])>
-                        {{ $title }}
-                    </h3>
-                @endif
+                <div {{ WireUi::extractAttributes($title)->class([
+                    'font-semibold' => $slot->isNotEmpty(),
+                    Arr::get($colorClasses, 'text', ''),
+                    'font-normal' => $slot->isEmpty(),
+                    'text-sm whitespace-normal',
+                ]) }}>
+                    {{ $title }}
+                </div>
             </div>
 
             @isset($action)
@@ -56,23 +45,13 @@
     @endisset
 
     @if ($slot->isNotEmpty())
-        @if (WireUi::checkSlot($slot))
-            <div {{ $slot->attributes->class([
-                Arr::get($colorClasses, 'text', ''),
-                $paddingClasses,
-                'grow text-sm',
-            ]) }}>
-                {{ $slot }}
-            </div>
-        @else
-            <div @class([
-                Arr::get($colorClasses, 'text', ''),
-                $paddingClasses,
-                'grow text-sm',
-            ])>
-                {{ $slot }}
-            </div>
-        @endif
+        <div {{ WireUi::extractAttributes($slot)->class([
+            Arr::get($colorClasses, 'text', ''),
+            $paddingClasses,
+            'grow text-sm',
+        ]) }}>
+            {{ $slot }}
+        </div>
     @endif
 
     @isset($footer)
