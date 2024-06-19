@@ -7,21 +7,12 @@
     $roundedClasses,
 ]) }}>
     @if ($label)
-        @if (WireUi::checkSlot($label))
-            <div {{ $label->attributes->class([
-                Arr::get($iconSizeClasses, 'label', 'text-base'),
-                'font-medium text-white dark:text-gray-200',
-            ]) }}>
-                {{ $label }}
-            </div>
-        @else
-            <span @class([
-                Arr::get($iconSizeClasses, 'label', 'text-base'),
-                'font-medium text-white dark:text-gray-200',
-            ])>
-                {{ $label }}
-            </span>
-        @endif
+        <span {{ WireUi::extractAttributes($label)->class([
+            Arr::get($iconSizeClasses, 'label', 'text-base'),
+            'font-medium text-white dark:text-gray-200',
+        ]) }}>
+            {{ $label }}
+        </span>
     @elseif ($src)
         <img
             alt="{{ $alt }}"

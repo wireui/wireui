@@ -25,11 +25,6 @@ class WireUiSupport
         return (new static())->components()->resolve($name);
     }
 
-    public function checkSlot(mixed $slot): bool
-    {
-        return $slot instanceof ComponentSlot;
-    }
-
     public function extractAttributes(mixed $property): ComponentAttributeBag
     {
         return $property instanceof ComponentSlot ? $property->attributes : new ComponentAttributeBag();
