@@ -18,11 +18,10 @@
                 @if ($icon && !$iconless)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
-                        :name="$icon"
-                        @class([
+                        :attributes="WireUi::extractAttributes($icon, 'name')->class([
                             Arr::get($colorClasses, 'iconColor', ''),
                             'w-5 h-5 mr-3 shrink-0',
-                        ])
+                        ])"
                     />
                 @endif
 

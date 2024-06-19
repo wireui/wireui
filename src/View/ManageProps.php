@@ -24,18 +24,20 @@ trait ManageProps
         }
     }
 
-    private function getSlot(string $key, array $data): mixed
-    {
-        return in_array($key, $this->slots, true) ? Arr::get($data, $key) : null;
-    }
+    // private function getSlot(string $key, array $data): mixed
+    // {
+    //     return in_array($key, $this->slots, true) ? Arr::get($data, $key) : null;
+    // }
 
     private function manageProps(string $key, mixed $value, array $data): void
     {
         $field = Str::camel($key);
 
-        $this->{$field} = with($this->getData($field, $value),
-            fn ($value) => $this->getSlot($key, $data) ?? $value,
-        );
+        $this->{$field} = Arr::get($data, $key, $this->getData($field, $value));
+
+        // $this->{$field} = with($this->getData($field, $value),
+        //     fn ($value) => $this->getSlot($key, $data) ?? $value,
+        // );
 
         $this->setVariables($field);
     }

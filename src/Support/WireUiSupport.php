@@ -25,9 +25,11 @@ class WireUiSupport
         return (new static())->components()->resolve($name);
     }
 
-    public function extractAttributes(mixed $property): ComponentAttributeBag
+    public function extractAttributes(mixed $property, ?string $key = null): ComponentAttributeBag
     {
-        return $property instanceof ComponentSlot ? $property->attributes : new ComponentAttributeBag();
+        $slot = $property instanceof ComponentSlot ? $property->attributes : new ComponentAttributeBag();
+
+        return $key ? $slot->merge([$key => $property]) : $slot;
     }
 
     public function alpine(string $component, array $data = []): string
