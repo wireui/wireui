@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     x-data="wireui_date_picker"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
@@ -140,7 +141,8 @@
     @endif
 
     <x-slot:after>
-        <x-popover2
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="overflow-hidden sm:w-72"
             root-class="justify-end sm:!w-72 ml-auto sm:w-full"
@@ -395,6 +397,6 @@
                     />
                 </footer>
             @endif
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>

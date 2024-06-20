@@ -28,13 +28,13 @@ class Switcher extends Component
             $this->fill($data->toArray());
         }
 
-        $this->fillValidation($name);
+        $this->fillValidation();
     }
 
-    public function fillValidation(?string $name): void
+    public function fillValidation(): void
     {
         if ($this->invalidated === null) {
-            $this->invalidated = $name && $this->errors()->has($this->name);
+            $this->invalidated = $this->name && $this->errors()->has($this->name);
         }
     }
 

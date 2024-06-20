@@ -471,12 +471,8 @@ class WireUiConfig
              * Popovers
              */
             'popover' => [
-                'class' => Popover\Type1::class,
+                'class' => Popover\Index::class,
                 'alias' => 'popover',
-            ],
-            'popover2' => [
-                'class' => Popover\Type2::class,
-                'alias' => 'popover2',
             ],
             /**
              * Wrappers
