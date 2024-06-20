@@ -13,14 +13,16 @@ beforeEach(function () {
 test('it should manage props', function () {
     $this->setAttributes($this->component, []);
 
+    $data = $this->component->data();
+
     expect($this->component)->not->toHaveProperty('icon');
 
-    $this->invokeMethod($this->component, 'manageProps', ['icon', null]);
+    $this->invokeMethod($this->component, 'manageProps', ['icon', null, $data]);
 
     expect($this->component->icon)->toBeNull();
     expect($this->component)->toHaveProperty('icon');
 
-    $this->invokeMethod($this->component, 'manageProps', ['icon', 'bell']);
+    $this->invokeMethod($this->component, 'manageProps', ['icon', 'bell', $data]);
 
     expect($this->component->icon)->toBe('bell');
     expect($this->component)->toHaveProperty('icon');
@@ -50,9 +52,11 @@ test('it should manage packs', function () {
 test('it should setup props', function () {
     $this->setAttributes($this->component, []);
 
+    $data = $this->component->data();
+
     expect($this->component)->not->toHaveProperties(['icon', 'shadow', 'shadowClasses']);
 
-    $this->invokeMethod($this->component, 'setupProps');
+    $this->invokeMethod($this->component, 'setupProps', [$data]);
 
     expect($this->component)->toHaveProperties(['icon', 'shadow', 'shadowClasses']);
 });

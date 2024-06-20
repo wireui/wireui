@@ -14,21 +14,12 @@
             Arr::get($roundedClasses, 'header', ''),
             'border-b' => !$borderless,
         ])>
-            @if (WireUi::checkSlot($title))
-                <div {{ $title->attributes->class([
-                    'font-medium text-base whitespace-normal',
-                    Arr::get($colorClasses, 'text', ''),
-                ]) }}>
-                    {{ $title }}
-                </div>
-            @else
-                <h3 @class([
-                    'font-medium text-base whitespace-normal',
-                    Arr::get($colorClasses, 'text', ''),
-                ])>
-                    {{ $title }}
-                </h3>
-            @endif
+            <div {{ WireUi::extractAttributes($title)->class([
+                'font-medium text-base whitespace-normal',
+                Arr::get($colorClasses, 'text', ''),
+            ]) }}>
+                {{ $title }}
+            </div>
 
             @isset($action)
                 <div {{ $action->attributes }}>
@@ -38,23 +29,13 @@
         </div>
     @endisset
 
-    @if (WireUi::checkSlot($slot))
-        <div {{ $slot->attributes->class([
-            Arr::get($colorClasses, 'text', ''),
-            $paddingClasses,
-            'grow',
-        ]) }}>
-            {{ $slot }}
-        </div>
-    @else
-        <div @class([
-            Arr::get($colorClasses, 'text', ''),
-            $paddingClasses,
-            'grow',
-        ])>
-            {{ $slot }}
-        </div>
-    @endif
+    <div {{ WireUi::extractAttributes($slot)->class([
+        Arr::get($colorClasses, 'text', ''),
+        $paddingClasses,
+        'grow',
+    ]) }}>
+        {{ $slot }}
+    </div>
 
     @isset($footer)
         <div {{ $footer->attributes->class([
