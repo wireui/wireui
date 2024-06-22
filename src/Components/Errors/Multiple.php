@@ -4,7 +4,6 @@ namespace WireUi\Components\Errors;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\{Collection, Str};
-use WireUi\Facades\WireUi;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\View\WireUiComponent;
 
@@ -17,11 +16,11 @@ class Multiple extends WireUiComponent
         'title' => null,
     ];
 
-    protected function processed(array $data): void
+    protected function processed(): void
     {
         $this->initOnly();
 
-        $this->title ??= data_get($data, 'title');
+        $this->title = $this->getTitle();
     }
 
     private function initOnly(): void
@@ -38,16 +37,6 @@ class Multiple extends WireUiComponent
     public function count(): int
     {
         return $this->getErrorMessages()->count();
-    }
-
-    public function getArray(mixed $title): array
-    {
-        return WireUi::checkSlot($title) ? [
-            'color' => 'negative',
-        ] : [
-            'color' => 'negative',
-            'title' => $this->getTitle(),
-        ];
     }
 
     public function getErrorMessages(): Collection

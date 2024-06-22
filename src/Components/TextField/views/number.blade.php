@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :right-icon="$rightIcon"
     :attributes="$attrs->only(['wire:key', 'class'])"
@@ -51,4 +52,4 @@
             flat
         />
     </x-slot:append>
-</x-text-field>
+</x-dynamic-component>

@@ -5,7 +5,7 @@ namespace WireUi\Components\Popover;
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class Type2 extends WireUiComponent
+class Index extends WireUiComponent
 {
     protected array $props = [
         'margin'     => false,
@@ -14,6 +14,6 @@ class Type2 extends WireUiComponent
 
     public function blade(): View
     {
-        return view('wireui-popover::type2');
+        return view('wireui-popover::index');
     }
 }

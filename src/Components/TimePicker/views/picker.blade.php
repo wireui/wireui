@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
         'militaryTime'   => $militaryTime,
@@ -72,8 +73,12 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-popover2 :margin="(bool) $label">
-            <x-time-selector
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
+            :margin="(bool) $label"
+        >
+            <x-dynamic-component
+                :component="WireUi::component('time-selector')"
                 :name="$name . ':raw'"
                 x-model="value"
                 :military-time="$militaryTime"
@@ -83,6 +88,6 @@
                 borderless
                 shadowless
             />
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>

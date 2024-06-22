@@ -19,11 +19,6 @@ class Index extends WireUiComponent
         'shadowless' => false,
     ];
 
-    protected function processed(array $data): void
-    {
-        $this->title ??= data_get($data, 'title');
-    }
-
     public function blade(): View
     {
         return view('wireui-card::index');

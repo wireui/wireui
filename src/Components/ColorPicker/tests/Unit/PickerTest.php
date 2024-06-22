@@ -144,5 +144,5 @@ test('it should pass custom colors to js component data', function () {
 
     expect('<x-color-picker :colors="$colors" />')
         ->render(compact('colors'))
-        ->toContain('colors:JSON.parse(atob(&#039;W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ==&#039;))');
+        ->toContain("colors:JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))");
 });

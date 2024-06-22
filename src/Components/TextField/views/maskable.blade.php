@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
     x-data="wireui_inputs_maskable"
@@ -26,4 +27,4 @@
         x-on:blur="onBlur"
         :attributes="$attrs->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
     />
-</x-text-field>
+</x-dynamic-component>

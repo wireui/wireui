@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     x-ref="container"
     :data="$wrapperData"
     :attributes="$attrs->class([
@@ -158,7 +159,8 @@
     </x-slot>
 
     <x-slot:after>
-        <x-popover2
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="w-full max-h-80 select-none overflow-hidden"
             x-ref="optionsContainer"
@@ -233,6 +235,6 @@
                     </div>
                 @endisset
             </div>
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>
