@@ -3,22 +3,20 @@
 namespace WireUi\Components\Switcher\tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class RadioTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_radio_component(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
-            public $radio = null;
+            #[Validate('required', message: 'select one')]
+            public mixed $radio = null;
 
-            protected $rules = ['radio' => 'required'];
-
-            protected $messages = ['radio.required' => 'select one'];
-
-            public function validateRadio()
+            public function save(): void
             {
                 $this->validate();
             }
@@ -27,33 +25,26 @@ class RadioTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Radio Browser Test</h1>
+                    <x-badge dusk="radio" :label="json_encode($radio)" />
 
-                    <span dusk="radio">@json($radio)</span>
+                    <x-radio id="laravel" wire:model.live="radio" value="Laravel"  label="Laravel" />
 
-                    // test it_should_render_with_label_and_change_value
-                    <x-radio id="laravel"  value="Laravel"  label="Laravel"  wire:model.live="radio" />
-                    <x-radio id="livewire" value="Livewire" label="Livewire" wire:model.live="radio" />
+                    <x-radio id="livewire" wire:model.live="radio" value="Livewire" label="Livewire" />
 
-                    <button wire:click="validateRadio" dusk="validate">validate</button>
+                    <x-button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_render_with_label_and_change_value(): void
-    {
-        $this->browser()
+        })
             ->assertSee('Laravel')
             ->assertSee('Livewire')
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('select one'))
             ->radio('radio', 'Laravel')
             ->assertRadioSelected('radio', 'Laravel')
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@radio', 'Laravel'))
+            ->waitForTextIn('@radio', 'Laravel')
             ->radio('radio', 'Livewire')
             ->assertRadioSelected('radio', 'Livewire')
-            ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@radio', 'Livewire'));
+            ->waitForTextIn('@radio', 'Livewire');
     }
 }

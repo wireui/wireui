@@ -6,7 +6,7 @@
     "author": "PH7-Jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
     "scripts": {
-        "lint": "eslint . --ext .ts",
+        "lint": "eslint .",
         "watch": "mix watch",
         "build": "mix --production",
         "test": "jest"

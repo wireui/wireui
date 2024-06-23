@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :attributes="$attributes->only(['wire:key', 'class'])"
     x-data="wireui_color_picker"
@@ -6,6 +7,7 @@
         'colorNameAsValue' => $colorNameAsValue,
         'colors'           => $getColors(),
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'      => WireUi::alpineModel($attributes),
     ])"
     x-ref="container"
 >
@@ -55,7 +57,8 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-popover2
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
             :margin="(bool) $label"
             root-class="justify-end sm:w-full"
             @class([
@@ -92,6 +95,6 @@
                      ></button>
                  </template>
              </div>
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>

@@ -17,7 +17,7 @@ class ComponentResolver
     {
         $components = config('wireui.components');
 
-        return $components[$name]['class'];
+        return $components[$this->removePrefix($name)]['class'];
     }
 
     public function resolveByAlias(string $name): string
@@ -33,13 +33,13 @@ class ComponentResolver
     {
         $prefix = config('wireui.prefix');
 
-        return empty($prefix) ? $name : Str::start($name, $prefix);
+        return blank($prefix) ? $name : Str::start($name, $prefix);
     }
 
     public function removePrefix(string $name): string
     {
         $prefix = config('wireui.prefix');
 
-        return empty($prefix) ? $name : Str::after($name, $prefix);
+        return blank($prefix) ? $name : Str::after($name, $prefix);
     }
 }

@@ -1,8 +1,10 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :right-icon="$rightIcon"
     :attributes="$attrs->only(['wire:key', 'class'])"
-    :x-data="WireUi::alpine('wireui_inputs_number', [
+    x-data="wireui_inputs_number"
+    :x-props="WireUi::toJs([
         'disabled' => $disabled,
         'readonly' => $readonly,
     ])"
@@ -30,8 +32,8 @@
             ->except(['class', 'wire:key', 'x-data'])
             ->class('text-center appearance-number-none')
         "
-        x-on:keydown.down.prevent="minus"
-        x-on:keydown.up.prevent="plus"
+        x-on:keydown.down.stop.prevent="minus"
+        x-on:keydown.up.stop.prevent="plus"
         inputmode="numeric"
         type="number"
         x-ref="input"
@@ -50,4 +52,4 @@
             flat
         />
     </x-slot:append>
-</x-text-field>
+</x-dynamic-component>

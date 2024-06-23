@@ -1,4 +1,4 @@
-import { Entangleable, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { Entangleable, SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
 import Positionable from '@/alpine/modules/Positionable'
 import { AlpineComponent } from '@/components/alpine2'
 import { toMilitaryFormat } from '@/components/TimeSelector/helpers'
@@ -6,10 +6,12 @@ import { WireModel } from '@/livewire'
 import FluentDate from '@/utils/date'
 import { onlyNumbers } from '@/utils/helpers'
 import { applyMask } from '@/utils/masker'
+import { AlpineModel } from '@/components/alpine'
 
 export default class TimePicker extends AlpineComponent {
   declare $refs: {
     popover: HTMLElement
+    rawInput: HTMLInputElement
     input: HTMLInputElement
     container: HTMLDivElement
     optionsContainer: HTMLDivElement
@@ -17,6 +19,7 @@ export default class TimePicker extends AlpineComponent {
 
   declare $props: {
     wireModel: WireModel
+    alpineModel: AlpineModel
     militaryTime: boolean
     withoutSeconds: boolean
     disabled: boolean
@@ -25,7 +28,7 @@ export default class TimePicker extends AlpineComponent {
 
   private date = new FluentDate(new Date())
 
-  entangleable = new Entangleable<string>()
+  entangleable = new Entangleable<string|null>()
 
   positionable = new Positionable()
 
@@ -37,16 +40,6 @@ export default class TimePicker extends AlpineComponent {
     this.positionable
       .start(this, this.$refs.container, this.$refs.popover)
       .position('bottom')
-
-    if (!this.input && this.$refs.input.value) {
-      this.input = this.$refs.input.value
-    }
-
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-    }
-
-    // new SupportsAlpine(this.entangleable, this.$refs.input)
 
     this.$safeWatch('input', (input: string|null) => {
       this.input = this.maskInput(input)
@@ -63,7 +56,7 @@ export default class TimePicker extends AlpineComponent {
           .setMinutes(Number(minutes) || 0)
           .setSeconds(Number(onlyNumbers(seconds)) || 0)
 
-        this.value = this.date.format('H:mm:ss')
+        this.value = this.date.format('HH:mm:ss')
       })
     })
 
@@ -75,16 +68,34 @@ export default class TimePicker extends AlpineComponent {
         .setMinutes(Number(minutes) || 0)
         .setSeconds(Number(seconds) || 0)
 
-      let format = this.$props.militaryTime ? 'H:mm:ss' : 'h:mm:ss A'
+      let format = this.$props.militaryTime ? 'HH:mm:ss' : 'h:mm:ss A'
 
       if (this.$props.withoutSeconds) {
         format = format.replace(':ss', '')
       }
 
       this.$skipNextWatcher('input', () => {
-        this.input = this.date.format(format)
+        this.input = value ? this.date.format(format) : null
       })
+
+      this.entangleable.set(this.value)
     })
+
+    this.entangleable.watch(value => {
+      this.value = value
+    })
+
+    if (this.$refs.rawInput.value) {
+      this.value = this.$refs.rawInput.value
+    }
+
+    if (this.$props.wireModel.exists) {
+      new SupportsLivewire(this.entangleable, this.$props.wireModel)
+    }
+
+    if (this.$props.alpineModel.exists) {
+      new SupportsAlpine(this.$refs.input, this.entangleable, this.$props.alpineModel)
+    }
   }
 
   private maskInput (value?: string|null) {
@@ -98,13 +109,13 @@ export default class TimePicker extends AlpineComponent {
   }
 
   clear (): void {
-    this.input = null
+    this.entangleable.set(null, { force:true })
   }
 
   onBlur (): void {
     this.ensureDefaultValue()
 
-    this.entangleable.set(this.input, { force:true, triggerBlur: true })
+    this.entangleable.set(this.value, { force:true, triggerBlur: true })
   }
 
   private ensureDefaultValue (): void {

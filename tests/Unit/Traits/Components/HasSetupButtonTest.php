@@ -2,62 +2,84 @@
 
 namespace Tests\Unit\Traits\Components;
 
-use WireUi\Components\Button\Base;
+use WireUi\Components\Button\Base as Button;
 
 beforeEach(function () {
-    $this->component = (new Base())->withName('button');
-});
-
-test('it should have config name', function () {
-    $this->invokeMethod($this->component, 'setConfig');
-
-    expect($this->invokeProperty($this->component, 'config'))->toBe('button');
+    $this->component = (new Button())->withName('button');
 });
 
 test('it should have all properties empty', function () {
     expect($this->component->tag)->toBeNull();
 });
 
-test('it should execute base component type button', function () {
-    $this->runWireUiComponent($this->component);
+test('it should get tag button', function () {
+    $this->setAttributes($this->component, []);
 
-    $data = $this->component->data();
+    $tag = $this->invokeMethod($this->component, 'getTag');
 
-    expect($this->component->tag)->toBe('button');
+    expect($tag)->toBe('button');
 
-    expect($this->component->wireLoadEnabled)->toBeFalse();
-
-    expect($data['attributes']->get('type'))->toBe('button');
-});
-
-test('it should execute base component type link', function () {
     $this->setAttributes($this->component, [
         'href' => fake()->url(),
     ]);
 
-    $this->runWireUiComponent($this->component);
+    $tag = $this->invokeMethod($this->component, 'getTag');
 
-    $data = $this->component->data();
-
-    expect($this->component->tag)->toBe('a');
-
-    expect($this->component->wireLoadEnabled)->toBeFalse();
-
-    expect($data['attributes']->has('type'))->toBeFalse();
+    expect($tag)->toBe('a');
 });
 
-test('it should execute base component with loading', function () {
+test('it should ensure link type', function () {
+    $this->setAttributes($this->component, []);
+
+    $this->invokeMethod($this->component, 'ensureLinkType');
+
+    expect($this->component->attributes->get('type'))->toBe('button');
+
     $this->setAttributes($this->component, [
-        'wire-load-enabled' => true,
+        'href' => fake()->url(),
     ]);
 
-    $this->runWireUiComponent($this->component);
+    $this->invokeMethod($this->component, 'ensureLinkType');
 
-    $data = $this->component->data();
+    expect($this->component->attributes->has('type'))->toBeFalse();
 
-    expect($this->component->wireLoadEnabled)->toBeTrue();
+    $this->setAttributes($this->component, [
+        'type' => 'submit',
+    ]);
 
-    expect($data['attributes']->get('wire:loading.attr'))->toBe('disabled');
+    $this->invokeMethod($this->component, 'ensureLinkType');
 
-    expect($data['attributes']->get('wire:loading.class'))->toBe('!cursor-wait');
+    expect($this->component->attributes->get('type'))->toBe('submit');
+});
+
+test('it should ensure wire loading', function () {
+    $this->setAttributes($this->component, []);
+
+    $this->invokeMethod($this->component, 'ensureWireLoading');
+
+    expect($this->component->attributes->has('wire:loading.attr'))->toBeFalse();
+    expect($this->component->attributes->has('wire:loading.class'))->toBeFalse();
+
+    $this->component->wireLoadEnabled = true;
+
+    $this->invokeMethod($this->component, 'ensureWireLoading');
+
+    expect($this->component->attributes->get('wire:loading.attr'))->toBe('disabled');
+    expect($this->component->attributes->get('wire:loading.class'))->toBe('!cursor-wait');
+});
+
+test('it should setup button', function () {
+    $this->setAttributes($this->component, []);
+
+    $this->invokeMethod($this->component, 'setupButton');
+
+    expect($this->component->tag)->toBe('button');
+
+    $this->setAttributes($this->component, [
+        'href' => fake()->url(),
+    ]);
+
+    $this->invokeMethod($this->component, 'setupButton');
+
+    expect($this->component->tag)->toBe('a');
 });

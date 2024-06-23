@@ -16,6 +16,8 @@ dayjs.extend(isSameOrBefore)
 export class FluentDate {
   private date: Dayjs
 
+  static localTimezone: string|null = null
+
   timezone: string
 
   constructor (date: ConfigType, timezone: string|null = null, format: string|null = null) {
@@ -35,7 +37,11 @@ export class FluentDate {
   }
 
   static getLocalTimezone (): string {
-    return dayjs.tz.guess()
+    return FluentDate.localTimezone || dayjs.tz.guess()
+  }
+
+  static setLocalTimezone (timezone: string): void {
+    FluentDate.localTimezone = timezone
   }
 
   addDay (): FluentDate {

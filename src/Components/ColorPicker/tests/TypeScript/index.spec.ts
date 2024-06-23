@@ -27,6 +27,21 @@ describe('Testing the color picker component', () => {
         }
       }
     },
+    alpineModel: {
+      exists: false,
+      name: '',
+      modifiers: {
+        blur: false,
+        debounce: {
+          exists: false,
+          delay: 250
+        },
+        throttle: {
+          exists: false,
+          delay: 250
+        }
+      }
+    },
     colors: [] as Color[]
   }
 

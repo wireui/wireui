@@ -31,16 +31,18 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'src',
         'icon',
+        'label',
+        'borderless',
+        // Packs
         'size',
         'color',
-        'label',
         'border',
         'rounded',
         'squared',
         'iconSize',
-        'borderless',
         'sizeClasses',
         'colorClasses',
         'borderClasses',
@@ -49,19 +51,6 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->borderless)->toBeFalse();
-});
-
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'src',
-        'icon',
-        'label',
-        'border',
-        'iconSize',
-        'borderless',
-        'borderClasses',
-        'iconSizeClasses',
-    ]);
 });
 
 test('it should render label in component', function () {
@@ -85,28 +74,29 @@ test('it should render link photo in component', function () {
 
     expect($this->component->src)->toBe($src);
 
-    expect('<x-avatar :src="$src" />')->render(compact('src'))->toContain($src);
+    expect('<x-avatar :$src />')->render(compact('src'))->toContain($src);
 });
 
 test('it should render icon in component', function () {
+    $pack = $this->getRandomPack(Size::class);
+
     $this->setAttributes($this->component, [
         'icon' => $icon = $this->getRandomIcon(),
-        'size' => $size = Packs\Size::SM,
+        'size' => $size = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
+    $sizeClasses     = data_get($pack, 'class');
+    $iconSizeClasses = (new IconSize())->get($size);
+
     expect($this->component->icon)->toBe($icon);
-
     expect($this->component->size)->toBe($size);
-
     expect($this->component->iconSize)->toBe($size);
+    expect($this->component->sizeClasses)->toBe($sizeClasses);
+    expect($this->component->iconSizeClasses)->toBe($iconSizeClasses);
 
-    expect($this->component->sizeClasses)->toBe($sizeClasses = (new Size())->get($size));
-
-    expect($this->component->iconSizeClasses)->toBe($iconSizeClasses = (new IconSize())->get($size));
-
-    $iconSizeClasses = collect($iconSizeClasses)->get('icon');
+    $iconSizeClasses = data_get($iconSizeClasses, 'icon');
 
     $html = render('<x-icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
 
@@ -123,11 +113,11 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::FULL);
+
     expect($this->component->rounded)->toBeTrue();
-
     expect($this->component->squared)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-avatar rounded />')->render()->toContain($class);
 });
@@ -139,27 +129,29 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::NONE);
+
     expect($this->component->squared)->toBeTrue();
-
     expect($this->component->rounded)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-avatar squared />')->render()->toContain($class);
 });
 
-test('it should custom rounded in component', function () {
+test('it should set random rounded in component', function () {
+    $pack = $this->getRandomPack(Rounded::class);
+
     $this->setAttributes($this->component, [
-        'rounded' => $class = 'rounded-[40px]',
+        'rounded' => $rounded = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);
 
+    $class = data_get($pack, 'class');
+
     expect($this->component->squared)->toBeFalse();
-
-    expect($this->component->rounded)->toBe($class);
-
+    expect($this->component->rounded)->toBe($rounded);
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect('<x-avatar rounded="rounded-[40px]" />')->render()->toContain($class);
+    expect('<x-avatar :$rounded />')->render(compact('rounded'))->toContain($class);
 });

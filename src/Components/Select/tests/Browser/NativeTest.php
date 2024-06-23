@@ -3,119 +3,42 @@
 namespace WireUi\Components\Select\tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class NativeTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_it_should_render_select_with_slot_options_and_show_error_message(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
+            #[Validate('required', message: 'select a value')]
             public $model = null;
 
-            public $arrayOptionsModel = null;
-
-            public $collectionOptions = null;
-
-            public $collectionOptionsModel = null;
-
-            public $arrayWithLabelAndValueKeys = null;
-
-            public $options = [
-                'Array Option 1',
-                'Array Option 2',
-                'Array Option 3',
-            ];
-
-            public $labelOptions = [
-                ['label' => 'Label Option 1', 'value' => 1],
-                ['label' => 'Label Option 2', 'value' => 2],
-                ['label' => 'Label Option 3', 'value' => 3],
-            ];
-
-            protected $rules = [
-                'model' => 'required',
-            ];
-
-            protected $messages = [
-                'model.required' => 'select a value',
-            ];
-
-            public function mount()
-            {
-                $this->collectionOptions = collect([
-                    'Collection Option 1',
-                    'Collection Option 2',
-                    'Collection Option 3',
-                ]);
-            }
-
-            public function validateSelect()
+            public function save(): void
             {
                 $this->validate();
-            }
-
-            public function resetInputValidation()
-            {
-                $this->resetValidation();
             }
 
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Native Select Browser Test</h1>
+                    <x-badge dusk="value" :label="$model" />
 
-                    <span dusk="value">{{ $model }}</span>
+                    <x-button dusk="validate" wire:click="save" label="Validate" />
 
-                    <button dusk="validate" wire:click="validateSelect">validate</button>
-
-                    // test it_should_render_select_with_slot_options_and_show_error_message
-                    <x-native-select placeholder="Select a value" label="Select" wire:model.live="model">
+                    <x-native-select wire:model.live="model" label="Select" placeholder="Select a value">
                         <option value="">default</option>
                         <option>Slot Option 1</option>
                         <option>Slot Option 2</option>
                         <option>Slot Option 3</option>
                     </x-native-select>
-
-                    // test it_should_render_select_with_give_collection_options
-                    <x-native-select label="Label" wire:model.live="arrayOptionsModel" :options="$options" />
-
-                    // test it_should_render_select_with_give_array_options
-                    <x-native-select label="Label" wire:model.live="collectionOptionsModel" :options="$collectionOptions"  />
-
-                    // test it_should_render_select_with_give_array_options_with_label_and_option_keys
-                    <x-native-select
-                        label="Label"
-                        wire:model.live="arrayWithLabelAndValueKeys"
-                        option-label="label"
-                        option-value="value"
-                        :options="$labelOptions"
-                    />
-
-                    // test it_should_render_select_with_give_array_options_using_key_as_value
-                    <x-native-select
-                        name="option-key-value"
-                        option-key-value
-                        :options="$options"
-                    />
-
-                    // test it_should_render_select_with_give_array_options_using_key_as_label
-                    <x-native-select
-                        name="option-key-label"
-                        option-key-label
-                        :options="$options"
-                    />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_render_select_with_slot_options_and_show_error_message(): void
-    {
-        $this->browser()
+        })
             ->assertSelectHasOptions('model', ['Slot Option 1', 'Slot Option 2', 'Slot Option 3'])
             ->select('model', 'Slot Option 2')
             ->assertSelected('model', 'Slot Option 2')
@@ -124,14 +47,35 @@ class NativeTest extends BrowserTestCase
             ->assertSelected('model', '')
             ->click('@validate')
             ->waitTo(fn (Browser $browser) => $browser->assertSeeNothingIn('@value'))
-            ->waitForText('select a value')
-            ->assertSee('select a value');
+            ->waitForText('select a value')->assertSee('select a value');
     }
 
     public function test_it_should_render_select_with_give_array_options(): void
     {
-        $this->browser()->assertSelectHasOptions(
-            'arrayOptionsModel',
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                'Array Option 1',
+                'Array Option 2',
+                'Array Option 3',
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-native-select
+                        wire:model.live="model"
+                        label="Label"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })->assertSelectHasOptions(
+            'model',
             [
                 'Array Option 1',
                 'Array Option 2',
@@ -142,8 +86,35 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_collection_options(): void
     {
-        $this->browser()->assertSelectHasOptions(
-            'collectionOptionsModel',
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = null;
+
+            public function mount(): void
+            {
+                $this->options = collect([
+                    'Collection Option 1',
+                    'Collection Option 2',
+                    'Collection Option 3',
+                ]);
+            }
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-native-select
+                        wire:model.live="model"
+                        label="Label"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })->assertSelectHasOptions(
+            'model',
             collect([
                 'Collection Option 1',
                 'Collection Option 2',
@@ -154,8 +125,32 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys(): void
     {
-        $this->browser()->assertSelectHasOptions(
-            'arrayWithLabelAndValueKeys',
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                ['label' => 'Label Option 1', 'value' => 1],
+                ['label' => 'Label Option 2', 'value' => 2],
+                ['label' => 'Label Option 3', 'value' => 3],
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-native-select
+                        wire:model.live="model"
+                        label="Label"
+                        option-label="label"
+                        option-value="value"
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })->assertSelectHasOptions(
+            'model',
             [
                 'Label Option 1' => 1,
                 'Label Option 2' => 2,
@@ -166,8 +161,31 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_value(): void
     {
-        $this->browser()->assertSelectHasOptions(
-            'option-key-value',
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                'Array Option 1',
+                'Array Option 2',
+                'Array Option 3',
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-native-select
+                        wire:model.live="model"
+                        label="Label"
+                        option-key-value
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })->assertSelectHasOptions(
+            'model',
             [
                 'Array Option 1' => 0,
                 'Array Option 2' => 1,
@@ -178,8 +196,31 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_label(): void
     {
-        $this->browser()->assertSelectHasOptions(
-            'option-key-label',
+        Livewire::visit(new class() extends Component
+        {
+            public $model = null;
+
+            public $options = [
+                'Array Option 1',
+                'Array Option 2',
+                'Array Option 3',
+            ];
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-native-select
+                        wire:model.live="model"
+                        label="Label"
+                        option-key-label
+                        :options="$options"
+                    />
+                </div>
+                BLADE;
+            }
+        })->assertSelectHasOptions(
+            'model',
             [
                 0 => 'Array Option 1',
                 1 => 'Array Option 2',

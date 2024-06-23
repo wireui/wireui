@@ -12,7 +12,7 @@ trait BrowserFunctions
 {
     public function render(string $html): Browser
     {
-        $uuid = (string) Str::uuid();
+        $uuid = Str::uuid()->toString();
 
         $path = self::tmpPath("{$uuid}.blade.php");
 

@@ -1,11 +1,13 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
-        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'militaryTime'   => $militaryTime,
         'withoutSeconds' => $withoutSeconds,
         'disabled'       => $disabled,
         'readonly'       => $readonly,
+        'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel'    => WireUi::alpineModel($attributes),
     ])"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
@@ -13,11 +15,20 @@
 >
     @include('wireui-wrapper::components.slots')
 
+    <div class="hidden">
+        <x-wireui-wrapper::element
+            x-bind:value="value"
+            x-ref="rawInput"
+            :name="$name"
+            :value="$value"
+        />
+    </div>
+
     <x-wireui-wrapper::element
-        x-model.fill="input"
+        x-model="input"
         x-ref="input"
         x-on:blur="onBlur"
-        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
+        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
         x-on:keydown.arrow-up.prevent="positionable.close()"
         x-on:keydown.arrow-down.prevent="positionable.open()"
     />
@@ -47,7 +58,7 @@
             x-on:keydown.arrow-up.prevent="positionable.close()"
             x-on:keydown.arrow-down.prevent="
                 positionable.open();
-                focusable.next()?.focus();
+                $nextTick(() => focusable.next()?.focus())
             "
         >
             <x-dynamic-component
@@ -62,10 +73,14 @@
     </x-slot:append>
 
     <x-slot:after>
-        <x-popover2 :margin="(bool) $label">
-            <x-time-selector
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
+            :margin="(bool) $label"
+        >
+            <x-dynamic-component
+                :component="WireUi::component('time-selector')"
                 :name="$name . ':raw'"
-                x-modelable="value"
+                x-model="value"
                 :military-time="$militaryTime"
                 :without-seconds="$withoutSeconds"
                 :disabled="$disabled"
@@ -73,6 +88,6 @@
                 borderless
                 shadowless
             />
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>

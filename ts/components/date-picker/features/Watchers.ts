@@ -1,153 +1,109 @@
 import Feature from '@/components/date-picker/features/Feature'
 import FluentDate from '@/utils/date'
 import { SupportsAlpine, SupportsLivewire } from '@/alpine/modules/entangleable'
+import { isNotEmpty } from '@/utils/helpers'
 
 export default class Watchers extends Feature {
   init (): void {
     this.component.$watch('time', (time: string|null) => {
-      this.component.entangleable.get()?.setTime(time ?? '00:00:00')
+      this.component.selected?.setTime(time ?? '00:00:00')
 
       this.component.entangleable.runSetCallbacks()
     })
 
-    this.component.entangleable.watch((date: FluentDate|null) => {
-      if (this.component.$props.timePicker.enabled) {
-        this.component.time = date?.getTime() ?? null
+    this.component.entangleable.watch(date => {
+      if (this.component.$props.timePicker.enabled && this.component.selected) {
+        this.component.time = this.component.selected?.getTime() ?? null
       }
 
       if (!date) {
-        return this.$events.dispatch('clear', null)
+        const emptyValue = this.component.$props.calendar.multiple.enabled ? [] : null
+
+        return this.$events.dispatch('clear', emptyValue)
       }
 
       this.component.calendar.dates.forEach(day => {
         day.isSelected = this.component.isSelected(new FluentDate(day.date))
       })
 
-      // if (date) {
-      //   this.calendar.month = date.getMonth()
-      //   this.calendar.year = date.getYear()
-      //
-      //   this.$events.dispatch(
-      //     'selected::month',
-      //     this.calendar.year,
-      //     this.calendar.month,
-      //   )
-      // }
+      if (isNotEmpty(date)) {
+        const selected = date instanceof FluentDate ? date : date[0]
+
+        this.component.calendar.month = selected.getMonth()
+        this.component.calendar.year = selected.getYear()
+
+        this.$events.dispatch(
+          'selected::month',
+          this.component.calendar.year,
+          this.component.calendar.month,
+        )
+      }
     })
 
+    const preventInitialFill = true
+
     if (this.component.$props.wireModel.exists) {
-      new SupportsLivewire(this.component.entangleable, this.component.$props.wireModel)
-        .toLivewire((value: FluentDate|null) => this.fromComponent(value))
-        .fromLivewire((value: string|null) => this.toComponent(value))
+      new SupportsLivewire(this.component.entangleable, this.component.$props.wireModel, preventInitialFill)
+        .toLivewire((value: FluentDate|FluentDate[]|null) => this.fromComponent(value))
+        .fromLivewire((value: string|string[]|null) => this.toComponent(value))
+        .fillValueFromLivewire()
     }
 
     if (this.component.$props.alpineModel.exists) {
-      new SupportsAlpine(this.component.$root, this.component.entangleable, this.component.$props.alpineModel)
-        .toAlpine((value: FluentDate|null) => this.fromComponent(value))
-        .fromAlpine((value: string|null) => this.toComponent(value))
+      new SupportsAlpine(this.component.$root, this.component.entangleable, this.component.$props.alpineModel, preventInitialFill)
+        .toAlpine((value: FluentDate|FluentDate[]|null) => this.fromComponent(value))
+        .fromAlpine((value: string|string[]|null) => this.toComponent(value))
+        .fillValueFromAlpine()
+    }
+
+    this.fillFromRawInput()
+  }
+
+  private fillFromRawInput (): void {
+    const value = this.component.$refs.rawInput.value
+
+    if (isNotEmpty(value)) {
+      const date = this.toComponent(value)
+      this.component.entangleable.set(date)
     }
   }
 
-  toComponent (value: string|null): FluentDate|null {
-    if (this.component.$props.timezone.enabled) {
-      const format = this.component.$props.input.parseFormat
-        ? this.component.$props.input.parseFormat
-        : this.component.$props.timePicker.enabled
-          ? 'YYYY-MM-DDTHH:mm:ss'
-          : 'YYYY-MM-DD'
-
-      return value
-        ? new FluentDate(value, this.component.$props.timezone.server, format).setTimezone(this.component.localTimezone)
-        : null
+  toComponent (value: string|string[]|null): FluentDate|FluentDate[]|null {
+    if (this.component.$props.calendar.multiple.enabled) {
+      return Array.isArray(value)
+        ? value.map(date => new FluentDate(date, this.component.localTimezone, this.component.dateFormat))
+        : []
     }
 
-    // console.log('toComponent', value, new FluentDate(value).toIsoString())
+    if (this.component.$props.timezone.enabled) {
+      if (isNotEmpty(value) && typeof value === 'string') {
+        return new FluentDate(value, this.component.$props.timezone.server, this.component.dateFormat)
+          .setTimezone(this.component.localTimezone)
+      }
 
-    const format = this.component.$props.input.parseFormat
-      ? this.component.$props.input.parseFormat
-      : this.component.$props.timePicker.enabled
-        ? 'YYYY-MM-DDTHH:mm:ss'
-        : 'YYYY-MM-DD'
+      return null
+    }
 
-    return value
-      ? new FluentDate(value, this.component.localTimezone, format)
+    return isNotEmpty(value) && typeof value === 'string'
+      ? new FluentDate(value, this.component.localTimezone, this.component.dateFormat)
       : null
   }
 
-  fromComponent (value: FluentDate|null): string|null {
-    if (this.component.$props.timezone.enabled) {
-      const format = this.component.$props.input.parseFormat
-        ? this.component.$props.input.parseFormat
-        : this.component.$props.timePicker.enabled
-          ? 'YYYY-MM-DDTHH:mm:ss'
-          : 'YYYY-MM-DD'
+  fromComponent (value: FluentDate|FluentDate[]|null): string|string[]|null {
+    if (this.component.$props.calendar.multiple.enabled) {
+      return Array.isArray(value)
+        ? value.map(date => date.format(this.component.dateFormat))
+        : []
+    }
 
-      return value
-        ? value.format(format, this.component.$props.timezone.server)
+    if (this.component.$props.timezone.enabled) {
+      return value instanceof FluentDate
+        ? value.format(this.component.dateFormat, this.component.$props.timezone.server)
         : null
     }
 
-    return value
-      ? value.toIsoString()
+    return value instanceof FluentDate
+      ? value.format(this.component.dateFormat)
       : null
   }
 }
-
-/*
-    this.$watch('time', (time: string|null) => {
-      this.entangleable.get()?.setTime(time ?? '00:00:00')
-
-      this.entangleable.runSetCallbacks()
-    })
-
-    this.entangleable.watch((date: FluentDate|null) => {
-      this.time = date?.getTime() ?? null
-
-      if (!date) {
-        return this.$events.dispatch('clear', null)
-      }
-
-      this.calendar.dates.forEach(day => {
-        day.isSelected = this.isSelected(new FluentDate(day.date))
-      })
-
-      // if (date) {
-      //   this.calendar.month = date.getMonth()
-      //   this.calendar.year = date.getYear()
-      //
-      //   this.$events.dispatch(
-      //     'selected::month',
-      //     this.calendar.year,
-      //     this.calendar.month,
-      //   )
-      // }
-    })
-
-    if (this.$props.wireModel.exists) {
-      new SupportsLivewire(this.entangleable, this.$props.wireModel)
-        .toLivewire((value: FluentDate|null) => {
-          return value
-            ? value.toISOString(this.$props.timezone.server)
-            : null
-        })
-        .fromLivewire((value: string|null) => {
-          return value
-            ? new FluentDate(value, this.$props.timezone.server).setTimezone(this.localTimezone)
-            : null
-        })
-    }
-
-    if (this.$props.alpineModel.exists) {
-      new SupportsAlpine(this.$root, this.entangleable, this.$props.alpineModel)
-        .fromAlpine((value: FluentDate|null) => {
-          return value
-            ? value.toISOString(this.$props.timezone.server)
-            : null
-        })
-        .fromAlpine((value: string|null) => {
-          return value
-            ? new FluentDate(value, this.$props.timezone.server).setTimezone(this.localTimezone)
-            : null
-        })
-    }
- */

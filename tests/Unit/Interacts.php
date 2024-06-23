@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\{Arr, Collection, Str};
+use Illuminate\Support\{Collection, Str};
 use Illuminate\View\{Component, ComponentAttributeBag};
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;
@@ -35,16 +35,6 @@ trait Interacts
     }
 
     /**
-     * Transform colors to css classes.
-     */
-    public function serializeColorClasses(array $colors): array
-    {
-        return collect($colors)->transform(
-            fn ($color) => Arr::toCssClasses($color),
-        )->toArray();
-    }
-
-    /**
      * Get all icons from Heroicons.
      */
     public function getIcons(): Collection
@@ -57,6 +47,34 @@ trait Interacts
     }
 
     /**
+     * Get random pack from WireUi.
+     */
+    public function getRandomPack(string $pack, array $except = []): array
+    {
+        return collect((new $pack())->all())
+            ->when(filled($except), fn ($values) => $values->except($except))
+            ->map(fn ($value, $key) => [
+                'key'   => $key,
+                'class' => $value,
+            ])->random();
+    }
+
+    /**
+     * Get random variant pack from WireUi.
+     */
+    public function getVariantRandomPack(string $variant, array $except = []): array
+    {
+        $variant = collect((new $variant())->all())->map(fn ($value, $key) => [
+            'pack'    => $value,
+            'variant' => $key,
+        ])->random();
+
+        $pack = $this->getRandomPack(data_get($variant, 'pack'), $except);
+
+        return [...$pack, 'pack' => data_get($variant, 'pack'), 'variant' => data_get($variant, 'variant')];
+    }
+
+    /**
      * Call protected/private method of a class.
      */
     public function invokeMethod(mixed $object, string $method, array $parameters = []): mixed
@@ -64,8 +82,6 @@ trait Interacts
         $reflection = new ReflectionClass(get_class($object));
 
         $method = $reflection->getMethod($method);
-
-        $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
     }
@@ -78,8 +94,6 @@ trait Interacts
         $reflection = new ReflectionClass(get_class($object));
 
         $property = $reflection->getProperty($property);
-
-        $property->setAccessible(true);
 
         return $property->getValue($object);
     }

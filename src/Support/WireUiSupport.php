@@ -3,7 +3,7 @@
 namespace WireUi\Support;
 
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
+use Illuminate\Support\{Collection, Str};
 use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
 use Livewire\{Component, WireDirective};
 use WireUi\View\Attribute;
@@ -23,11 +23,6 @@ class WireUiSupport
     public function component(string $name): string
     {
         return (new static())->components()->resolve($name);
-    }
-
-    public function checkSlot(mixed $slot): bool
-    {
-        return $slot instanceof ComponentSlot;
     }
 
     public function extractAttributes(mixed $property): ComponentAttributeBag
@@ -67,7 +62,7 @@ class WireUiSupport
         return "{{$expressions}}";
     }
 
-    private function jsonParse(array|string $value): string
+    private function jsonParse(mixed $value): string
     {
         return "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))";
     }
@@ -101,11 +96,11 @@ class WireUiSupport
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];
@@ -129,13 +124,22 @@ class WireUiSupport
                 'blur'     => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => (int) Str::of($model->modifiers()->last(default: '250'))->replaceMatches('/[^0-9]/', '')->toString(),
+                    'delay'  => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];
+    }
+
+    protected static function getAttributeDelay(Collection $modifiers): int
+    {
+        $delay = (int) Str::of($modifiers->last(default: '250'))
+            ->replaceMatches('/[^0-9]/', '')
+            ->toString();
+
+        return $delay ?: 250;
     }
 }

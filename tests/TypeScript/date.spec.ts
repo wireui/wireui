@@ -40,7 +40,7 @@ describe('Fluent date api tests', () => {
     expect(26).toEqual(date.getDay())
     expect(3).toEqual(date.getDayOfWeek()) // wed
     expect(12).toEqual(date.getHours())
-    expect('12:33').toEqual(date.getTime())
+    expect('12:33:00').toEqual(date.getTime())
     expect(33).toEqual(date.getMinutes())
     expect(date.getNativeDate()).toBeInstanceOf(Date)
   })
@@ -51,7 +51,7 @@ describe('Fluent date api tests', () => {
     expect(2000).toEqual(date.setYear(2000).getYear())
     expect(7).toEqual(date.setMonth(7).getMonth())
     expect(31).toEqual(date.setDay(31).getDay())
-    expect('15:59').toEqual(date.setTime('15:59').getTime())
+    expect('15:59:00').toEqual(date.setTime('15:59').getTime())
     expect(4).toEqual(date.setHours(4).getHours())
     expect(30).toEqual(date.setMinutes(30).getMinutes())
     expect('America/Denver').toEqual(date.setTimezone('America/Denver').timezone)

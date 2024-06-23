@@ -27,35 +27,29 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'colors',
-        'shadow',
-        'rightIcon',
         'shadowless',
-        'shadowClasses',
+        'rightIcon',
         'colorNameAsValue',
+        // Packs
+        'color',
+        'shadow',
+        'rounded',
+        'squared',
+        'colorClasses',
+        'shadowClasses',
+        'roundedClasses',
     ]);
 
     expect($this->component->shadowless)->toBeFalse();
-});
-
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'colors',
-        'shadow',
-        'rightIcon',
-        'shadowless',
-        'shadowClasses',
-        'colorNameAsValue',
-    ]);
 });
 
 test('it can be instantiated with default parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe([]);
-
     expect($this->component->rightIcon)->toBe('swatch');
-
     expect($this->component->colorNameAsValue)->toBe(false);
 });
 
@@ -71,9 +65,7 @@ test('it can be instantiated with custom parameters', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component->colors)->toBe($colors);
-
     expect($this->component->rightIcon)->toBe($icon);
-
     expect($this->component->colorNameAsValue)->toBe(true);
 });
 
@@ -148,7 +140,9 @@ test('it handles mixed types in colors array correctly', function () {
 });
 
 test('it should pass custom colors to js component data', function () {
+    $colors = [['name' => 'FFF', 'value' => '#FFF']];
+
     expect('<x-color-picker :colors="$colors" />')
-        ->render(['colors' => [['name' => 'FFF', 'value' => '#FFF']]])
-        ->toContain('colors:JSON.parse(atob(&#039;W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ==&#039;))');
+        ->render(compact('colors'))
+        ->toContain("colors:JSON.parse(atob('W3sibmFtZSI6IkZGRiIsInZhbHVlIjoiI0ZGRiJ9XQ=='))");
 });

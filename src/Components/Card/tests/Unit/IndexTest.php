@@ -28,14 +28,16 @@ test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
+        // Props
         'title',
+        'borderless',
+        'shadowless',
+        // Packs
         'color',
         'shadow',
         'padding',
         'rounded',
         'squared',
-        'borderless',
-        'shadowless',
         'colorClasses',
         'shadowClasses',
         'paddingClasses',
@@ -43,16 +45,6 @@ test('it should have properties in component', function () {
 
     expect($this->component->borderless)->toBeFalse();
     expect($this->component->shadowless)->toBeFalse();
-});
-
-test('it should not have properties in component', function () {
-    expect($this->component)->not->toHaveProperties([
-        'title',
-        'color',
-        'rounded',
-        'squared',
-        'colorClasses',
-    ]);
 });
 
 test('it should render title in component', function () {
@@ -74,11 +66,11 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::FULL);
+
     expect($this->component->rounded)->toBeTrue();
-
     expect($this->component->squared)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::FULL));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect(<<<EOT
     <x-card title="Title" rounded>
@@ -94,11 +86,11 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
+    $class = (new Rounded())->get(Packs\Rounded::NONE);
+
     expect($this->component->squared)->toBeTrue();
-
     expect($this->component->rounded)->toBeFalse();
-
-    expect($this->component->roundedClasses)->toBe($class = (new Rounded())->get(Packs\Rounded::NONE));
+    expect($this->component->roundedClasses)->toBe($class);
 
     expect(<<<EOT
     <x-card title="Title" squared>

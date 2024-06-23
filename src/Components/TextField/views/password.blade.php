@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
     x-data="wireui_inputs_password"
@@ -40,4 +41,4 @@
             />
         </button>
     </x-slot>
-</x-text-field>
+</x-dynamic-component>

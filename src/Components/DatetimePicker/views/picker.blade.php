@@ -1,4 +1,5 @@
-<x-text-field
+<x-dynamic-component
+    :component="WireUi::component('text-field')"
     x-data="wireui_date_picker"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key', 'class'])"
@@ -11,6 +12,7 @@
         'timezone' => [
             'enabled' => $withoutTimezone === false,
             'server'  => $timezone,
+            'user'    => $userTimezone,
         ],
         'calendar' => [
             'weekDays'      => trans('wireui::messages.date_picker.days'),
@@ -46,8 +48,61 @@
         'alpineModel' => WireUi::alpineModel($attrs),
     ])"
     x-ref="container"
+    x-bind:class="{
+        'ring-2 ring-primary-600': positionable.isOpen(),
+    }"
+    x-on:click="positionable.toggle()"
+    x-on:keydown.enter.stop.prevent="positionable.toggle()"
+    x-on:keydown.space.stop.prevent="positionable.toggle()"
+    x-on:keydown.arrow-down.stop.prevent="positionable.open()"
+    tabindex="0"
 >
-    @include('wireui-wrapper::components.slots')
+    <div class="hidden" hidden>
+        <x-wireui-wrapper::element
+            :id="$id"
+            :name="$name"
+            :value="$value"
+            x-bind:value="selectedRawValue"
+            x-ref="rawInput"
+            type="hidden"
+        />
+    </div>
+
+    @include('wireui-wrapper::components.slots', ['except' => ['prepend', 'append']])
+
+    @if ($multiple)
+        <div
+            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-full cursor-pointer"
+            x-show="selectedDates.length > 0"
+        >
+            <template x-for="(date, index) in selectedDatesDisplay" wire:key="date">
+                <button
+                    class="
+                        bg-slate-100 text-2xs px-1 py-0.5 rounded border border-slate-200
+                        flex items-center transition-all ease-in-out duration-150 cursor-pointer
+                        hover:bg-negative-100 hover:text-negative-600 hover:border-negative-200
+                        focus:bg-negative-100 focus:text-negative-600 focus:border-negative-200
+                        focus:ring-1 focus:ring-negative-500 focus:outline-none
+                        appearance-none outline-none
+                    "
+                    type="button"
+                    title="{{ __('wireui::messages.labels.remove') }}"
+                    x-on:click.stop.prevent="removeSelectedDate(index)"
+                >
+                    <span x-text="date"></span>
+                </button>
+            </template>
+        </div>
+    @endif
+
+    <x-wireui-wrapper::element
+        class="cursor-pointer"
+        x-show="selectedDates.length === 0"
+        x-bind:value="display"
+        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
+        autocomplete="off"
+        readonly
+    />
 
     @if (!$readonly && !$disabled)
         <x-slot:append class="flex items-center">
@@ -57,7 +112,7 @@
                     class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500"
                     name="x-mark"
                     x-show="entangleable.isNotEmpty()"
-                    x-on:click="clear"
+                    x-on:click.stop.prevent="clear"
                     x-cloak
                 />
             @endif
@@ -67,7 +122,6 @@
                 class="h-full"
                 :color="$color ?? 'primary'"
                 :rounded="Arr::get($roundedClasses, 'append', '')"
-                x-on:click="positionable.toggle()"
                 :disabled="$disabled"
                 x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
                 use-validation-colors
@@ -86,15 +140,9 @@
         </x-slot:append>
     @endif
 
-    <x-wireui-wrapper::element
-        x-on:click="positionable.toggle()"
-        x-bind:value="display"
-        :attributes="$attributes->only(['placeholder', 'readonly', 'disabled'])"
-        readonly
-    />
-
     <x-slot:after>
-        <x-popover2
+        <x-dynamic-component
+            :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="overflow-hidden sm:w-72"
             root-class="justify-end sm:!w-72 ml-auto sm:w-full"
@@ -349,6 +397,6 @@
                     />
                 </footer>
             @endif
-        </x-popover2>
+        </x-dynamic-component>
     </x-slot:after>
-</x-text-field>
+</x-dynamic-component>

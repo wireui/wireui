@@ -1,12 +1,22 @@
+@php($except = [
+    'title',
+    'shadow',
+    'rounded',
+    'squared',
+    'padding',
+    'borderless',
+    'shadowless',
+])
+
 <x-dynamic-component
     :component="WireUi::component('modal')"
-    :attributes="$attributes->except(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
-    width="xl"
+    :spacing="$fullscreen ? 'p-0' : $spacing"
+    :attributes="$attributes->except($except)"
 >
     <x-dynamic-component
         :component="WireUi::component('card')"
-        :attributes="$attributes->only(['title', 'shadow', 'padding', 'shadowless', 'borderless'])"
-        class="w-full"
+        :attributes="$attributes->only($except)"
+        @class(['w-full', 'min-h-screen' => $fullscreen])
     >
         @if(!$hideClose)
             @slot('action')

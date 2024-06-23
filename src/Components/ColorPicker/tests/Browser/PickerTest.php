@@ -8,8 +8,11 @@ use Tests\Browser\BrowserTestCase;
 
 class PickerTest extends BrowserTestCase
 {
-    public const HTML = '<x-color-picker label="Color Picker" name="color" />';
     public const NAME = 'color';
+
+    public const HTML = <<<'BLADE'
+        <x-color-picker label="Color Picker" name="color" />
+    BLADE;
 
     public function test_it_should_select_a_color(): void
     {
@@ -17,11 +20,9 @@ class PickerTest extends BrowserTestCase
             ->openPopover(self::NAME)
             ->selectColorByTitle(self::NAME, 'White')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#fff'))
-
             ->openPopover(self::NAME)
             ->selectColorByTitle(self::NAME, 'Black')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#000'))
-
             ->openPopover(self::NAME)
             ->selectColorByTitle(self::NAME, 'purple-100')
             ->waitTo(fn (Browser $browser) => $browser->assertInputValue(self::NAME, '#f3e8ff'));
@@ -40,7 +41,9 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_auto_fill_the_color_from_input_element_value_as_color_title(): void
     {
-        $this->render('<x-color-picker color-name-as-value name="color" value="Black" />')
+        $this->render(<<<'BLADE'
+            <x-color-picker color-name-as-value name="color" value="Black" />
+        BLADE)
             ->waitForAlpineJs()
             ->assertInputValue('color', 'Black');
     }
@@ -53,7 +56,9 @@ class PickerTest extends BrowserTestCase
 
             public function render(): string
             {
-                return '<x-color-picker wire:model="color" />';
+                return <<<'BLADE'
+                    <x-color-picker wire:model="color" />
+                BLADE;
             }
         })
             ->waitForAlpineJs()
@@ -70,8 +75,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <button dusk="refresh" wire:click="$refresh">Refresh</button>
-                        <button dusk="value">{{ $color }}</button>
+                        <x-button dusk="refresh" wire:click="$refresh" label="Refresh" />
+
+                        <x-button dusk="value" :label="$color" />
 
                         <x-color-picker wire:model="color" />
                     </div>
@@ -79,17 +85,14 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
             ->typeSlowly('color', 'FFF')
             ->assertInputValue('color', '#FFF')
-            ->pause(400)
+            ->pause(500)
             ->assertSeeNothingIn('@value')
-
             ->typeSlowly('color', '000')
             ->assertInputValue('color', '#000')
-            ->pause(400)
+            ->pause(500)
             ->assertSeeNothingIn('@value')
-
             ->click('@refresh')
             ->waitForTextIn('@value', '#000');
     }
@@ -104,7 +107,7 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <button dusk="value">{{ $color }}</button>
+                        <x-button dusk="value" :label="$color" />
 
                         <x-color-picker name="color" wire:model.live="color" />
                     </div>
@@ -112,11 +115,9 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
             ->typeSlowly('color', 'FFF')
             ->assertInputValue('color', '#FFF')
             ->waitForTextIn('@value', '#FFF')
-
             ->typeSlowly('color', '000')
             ->assertInputValue('color', '#000')
             ->waitForTextIn('@value', '#000');
@@ -132,8 +133,9 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <button dusk="outside">Outside</button>
-                        <button dusk="value">{{ $color }}</button>
+                        <x-button dusk="outside" label="Outside" />
+
+                        <x-button dusk="value" :label="$color" />
 
                         <x-color-picker name="color" wire:model.live.blur="color" />
                     </div>
@@ -141,11 +143,9 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
             ->typeSlowly('color', 'FFF')
             ->assertInputValue('color', '#FFF')
             ->assertSeeNothingIn('@value')
-
             ->click('@outside')
             ->waitForTextIn('@value', '#FFF');
     }
@@ -160,7 +160,7 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <button dusk="value">{{ $color }}</button>
+                        <x-button dusk="value" :label="$color" />
 
                         <x-color-picker name="color" wire:model.live.debounce.300ms="color" />
                     </div>
@@ -168,18 +168,16 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
             ->typeSlowly('color', 'FFF')
             ->assertInputValue('color', '#FFF')
             ->assertSeeNothingIn('@value')
-            ->pause(400)
-            ->assertSeeIn('@value', '#FFF')
-
+            ->pause(500)
+            ->waitForTextIn('@value', '#FFF')
             ->typeSlowly('color', '000')
             ->assertInputValue('color', '#000')
-            ->assertSeeIn('@value', '#FFF')
-            ->pause(400)
-            ->assertSeeIn('@value', '#000');
+            ->waitForTextIn('@value', '#FFF')
+            ->pause(500)
+            ->waitForTextIn('@value', '#000');
     }
 
     public function test_wire_model_throttle(): void
@@ -192,7 +190,7 @@ class PickerTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <button dusk="value">{{ $color }}</button>
+                        <x-button dusk="value" :label="$color" />
 
                         <x-color-picker name="color" wire:model.live.throttle.500ms="color" />
                     </div>
@@ -200,16 +198,14 @@ class PickerTest extends BrowserTestCase
             }
         })
             ->waitForAlpineJs()
-
             ->typeSlowly('color', 'FFF', 40)
             ->assertInputValue('color', '#FFF')
-            ->assertSeeIn('@value', '#F')
+            ->waitForTextIn('@value', '#F')
             ->pause(500)
-            ->assertSeeIn('@value', '#FFF')
-
+            ->waitForTextIn('@value', '#FFF')
             ->typeSlowly('color', 'FFFF', 40)
             ->assertInputValue('color', '#FFFF')
             ->pause(500)
-            ->assertSeeIn('@value', '#FFFF');
+            ->waitForTextIn('@value', '#FFFF');
     }
 }

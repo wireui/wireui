@@ -13,13 +13,14 @@ export default class SupportsAlpine {
     private target: HTMLElement,
     private entangleable: Entangleable<any>,
     private config: AlpineModel,
+    preventInitialFill = false
   ) {
     this.entangleable = entangleable
     this.config = config
 
     this.init()
 
-    if (isEmpty(this.entangleable.get())) {
+    if (!preventInitialFill && isEmpty(this.entangleable.get())) {
       this.fillValueFromAlpine()
     }
   }
@@ -28,6 +29,14 @@ export default class SupportsAlpine {
     window.Alpine.effect(() => {
       try {
         let value = window.Alpine.$data(this.target)[this.config.name]
+
+        let entangleableValue = this.entangleable.get()
+
+        if (this.toAlpineCallback) {
+          entangleableValue = this.toAlpineCallback(entangleableValue)
+        }
+
+        if (JSON.stringify(entangleableValue) === JSON.stringify(value)) return
 
         if (this.fromAlpineCallback) {
           value = this.fromAlpineCallback(value)
@@ -98,8 +107,12 @@ export default class SupportsAlpine {
     return this
   }
 
-  private fillValueFromAlpine (): void {
-    const value = window.Alpine.evaluate(this.target, this.config.name)
+  fillValueFromAlpine (): void {
+    let value = window.Alpine.evaluate(this.target, this.config.name)
+
+    if (this.fromAlpineCallback) {
+      value = this.fromAlpineCallback(value)
+    }
 
     if (isEmpty(value)) return
 

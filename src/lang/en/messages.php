@@ -19,4 +19,7 @@ return [
     'errors' => [
         'title' => 'There was an error in your submission|There were {errors} errors in your submission',
     ],
+    'labels' => [
+        'remove' => 'Remove',
+    ],
 ];

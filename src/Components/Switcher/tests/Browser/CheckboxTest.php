@@ -3,22 +3,20 @@
 namespace WireUi\Components\Switcher\tests\Browser;
 
 use Laravel\Dusk\Browser;
+use Livewire\Attributes\Validate;
 use Livewire\{Component, Livewire};
 use Tests\Browser\BrowserTestCase;
 
 class CheckboxTest extends BrowserTestCase
 {
-    public function browser(): Browser
+    public function test_checkbox_component(): void
     {
-        return Livewire::visit(new class() extends Component
+        Livewire::visit(new class() extends Component
         {
+            #[Validate('accepted', message: 'accept it')]
             public bool $checkbox = false;
 
-            protected $rules = ['checkbox' => 'accepted'];
-
-            protected $messages = ['checkbox.accepted' => 'accept it'];
-
-            public function validateCheckbox()
+            public function save(): void
             {
                 $this->validate();
             }
@@ -27,24 +25,16 @@ class CheckboxTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <h1>Checkbox Browser Test</h1>
+                    <x-badge dusk="checkbox" :label="json_encode($checkbox)" />
 
-                    <span dusk="checkbox">@json($checkbox)</span>
+                    <x-checkbox wire:model.live="checkbox" label="Checkbox" />
 
-                    // test it_should_render_with_label_and_change_value
-                    <x-checkbox label="Remember me" wire:model.live="checkbox" />
-
-                    <button wire:click="validateCheckbox" dusk="validate">validate</button>
+                    <x-button dusk="validate" wire:click="save" label="Save" />
                 </div>
                 BLADE;
             }
-        });
-    }
-
-    public function test_it_should_render_with_label_and_change_value(): void
-    {
-        $this->browser()
-            ->assertSee('Remember me')
+        })
+            ->assertSee('Checkbox')
             ->check('checkbox')
             ->assertChecked('checkbox')
             ->waitForTextIn('@checkbox', 'true')
@@ -52,6 +42,6 @@ class CheckboxTest extends BrowserTestCase
             ->assertNotChecked('checkbox')
             ->waitForTextIn('@checkbox', 'false')
             ->click('@validate')
-            ->waitForText('accept it');
+            ->waitTo(fn (Browser $browser) => $browser->assertSee('accept it'));
     }
 }

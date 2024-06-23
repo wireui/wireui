@@ -2,8 +2,8 @@
 
 namespace WireUi\Components\TextField;
 
-use Exception;
 use Illuminate\Contracts\View\View;
+use WireUi\Exceptions\WireUiMaskableException;
 use WireUi\Traits\Components\IsFormComponent;
 use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
@@ -18,7 +18,7 @@ class Maskable extends WireUiComponent
 
     protected array $props = [
         'mask'           => null,
-        'shadowless'     => null,
+        'shadowless'     => false,
         'emit-formatted' => false,
     ];
 
@@ -29,7 +29,7 @@ class Maskable extends WireUiComponent
 
     protected function getInputMask(): array|string
     {
-        throw new Exception('Implement this method [getInputMask] on your component or pass [mask] in parameters');
+        throw new WireUiMaskableException($this);
     }
 
     protected function blade(): View

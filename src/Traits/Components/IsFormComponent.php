@@ -34,7 +34,21 @@ trait IsFormComponent
 
         $data['attrs'] = $data['attributes'];
 
+        $data['value'] ??= $this->getValue($data);
+
         $data['wrapperData'] = (new WrapperData($data))->except($this->except());
+    }
+
+    protected function getValue(array $data): mixed
+    {
+        $name = data_get($data, 'name');
+
+        /** @var ComponentAttributeBag $attributes */
+        $attributes = $data['attributes'];
+
+        return $name
+            ? old($name, $attributes->get('value'))
+            : $attributes->get('value');
     }
 
     protected function extractAttributes(array $data): array

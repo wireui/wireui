@@ -1,4 +1,5 @@
-<x-switcher
+<x-dynamic-component
+    :component="WireUi::component('switcher')"
     :data="$wrapperData"
     :attributes="$attrs->only(['wire:key'])"
 >
@@ -20,4 +21,4 @@
             ->merge(['type' => 'checkbox'])
         }}
     />
-</x-switcher>
+</x-dynamic-component>
