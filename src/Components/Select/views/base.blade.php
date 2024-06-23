@@ -96,7 +96,7 @@
                     ></span>
                 @endunless
 
-                <div wire:ignore class="flex items-center gap-1 flex-nowrap">
+                <div class="flex items-center gap-1 flex-nowrap">
                     <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
                         <span @class([
                             'inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium',
