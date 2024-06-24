@@ -565,7 +565,11 @@ export default class Select extends AlpineComponent {
   }
 
   mustSyncEntangleableValue (): boolean {
-    return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
+    if (this.config.multiselect) {
+      return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
+    }
+
+    return this.entangleable.get()?.toString() !== this.selected?.value?.toString()
   }
 
   private normalizeText (str: string) {
