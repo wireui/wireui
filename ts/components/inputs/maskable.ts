@@ -19,7 +19,7 @@ export default class Maskable extends AlpineComponent {
     rawInput: HTMLInputElement
   }
 
-  declare masker: Masker
+  masker: Masker = masker('', null)
 
   input: string|null = null
 
@@ -32,7 +32,7 @@ export default class Maskable extends AlpineComponent {
   }
 
   init () {
-    this.masker = masker(this.$props.mask, null)
+    this.masker.mask = this.$props.mask
 
     this.entangleable.watch(value => {
       this.input = this.$props.emitFormatted

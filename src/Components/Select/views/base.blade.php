@@ -80,49 +80,50 @@
             x-html="getSelectedDisplayText()"
         ></span>
 
-        <template x-if="config.multiselect && isNotEmpty()">
-            <div @class([
+        <div
+            @class([
                 'w-full flex items-center overflow-hidden',
                 'cursor-pointer' => !$readonly && !$disabled
-            ])>
-                <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full">
-                    @unless ($withoutItemsCount)
-                        <span
-                            class="inline-flex text-sm text-secondary-700 dark:text-secondary-400 select-none"
-                            x-show="selectedOptions.length"
-                            x-text="selectedOptions.length"
-                        ></span>
-                    @endunless
+            ])
+            x-show="config.multiselect && isNotEmpty()"
+        >
+            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full">
+                @unless ($withoutItemsCount)
+                    <span
+                        class="inline-flex text-sm text-secondary-700 dark:text-secondary-400 select-none"
+                        x-show="selectedOptions.length"
+                        x-text="selectedOptions.length"
+                    ></span>
+                @endunless
 
-                    <div wire:ignore class="flex items-center gap-1 flex-nowrap">
-                        <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
-                            <span @class([
-                                'inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium',
-                                'border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700',
-                                'dark:bg-secondary-700 dark:text-secondary-400 dark:border-none',
-                            ])>
-                                <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
+                <div class="flex items-center gap-1 flex-nowrap">
+                    <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
+                        <span @class([
+                            'inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium',
+                            'border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700',
+                            'dark:bg-secondary-700 dark:text-secondary-400 dark:border-none',
+                        ])>
+                            <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
-                                @if ($clearable && !($readonly || $disabled))
-                                    <button
-                                        class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
-                                        x-on:click.stop="unSelect(option)"
-                                        tabindex="-1"
-                                        type="button"
-                                    >
-                                        <x-dynamic-component
-                                            :component="WireUi::component('icon')"
-                                            class="w-3 h-3"
-                                            name="x-mark"
-                                        />
-                                    </button>
-                                @endif
-                            </span>
-                        </template>
-                    </div>
+                            @if ($clearable && !($readonly || $disabled))
+                                <button
+                                    class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                    x-on:click.stop="unSelect(option)"
+                                    tabindex="-1"
+                                    type="button"
+                                >
+                                    <x-dynamic-component
+                                        :component="WireUi::component('icon')"
+                                        class="w-3 h-3"
+                                        name="x-mark"
+                                    />
+                                </button>
+                            @endif
+                        </span>
+                    </template>
                 </div>
             </div>
-        </template>
+        </div>
     </button>
 
     <x-slot name="append" class="flex items-center pr-2.5 gap-x-1">
@@ -169,20 +170,22 @@
             x-on:keydown.arrow-up.prevent="focusable.previous()?.focus()"
             x-on:keydown.arrow-down.prevent="focusable.next()?.focus()"
         >
-            <template x-if="asyncData.api || (config.searchable && options.length >= @js($minItemsForSearch))">
-                <div class="px-2 my-2" wire:key="search.options.{{ $name }}">
-                    <x-dynamic-component
-                        :component="WireUi::component('input')"
-                        class="bg-slate-100"
-                        x-ref="search"
-                        x-model.debounce.500ms="search"
-                        shadowless
-                        right-icon="magnifying-glass"
-                        :placeholder="trans('wireui::messages.search_here')"
-                        type="search"
-                    />
-                </div>
-            </template>
+            <div
+                class="px-2 my-2"
+                wire:key="search.options.{{ $name }}"
+                x-show="asyncData.api || (config.searchable && options.length >= @js($minItemsForSearch))"
+            >
+                <x-dynamic-component
+                    :component="WireUi::component('input')"
+                    class="bg-slate-100"
+                    x-ref="search"
+                    x-model.debounce.500ms="search"
+                    shadowless
+                    right-icon="magnifying-glass"
+                    :placeholder="trans('wireui::messages.search_here')"
+                    type="search"
+                />
+            </div>
 
             <div
                 class="overflow-y-auto select-none max-h-60 snap-y snap-proximity overscroll-contain soft-scrollbar"

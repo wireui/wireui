@@ -174,10 +174,18 @@ export default class Select extends AlpineComponent {
   }
 
   initDeferredWatchers (): void {
-    this.$watch('asyncData.api', () => (this.options = []))
-    this.$watch('asyncData.optionsPath', () => (this.options = []))
-    this.$watch('asyncData.params', () => (this.options = []))
-    this.$watch('asyncData.method', () => (this.options = []))
+    const callback = (() => {
+      if (!this.asyncData.api) {
+        return
+      }
+
+      this.setOptions([])
+    }).bind(this)
+
+    this.$watch('asyncData.api', callback)
+    this.$watch('asyncData.optionsPath', callback)
+    this.$watch('asyncData.params', callback)
+    this.$watch('asyncData.method', callback)
   }
 
   initModelWatchers (): void {
@@ -298,15 +306,14 @@ export default class Select extends AlpineComponent {
       template: templates[template.name](template.config)
     }
 
-    this.asyncData = {
-      ...this.asyncData,
+    this.asyncData = Object.assign(this.asyncData, {
       api: props.asyncData.api,
       method: props.asyncData.method,
       optionsPath: props.asyncData.optionsPath,
       params: props.asyncData.params,
       alwaysFetch: props.asyncData.alwaysFetch,
       credentials: props.asyncData.credentials
-    }
+    })
   }
 
   syncJsonOptions (): void {
@@ -558,7 +565,11 @@ export default class Select extends AlpineComponent {
   }
 
   mustSyncEntangleableValue (): boolean {
-    return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
+    if (this.config.multiselect) {
+      return this.entangleable.get()?.toString() !== this.selectedOptions.map(option => option.value).toString()
+    }
+
+    return this.entangleable.get()?.toString() !== this.selected?.value?.toString()
   }
 
   private normalizeText (str: string) {
