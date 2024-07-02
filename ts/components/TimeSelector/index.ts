@@ -140,7 +140,9 @@ export default class TimeSelector extends AlpineComponent {
     this.date.setMinutes(this.selection.minutes)
     this.date.setSeconds(this.selection.seconds)
 
-    return this.date.format('HH:mm:ss')
+    return this.$props.withoutSeconds
+      ? this.date.format('HH:mm')
+      : this.date.format('HH:mm:ss')
   }
 
   private makeOptions (): void {

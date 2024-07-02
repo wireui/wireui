@@ -56,7 +56,9 @@ export default class TimePicker extends AlpineComponent {
           .setMinutes(Number(minutes) || 0)
           .setSeconds(Number(onlyNumbers(seconds)) || 0)
 
-        this.value = this.date.format('HH:mm:ss')
+        const format = this.$props.withoutSeconds ? 'HH:mm' : 'HH:mm:ss'
+
+        this.value = this.date.format(format)
       })
     })
 
