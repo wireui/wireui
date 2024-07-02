@@ -7,11 +7,11 @@ trait FilterOptions
     public function toArray(): array
     {
         $option = collect([
-            'label'       => $this->label,
-            'value'       => $this->value,
-            'disabled'    => $this->disabled,
+            'label' => $this->label,
+            'value' => $this->value,
+            'disabled' => $this->disabled,
             'description' => $this->description,
-            'readonly'    => $this->readonly || $this->disabled,
+            'readonly' => $this->readonly || $this->disabled,
         ])->merge((array) $this->option);
 
         return $option->filter(function ($value, $index) {

@@ -13,11 +13,11 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'value'       => null,
-        'label'       => null,
-        'option'      => [],
-        'disabled'    => false,
-        'readonly'    => false,
+        'value' => null,
+        'label' => null,
+        'option' => [],
+        'disabled' => false,
+        'readonly' => false,
         'description' => null,
     ]);
 });
@@ -42,8 +42,8 @@ test('it should have properties in component', function () {
 
 test('it should render option with label, value and description', function () {
     $this->setAttributes($this->component, [
-        'label'       => $label       = fake()->word(),
-        'value'       => $value       = fake()->randomNumber(5),
+        'label' => $label = fake()->word(),
+        'value' => $value = fake()->randomNumber(5),
         'description' => $description = fake()->sentence(),
     ]);
 

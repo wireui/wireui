@@ -3,7 +3,8 @@
 namespace WireUi\Components\Modal\tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class IndexTest extends BrowserTestCase

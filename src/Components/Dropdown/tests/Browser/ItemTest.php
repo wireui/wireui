@@ -2,7 +2,8 @@
 
 namespace WireUi\Components\Dropdown\tests\Browser;
 
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class ItemTest extends BrowserTestCase

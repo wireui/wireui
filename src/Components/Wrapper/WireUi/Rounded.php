@@ -16,49 +16,49 @@ class Rounded extends ComponentPack
     {
         return [
             Packs\Rounded::NONE => [
-                'input'   => 'rounded-none',
+                'input' => 'rounded-none',
                 'prepend' => 'rounded-none',
-                'append'  => 'rounded-none',
+                'append' => 'rounded-none',
             ],
             Packs\Rounded::SM => [
-                'input'   => 'rounded-sm',
+                'input' => 'rounded-sm',
                 'prepend' => 'rounded-l-sm',
-                'append'  => 'rounded-r-sm',
+                'append' => 'rounded-r-sm',
             ],
             Packs\Rounded::BASE => [
-                'input'   => 'rounded',
+                'input' => 'rounded',
                 'prepend' => 'rounded-l',
-                'append'  => 'rounded-r',
+                'append' => 'rounded-r',
             ],
             Packs\Rounded::MD => [
-                'input'   => 'rounded-md',
+                'input' => 'rounded-md',
                 'prepend' => 'rounded-l-md',
-                'append'  => 'rounded-r-md',
+                'append' => 'rounded-r-md',
             ],
             Packs\Rounded::LG => [
-                'input'   => 'rounded-lg',
+                'input' => 'rounded-lg',
                 'prepend' => 'rounded-l-lg',
-                'append'  => 'rounded-r-lg',
+                'append' => 'rounded-r-lg',
             ],
             Packs\Rounded::XL => [
-                'input'   => 'rounded-xl',
+                'input' => 'rounded-xl',
                 'prepend' => 'rounded-l-xl',
-                'append'  => 'rounded-r-xl',
+                'append' => 'rounded-r-xl',
             ],
             Packs\Rounded::XL2 => [
-                'input'   => 'rounded-2xl',
+                'input' => 'rounded-2xl',
                 'prepend' => 'rounded-l-2xl',
-                'append'  => 'rounded-r-2xl',
+                'append' => 'rounded-r-2xl',
             ],
             Packs\Rounded::XL3 => [
-                'input'   => 'rounded-3xl',
+                'input' => 'rounded-3xl',
                 'prepend' => 'rounded-l-3xl',
-                'append'  => 'rounded-r-3xl',
+                'append' => 'rounded-r-3xl',
             ],
             Packs\Rounded::FULL => [
-                'input'   => 'rounded-full',
+                'input' => 'rounded-full',
                 'prepend' => 'rounded-l-full',
-                'append'  => 'rounded-r-full',
+                'append' => 'rounded-r-full',
             ],
         ];
     }

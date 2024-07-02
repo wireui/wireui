@@ -2,11 +2,16 @@
 
 namespace Tests\Unit\Providers;
 
-use Illuminate\Foundation\{AliasLoader, Application};
-use Illuminate\Support\Facades\{Blade, File, View};
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
-use Illuminate\View\{ComponentAttributeBag, Factory, FileViewFinder};
+use Illuminate\View\ComponentAttributeBag;
+use Illuminate\View\Factory;
+use Illuminate\View\FileViewFinder;
 use Tests\Unit\TestCase;
 use WireUi\Components\Icon\Index as Icon;
 use WireUi\Facades\WireUi;
@@ -20,7 +25,7 @@ test('it should register the views paths', function () {
     /** @var FileViewFinder $finder */
     $finder = $view->getFinder();
 
-    $views = File::glob(__DIR__ . '/../../../src/Components/*/views');
+    $views = File::glob(__DIR__.'/../../../src/Components/*/views');
 
     collect($views)->each(function (string $path) use ($finder) {
         $name = Str::kebab($basename = basename(dirname($path)));
@@ -114,10 +119,10 @@ test('it should register the attribute macro on ComponentAttributeBag', function
 test('it should get the attribute with modifiers', function (string $attribute, array $modifiers) {
     /** @var ComponentAttributeBag $bag */
     $bag = new ComponentAttributeBag([
-        'name'     => 'foo',
+        'name' => 'foo',
         $attribute => true,
-        'docker'   => 'container',
-        'sail'     => 'laravel',
+        'docker' => 'container',
+        'sail' => 'laravel',
     ]);
 
     /** @var Attribute $attribute */

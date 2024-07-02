@@ -3,7 +3,8 @@
 namespace WireUi\Components\Select\tests\Unit;
 
 use WireUi\Components\Select\Native as NativeSelect;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
+use WireUi\Components\Wrapper\WireUi\Color;
+use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -18,14 +19,14 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'options'            => null,
-        'shadowless'         => false,
-        'placeholder'        => null,
-        'flip-options'       => false,
-        'option-value'       => null,
-        'option-label'       => null,
-        'empty-message'      => null,
-        'option-key-value'   => false,
+        'options' => null,
+        'shadowless' => false,
+        'placeholder' => null,
+        'flip-options' => false,
+        'option-value' => null,
+        'option-label' => null,
+        'empty-message' => null,
+        'option-key-value' => false,
         'hide-empty-message' => false,
         'option-description' => null,
     ]);

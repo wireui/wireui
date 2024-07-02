@@ -3,7 +3,10 @@
 namespace WireUi\Components\Badge;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupVariant};
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\HasSetupSize;
+use WireUi\Traits\Components\HasSetupVariant;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
@@ -16,9 +19,9 @@ class Base extends WireUiComponent
     protected array $packs = ['icon-size'];
 
     protected array $props = [
-        'full'       => false,
-        'icon'       => null,
-        'label'      => null,
+        'full' => false,
+        'icon' => null,
+        'label' => null,
         'right-icon' => null,
     ];
 

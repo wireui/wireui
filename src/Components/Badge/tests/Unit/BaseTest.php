@@ -3,8 +3,9 @@
 namespace WireUi\Components\Badge\tests\Unit;
 
 use WireUi\Components\Badge\Base;
+use WireUi\Components\Badge\WireUi\IconSize;
 use WireUi\Components\Badge\WireUi\Size\Base as SizeBase;
-use WireUi\Components\Badge\WireUi\{IconSize, Variant};
+use WireUi\Components\Badge\WireUi\Variant;
 use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
@@ -20,9 +21,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'full'       => false,
-        'icon'       => null,
-        'label'      => null,
+        'full' => false,
+        'icon' => null,
+        'label' => null,
         'right-icon' => null,
     ]);
 });
@@ -68,14 +69,14 @@ test('it should set icon and right icon in component with random size', function
     $pack = $this->getRandomPack(SizeBase::class);
 
     $this->setAttributes($this->component, [
-        'size'       => $size      = data_get($pack, 'key'),
-        'icon'       => $icon      = $this->getRandomIcon(),
+        'size' => $size = data_get($pack, 'key'),
+        'icon' => $icon = $this->getRandomIcon(),
         'right-icon' => $rightIcon = $this->getRandomIcon(),
     ]);
 
     $this->runWireUiComponent($this->component);
 
-    $sizeClasses     = data_get($pack, 'class');
+    $sizeClasses = data_get($pack, 'class');
     $iconSizeClasses = (new IconSize())->get($size);
 
     expect($this->component->icon)->toBe($icon);
@@ -96,7 +97,7 @@ test('it should set random color and variant in component', function () {
     $pack = $this->getVariantRandomPack(Variant::class);
 
     $this->setAttributes($this->component, [
-        'color'   => $color   = data_get($pack, 'key'),
+        'color' => $color = data_get($pack, 'key'),
         'variant' => $variant = data_get($pack, 'variant'),
     ]);
 

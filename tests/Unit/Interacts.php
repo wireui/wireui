@@ -2,9 +2,11 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\{Collection, Str};
-use Illuminate\View\{Component, ComponentAttributeBag};
+use Illuminate\Support\Str;
+use Illuminate\View\Component;
+use Illuminate\View\ComponentAttributeBag;
 use ReflectionClass;
 use Symfony\Component\Finder\SplFileInfo;
 
@@ -39,7 +41,7 @@ trait Interacts
      */
     public function getIcons(): Collection
     {
-        $files = File::allFiles(__DIR__ . '/../../vendor/wireui/heroicons/src/views/components/outline');
+        $files = File::allFiles(__DIR__.'/../../vendor/wireui/heroicons/src/views/components/outline');
 
         return collect($files)->map(function (SplFileInfo $file) {
             return Str::of($file->getFilename())->before('.blade.php')->toString();
@@ -54,7 +56,7 @@ trait Interacts
         return collect((new $pack())->all())
             ->when(filled($except), fn ($values) => $values->except($except))
             ->map(fn ($value, $key) => [
-                'key'   => $key,
+                'key' => $key,
                 'class' => $value,
             ])->random();
     }
@@ -65,7 +67,7 @@ trait Interacts
     public function getVariantRandomPack(string $variant, array $except = []): array
     {
         $variant = collect((new $variant())->all())->map(fn ($value, $key) => [
-            'pack'    => $value,
+            'pack' => $value,
             'variant' => $key,
         ])->random();
 

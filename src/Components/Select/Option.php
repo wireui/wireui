@@ -11,11 +11,11 @@ class Option extends WireUiComponent
     use FilterOptions;
 
     protected array $props = [
-        'value'       => null,
-        'label'       => null,
-        'option'      => [],
-        'disabled'    => false,
-        'readonly'    => false,
+        'value' => null,
+        'label' => null,
+        'option' => [],
+        'disabled' => false,
+        'readonly' => false,
         'description' => null,
     ];
 

@@ -5,9 +5,13 @@ namespace WireUi\Components\Button\tests\Browser;
 use Illuminate\Support\Arr;
 use Laravel\Dusk\Browser;
 use Livewire\Attributes\On;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
-use WireUi\Components\Button\WireUi\Color\{Flat, Light, Outline, Solid};
+use WireUi\Components\Button\WireUi\Color\Flat;
+use WireUi\Components\Button\WireUi\Color\Light;
+use WireUi\Components\Button\WireUi\Color\Outline;
+use WireUi\Components\Button\WireUi\Color\Solid;
 use WireUi\Enum\Packs\Color;
 
 class MiniTest extends BrowserTestCase

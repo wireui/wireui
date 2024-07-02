@@ -16,13 +16,13 @@ class Rounded extends ComponentPack
     {
         return [
             Packs\Rounded::NONE => 'rounded-none',
-            Packs\Rounded::SM   => 'rounded-sm',
+            Packs\Rounded::SM => 'rounded-sm',
             Packs\Rounded::BASE => 'rounded',
-            Packs\Rounded::MD   => 'rounded-md',
-            Packs\Rounded::LG   => 'rounded-lg',
-            Packs\Rounded::XL   => 'rounded-xl',
-            Packs\Rounded::XL2  => 'rounded-2xl',
-            Packs\Rounded::XL3  => 'rounded-3xl',
+            Packs\Rounded::MD => 'rounded-md',
+            Packs\Rounded::LG => 'rounded-lg',
+            Packs\Rounded::XL => 'rounded-xl',
+            Packs\Rounded::XL2 => 'rounded-2xl',
+            Packs\Rounded::XL3 => 'rounded-3xl',
             Packs\Rounded::FULL => 'rounded-full',
         ];
     }

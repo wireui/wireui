@@ -2,7 +2,8 @@
 
 namespace WireUi\Support;
 
-use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class WrapperData
 {
@@ -22,7 +23,7 @@ class WrapperData
                 $property = Str::kebab($key);
 
                 return in_array($property, self::attributes())
-                    && !in_array($property, $this->except);
+                    && ! in_array($property, $this->except);
             })
             ->mapWithKeys(fn ($value, string $key) => [
                 Str::camel($key) => $value,

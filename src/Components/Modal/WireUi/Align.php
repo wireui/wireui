@@ -15,9 +15,9 @@ class Align extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Align::START  => 'sm:items-start',
+            Packs\Align::START => 'sm:items-start',
             Packs\Align::CENTER => 'sm:items-center',
-            Packs\Align::END    => 'sm:items-end',
+            Packs\Align::END => 'sm:items-end',
         ];
     }
 }

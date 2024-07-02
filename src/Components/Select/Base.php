@@ -4,7 +4,9 @@ namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Components\Select\Traits\CheckOptions;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, IsFormComponent};
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\IsFormComponent;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
@@ -17,24 +19,24 @@ class Base extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'options'              => null,
-        'template'             => null,
-        'clearable'            => true,
-        'async-data'           => null,
-        'right-icon'           => 'chevron-up-down',
-        'searchable'           => true,
-        'shadowless'           => false,
-        'multiselect'          => false,
-        'placeholder'          => null,
-        'always-fetch'         => false,
-        'flip-options'         => false,
-        'option-label'         => null,
-        'option-value'         => null,
-        'empty-message'        => null,
-        'option-key-value'     => false,
-        'hide-empty-message'   => false,
-        'option-description'   => null,
-        'without-items-count'  => true,
+        'options' => null,
+        'template' => null,
+        'clearable' => true,
+        'async-data' => null,
+        'right-icon' => 'chevron-up-down',
+        'searchable' => true,
+        'shadowless' => false,
+        'multiselect' => false,
+        'placeholder' => null,
+        'always-fetch' => false,
+        'flip-options' => false,
+        'option-label' => null,
+        'option-value' => null,
+        'empty-message' => null,
+        'option-key-value' => false,
+        'hide-empty-message' => false,
+        'option-description' => null,
+        'without-items-count' => true,
         'min-items-for-search' => 11,
     ];
 
@@ -48,9 +50,9 @@ class Base extends WireUiComponent
 
         if (gettype($this->asyncData) === 'string' || $this->asyncData === null) {
             $this->asyncData = [
-                'api'         => $this->asyncData,
-                'method'      => 'GET',
-                'params'      => [],
+                'api' => $this->asyncData,
+                'method' => 'GET',
+                'params' => [],
                 'alwaysFetch' => $this->alwaysFetch,
             ];
         }
@@ -70,11 +72,11 @@ class Base extends WireUiComponent
         return $this->options
             ->map(function ($rawOption, $index): array {
                 $option = [
-                    'label'       => $this->getOptionLabel($rawOption),
-                    'value'       => $this->getOptionValue($index, $rawOption),
-                    'template'    => data_get($rawOption, 'template'),
-                    'disabled'    => data_get($rawOption, 'disabled'),
-                    'readonly'    => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
+                    'label' => $this->getOptionLabel($rawOption),
+                    'value' => $this->getOptionValue($index, $rawOption),
+                    'template' => data_get($rawOption, 'template'),
+                    'disabled' => data_get($rawOption, 'disabled'),
+                    'readonly' => data_get($rawOption, 'readonly') || data_get($rawOption, 'disabled'),
                     'description' => $this->getOptionDescription($rawOption),
                 ];
 

@@ -25,7 +25,7 @@ trait HasSetupStateColor
 
     protected function setupStateColor(): void
     {
-        throw_if(!$this->colorPack || !$this->variantPack, new WireUiStateColorException($this));
+        throw_if(! $this->colorPack || ! $this->variantPack, new WireUiStateColorException($this));
 
         $this->applyColorModifier(['hover'], 'hover');
         $this->applyColorModifier(['focus'], 'focus');
@@ -63,7 +63,7 @@ trait HasSetupStateColor
             $colorPack = $colors ? resolve($colors) : resolve($this->variantPack->get($variant));
         }
 
-        if (is_bool($modifierColor) || !in_array($modifierColor, $colorPack->keys())) {
+        if (is_bool($modifierColor) || ! in_array($modifierColor, $colorPack->keys())) {
             $modifierColor = $this->color;
         }
 

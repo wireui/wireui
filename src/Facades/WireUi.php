@@ -5,7 +5,9 @@ namespace WireUi\Facades;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\View\ComponentAttributeBag;
 use Livewire\Component;
-use WireUi\Support\{BladeDirectives, ComponentResolver, WireUiSupport};
+use WireUi\Support\BladeDirectives;
+use WireUi\Support\ComponentResolver;
+use WireUi\Support\WireUiSupport;
 
 /**
  * @method static ComponentResolver components()

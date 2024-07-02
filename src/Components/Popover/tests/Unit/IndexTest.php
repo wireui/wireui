@@ -12,7 +12,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'margin'     => false,
+        'margin' => false,
         'root-class' => null,
     ]);
 });
@@ -38,8 +38,8 @@ test('it should set custom root class in component with slot', function () {
 
     expect($this->component->rootClass)->toBe($rootClass);
 
-    expect(<<<EOT
-    <x-popover :\$rootClass>
+    expect(<<<'EOT'
+    <x-popover :$rootClass>
         Popover Slot
     </x-popover>
     EOT)->render(compact('rootClass'))->toContain($rootClass, 'Popover Slot');

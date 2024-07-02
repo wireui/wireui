@@ -3,7 +3,10 @@
 namespace WireUi\Components\Dialog\tests\Unit;
 
 use WireUi\Components\Dialog\Index as Dialog;
-use WireUi\Components\Modal\WireUi\{Align, Blur, Type, Width};
+use WireUi\Components\Modal\WireUi\Align;
+use WireUi\Components\Modal\WireUi\Blur;
+use WireUi\Components\Modal\WireUi\Type;
+use WireUi\Components\Modal\WireUi\Width;
 
 beforeEach(function () {
     $this->component = (new Dialog())->withName('dialog');
@@ -17,11 +20,11 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'id'          => null,
-        'title'       => null,
-        'spacing'     => null,
-        'z-index'     => null,
-        'blurless'    => false,
+        'id' => null,
+        'title' => null,
+        'spacing' => null,
+        'z-index' => null,
+        'blurless' => false,
         'description' => null,
     ]);
 });
@@ -120,7 +123,7 @@ test('it should set random type in component', function () {
 
     $this->setAttributes($this->component, [
         'z-index' => $zIndex = null,
-        'type'    => $type   = data_get($pack, 'key'),
+        'type' => $type = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);

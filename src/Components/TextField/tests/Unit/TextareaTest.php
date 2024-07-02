@@ -3,7 +3,8 @@
 namespace WireUi\Components\TextField\tests\Unit;
 
 use WireUi\Components\TextField\Textarea;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
+use WireUi\Components\Wrapper\WireUi\Color;
+use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -18,8 +19,8 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'cols'       => 'auto',
-        'rows'       => 4,
+        'cols' => 'auto',
+        'rows' => 4,
         'shadowless' => false,
     ]);
 });

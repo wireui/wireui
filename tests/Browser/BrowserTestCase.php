@@ -3,10 +3,12 @@
 namespace Tests\Browser;
 
 use Closure;
-use Illuminate\Support\Facades\{Artisan, File};
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\File;
 use Laravel\Dusk\Browser;
 use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\Dusk\{Options, TestCase};
+use Orchestra\Testbench\Dusk\Options;
+use Orchestra\Testbench\Dusk\TestCase;
 use Tests\Unit\Interacts;
 use WireUi\Heroicons\HeroiconsServiceProvider;
 use WireUi\ServiceProvider;
@@ -50,7 +52,7 @@ class BrowserTestCase extends TestCase
 
         trigger('browser.testCase.tearDown', $this);
 
-        if (!$this->status()->isSuccess()) {
+        if (! $this->status()->isSuccess()) {
             $this->captureFailuresFor(collect(static::$browsers));
             $this->storeSourceLogsFor(collect(static::$browsers));
         }
@@ -100,37 +102,37 @@ class BrowserTestCase extends TestCase
 
             $config->set('app.debug', true);
 
-            $config->set('view.paths', [__DIR__ . '/views', resource_path('views')]);
+            $config->set('view.paths', [__DIR__.'/views', resource_path('views')]);
 
             $config->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
 
             $config->set('database.default', 'testbench');
 
             $config->set('database.connections.testbench', [
-                'driver'   => 'sqlite',
+                'driver' => 'sqlite',
                 'database' => ':memory:',
-                'prefix'   => '',
+                'prefix' => '',
             ]);
         });
     }
 
     public static function tmpPath(string $path = ''): string
     {
-        return __DIR__ . "/tmp/{$path}";
+        return __DIR__."/tmp/{$path}";
     }
 
     protected function livewireClassesPath($path = ''): string
     {
-        return app_path('Livewire' . ($path ? '/' . $path : ''));
+        return app_path('Livewire'.($path ? '/'.$path : ''));
     }
 
     protected function livewireViewsPath($path = ''): string
     {
-        return resource_path('views') . '/livewire' . ($path ? '/' . $path : '');
+        return resource_path('views').'/livewire'.($path ? '/'.$path : '');
     }
 
     protected function livewireTestsPath($path = ''): string
     {
-        return base_path('tests/Feature/Livewire' . ($path ? '/' . $path : ''));
+        return base_path('tests/Feature/Livewire'.($path ? '/'.$path : ''));
     }
 }

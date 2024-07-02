@@ -3,8 +3,9 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
 class Textarea extends WireUiComponent
@@ -16,8 +17,8 @@ class Textarea extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'cols'       => 'auto',
-        'rows'       => 4,
+        'cols' => 'auto',
+        'rows' => 4,
         'shadowless' => false,
     ];
 

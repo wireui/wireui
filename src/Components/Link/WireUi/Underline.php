@@ -16,8 +16,8 @@ class Underline extends ComponentPack
     {
         return [
             Packs\Underline::ALWAYS => 'underline',
-            Packs\Underline::NONE   => 'no-underline',
-            Packs\Underline::HOVER  => 'no-underline hover:underline',
+            Packs\Underline::NONE => 'no-underline',
+            Packs\Underline::HOVER => 'no-underline hover:underline',
         ];
     }
 }

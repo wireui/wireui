@@ -1,14 +1,14 @@
 <?php
 
 return [
-    'select_time'   => 'Seleccionar hora',
+    'select_time' => 'Seleccionar hora',
     'empty_options' => 'Opciones vacías',
-    'search_here'   => 'Buscar aquí',
-    'date_picker'   => [
-        'months'    => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-        'days'      => ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-        'tomorrow'  => 'Mañana',
-        'today'     => 'Hoy',
+    'search_here' => 'Buscar aquí',
+    'date_picker' => [
+        'months' => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        'days' => ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+        'tomorrow' => 'Mañana',
+        'today' => 'Hoy',
         'yesterday' => 'Ayer',
     ],
     'errors' => [

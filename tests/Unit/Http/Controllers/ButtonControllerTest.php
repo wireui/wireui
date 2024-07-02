@@ -25,9 +25,9 @@ test('it should ignore the malicious attributes', function () {
 
 test('it should filter the attributes to keep safe', function () {
     $attributes = [
-        'color'  => 'primary',
+        'color' => 'primary',
         ':label' => "strtoupper('Click me')",
-        ':type'  => "config('app.name')",
+        ':type' => "config('app.name')",
     ];
 
     /** @var ButtonController $controller */

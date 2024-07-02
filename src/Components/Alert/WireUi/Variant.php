@@ -2,7 +2,9 @@
 
 namespace WireUi\Components\Alert\WireUi;
 
-use WireUi\Components\Alert\WireUi\Color\{Flat, Outline, Solid};
+use WireUi\Components\Alert\WireUi\Color\Flat;
+use WireUi\Components\Alert\WireUi\Color\Outline;
+use WireUi\Components\Alert\WireUi\Color\Solid;
 use WireUi\Enum\Packs;
 use WireUi\Support\ComponentPack;
 
@@ -16,9 +18,9 @@ class Variant extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Variant::FLAT    => Flat::class,
+            Packs\Variant::FLAT => Flat::class,
             Packs\Variant::OUTLINE => Outline::class,
-            Packs\Variant::SOLID   => Solid::class,
+            Packs\Variant::SOLID => Solid::class,
         ];
     }
 }

@@ -4,8 +4,9 @@ namespace WireUi\Components\Button\tests\Unit;
 
 use Illuminate\Support\Arr;
 use WireUi\Components\Button\Mini;
+use WireUi\Components\Button\WireUi\IconSize;
 use WireUi\Components\Button\WireUi\Size\Mini as SizeMini;
-use WireUi\Components\Button\WireUi\{IconSize, Variant};
+use WireUi\Components\Button\WireUi\Variant;
 use WireUi\Enum\Packs;
 use WireUi\Enum\Packs\Color;
 use WireUi\WireUi\Rounded;
@@ -22,9 +23,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'                  => null,
-        'label'                 => null,
-        'wire-load-enabled'     => false,
+        'icon' => null,
+        'label' => null,
+        'wire-load-enabled' => false,
         'use-validation-colors' => false,
     ]);
 });
@@ -87,7 +88,7 @@ test('it should set icon in component with random size', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $sizeClasses     = data_get($pack, 'class');
+    $sizeClasses = data_get($pack, 'class');
     $iconSizeClasses = (new IconSize())->get($size);
 
     expect($this->component->icon)->toBe($icon);
@@ -106,7 +107,7 @@ test('it should set random color and variant in component', function () {
     $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
 
     $this->setAttributes($this->component, [
-        'color'   => $color   = data_get($pack, 'key'),
+        'color' => $color = data_get($pack, 'key'),
         'variant' => $variant = data_get($pack, 'variant'),
     ]);
 

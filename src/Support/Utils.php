@@ -15,20 +15,20 @@ class Utils
 {
     public static function pretendResponseIsFile(string $path, string $mimeType): Response|BinaryFileResponse
     {
-        $expires      = strtotime('+1 year');
+        $expires = strtotime('+1 year');
         $lastModified = filemtime($path);
         $cacheControl = 'public, max-age=31536000';
 
         if (static::matchesCache($lastModified)) {
             return response()->make('', 304, [
-                'Expires'       => static::httpDate($expires),
+                'Expires' => static::httpDate($expires),
                 'Cache-Control' => $cacheControl,
             ]);
         }
 
         $headers = [
-            'Content-Type'  => "{$mimeType}; charset=utf-8",
-            'Expires'       => static::httpDate($expires),
+            'Content-Type' => "{$mimeType}; charset=utf-8",
+            'Expires' => static::httpDate($expires),
             'Cache-Control' => $cacheControl,
             'Last-Modified' => static::httpDate($lastModified),
         ];
