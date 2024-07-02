@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
@@ -32,16 +32,13 @@ jobs:
         run: yarn install
 
       - name: Install Composer dependencies
-        run: |
-          composer install
+        run: composer install
 
       - name: Build Assets
-        run: |
-          yarn build
+        run: yarn build
 
       - name: Run Code Style
-        run: |
-          composer pint
+        run: composer pint
 
       - name: Check Code Style
         run: |
