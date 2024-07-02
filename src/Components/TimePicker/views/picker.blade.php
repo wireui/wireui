@@ -39,6 +39,7 @@
             @class([
                 'w-4 h-4 mr-2 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500',
                 'text-gray-400 dark:text-gray-600',
+                'invalidated:text-negative-500',
             ])
             x-cloak
             name="x-mark"
@@ -67,6 +68,7 @@
                 @class([
                     'w-4 h-4 group-focus:text-primary-700 text-gray-400 dark:text-gray-600',
                     'dark:group-hover:text-gray-500 dark:group-focus:text-primary-500',
+                    'invalidated:text-negative-500 invalidated:group-focus:text-negative-600',
                 ])
             />
         </x-dynamic-component>
