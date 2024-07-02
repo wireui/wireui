@@ -4,7 +4,9 @@ namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Arr;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupVariant};
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\HasSetupVariant;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
@@ -16,9 +18,9 @@ class Index extends WireUiComponent
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
-        'icon'       => null,
-        'title'      => null,
-        'iconless'   => false,
+        'icon' => null,
+        'title' => null,
+        'iconless' => false,
         'shadowless' => false,
     ];
 

@@ -3,7 +3,8 @@
 namespace WireUi\Components\Avatar\tests\Unit;
 
 use WireUi\Components\Avatar\Index as Avatar;
-use WireUi\Components\Avatar\WireUi\{IconSize, Size};
+use WireUi\Components\Avatar\WireUi\IconSize;
+use WireUi\Components\Avatar\WireUi\Size;
 use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
@@ -19,10 +20,10 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'alt'        => null,
-        'src'        => null,
-        'icon'       => null,
-        'label'      => null,
+        'alt' => null,
+        'src' => null,
+        'icon' => null,
+        'label' => null,
         'borderless' => false,
     ]);
 });
@@ -87,7 +88,7 @@ test('it should render icon in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $sizeClasses     = data_get($pack, 'class');
+    $sizeClasses = data_get($pack, 'class');
     $iconSizeClasses = (new IconSize())->get($size);
 
     expect($this->component->icon)->toBe($icon);

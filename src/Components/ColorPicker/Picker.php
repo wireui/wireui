@@ -3,8 +3,9 @@
 namespace WireUi\Components\ColorPicker;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
 class Picker extends WireUiComponent
@@ -16,9 +17,9 @@ class Picker extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'colors'              => [],
-        'shadowless'          => false,
-        'right-icon'          => 'swatch',
+        'colors' => [],
+        'shadowless' => false,
+        'right-icon' => 'swatch',
         'color-name-as-value' => false,
     ];
 
@@ -26,7 +27,7 @@ class Picker extends WireUiComponent
     {
         return collect($this->colors)->map(function ($color, $index) {
             return is_array($color) ? $color : [
-                'name'  => is_numeric($index) ? $color : $index,
+                'name' => is_numeric($index) ? $color : $index,
                 'value' => $color,
             ];
         })->values()->toArray();

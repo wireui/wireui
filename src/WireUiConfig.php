@@ -2,7 +2,27 @@
 
 namespace WireUi;
 
-use WireUi\Components\{Alert, Avatar, Badge, Button, Card, ColorPicker, DatetimePicker, Dialog, Dropdown, Errors, Icon, Label, Link, Modal, Notifications, Popover, Select, Switcher, TextField, TimePicker, Wrapper};
+use WireUi\Components\Alert;
+use WireUi\Components\Avatar;
+use WireUi\Components\Badge;
+use WireUi\Components\Button;
+use WireUi\Components\Card;
+use WireUi\Components\ColorPicker;
+use WireUi\Components\DatetimePicker;
+use WireUi\Components\Dialog;
+use WireUi\Components\Dropdown;
+use WireUi\Components\Errors;
+use WireUi\Components\Icon;
+use WireUi\Components\Label;
+use WireUi\Components\Link;
+use WireUi\Components\Modal;
+use WireUi\Components\Notifications;
+use WireUi\Components\Popover;
+use WireUi\Components\Select;
+use WireUi\Components\Switcher;
+use WireUi\Components\TextField;
+use WireUi\Components\TimePicker;
+use WireUi\Components\Wrapper;
 use WireUi\Enum\Packs;
 
 class WireUiConfig
@@ -13,13 +33,13 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
+                'color' => self::GLOBAL,
                 'rounded' => self::GLOBAL,
                 'variant' => Packs\Variant::FLAT,
                 'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
-                'shadows'  => WireUi\Shadow::class,
+                'shadows' => WireUi\Shadow::class,
                 'rounders' => WireUi\Rounded::class,
                 'paddings' => Alert\WireUi\Padding::class,
                 'variants' => Alert\WireUi\Variant::class,
@@ -31,16 +51,16 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'size'    => Packs\Size::MD,
-                'border'  => Packs\Border::THIN,
+                'size' => Packs\Size::MD,
+                'border' => Packs\Border::THIN,
                 'rounded' => Packs\Rounded::FULL,
-                'color'   => Packs\Color::SECONDARY,
+                'color' => Packs\Color::SECONDARY,
             ],
             'packs' => [
-                'rounders'   => WireUi\Rounded::class,
-                'sizes'      => Avatar\WireUi\Size::class,
-                'colors'     => Avatar\WireUi\Color::class,
-                'borders'    => Avatar\WireUi\Border::class,
+                'rounders' => WireUi\Rounded::class,
+                'sizes' => Avatar\WireUi\Size::class,
+                'colors' => Avatar\WireUi\Color::class,
+                'borders' => Avatar\WireUi\Border::class,
                 'icon-sizes' => Avatar\WireUi\IconSize::class,
             ],
         ], $options);
@@ -50,16 +70,16 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
+                'color' => self::GLOBAL,
                 'rounded' => self::GLOBAL,
-                'size'    => Packs\Size::SM,
+                'size' => Packs\Size::SM,
                 'variant' => Packs\Variant::SOLID,
             ],
             'packs' => [
-                'rounders'   => WireUi\Rounded::class,
-                'variants'   => Badge\WireUi\Variant::class,
+                'rounders' => WireUi\Rounded::class,
+                'variants' => Badge\WireUi\Variant::class,
                 'icon-sizes' => Badge\WireUi\IconSize::class,
-                'sizes'      => Badge\WireUi\Size\Base::class,
+                'sizes' => Badge\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -77,16 +97,16 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
+                'color' => self::GLOBAL,
                 'rounded' => self::GLOBAL,
-                'size'    => Packs\Size::MD,
+                'size' => Packs\Size::MD,
                 'variant' => Packs\Variant::SOLID,
             ],
             'packs' => [
-                'rounders'   => WireUi\Rounded::class,
-                'variants'   => Button\WireUi\Variant::class,
+                'rounders' => WireUi\Rounded::class,
+                'variants' => Button\WireUi\Variant::class,
                 'icon-sizes' => Button\WireUi\IconSize::class,
-                'sizes'      => Button\WireUi\Size\Base::class,
+                'sizes' => Button\WireUi\Size\Base::class,
             ],
         ], $options);
     }
@@ -105,13 +125,13 @@ class WireUiConfig
         return self::mix([
             'default' => [
                 'rounded' => self::GLOBAL,
-                'color'   => Packs\Color::BASE,
+                'color' => Packs\Color::BASE,
                 'variant' => Packs\Variant::FLAT,
                 'padding' => Packs\Padding::MEDIUM,
             ],
             'packs' => [
-                'shadows'  => WireUi\Shadow::class,
-                'colors'   => Card\WireUi\Color::class,
+                'shadows' => WireUi\Shadow::class,
+                'colors' => Card\WireUi\Color::class,
                 'paddings' => Card\WireUi\Padding::class,
                 'rounders' => Card\WireUi\Rounded::class,
             ],
@@ -122,12 +142,12 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'width'    => Packs\Width::LG,
-                'height'   => Packs\Height::XL3,
+                'width' => Packs\Width::LG,
+                'height' => Packs\Height::XL3,
                 'position' => Packs\Position::BOTTOM_START,
             ],
             'packs' => [
-                'widths'  => Dropdown\WireUi\Width::class,
+                'widths' => Dropdown\WireUi\Width::class,
                 'heights' => Dropdown\WireUi\Height::class,
             ],
         ], $options);
@@ -144,13 +164,13 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'size'      => Packs\Size::MD,
-                'color'     => Packs\Color::PRIMARY,
+                'size' => Packs\Size::MD,
+                'color' => Packs\Color::PRIMARY,
                 'underline' => Packs\Underline::HOVER,
             ],
             'packs' => [
-                'sizes'      => Link\WireUi\Size::class,
-                'colors'     => Link\WireUi\Color::class,
+                'sizes' => Link\WireUi\Size::class,
+                'colors' => Link\WireUi\Color::class,
                 'underlines' => Link\WireUi\Underline::class,
             ],
         ], $options);
@@ -161,14 +181,14 @@ class WireUiConfig
         return self::mix([
             'default' => [
                 'z-index' => 'z-50',
-                'blur'    => Packs\Blur::NONE,
-                'type'    => Packs\Type::BASE,
-                'width'   => Packs\Width::XL2,
-                'align'   => Packs\Align::START,
+                'blur' => Packs\Blur::NONE,
+                'type' => Packs\Type::BASE,
+                'width' => Packs\Width::XL2,
+                'align' => Packs\Align::START,
             ],
             'packs' => [
-                'blurs'  => Modal\WireUi\Blur::class,
-                'types'  => Modal\WireUi\Type::class,
+                'blurs' => Modal\WireUi\Blur::class,
+                'types' => Modal\WireUi\Type::class,
                 'widths' => Modal\WireUi\Width::class,
                 'aligns' => Modal\WireUi\Align::class,
             ],
@@ -180,14 +200,14 @@ class WireUiConfig
         return self::mix([
             'default' => [
                 'z-index' => 'z-60',
-                'blur'    => Packs\Blur::NONE,
-                'type'    => Packs\Type::BASE,
-                'width'   => Packs\Width::XL2,
-                'align'   => Packs\Align::START,
+                'blur' => Packs\Blur::NONE,
+                'type' => Packs\Type::BASE,
+                'width' => Packs\Width::XL2,
+                'align' => Packs\Align::START,
             ],
             'packs' => [
-                'blurs'  => Modal\WireUi\Blur::class,
-                'types'  => Modal\WireUi\Type::class,
+                'blurs' => Modal\WireUi\Blur::class,
+                'types' => Modal\WireUi\Type::class,
                 'widths' => Modal\WireUi\Width::class,
                 'aligns' => Modal\WireUi\Align::class,
             ],
@@ -198,7 +218,7 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'z-index'  => 'z-70',
+                'z-index' => 'z-70',
                 'position' => Packs\Position::TOP_END,
             ],
             'packs' => [
@@ -211,15 +231,15 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
-                'interval'         => 10,
-                'timezone'         => null,
-                'right-icon'       => 'calendar',
-                'time-format'      => 12,
-                'parse-format'     => null,
-                'without-time'     => false,
-                'without-tips'     => false,
-                'user-timezone'    => null,
-                'display-format'   => null,
+                'interval' => 10,
+                'timezone' => null,
+                'right-icon' => 'calendar',
+                'time-format' => 12,
+                'parse-format' => null,
+                'without-time' => false,
+                'without-tips' => false,
+                'user-timezone' => null,
+                'display-format' => null,
                 'without-timezone' => false,
             ],
         ], $options));
@@ -229,8 +249,8 @@ class WireUiConfig
     {
         return self::wrapper(self::mix([
             'default' => [
-                'right-icon'      => 'clock',
-                'military-time'   => false,
+                'right-icon' => 'clock',
+                'military-time' => false,
                 'without-seconds' => false,
             ],
         ], $options));
@@ -240,13 +260,13 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'borderless'      => false,
-                'shadowless'      => false,
-                'military-time'   => false,
+                'borderless' => false,
+                'shadowless' => false,
+                'military-time' => false,
                 'without-seconds' => false,
             ],
             'packs' => [
-                'shadows'  => WireUi\Shadow::class,
+                'shadows' => WireUi\Shadow::class,
                 'rounders' => WireUi\Rounded::class,
             ],
         ], $options);
@@ -256,14 +276,14 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
+                'color' => self::GLOBAL,
+                'size' => Packs\Size::SM,
                 'rounded' => Packs\Rounded::BASE,
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => Switcher\WireUi\Checkbox\Size::class,
-                'colors'   => Switcher\WireUi\Checkbox\Color::class,
+                'sizes' => Switcher\WireUi\Checkbox\Size::class,
+                'colors' => Switcher\WireUi\Checkbox\Color::class,
             ],
         ], $options);
     }
@@ -272,14 +292,14 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
+                'color' => self::GLOBAL,
+                'size' => Packs\Size::SM,
                 'rounded' => Packs\Rounded::FULL,
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => Switcher\WireUi\Toggle\Size::class,
-                'colors'   => Switcher\WireUi\Toggle\Color::class,
+                'sizes' => Switcher\WireUi\Toggle\Size::class,
+                'colors' => Switcher\WireUi\Toggle\Color::class,
             ],
         ], $options);
     }
@@ -288,14 +308,14 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'size'    => Packs\Size::SM,
+                'color' => self::GLOBAL,
+                'size' => Packs\Size::SM,
                 'rounded' => Packs\Rounded::FULL,
             ],
             'packs' => [
                 'rounders' => WireUi\Rounded::class,
-                'sizes'    => Switcher\WireUi\Radio\Size::class,
-                'colors'   => Switcher\WireUi\Radio\Color::class,
+                'sizes' => Switcher\WireUi\Radio\Size::class,
+                'colors' => Switcher\WireUi\Radio\Color::class,
             ],
         ], $options);
     }
@@ -304,13 +324,13 @@ class WireUiConfig
     {
         return self::mix([
             'default' => [
-                'color'   => self::GLOBAL,
-                'shadow'  => self::GLOBAL,
+                'color' => self::GLOBAL,
+                'shadow' => self::GLOBAL,
                 'rounded' => self::GLOBAL,
             ],
             'packs' => [
-                'shadows'  => WireUi\Shadow::class,
-                'colors'   => Wrapper\WireUi\Color::class,
+                'shadows' => WireUi\Shadow::class,
+                'colors' => Wrapper\WireUi\Color::class,
                 'rounders' => Wrapper\WireUi\Rounded::class,
             ],
         ], $options);

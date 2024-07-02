@@ -2,10 +2,13 @@
 
 namespace WireUi\Support;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\{Collection, Str};
-use Illuminate\View\{ComponentAttributeBag, ComponentSlot};
-use Livewire\{Component, WireDirective};
+use Illuminate\Support\Str;
+use Illuminate\View\ComponentAttributeBag;
+use Illuminate\View\ComponentSlot;
+use Livewire\Component;
+use Livewire\WireDirective;
 use WireUi\View\Attribute;
 
 class WireUiSupport
@@ -40,7 +43,7 @@ class WireUiSupport
     public function toJs(array $data = []): string
     {
         if (count(array_filter(array_keys($data), 'is_string')) === 0) {
-            return "JSON.parse(atob('" . base64_encode(json_encode($data)) . "'))";
+            return "JSON.parse(atob('".base64_encode(json_encode($data))."'))";
         }
 
         $expressions = '';
@@ -48,10 +51,10 @@ class WireUiSupport
         $parse = function ($value) {
             return match (true) {
                 $value instanceof WireDirective => $this->entangle($value),
-                is_array($value)                => $this->jsonParse($value),
-                is_object($value)               => $this->jsonParse($value),
-                is_string($value)               => "'" . str_replace("'", "\'", $value) . "'",
-                default                         => json_encode($value),
+                is_array($value) => $this->jsonParse($value),
+                is_object($value) => $this->jsonParse($value),
+                is_string($value) => "'".str_replace("'", "\'", $value)."'",
+                default => json_encode($value),
             };
         };
 
@@ -64,7 +67,7 @@ class WireUiSupport
 
     private function jsonParse(mixed $value): string
     {
-        return "JSON.parse(atob('" . base64_encode(json_encode($value)) . "'))";
+        return "JSON.parse(atob('".base64_encode(json_encode($value))."'))";
     }
 
     private function entangle(WireDirective $value): string
@@ -80,7 +83,7 @@ class WireUiSupport
     {
         $exists = count($attributes->whereStartsWith('wire:model')->getAttributes()) > 0;
 
-        if (!$component || !$exists) {
+        if (! $component || ! $exists) {
             return ['exists' => false];
         }
 
@@ -88,19 +91,19 @@ class WireUiSupport
         $model = $attributes->wire('model');
 
         return [
-            'exists'     => $exists,
-            'name'       => $model->value(),
+            'exists' => $exists,
+            'name' => $model->value(),
             'livewireId' => $component->id(),
-            'modifiers'  => [
-                'live'     => $model->modifiers()->contains('live'),
-                'blur'     => $model->modifiers()->contains('blur'),
+            'modifiers' => [
+                'live' => $model->modifiers()->contains('live'),
+                'blur' => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => self::getAttributeDelay($model->modifiers()),
+                    'delay' => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => self::getAttributeDelay($model->modifiers()),
+                    'delay' => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];
@@ -110,7 +113,7 @@ class WireUiSupport
     {
         $exists = count($attributes->whereStartsWith('x-model')->getAttributes()) > 0;
 
-        if (!$exists) {
+        if (! $exists) {
             return ['exists' => false];
         }
 
@@ -118,17 +121,17 @@ class WireUiSupport
         $model = $attributes->attribute('x-model');
 
         return [
-            'exists'    => $exists,
-            'name'      => $model->expression(),
+            'exists' => $exists,
+            'name' => $model->expression(),
             'modifiers' => [
-                'blur'     => $model->modifiers()->contains('blur'),
+                'blur' => $model->modifiers()->contains('blur'),
                 'debounce' => [
                     'exists' => $model->modifiers()->contains('debounce'),
-                    'delay'  => self::getAttributeDelay($model->modifiers()),
+                    'delay' => self::getAttributeDelay($model->modifiers()),
                 ],
                 'throttle' => [
                     'exists' => $model->modifiers()->contains('throttle'),
-                    'delay'  => self::getAttributeDelay($model->modifiers()),
+                    'delay' => self::getAttributeDelay($model->modifiers()),
                 ],
             ],
         ];

@@ -3,7 +3,8 @@
 namespace WireUi\Components\Card;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
@@ -14,7 +15,7 @@ class Index extends WireUiComponent
     protected array $packs = ['shadow', 'padding'];
 
     protected array $props = [
-        'title'      => null,
+        'title' => null,
         'borderless' => false,
         'shadowless' => false,
     ];

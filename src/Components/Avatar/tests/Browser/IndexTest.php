@@ -2,7 +2,8 @@
 
 namespace WireUi\Components\Avatar\tests\Browser;
 
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class IndexTest extends BrowserTestCase
@@ -15,7 +16,7 @@ class IndexTest extends BrowserTestCase
 
             public function toggle(): void
             {
-                $this->show = !$this->show;
+                $this->show = ! $this->show;
             }
 
             public function render(): string

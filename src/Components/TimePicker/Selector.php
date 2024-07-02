@@ -3,7 +3,8 @@
 namespace WireUi\Components\TimePicker;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupRounded, IsFormComponent};
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\IsFormComponent;
 use WireUi\View\WireUiComponent;
 
 class Selector extends WireUiComponent
@@ -14,9 +15,9 @@ class Selector extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'borderless'      => false,
-        'shadowless'      => false,
-        'military-time'   => false,
+        'borderless' => false,
+        'shadowless' => false,
+        'military-time' => false,
         'without-seconds' => false,
     ];
 

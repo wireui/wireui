@@ -3,7 +3,9 @@
 namespace WireUi\Components\Notifications\tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Livewire\{Attributes\On, Component, Livewire};
+use Livewire\Attributes\On;
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 use WireUi\Traits\WireUiActions;
 
@@ -47,27 +49,27 @@ class IndexTest extends BrowserTestCase
             public function showConfirmActionWithSingleCallback(): void
             {
                 $this->notification()->confirm([
-                    'title'       => 'Confirmation Notification',
+                    'title' => 'Confirmation Notification',
                     'description' => 'You need confirm it',
                     'acceptLabel' => 'Confirm it',
-                    'method'      => 'setValue',
-                    'params'      => 'Confirmed',
+                    'method' => 'setValue',
+                    'params' => 'Confirmed',
                 ]);
             }
 
             public function showConfirmActionWithMultipleCallbacksAndEvents()
             {
                 $this->notification()->confirm([
-                    'title'       => 'Confirm It Jetete',
+                    'title' => 'Confirm It Jetete',
                     'description' => 'Description can be null like title',
-                    'timeout'     => 300,
-                    'accept'      => [
-                        'label'  => 'Accept',
+                    'timeout' => 300,
+                    'accept' => [
+                        'label' => 'Accept',
                         'method' => 'setValue',
                         'params' => 'Jetete',
                     ],
                     'reject' => [
-                        'label'  => 'Reject',
+                        'label' => 'Reject',
                         'method' => 'setValue',
                         'params' => 'Xablaw',
                     ],

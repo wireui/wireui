@@ -19,9 +19,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'       => null,
-        'title'      => null,
-        'iconless'   => false,
+        'icon' => null,
+        'title' => null,
+        'iconless' => false,
         'shadowless' => false,
     ]);
 });
@@ -70,8 +70,8 @@ test('it should set icon in component and using iconless', function () {
     $pack = $this->getVariantRandomPack(Variant::class);
 
     $this->setAttributes($this->component, [
-        'icon'    => $icon    = $this->getRandomIcon(),
-        'color'   => $color   = data_get($pack, 'key'),
+        'icon' => $icon = $this->getRandomIcon(),
+        'color' => $color = data_get($pack, 'key'),
         'variant' => $variant = data_get($pack, 'variant'),
     ]);
 
@@ -101,7 +101,7 @@ test('it should set random color and variant in component', function () {
     $pack = $this->getVariantRandomPack(Variant::class);
 
     $this->setAttributes($this->component, [
-        'color'   => $color   = data_get($pack, 'key'),
+        'color' => $color = data_get($pack, 'key'),
         'variant' => $variant = data_get($pack, 'variant'),
     ]);
 
@@ -111,7 +111,7 @@ test('it should set random color and variant in component', function () {
     expect($this->component->variant)->toBe($variant);
     expect($this->component->colorClasses)->toBe(data_get($pack, 'class'));
 
-    $icon      = data_get($pack, 'class.icon');
+    $icon = data_get($pack, 'class.icon');
     $iconColor = data_get($pack, 'class.iconColor');
 
     $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));

@@ -2,13 +2,16 @@
 
 namespace WireUi;
 
-use Illuminate\Foundation\{AliasLoader, Application};
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Application;
 use Illuminate\Support;
-use Illuminate\Support\Facades\{Blade, File};
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\View\Compilers\BladeCompiler;
 use WireUi\Facades\WireUi;
-use WireUi\Providers\{BladeDirectives, CustomMacros};
+use WireUi\Providers\BladeDirectives;
+use WireUi\Providers\CustomMacros;
 use WireUi\Support\ComponentResolver;
 use WireUi\View\WireUiTagCompiler;
 
@@ -92,7 +95,7 @@ class ServiceProvider extends Support\ServiceProvider
 
     private function srcDir(string $path): string
     {
-        return __DIR__ . "/{$path}";
+        return __DIR__."/{$path}";
     }
 
     private function registerBladeComponents(): void

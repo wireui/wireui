@@ -42,15 +42,15 @@ test('it should set color resolve', function () {
 test('it should setup color', function () {
     $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
 
-    $color        = data_get($pack, 'key');
-    $class        = data_get($pack, 'class');
-    $variant      = data_get($pack, 'variant');
+    $color = data_get($pack, 'key');
+    $class = data_get($pack, 'class');
+    $variant = data_get($pack, 'variant');
     $colorResolve = (new Variant())->get($variant);
 
     $this->invokeMethod($this->component, 'setColorResolve', [$colorResolve]);
 
     $this->setAttributes($this->component, [
-        'color'   => $color,
+        'color' => $color,
         'variant' => $variant,
     ]);
 

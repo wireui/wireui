@@ -3,8 +3,9 @@
 namespace Tests\Browser;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\{Arr, Str};
+use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 
 /** @mixin BrowserTestCase */
@@ -28,12 +29,12 @@ trait BrowserFunctions
 
         static::$browsers = collect([$browser]);
 
-        return $browser->visit('/testing/' . base64_encode($path));
+        return $browser->visit('/testing/'.base64_encode($path));
     }
 
     public function visit(Browser $browser, string $livewire, $queryParams = [])
     {
-        $url = '/livewire-dusk/' . urlencode($livewire) . '?' . Arr::query($queryParams);
+        $url = '/livewire-dusk/'.urlencode($livewire).'?'.Arr::query($queryParams);
 
         return $browser->visit($url)->waitForLivewireToLoad();
     }

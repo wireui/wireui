@@ -6,9 +6,9 @@ use WireUi\Components\Errors\Multiple as Errors;
 
 beforeEach(function () {
     $this->withViewErrors([
-        'first'  => 'first error',
+        'first' => 'first error',
         'second' => 'second error',
-        'third'  => 'third error',
+        'third' => 'third error',
     ]);
 
     $this->component = (new Errors())->withName('errors');
@@ -18,7 +18,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'only'  => [],
+        'only' => [],
         'title' => null,
     ]);
 });

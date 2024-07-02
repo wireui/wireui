@@ -4,8 +4,9 @@ namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Exceptions\WireUiMaskableException;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
 class Maskable extends WireUiComponent
@@ -17,8 +18,8 @@ class Maskable extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'mask'           => null,
-        'shadowless'     => false,
+        'mask' => null,
+        'shadowless' => false,
         'emit-formatted' => false,
     ];
 

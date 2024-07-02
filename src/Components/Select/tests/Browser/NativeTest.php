@@ -4,7 +4,8 @@ namespace WireUi\Components\Select\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\Attributes\Validate;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class NativeTest extends BrowserTestCase

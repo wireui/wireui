@@ -12,7 +12,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'spacing'    => null,
+        'spacing' => null,
         'fullscreen' => false,
         'hide-close' => false,
     ]);

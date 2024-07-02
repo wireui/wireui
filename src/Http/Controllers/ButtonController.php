@@ -28,7 +28,7 @@ class ButtonController extends Controller
         $html = $this->compiler->compile($blade);
 
         return response($html)->withHeaders([
-            'Content-Type'  => 'text/html; charset=utf-8',
+            'Content-Type' => 'text/html; charset=utf-8',
             'Cache-Control' => 'public, only-if-cached, max-age=31536000',
         ]);
     }

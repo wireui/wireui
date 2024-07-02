@@ -3,7 +3,13 @@
 namespace WireUi\Components\Button;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupRounded, HasSetupSize, HasSetupSpinner, HasSetupStateColor, HasSetupVariant};
+use WireUi\Traits\Components\HasSetupButton;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\HasSetupSize;
+use WireUi\Traits\Components\HasSetupSpinner;
+use WireUi\Traits\Components\HasSetupStateColor;
+use WireUi\Traits\Components\HasSetupVariant;
 use WireUi\View\WireUiComponent;
 
 class Mini extends WireUiComponent
@@ -19,9 +25,9 @@ class Mini extends WireUiComponent
     protected array $packs = ['icon-size'];
 
     protected array $props = [
-        'icon'                  => null,
-        'label'                 => null,
-        'wire-load-enabled'     => false,
+        'icon' => null,
+        'label' => null,
+        'wire-load-enabled' => false,
         'use-validation-colors' => false,
     ];
 

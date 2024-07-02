@@ -3,7 +3,8 @@
 namespace WireUi\Components\Dropdown\tests\Unit;
 
 use WireUi\Components\Dropdown\Base as Dropdown;
-use WireUi\Components\Dropdown\WireUi\{Height, Width};
+use WireUi\Components\Dropdown\WireUi\Height;
+use WireUi\Components\Dropdown\WireUi\Width;
 
 beforeEach(function () {
     $this->component = (new Dropdown())->withName('dropdown');
@@ -17,8 +18,8 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'       => 'ellipsis-vertical',
-        'position'   => null,
+        'icon' => 'ellipsis-vertical',
+        'position' => null,
         'persistent' => false,
     ]);
 });
@@ -44,7 +45,7 @@ test('it should have properties in component', function () {
 
 test('it should set random icon in component with persistent', function () {
     $this->setAttributes($this->component, [
-        'icon'       => $icon = $this->getRandomIcon(),
+        'icon' => $icon = $this->getRandomIcon(),
         'persistent' => true,
     ]);
 
@@ -53,8 +54,8 @@ test('it should set random icon in component with persistent', function () {
     expect($this->component->icon)->toBe($icon);
     expect($this->component->persistent)->toBeTrue();
 
-    $html = render(<<<EOT
-    <x-icon :name="\$icon" @class([
+    $html = render(<<<'EOT'
+    <x-icon :name="$icon" @class([
         'dark:hover:text-secondary-600 transition duration-150 ease-in-out',
         'w-4 h-4 text-secondary-500 hover:text-secondary-700',
     ]) />

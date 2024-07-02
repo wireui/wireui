@@ -2,7 +2,8 @@
 
 namespace WireUi\View;
 
-use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * This class is a refactored version of Livewire\WireDirective
@@ -71,7 +72,7 @@ final class Attribute
 
     private function extractValue(): ?string
     {
-        if (!Str::contains($this->directive, ':')) {
+        if (! Str::contains($this->directive, ':')) {
             return null;
         }
 

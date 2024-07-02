@@ -3,7 +3,8 @@
 namespace WireUi\Components\TextField\tests\Browser;
 
 use Livewire\Attributes\Validate;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class PasswordTest extends BrowserTestCase

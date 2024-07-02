@@ -4,7 +4,8 @@ namespace WireUi\Components\DatetimePicker\tests\Browser;
 
 use Illuminate\Support\Carbon;
 use Laravel\Dusk\Browser;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class PickerTest extends BrowserTestCase

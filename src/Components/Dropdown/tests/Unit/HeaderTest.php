@@ -12,7 +12,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'label'     => null,
+        'label' => null,
         'separator' => false,
     ]);
 });
@@ -31,7 +31,7 @@ test('it should have properties in component', function () {
 
 test('it should set random label in component with separator', function () {
     $this->setAttributes($this->component, [
-        'label'     => $label = fake()->word(),
+        'label' => $label = fake()->word(),
         'separator' => true,
     ]);
 

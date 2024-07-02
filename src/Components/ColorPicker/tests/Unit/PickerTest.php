@@ -16,9 +16,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'colors'              => [],
-        'shadowless'          => false,
-        'right-icon'          => 'swatch',
+        'colors' => [],
+        'shadowless' => false,
+        'right-icon' => 'swatch',
         'color-name-as-value' => false,
     ]);
 });
@@ -57,9 +57,9 @@ test('it can be instantiated with custom parameters', function () {
     $colors = collect(['red' => '#ff0000', 'green' => '#00ff00', 'blue' => '#0000ff']);
 
     $this->setAttributes($this->component, [
-        'colors'              => $colors,
+        'colors' => $colors,
         'color-name-as-value' => true,
-        'right-icon'          => $icon = $this->getRandomIcon(),
+        'right-icon' => $icon = $this->getRandomIcon(),
     ]);
 
     $this->runWireUiComponent($this->component);

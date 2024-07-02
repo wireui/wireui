@@ -8,8 +8,8 @@ use WireUi\View\WireUiComponent;
 class Item extends WireUiComponent
 {
     protected array $props = [
-        'icon'      => null,
-        'label'     => null,
+        'icon' => null,
+        'label' => null,
         'separator' => false,
     ];
 

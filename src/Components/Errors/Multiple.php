@@ -3,7 +3,8 @@
 namespace WireUi\Components\Errors;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\{Collection, Str};
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\View\WireUiComponent;
 
@@ -12,7 +13,7 @@ class Multiple extends WireUiComponent
     use InteractsWithErrors;
 
     protected array $props = [
-        'only'  => [],
+        'only' => [],
         'title' => null,
     ];
 

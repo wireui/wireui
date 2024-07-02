@@ -5,113 +5,113 @@ namespace Tests\Unit\Http;
 dataset('button::validate', [
     'label' => [
         'attribute' => 'label',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'variant' => [
         'attribute' => 'variant',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'color' => [
         'attribute' => 'color',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'size' => [
         'attribute' => 'size',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'icon' => [
         'attribute' => 'icon',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'rightIcon' => [
         'attribute' => 'rightIcon',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'iconSize' => [
         'attribute' => 'iconSize',
-        'rule'      => 'string',
+        'rule' => 'string',
     ],
     'rounded' => [
         'attribute' => 'rounded',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'squared' => [
         'attribute' => 'squared',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'bordered' => [
         'attribute' => 'bordered',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'solid' => [
         'attribute' => 'solid',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'outline' => [
         'attribute' => 'outline',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
     'flat' => [
         'attribute' => 'flat',
-        'rule'      => 'boolean',
+        'rule' => 'boolean',
     ],
 ]);
 
 dataset('button::render', [
     'label' => [
         'attribute' => 'label',
-        'value'     => 'My Label',
+        'value' => 'My Label',
     ],
     'variant' => [
         'attribute' => 'variant',
-        'value'     => 'solid',
+        'value' => 'solid',
     ],
     'color' => [
         'attribute' => 'color',
-        'value'     => 'primary',
+        'value' => 'primary',
     ],
     'size' => [
         'attribute' => 'size',
-        'value'     => 'xl',
+        'value' => 'xl',
     ],
     'icon' => [
         'attribute' => 'icon',
-        'value'     => 'home',
+        'value' => 'home',
     ],
     'rightIcon' => [
         'attribute' => 'rightIcon',
-        'value'     => 'user',
+        'value' => 'user',
     ],
     'iconSize' => [
         'attribute' => 'iconSize',
-        'value'     => 'sm',
+        'value' => 'sm',
     ],
     'rounded' => [
         'attribute' => 'rounded',
-        'value'     => true,
+        'value' => true,
     ],
     'squared' => [
         'attribute' => 'squared',
-        'value'     => true,
+        'value' => true,
     ],
     'bordered' => [
         'attribute' => 'bordered',
-        'value'     => true,
+        'value' => true,
     ],
     'solid' => [
         'attribute' => 'solid',
-        'value'     => true,
+        'value' => true,
     ],
     'outline' => [
         'attribute' => 'outline',
-        'value'     => true,
+        'value' => true,
     ],
     'flat' => [
         'attribute' => 'flat',
-        'value'     => true,
+        'value' => true,
     ],
     'light' => [
         'attribute' => 'light',
-        'value'     => true,
+        'value' => true,
     ],
 ]);

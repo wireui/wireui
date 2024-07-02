@@ -33,7 +33,7 @@ class Dialog
     {
         $id = Str::kebab($dialogId);
 
-        return !empty($id) ? "dialog:{$id}" : 'dialog';
+        return ! empty($id) ? "dialog:{$id}" : 'dialog';
     }
 
     public function success(string $title, ?string $description = null): void
@@ -78,7 +78,7 @@ class Dialog
     private function dispatchDialog(string $event, array $options): void
     {
         $this->component->dispatch($event, [
-            'options'     => $options,
+            'options' => $options,
             'componentId' => $this->component->getId(),
         ]);
     }

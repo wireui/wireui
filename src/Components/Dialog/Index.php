@@ -13,11 +13,11 @@ class Index extends WireUiComponent
     protected array $packs = ['align', 'blur', 'width', 'type'];
 
     protected array $props = [
-        'id'          => null,
-        'title'       => null,
-        'spacing'     => null,
-        'z-index'     => null,
-        'blurless'    => false,
+        'id' => null,
+        'title' => null,
+        'spacing' => null,
+        'z-index' => null,
+        'blurless' => false,
         'description' => null,
     ];
 

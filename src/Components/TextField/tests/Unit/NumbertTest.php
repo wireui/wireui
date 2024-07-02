@@ -3,7 +3,8 @@
 namespace WireUi\Components\TextField\tests\Unit;
 
 use WireUi\Components\TextField\Number;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
+use WireUi\Components\Wrapper\WireUi\Color;
+use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -18,7 +19,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'       => 'minus',
+        'icon' => 'minus',
         'right-icon' => 'plus',
         'shadowless' => false,
     ]);
@@ -49,7 +50,7 @@ test('it should have properties in component', function () {
 
 test('it should set icon and right icon in component', function () {
     $this->setAttributes($this->component, [
-        'icon'       => $icon      = $this->getRandomIcon(),
+        'icon' => $icon = $this->getRandomIcon(),
         'right-icon' => $rightIcon = $this->getRandomIcon(),
     ]);
 

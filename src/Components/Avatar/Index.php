@@ -3,7 +3,9 @@
 namespace WireUi\Components\Avatar;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded, HasSetupSize};
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\HasSetupSize;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
@@ -15,10 +17,10 @@ class Index extends WireUiComponent
     protected array $packs = ['border', 'icon-size'];
 
     protected array $props = [
-        'alt'        => null,
-        'src'        => null,
-        'icon'       => null,
-        'label'      => null,
+        'alt' => null,
+        'src' => null,
+        'icon' => null,
+        'label' => null,
         'borderless' => false,
     ];
 
