@@ -22,31 +22,44 @@ This document provides guidelines and steps for contributing to WireUI.
 
     ```shell
     git clone git@github.com:wireui/wireui.git
+
     cd wireui
+
     composer install
+
     yarn install
     ```
 
 2. **Build assets:**
+
     ```shell
     yarn build
     ```
+
     2.1 **Watch and build assets:**
+
     ```shell
     yarn build
     ```
+
 3. **Running Tests:**
-   Make sure you have a chromium-based browser installed for running tests.
-   `shell
-    composer test 
-    yarn test  
-    `
+
+    Make sure you have a chromium-based browser installed for running tests.
+
+    ```shell
+    yarn test
+
+    composer test
+    ```
+
 4. **Code Formatting:**
    We adhere to a coding standard to maintain consistency. Before submitting your PR, ensure your code is formatted by running:
-   `shell
-    composer pint
+
+    ```shell
     yarn lint
-    `
+
+    composer pint
+    ```
 
 ## Working on a Local Project
 
@@ -54,6 +67,7 @@ This document provides guidelines and steps for contributing to WireUI.
 
     ```shell
     composer create-project laravel/laravel wireui-demo
+
     cd wireui-demo
     ```
 

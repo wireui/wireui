@@ -1,0 +1,55 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Setup PHP, with Composer and extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          tools: composer:v2
+          coverage: none
+
+      - name: Remove Current dist folder
+        run: rm -rf dist
+
+      - name: Install Node Modules
+        run: yarn install
+
+      - name: Install Composer dependencies
+        run: |
+          composer install
+
+      - name: Build Assets
+        run: |
+          yarn build
+
+      - name: Run Code Style
+        run: |
+          composer pint
+
+      - name: Check Code Style
+        run: |
+          yarn lint
+          composer pint:test
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: "ci(build): build assets and run code style"

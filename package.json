@@ -6,10 +6,10 @@
     "author": "PH7-Jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
     "scripts": {
+        "test": "jest",
         "lint": "eslint .",
         "watch": "mix watch",
-        "build": "mix --production",
-        "test": "jest"
+        "build": "mix --production"
     },
     "dependencies": {
         "@floating-ui/dom": "^1.6.5",
