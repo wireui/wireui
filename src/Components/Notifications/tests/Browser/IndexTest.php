@@ -217,6 +217,7 @@ class IndexTest extends BrowserTestCase
             ->press('Confirm Directive')
             ->waitForTextIn('@value', 'Accepted')
             ->click('@button.test.directive')
+            ->waitForText('Cancel Directive')
             ->press('Cancel Directive')
             ->waitForTextIn('@value', 'Rejected');
     }
