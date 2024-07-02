@@ -3,7 +3,8 @@
 namespace WireUi\Components\Dialog\tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 use WireUi\Traits\WireUiActions;
 
@@ -130,13 +131,13 @@ class IndexTest extends BrowserTestCase
         $this->browser()
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(400)
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
+            ->tap(fn (Browser $browser) => $browser->script(<<<'JS'
                 document.querySelector('button.dialog-button-close').click()
             JS))
             ->waitForTextIn('@events', 'onClose, onTimeout')
             ->tap(fn (Browser $browser) => $this->showDialog($browser))
             ->pause(150)
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
+            ->tap(fn (Browser $browser) => $browser->script(<<<'JS'
                 document.querySelector('div.dialog-backdrop').click()
             JS))
             ->waitTo(fn (Browser $browser) => $browser->assertSeeIn('@events', 'onClose, onDismiss'));
@@ -165,28 +166,28 @@ class IndexTest extends BrowserTestCase
     {
         return [
             [
-                'icon'        => 'success',
-                'title'       => 'Account Created',
+                'icon' => 'success',
+                'title' => 'Account Created',
                 'description' => 'Your account was created',
             ],
             [
-                'icon'        => 'error',
-                'title'       => 'Permission Denied',
+                'icon' => 'error',
+                'title' => 'Permission Denied',
                 'description' => "You don't have enough permission",
             ],
             [
-                'icon'        => 'info',
-                'title'       => 'Today is a good day',
+                'icon' => 'info',
+                'title' => 'Today is a good day',
                 'description' => 'Wireui is very helpful',
             ],
             [
-                'icon'        => 'warning',
-                'title'       => 'It can be permanent',
+                'icon' => 'warning',
+                'title' => 'It can be permanent',
                 'description' => 'Wish delete this file?',
             ],
             [
-                'icon'        => 'question',
-                'title'       => 'Sure delete?',
+                'icon' => 'question',
+                'title' => 'Sure delete?',
                 'description' => 'This action is irreversible',
             ],
         ];

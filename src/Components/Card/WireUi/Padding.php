@@ -15,10 +15,10 @@ class Padding extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Padding::NONE   => 'p-0',
-            Packs\Padding::SMALL  => 'px-1 py-3 md:px-2',
+            Packs\Padding::NONE => 'p-0',
+            Packs\Padding::SMALL => 'px-1 py-3 md:px-2',
             Packs\Padding::MEDIUM => 'px-2 py-5 md:px-4',
-            Packs\Padding::LARGE  => 'px-3 py-6 md:px-5',
+            Packs\Padding::LARGE => 'px-3 py-6 md:px-5',
         ];
     }
 }

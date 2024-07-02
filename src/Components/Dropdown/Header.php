@@ -8,7 +8,7 @@ use WireUi\View\WireUiComponent;
 class Header extends WireUiComponent
 {
     protected array $props = [
-        'label'     => null,
+        'label' => null,
         'separator' => false,
     ];
 

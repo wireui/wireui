@@ -3,7 +3,8 @@
 namespace WireUi\Components\Select\tests\Unit;
 
 use WireUi\Components\Select\Base as Select;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
+use WireUi\Components\Wrapper\WireUi\Color;
+use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -18,24 +19,24 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'options'              => null,
-        'template'             => null,
-        'clearable'            => true,
-        'async-data'           => null,
-        'right-icon'           => 'chevron-up-down',
-        'searchable'           => true,
-        'shadowless'           => false,
-        'multiselect'          => false,
-        'placeholder'          => null,
-        'always-fetch'         => false,
-        'flip-options'         => false,
-        'option-label'         => null,
-        'option-value'         => null,
-        'empty-message'        => null,
-        'option-key-value'     => false,
-        'hide-empty-message'   => false,
-        'option-description'   => null,
-        'without-items-count'  => true,
+        'options' => null,
+        'template' => null,
+        'clearable' => true,
+        'async-data' => null,
+        'right-icon' => 'chevron-up-down',
+        'searchable' => true,
+        'shadowless' => false,
+        'multiselect' => false,
+        'placeholder' => null,
+        'always-fetch' => false,
+        'flip-options' => false,
+        'option-label' => null,
+        'option-value' => null,
+        'empty-message' => null,
+        'option-key-value' => false,
+        'hide-empty-message' => false,
+        'option-description' => null,
+        'without-items-count' => true,
         'min-items-for-search' => 11,
     ]);
 });

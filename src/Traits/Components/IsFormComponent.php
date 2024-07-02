@@ -60,7 +60,7 @@ trait IsFormComponent
             $property = Str::camel($attribute);
 
             if ($attributes->missing($attribute)) {
-                if (!array_key_exists($property, $data) && !property_exists($this, $property)) {
+                if (! array_key_exists($property, $data) && ! property_exists($this, $property)) {
                     $data[$property] = null;
                 }
 
@@ -102,10 +102,10 @@ trait IsFormComponent
         /** @var string|null $model */
         $model = $attributes->wire('model')->value();
 
-        if (!$model) {
+        if (! $model) {
             /** @var Attribute|null $xModel */
             $xModel = $attributes->attribute('x-model');
-            $model  = $xModel?->expression();
+            $model = $xModel?->expression();
         }
 
         /** @var ?string $name */

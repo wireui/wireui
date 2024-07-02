@@ -3,7 +3,8 @@
 namespace Tests\Unit\Traits;
 
 use Mockery\Mock;
-use Tests\Unit\{TestCase, TestComponent};
+use Tests\Unit\TestCase;
+use Tests\Unit\TestComponent;
 use WireUi\Enum\Icon;
 
 test('it should emit a dialog event when the method dialog is called with a non empty array', function () {
@@ -11,7 +12,7 @@ test('it should emit a dialog event when the method dialog is called with a non 
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => ['title' => 'WireUI is awesome!'],
+        'options' => ['title' => 'WireUI is awesome!'],
     ];
 
     /** @var TestCase $this */
@@ -33,7 +34,7 @@ test('it should emit a notification event when the method notification is called
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => ['title' => 'WireUI is awesome!'],
+        'options' => ['title' => 'WireUI is awesome!'],
     ];
 
     /** @var TestCase $this */

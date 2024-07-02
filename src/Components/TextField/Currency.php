@@ -3,8 +3,9 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
 class Currency extends WireUiComponent
@@ -16,10 +17,10 @@ class Currency extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'decimal'        => '.',
-        'precision'      => 2,
-        'thousands'      => ',',
-        'shadowless'     => false,
+        'decimal' => '.',
+        'precision' => 2,
+        'thousands' => ',',
+        'shadowless' => false,
         'emit-formatted' => false,
     ];
 

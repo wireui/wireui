@@ -20,8 +20,8 @@ test('it should setup simple spinner', function () {
 
     $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
 
-    $spinner       = data_get($data, 'spinner');
-    $attributes    = data_get($data, 'attributes');
+    $spinner = data_get($data, 'spinner');
+    $attributes = data_get($data, 'attributes');
     $spinnerRemove = data_get($data, 'spinnerRemove');
 
     expect($attributes->has('spinner'))->toBeFalse();
@@ -45,8 +45,8 @@ test('it should setup simple spinner with delay', function () {
 
     $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
 
-    $spinner       = data_get($data, 'spinner');
-    $attributes    = data_get($data, 'attributes');
+    $spinner = data_get($data, 'spinner');
+    $attributes = data_get($data, 'attributes');
     $spinnerRemove = data_get($data, 'spinnerRemove');
 
     expect($attributes->has('spinner.longest'))->toBeFalse();
@@ -70,8 +70,8 @@ test('it should setup spinner with target', function () {
 
     $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
 
-    $spinner       = data_get($data, 'spinner');
-    $attributes    = data_get($data, 'attributes');
+    $spinner = data_get($data, 'spinner');
+    $attributes = data_get($data, 'attributes');
     $spinnerRemove = data_get($data, 'spinnerRemove');
 
     expect($attributes->has('spinner'))->toBeFalse();
@@ -97,8 +97,8 @@ test('it should setup spinner with target and delay', function () {
 
     $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
 
-    $spinner       = data_get($data, 'spinner');
-    $attributes    = data_get($data, 'attributes');
+    $spinner = data_get($data, 'spinner');
+    $attributes = data_get($data, 'attributes');
     $spinnerRemove = data_get($data, 'spinnerRemove');
 
     expect($attributes->has('spinner.longest'))->toBeFalse();

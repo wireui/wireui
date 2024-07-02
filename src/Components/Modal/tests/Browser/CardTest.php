@@ -4,7 +4,8 @@ namespace WireUi\Components\Modal\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\Attributes\On;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
 class CardTest extends BrowserTestCase
@@ -18,7 +19,7 @@ class CardTest extends BrowserTestCase
             #[On('toggle-close')]
             public function toggleClose(): void
             {
-                $this->hideClose = !$this->hideClose;
+                $this->hideClose = ! $this->hideClose;
             }
 
             public function render(): string
@@ -37,11 +38,11 @@ class CardTest extends BrowserTestCase
             ->press('Open')
             ->waitTo(fn (Browser $browser) => $browser->assertSee('Modal Card Title'))
             ->assertPresent('div:not([class]) > button[x-on\\:click="close"')
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
+            ->tap(fn (Browser $browser) => $browser->script(<<<'JS'
                 window.Livewire.dispatch('toggle-close')
             JS))
             ->waitTo(fn (Browser $browser) => $browser->assertNotPresent('div:not([class]) > button[x-on\\:click="close"'))
-            ->tap(fn (Browser $browser) => $browser->script(<<<JS
+            ->tap(fn (Browser $browser) => $browser->script(<<<'JS'
                 window.Livewire.dispatch('toggle-close')
             JS))
             ->waitTo(fn (Browser $browser) => $browser->assertPresent('div:not([class]) > button[x-on\\:click="close"'))

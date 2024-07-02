@@ -4,9 +4,11 @@ namespace WireUi\Components\Link\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\Attributes\On;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
-use WireUi\Components\Link\WireUi\{Color, Underline};
+use WireUi\Components\Link\WireUi\Color;
+use WireUi\Components\Link\WireUi\Underline;
 
 class IndexTest extends BrowserTestCase
 {

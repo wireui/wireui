@@ -3,8 +3,9 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\IsFormComponent;
-use WireUi\Traits\Components\{HasSetupColor, HasSetupRounded};
 use WireUi\View\WireUiComponent;
 
 class Number extends WireUiComponent
@@ -16,7 +17,7 @@ class Number extends WireUiComponent
     protected array $packs = ['shadow'];
 
     protected array $props = [
-        'icon'       => 'minus',
+        'icon' => 'minus',
         'right-icon' => 'plus',
         'shadowless' => false,
     ];

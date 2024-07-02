@@ -18,7 +18,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'title'      => null,
+        'title' => null,
         'borderless' => false,
         'shadowless' => false,
     ]);
@@ -72,7 +72,7 @@ test('it should set rounded full in component', function () {
     expect($this->component->squared)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(<<<EOT
+    expect(<<<'EOT'
     <x-card title="Title" rounded>
         <x-slot name="footer">Footer</x-slot>
     </x-card>
@@ -92,7 +92,7 @@ test('it should set squared in component', function () {
     expect($this->component->rounded)->toBeFalse();
     expect($this->component->roundedClasses)->toBe($class);
 
-    expect(<<<EOT
+    expect(<<<'EOT'
     <x-card title="Title" squared>
         <x-slot name="footer">Footer</x-slot>
     </x-card>

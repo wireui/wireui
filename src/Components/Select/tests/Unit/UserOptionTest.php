@@ -13,9 +13,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'src'         => null,
-        'label'       => null,
-        'option'      => [],
+        'src' => null,
+        'label' => null,
+        'option' => [],
         'description' => null,
     ]);
 });
@@ -36,9 +36,9 @@ test('it should have properties in component', function () {
 
 test('it should render option with label, value and description', function () {
     $this->setAttributes($this->component, [
-        'src'         => $src         = fake()->imageUrl(),
-        'label'       => $label       = fake()->word(),
-        'value'       => $value       = fake()->randomNumber(5),
+        'src' => $src = fake()->imageUrl(),
+        'label' => $label = fake()->word(),
+        'value' => $value = fake()->randomNumber(5),
         'description' => $description = fake()->sentence(),
     ]);
 
@@ -48,8 +48,8 @@ test('it should render option with label, value and description', function () {
     expect($this->component->description)->toBe($description);
 
     $array = htmlspecialchars(WireUi::toJs([
-        'label'       => $label,
-        'value'       => $value,
+        'label' => $label,
+        'value' => $value,
         'description' => $description,
     ]));
 

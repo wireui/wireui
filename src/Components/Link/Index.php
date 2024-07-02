@@ -3,7 +3,9 @@
 namespace WireUi\Components\Link;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\{HasSetupButton, HasSetupColor, HasSetupSize};
+use WireUi\Traits\Components\HasSetupButton;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupSize;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent

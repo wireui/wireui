@@ -3,7 +3,8 @@
 namespace Tests\Unit\Actions;
 
 use Mockery\Mock;
-use Tests\Unit\{TestCase, TestComponent};
+use Tests\Unit\TestCase;
+use Tests\Unit\TestComponent;
 use WireUi\Actions\Dialog;
 
 test('it should create the default dialog event name', function () {
@@ -30,7 +31,7 @@ test('it should emit a dialog event', function (?string $icon, string $expectedI
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => ['title' => 'WireUI is awesome!', 'icon' => $icon],
+        'options' => ['title' => 'WireUI is awesome!', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
@@ -52,7 +53,7 @@ test('it should emit a confirm dialog event', function (?string $icon, string $e
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => ['title' => 'User created!', 'icon' => $icon],
+        'options' => ['title' => 'User created!', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
@@ -83,9 +84,9 @@ test('it should emit the simple dialog event', function (string $method) {
         ->method('dispatch')
         ->with($event, [
             'componentId' => 'fake-id',
-            'options'     => [
-                'title'       => 'Test Title!',
-                'icon'        => $method,
+            'options' => [
+                'title' => 'Test Title!',
+                'icon' => $method,
                 'description' => 'Test Description..',
             ],
         ]);

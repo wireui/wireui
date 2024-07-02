@@ -11,9 +11,9 @@ class UserOption extends WireUiComponent
     use FilterOptions;
 
     protected array $props = [
-        'src'         => null,
-        'label'       => null,
-        'option'      => [],
+        'src' => null,
+        'label' => null,
+        'option' => [],
         'description' => null,
     ];
 

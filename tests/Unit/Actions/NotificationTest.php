@@ -3,7 +3,8 @@
 namespace Tests\Unit\Actions;
 
 use Mockery\Mock;
-use Tests\Unit\{TestCase, TestComponent};
+use Tests\Unit\TestCase;
+use Tests\Unit\TestComponent;
 use WireUi\Enum\Icon;
 
 test('it should emit a notification event', function () {
@@ -11,8 +12,8 @@ test('it should emit a notification event', function () {
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => [
-            'icon'  => Icon::SUCCESS,
+        'options' => [
+            'icon' => Icon::SUCCESS,
             'title' => 'WireUI is awesome!',
         ],
     ];
@@ -36,7 +37,7 @@ test('it should emit a confirm notification event', function (?string $icon, str
 
     $params = [
         'componentId' => 'fake-id',
-        'options'     => ['title' => 'Sure Delete?', 'icon' => $icon],
+        'options' => ['title' => 'Sure Delete?', 'icon' => $icon],
     ];
 
     /** @var TestCase $this */
@@ -67,9 +68,9 @@ test('it should emit the simple notification event', function (string $method) {
         ->method('dispatch')
         ->with($event, [
             'componentId' => 'fake-id',
-            'options'     => [
-                'icon'        => $method,
-                'title'       => $title       = 'WireUI is awesome!',
+            'options' => [
+                'icon' => $method,
+                'title' => $title = 'WireUI is awesome!',
                 'description' => $description = 'WireUI is easy to use.',
             ],
         ]);

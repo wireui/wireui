@@ -4,9 +4,12 @@ namespace WireUi\Components\Badge\tests\Browser;
 
 use Laravel\Dusk\Browser;
 use Livewire\Attributes\On;
-use Livewire\{Component, Livewire};
+use Livewire\Component;
+use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
-use WireUi\Components\Badge\WireUi\Color\{Flat, Outline, Solid};
+use WireUi\Components\Badge\WireUi\Color\Flat;
+use WireUi\Components\Badge\WireUi\Color\Outline;
+use WireUi\Components\Badge\WireUi\Color\Solid;
 
 class BaseTest extends BrowserTestCase
 {

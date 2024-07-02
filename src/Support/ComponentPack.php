@@ -9,7 +9,7 @@ abstract class ComponentPack
 {
     private function checkAttribute(mixed $attribute): void
     {
-        throw_if(!in_array($attribute, $this->keys()), new WireUiAttributeException($this));
+        throw_if(! in_array($attribute, $this->keys()), new WireUiAttributeException($this));
     }
 
     private function getDefault(): mixed
@@ -30,7 +30,7 @@ abstract class ComponentPack
 
     public function mergeIf(bool $check, string $merge, mixed $attribute = null): mixed
     {
-        if (!$check) {
+        if (! $check) {
             return $this->get($attribute);
         }
 

@@ -3,7 +3,8 @@
 namespace WireUi\Components\TimePicker\tests\Unit;
 
 use WireUi\Components\TimePicker\Selector as TimeSelector;
-use WireUi\WireUi\{Rounded, Shadow};
+use WireUi\WireUi\Rounded;
+use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
     $this->component = (new TimeSelector())->withName('time-selector');
@@ -17,9 +18,9 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'borderless'      => false,
-        'shadowless'      => false,
-        'military-time'   => false,
+        'borderless' => false,
+        'shadowless' => false,
+        'military-time' => false,
         'without-seconds' => false,
     ]);
 });

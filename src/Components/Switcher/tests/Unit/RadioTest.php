@@ -3,7 +3,8 @@
 namespace WireUi\Components\Switcher\tests\Unit;
 
 use WireUi\Components\Switcher\Radio;
-use WireUi\Components\Switcher\WireUi\Radio\{Color, Size};
+use WireUi\Components\Switcher\WireUi\Radio\Color;
+use WireUi\Components\Switcher\WireUi\Radio\Size;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -14,8 +15,8 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'label'       => null,
-        'left-label'  => null,
+        'label' => null,
+        'left-label' => null,
         'description' => null,
     ]);
 });
@@ -41,7 +42,7 @@ test('it should have properties in component', function () {
 
 test('it should render label and description in component', function () {
     $this->setAttributes($this->component, [
-        'label'       => $label       = fake()->word(),
+        'label' => $label = fake()->word(),
         'description' => $description = fake()->sentence(),
     ]);
 

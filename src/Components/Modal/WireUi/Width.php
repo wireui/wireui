@@ -15,10 +15,10 @@ class Width extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Width::SM  => 'sm:max-w-sm',
-            Packs\Width::MD  => 'sm:max-w-md',
-            Packs\Width::LG  => 'sm:max-w-lg',
-            Packs\Width::XL  => 'sm:max-w-xl',
+            Packs\Width::SM => 'sm:max-w-sm',
+            Packs\Width::MD => 'sm:max-w-md',
+            Packs\Width::LG => 'sm:max-w-lg',
+            Packs\Width::XL => 'sm:max-w-xl',
             Packs\Width::XL2 => 'sm:max-w-2xl',
             Packs\Width::XL3 => 'sm:max-w-3xl',
             Packs\Width::XL4 => 'sm:max-w-4xl',

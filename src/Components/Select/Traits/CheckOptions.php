@@ -53,7 +53,7 @@ trait CheckOptions
      */
     private function validateConfig(): void
     {
-        if (!$this->optionKeyValue && (($this->optionValue && !$this->optionLabel) || (!$this->optionValue && $this->optionLabel))) {
+        if (! $this->optionKeyValue && (($this->optionValue && ! $this->optionLabel) || (! $this->optionValue && $this->optionLabel))) {
             throw new InvalidArgumentException('Invalid configuration: Both {option-value} and {option-label} are required when {option-key-value} is false.');
         }
 
@@ -66,9 +66,9 @@ trait CheckOptions
         }
 
         if (
-            (!$this->optionValue && (!$this->optionLabel || ($this->optionKeyValue && !$this->optionLabel)))
+            (! $this->optionValue && (! $this->optionLabel || ($this->optionKeyValue && ! $this->optionLabel)))
             && $this->options->isNotEmpty()
-            && !in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
+            && ! in_array(gettype($this->options->first()), self::PRIMITIVE_VALUES, true)
         ) {
             throw new InvalidArgumentException('Invalid configuration: When {option-value} is not set, either {option-label} or {option-key-value} should be provided.');
         }

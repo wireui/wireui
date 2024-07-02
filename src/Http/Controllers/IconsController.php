@@ -17,7 +17,7 @@ class IconsController extends Controller
             return response()
                 ->view($component->render()->name(), ['attributes' => null])
                 ->withHeaders([
-                    'Content-Type'  => 'image/svg+xml; charset=utf-8',
+                    'Content-Type' => 'image/svg+xml; charset=utf-8',
                     'Cache-Control' => 'public, only-if-cached, max-age=31536000',
                 ]);
         } catch (Throwable $exception) {
@@ -32,7 +32,7 @@ class IconsController extends Controller
     private function shouldReportException(Throwable $exception): bool
     {
         return $exception instanceof InvalidArgumentException
-            && !str_starts_with($exception->getMessage(), 'View')
-            && !str_ends_with($exception->getMessage(), 'not found.');
+            && ! str_starts_with($exception->getMessage(), 'View')
+            && ! str_ends_with($exception->getMessage(), 'not found.');
     }
 }

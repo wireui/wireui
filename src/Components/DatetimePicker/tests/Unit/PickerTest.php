@@ -4,7 +4,8 @@ namespace WireUi\Components\DatetimePicker\tests\Unit;
 
 use Illuminate\Support\Carbon;
 use WireUi\Components\DatetimePicker\Picker as DatetimePicker;
-use WireUi\Components\Wrapper\WireUi\{Color, Rounded};
+use WireUi\Components\Wrapper\WireUi\Color;
+use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
@@ -19,32 +20,32 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'max'                   => null,
-        'min'                   => null,
-        'interval'              => 10,
-        'max-time'              => 24,
-        'min-time'              => 0,
-        'multiple'              => false,
-        'timezone'              => null,
-        'clearable'             => true,
-        'right-icon'            => 'calendar',
-        'shadowless'            => false,
-        'time-format'           => 12,
-        'multiple-max'          => 0,
-        'parse-format'          => null,
-        'without-time'          => false,
-        'without-tips'          => false,
-        'allowed-dates'         => [],
-        'start-of-week'         => Carbon::SUNDAY,
-        'user-timezone'         => null,
-        'disabled-dates'        => [],
-        'disabled-years'        => [],
-        'display-format'        => null,
-        'disabled-months'       => [],
-        'without-timezone'      => false,
-        'disabled-weekdays'     => [],
-        'disable-past-dates'    => false,
-        'without-time-seconds'  => false,
+        'max' => null,
+        'min' => null,
+        'interval' => 10,
+        'max-time' => 24,
+        'min-time' => 0,
+        'multiple' => false,
+        'timezone' => null,
+        'clearable' => true,
+        'right-icon' => 'calendar',
+        'shadowless' => false,
+        'time-format' => 12,
+        'multiple-max' => 0,
+        'parse-format' => null,
+        'without-time' => false,
+        'without-tips' => false,
+        'allowed-dates' => [],
+        'start-of-week' => Carbon::SUNDAY,
+        'user-timezone' => null,
+        'disabled-dates' => [],
+        'disabled-years' => [],
+        'display-format' => null,
+        'disabled-months' => [],
+        'without-timezone' => false,
+        'disabled-weekdays' => [],
+        'disable-past-dates' => false,
+        'without-time-seconds' => false,
         'requires-confirmation' => false,
     ]);
 });

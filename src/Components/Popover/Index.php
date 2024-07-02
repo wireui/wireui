@@ -8,7 +8,7 @@ use WireUi\View\WireUiComponent;
 class Index extends WireUiComponent
 {
     protected array $props = [
-        'margin'     => false,
+        'margin' => false,
         'root-class' => null,
     ];
 

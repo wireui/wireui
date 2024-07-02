@@ -3,7 +3,10 @@
 namespace WireUi\Components\Modal\tests\Unit;
 
 use WireUi\Components\Modal\Index as Modal;
-use WireUi\Components\Modal\WireUi\{Align, Blur, Type, Width};
+use WireUi\Components\Modal\WireUi\Align;
+use WireUi\Components\Modal\WireUi\Blur;
+use WireUi\Components\Modal\WireUi\Type;
+use WireUi\Components\Modal\WireUi\Width;
 
 beforeEach(function () {
     $this->component = (new Modal())->withName('modal');
@@ -17,11 +20,11 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'name'       => null,
-        'show'       => false,
-        'spacing'    => null,
-        'z-index'    => null,
-        'blurless'   => false,
+        'name' => null,
+        'show' => false,
+        'spacing' => null,
+        'z-index' => null,
+        'blurless' => false,
         'persistent' => false,
     ]);
 });
@@ -56,7 +59,7 @@ test('it should have properties in component', function () {
 test('it should set a custom name and persistent as true in component', function () {
     $this->setAttributes($this->component, [
         'persistent' => true,
-        'name'       => $name = fake()->slug(),
+        'name' => $name = fake()->slug(),
     ]);
 
     $this->runWireUiComponent($this->component);
@@ -121,7 +124,7 @@ test('it should set random type in component', function () {
 
     $this->setAttributes($this->component, [
         'z-index' => $zIndex = null,
-        'type'    => $type   = data_get($pack, 'key'),
+        'type' => $type = data_get($pack, 'key'),
     ]);
 
     $this->runWireUiComponent($this->component);

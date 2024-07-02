@@ -16,13 +16,13 @@ class Blur extends ComponentPack
     {
         return [
             Packs\Blur::NONE => 'backdrop-blur-none',
-            Packs\Blur::SM   => 'backdrop-blur-sm',
+            Packs\Blur::SM => 'backdrop-blur-sm',
             Packs\Blur::BASE => 'backdrop-blur',
-            Packs\Blur::MD   => 'backdrop-blur-md',
-            Packs\Blur::LG   => 'backdrop-blur-lg',
-            Packs\Blur::XL   => 'backdrop-blur-xl',
-            Packs\Blur::XL2  => 'backdrop-blur-2xl',
-            Packs\Blur::XL3  => 'backdrop-blur-3xl',
+            Packs\Blur::MD => 'backdrop-blur-md',
+            Packs\Blur::LG => 'backdrop-blur-lg',
+            Packs\Blur::XL => 'backdrop-blur-xl',
+            Packs\Blur::XL2 => 'backdrop-blur-2xl',
+            Packs\Blur::XL3 => 'backdrop-blur-3xl',
         ];
     }
 }

@@ -3,7 +3,8 @@
 namespace WireUi\Components\Switcher\tests\Unit;
 
 use WireUi\Components\Switcher\Toggle;
-use WireUi\Components\Switcher\WireUi\Toggle\{Color, Size};
+use WireUi\Components\Switcher\WireUi\Toggle\Color;
+use WireUi\Components\Switcher\WireUi\Toggle\Size;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
@@ -14,11 +15,11 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'icon'        => null,
-        'label'       => null,
-        'iconless'    => false,
-        'left-label'  => null,
-        'right-icon'  => null,
+        'icon' => null,
+        'label' => null,
+        'iconless' => false,
+        'left-label' => null,
+        'right-icon' => null,
         'description' => null,
     ]);
 });
@@ -47,7 +48,7 @@ test('it should have properties in component', function () {
 
 test('it should render label and description in component', function () {
     $this->setAttributes($this->component, [
-        'label'       => $label       = fake()->word(),
+        'label' => $label = fake()->word(),
         'description' => $description = fake()->sentence(),
     ]);
 

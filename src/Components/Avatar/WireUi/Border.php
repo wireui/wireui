@@ -15,9 +15,9 @@ class Border extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Border::NONE  => 'border-0',
-            Packs\Border::THIN  => 'border',
-            Packs\Border::BASE  => 'border-2',
+            Packs\Border::NONE => 'border-0',
+            Packs\Border::THIN => 'border',
+            Packs\Border::BASE => 'border-2',
             Packs\Border::THICK => 'border-4',
         ];
     }

@@ -3,7 +3,9 @@
 namespace WireUi\Components\Link\tests\Unit;
 
 use WireUi\Components\Link\Index as Link;
-use WireUi\Components\Link\WireUi\{Color, Size, Underline};
+use WireUi\Components\Link\WireUi\Color;
+use WireUi\Components\Link\WireUi\Size;
+use WireUi\Components\Link\WireUi\Underline;
 
 beforeEach(function () {
     $this->component = (new Link())->withName('link');

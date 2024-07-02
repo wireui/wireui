@@ -7,7 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class HeaderTest extends BrowserTestCase
 {
-    public const HTML = <<<BLADE
+    public const HTML = <<<'BLADE'
     <x-button dusk="outside" label="Outside" />
 
     <x-dropdown label="Color Picker">
