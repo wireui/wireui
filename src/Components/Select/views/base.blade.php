@@ -96,29 +96,28 @@
                     ></span>
                 @endunless
 
-                <div class="flex items-center gap-1 flex-nowrap">
-                    <template x-for="(option, index) in selectedOptions" :key="`selected.${index}`">
-                        <span @class([
-                            'inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium',
-                            'border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700',
-                            'dark:bg-secondary-700 dark:text-secondary-400 dark:border-none',
-                        ])>
+                <div wire:ignore class="flex items-center gap-1 flex-nowrap">
+                    <template x-for="(option, index) in selectedOptions" :key="`selected.${index}.${option.value}.${option.label}`">
+                        <span class="
+                            inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
+                            border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
+                            dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
+                        ">
                             <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
-                            @if ($clearable && !($readonly || $disabled))
-                                <button
-                                    class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
-                                    x-on:click.stop="unSelect(option)"
-                                    tabindex="-1"
-                                    type="button"
-                                >
-                                    <x-dynamic-component
-                                        :component="WireUi::component('icon')"
-                                        class="w-3 h-3"
-                                        name="x-mark"
-                                    />
-                                </button>
-                            @endif
+                            <button
+                                class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                x-on:click.stop="unSelect(option)"
+                                tabindex="-1"
+                                type="button"
+                                x-show="config.clearable && !(config.readonly || config.disabled)"
+                            >
+                                <x-dynamic-component
+                                    :component="WireUi::component('icon')"
+                                    class="w-3 h-3"
+                                    name="x-mark"
+                                />
+                            </button>
                         </span>
                     </template>
                 </div>
