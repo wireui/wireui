@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use Illuminate\Support\Arr;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupVariant
@@ -24,12 +25,22 @@ trait HasSetupVariant
 
         $this->variant = $this->getDataModifier('variant', $variantPack);
 
-        if (method_exists($this, 'setColorResolve')) {
-            $this->setColorResolve($variantPack->get($this->variant));
-        }
+        $variantOptions = $variantPack->get($this->variant);
 
         if (method_exists($this, 'setVariantPack')) {
             $this->setVariantPack($variantPack);
+        }
+
+        if (method_exists($this, 'setSizeResolve') && Arr::has($variantOptions, 'size')) {
+            $this->setSizeResolve(Arr::get($variantOptions, 'size'));
+        }
+
+        if (method_exists($this, 'setColorResolve') && Arr::has($variantOptions, 'color')) {
+            $this->setColorResolve(Arr::get($variantOptions, 'color'));
+        }
+
+        if (method_exists($this, 'setRoundedResolve') && Arr::has($variantOptions, 'rounded')) {
+            $this->setRoundedResolve(Arr::get($variantOptions, 'rounded'));
         }
 
         $this->setVariables(['variant']);

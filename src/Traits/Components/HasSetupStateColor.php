@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use Illuminate\Support\Arr;
 use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
@@ -60,7 +61,7 @@ trait HasSetupStateColor
         if ($variant) {
             $colors = config($this->getColorConfigName($variant));
 
-            $colorPack = $colors ? resolve($colors) : resolve($this->variantPack->get($variant));
+            $colorPack = resolve($colors ?? Arr::get($this->variantPack->get($variant), 'color'));
         }
 
         if (is_bool($modifierColor) || ! in_array($modifierColor, $colorPack->keys())) {
