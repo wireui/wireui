@@ -8,10 +8,19 @@ trait HasSetupVariant
 {
     public mixed $variant = null;
 
+    private mixed $variantResolve = null;
+
+    protected function setVariantResolve(string $class): void
+    {
+        $this->variantResolve = $class;
+    }
+
     protected function setupVariant(): void
     {
+        $variants = config("wireui.{$this->config}.packs.variants");
+
         /** @var ComponentPack $variantPack */
-        $variantPack = resolve(config("wireui.{$this->config}.packs.variants"));
+        $variantPack = resolve($variants ?? $this->variantResolve);
 
         $this->variant = $this->getDataModifier('variant', $variantPack);
 
