@@ -51,7 +51,7 @@
             :component="WireUi::component('button')"
             class="h-full"
             :color="$color ?? 'primary'"
-            :rounded="Arr::get($roundedClasses, 'append', '')"
+            :rounded="data_get($roundedClasses, 'append', '')"
             use-validation-colors
             flat
             x-on:click="positionable.toggle()"

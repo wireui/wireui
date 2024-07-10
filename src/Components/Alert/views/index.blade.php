@@ -1,6 +1,6 @@
 <div {{ $attributes->class([
-    Arr::get($colorClasses, 'background', ''),
-    Arr::get($colorClasses, 'border', ''),
+    data_get($colorClasses, 'background', ''),
+    data_get($colorClasses, 'border', ''),
     $shadowClasses => !$shadowless,
     'w-full flex flex-col p-4',
     $roundedClasses,
@@ -20,7 +20,7 @@
                         :component="WireUi::component('icon')"
                         :name="$icon"
                         @class([
-                            Arr::get($colorClasses, 'iconColor', ''),
+                            data_get($colorClasses, 'iconColor', ''),
                             'w-5 h-5 mr-3 shrink-0',
                         ])
                     />
@@ -28,7 +28,7 @@
 
                 <div {{ WireUi::extractAttributes($title)->class([
                     'font-semibold' => $slot->isNotEmpty(),
-                    Arr::get($colorClasses, 'text', ''),
+                    data_get($colorClasses, 'text', ''),
                     'font-normal' => $slot->isEmpty(),
                     'text-sm whitespace-normal',
                 ]) }}>
@@ -46,7 +46,7 @@
 
     @if ($slot->isNotEmpty())
         <div {{ WireUi::extractAttributes($slot)->class([
-            Arr::get($colorClasses, 'text', ''),
+            data_get($colorClasses, 'text', ''),
             $paddingClasses,
             'grow text-sm',
         ]) }}>

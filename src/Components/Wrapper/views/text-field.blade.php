@@ -49,8 +49,8 @@
             ->except(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
             ->merge(['for' => $id])
             ->class([
-                Arr::get($roundedClasses, 'input', ''),
-                Arr::get($colorClasses, 'input', ''),
+                data_get($roundedClasses, 'input', ''),
+                data_get($colorClasses, 'input', ''),
                 $shadowClasses => !$shadowless,
 
                 'bg-background-white dark:bg-background-dark',
@@ -79,8 +79,8 @@
                 {{ WireUi::extractAttributes($prefix)->class([
                     'text-gray-400 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
-                    Arr::get($roundedClasses, 'prepend', ''),
-                    Arr::get($colorClasses, 'prepend', ''),
+                    data_get($roundedClasses, 'prepend', ''),
+                    data_get($colorClasses, 'prepend', ''),
                 ]) }}
             >
                 @if ($icon)
@@ -112,8 +112,8 @@
                 {{ WireUi::extractAttributes($suffix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
                     'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
-                    Arr::get($roundedClasses, 'append', ''),
-                    Arr::get($colorClasses, 'append', ''),
+                    data_get($roundedClasses, 'append', ''),
+                    data_get($colorClasses, 'append', ''),
                 ]) }}
             >
                 @if ($rightIcon)

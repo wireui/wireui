@@ -32,15 +32,15 @@ trait HasSetupVariant
         }
 
         if (method_exists($this, 'setSizeResolve') && Arr::has($variantOptions, 'size')) {
-            $this->setSizeResolve(Arr::get($variantOptions, 'size'));
+            $this->setSizeResolve(data_get($variantOptions, 'size'));
         }
 
         if (method_exists($this, 'setColorResolve') && Arr::has($variantOptions, 'color')) {
-            $this->setColorResolve(Arr::get($variantOptions, 'color'));
+            $this->setColorResolve(data_get($variantOptions, 'color'));
         }
 
         if (method_exists($this, 'setRoundedResolve') && Arr::has($variantOptions, 'rounded')) {
-            $this->setRoundedResolve(Arr::get($variantOptions, 'rounded'));
+            $this->setRoundedResolve(data_get($variantOptions, 'rounded'));
         }
 
         $this->setVariables(['variant']);

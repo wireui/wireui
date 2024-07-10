@@ -1,8 +1,8 @@
 <div @class([
-        'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
-        'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
+        'soft-scrollbar' => data_get($typeClasses, 'soft-scrollbar', false),
+        'hide-scrollbar' => data_get($typeClasses, 'hide-scrollbar', false),
         'fixed inset-0 flex overflow-y-auto sm:pt-16 justify-center',
-        $zIndex ?? Arr::get($typeClasses, 'z-index', 'z-60'),
+        $zIndex ?? data_get($typeClasses, 'z-index', 'z-60'),
         $alignClasses,
     ])
     x-data="wireui_dialog({ id: '{{ $dialog }}' })"
@@ -29,7 +29,7 @@
     </div>
 
     <div @class([
-            $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
+            $spacing ?? data_get($typeClasses, 'spacing', 'p-4'),
             'w-full transition-all',
             $widthClasses,
         ])

@@ -17,7 +17,7 @@
         <x-dynamic-component
             :component="WireUi::component('button')"
             :color="$color ?? 'primary'"
-            :rounded="Arr::get($roundedClasses, 'prepend', '')"
+            :rounded="data_get($roundedClasses, 'prepend', '')"
             x-hold.click.delay.repeat.100ms="minus"
             x-bind:disabled="disableMinus"
             x-on:keydown.enter="minus"
@@ -44,7 +44,7 @@
             :component="WireUi::component('button')"
             x-hold.click.delay.repeat.100ms="plus"
             :color="$color ?? 'primary'"
-            :rounded="Arr::get($roundedClasses, 'append', '')"
+            :rounded="data_get($roundedClasses, 'append', '')"
             x-bind:disabled="disablePlus"
             x-on:keydown.enter="plus"
             use-validation-colors

@@ -7,9 +7,9 @@
         @endif
     })"
     @class([
-        'soft-scrollbar' => Arr::get($typeClasses, 'soft-scrollbar', false),
-        'hide-scrollbar' => Arr::get($typeClasses, 'hide-scrollbar', false),
-        $zIndex  ?? Arr::get($typeClasses, 'z-index', 'z-40'),
+        'soft-scrollbar' => data_get($typeClasses, 'soft-scrollbar', false),
+        'hide-scrollbar' => data_get($typeClasses, 'hide-scrollbar', false),
+        $zIndex  ?? data_get($typeClasses, 'z-index', 'z-40'),
         'fixed inset-0 overflow-y-auto',
     ])
     x-on:keydown.escape.window="handleEscape"
@@ -45,7 +45,7 @@
         x-show="show"
         @class([
             'w-full min-h-full transform flex items-end justify-center mx-auto',
-            $spacing ?? Arr::get($typeClasses, 'spacing', 'p-4'),
+            $spacing ?? data_get($typeClasses, 'spacing', 'p-4'),
             $alignClasses,
             $widthClasses,
         ])

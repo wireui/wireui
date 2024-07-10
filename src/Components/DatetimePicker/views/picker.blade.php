@@ -121,7 +121,7 @@
                 :component="WireUi::component('button')"
                 class="h-full"
                 :color="$color ?? 'primary'"
-                :rounded="Arr::get($roundedClasses, 'append', '')"
+                :rounded="data_get($roundedClasses, 'append', '')"
                 :disabled="$disabled"
                 x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
                 use-validation-colors

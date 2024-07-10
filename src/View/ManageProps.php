@@ -2,7 +2,6 @@
 
 namespace WireUi\View;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use WireUi\Support\ComponentPack;
 
@@ -27,7 +26,7 @@ trait ManageProps
     {
         $field = Str::camel($key);
 
-        $this->{$field} = Arr::get($data, $key, $this->getData($field, $value));
+        $this->{$field} = data_get($data, $key, $this->getData($field, $value));
 
         $this->setVariables($field);
     }

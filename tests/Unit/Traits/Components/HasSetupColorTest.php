@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Traits\Components;
 
-use Illuminate\Support\Arr;
 use WireUi\Components\Button\Base as Button;
 use WireUi\Components\Button\WireUi\Color\Solid;
 use WireUi\Components\Button\WireUi\Variant;
@@ -46,7 +45,7 @@ test('it should setup color', function () {
     $color = data_get($pack, 'key');
     $class = data_get($pack, 'class');
     $variant = data_get($pack, 'variant');
-    $colorResolve = Arr::get((new Variant())->get($variant), 'color');
+    $colorResolve = data_get((new Variant())->get($variant), 'color');
 
     $this->invokeMethod($this->component, 'setColorResolve', [$colorResolve]);
 
