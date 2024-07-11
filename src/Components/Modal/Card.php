@@ -8,6 +8,7 @@ use WireUi\View\WireUiComponent;
 class Card extends WireUiComponent
 {
     protected array $props = [
+        'persistent' => false,
         'spacing' => null,
         'fullscreen' => false,
         'hide-close' => false,
