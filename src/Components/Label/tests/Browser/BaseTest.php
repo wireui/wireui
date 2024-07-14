@@ -6,7 +6,7 @@ use Livewire\Component;
 use Livewire\Livewire;
 use Tests\Browser\BrowserTestCase;
 
-class IndexTest extends BrowserTestCase
+class BaseTest extends BrowserTestCase
 {
     public function test_label_component(): void
     {
@@ -18,9 +18,9 @@ class IndexTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                     <div>
-                        <x-label dusk="label" :label="$label" />
+                        <x-label dusk="label" :text="$label" />
 
-                        <x-button wire:click="$set('label', 'Label 2')" label="Change" />
+                        <x-button wire:click="$set('label', 'Label 2')" text="Change" />
                     </div>
                 BLADE;
             }

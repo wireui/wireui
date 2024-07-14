@@ -2,7 +2,7 @@
 
 namespace WireUi\Components\Badge\tests\Unit;
 
-use WireUi\Components\Label\Index as Label;
+use WireUi\Components\Label\Base as Label;
 
 beforeEach(function () {
     $this->component = (new Label())->withName('label');
@@ -12,7 +12,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
-        'label' => null,
+        'text' => null,
     ]);
 });
 
@@ -21,18 +21,18 @@ test('it should have properties in component', function () {
 
     expect($this->component)->toHaveProperties([
         // Props
-        'label',
+        'text',
     ]);
 });
 
-test('it should set specific label in component', function () {
+test('it should set specific text in component', function () {
     $this->setAttributes($this->component, [
-        'label' => $label = fake()->word(),
+        'text' => $text = fake()->word(),
     ]);
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->label)->toBe($label);
+    expect($this->component->text)->toBe($text);
 
-    expect('<x-label :$label />')->render(compact('label'))->toContain($label);
+    expect('<x-label :$text />')->render(compact('text'))->toContain($text);
 });
