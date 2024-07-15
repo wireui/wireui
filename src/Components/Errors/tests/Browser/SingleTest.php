@@ -13,6 +13,8 @@ class SingleTest extends BrowserTestCase
     {
         Livewire::test(new class() extends Component
         {
+            public bool $validation = true;
+
             public function mount(): void
             {
                 $this->addError('test', 'test error');
@@ -20,14 +22,14 @@ class SingleTest extends BrowserTestCase
 
             public function resetError(): void
             {
-                $this->resetValidation('test');
+                $this->validation = false;
             }
 
             public function render(): string
             {
                 return <<<'BLADE'
                 <div>
-                    <x-error name="test" />
+                    <x-error name="test" :validation="$validation" />
                 </div>
                 BLADE;
             }
