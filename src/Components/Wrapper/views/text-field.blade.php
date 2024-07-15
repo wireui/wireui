@@ -24,21 +24,23 @@
             name="form.wrapper.header"
         >
             @if ($label)
-                <x-wireui-wrapper::form.label
+                <x-dynamic-component
+                    :component="WireUi::component('label')"
                     :attributes="WireUi::extractAttributes($label)"
                     :for="$id"
                 >
                     {{ $label }}
-                </x-wireui-wrapper::form.label>
+                </x-dynamic-component>
             @endif
 
             @if ($corner)
-                <x-wireui-wrapper::form.label
+                <x-dynamic-component
+                    :component="WireUi::component('label')"
                     :attributes="WireUi::extractAttributes($corner)"
                     :for="$id"
                 >
                     {{ $corner }}
-                </x-wireui-wrapper::form.label>
+                </x-dynamic-component>
             @endif
         </div>
     @endif
@@ -146,19 +148,23 @@
     </label>
 
     @if ($description && !$invalidated)
-        <x-wireui-wrapper::form.description
-            class="mt-2"
+        <x-dynamic-component
+            :component="WireUi::component('description')"
             :for="$id"
+            class="mt-2"
             name="form.wrapper.description"
         >
             {{ $description }}
-        </x-wireui-wrapper::form.description>
+        </x-dynamic-component>
     @elseif (!$errorless && $invalidated)
-        <x-wireui-wrapper::form.error
-            class="mt-2"
+        <x-dynamic-component
+            :component="WireUi::component('error')"
             :for="$id"
-            :message="$errors->first($name)"
-        />
+            class="mt-2"
+            :name="$name"
+        >
+            {{ $error }}
+        </x-dynamic-component>
     @endif
 
     @isset($after)

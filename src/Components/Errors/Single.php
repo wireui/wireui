@@ -18,8 +18,8 @@ class Single extends WireUiComponent
 
     protected function processed(): void
     {
-        if (filled($this->name)) {
-            $this->message ??= $this->errors()->first($this->name);
+        if (filled($this->name) && is_null($this->message)) {
+            $this->message = $this->errors()->first($this->name);
         }
 
         if (filled($this->name) && is_null($this->invalidated)) {

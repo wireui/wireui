@@ -1,7 +1,7 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class', 'group-invalidated'])"
+    :config="$config"
+    :attributes="$wrapper"
 >
     @include('wireui-wrapper::components.slots')
 

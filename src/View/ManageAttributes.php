@@ -16,19 +16,20 @@ trait ManageAttributes
     private array $smartAttributes = [];
 
     private const METHODS = [
+        'setupForm',
+        'setupVariant',
         'setupSize',
         'setupProps',
         'setupButton',
         'setupRounded',
         'setupSpinner',
-        'setupVariant',
         'setupColor',
         'setupStateColor',
     ];
 
     private function setConfig(): void
     {
-        $this->config = WireUi::components()->resolveByAlias($this->componentName);
+        $this->config ??= WireUi::components()->resolveByAlias($this->componentName);
     }
 
     private function runWireUiComponent(array $data): array
@@ -49,7 +50,13 @@ trait ManageAttributes
 
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
-        return tap($data, fn (array &$data) => $this->call('finished', $data));
+        return tap($data, function (array &$data) {
+            $this->call('finished', $data);
+
+            $data['config'] = $this->config;
+
+            $data['attrs'] = $data['attributes'];
+        });
     }
 
     private function call(string $function, array &$data): void
