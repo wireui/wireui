@@ -9,8 +9,6 @@ trait HasSetupForm
         $this->injectModel();
 
         $this->mergeAttributes($data);
-
-        $data['wrapper'] = clone $this->attributes;
     }
 
     private function formAttributes(): array

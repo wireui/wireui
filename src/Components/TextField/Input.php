@@ -3,12 +3,12 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Traits\Components\HasSetupWrapper;
 use WireUi\View\WireUiComponent;
 
 class Input extends WireUiComponent
 {
-    use HasSetupForm;
+    use HasSetupWrapper;
 
     protected function blade(): View
     {

@@ -17,6 +17,7 @@ trait ManageAttributes
 
     private const METHODS = [
         'setupForm',
+        'setupWrapper',
         'setupVariant',
         'setupSize',
         'setupProps',
@@ -53,9 +54,7 @@ trait ManageAttributes
         return tap($data, function (array &$data) {
             $this->call('finished', $data);
 
-            $data['config'] = $this->config;
-
-            $data['attrs'] = $data['attributes'];
+            $this->call('finishWrapper', $data);
         });
     }
 
