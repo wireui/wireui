@@ -25,6 +25,6 @@
         x-model="input"
         x-ref="input"
         x-on:blur="onBlur"
-        :attributes="$attrs->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
+        :attributes="$attrs->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled', 'id'])"
     />
 </x-dynamic-component>
