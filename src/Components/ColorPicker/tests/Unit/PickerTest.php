@@ -11,13 +11,13 @@ beforeEach(function () {
 test('it should have array properties', function () {
     $packs = $this->invokeProperty($this->component, 'packs');
 
-    expect($packs)->toBe(['shadow']);
+    expect($packs)->toBe([]);
 
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
+        'label' => null,
         'colors' => [],
-        'shadowless' => false,
         'right-icon' => 'swatch',
         'color-name-as-value' => false,
     ]);
@@ -29,20 +29,19 @@ test('it should have properties in component', function () {
     expect($this->component)->toHaveProperties([
         // Props
         'colors',
-        'shadowless',
         'rightIcon',
         'colorNameAsValue',
         // Packs
         'color',
-        'shadow',
         'rounded',
         'squared',
         'colorClasses',
-        'shadowClasses',
         'roundedClasses',
     ]);
 
-    expect($this->component->shadowless)->toBeFalse();
+    expect($this->component->colors)->toBe([]);
+    expect($this->component->rightIcon)->toBe('swatch');
+    expect($this->component->colorNameAsValue)->toBeFalse();
 });
 
 test('it can be instantiated with default parameters', function () {

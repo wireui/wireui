@@ -5,7 +5,7 @@ namespace WireUi\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use WireUi\Facades\WireUi;
-use WireUi\Support\{ComponentPack};
+use WireUi\Support\ComponentPack;
 
 trait ManageAttributes
 {

@@ -1,7 +1,8 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attributes->only(['wire:key', 'class'])"
+    x-ref="container"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_color_picker"
     :x-props="WireUi::toJs([
         'colorNameAsValue' => $colorNameAsValue,
@@ -9,7 +10,6 @@
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'alpineModel'      => WireUi::alpineModel($attributes),
     ])"
-    x-ref="container"
 >
     @include('wireui-wrapper::components.slots', [
         'except' => ['prefix', 'append']
