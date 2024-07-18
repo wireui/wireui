@@ -4,28 +4,22 @@ namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Components\Select\Traits\CheckOptions;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupWrapper;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
 {
     use CheckOptions;
-    use HasSetupColor;
-    use HasSetupRounded;
-    use IsFormComponent;
-
-    protected array $packs = ['shadow'];
+    use HasSetupWrapper;
 
     protected array $props = [
+        'label' => null,
         'options' => null,
         'template' => null,
         'clearable' => true,
         'async-data' => null,
         'right-icon' => 'chevron-up-down',
         'searchable' => true,
-        'shadowless' => false,
         'multiselect' => false,
         'placeholder' => null,
         'always-fetch' => false,

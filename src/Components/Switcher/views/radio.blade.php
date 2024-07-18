@@ -1,7 +1,7 @@
 <x-dynamic-component
     :component="WireUi::component('switcher')"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key'])"
+    :config="$config"
+    :attributes="$wrapper"
 >
     @include('wireui-wrapper::components.slots')
 

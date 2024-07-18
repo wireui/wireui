@@ -1,11 +1,11 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
     x-ref="container"
-    :data="$wrapperData"
-    :attributes="$attrs->class([
+    :config="$config"
+    x-data="wireui_select"
+    :attributes="$wrapper->class([
         'cursor-pointer' => !$disabled && !$readonly,
     ])"
-    x-data="wireui_select"
     :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,

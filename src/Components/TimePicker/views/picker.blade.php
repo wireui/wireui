@@ -1,5 +1,8 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
+    x-ref="container"
+    :config="$config"
+    :attributes="$wrapper"
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
         'militaryTime'   => $militaryTime,
@@ -9,9 +12,6 @@
         'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'alpineModel'    => WireUi::alpineModel($attributes),
     ])"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    x-ref="container"
 >
     @include('wireui-wrapper::components.slots')
 
