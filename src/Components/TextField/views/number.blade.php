@@ -1,8 +1,7 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :right-icon="$rightIcon"
-    :attributes="$attrs->only(['wire:key', 'class'])"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_inputs_number"
     :x-props="WireUi::toJs([
         'disabled' => $disabled,

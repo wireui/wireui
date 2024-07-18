@@ -1,7 +1,7 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_inputs_maskable"
     :x-props="WireUi::toJs([
         'emitFormatted' => $emitFormatted,

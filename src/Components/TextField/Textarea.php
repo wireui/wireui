@@ -3,23 +3,16 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupWrapper;
 use WireUi\View\WireUiComponent;
 
 class Textarea extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use IsFormComponent;
-
-    protected array $packs = ['shadow'];
+    use HasSetupWrapper;
 
     protected array $props = [
         'cols' => 'auto',
         'rows' => 4,
-        'shadowless' => false,
     ];
 
     protected function except(): array

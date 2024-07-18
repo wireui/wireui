@@ -1,9 +1,9 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    :with-error-icon="false"
     padding="none"
+    :config="$config"
+    :attributes="$wrapper"
+    :with-error-icon="false"
 >
     @include('wireui-wrapper::components.slots', [
         'except' => ['prepend', 'append'],
