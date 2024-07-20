@@ -2,10 +2,13 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
+
 trait InteractsWithButton
 {
     public mixed $tag = null;
 
+    #[Mount(60)]
     protected function mountButton(): void
     {
         $this->tag = $this->getTag();

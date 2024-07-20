@@ -3,11 +3,13 @@
 namespace WireUi\Traits\Components;
 
 use Illuminate\View\ComponentAttributeBag;
+use WireUi\Attributes\Mount;
 
 trait InteractsWithSpinner
 {
     private ?ComponentAttributeBag $spinnerRemove = null;
 
+    #[Mount(80)]
     protected function mountSpinner(array &$data): void
     {
         $this->spinnerRemove = new ComponentAttributeBag();

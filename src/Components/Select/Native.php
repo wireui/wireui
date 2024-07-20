@@ -3,6 +3,7 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Components\Select\Traits\CheckOptions;
 use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithRounded;
@@ -33,6 +34,7 @@ class Native extends WireUiComponent
         return ['type', 'placeholder'];
     }
 
+    #[Process()]
     protected function process(): void
     {
         $this->serializeOptions();

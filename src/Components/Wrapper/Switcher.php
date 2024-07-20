@@ -3,6 +3,7 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\Traits\Components\InteractsWithForm;
 use WireUi\View\WireUiComponent;
@@ -28,6 +29,7 @@ class Switcher extends WireUiComponent
         $this->config = $config;
     }
 
+    #[Process()]
     protected function process(): void
     {
         if (filled($this->name) && is_null($this->invalidated)) {

@@ -3,6 +3,7 @@
 namespace WireUi\Traits\Components;
 
 use Illuminate\Support\Arr;
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
 trait InteractsWithVariant
@@ -16,6 +17,7 @@ trait InteractsWithVariant
         $this->variantResolve = $class;
     }
 
+    #[Mount(30)]
     protected function mountVariant(): void
     {
         $variants = config("wireui.{$this->config}.packs.variants");

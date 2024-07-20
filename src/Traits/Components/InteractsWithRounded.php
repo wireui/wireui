@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
 trait InteractsWithRounded
@@ -19,6 +20,7 @@ trait InteractsWithRounded
         $this->roundedResolve = $class;
     }
 
+    #[Mount(70)]
     protected function mountRounded(): void
     {
         $rounders = config("wireui.{$this->config}.packs.rounders");

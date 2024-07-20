@@ -3,6 +3,7 @@
 namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithRounded;
 use WireUi\Traits\Components\InteractsWithVariant;
@@ -23,6 +24,7 @@ class Index extends WireUiComponent
         'shadowless' => false,
     ];
 
+    #[Process()]
     protected function process(): void
     {
         $this->icon ??= data_get($this->colorClasses, 'icon', 'bell');

@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
@@ -18,6 +19,7 @@ trait InteractsWithColor
         $this->colorResolve = $class;
     }
 
+    #[Mount(90)]
     protected function mountColor(): void
     {
         $colors = config($this->getColorConfigName());

@@ -3,6 +3,7 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Components\Select\Traits\CheckOptions;
 use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
@@ -39,6 +40,7 @@ class Base extends WireUiComponent
         return ['label'];
     }
 
+    #[Process()]
     protected function process(): void
     {
         $this->serializeOptions();

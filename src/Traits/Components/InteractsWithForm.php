@@ -2,8 +2,11 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
+
 trait InteractsWithForm
 {
+    #[Mount(10)]
     protected function mountForm(array &$data): void
     {
         $this->injectModel();

@@ -3,6 +3,7 @@
 namespace WireUi\View;
 
 use Illuminate\Support\Str;
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
 trait ManageProps
@@ -11,7 +12,8 @@ trait ManageProps
 
     protected array $props = [];
 
-    protected function setupProps(array $data): void
+    #[Mount(50)]
+    protected function mountProps(array $data): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);

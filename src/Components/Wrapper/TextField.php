@@ -3,6 +3,7 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\Traits\Components\InteractsWithForm;
@@ -40,6 +41,7 @@ class TextField extends WireUiComponent
         $this->config = $config;
     }
 
+    #[Process()]
     protected function process(): void
     {
         if (filled($this->name) && is_null($this->invalidated)) {

@@ -2,6 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
@@ -23,6 +24,7 @@ trait InteractsWithStateColor
         $this->variantPack = $variantPack;
     }
 
+    #[Mount(100)]
     protected function mountStateColor(): void
     {
         throw_if(! $this->colorPack || ! $this->variantPack, new WireUiStateColorException($this));

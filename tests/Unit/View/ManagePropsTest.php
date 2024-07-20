@@ -56,7 +56,7 @@ test('it should setup props', function () {
 
     expect($this->component)->not->toHaveProperties(['icon', 'shadow', 'shadowClasses']);
 
-    $this->invokeMethod($this->component, 'setupProps', [$data]);
+    $this->invokeMethod($this->component, 'mountProps', [$data]);
 
     expect($this->component)->toHaveProperties(['icon', 'shadow', 'shadowClasses']);
 });

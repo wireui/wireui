@@ -4,6 +4,7 @@ namespace WireUi\Components\DatetimePicker;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithRounded;
 use WireUi\Traits\Components\InteractsWithWrapper;
@@ -50,6 +51,7 @@ class Picker extends WireUiComponent
         return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
     }
 
+    #[Process()]
     protected function process(): void
     {
         $this->timezone ??= config('app.timezone', 'UTC');
