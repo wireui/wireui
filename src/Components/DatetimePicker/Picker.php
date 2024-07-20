@@ -4,16 +4,16 @@ namespace WireUi\Components\DatetimePicker;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupWrapper;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Picker extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupWrapper;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'max' => null,

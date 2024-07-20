@@ -4,7 +4,7 @@ namespace WireUi\Traits\Components;
 
 use WireUi\Support\ComponentPack;
 
-trait HasSetupRounded
+trait InteractsWithRounded
 {
     public mixed $squared = null;
 

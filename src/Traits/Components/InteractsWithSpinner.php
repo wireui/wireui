@@ -4,7 +4,7 @@ namespace WireUi\Traits\Components;
 
 use Illuminate\View\ComponentAttributeBag;
 
-trait HasSetupSpinner
+trait InteractsWithSpinner
 {
     private ?ComponentAttributeBag $spinnerRemove = null;
 

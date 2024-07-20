@@ -5,7 +5,7 @@ namespace WireUi\Traits\Components;
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupColor
+trait InteractsWithColor
 {
     public mixed $color = null;
 

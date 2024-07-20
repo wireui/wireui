@@ -7,7 +7,7 @@ use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
 
-trait HasSetupStateColor
+trait InteractsWithStateColor
 {
     private ?ComponentPack $colorPack = null;
 

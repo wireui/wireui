@@ -4,7 +4,7 @@ namespace WireUi\Traits\Components;
 
 use WireUi\Support\ComponentPack;
 
-trait HasSetupSize
+trait InteractsWithSize
 {
     public mixed $size = null;
 

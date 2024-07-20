@@ -3,14 +3,14 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithForm;
 use WireUi\View\WireUiComponent;
 
 class Switcher extends WireUiComponent
 {
-    use HasSetupForm;
     use InteractsWithErrors;
+    use InteractsWithForm;
 
     protected array $props = [
         'error' => null,

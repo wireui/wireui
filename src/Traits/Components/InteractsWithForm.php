@@ -2,7 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupForm
+trait InteractsWithForm
 {
     protected function setupForm(array &$data): void
     {

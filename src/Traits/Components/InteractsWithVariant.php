@@ -5,7 +5,7 @@ namespace WireUi\Traits\Components;
 use Illuminate\Support\Arr;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupVariant
+trait InteractsWithVariant
 {
     public mixed $variant = null;
 

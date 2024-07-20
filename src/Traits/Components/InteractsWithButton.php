@@ -2,7 +2,7 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupButton
+trait InteractsWithButton
 {
     public mixed $tag = null;
 

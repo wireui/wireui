@@ -4,12 +4,12 @@ namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Exceptions\WireUiMaskableException;
-use WireUi\Traits\Components\HasSetupWrapper;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Maskable extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'mask' => null,

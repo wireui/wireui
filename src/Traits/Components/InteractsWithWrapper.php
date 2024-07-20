@@ -2,9 +2,9 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupWrapper
+trait InteractsWithWrapper
 {
-    use HasSetupForm;
+    use InteractsWithForm;
 
     protected function except(): array
     {

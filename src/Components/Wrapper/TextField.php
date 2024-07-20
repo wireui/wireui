@@ -3,18 +3,18 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupForm;
-use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithForm;
+use WireUi\Traits\Components\InteractsWithRounded;
 use WireUi\View\WireUiComponent;
 
 class TextField extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupForm;
-    use HasSetupRounded;
+    use InteractsWithColor;
     use InteractsWithErrors;
+    use InteractsWithForm;
+    use InteractsWithRounded;
 
     protected array $packs = ['shadow'];
 

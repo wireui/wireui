@@ -3,16 +3,16 @@
 namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupVariant;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithVariant;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupVariant;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithVariant;
 
     protected array $packs = ['shadow', 'padding'];
 
