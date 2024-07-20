@@ -4,7 +4,7 @@ namespace WireUi\Attributes;
 
 use Attribute;
 
-#[Attribute]
+#[Attribute(Attribute::TARGET_METHOD)]
 class Process
 {
     public readonly int $priority;

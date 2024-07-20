@@ -24,11 +24,15 @@ trait InteractsWithVariables
     {
         $this->setConfig();
 
-        dd($this, $data);
+        $this->bootAttributes();
 
-        // $this->call('mount', $data);
+        foreach ($this->mount as $function) {
+            $this->{$function}($data);
+        }
 
-        // $this->call('process', $data);
+        foreach ($this->process as $function) {
+            $this->{$function}($data);
+        }
 
         foreach ($this->setVariables as $attribute) {
             $data[$attribute] = $this->{$attribute};
@@ -37,7 +41,9 @@ trait InteractsWithVariables
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
         return tap($data, function (array &$data) {
-            // $this->call('finished', $data);
+            foreach ($this->finish as $function) {
+                $this->{$function}($data);
+            }
         });
     }
 
