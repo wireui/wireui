@@ -23,14 +23,11 @@
     </x-slot:prefix>
 
     <x-wireui-wrapper::element
-        x-model.fill="selected.value"
-        x-on:input="setColor($event.target.value)"
-        x-on:blur="onBlur($event.target.value)"
         x-ref="input"
-        :attributes="$attrs
-            ->whereDoesntStartWith('wire:model')
-            ->except(['wire:key', 'x-data', 'class'])
-        "
+        :attributes="$input"
+        x-model.fill="selected.value"
+        x-on:blur="onBlur($event.target.value)"
+        x-on:input="setColor($event.target.value)"
     />
 
     <x-slot:append>

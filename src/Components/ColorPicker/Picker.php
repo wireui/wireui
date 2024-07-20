@@ -21,6 +21,11 @@ class Picker extends WireUiComponent
         'color-name-as-value' => false,
     ];
 
+    protected function exclude(): array
+    {
+        return ['type', 'wire:model'];
+    }
+
     public function getColors(): array
     {
         return collect($this->colors)->map(function ($color, $index) {
