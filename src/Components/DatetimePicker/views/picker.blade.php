@@ -45,8 +45,8 @@
             'parseFormat'   => $parseFormat,
             'displayFormat' => $displayFormat,
         ],
-        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attrs),
-        'alpineModel' => WireUi::alpineModel($attrs),
+        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel' => WireUi::alpineModel($attributes),
     ])"
     x-bind:class="{
         'ring-2 ring-primary-600': positionable.isOpen(),
@@ -58,13 +58,12 @@
     tabindex="0"
 >
     <div class="hidden" hidden>
-        <x-wireui-wrapper::element
+        <x-wireui-wrapper::hidden
             :id="$id"
             :name="$name"
             :value="$value"
-            x-bind:value="selectedRawValue"
             x-ref="rawInput"
-            type="hidden"
+            x-bind:value="selectedRawValue"
         />
     </div>
 
@@ -96,12 +95,12 @@
     @endif
 
     <x-wireui-wrapper::element
-        class="cursor-pointer"
-        x-show="selectedDates.length === 0"
-        x-bind:value="display"
-        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
-        autocomplete="off"
         readonly
+        autocomplete="off"
+        :attributes="$input"
+        class="cursor-pointer"
+        x-bind:value="display"
+        x-show="selectedDates.length === 0"
     />
 
     @if (!$readonly && !$disabled)

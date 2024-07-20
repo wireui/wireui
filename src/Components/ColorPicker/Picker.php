@@ -23,7 +23,7 @@ class Picker extends WireUiComponent
 
     protected function exclude(): array
     {
-        return ['type', 'wire:model'];
+        return ['type', 'x-model', 'wire:model'];
     }
 
     public function getColors(): array

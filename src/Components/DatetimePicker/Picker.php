@@ -45,6 +45,11 @@ class Picker extends WireUiComponent
         'requires-confirmation' => false,
     ];
 
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
+
     protected function processed(): void
     {
         $this->timezone ??= config('app.timezone', 'UTC');
