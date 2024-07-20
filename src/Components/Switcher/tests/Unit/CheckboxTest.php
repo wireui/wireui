@@ -11,24 +11,10 @@ beforeEach(function () {
     $this->component = (new Checkbox())->withName('checkbox');
 });
 
-test('it should have array properties', function () {
-    $props = $this->invokeProperty($this->component, 'props');
-
-    expect($props)->toBe([
-        'label' => null,
-        'left-label' => null,
-        'description' => null,
-    ]);
-});
-
 test('it should have properties in component', function () {
     $this->runWireUiComponent($this->component);
 
     expect($this->component)->toHaveProperties([
-        // Props
-        'label',
-        'leftLabel',
-        'description',
         // Packs
         'size',
         'color',
@@ -48,9 +34,6 @@ test('it should render label and description in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->label)->toBe($label);
-    expect($this->component->description)->toBe($description);
-
     expect('<x-checkbox :$label :$description />')
         ->render(compact('label', 'description'))
         ->toContain($label, $description);
@@ -62,8 +45,6 @@ test('it should render left label in component', function () {
     ]);
 
     $this->runWireUiComponent($this->component);
-
-    expect($this->component->leftLabel)->toBe($leftLabel);
 
     expect('<x-checkbox :$leftLabel />')
         ->render(compact('leftLabel'))

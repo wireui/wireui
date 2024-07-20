@@ -60,7 +60,7 @@ trait HasSetupStateColor
         if ($variant) {
             $colors = config($this->getColorConfigName($variant));
 
-            $colorPack = $colors ? resolve($colors) : resolve($this->variantPack->get($variant));
+            $colorPack = resolve($colors ?? data_get($this->variantPack->get($variant), 'color'));
         }
 
         if (is_bool($modifierColor) || ! in_array($modifierColor, $colorPack->keys())) {

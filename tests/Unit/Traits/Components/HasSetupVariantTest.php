@@ -22,5 +22,5 @@ test('it should setup variant', function () {
 
     expect($this->component->variant)->toBe($variant);
     expect($this->invokeProperty($this->component, 'variantPack'))->toBeInstanceOf(Variant::class);
-    expect($this->invokeProperty($this->component, 'colorResolve'))->toBe(data_get($pack, 'class'));
+    expect($this->invokeProperty($this->component, 'colorResolve'))->toBe(data_get($pack, 'class.color'));
 });

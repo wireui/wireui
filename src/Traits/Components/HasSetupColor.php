@@ -23,7 +23,7 @@ trait HasSetupColor
         $colors = config($this->getColorConfigName());
 
         /** @var ComponentPack $colorPack */
-        $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
+        $colorPack = resolve($colors ?? $this->colorResolve);
 
         $this->color = $this->getDataModifier('color', $colorPack);
 

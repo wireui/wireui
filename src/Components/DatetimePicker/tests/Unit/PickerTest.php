@@ -15,13 +15,14 @@ beforeEach(function () {
 test('it should have array properties', function () {
     $packs = $this->invokeProperty($this->component, 'packs');
 
-    expect($packs)->toBe(['shadow']);
+    expect($packs)->toBe([]);
 
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
         'max' => null,
         'min' => null,
+        'label' => null,
         'interval' => 10,
         'max-time' => 24,
         'min-time' => 0,
@@ -29,7 +30,6 @@ test('it should have array properties', function () {
         'timezone' => null,
         'clearable' => true,
         'right-icon' => 'calendar',
-        'shadowless' => false,
         'time-format' => 12,
         'multiple-max' => 0,
         'parse-format' => null,
@@ -64,7 +64,6 @@ test('it should have properties in component', function () {
         'timezone',
         'clearable',
         'rightIcon',
-        'shadowless',
         'timeFormat',
         'multipleMax',
         'parseFormat',
@@ -84,15 +83,13 @@ test('it should have properties in component', function () {
         'requiresConfirmation',
         // Packs
         'color',
-        'shadow',
         'rounded',
         'squared',
         'colorClasses',
-        'shadowClasses',
         'roundedClasses',
     ]);
 
-    expect($this->component->shadowless)->toBeFalse();
+    expect($this->component->rightIcon)->toBe('calendar');
 });
 
 test('it should set random color in component', function () {
@@ -123,13 +120,9 @@ test('it should set random shadow in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = data_get($pack, 'class');
-
-    expect($this->component->shadow)->toBe($shadow);
-    expect($this->component->shadowless)->toBeFalse();
-    expect($this->component->shadowClasses)->toBe($class);
-
-    expect('<x-datetime-picker :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-datetime-picker :$shadow />')
+        ->render(compact('shadow'))
+        ->toContain(data_get($pack, 'class'));
 });
 
 test('it should set random rounded in component', function () {

@@ -3,7 +3,6 @@
 namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Arr;
 use WireUi\Traits\Components\HasSetupColor;
 use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\HasSetupVariant;
@@ -26,7 +25,7 @@ class Index extends WireUiComponent
 
     protected function processed(): void
     {
-        $this->icon ??= Arr::get($this->colorClasses, 'icon', 'bell');
+        $this->icon ??= data_get($this->colorClasses, 'icon', 'bell');
     }
 
     public function blade(): View

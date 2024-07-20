@@ -16,11 +16,8 @@ test('it should have array properties', function () {
 
     expect($props)->toBe([
         'icon' => null,
-        'label' => null,
         'iconless' => false,
-        'left-label' => null,
         'right-icon' => null,
-        'description' => null,
     ]);
 });
 
@@ -30,11 +27,8 @@ test('it should have properties in component', function () {
     expect($this->component)->toHaveProperties([
         // Props
         'icon',
-        'label',
         'iconless',
-        'leftLabel',
         'rightIcon',
-        'description',
         // Packs
         'size',
         'color',
@@ -54,9 +48,6 @@ test('it should render label and description in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    expect($this->component->label)->toBe($label);
-    expect($this->component->description)->toBe($description);
-
     expect('<x-toggle :$label :$description />')
         ->render(compact('label', 'description'))
         ->toContain($label, $description);
@@ -68,8 +59,6 @@ test('it should render left label in component', function () {
     ]);
 
     $this->runWireUiComponent($this->component);
-
-    expect($this->component->leftLabel)->toBe($leftLabel);
 
     expect('<x-toggle :$leftLabel />')
         ->render(compact('leftLabel'))

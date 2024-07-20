@@ -17,5 +17,5 @@
         @endforeach
     </x-dynamic-component>
 @else
-    <div class="hidden"></div>
+    <div class="hidden" hidden></div>
 @endif

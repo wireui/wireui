@@ -2,25 +2,45 @@
 
 namespace WireUi\Traits\Components;
 
+use Illuminate\Support\Arr;
 use WireUi\Support\ComponentPack;
 
 trait HasSetupVariant
 {
     public mixed $variant = null;
 
+    private mixed $variantResolve = null;
+
+    protected function setVariantResolve(string $class): void
+    {
+        $this->variantResolve = $class;
+    }
+
     protected function setupVariant(): void
     {
+        $variants = config("wireui.{$this->config}.packs.variants");
+
         /** @var ComponentPack $variantPack */
-        $variantPack = resolve(config("wireui.{$this->config}.packs.variants"));
+        $variantPack = resolve($variants ?? $this->variantResolve);
 
         $this->variant = $this->getDataModifier('variant', $variantPack);
 
-        if (method_exists($this, 'setColorResolve')) {
-            $this->setColorResolve($variantPack->get($this->variant));
-        }
+        $variantOptions = $variantPack->get($this->variant);
 
         if (method_exists($this, 'setVariantPack')) {
             $this->setVariantPack($variantPack);
+        }
+
+        if (method_exists($this, 'setSizeResolve') && Arr::has($variantOptions, 'size')) {
+            $this->setSizeResolve(data_get($variantOptions, 'size'));
+        }
+
+        if (method_exists($this, 'setColorResolve') && Arr::has($variantOptions, 'color')) {
+            $this->setColorResolve(data_get($variantOptions, 'color'));
+        }
+
+        if (method_exists($this, 'setRoundedResolve') && Arr::has($variantOptions, 'rounded')) {
+            $this->setRoundedResolve(data_get($variantOptions, 'rounded'));
         }
 
         $this->setVariables(['variant']);

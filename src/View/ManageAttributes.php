@@ -5,7 +5,7 @@ namespace WireUi\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use WireUi\Facades\WireUi;
-use WireUi\Support\{ComponentPack};
+use WireUi\Support\ComponentPack;
 
 trait ManageAttributes
 {
@@ -16,19 +16,21 @@ trait ManageAttributes
     private array $smartAttributes = [];
 
     private const METHODS = [
+        'setupForm',
+        'setupWrapper',
+        'setupVariant',
         'setupSize',
         'setupProps',
         'setupButton',
         'setupRounded',
         'setupSpinner',
-        'setupVariant',
         'setupColor',
         'setupStateColor',
     ];
 
     private function setConfig(): void
     {
-        $this->config = WireUi::components()->resolveByAlias($this->componentName);
+        $this->config ??= WireUi::components()->resolveByAlias($this->componentName);
     }
 
     private function runWireUiComponent(array $data): array
@@ -49,7 +51,11 @@ trait ManageAttributes
 
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
-        return tap($data, fn (array &$data) => $this->call('finished', $data));
+        return tap($data, function (array &$data) {
+            $this->call('finished', $data);
+
+            $this->call('finishWrapper', $data);
+        });
     }
 
     private function call(string $function, array &$data): void

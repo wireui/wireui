@@ -12,10 +12,19 @@ trait HasSetupRounded
 
     public mixed $roundedClasses = null;
 
+    private mixed $roundedResolve = null;
+
+    protected function setRoundedResolve(string $class): void
+    {
+        $this->roundedResolve = $class;
+    }
+
     protected function setupRounded(): void
     {
+        $rounders = config("wireui.{$this->config}.packs.rounders");
+
         /** @var ComponentPack $roundedPack */
-        $roundedPack = resolve(config("wireui.{$this->config}.packs.rounders"));
+        $roundedPack = resolve($rounders ?? $this->roundedResolve);
 
         $this->squared = $this->attributes->get('squared', false);
 

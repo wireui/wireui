@@ -1,4 +1,5 @@
 <div
+    x-data="wireui_time_selector"
     {{ $attributes->class([
         'relative w-full h-72 select-none overflow-hidden',
         'flex items-center text-center text-gray-400 px-4',
@@ -7,7 +8,6 @@
         $roundedClasses                                  => !$squared,
         $shadowClasses                                   => !$shadowless,
     ])->whereDoesntStartWith(['wire:model', 'x-model']) }}
-    x-data="wireui_time_selector"
     x-props="{{ WireUi::toJs([
         'militaryTime'   => $militaryTime,
         'withoutSeconds' => $withoutSeconds,
@@ -18,10 +18,10 @@
     ]) }}"
 >
     <input
-        {{ $attributes->whereDoesntStartWith('wire:model') }}
-        x-model.fill="timeInput"
         x-ref="input"
         type="hidden"
+        x-model.fill="timeInput"
+        {{ $attributes->whereDoesntStartWith('wire:model') }}
     />
 
     <div @class([
@@ -40,7 +40,7 @@
     ></ul>
 
     <ul
-        class="w-full h-full flex flex-col justify-center"
+        class="flex flex-col justify-center w-full h-full"
         style="top: 14px"
         x-ref="period"
         x-show="!config.military"
