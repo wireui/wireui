@@ -1,7 +1,8 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attributes->only(['wire:key', 'class'])"
+    x-ref="container"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_color_picker"
     :x-props="WireUi::toJs([
         'colorNameAsValue' => $colorNameAsValue,
@@ -9,7 +10,6 @@
         'wireModel'        => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'alpineModel'      => WireUi::alpineModel($attributes),
     ])"
-    x-ref="container"
 >
     @include('wireui-wrapper::components.slots', [
         'except' => ['prefix', 'append']
@@ -23,14 +23,11 @@
     </x-slot:prefix>
 
     <x-wireui-wrapper::element
-        x-model.fill="selected.value"
-        x-on:input="setColor($event.target.value)"
-        x-on:blur="onBlur($event.target.value)"
         x-ref="input"
-        :attributes="$attrs
-            ->whereDoesntStartWith('wire:model')
-            ->except(['wire:key', 'x-data', 'class'])
-        "
+        :attributes="$input"
+        x-model.fill="selected.value"
+        x-on:blur="onBlur($event.target.value)"
+        x-on:input="setColor($event.target.value)"
     />
 
     <x-slot:append>
@@ -38,7 +35,7 @@
             :component="WireUi::component('button')"
             class="h-full"
             :color="$color ?? 'primary'"
-            :rounded="Arr::get($roundedClasses, 'append', '')"
+            :rounded="data_get($roundedClasses, 'append', '')"
             use-validation-colors
             flat
             x-on:click="positionable.toggle()"

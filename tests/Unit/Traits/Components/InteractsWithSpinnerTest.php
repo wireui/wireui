@@ -18,7 +18,7 @@ test('it should setup simple spinner', function () {
 
     $data = $this->component->data();
 
-    $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
+    $this->invokeMethod($this->component, 'mountSpinner', [&$data]);
 
     $spinner = data_get($data, 'spinner');
     $attributes = data_get($data, 'attributes');
@@ -43,7 +43,7 @@ test('it should setup simple spinner with delay', function () {
 
     $data = $this->component->data();
 
-    $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
+    $this->invokeMethod($this->component, 'mountSpinner', [&$data]);
 
     $spinner = data_get($data, 'spinner');
     $attributes = data_get($data, 'attributes');
@@ -68,7 +68,7 @@ test('it should setup spinner with target', function () {
 
     $data = $this->component->data();
 
-    $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
+    $this->invokeMethod($this->component, 'mountSpinner', [&$data]);
 
     $spinner = data_get($data, 'spinner');
     $attributes = data_get($data, 'attributes');
@@ -95,7 +95,7 @@ test('it should setup spinner with target and delay', function () {
 
     $data = $this->component->data();
 
-    $this->invokeMethod($this->component, 'setupSpinner', [&$data]);
+    $this->invokeMethod($this->component, 'mountSpinner', [&$data]);
 
     $spinner = data_get($data, 'spinner');
     $attributes = data_get($data, 'attributes');

@@ -3,16 +3,16 @@
 namespace WireUi\Components\Link;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupButton;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupSize;
+use WireUi\Traits\Components\InteractsWithButton;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithSize;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
 {
-    use HasSetupButton;
-    use HasSetupColor;
-    use HasSetupSize;
+    use InteractsWithButton;
+    use InteractsWithColor;
+    use InteractsWithSize;
 
     protected array $packs = ['underline'];
 

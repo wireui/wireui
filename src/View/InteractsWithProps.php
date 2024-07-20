@@ -2,17 +2,18 @@
 
 namespace WireUi\View;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
-trait ManageProps
+trait InteractsWithProps
 {
     protected array $packs = [];
 
     protected array $props = [];
 
-    protected function setupProps(array $data): void
+    #[Mount(50)]
+    protected function mountProps(array $data): void
     {
         foreach ($this->packs as $pack) {
             $this->managePacks($pack);
@@ -23,20 +24,20 @@ trait ManageProps
         }
     }
 
-    private function manageProps(string $key, mixed $value, array $data): void
+    private function manageProps(string $key, mixed $prop, array $data): void
     {
         $field = Str::camel($key);
 
-        $this->{$field} = Arr::get($data, $key, $this->getData($field, $value));
+        $this->{$field} = data_get($data, $key, $this->getData($field, $prop));
 
         $this->setVariables($field);
     }
 
-    private function managePacks(string $value): void
+    private function managePacks(string $pack): void
     {
-        $field = Str::camel($value);
+        $field = Str::camel($pack);
 
-        $config = Str::plural($value);
+        $config = Str::plural($pack);
 
         /** @var ComponentPack $pack */
         $pack = resolve(config("wireui.{$this->config}.packs.{$config}"));

@@ -2,12 +2,13 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Enum\Packs\Color;
 use WireUi\Exceptions\WireUiStateColorException;
 use WireUi\Support\ComponentPack;
 use WireUi\View\Attribute;
 
-trait HasSetupStateColor
+trait InteractsWithStateColor
 {
     private ?ComponentPack $colorPack = null;
 
@@ -23,7 +24,8 @@ trait HasSetupStateColor
         $this->variantPack = $variantPack;
     }
 
-    protected function setupStateColor(): void
+    #[Mount(100)]
+    protected function mountStateColor(): void
     {
         throw_if(! $this->colorPack || ! $this->variantPack, new WireUiStateColorException($this));
 
@@ -60,7 +62,7 @@ trait HasSetupStateColor
         if ($variant) {
             $colors = config($this->getColorConfigName($variant));
 
-            $colorPack = $colors ? resolve($colors) : resolve($this->variantPack->get($variant));
+            $colorPack = resolve($colors ?? data_get($this->variantPack->get($variant), 'color'));
         }
 
         if (is_bool($modifierColor) || ! in_array($modifierColor, $colorPack->keys())) {

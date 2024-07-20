@@ -3,51 +3,41 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use WireUi\Support\WrapperData;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithForm;
+use WireUi\View\WireUiComponent;
 
-class Switcher extends Component
+class Switcher extends WireUiComponent
 {
     use InteractsWithErrors;
+    use InteractsWithForm;
 
-    public function __construct(
-        ?WrapperData $data = null,
-        public ?string $id = null,
-        public ?string $name = null,
-        public ?string $label = null,
-        public ?bool $disabled = null,
-        public ?bool $readonly = null,
-        public ?bool $errorless = null,
-        public ?bool $invalidated = null,
-        public ?string $leftLabel = null,
-        public ?string $description = null,
-        public ?bool $withValidationColors = null,
-    ) {
-        if ($data) {
-            $this->fill($data->toArray());
-        }
+    protected array $props = [
+        'error' => null,
+        'label' => null,
+        'errorless' => false,
+        'left-label' => null,
+        'shadowless' => false,
+        'description' => null,
+        'invalidated' => null,
+        'with-validation-colors' => true,
+    ];
 
-        $this->fillValidation();
-    }
-
-    public function fillValidation(): void
+    public function __construct(string $config)
     {
-        if ($this->invalidated === null) {
-            $this->invalidated = $this->name && $this->errors()->has($this->name);
-        }
+        $this->config = $config;
     }
 
-    protected function fill(array $data): void
+    #[Process()]
+    protected function process(): void
     {
-        foreach ($data as $property => $value) {
-            if (property_exists($this, $property) && $this->{$property} === null) {
-                $this->{$property} = $value;
-            }
+        if (filled($this->name) && is_null($this->invalidated)) {
+            $this->invalidated = $this->errors()->has($this->name);
         }
     }
 
-    public function render(): View
+    protected function blade(): View
     {
         return view('wireui-wrapper::switcher');
     }

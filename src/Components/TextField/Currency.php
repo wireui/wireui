@@ -3,26 +3,24 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Currency extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use IsFormComponent;
-
-    protected array $packs = ['shadow'];
+    use InteractsWithWrapper;
 
     protected array $props = [
         'decimal' => '.',
         'precision' => 2,
         'thousands' => ',',
-        'shadowless' => false,
         'emit-formatted' => false,
     ];
+
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
 
     protected function blade(): View
     {

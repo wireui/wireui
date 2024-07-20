@@ -4,22 +4,22 @@ namespace WireUi\Components\DatetimePicker;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Attributes\Process;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Picker extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use IsFormComponent;
-
-    protected array $packs = ['shadow'];
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'max' => null,
         'min' => null,
+        'label' => null,
         'interval' => 10,
         'max-time' => 24,
         'min-time' => 0,
@@ -27,7 +27,6 @@ class Picker extends WireUiComponent
         'timezone' => null,
         'clearable' => true,
         'right-icon' => 'calendar',
-        'shadowless' => false,
         'time-format' => 12,
         'multiple-max' => 0, // integer
         'parse-format' => null,
@@ -47,7 +46,13 @@ class Picker extends WireUiComponent
         'requires-confirmation' => false,
     ];
 
-    protected function processed(): void
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
+
+    #[Process()]
+    protected function process(): void
     {
         $this->timezone ??= config('app.timezone', 'UTC');
 

@@ -5,6 +5,7 @@ namespace WireUi\Components\Errors;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\View\WireUiComponent;
 
@@ -17,7 +18,8 @@ class Multiple extends WireUiComponent
         'title' => null,
     ];
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         $this->initOnly();
 

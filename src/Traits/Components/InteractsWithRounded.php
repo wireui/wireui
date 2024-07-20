@@ -2,9 +2,10 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupRounded
+trait InteractsWithRounded
 {
     public mixed $squared = null;
 
@@ -12,10 +13,20 @@ trait HasSetupRounded
 
     public mixed $roundedClasses = null;
 
-    protected function setupRounded(): void
+    private mixed $roundedResolve = null;
+
+    protected function setRoundedResolve(string $class): void
     {
+        $this->roundedResolve = $class;
+    }
+
+    #[Mount(70)]
+    protected function mountRounded(): void
+    {
+        $rounders = config("wireui.{$this->config}.packs.rounders");
+
         /** @var ComponentPack $roundedPack */
-        $roundedPack = resolve(config("wireui.{$this->config}.packs.rounders"));
+        $roundedPack = resolve($rounders ?? $this->roundedResolve);
 
         $this->squared = $this->attributes->get('squared', false);
 

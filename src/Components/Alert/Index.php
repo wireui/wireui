@@ -3,17 +3,17 @@
 namespace WireUi\Components\Alert;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Arr;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupVariant;
+use WireUi\Attributes\Process;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithVariant;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupVariant;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithVariant;
 
     protected array $packs = ['shadow', 'padding'];
 
@@ -24,9 +24,10 @@ class Index extends WireUiComponent
         'shadowless' => false,
     ];
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
-        $this->icon ??= Arr::get($this->colorClasses, 'icon', 'bell');
+        $this->icon ??= data_get($this->colorClasses, 'icon', 'bell');
     }
 
     public function blade(): View

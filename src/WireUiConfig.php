@@ -379,6 +379,10 @@ class WireUiConfig
                 'class' => DatetimePicker\Picker::class,
                 'alias' => 'datetime-picker',
             ],
+            'description' => [
+                'class' => Label\Description::class,
+                'alias' => 'description',
+            ],
             'dialog' => [
                 'class' => Dialog\Index::class,
                 'alias' => 'dialog',
@@ -432,7 +436,7 @@ class WireUiConfig
                 'alias' => 'phone',
             ],
             'label' => [
-                'class' => Label\Index::class,
+                'class' => Label\Base::class,
                 'alias' => 'label',
             ],
             'link' => [

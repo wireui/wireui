@@ -1,5 +1,8 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
+    x-ref="container"
+    :config="$config"
+    :attributes="$wrapper"
     :x-data="WireUi::alpine('wireui_time_picker')"
     :x-props="WireUi::toJs([
         'militaryTime'   => $militaryTime,
@@ -9,26 +12,23 @@
         'wireModel'      => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
         'alpineModel'    => WireUi::alpineModel($attributes),
     ])"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'x-data', 'class'])"
-    x-ref="container"
 >
     @include('wireui-wrapper::components.slots')
 
-    <div class="hidden">
-        <x-wireui-wrapper::element
-            x-bind:value="value"
-            x-ref="rawInput"
+    <div class="hidden" hidden>
+        <x-wireui-wrapper::hidden
             :name="$name"
             :value="$value"
+            x-ref="rawInput"
+            x-bind:value="value"
         />
     </div>
 
     <x-wireui-wrapper::element
-        x-model="input"
         x-ref="input"
+        x-model="input"
         x-on:blur="onBlur"
-        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
+        :attributes="$input"
         x-on:keydown.arrow-up.prevent="positionable.close()"
         x-on:keydown.arrow-down.prevent="positionable.open()"
     />
@@ -51,7 +51,7 @@
             :component="WireUi::component('button')"
             class="h-full"
             :color="$color ?? 'primary'"
-            :rounded="Arr::get($roundedClasses, 'append', '')"
+            :rounded="data_get($roundedClasses, 'append', '')"
             use-validation-colors
             flat
             x-on:click="positionable.toggle()"

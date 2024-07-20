@@ -3,18 +3,18 @@
 namespace WireUi\Components\Badge;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupSize;
-use WireUi\Traits\Components\HasSetupVariant;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithSize;
+use WireUi\Traits\Components\InteractsWithVariant;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupSize;
-    use HasSetupVariant;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithSize;
+    use InteractsWithVariant;
 
     protected array $packs = ['icon-size'];
 

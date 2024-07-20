@@ -5,9 +5,9 @@ namespace WireUi\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use WireUi\Facades\WireUi;
-use WireUi\Support\{ComponentPack};
+use WireUi\Support\ComponentPack;
 
-trait ManageAttributes
+trait InteractsWithVariables
 {
     public ?string $config = null;
 
@@ -15,33 +15,24 @@ trait ManageAttributes
 
     private array $smartAttributes = [];
 
-    private const METHODS = [
-        'setupSize',
-        'setupProps',
-        'setupButton',
-        'setupRounded',
-        'setupSpinner',
-        'setupVariant',
-        'setupColor',
-        'setupStateColor',
-    ];
-
     private function setConfig(): void
     {
-        $this->config = WireUi::components()->resolveByAlias($this->componentName);
+        $this->config ??= WireUi::components()->resolveByAlias($this->componentName);
     }
 
     private function runWireUiComponent(array $data): array
     {
         $this->setConfig();
 
-        $this->call('mounted', $data);
+        $this->bootAttributes();
 
-        foreach (self::METHODS as $method) {
-            $this->call($method, $data);
+        foreach ($this->mount as $function) {
+            $this->{$function}($data);
         }
 
-        $this->call('processed', $data);
+        foreach ($this->process as $function) {
+            $this->{$function}($data);
+        }
 
         foreach ($this->setVariables as $attribute) {
             $data[$attribute] = $this->{$attribute};
@@ -49,14 +40,11 @@ trait ManageAttributes
 
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
-        return tap($data, fn (array &$data) => $this->call('finished', $data));
-    }
-
-    private function call(string $function, array &$data): void
-    {
-        if (method_exists($this, $function)) {
-            $this->{$function}($data);
-        }
+        return tap($data, function (array &$data) {
+            foreach ($this->finish as $function) {
+                $this->{$function}($data);
+            }
+        });
     }
 
     protected function getData(string $attribute, mixed $default = null): mixed

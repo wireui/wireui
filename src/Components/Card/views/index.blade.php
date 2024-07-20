@@ -1,6 +1,6 @@
 <div {{ $attributes->class([
-    Arr::get($roundedClasses, 'root', ''),
-    Arr::get($colorClasses, 'root', ''),
+    data_get($roundedClasses, 'root', ''),
+    data_get($colorClasses, 'root', ''),
     $shadowClasses => !$shadowless,
 ]) }}>
     @isset($header)
@@ -9,14 +9,14 @@
         </div>
     @elseif($title)
         <div @class([
-            Arr::get($colorClasses, 'border', '') => !$borderless,
+            data_get($colorClasses, 'border', '') => !$borderless,
             'px-4 py-2.5 flex justify-between items-center',
-            Arr::get($roundedClasses, 'header', ''),
+            data_get($roundedClasses, 'header', ''),
             'border-b' => !$borderless,
         ])>
             <div {{ WireUi::extractAttributes($title)->class([
                 'font-medium text-base whitespace-normal',
-                Arr::get($colorClasses, 'text', ''),
+                data_get($colorClasses, 'text', ''),
             ]) }}>
                 {{ $title }}
             </div>
@@ -30,7 +30,7 @@
     @endisset
 
     <div {{ WireUi::extractAttributes($slot)->class([
-        Arr::get($colorClasses, 'text', ''),
+        data_get($colorClasses, 'text', ''),
         $paddingClasses,
         'grow',
     ]) }}>
@@ -39,9 +39,9 @@
 
     @isset($footer)
         <div {{ $footer->attributes->class([
-            Arr::get($colorClasses, 'border', '') => !$borderless,
-            Arr::get($roundedClasses, 'footer', ''),
-            Arr::get($colorClasses, 'footer', ''),
+            data_get($colorClasses, 'border', '') => !$borderless,
+            data_get($roundedClasses, 'footer', ''),
+            data_get($colorClasses, 'footer', ''),
             'border-t' => !$borderless,
             'px-4 py-4 sm:px-6',
         ]) }}>

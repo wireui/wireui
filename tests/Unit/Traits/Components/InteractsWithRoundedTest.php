@@ -20,7 +20,7 @@ test('it should setup rounded', function () {
         'rounded' => true,
     ]);
 
-    $this->invokeMethod($this->component, 'setupRounded');
+    $this->invokeMethod($this->component, 'mountRounded');
 
     expect($this->component->squared)->toBeTrue();
     expect($this->component->rounded)->toBeTrue();
@@ -31,7 +31,7 @@ test('it should setup rounded', function () {
         'rounded' => true,
     ]);
 
-    $this->invokeMethod($this->component, 'setupRounded');
+    $this->invokeMethod($this->component, 'mountRounded');
 
     expect($this->component->rounded)->toBeTrue();
     expect($this->component->squared)->toBeFalse();
@@ -42,7 +42,7 @@ test('it should setup rounded', function () {
         'rounded' => $rounded = RoundedPack::SM,
     ]);
 
-    $this->invokeMethod($this->component, 'setupRounded');
+    $this->invokeMethod($this->component, 'mountRounded');
 
     expect($this->component->squared)->toBeFalse();
     expect($this->component->rounded)->toBe($rounded);
@@ -53,7 +53,7 @@ test('it should setup rounded', function () {
         'rounded' => $rounded = 'rounded-md',
     ]);
 
-    $this->invokeMethod($this->component, 'setupRounded');
+    $this->invokeMethod($this->component, 'mountRounded');
 
     expect($this->component->squared)->toBeFalse();
     expect($this->component->rounded)->toBe($rounded);

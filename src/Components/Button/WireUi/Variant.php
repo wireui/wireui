@@ -19,10 +19,18 @@ class Variant extends ComponentPack
     public function all(): array
     {
         return [
-            Packs\Variant::FLAT => Flat::class,
-            Packs\Variant::LIGHT => Light::class,
-            Packs\Variant::OUTLINE => Outline::class,
-            Packs\Variant::SOLID => Solid::class,
+            Packs\Variant::FLAT => [
+                'color' => Flat::class,
+            ],
+            Packs\Variant::LIGHT => [
+                'color' => Light::class,
+            ],
+            Packs\Variant::OUTLINE => [
+                'color' => Outline::class,
+            ],
+            Packs\Variant::SOLID => [
+                'color' => Solid::class,
+            ],
         ];
     }
 }

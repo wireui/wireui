@@ -2,10 +2,11 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Enum\Packs\Color;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupColor
+trait InteractsWithColor
 {
     public mixed $color = null;
 
@@ -18,12 +19,13 @@ trait HasSetupColor
         $this->colorResolve = $class;
     }
 
-    protected function setupColor(): void
+    #[Mount(90)]
+    protected function mountColor(): void
     {
         $colors = config($this->getColorConfigName());
 
         /** @var ComponentPack $colorPack */
-        $colorPack = $colors ? resolve($colors) : resolve($this->colorResolve);
+        $colorPack = resolve($colors ?? $this->colorResolve);
 
         $this->color = $this->getDataModifier('color', $colorPack);
 

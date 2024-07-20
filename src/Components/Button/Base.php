@@ -3,24 +3,24 @@
 namespace WireUi\Components\Button;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupButton;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupSize;
-use WireUi\Traits\Components\HasSetupSpinner;
-use WireUi\Traits\Components\HasSetupStateColor;
-use WireUi\Traits\Components\HasSetupVariant;
+use WireUi\Traits\Components\InteractsWithButton;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithSize;
+use WireUi\Traits\Components\InteractsWithSpinner;
+use WireUi\Traits\Components\InteractsWithStateColor;
+use WireUi\Traits\Components\InteractsWithVariant;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
 {
-    use HasSetupButton;
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupSize;
-    use HasSetupSpinner;
-    use HasSetupStateColor;
-    use HasSetupVariant;
+    use InteractsWithButton;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithSize;
+    use InteractsWithSpinner;
+    use InteractsWithStateColor;
+    use InteractsWithVariant;
 
     protected array $packs = ['icon-size'];
 

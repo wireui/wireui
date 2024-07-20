@@ -14,14 +14,13 @@ beforeEach(function () {
 test('it should have array properties', function () {
     $packs = $this->invokeProperty($this->component, 'packs');
 
-    expect($packs)->toBe(['shadow']);
+    expect($packs)->toBe([]);
 
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
         'cols' => 'auto',
         'rows' => 4,
-        'shadowless' => false,
     ]);
 });
 
@@ -32,20 +31,10 @@ test('it should have properties in component', function () {
         // Props
         'cols',
         'rows',
-        'shadowless',
-        // Packs
-        'color',
-        'shadow',
-        'rounded',
-        'squared',
-        'colorClasses',
-        'shadowClasses',
-        'roundedClasses',
     ]);
 
     expect($this->component->rows)->toBe(4);
     expect($this->component->cols)->toBe('auto');
-    expect($this->component->shadowless)->toBeFalse();
 });
 
 test('it should set random color in component', function () {
@@ -58,9 +47,6 @@ test('it should set random color in component', function () {
     $this->runWireUiComponent($this->component);
 
     $class = data_get($pack, 'class');
-
-    expect($this->component->color)->toBe($color);
-    expect($this->component->colorClasses)->toBe($class);
 
     expect('<x-textarea :$color />')
         ->render(compact('color'))
@@ -76,13 +62,9 @@ test('it should set random shadow in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = data_get($pack, 'class');
-
-    expect($this->component->shadow)->toBe($shadow);
-    expect($this->component->shadowless)->toBeFalse();
-    expect($this->component->shadowClasses)->toBe($class);
-
-    expect('<x-textarea :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-textarea :$shadow />')
+        ->render(compact('shadow'))
+        ->toContain(data_get($pack, 'class'));
 });
 
 test('it should set random rounded in component', function () {
@@ -95,10 +77,6 @@ test('it should set random rounded in component', function () {
     $this->runWireUiComponent($this->component);
 
     $class = data_get($pack, 'class');
-
-    expect($this->component->squared)->toBeFalse();
-    expect($this->component->rounded)->toBe($rounded);
-    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-textarea :$rounded />')
         ->render(compact('rounded'))
