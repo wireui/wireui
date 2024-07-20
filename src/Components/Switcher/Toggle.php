@@ -18,12 +18,14 @@ class Toggle extends WireUiComponent
 
     protected array $props = [
         'icon' => null,
-        'label' => null,
         'iconless' => false,
-        'left-label' => null,
         'right-icon' => null,
-        'description' => null,
     ];
+
+    protected function exclude(): array
+    {
+        return ['type'];
+    }
 
     protected function blade(): View
     {

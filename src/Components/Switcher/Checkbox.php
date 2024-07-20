@@ -16,11 +16,10 @@ class Checkbox extends WireUiComponent
     use HasSetupSize;
     use HasSetupWrapper;
 
-    protected array $props = [
-        'label' => null,
-        'left-label' => null,
-        'description' => null,
-    ];
+    protected function exclude(): array
+    {
+        return ['type'];
+    }
 
     protected function blade(): View
     {
