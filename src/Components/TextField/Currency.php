@@ -17,6 +17,11 @@ class Currency extends WireUiComponent
         'emit-formatted' => false,
     ];
 
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
+
     protected function blade(): View
     {
         return view('wireui-text-field::currency');

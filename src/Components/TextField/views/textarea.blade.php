@@ -10,7 +10,7 @@
     ])
 
     <textarea
-        {{ $attrs
+        {{ $input
             ->merge([
                 'type' => 'text',
                 'autocomplete' => 'off',
@@ -18,7 +18,6 @@
                 'rows' => $rows,
                 'cols' => $cols,
             ])
-            ->except(['wire:key', 'x-data', 'class'])
             ->class([
                 'bg-transparent block !border-0 text-gray-900 dark:text-gray-400',
                 'pl-3 pr-2.5 py-2 !outline-0 !ring-0 sm:text-sm sm:leading-normal',

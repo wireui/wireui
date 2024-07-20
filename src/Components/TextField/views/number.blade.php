@@ -27,15 +27,12 @@
     </x-slot:prepend>
 
     <x-wireui-wrapper::element
-        :attributes="$attrs
-            ->except(['class', 'wire:key', 'x-data'])
-            ->class('text-center appearance-number-none')
-        "
-        x-on:keydown.down.stop.prevent="minus"
-        x-on:keydown.up.stop.prevent="plus"
-        inputmode="numeric"
         type="number"
         x-ref="input"
+        inputmode="numeric"
+        x-on:keydown.up.stop.prevent="plus"
+        x-on:keydown.down.stop.prevent="minus"
+        :attributes="$input->class('text-center appearance-number-none')"
     />
 
     <x-slot:append>

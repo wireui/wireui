@@ -9,7 +9,7 @@ use Tests\Browser\BrowserTestCase;
 
 class PasswordTest extends BrowserTestCase
 {
-    public function test_it_should_see_label_and_corner_hint(): void
+    public function test_it_should_see_label_and_corner(): void
     {
         Livewire::test(new class() extends Component
         {
@@ -17,7 +17,7 @@ class PasswordTest extends BrowserTestCase
             {
                 return <<<'BLADE'
                 <div>
-                    <x-password label="Input 1" corner-hint="Corner 1" />
+                    <x-password label="Input 1" corner="Corner 1" />
                 </div>
                 BLADE;
             }
@@ -26,7 +26,7 @@ class PasswordTest extends BrowserTestCase
             ->assertSee('Corner 1');
     }
 
-    public function test_it_should_see_hint_and_prefix_and_not_see_suffix(): void
+    public function test_it_should_see_description_and_prefix_and_not_see_suffix(): void
     {
         Livewire::test(new class() extends Component
         {
@@ -36,17 +36,17 @@ class PasswordTest extends BrowserTestCase
                 <div>
                     <x-password
                         label="Input 1"
-                        corner-hint="Corner 1"
-                        hint="Hint 1"
+                        corner="Corner 1"
                         prefix="Prefix 1"
                         suffix="Suffix 1"
+                        description="Description 1"
                     />
                 </div>
                 BLADE;
             }
         })
-            ->assertSee('Hint 1')
             ->assertSee('Prefix 1')
+            ->assertSee('Description 1')
             ->assertDontSee('Suffix 1');
     }
 

@@ -67,7 +67,9 @@
         />
     </div>
 
-    @include('wireui-wrapper::components.slots', ['except' => ['prepend', 'append']])
+    @include('wireui-wrapper::components.slots', [
+        'except' => ['prepend', 'append'],
+    ])
 
     @if ($multiple)
         <div

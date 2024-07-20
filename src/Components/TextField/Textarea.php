@@ -15,6 +15,11 @@ class Textarea extends WireUiComponent
         'rows' => 4,
     ];
 
+    protected function exclude(): array
+    {
+        return ['type', 'autocomplete'];
+    }
+
     protected function except(): array
     {
         return ['icon', 'right-icon', 'prefix', 'suffix'];

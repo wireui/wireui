@@ -9,9 +9,9 @@
     ])
 
     <x-wireui-wrapper::element
-        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
         type="password"
         x-bind:type="type"
+        :attributes="$input"
     />
 
     <x-slot name="append">
