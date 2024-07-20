@@ -21,6 +21,11 @@ class Picker extends WireUiComponent
         'without-seconds' => false,
     ];
 
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
+
     protected function blade(): View
     {
         return view('wireui-time-picker::picker');

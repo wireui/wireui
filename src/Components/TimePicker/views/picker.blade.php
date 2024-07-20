@@ -15,20 +15,20 @@
 >
     @include('wireui-wrapper::components.slots')
 
-    <div class="hidden">
-        <x-wireui-wrapper::element
-            x-bind:value="value"
-            x-ref="rawInput"
+    <div class="hidden" hidden>
+        <x-wireui-wrapper::hidden
             :name="$name"
             :value="$value"
+            x-ref="rawInput"
+            x-bind:value="value"
         />
     </div>
 
     <x-wireui-wrapper::element
-        x-model="input"
         x-ref="input"
+        x-model="input"
         x-on:blur="onBlur"
-        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
+        :attributes="$input"
         x-on:keydown.arrow-up.prevent="positionable.close()"
         x-on:keydown.arrow-down.prevent="positionable.open()"
     />

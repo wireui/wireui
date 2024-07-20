@@ -13,7 +13,7 @@ trait HasSetupForm
 
     private function formAttributes(): array
     {
-        return ['id', 'name', 'value', 'disabled', 'readonly'];
+        return ['id', 'name', 'value', 'disabled', 'readonly', 'required'];
     }
 
     private function getValue(mixed $name): mixed
@@ -63,6 +63,10 @@ trait HasSetupForm
 
         if ($this->attributes->missing('readonly') && $name) {
             $this->attributes->offsetSet('readonly', false);
+        }
+
+        if ($this->attributes->missing('required') && $name) {
+            $this->attributes->offsetSet('required', false);
         }
 
         $this->attributes->offsetSet('value', $this->getValue($name));

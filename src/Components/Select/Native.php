@@ -28,6 +28,11 @@ class Native extends WireUiComponent
         'option-description' => null,
     ];
 
+    protected function exclude(): array
+    {
+        return ['type', 'placeholder'];
+    }
+
     protected function processed(): void
     {
         $this->serializeOptions();

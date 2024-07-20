@@ -34,6 +34,11 @@ class Base extends WireUiComponent
         'min-items-for-search' => 11,
     ];
 
+    protected function except(): array
+    {
+        return ['label'];
+    }
+
     protected function processed(): void
     {
         $this->serializeOptions();

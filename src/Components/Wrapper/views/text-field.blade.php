@@ -47,8 +47,7 @@
 
     <label
         {{ $attributes
-            ->whereDoesntStartWith(['x-model', 'wire:model'])
-            ->except(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
+            ->whereStartsWith(['x-ref', 'x-on:', 'x-bind:', 'tabindex'])
             ->merge(['for' => $id])
             ->class([
                 data_get($roundedClasses, 'input', ''),

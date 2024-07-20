@@ -14,7 +14,7 @@
 >
     @include('wireui-wrapper::components.slots')
 
-    <div class="hidden">
+    <div class="hidden" hidden>
         <x-wireui-wrapper::hidden
             :id="$id"
             :name="$name"

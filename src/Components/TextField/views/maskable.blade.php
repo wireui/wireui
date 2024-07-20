@@ -12,7 +12,7 @@
 >
     @include('wireui-wrapper::components.slots')
 
-    <div class="hidden">
+    <div class="hidden" hidden>
         <x-wireui-wrapper::hidden
             :name="$name"
             :value="$value"

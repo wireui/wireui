@@ -6,14 +6,14 @@
         'aria-readonly'          => $readonly,
     ])
     {{ $attributes
+        ->only(['class', 'wire:key', 'form-wrapper', 'x-data', 'x-props'])
         ->merge(['form-wrapper' => $id ?: 'true'])
         ->class([
             'aria-disabled:pointer-events-none aria-disabled:select-none',
             'aria-disabled:opacity-60 aria-disabled:cursor-not-allowed',
             'aria-readonly:pointer-events-none aria-readonly:select-none',
             'relative',
-        ])
-        ->only(['wire:key', 'form-wrapper', 'x-data', 'class', 'x-props']) }}
+        ]) }}
 >
     <div class="flex items-center gap-x-2">
         @if ($leftLabel)
