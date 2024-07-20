@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
-trait ManageProps
+trait InteractsWithProps
 {
     protected array $packs = [];
 

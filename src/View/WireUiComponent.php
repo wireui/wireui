@@ -5,14 +5,15 @@ namespace WireUi\View;
 use AllowDynamicProperties;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\{HtmlString};
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 
 #[AllowDynamicProperties]
 abstract class WireUiComponent extends Component
 {
-    use ManageAttributes;
-    use ManageProps;
+    use InteractsWithAttributes;
+    use InteractsWithProps;
+    use InteractsWithVariables;
 
     abstract protected function blade(): View;
 

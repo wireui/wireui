@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
 
-trait ManageAttributes
+trait InteractsWithVariables
 {
     public ?string $config = null;
 
@@ -23,6 +23,8 @@ trait ManageAttributes
     private function runWireUiComponent(array $data): array
     {
         $this->setConfig();
+
+        dd($this, $data);
 
         // $this->call('mount', $data);
 
