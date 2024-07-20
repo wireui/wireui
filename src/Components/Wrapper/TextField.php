@@ -40,7 +40,7 @@ class TextField extends WireUiComponent
         $this->config = $config;
     }
 
-    protected function processed(): void
+    protected function process(): void
     {
         if (filled($this->name) && is_null($this->invalidated)) {
             $this->invalidated = $this->errors()->has($this->name);

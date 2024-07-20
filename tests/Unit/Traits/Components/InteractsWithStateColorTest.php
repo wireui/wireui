@@ -22,9 +22,9 @@ test('it should set interaction with color and without variant', function () {
         'interaction' => data_get($pack2, 'key'),
     ]);
 
-    $this->invokeMethod($this->component, 'setupVariant');
-    $this->invokeMethod($this->component, 'setupColor');
-    $this->invokeMethod($this->component, 'setupStateColor');
+    $this->invokeMethod($this->component, 'mountVariant');
+    $this->invokeMethod($this->component, 'mountColor');
+    $this->invokeMethod($this->component, 'mountStateColor');
 
     expect($this->component->color)->toBe(data_get($pack, 'key'));
     expect($this->component->variant)->toBe(data_get($pack, 'variant'));
@@ -46,9 +46,9 @@ test('it should set interaction with color and variant', function () {
         "interaction:{$variant2}" => data_get($pack2, 'key'),
     ]);
 
-    $this->invokeMethod($this->component, 'setupVariant');
-    $this->invokeMethod($this->component, 'setupColor');
-    $this->invokeMethod($this->component, 'setupStateColor');
+    $this->invokeMethod($this->component, 'mountVariant');
+    $this->invokeMethod($this->component, 'mountColor');
+    $this->invokeMethod($this->component, 'mountStateColor');
 
     expect($this->component->color)->toBe(data_get($pack, 'key'));
     expect($this->component->variant)->toBe(data_get($pack, 'variant'));
@@ -70,9 +70,9 @@ test('it should set hover and focus with only color', function () {
         'focus' => data_get($pack3, 'key'),
     ]);
 
-    $this->invokeMethod($this->component, 'setupVariant');
-    $this->invokeMethod($this->component, 'setupColor');
-    $this->invokeMethod($this->component, 'setupStateColor');
+    $this->invokeMethod($this->component, 'mountVariant');
+    $this->invokeMethod($this->component, 'mountColor');
+    $this->invokeMethod($this->component, 'mountStateColor');
 
     expect($this->component->color)->toBe(data_get($pack, 'key'));
     expect($this->component->variant)->toBe(data_get($pack, 'variant'));
@@ -97,9 +97,9 @@ test('it should set hover and focus with color and variant', function () {
         "focus:{$variant3}" => data_get($pack3, 'key'),
     ]);
 
-    $this->invokeMethod($this->component, 'setupVariant');
-    $this->invokeMethod($this->component, 'setupColor');
-    $this->invokeMethod($this->component, 'setupStateColor');
+    $this->invokeMethod($this->component, 'mountVariant');
+    $this->invokeMethod($this->component, 'mountColor');
+    $this->invokeMethod($this->component, 'mountStateColor');
 
     expect($this->component->color)->toBe(data_get($pack, 'key'));
     expect($this->component->variant)->toBe(data_get($pack, 'variant'));

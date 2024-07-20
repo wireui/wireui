@@ -6,7 +6,7 @@ trait InteractsWithButton
 {
     public mixed $tag = null;
 
-    protected function setupButton(): void
+    protected function mountButton(): void
     {
         $this->tag = $this->getTag();
 

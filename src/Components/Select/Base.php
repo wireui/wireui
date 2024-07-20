@@ -39,7 +39,7 @@ class Base extends WireUiComponent
         return ['label'];
     }
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->serializeOptions();
 

@@ -19,7 +19,7 @@ trait InteractsWithRounded
         $this->roundedResolve = $class;
     }
 
-    protected function setupRounded(): void
+    protected function mountRounded(): void
     {
         $rounders = config("wireui.{$this->config}.packs.rounders");
 

@@ -17,7 +17,7 @@ class Multiple extends WireUiComponent
         'title' => null,
     ];
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->initOnly();
 

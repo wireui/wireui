@@ -23,7 +23,7 @@ class Index extends WireUiComponent
         'shadowless' => false,
     ];
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->icon ??= data_get($this->colorClasses, 'icon', 'bell');
     }

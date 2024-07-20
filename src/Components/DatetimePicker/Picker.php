@@ -50,7 +50,7 @@ class Picker extends WireUiComponent
         return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
     }
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->timezone ??= config('app.timezone', 'UTC');
 

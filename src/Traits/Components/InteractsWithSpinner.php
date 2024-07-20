@@ -8,7 +8,7 @@ trait InteractsWithSpinner
 {
     private ?ComponentAttributeBag $spinnerRemove = null;
 
-    protected function setupSpinner(array &$data): void
+    protected function mountSpinner(array &$data): void
     {
         $this->spinnerRemove = new ComponentAttributeBag();
 

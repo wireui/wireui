@@ -16,7 +16,7 @@ trait InteractsWithVariant
         $this->variantResolve = $class;
     }
 
-    protected function setupVariant(): void
+    protected function mountVariant(): void
     {
         $variants = config("wireui.{$this->config}.packs.variants");
 

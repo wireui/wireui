@@ -8,11 +8,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\{HtmlString};
 use Illuminate\View\Component;
 
-/**
- * @method void mounted(array $data)
- * @method void processed(array $data)
- * @method void finished(array $data)
- */
 #[AllowDynamicProperties]
 abstract class WireUiComponent extends Component
 {

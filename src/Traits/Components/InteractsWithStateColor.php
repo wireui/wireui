@@ -23,7 +23,7 @@ trait InteractsWithStateColor
         $this->variantPack = $variantPack;
     }
 
-    protected function setupStateColor(): void
+    protected function mountStateColor(): void
     {
         throw_if(! $this->colorPack || ! $this->variantPack, new WireUiStateColorException($this));
 

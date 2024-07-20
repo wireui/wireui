@@ -16,7 +16,7 @@ class Maskable extends WireUiComponent
         'emit-formatted' => false,
     ];
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->mask ??= $this->getInputMask();
     }

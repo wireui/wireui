@@ -17,7 +17,7 @@ trait InteractsWithSize
         $this->sizeResolve = $class;
     }
 
-    protected function setupSize(): void
+    protected function mountSize(): void
     {
         $sizes = config("wireui.{$this->config}.packs.sizes");
 

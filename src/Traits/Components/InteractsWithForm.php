@@ -4,7 +4,7 @@ namespace WireUi\Traits\Components;
 
 trait InteractsWithForm
 {
-    protected function setupForm(array &$data): void
+    protected function mountForm(array &$data): void
     {
         $this->injectModel();
 

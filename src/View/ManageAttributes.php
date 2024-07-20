@@ -15,19 +15,6 @@ trait ManageAttributes
 
     private array $smartAttributes = [];
 
-    private const METHODS = [
-        'setupForm',
-        'setupWrapper',
-        'setupVariant',
-        'setupSize',
-        'setupProps',
-        'setupButton',
-        'setupRounded',
-        'setupSpinner',
-        'setupColor',
-        'setupStateColor',
-    ];
-
     private function setConfig(): void
     {
         $this->config ??= WireUi::components()->resolveByAlias($this->componentName);
@@ -37,13 +24,9 @@ trait ManageAttributes
     {
         $this->setConfig();
 
-        $this->call('mounted', $data);
+        // $this->call('mount', $data);
 
-        foreach (self::METHODS as $method) {
-            $this->call($method, $data);
-        }
-
-        $this->call('processed', $data);
+        // $this->call('process', $data);
 
         foreach ($this->setVariables as $attribute) {
             $data[$attribute] = $this->{$attribute};
@@ -52,17 +35,8 @@ trait ManageAttributes
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
         return tap($data, function (array &$data) {
-            $this->call('finished', $data);
-
-            $this->call('finishWrapper', $data);
+            // $this->call('finished', $data);
         });
-    }
-
-    private function call(string $function, array &$data): void
-    {
-        if (method_exists($this, $function)) {
-            $this->{$function}($data);
-        }
     }
 
     protected function getData(string $attribute, mixed $default = null): mixed

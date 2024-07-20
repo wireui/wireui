@@ -18,7 +18,7 @@ trait InteractsWithColor
         $this->colorResolve = $class;
     }
 
-    protected function setupColor(): void
+    protected function mountColor(): void
     {
         $colors = config($this->getColorConfigName());
 

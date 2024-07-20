@@ -21,7 +21,7 @@ trait InteractsWithWrapper
         return ['cy', 'id', 'dusk', 'name', 'type', 'value', 'x-on:', 'x-ref', 'x-model', 'disabled', 'readonly', 'required', 'wire:model', 'placeholder', 'autocomplete'];
     }
 
-    protected function setupWrapper(array &$data): void
+    protected function mountWrapper(array &$data): void
     {
         $wrapper = clone $this->attributes;
 

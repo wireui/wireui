@@ -16,7 +16,7 @@ class Single extends WireUiComponent
         'invalidated' => null,
     ];
 
-    protected function processed(): void
+    protected function process(): void
     {
         if (filled($this->name) && is_null($this->message)) {
             $this->message = $this->errors()->first($this->name);

@@ -33,7 +33,7 @@ class Native extends WireUiComponent
         return ['type', 'placeholder'];
     }
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->serializeOptions();
 

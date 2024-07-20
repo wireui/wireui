@@ -21,7 +21,7 @@ class Index extends WireUiComponent
         'description' => null,
     ];
 
-    protected function processed(): void
+    protected function process(): void
     {
         $this->dialog = DialogAction::makeEventName($this->id);
 
