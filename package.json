@@ -8,6 +8,7 @@
     "scripts": {
         "test": "jest",
         "lint": "eslint .",
+        "dev": "mix watch",
         "watch": "mix watch",
         "build": "mix --production"
     },

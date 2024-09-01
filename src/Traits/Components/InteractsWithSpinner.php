@@ -4,54 +4,73 @@ namespace WireUi\Traits\Components;
 
 use Illuminate\View\ComponentAttributeBag;
 use WireUi\Attributes\Mount;
+use WireUi\View\Attribute;
 
 trait InteractsWithSpinner
 {
-    private ?ComponentAttributeBag $spinnerRemove = null;
-
     #[Mount(80)]
     protected function mountSpinner(array &$data): void
     {
-        $this->spinnerRemove = new ComponentAttributeBag;
-
-        $data['spinner'] = $this->executeSpinner();
-
-        $data['spinnerRemove'] = $this->spinnerRemove;
-    }
-
-    private function executeSpinner(): ?ComponentAttributeBag
-    {
+        /** @var Attribute|null $spinner */
         $spinner = $this->attributes->attribute('spinner');
 
-        if (is_null($spinner)) {
-            return null;
+        if (! $spinner) {
+            $data['spinner'] = null;
+            $data['spinnerRemove'] = new ComponentAttributeBag;
+
+            return;
         }
 
-        $attributes = $this->createAttributes($spinner);
+        $data['spinner'] = $this->makeSpinnerAttributes($spinner);
 
-        if (is_string($target = $spinner->expression())) {
-            $attributes->offsetSet('wire:target', $target);
+        $data['spinnerRemove'] = $this->makeIconContainerAttributes($spinner);
+    }
+
+    private function makeSpinnerAttributes(Attribute $spinner): ComponentAttributeBag
+    {
+        $attributes = new ComponentAttributeBag;
+
+        /** @var string|null $delay */
+        $delay = $spinner->modifiers()->last();
+
+        $loading = 'wire:loading';
+
+        if ($delay === 'delay') {
+            $loading = 'wire:loading.delay';
         }
+
+        if ($delay && $delay !== 'delay') {
+            $loading = "wire:loading.delay.{$delay}";
+        }
+
+        $attributes->offsetSet($loading, 'true');
+
+        $this->addTargetAttribute($spinner, $attributes);
 
         $this->attributes->offsetUnset($spinner->directive());
 
         return $attributes;
     }
 
-    private function createAttributes($spinner): ComponentAttributeBag
+    private function makeIconContainerAttributes(Attribute $spinner): ComponentAttributeBag
     {
-        $loading = 'wire:loading.delay';
+        $attributes = new ComponentAttributeBag;
 
-        $spinnerRemove = 'wire:loading.remove';
+        $attributes->offsetSet('wire:loading.remove', 'true');
 
-        if ($delay = $spinner->modifiers()->last()) {
-            $loading .= ".{$delay}";
+        $this->addTargetAttribute($spinner, $attributes);
 
-            $spinnerRemove .= ".delay.{$delay}";
+        return $attributes;
+    }
+
+    private function addTargetAttribute(Attribute $spinner, ComponentAttributeBag &$attributes): ComponentAttributeBag
+    {
+        $target = $spinner->expression();
+
+        if (is_string($target)) {
+            $attributes->offsetSet('wire:target', $target);
         }
 
-        $this->spinnerRemove->offsetSet($spinnerRemove, 'true');
-
-        return new ComponentAttributeBag([$loading => 'true']);
+        return $attributes;
     }
 }
