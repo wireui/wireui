@@ -5,6 +5,11 @@ import { Options } from './options'
 export const parseEvent = (options: EventOptions, componentId?: string): CallableFunction => {
   if (options?.url) return parseRedirect(options.url)
   if (options?.method && componentId) return parseLivewire({ ...options, id: componentId } as LivewireOptions)
+  if (options?.dispatch) {
+    return () => {
+      window.Livewire.dispatch(options.dispatch, options.params)
+    }
+  }
 
   return () => null
 }

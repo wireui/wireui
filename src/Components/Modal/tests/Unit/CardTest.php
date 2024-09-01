@@ -12,6 +12,7 @@ test('it should have array properties', function () {
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
+        'persistent' => false,
         'spacing' => null,
         'fullscreen' => false,
         'hide-close' => false,
@@ -23,6 +24,7 @@ test('it should have properties in component', function () {
 
     expect($this->component)->toHaveProperties([
         // Props
+        'persistent',
         'spacing',
         'hideClose',
         'fullscreen',

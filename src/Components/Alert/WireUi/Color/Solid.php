@@ -51,6 +51,24 @@ class Solid extends ComponentPack
                 'text' => 'text-white dark:text-black',
                 'background' => 'bg-info-600 dark:bg-info-600',
             ],
+            Color::BLUE => [
+                'icon' => 'x-circle',
+                'iconColor' => 'text-white dark:text-black',
+                'text' => 'text-white dark:text-black',
+                'background' => 'bg-blue-600 dark:bg-blue-600',
+            ],
+            Color::EMERALD => [
+                'icon' => 'check-circle',
+                'iconColor' => 'text-white dark:text-black',
+                'text' => 'text-white dark:text-black',
+                'background' => 'bg-emerald-600 dark:bg-emerald-600',
+            ],
+            Color::RED => [
+                'icon' => 'x-circle',
+                'iconColor' => 'text-white dark:text-black',
+                'text' => 'text-white dark:text-black',
+                'background' => 'bg-red-600 dark:bg-red-600',
+            ],
         ];
     }
 }
