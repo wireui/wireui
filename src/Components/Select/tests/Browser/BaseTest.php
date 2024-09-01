@@ -12,7 +12,7 @@ class BaseTest extends BrowserTestCase
 {
     public function test_it_should_show_validation_message(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             #[Validate('required', message: 'Select any value')]
             public $model = null;
@@ -50,7 +50,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_select_one_option_from_simples_options_list(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -88,7 +88,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_select_one_option_from_labeled_options_list(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -130,7 +130,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_select_and_unselect_multiples_options(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = [];
 
@@ -179,7 +179,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_select_from_slot_list(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -216,7 +216,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_cannot_select_readonly_and_disabled_options(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -254,7 +254,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_load_and_search_options_from_the_api(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -294,7 +294,7 @@ class BaseTest extends BrowserTestCase
 
     public function test_it_should_load_from_the_api_with_nested_data(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 

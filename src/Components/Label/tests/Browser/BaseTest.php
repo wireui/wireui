@@ -10,7 +10,7 @@ class BaseTest extends BrowserTestCase
 {
     public function test_label_component(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public string $label = 'Label 1';
 

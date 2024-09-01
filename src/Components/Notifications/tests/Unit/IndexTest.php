@@ -6,7 +6,7 @@ use WireUi\Components\Notifications\Index as Notifications;
 use WireUi\Components\Notifications\WireUi\Position;
 
 beforeEach(function () {
-    $this->component = (new Notifications())->withName('notifications');
+    $this->component = (new Notifications)->withName('notifications');
 });
 
 test('it should have array properties', function () {

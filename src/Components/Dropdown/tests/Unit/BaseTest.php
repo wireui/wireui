@@ -7,7 +7,7 @@ use WireUi\Components\Dropdown\WireUi\Height;
 use WireUi\Components\Dropdown\WireUi\Width;
 
 beforeEach(function () {
-    $this->component = (new Dropdown())->withName('dropdown');
+    $this->component = (new Dropdown)->withName('dropdown');
 });
 
 test('it should have array properties', function () {

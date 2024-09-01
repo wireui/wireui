@@ -8,7 +8,7 @@ use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new TimePicker())->withName('time-picker');
+    $this->component = (new TimePicker)->withName('time-picker');
 });
 
 test('it should have array properties', function () {

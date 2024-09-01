@@ -8,7 +8,7 @@ use WireUi\Components\Switcher\WireUi\Checkbox\Size;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Checkbox())->withName('checkbox');
+    $this->component = (new Checkbox)->withName('checkbox');
 });
 
 test('it should have properties in component', function () {

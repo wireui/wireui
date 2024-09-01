@@ -10,7 +10,7 @@ class PickerTest extends BrowserTestCase
 {
     public function test_it_should_select_time_and_clear_am_pm_time(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $time = null;
 
@@ -45,7 +45,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_select_time_and_clear_24h_time(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $time = null;
 
@@ -80,7 +80,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_not_emit_seconds_when_using_without_seconds_on_a_m_p_m_time(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $time = null;
 
@@ -115,7 +115,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_not_emit_seconds_when_using_without_seconds_on_military_time(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $time = null;
 

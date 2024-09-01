@@ -11,7 +11,7 @@ class NumberTest extends BrowserTestCase
 {
     public function test_it_should_see_label_and_corner_description(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -28,7 +28,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_see_description_and_not_see_prefix_and_suffix(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -52,7 +52,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_not_see_prepend_and_append_slots(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -77,7 +77,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_not_see_prefix_suffix_append_and_prepend(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -104,7 +104,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_see_input_error(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             #[Validate('required', message: 'input cant be empty')]
             #[Validate('integer', message: 'input must be an integer')]
@@ -146,7 +146,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $number = null;
 
@@ -167,7 +167,7 @@ class NumberTest extends BrowserTestCase
 
     public function test_it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public function render(): string
             {

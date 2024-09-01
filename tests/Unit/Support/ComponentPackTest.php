@@ -24,7 +24,7 @@ class ExamplePack extends ComponentPack
 }
 
 beforeEach(function () {
-    $this->pack = new ExamplePack();
+    $this->pack = new ExamplePack;
 });
 
 test('it should get the default value', function () {

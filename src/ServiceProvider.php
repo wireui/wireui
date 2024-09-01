@@ -101,7 +101,7 @@ class ServiceProvider extends Support\ServiceProvider
     private function registerBladeComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, static function (BladeCompiler $blade): void {
-            $resolver = new ComponentResolver();
+            $resolver = new ComponentResolver;
 
             foreach (config('wireui.components') as $component) {
                 $blade->component($component['class'], $resolver->addPrefix($component['alias']));

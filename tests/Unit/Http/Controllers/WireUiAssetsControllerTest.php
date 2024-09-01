@@ -5,7 +5,7 @@ namespace Tests\Unit\Http\Controllers;
 use WireUi\Http\Controllers\WireUiAssetsController;
 
 test('it should can pretend to be a file', function () {
-    $controller = new WireUiAssetsController();
+    $controller = new WireUiAssetsController;
 
     expect($controller->scripts()->getContent())->not()->toBeNull();
     expect($controller->styles()->getContent())->not()->toBeNull();

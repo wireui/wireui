@@ -6,7 +6,7 @@ use WireUi\Components\Button\Base;
 use WireUi\Support\ComponentResolver;
 
 beforeEach(function () {
-    $this->resolver = new ComponentResolver();
+    $this->resolver = new ComponentResolver;
 });
 
 test('it should resolve the component', function () {

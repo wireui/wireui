@@ -8,7 +8,7 @@ use WireUi\Components\Switcher\WireUi\Radio\Size;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Radio())->withName('radio');
+    $this->component = (new Radio)->withName('radio');
 });
 
 test('it should have properties in component', function () {

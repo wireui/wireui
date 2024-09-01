@@ -12,7 +12,7 @@ class NativeTest extends BrowserTestCase
 {
     public function test_it_should_render_select_with_slot_options_and_show_error_message(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             #[Validate('required', message: 'select a value')]
             public $model = null;
@@ -53,7 +53,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -87,7 +87,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_collection_options(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -126,7 +126,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_with_label_and_option_keys(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -162,7 +162,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_value(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 
@@ -197,7 +197,7 @@ class NativeTest extends BrowserTestCase
 
     public function test_it_should_render_select_with_give_array_options_using_key_as_label(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 

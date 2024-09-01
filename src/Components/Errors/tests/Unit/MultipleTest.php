@@ -11,7 +11,7 @@ beforeEach(function () {
         'third' => 'third error',
     ]);
 
-    $this->component = (new Errors())->withName('errors');
+    $this->component = (new Errors)->withName('errors');
 });
 
 test('it should have array properties', function () {

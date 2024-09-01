@@ -11,7 +11,7 @@ class MultipleTest extends BrowserTestCase
 {
     public function test_livewire_render_all_errors_and_render_filtered_errors(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public array $only = [];
 
@@ -56,7 +56,7 @@ class MultipleTest extends BrowserTestCase
 
     public function test_browser_render_all_errors_and_render_filtered_errors(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public array $only = [];
 

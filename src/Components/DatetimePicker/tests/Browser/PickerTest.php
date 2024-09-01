@@ -12,7 +12,7 @@ class PickerTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
-        return Livewire::visit(new class() extends Component
+        return Livewire::visit(new class extends Component
         {
             public $date = null;
 
@@ -44,7 +44,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_select_date_without_timezone_difference(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = '2021-05-22T02:48:00';
 
@@ -78,7 +78,7 @@ class PickerTest extends BrowserTestCase
         // UTC is default timezone
         // ref https://www.zeitverschiebung.net/en/timezone/america--sao_paulo
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = '2021-07-22T00:30:00';
 
@@ -111,7 +111,7 @@ class PickerTest extends BrowserTestCase
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = '2021-07-26T10:00:00';
 
@@ -145,7 +145,7 @@ class PickerTest extends BrowserTestCase
         // The America/Sao_Paulo timezone is +12 hours apart compared to the Asia/Tokyo timezone
         // ref https://www.zeitverschiebung.net/en/difference/city/3448439/city/1850147
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = '29-2021-09 59:13';
 
@@ -176,7 +176,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_it_should_select_date_and_time(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = '2021-12-25T00:00:00';
 

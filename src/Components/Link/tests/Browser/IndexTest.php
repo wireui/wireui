@@ -16,7 +16,7 @@ class IndexTest extends BrowserTestCase
     {
         $color = $this->getRandomPack(Color::class);
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public mixed $color = null;
 
@@ -51,7 +51,7 @@ class IndexTest extends BrowserTestCase
     {
         $underline = $this->getRandomPack(Underline::class);
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public mixed $underline = null;
 

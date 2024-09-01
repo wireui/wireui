@@ -5,7 +5,7 @@ namespace WireUi\Components\Dropdown\tests\Unit;
 use WireUi\Components\Dropdown\Item as DropdownItem;
 
 beforeEach(function () {
-    $this->component = (new DropdownItem())->withName('dropdown.item');
+    $this->component = (new DropdownItem)->withName('dropdown.item');
 });
 
 test('it should have array properties', function () {

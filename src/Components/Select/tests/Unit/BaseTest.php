@@ -8,7 +8,7 @@ use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new Select())->withName('select');
+    $this->component = (new Select)->withName('select');
 });
 
 test('it should have array properties', function () {

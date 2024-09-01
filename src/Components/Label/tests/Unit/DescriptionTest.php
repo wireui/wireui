@@ -5,7 +5,7 @@ namespace WireUi\Components\Badge\tests\Unit;
 use WireUi\Components\Label\Description as Description;
 
 beforeEach(function () {
-    $this->component = (new Description())->withName('description');
+    $this->component = (new Description)->withName('description');
 });
 
 test('it should have array properties', function () {

@@ -6,7 +6,7 @@ use WireUi\Components\Button\Base as Button;
 use WireUi\Components\Button\WireUi\Variant;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 
     $this->invokeMethod($this->component, 'setConfig');
 });

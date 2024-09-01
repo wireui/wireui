@@ -12,7 +12,7 @@ class CardTest extends BrowserTestCase
 {
     public function test_modal_card_component(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public bool $hideClose = false;
 

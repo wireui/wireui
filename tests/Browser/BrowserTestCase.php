@@ -31,7 +31,7 @@ class BrowserTestCase extends TestCase
 
         Browser::$waitSeconds = 7;
 
-        Browser::mixin(new DuskBrowserMacros());
+        Browser::mixin(new DuskBrowserMacros);
 
         $this->afterApplicationCreated(function () {
             $this->makeACleanSlate();

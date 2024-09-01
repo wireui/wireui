@@ -17,7 +17,7 @@ class MiniTest extends BrowserTestCase
     {
         $flat = $this->getRandomPack(Flat::class);
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public mixed $color = null;
 
@@ -50,7 +50,7 @@ class MiniTest extends BrowserTestCase
     {
         $solid = $this->getRandomPack(Solid::class);
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public mixed $color = null;
 
@@ -83,7 +83,7 @@ class MiniTest extends BrowserTestCase
     {
         $outline = $this->getRandomPack(Outline::class);
 
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public mixed $color = null;
 

@@ -5,7 +5,7 @@ namespace WireUi\Components\Modal\tests\Unit;
 use WireUi\Components\Modal\Card as ModalCard;
 
 beforeEach(function () {
-    $this->component = (new ModalCard())->withName('modal-card');
+    $this->component = (new ModalCard)->withName('modal-card');
 });
 
 test('it should have array properties', function () {

@@ -10,7 +10,7 @@ class PhoneTest extends BrowserTestCase
 {
     public function test_it_should_type_formatted_phone_number(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $phone = null;
 
@@ -35,7 +35,7 @@ class PhoneTest extends BrowserTestCase
 
     public function test_it_should_type_custom_masked_phone_number(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $phone = null;
 

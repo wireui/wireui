@@ -11,7 +11,7 @@ class CurrencyTest extends BrowserTestCase
 {
     public function test_it_should_mask_currency_value(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $currency = null;
 
@@ -38,7 +38,7 @@ class CurrencyTest extends BrowserTestCase
 
     public function test_it_should_follow_livewire_model_changes(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $currency = null;
 
@@ -68,7 +68,7 @@ class CurrencyTest extends BrowserTestCase
 
     public function test_it_should_type_currency_value_and_emit_formatted_value(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $currency = null;
 
@@ -96,7 +96,7 @@ class CurrencyTest extends BrowserTestCase
 
     public function test_it_should_parse_custom_currencies_like_brazilian_real(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $currency = '123456,99';
 

@@ -8,7 +8,7 @@ use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new Textarea())->withName('textarea');
+    $this->component = (new Textarea)->withName('textarea');
 });
 
 test('it should have array properties', function () {

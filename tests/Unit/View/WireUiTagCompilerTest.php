@@ -33,7 +33,7 @@ test('it dont have matches', function () {
 });
 
 test('it should match rendered scripts link', function () {
-    $bladeDirectives = new BladeDirectives();
+    $bladeDirectives = new BladeDirectives;
 
     $hooksScript = $bladeDirectives->hooksScript();
 
@@ -51,7 +51,7 @@ test('it should match rendered scripts link', function () {
 });
 
 test('it should match rendered styles link', function () {
-    $bladeDirectives = new BladeDirectives();
+    $bladeDirectives = new BladeDirectives;
 
     $expected = '<link href="/wireui/assets/styles" rel="stylesheet" type="text/css">';
 

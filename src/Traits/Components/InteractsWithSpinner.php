@@ -12,7 +12,7 @@ trait InteractsWithSpinner
     #[Mount(80)]
     protected function mountSpinner(array &$data): void
     {
-        $this->spinnerRemove = new ComponentAttributeBag();
+        $this->spinnerRemove = new ComponentAttributeBag;
 
         $data['spinner'] = $this->executeSpinner();
 

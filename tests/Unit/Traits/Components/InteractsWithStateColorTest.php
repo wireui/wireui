@@ -7,7 +7,7 @@ use WireUi\Components\Button\WireUi\Variant;
 use WireUi\Enum\Packs\Color;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 
     $this->invokeMethod($this->component, 'setConfig');
 });

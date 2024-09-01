@@ -35,7 +35,7 @@ test('it_should_assert_safe_eval_removes_risk_content', function () {
         @once
     EOT;
 
-    $escaped = (new SafeEval())->evaluate($html);
+    $escaped = (new SafeEval)->evaluate($html);
 
     expect($escaped)->not->toContain('{{{ $variable }}}');
     expect($escaped)->not->toContain('{{ $variable }}');

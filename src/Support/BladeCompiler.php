@@ -11,7 +11,7 @@ class BladeCompiler
 {
     public function compile(string $html, array $data = []): string
     {
-        $safeHtml = (new SafeEval())->evaluate($html);
+        $safeHtml = (new SafeEval)->evaluate($html);
 
         $blade = Blade::compileString($safeHtml);
 

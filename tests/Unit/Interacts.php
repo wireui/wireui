@@ -53,7 +53,7 @@ trait Interacts
      */
     public function getRandomPack(string $pack, array $except = []): array
     {
-        return collect((new $pack())->all())
+        return collect((new $pack)->all())
             ->when(filled($except), fn ($values) => $values->except($except))
             ->map(fn ($value, $key) => [
                 'key' => $key,
@@ -66,7 +66,7 @@ trait Interacts
      */
     public function getVariantRandomPack(string $variant, string $key, array $except = []): array
     {
-        $variant = collect((new $variant())->all())->map(fn ($value, $key) => [
+        $variant = collect((new $variant)->all())->map(fn ($value, $key) => [
             'pack' => $value,
             'variant' => $key,
         ])->random();

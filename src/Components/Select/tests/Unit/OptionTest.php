@@ -6,7 +6,7 @@ use WireUi\Components\Select\Option;
 use WireUi\Facades\WireUi;
 
 beforeEach(function () {
-    $this->component = (new Option())->withName('select.option');
+    $this->component = (new Option)->withName('select.option');
 });
 
 test('it should have array properties', function () {

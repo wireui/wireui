@@ -5,7 +5,7 @@ namespace Tests\Unit\Traits\Components;
 use WireUi\Components\Button\Base as Button;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 });
 
 test('it should have all properties empty', function () {

@@ -11,7 +11,7 @@ class MaskableTest extends BrowserTestCase
 {
     public function test_it_should_start_input_with_formatted_value(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $maskable = '1234';
 
@@ -32,7 +32,7 @@ class MaskableTest extends BrowserTestCase
 
     public function test_it_should_type_input_value_and_emit_formatted_value(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $maskable = null;
 
@@ -60,7 +60,7 @@ class MaskableTest extends BrowserTestCase
 
     public function test_it_should_type_input_value_and_apply_multiples_masks(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $maskable = null;
 

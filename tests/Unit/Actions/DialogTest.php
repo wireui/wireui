@@ -16,7 +16,7 @@ test('it should create the dialog event name', function () {
 });
 
 test('it should create the dialog event name to a custom dialog', function () {
-    $dialog = new Dialog(new TestComponent());
+    $dialog = new Dialog(new TestComponent);
 
     $dialog->id('foo');
 

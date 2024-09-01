@@ -8,7 +8,7 @@ use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new Currency())->withName('currency');
+    $this->component = (new Currency)->withName('currency');
 });
 
 test('it should have array properties', function () {

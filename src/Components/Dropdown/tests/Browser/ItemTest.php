@@ -10,7 +10,7 @@ class ItemTest extends BrowserTestCase
 {
     public function test_it_should_click_in_dropdown_items(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public string $item = '';
 

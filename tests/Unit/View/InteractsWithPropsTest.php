@@ -5,7 +5,7 @@ namespace Tests\Unit\View;
 use WireUi\Components\Alert\Index as Alert;
 
 beforeEach(function () {
-    $this->component = (new Alert())->withName('alert');
+    $this->component = (new Alert)->withName('alert');
 
     $this->invokeMethod($this->component, 'setConfig');
 });

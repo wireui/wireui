@@ -8,7 +8,7 @@ use WireUi\Components\Button\WireUi\Size\Base as Size;
 use WireUi\Enum\Packs\Size as SizePack;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 });
 
 test('it should check config name', function () {

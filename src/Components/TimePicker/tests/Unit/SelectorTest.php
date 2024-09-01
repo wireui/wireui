@@ -7,7 +7,7 @@ use WireUi\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new TimeSelector())->withName('time-selector');
+    $this->component = (new TimeSelector)->withName('time-selector');
 });
 
 test('it should have array properties', function () {

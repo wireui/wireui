@@ -8,7 +8,7 @@ use WireUi\Components\Button\WireUi\Variant;
 use WireUi\Enum\Packs\Color;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 
     $this->invokeMethod($this->component, 'setConfig');
 });
@@ -45,7 +45,7 @@ test('it should setup color', function () {
     $color = data_get($pack, 'key');
     $class = data_get($pack, 'class');
     $variant = data_get($pack, 'variant');
-    $colorResolve = data_get((new Variant())->get($variant), 'color');
+    $colorResolve = data_get((new Variant)->get($variant), 'color');
 
     $this->invokeMethod($this->component, 'setColorResolve', [$colorResolve]);
 

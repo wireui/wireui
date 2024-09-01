@@ -12,7 +12,7 @@ class RadioTest extends BrowserTestCase
 {
     public function test_radio_component(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             #[Validate('required', message: 'select one')]
             public mixed $radio = null;

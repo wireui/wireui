@@ -11,7 +11,7 @@ class IndexTest extends BrowserTestCase
 {
     public function test_modal_component_with_alpine(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public function render(): string
             {
@@ -38,7 +38,7 @@ class IndexTest extends BrowserTestCase
 
     public function test_modal_component_with_livewire(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public bool $show = false;
 

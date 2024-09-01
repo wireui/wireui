@@ -9,6 +9,6 @@ trait InteractsWithErrors
 {
     public function errors(): ViewErrorBag
     {
-        return View::shared('errors', new ViewErrorBag());
+        return View::shared('errors', new ViewErrorBag);
     }
 }

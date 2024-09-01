@@ -9,7 +9,7 @@ beforeEach(function () {
         'test' => 'test error',
     ]);
 
-    $this->component = (new Error())->withName('error');
+    $this->component = (new Error)->withName('error');
 });
 
 test('it should have array properties', function () {

@@ -7,7 +7,7 @@ use WireUi\Enum\Packs\Rounded as RoundedPack;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Button())->withName('button');
+    $this->component = (new Button)->withName('button');
 
     $this->invokeMethod($this->component, 'setConfig');
 });

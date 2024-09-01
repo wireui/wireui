@@ -54,7 +54,7 @@ class BladeDirectives
             }
         JS;
 
-        return (fn () => (new $this())::minify($scripts))->call(new FrontendAssets());
+        return (fn () => (new $this)::minify($scripts))->call(new FrontendAssets);
     }
 
     public function getManifestVersion(string $file, ?string &$route = null): ?string

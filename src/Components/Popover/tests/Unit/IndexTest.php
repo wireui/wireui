@@ -5,7 +5,7 @@ namespace WireUi\Components\Popover\tests\Unit;
 use WireUi\Components\Popover\Index as Popover;
 
 beforeEach(function () {
-    $this->component = (new Popover())->withName('popover');
+    $this->component = (new Popover)->withName('popover');
 });
 
 test('it should have array properties', function () {

@@ -5,7 +5,7 @@ namespace WireUi\Components\Dropdown\tests\Unit;
 use WireUi\Components\Dropdown\Header as DropdownHeader;
 
 beforeEach(function () {
-    $this->component = (new DropdownHeader())->withName('dropdown.header');
+    $this->component = (new DropdownHeader)->withName('dropdown.header');
 });
 
 test('it should have array properties', function () {

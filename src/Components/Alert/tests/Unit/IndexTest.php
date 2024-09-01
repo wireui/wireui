@@ -8,7 +8,7 @@ use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Alert())->withName('alert');
+    $this->component = (new Alert)->withName('alert');
 });
 
 test('it should have array properties', function () {
@@ -131,7 +131,7 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = (new Rounded())->get(Packs\Rounded::FULL);
+    $class = (new Rounded)->get(Packs\Rounded::FULL);
 
     expect($this->component->rounded)->toBeTrue();
     expect($this->component->squared)->toBeFalse();
@@ -147,7 +147,7 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = (new Rounded())->get(Packs\Rounded::NONE);
+    $class = (new Rounded)->get(Packs\Rounded::NONE);
 
     expect($this->component->squared)->toBeTrue();
     expect($this->component->rounded)->toBeFalse();

@@ -51,7 +51,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_auto_fill_from_wire_model(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = '#FFF';
 
@@ -68,7 +68,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_wire_model_defer(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = null;
 
@@ -100,7 +100,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_wire_model_live(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = null;
 
@@ -126,7 +126,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_wire_model_live_blur(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = null;
 
@@ -153,7 +153,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_wire_model_debounce(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = null;
 
@@ -183,7 +183,7 @@ class PickerTest extends BrowserTestCase
 
     public function test_wire_model_throttle(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public ?string $color = null;
 

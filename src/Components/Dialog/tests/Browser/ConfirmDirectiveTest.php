@@ -10,7 +10,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
 {
     public function test_it_should_call_confirm_notification_by_directive_with_alpine_js(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public string $value = '';
 
@@ -51,7 +51,7 @@ class ConfirmDirectiveTest extends BrowserTestCase
 
     public function test_it_should_call_confirm_notification_by_directive_js(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public string $value = '';
 

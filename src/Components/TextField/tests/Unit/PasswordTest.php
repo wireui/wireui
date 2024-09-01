@@ -8,7 +8,7 @@ use WireUi\Components\Wrapper\WireUi\Rounded;
 use WireUi\WireUi\Shadow;
 
 beforeEach(function () {
-    $this->component = (new Password())->withName('password');
+    $this->component = (new Password)->withName('password');
 });
 
 test('it should set random color in component', function () {

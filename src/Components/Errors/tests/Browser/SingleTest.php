@@ -11,7 +11,7 @@ class SingleTest extends BrowserTestCase
 {
     public function test_livewire_render_error(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public bool $validation = true;
 
@@ -43,7 +43,7 @@ class SingleTest extends BrowserTestCase
 
     public function test_browser_render_error(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public bool $validation = true;
 

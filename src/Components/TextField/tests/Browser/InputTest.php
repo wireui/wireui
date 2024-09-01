@@ -11,7 +11,7 @@ class InputTest extends BrowserTestCase
 {
     public function test_it_should_see_label_and_corner(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -28,7 +28,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_see_description_prefix_and_suffix(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -46,7 +46,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_see_append_and_prepend_slots(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -71,7 +71,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_see_prefix_and_suffix_instead_append_or_prepend_slots(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public function render(): string
             {
@@ -98,7 +98,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_see_input_error(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             #[Validate('required', message: 'input is required')]
             public $model = null;
@@ -130,7 +130,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_dont_see_the_input_error_message(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             #[Validate('required', message: 'input is required')]
             public $model = null;
@@ -161,7 +161,7 @@ class InputTest extends BrowserTestCase
 
     public function test_it_should_set_model_value_to_livewire(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             public $model = null;
 

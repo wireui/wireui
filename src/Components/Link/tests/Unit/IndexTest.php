@@ -8,7 +8,7 @@ use WireUi\Components\Link\WireUi\Size;
 use WireUi\Components\Link\WireUi\Underline;
 
 beforeEach(function () {
-    $this->component = (new Link())->withName('link');
+    $this->component = (new Link)->withName('link');
 });
 
 test('it should have array properties', function () {

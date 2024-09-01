@@ -12,7 +12,7 @@ class IndexTest extends BrowserTestCase
 {
     public function browser(): Browser
     {
-        return Livewire::visit(new class() extends Component
+        return Livewire::visit(new class extends Component
         {
             use WireUiActions;
 

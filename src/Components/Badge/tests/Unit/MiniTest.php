@@ -10,7 +10,7 @@ use WireUi\Enum\Packs;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Mini())->withName('mini-badge');
+    $this->component = (new Mini)->withName('mini-badge');
 });
 
 test('it should have array properties', function () {
@@ -70,7 +70,7 @@ test('it should set icon in component with random size', function () {
     $this->runWireUiComponent($this->component);
 
     $sizeClasses = data_get($pack, 'class');
-    $iconSizeClasses = (new IconSize())->get($size);
+    $iconSizeClasses = (new IconSize)->get($size);
 
     expect($this->component->icon)->toBe($icon);
     expect($this->component->size)->toBe($size);
@@ -110,7 +110,7 @@ test('it should set rounded full in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = (new Rounded())->get(Packs\Rounded::FULL);
+    $class = (new Rounded)->get(Packs\Rounded::FULL);
 
     expect($this->component->rounded)->toBeTrue();
     expect($this->component->squared)->toBeFalse();
@@ -126,7 +126,7 @@ test('it should set squared in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = (new Rounded())->get(Packs\Rounded::NONE);
+    $class = (new Rounded)->get(Packs\Rounded::NONE);
 
     expect($this->component->squared)->toBeTrue();
     expect($this->component->rounded)->toBeFalse();

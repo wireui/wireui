@@ -8,7 +8,7 @@ use WireUi\Components\Switcher\WireUi\Toggle\Size;
 use WireUi\WireUi\Rounded;
 
 beforeEach(function () {
-    $this->component = (new Toggle())->withName('toggle');
+    $this->component = (new Toggle)->withName('toggle');
 });
 
 test('it should have array properties', function () {

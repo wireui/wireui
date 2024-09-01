@@ -41,7 +41,7 @@ test('it should merge the wireui config', function () {
 
 test('the root dir function should create the correct path', function () {
     /** @var TestCase $this */
-    $provider = new ServiceProvider(new Application());
+    $provider = new ServiceProvider(new Application);
 
     expect($this->invokeMethod($provider, 'srcDir', ['config.php']))->toEndWith('/src/config.php');
     expect($this->invokeMethod($provider, 'srcDir', ['resources/views']))->toEndWith('/src/resources/views');
@@ -104,14 +104,14 @@ test('it should register the blade directives', function () {
 
 test('it should register the component attributes bag macros', function () {
     /** @var TestCase $this */
-    $macros = $this->invokeProperty(new ComponentAttributeBag(), 'macros');
+    $macros = $this->invokeProperty(new ComponentAttributeBag, 'macros');
 
     expect($macros)->toHaveKey('wireModifiers');
 });
 
 test('it should register the attribute macro on ComponentAttributeBag', function () {
     /** @var TestCase $this */
-    $macros = $this->invokeProperty(new ComponentAttributeBag(), 'macros');
+    $macros = $this->invokeProperty(new ComponentAttributeBag, 'macros');
 
     expect($macros)->toHaveKey('attribute');
 });

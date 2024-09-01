@@ -10,7 +10,7 @@ class TextareaTest extends BrowserTestCase
 {
     public function test_it_should_see_the_rows_attribute(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public $model = null;
 
@@ -28,7 +28,7 @@ class TextareaTest extends BrowserTestCase
 
     public function test_it_should_see_the_cols_attribute(): void
     {
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public $model = null;
 
@@ -47,7 +47,7 @@ class TextareaTest extends BrowserTestCase
     public function test_cols_should_default_to_auto_attribute(): void
     {
         // rowAttributeComponent doesn't have cols attribute set, thus it should be auto and w-full
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public $model = null;
 
@@ -62,7 +62,7 @@ class TextareaTest extends BrowserTestCase
         })
             ->assertSeeHtml('cols="auto"');
 
-        Livewire::test(new class() extends Component
+        Livewire::test(new class extends Component
         {
             public $model = null;
 

@@ -12,7 +12,7 @@ class ToggleTest extends BrowserTestCase
 {
     public function test_toggle_component(): void
     {
-        Livewire::visit(new class() extends Component
+        Livewire::visit(new class extends Component
         {
             #[Validate('accepted', message: 'accept it')]
             public bool $toggle = false;

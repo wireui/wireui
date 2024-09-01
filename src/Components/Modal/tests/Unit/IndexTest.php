@@ -9,7 +9,7 @@ use WireUi\Components\Modal\WireUi\Type;
 use WireUi\Components\Modal\WireUi\Width;
 
 beforeEach(function () {
-    $this->component = (new Modal())->withName('modal');
+    $this->component = (new Modal)->withName('modal');
 });
 
 test('it should have array properties', function () {
