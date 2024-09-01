@@ -16,7 +16,7 @@ trait InteractsWithSpinner
 
         if (! $spinner) {
             $data['spinner'] = null;
-            $data['spinnerRemove'] = null;
+            $data['spinnerRemove'] = new ComponentAttributeBag;
 
             return;
         }
