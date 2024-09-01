@@ -11,6 +11,7 @@
 <x-dynamic-component
     :component="WireUi::component('modal')"
     :spacing="$fullscreen ? 'p-0' : $spacing"
+    :persistent="$persistent"
     :attributes="$attributes->except($except)"
 >
     <x-dynamic-component
@@ -18,7 +19,7 @@
         :attributes="$attributes->only($except)"
         @class(['w-full', 'min-h-screen' => $fullscreen])
     >
-        @if(!$hideClose)
+        @if (!$persistent && !$hideClose)
             @slot('action')
                 <button class="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-200 text-secondary-300"
                     x-on:click="close"
