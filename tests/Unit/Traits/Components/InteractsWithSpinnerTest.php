@@ -29,6 +29,31 @@ test('it should setup simple spinner', function () {
     expect($spinner)->toBeInstanceOf(ComponentAttributeBag::class);
     expect($spinnerRemove)->toBeInstanceOf(ComponentAttributeBag::class);
 
+    expect($spinner->has('wire:loading'))->toBeTrue();
+    expect($spinner->get('wire:loading'))->toBe('true');
+
+    expect($spinnerRemove->has('wire:loading.remove'))->toBeTrue();
+    expect($spinnerRemove->get('wire:loading.remove'))->toBe('true');
+});
+
+test('it should setup simple spinner with default delay', function () {
+    $this->setAttributes($this->component, [
+        'spinner.delay' => true,
+    ]);
+
+    $data = $this->component->data();
+
+    $this->invokeMethod($this->component, 'mountSpinner', [&$data]);
+
+    $spinner = data_get($data, 'spinner');
+    $attributes = data_get($data, 'attributes');
+    $spinnerRemove = data_get($data, 'spinnerRemove');
+
+    expect($attributes->has('spinner.delay'))->toBeFalse();
+
+    expect($spinner)->toBeInstanceOf(ComponentAttributeBag::class);
+    expect($spinnerRemove)->toBeInstanceOf(ComponentAttributeBag::class);
+
     expect($spinner->has('wire:loading.delay'))->toBeTrue();
     expect($spinner->get('wire:loading.delay'))->toBe('true');
 
@@ -57,8 +82,8 @@ test('it should setup simple spinner with delay', function () {
     expect($spinner->has('wire:loading.delay.longest'))->toBeTrue();
     expect($spinner->get('wire:loading.delay.longest'))->toBe('true');
 
-    expect($spinnerRemove->has('wire:loading.remove.delay.longest'))->toBeTrue();
-    expect($spinnerRemove->get('wire:loading.remove.delay.longest'))->toBe('true');
+    expect($spinnerRemove->has('wire:loading.remove'))->toBeTrue();
+    expect($spinnerRemove->get('wire:loading.remove'))->toBe('true');
 });
 
 test('it should setup spinner with target', function () {
@@ -81,11 +106,13 @@ test('it should setup spinner with target', function () {
 
     expect($spinner->has('wire:target'))->toBeTrue();
     expect($spinner->get('wire:target'))->toBe('sleeping');
-    expect($spinner->has('wire:loading.delay'))->toBeTrue();
-    expect($spinner->get('wire:loading.delay'))->toBe('true');
+    expect($spinner->has('wire:loading'))->toBeTrue();
+    expect($spinner->get('wire:loading'))->toBe('true');
 
     expect($spinnerRemove->has('wire:loading.remove'))->toBeTrue();
     expect($spinnerRemove->get('wire:loading.remove'))->toBe('true');
+    expect($spinnerRemove->has('wire:target'))->toBeTrue();
+    expect($spinnerRemove->get('wire:target'))->toBe('sleeping');
 });
 
 test('it should setup spinner with target and delay', function () {
@@ -111,6 +138,8 @@ test('it should setup spinner with target and delay', function () {
     expect($spinner->has('wire:loading.delay.longest'))->toBeTrue();
     expect($spinner->get('wire:loading.delay.longest'))->toBe('true');
 
-    expect($spinnerRemove->has('wire:loading.remove.delay.longest'))->toBeTrue();
-    expect($spinnerRemove->get('wire:loading.remove.delay.longest'))->toBe('true');
+    expect($spinnerRemove->has('wire:loading.remove'))->toBeTrue();
+    expect($spinnerRemove->get('wire:loading.remove'))->toBe('true');
+    expect($spinnerRemove->has('wire:target'))->toBeTrue();
+    expect($spinnerRemove->get('wire:target'))->toBe('sleeping');
 });

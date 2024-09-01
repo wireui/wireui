@@ -33,9 +33,15 @@ trait InteractsWithSpinner
         /** @var string|null $delay */
         $delay = $spinner->modifiers()->last();
 
-        $loading = $delay && $delay !== 'delay'
-            ? "wire:loading.delay.{$delay}"
-            : 'wire:loading';
+        $loading = 'wire:loading';
+
+        if ($delay === 'delay') {
+            $loading = 'wire:loading.delay';
+        }
+
+        if ($delay && $delay !== 'delay') {
+            $loading = "wire:loading.delay.{$delay}";
+        }
 
         $attributes->offsetSet($loading, 'true');
 
