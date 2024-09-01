@@ -24,7 +24,9 @@ abstract class WireUiComponent extends Component
     public function render(): Closure
     {
         return function (array $data) {
-            return $this->blade()->with($this->runWireUiComponent($data));
+            $attrs = $this->runWireUiComponent($data);
+
+            return $this->blade()->with($attrs);
         };
     }
 

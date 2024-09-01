@@ -67,7 +67,7 @@ test('it should set specific title in component', function () {
 test('it should set icon in component and using iconless', function () {
     $title = fake()->word();
 
-    $pack = $this->getVariantRandomPack(Variant::class);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color');
 
     $this->setAttributes($this->component, [
         'icon' => $icon = $this->getRandomIcon(),
@@ -98,7 +98,7 @@ test('it should set icon in component and using iconless', function () {
 test('it should set random color and variant in component', function () {
     $title = fake()->word();
 
-    $pack = $this->getVariantRandomPack(Variant::class);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color');
 
     $this->setAttributes($this->component, [
         'color' => $color = data_get($pack, 'key'),

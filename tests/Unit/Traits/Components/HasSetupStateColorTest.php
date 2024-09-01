@@ -13,7 +13,7 @@ beforeEach(function () {
 });
 
 test('it should set interaction with color and without variant', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
     $pack2 = $this->getRandomPack(data_get($pack, 'pack'), [Color::NONE, data_get($pack, 'key')]);
 
     $this->setAttributes($this->component, [
@@ -35,8 +35,8 @@ test('it should set interaction with color and without variant', function () {
 });
 
 test('it should set interaction with color and variant', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
-    $pack2 = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
+    $pack2 = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
 
     $variant2 = data_get($pack2, 'variant');
 
@@ -59,7 +59,7 @@ test('it should set interaction with color and variant', function () {
 });
 
 test('it should set hover and focus with only color', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
     $pack2 = $this->getRandomPack(data_get($pack, 'pack'), [Color::NONE, data_get($pack, 'key')]);
     $pack3 = $this->getRandomPack(data_get($pack, 'pack'), [Color::NONE, data_get($pack, 'key'), data_get($pack2, 'key')]);
 
@@ -83,9 +83,9 @@ test('it should set hover and focus with only color', function () {
 });
 
 test('it should set hover and focus with color and variant', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
-    $pack2 = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
-    $pack3 = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
+    $pack2 = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
+    $pack3 = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
 
     $variant2 = data_get($pack2, 'variant');
     $variant3 = data_get($pack3, 'variant');

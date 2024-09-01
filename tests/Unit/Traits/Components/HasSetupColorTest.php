@@ -40,12 +40,12 @@ test('it should set color resolve', function () {
 });
 
 test('it should setup color', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
 
     $color = data_get($pack, 'key');
     $class = data_get($pack, 'class');
     $variant = data_get($pack, 'variant');
-    $colorResolve = (new Variant())->get($variant);
+    $colorResolve = data_get((new Variant())->get($variant), 'color');
 
     $this->invokeMethod($this->component, 'setColorResolve', [$colorResolve]);
 

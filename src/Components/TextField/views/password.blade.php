@@ -1,7 +1,7 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'class'])"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_inputs_password"
 >
     @include('wireui-wrapper::components.slots', [
@@ -9,9 +9,9 @@
     ])
 
     <x-wireui-wrapper::element
-        :attributes="$attrs->except(['wire:key', 'x-data', 'class'])"
         type="password"
         x-bind:type="type"
+        :attributes="$input"
     />
 
     <x-slot name="append">

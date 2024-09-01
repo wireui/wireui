@@ -1,8 +1,9 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
+    x-ref="container"
+    :config="$config"
+    :attributes="$wrapper"
     x-data="wireui_date_picker"
-    :data="$wrapperData"
-    :attributes="$attrs->only(['wire:key', 'class'])"
     :x-props="WireUi::toJs([
         'config' => [
             'requiresConfirmation' => $requiresConfirmation,
@@ -44,10 +45,9 @@
             'parseFormat'   => $parseFormat,
             'displayFormat' => $displayFormat,
         ],
-        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attrs),
-        'alpineModel' => WireUi::alpineModel($attrs),
+        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel' => WireUi::alpineModel($attributes),
     ])"
-    x-ref="container"
     x-bind:class="{
         'ring-2 ring-primary-600': positionable.isOpen(),
     }"
@@ -58,21 +58,22 @@
     tabindex="0"
 >
     <div class="hidden" hidden>
-        <x-wireui-wrapper::element
+        <x-wireui-wrapper::hidden
             :id="$id"
             :name="$name"
             :value="$value"
-            x-bind:value="selectedRawValue"
             x-ref="rawInput"
-            type="hidden"
+            x-bind:value="selectedRawValue"
         />
     </div>
 
-    @include('wireui-wrapper::components.slots', ['except' => ['prepend', 'append']])
+    @include('wireui-wrapper::components.slots', [
+        'except' => ['prepend', 'append'],
+    ])
 
     @if ($multiple)
         <div
-            class="flex gap-1 items-center hide-scrollbar overscroll-x-contain overflow-x-auto w-full cursor-pointer"
+            class="flex items-center w-full gap-1 overflow-x-auto cursor-pointer hide-scrollbar overscroll-x-contain"
             x-show="selectedDates.length > 0"
         >
             <template x-for="(date, index) in selectedDatesDisplay" wire:key="date">
@@ -96,12 +97,12 @@
     @endif
 
     <x-wireui-wrapper::element
-        class="cursor-pointer"
-        x-show="selectedDates.length === 0"
-        x-bind:value="display"
-        :attributes="$attributes->whereStartsWith(['placeholder', 'dusk', 'cy', 'readonly', 'disabled'])"
-        autocomplete="off"
         readonly
+        autocomplete="off"
+        :attributes="$input"
+        class="cursor-pointer"
+        x-bind:value="display"
+        x-show="selectedDates.length === 0"
     />
 
     @if (!$readonly && !$disabled)
@@ -121,7 +122,7 @@
                 :component="WireUi::component('button')"
                 class="h-full"
                 :color="$color ?? 'primary'"
-                :rounded="Arr::get($roundedClasses, 'append', '')"
+                :rounded="data_get($roundedClasses, 'append', '')"
                 :disabled="$disabled"
                 x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
                 use-validation-colors
@@ -178,7 +179,7 @@
 
                             <x-dynamic-component
                                 :component="WireUi::component('icon')"
-                                class="size-3 transition-all ease-in-out duration-200"
+                                class="transition-all duration-200 ease-in-out size-3"
                                 x-bind:class="{ 'rotate-180': tab === 'years-picker' }"
                                 name="chevron-down"
                                 gray flat
@@ -194,7 +195,7 @@
 
                             <x-dynamic-component
                                 :component="WireUi::component('icon')"
-                                class="size-3 transition-all ease-in-out duration-200"
+                                class="transition-all duration-200 ease-in-out size-3"
                                 x-bind:class="{ 'rotate-180': tab === 'months-picker' }"
                                 name="chevron-down"
                                 gray flat
@@ -217,7 +218,7 @@
                             x-on:click="goToday"
                             gray flat rounded
                         >
-                            <div class="size-2 bg-slate-600 rounded-full"></div>
+                            <div class="rounded-full size-2 bg-slate-600"></div>
                         </x-dynamic-component>
 
                         <x-dynamic-component
@@ -255,13 +256,7 @@
                     <div class="grid grid-cols-3 gap-2">
                         <template x-for="(name, index) in $props.calendar.monthNames" :key="`month.${name}`">
                             <button
-                                class="
-                                    rounded-md px-2 py-4 uppercase text-xs text-gray-700
-                                    transition-all ease-in-out duration-150
-                                    border border-primary-100
-                                    outline-none focus:ring-2 focus:ring-offset-2
-                                    disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200
-                                "
+                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-none border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
                                 :class="{
                                     'text-white bg-primary-500 font-semibold focus:ring-primary-600': index === calendar.month,
                                     'hover:bg-primary-100 hover:text-primary-900 hover:font-medium': index !== calendar.month,
@@ -346,7 +341,7 @@
 
                                 <div
                                     x-show="day.isToday"
-                                    class="absolute size-1 rounded-full bottom-1"
+                                    class="absolute rounded-full size-1 bottom-1"
                                     :class="{
                                         'bg-primary-600': !day.isSelected,
                                         'bg-white': day.isSelected,
@@ -376,7 +371,7 @@
                 </footer>
             @else
                 <footer
-                    class="rounded-b-xl bg-slate-100 w-full flex items-center justify-end gap-2 p-2"
+                    class="flex items-center justify-end w-full gap-2 p-2 rounded-b-xl bg-slate-100"
                     x-show="shouldShowFooter"
                 >
                     <x-dynamic-component

@@ -64,16 +64,18 @@ trait Interacts
     /**
      * Get random variant pack from WireUi.
      */
-    public function getVariantRandomPack(string $variant, array $except = []): array
+    public function getVariantRandomPack(string $variant, string $key, array $except = []): array
     {
         $variant = collect((new $variant())->all())->map(fn ($value, $key) => [
             'pack' => $value,
             'variant' => $key,
         ])->random();
 
-        $pack = $this->getRandomPack(data_get($variant, 'pack'), $except);
+        $class = data_get($variant, "pack.{$key}");
 
-        return [...$pack, 'pack' => data_get($variant, 'pack'), 'variant' => data_get($variant, 'variant')];
+        $pack = $this->getRandomPack($class, $except);
+
+        return [...$pack, 'pack' => $class, 'variant' => data_get($variant, 'variant')];
     }
 
     /**

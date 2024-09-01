@@ -10,10 +10,19 @@ trait HasSetupSize
 
     public mixed $sizeClasses = null;
 
+    private mixed $sizeResolve = null;
+
+    protected function setSizeResolve(string $class): void
+    {
+        $this->sizeResolve = $class;
+    }
+
     protected function setupSize(): void
     {
+        $sizes = config("wireui.{$this->config}.packs.sizes");
+
         /** @var ComponentPack $sizePack */
-        $sizePack = resolve(config("wireui.{$this->config}.packs.sizes"));
+        $sizePack = resolve($sizes ?? $this->sizeResolve);
 
         $this->size = $this->getDataModifier('size', $sizePack);
 

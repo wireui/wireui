@@ -14,18 +14,18 @@ beforeEach(function () {
 test('it should have array properties', function () {
     $packs = $this->invokeProperty($this->component, 'packs');
 
-    expect($packs)->toBe(['shadow']);
+    expect($packs)->toBe([]);
 
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
+        'label' => null,
         'options' => null,
         'template' => null,
         'clearable' => true,
         'async-data' => null,
         'right-icon' => 'chevron-up-down',
         'searchable' => true,
-        'shadowless' => false,
         'multiselect' => false,
         'placeholder' => null,
         'always-fetch' => false,
@@ -52,7 +52,6 @@ test('it should have properties in component', function () {
         'clearable',
         'rightIcon',
         'searchable',
-        'shadowless',
         'alwaysFetch',
         'flipOptions',
         'multiselect',
@@ -65,19 +64,10 @@ test('it should have properties in component', function () {
         'minItemsForSearch',
         'optionDescription',
         'withoutItemsCount',
-        // Packs
-        'color',
-        'shadow',
-        'rounded',
-        'squared',
-        'colorClasses',
-        'shadowClasses',
-        'roundedClasses',
     ]);
 
     expect($this->component->clearable)->toBeTrue();
     expect($this->component->searchable)->toBeTrue();
-    expect($this->component->shadowless)->toBeFalse();
     expect($this->component->multiselect)->toBeFalse();
     expect($this->component->alwaysFetch)->toBeFalse();
     expect($this->component->flipOptions)->toBeFalse();
@@ -98,9 +88,6 @@ test('it should set random color in component', function () {
 
     $class = data_get($pack, 'class');
 
-    expect($this->component->color)->toBe($color);
-    expect($this->component->colorClasses)->toBe($class);
-
     expect('<x-select :$color />')
         ->render(compact('color'))
         ->toContain(data_get($class, 'input'));
@@ -115,13 +102,9 @@ test('it should set random shadow in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = data_get($pack, 'class');
-
-    expect($this->component->shadow)->toBe($shadow);
-    expect($this->component->shadowless)->toBeFalse();
-    expect($this->component->shadowClasses)->toBe($class);
-
-    expect('<x-select :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-select :$shadow />')
+        ->render(compact('shadow'))
+        ->toContain(data_get($pack, 'class'));
 });
 
 test('it should set random rounded in component', function () {
@@ -134,10 +117,6 @@ test('it should set random rounded in component', function () {
     $this->runWireUiComponent($this->component);
 
     $class = data_get($pack, 'class');
-
-    expect($this->component->squared)->toBeFalse();
-    expect($this->component->rounded)->toBe($rounded);
-    expect($this->component->roundedClasses)->toBe($class);
 
     expect('<x-select :$rounded />')
         ->render(compact('rounded'))

@@ -5,14 +5,14 @@ namespace WireUi\Components\Label;
 use Illuminate\Contracts\View\View;
 use WireUi\View\WireUiComponent;
 
-class Index extends WireUiComponent
+class Description extends WireUiComponent
 {
     protected array $props = [
-        'label' => null,
+        'text' => null,
     ];
 
     public function blade(): View
     {
-        return view('wireui-label::index');
+        return view('wireui-label::description');
     }
 }

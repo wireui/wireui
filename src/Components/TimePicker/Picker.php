@@ -5,23 +5,26 @@ namespace WireUi\Components\TimePicker;
 use Illuminate\Contracts\View\View;
 use WireUi\Traits\Components\HasSetupColor;
 use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\IsFormComponent;
+use WireUi\Traits\Components\HasSetupWrapper;
 use WireUi\View\WireUiComponent;
 
 class Picker extends WireUiComponent
 {
     use HasSetupColor;
     use HasSetupRounded;
-    use IsFormComponent;
-
-    protected array $packs = ['shadow'];
+    use HasSetupWrapper;
 
     protected array $props = [
+        'label' => null,
         'right-icon' => 'clock',
-        'shadowless' => false,
         'military-time' => false,
         'without-seconds' => false,
     ];
+
+    protected function include(): array
+    {
+        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+    }
 
     protected function blade(): View
     {

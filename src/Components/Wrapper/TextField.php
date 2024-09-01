@@ -3,65 +3,51 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
-use WireUi\Support\WrapperData;
+use WireUi\Traits\Components\HasSetupColor;
+use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Traits\Components\HasSetupRounded;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\View\WireUiComponent;
 
-class TextField extends Component
+class TextField extends WireUiComponent
 {
+    use HasSetupColor;
+    use HasSetupForm;
+    use HasSetupRounded;
     use InteractsWithErrors;
 
-    public function __construct(
-        ?WrapperData $data = null,
-        public ?string $id = null,
-        public ?string $icon = null,
-        public ?string $name = null,
-        public ?string $color = null,
-        public ?string $label = null,
-        public ?string $corner = null,
-        public ?string $prefix = null,
-        public ?string $shadow = null,
-        public ?string $suffix = null,
-        public ?bool $disabled = null,
-        public ?bool $readonly = null,
-        public ?string $padding = null,
-        public ?string $rounded = null,
-        public ?bool $errorless = null,
-        public ?string $rightIcon = null,
-        public ?bool $shadowless = null,
-        public ?bool $invalidated = null,
-        public ?string $description = null,
-        public ?bool $withErrorIcon = true,
-        public ?bool $withValidationColors = null,
-        // Classes
-        public mixed $colorClasses = null,
-        public mixed $shadowClasses = null,
-        public mixed $roundedClasses = null,
-    ) {
-        if ($data) {
-            $this->fill($data->toArray());
-        }
+    protected array $packs = ['shadow'];
 
-        $this->fillValidation();
-    }
+    protected array $props = [
+        'icon' => null,
+        'error' => null,
+        'label' => null,
+        'corner' => null,
+        'prefix' => null,
+        'suffix' => null,
+        'padding' => null,
+        'errorless' => false,
+        'right-icon' => null,
+        'shadowless' => false,
+        'description' => null,
+        'invalidated' => null,
+        'with-error-icon' => true,
+        'with-validation-colors' => true,
+    ];
 
-    public function fillValidation(): void
+    public function __construct(string $config)
     {
-        if ($this->invalidated === null) {
-            $this->invalidated = $this->name && $this->errors()->has($this->name);
-        }
+        $this->config = $config;
     }
 
-    protected function fill(array $data): void
+    protected function processed(): void
     {
-        foreach ($data as $property => $value) {
-            if (property_exists($this, $property) && $this->{$property} === null) {
-                $this->{$property} = $value;
-            }
+        if (filled($this->name) && is_null($this->invalidated)) {
+            $this->invalidated = $this->errors()->has($this->name);
         }
     }
 
-    public function render(): View
+    protected function blade(): View
     {
         return view('wireui-wrapper::text-field');
     }

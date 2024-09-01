@@ -112,7 +112,7 @@ test('it should set icon and right icon in component with random size', function
 });
 
 test('it should set random color and variant in component', function () {
-    $pack = $this->getVariantRandomPack(Variant::class, [Color::NONE]);
+    $pack = $this->getVariantRandomPack(Variant::class, 'color', [Color::NONE]);
 
     $this->setAttributes($this->component, [
         'color' => $color = data_get($pack, 'key'),

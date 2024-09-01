@@ -14,13 +14,13 @@ beforeEach(function () {
 test('it should have array properties', function () {
     $packs = $this->invokeProperty($this->component, 'packs');
 
-    expect($packs)->toBe(['shadow']);
+    expect($packs)->toBe([]);
 
     $props = $this->invokeProperty($this->component, 'props');
 
     expect($props)->toBe([
+        'label' => null,
         'right-icon' => 'clock',
-        'shadowless' => false,
         'military-time' => false,
         'without-seconds' => false,
     ]);
@@ -31,21 +31,18 @@ test('it should have properties in component', function () {
 
     expect($this->component)->toHaveProperties([
         // Props
+        'label',
         'rightIcon',
-        'shadowless',
         'militaryTime',
         'withoutSeconds',
         // Packs
         'color',
-        'shadow',
         'rounded',
         'squared',
         'colorClasses',
-        'shadowClasses',
         'roundedClasses',
     ]);
 
-    expect($this->component->shadowless)->toBeFalse();
     expect($this->component->rightIcon)->toBe('clock');
     expect($this->component->militaryTime)->toBeFalse();
     expect($this->component->withoutSeconds)->toBeFalse();
@@ -79,13 +76,9 @@ test('it should set random shadow in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $class = data_get($pack, 'class');
-
-    expect($this->component->shadow)->toBe($shadow);
-    expect($this->component->shadowless)->toBeFalse();
-    expect($this->component->shadowClasses)->toBe($class);
-
-    expect('<x-time-picker :$shadow />')->render(compact('shadow'))->toContain($class);
+    expect('<x-time-picker :$shadow />')
+        ->render(compact('shadow'))
+        ->toContain(data_get($pack, 'class'));
 });
 
 test('it should set random rounded in component', function () {

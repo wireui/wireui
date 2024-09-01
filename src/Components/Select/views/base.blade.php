@@ -1,11 +1,11 @@
 <x-dynamic-component
     :component="WireUi::component('text-field')"
     x-ref="container"
-    :data="$wrapperData"
-    :attributes="$attrs->class([
+    :config="$config"
+    x-data="wireui_select"
+    :attributes="$wrapper->class([
         'cursor-pointer' => !$disabled && !$readonly,
     ])"
-    x-data="wireui_select"
     :x-props="WireUi::toJs([
         'asyncData'         => $asyncData,
         'optionValue'       => $optionValue,
@@ -34,13 +34,12 @@
         <div hidden x-ref="json">{{ WireUi::toJs($optionsToArray()) }}</div>
         <div hidden x-ref="slot">{{ $slot }}</div>
 
-        <x-wireui-wrapper::element
+        <x-wireui-wrapper::hidden
             :id="$id"
             :name="$name"
+            x-ref="input"
             :value="$value"
             x-bind:value="getSelectedValue"
-            x-ref="input"
-            type="hidden"
         />
 
         @if (app()->runningUnitTests())
@@ -62,20 +61,17 @@
 
     <button
         type="button"
-        class="w-full truncate flex items-center outline-0 border-0"
+        class="flex items-center w-full truncate border-0 outline-0"
         tabindex="-1"
     >
         <span
-            class="select-none text-gray-400 invalidated:text-negative-400 invalidated:dark:text-negative-400 text-sm truncate"
+            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 invalidated:dark:text-negative-400"
             x-show="isEmpty()"
             x-text="getPlaceholder"
         ></span>
 
         <span
-            class="
-                text-sm truncate text-secondary-600 dark:text-secondary-400
-                invalidated:text-negative-600 invalidated:dark:text-negative-400
-            "
+            class="text-sm truncate text-secondary-600 dark:text-secondary-400 invalidated:text-negative-600 invalidated:dark:text-negative-400"
             x-show="!config.multiselect && isNotEmpty()"
             x-html="getSelectedDisplayText()"
         ></span>
@@ -87,10 +83,10 @@
             ])
             x-show="config.multiselect && isNotEmpty()"
         >
-            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full">
+            <div class="flex items-center w-full gap-2 overflow-x-auto hide-scrollbar">
                 @unless ($withoutItemsCount)
                     <span
-                        class="inline-flex text-sm text-secondary-700 dark:text-secondary-400 select-none"
+                        class="inline-flex text-sm select-none text-secondary-700 dark:text-secondary-400"
                         x-show="selectedOptions.length"
                         x-text="selectedOptions.length"
                     ></span>
@@ -161,7 +157,7 @@
         <x-dynamic-component
             :component="WireUi::component('popover')"
             :margin="(bool) $label"
-            class="w-full max-h-80 select-none overflow-hidden"
+            class="w-full overflow-hidden select-none max-h-80"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
