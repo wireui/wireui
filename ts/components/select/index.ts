@@ -91,8 +91,6 @@ export default class Select extends AlpineComponent {
       this.config.hasSlot
         ? this.initSlotObserver()
         : this.initOptionsObserver()
-    } else if (this.asyncData.api) {
-      this.fetchSelected()
     }
 
     this.initModelWatchers()
