@@ -4,6 +4,7 @@ namespace WireUi\Components\Dialog;
 
 use Illuminate\Contracts\View\View;
 use WireUi\Actions\Dialog as DialogAction;
+use WireUi\Attributes\Process;
 use WireUi\View\WireUiComponent;
 
 class Index extends WireUiComponent
@@ -21,7 +22,8 @@ class Index extends WireUiComponent
         'description' => null,
     ];
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         $this->dialog = DialogAction::makeEventName($this->id);
 

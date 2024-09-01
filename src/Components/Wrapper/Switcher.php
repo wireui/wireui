@@ -3,14 +3,15 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithForm;
 use WireUi\View\WireUiComponent;
 
 class Switcher extends WireUiComponent
 {
-    use HasSetupForm;
     use InteractsWithErrors;
+    use InteractsWithForm;
 
     protected array $props = [
         'error' => null,
@@ -28,7 +29,8 @@ class Switcher extends WireUiComponent
         $this->config = $config;
     }
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         if (filled($this->name) && is_null($this->invalidated)) {
             $this->invalidated = $this->errors()->has($this->name);

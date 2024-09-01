@@ -3,14 +3,15 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Components\Select\Traits\CheckOptions;
-use WireUi\Traits\Components\HasSetupWrapper;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Base extends WireUiComponent
 {
     use CheckOptions;
-    use HasSetupWrapper;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'label' => null,
@@ -39,7 +40,8 @@ class Base extends WireUiComponent
         return ['label'];
     }
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         $this->serializeOptions();
 

@@ -3,9 +3,10 @@
 namespace WireUi\Traits\Components;
 
 use Illuminate\Support\Arr;
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupVariant
+trait InteractsWithVariant
 {
     public mixed $variant = null;
 
@@ -16,7 +17,8 @@ trait HasSetupVariant
         $this->variantResolve = $class;
     }
 
-    protected function setupVariant(): void
+    #[Mount(30)]
+    protected function mountVariant(): void
     {
         $variants = config("wireui.{$this->config}.packs.variants");
 

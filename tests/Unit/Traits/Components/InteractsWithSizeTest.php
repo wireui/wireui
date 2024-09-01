@@ -19,7 +19,7 @@ test('it should setup size', function () {
         'size' => $size = SizePack::XL2,
     ]);
 
-    $this->invokeMethod($this->component, 'setupSize');
+    $this->invokeMethod($this->component, 'mountSize');
 
     expect($this->component->size)->toBe($size);
     expect($this->component->sizeClasses)->toBe($sizePack->get($size));
@@ -28,7 +28,7 @@ test('it should setup size', function () {
         'size' => $size = 'gap-x-[5px] text-xs px-[5px] py-[5px]',
     ]);
 
-    $this->invokeMethod($this->component, 'setupSize');
+    $this->invokeMethod($this->component, 'mountSize');
 
     expect($this->component->size)->toBe($size);
     expect($this->component->sizeClasses)->toBe($size);

@@ -3,14 +3,14 @@
 namespace WireUi\Components\TimePicker;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupForm;
-use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Traits\Components\InteractsWithForm;
+use WireUi\Traits\Components\InteractsWithRounded;
 use WireUi\View\WireUiComponent;
 
 class Selector extends WireUiComponent
 {
-    use HasSetupForm;
-    use HasSetupRounded;
+    use InteractsWithForm;
+    use InteractsWithRounded;
 
     protected array $packs = ['shadow'];
 

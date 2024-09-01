@@ -2,9 +2,12 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupForm
+use WireUi\Attributes\Mount;
+
+trait InteractsWithForm
 {
-    protected function setupForm(array &$data): void
+    #[Mount(10)]
+    protected function mountForm(array &$data): void
     {
         $this->injectModel();
 

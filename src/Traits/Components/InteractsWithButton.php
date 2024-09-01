@@ -2,11 +2,14 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupButton
+use WireUi\Attributes\Mount;
+
+trait InteractsWithButton
 {
     public mixed $tag = null;
 
-    protected function setupButton(): void
+    #[Mount(60)]
+    protected function mountButton(): void
     {
         $this->tag = $this->getTag();
 

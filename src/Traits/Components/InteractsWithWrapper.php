@@ -2,9 +2,12 @@
 
 namespace WireUi\Traits\Components;
 
-trait HasSetupWrapper
+use WireUi\Attributes\Finish;
+use WireUi\Attributes\Mount;
+
+trait InteractsWithWrapper
 {
-    use HasSetupForm;
+    use InteractsWithForm;
 
     protected function except(): array
     {
@@ -21,7 +24,8 @@ trait HasSetupWrapper
         return ['cy', 'id', 'dusk', 'name', 'type', 'value', 'x-on:', 'x-ref', 'x-model', 'disabled', 'readonly', 'required', 'wire:model', 'placeholder', 'autocomplete'];
     }
 
-    protected function setupWrapper(array &$data): void
+    #[Mount(20)]
+    protected function mountWrapper(array &$data): void
     {
         $wrapper = clone $this->attributes;
 
@@ -30,6 +34,7 @@ trait HasSetupWrapper
             ->filter(fn ($value) => ! is_array($value));
     }
 
+    #[Finish(10)]
     protected function finishWrapper(array &$data): void
     {
         $data['config'] = $this->config;

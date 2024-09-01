@@ -3,6 +3,7 @@
 namespace WireUi\Components\Errors;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Traits\Components\InteractsWithErrors;
 use WireUi\View\WireUiComponent;
 
@@ -16,7 +17,8 @@ class Single extends WireUiComponent
         'invalidated' => null,
     ];
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         if (filled($this->name) && is_null($this->message)) {
             $this->message = $this->errors()->first($this->name);

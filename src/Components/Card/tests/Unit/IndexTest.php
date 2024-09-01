@@ -3,7 +3,7 @@
 namespace WireUi\Components\Card\tests\Unit;
 
 use WireUi\Components\Card\Index as Card;
-use WireUi\Components\Card\WireUi\{Rounded};
+use WireUi\Components\Card\WireUi\Rounded;
 use WireUi\Enum\Packs;
 
 beforeEach(function () {

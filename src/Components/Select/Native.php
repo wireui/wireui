@@ -3,18 +3,19 @@
 namespace WireUi\Components\Select;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Components\Select\Traits\CheckOptions;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupRounded;
-use WireUi\Traits\Components\HasSetupWrapper;
+use WireUi\Traits\Components\InteractsWithColor;
+use WireUi\Traits\Components\InteractsWithRounded;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Native extends WireUiComponent
 {
     use CheckOptions;
-    use HasSetupColor;
-    use HasSetupRounded;
-    use HasSetupWrapper;
+    use InteractsWithColor;
+    use InteractsWithRounded;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'options' => null,
@@ -33,7 +34,8 @@ class Native extends WireUiComponent
         return ['type', 'placeholder'];
     }
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         $this->serializeOptions();
 

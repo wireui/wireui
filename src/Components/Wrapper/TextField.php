@@ -3,18 +3,19 @@
 namespace WireUi\Components\Wrapper;
 
 use Illuminate\Contracts\View\View;
-use WireUi\Traits\Components\HasSetupColor;
-use WireUi\Traits\Components\HasSetupForm;
-use WireUi\Traits\Components\HasSetupRounded;
+use WireUi\Attributes\Process;
+use WireUi\Traits\Components\InteractsWithColor;
 use WireUi\Traits\Components\InteractsWithErrors;
+use WireUi\Traits\Components\InteractsWithForm;
+use WireUi\Traits\Components\InteractsWithRounded;
 use WireUi\View\WireUiComponent;
 
 class TextField extends WireUiComponent
 {
-    use HasSetupColor;
-    use HasSetupForm;
-    use HasSetupRounded;
+    use InteractsWithColor;
     use InteractsWithErrors;
+    use InteractsWithForm;
+    use InteractsWithRounded;
 
     protected array $packs = ['shadow'];
 
@@ -40,7 +41,8 @@ class TextField extends WireUiComponent
         $this->config = $config;
     }
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         if (filled($this->name) && is_null($this->invalidated)) {
             $this->invalidated = $this->errors()->has($this->name);

@@ -56,7 +56,7 @@ test('it should setup color', function () {
 
     $this->component->variant = $variant;
 
-    $this->invokeMethod($this->component, 'setupColor');
+    $this->invokeMethod($this->component, 'mountColor');
 
     expect($this->component->color)->toBe($color);
     expect($this->component->colorClasses)->toBe($class);

@@ -71,7 +71,7 @@ test('it should ensure wire loading', function () {
 test('it should setup button', function () {
     $this->setAttributes($this->component, []);
 
-    $this->invokeMethod($this->component, 'setupButton');
+    $this->invokeMethod($this->component, 'mountButton');
 
     expect($this->component->tag)->toBe('button');
 
@@ -79,7 +79,7 @@ test('it should setup button', function () {
         'href' => fake()->url(),
     ]);
 
-    $this->invokeMethod($this->component, 'setupButton');
+    $this->invokeMethod($this->component, 'mountButton');
 
     expect($this->component->tag)->toBe('a');
 });

@@ -2,9 +2,10 @@
 
 namespace WireUi\Traits\Components;
 
+use WireUi\Attributes\Mount;
 use WireUi\Support\ComponentPack;
 
-trait HasSetupSize
+trait InteractsWithSize
 {
     public mixed $size = null;
 
@@ -17,7 +18,8 @@ trait HasSetupSize
         $this->sizeResolve = $class;
     }
 
-    protected function setupSize(): void
+    #[Mount(40)]
+    protected function mountSize(): void
     {
         $sizes = config("wireui.{$this->config}.packs.sizes");
 

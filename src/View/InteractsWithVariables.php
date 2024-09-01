@@ -7,26 +7,13 @@ use Illuminate\Support\Str;
 use WireUi\Facades\WireUi;
 use WireUi\Support\ComponentPack;
 
-trait ManageAttributes
+trait InteractsWithVariables
 {
     public ?string $config = null;
 
     private array $setVariables = [];
 
     private array $smartAttributes = [];
-
-    private const METHODS = [
-        'setupForm',
-        'setupWrapper',
-        'setupVariant',
-        'setupSize',
-        'setupProps',
-        'setupButton',
-        'setupRounded',
-        'setupSpinner',
-        'setupColor',
-        'setupStateColor',
-    ];
 
     private function setConfig(): void
     {
@@ -37,13 +24,15 @@ trait ManageAttributes
     {
         $this->setConfig();
 
-        $this->call('mounted', $data);
+        $this->bootAttributes();
 
-        foreach (self::METHODS as $method) {
-            $this->call($method, $data);
+        foreach ($this->mount as $function) {
+            $this->{$function}($data);
         }
 
-        $this->call('processed', $data);
+        foreach ($this->process as $function) {
+            $this->{$function}($data);
+        }
 
         foreach ($this->setVariables as $attribute) {
             $data[$attribute] = $this->{$attribute};
@@ -52,17 +41,10 @@ trait ManageAttributes
         $data['attributes'] = $this->attributes->except($this->smartAttributes);
 
         return tap($data, function (array &$data) {
-            $this->call('finished', $data);
-
-            $this->call('finishWrapper', $data);
+            foreach ($this->finish as $function) {
+                $this->{$function}($data);
+            }
         });
-    }
-
-    private function call(string $function, array &$data): void
-    {
-        if (method_exists($this, $function)) {
-            $this->{$function}($data);
-        }
     }
 
     protected function getData(string $attribute, mixed $default = null): mixed

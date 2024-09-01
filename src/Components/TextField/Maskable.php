@@ -3,20 +3,22 @@
 namespace WireUi\Components\TextField;
 
 use Illuminate\Contracts\View\View;
+use WireUi\Attributes\Process;
 use WireUi\Exceptions\WireUiMaskableException;
-use WireUi\Traits\Components\HasSetupWrapper;
+use WireUi\Traits\Components\InteractsWithWrapper;
 use WireUi\View\WireUiComponent;
 
 class Maskable extends WireUiComponent
 {
-    use HasSetupWrapper;
+    use InteractsWithWrapper;
 
     protected array $props = [
         'mask' => null,
         'emit-formatted' => false,
     ];
 
-    protected function processed(): void
+    #[Process()]
+    protected function process(): void
     {
         $this->mask ??= $this->getInputMask();
     }
