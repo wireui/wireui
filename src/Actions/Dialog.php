@@ -31,7 +31,7 @@ class Dialog
 
     public static function makeEventName(?string $dialogId = null): string
     {
-        $id = Str::kebab($dialogId);
+        $id = Str::kebab($dialogId ?? '');
 
         return ! empty($id) ? "dialog:{$id}" : 'dialog';
     }
