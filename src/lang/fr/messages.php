@@ -7,8 +7,7 @@ return [
     'search_here' => 'Cherchez ici',
     'date_picker' => [
         'months' => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-        'months' => ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-        'days' => "['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam']",
+        'days' => ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
         'tomorrow' => 'Demain',
         'today' => 'Aujourd\'hui',
         'yesterday' => 'Hier',
