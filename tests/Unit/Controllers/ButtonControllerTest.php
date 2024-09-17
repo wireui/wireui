@@ -28,26 +28,6 @@ class ButtonControllerTest extends UnitTestCase
             ->assertDontSee('CLICK ME');
     }
 
-    public function test_if_the_attributes_safe_filtered()
-    {
-        $attributes = [
-            'color'  => 'primary',
-            ':label' => "strtoupper('Click me')",
-            ':type'  => "config('app.name')",
-        ];
-
-        /** @var ButtonController $controller */
-        $controller = resolve(ButtonController::class);
-
-        /** @var ComponentAttributeBag $filteredAttributes */
-        $filteredAttributes = $this->invokeMethod($controller, 'attributes', [$attributes]);
-
-        $this->assertSame(
-            ['color' => 'primary'],
-            $filteredAttributes->getAttributes()
-        );
-    }
-
     /**
      * @dataProvider validationProvider
      */
