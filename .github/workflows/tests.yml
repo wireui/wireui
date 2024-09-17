@@ -47,17 +47,6 @@ jobs:
           tools: composer:v2
           coverage: none
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-          restore-keys: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-
-
       - name: Install Composer dependencies
         run: |
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
