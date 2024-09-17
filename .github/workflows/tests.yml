@@ -28,12 +28,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node and run tests
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
+          node-version: "20.x"
       - run: yarn install --frozen-lockfile
       - run: yarn lint
       - run: yarn build
@@ -46,17 +46,6 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
           tools: composer:v2
           coverage: none
-
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
-          restore-keys: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-
 
       - name: Install Composer dependencies
         run: |
