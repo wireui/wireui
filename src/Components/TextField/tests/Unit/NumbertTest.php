@@ -2,7 +2,6 @@
 
 namespace WireUi\Components\TextField\tests\Unit;
 
-use Illuminate\View\ComponentAttributeBag;
 use WireUi\Components\TextField\Number;
 use WireUi\Components\Wrapper\WireUi\Color;
 use WireUi\Components\Wrapper\WireUi\Rounded;
@@ -88,7 +87,7 @@ test('it should set html attributes in component', function () {
 
     $this->runWireUiComponent($this->component);
 
-    $attributes = $this->component->attributes->all();
+    $attributes = $this->component->attributes->getAttributes();
 
     expect(data_get($attributes, 'min'))->toBe($min);
     expect(data_get($attributes, 'max'))->toBe($max);
