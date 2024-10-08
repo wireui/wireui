@@ -186,4 +186,28 @@ class NumberTest extends BrowserTestCase
             ->click('div[wire\\:key="number"] > label > div[name="form.wrapper.container.prepend"] > button')
             ->assertInputValue('number', '3');
     }
+
+    public function test_it_use_html_attributes(): void
+    {
+        Livewire::visit(new class extends Component
+        {
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-number wire:key="number" name="number" label="Show Number" min="5" max="7" step="0.5" value="6" />
+                </div>
+                BLADE;
+            }
+        })
+            ->assertSee('Show Number')
+            ->assertInputValue('number', '6')
+            ->type('number', 6)
+            ->doubleClick('div[wire\\:key="number"] > label > div[name="form.wrapper.container.append"] > button')
+            ->assertInputValue('number', '7')
+            ->doubleClick('div[wire\\:key="number"] > label > div[name="form.wrapper.container.append"] > button')
+            ->assertInputValue('number', '7')
+            ->click('div[wire\\:key="number"] > label > div[name="form.wrapper.container.prepend"] > button')
+            ->assertInputValue('number', '6.5');
+    }
 }

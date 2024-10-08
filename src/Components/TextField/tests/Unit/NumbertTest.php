@@ -2,6 +2,7 @@
 
 namespace WireUi\Components\TextField\tests\Unit;
 
+use Illuminate\View\ComponentAttributeBag;
 use WireUi\Components\TextField\Number;
 use WireUi\Components\Wrapper\WireUi\Color;
 use WireUi\Components\Wrapper\WireUi\Rounded;
@@ -76,6 +77,26 @@ test('it should set random color in component', function () {
     expect('<x-number :$color />')
         ->render(compact('color'))
         ->toContain(data_get($class, 'input'));
+});
+
+test('it should set html attributes in component', function () {
+    $this->setAttributes($this->component, [
+        'min' => $min = 5,
+        'max' => $max = 10,
+        'step' => $step = 2,
+    ]);
+
+    $this->runWireUiComponent($this->component);
+
+    $attributes = $this->component->attributes->all();
+
+    expect(data_get($attributes, 'min'))->toBe($min);
+    expect(data_get($attributes, 'max'))->toBe($max);
+    expect(data_get($attributes, 'step'))->toBe($step);
+
+    expect('<x-number :$min :$max :$step />')
+        ->render(compact('min', 'max', 'step'))
+        ->toContain('min="5"', 'max="10"', 'step="2"');
 });
 
 test('it should set random shadow in component', function () {
