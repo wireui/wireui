@@ -40,6 +40,10 @@ class ServiceProvider extends Support\ServiceProvider
         $this->registerTagCompiler();
 
         $this->registerBladeComponents();
+
+        if (! $this->app->isProduction()) {
+            $this->registerDevCommands();
+        }
     }
 
     private function registerTagCompiler(): void
@@ -107,5 +111,12 @@ class ServiceProvider extends Support\ServiceProvider
                 $blade->component($component['class'], $resolver->addPrefix($component['alias']));
             }
         });
+    }
+
+    private function registerDevCommands(): void
+    {
+        $this->commands([
+            Commands\WireUiGenerateIdeHelperCode::class,
+        ]);
     }
 }

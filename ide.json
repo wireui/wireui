@@ -2,19 +2,171 @@
     "$schema": "https://laravel-ide.com/schema/laravel-ide-v2.json",
     "blade": {
         "components": {
-            "fromConfig": [
+            "list": [
                 {
-                    "configFileName": "wireui",
-                    "componentsKey": "components",
-                    "classFetch": {
-                        "type": "arrayKey",
-                        "key": "class"
-                    },
-                    "aliasKey": "alias"
+                    "name": "alert",
+                    "className": "WireUi\\Components\\Alert\\Index"
+                },
+                {
+                    "name": "avatar",
+                    "className": "WireUi\\Components\\Avatar\\Index"
+                },
+                {
+                    "name": "badge",
+                    "className": "WireUi\\Components\\Badge\\Base"
+                },
+                {
+                    "name": "mini-badge",
+                    "className": "WireUi\\Components\\Badge\\Mini"
+                },
+                {
+                    "name": "button",
+                    "className": "WireUi\\Components\\Button\\Base"
+                },
+                {
+                    "name": "mini-button",
+                    "className": "WireUi\\Components\\Button\\Mini"
+                },
+                {
+                    "name": "card",
+                    "className": "WireUi\\Components\\Card\\Index"
+                },
+                {
+                    "name": "checkbox",
+                    "className": "WireUi\\Components\\Switcher\\Checkbox"
+                },
+                {
+                    "name": "color-picker",
+                    "className": "WireUi\\Components\\ColorPicker\\Picker"
+                },
+                {
+                    "name": "datetime-picker",
+                    "className": "WireUi\\Components\\DatetimePicker\\Picker"
+                },
+                {
+                    "name": "description",
+                    "className": "WireUi\\Components\\Label\\Description"
+                },
+                {
+                    "name": "dialog",
+                    "className": "WireUi\\Components\\Dialog\\Index"
+                },
+                {
+                    "name": "dropdown",
+                    "className": "WireUi\\Components\\Dropdown\\Base"
+                },
+                {
+                    "name": "dropdown.item",
+                    "className": "WireUi\\Components\\Dropdown\\Item"
+                },
+                {
+                    "name": "dropdown.header",
+                    "className": "WireUi\\Components\\Dropdown\\Header"
+                },
+                {
+                    "name": "error",
+                    "className": "WireUi\\Components\\Errors\\Single"
+                },
+                {
+                    "name": "errors",
+                    "className": "WireUi\\Components\\Errors\\Multiple"
+                },
+                {
+                    "name": "icon",
+                    "className": "WireUi\\Components\\Icon\\Index"
+                },
+                {
+                    "name": "input",
+                    "className": "WireUi\\Components\\TextField\\Input"
+                },
+                {
+                    "name": "currency",
+                    "className": "WireUi\\Components\\TextField\\Currency"
+                },
+                {
+                    "name": "maskable",
+                    "className": "WireUi\\Components\\TextField\\Maskable"
+                },
+                {
+                    "name": "number",
+                    "className": "WireUi\\Components\\TextField\\Number"
+                },
+                {
+                    "name": "password",
+                    "className": "WireUi\\Components\\TextField\\Password"
+                },
+                {
+                    "name": "phone",
+                    "className": "WireUi\\Components\\TextField\\Phone"
+                },
+                {
+                    "name": "label",
+                    "className": "WireUi\\Components\\Label\\Base"
+                },
+                {
+                    "name": "link",
+                    "className": "WireUi\\Components\\Link\\Index"
+                },
+                {
+                    "name": "modal",
+                    "className": "WireUi\\Components\\Modal\\Index"
+                },
+                {
+                    "name": "modal-card",
+                    "className": "WireUi\\Components\\Modal\\Card"
+                },
+                {
+                    "name": "native-select",
+                    "className": "WireUi\\Components\\Select\\Native"
+                },
+                {
+                    "name": "notifications",
+                    "className": "WireUi\\Components\\Notifications\\Index"
+                },
+                {
+                    "name": "radio",
+                    "className": "WireUi\\Components\\Switcher\\Radio"
+                },
+                {
+                    "name": "select",
+                    "className": "WireUi\\Components\\Select\\Base"
+                },
+                {
+                    "name": "select.option",
+                    "className": "WireUi\\Components\\Select\\Option"
+                },
+                {
+                    "name": "select.user-option",
+                    "className": "WireUi\\Components\\Select\\UserOption"
+                },
+                {
+                    "name": "textarea",
+                    "className": "WireUi\\Components\\TextField\\Textarea"
+                },
+                {
+                    "name": "time-picker",
+                    "className": "WireUi\\Components\\TimePicker\\Picker"
+                },
+                {
+                    "name": "time-selector",
+                    "className": "WireUi\\Components\\TimePicker\\Selector"
+                },
+                {
+                    "name": "toggle",
+                    "className": "WireUi\\Components\\Switcher\\Toggle"
+                },
+                {
+                    "name": "popover",
+                    "className": "WireUi\\Components\\Popover\\Index"
+                },
+                {
+                    "name": "switcher",
+                    "className": "WireUi\\Components\\Wrapper\\Switcher"
+                },
+                {
+                    "name": "text-field",
+                    "className": "WireUi\\Components\\Wrapper\\TextField"
                 }
-            ],
-            "ignoreViewPaths": [
-                "src/resources/views"
             ]
         }
     }
