@@ -78,6 +78,26 @@ test('it should set random color in component', function () {
         ->toContain(data_get($class, 'input'));
 });
 
+test('it should set html attributes in component', function () {
+    $this->setAttributes($this->component, [
+        'min' => $min = 5,
+        'max' => $max = 10,
+        'step' => $step = 2,
+    ]);
+
+    $this->runWireUiComponent($this->component);
+
+    $attributes = $this->component->attributes->getAttributes();
+
+    expect(data_get($attributes, 'min'))->toBe($min);
+    expect(data_get($attributes, 'max'))->toBe($max);
+    expect(data_get($attributes, 'step'))->toBe($step);
+
+    expect('<x-number :$min :$max :$step />')
+        ->render(compact('min', 'max', 'step'))
+        ->toContain('min="5"', 'max="10"', 'step="2"');
+});
+
 test('it should set random shadow in component', function () {
     $pack = $this->getRandomPack(Shadow::class);
 
