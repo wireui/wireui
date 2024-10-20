@@ -17,9 +17,23 @@ class Currency extends WireUiComponent
         'emit-formatted' => false,
     ];
 
+    protected function exclude(): array
+    {
+        return ['x-on:blur'];
+    }
+
     protected function include(): array
     {
-        return ['cy', 'dusk', 'disabled', 'readonly', 'required', 'placeholder'];
+        return [
+            'cy',
+            'id',
+            'dusk',
+            'x-on:',
+            'readonly',
+            'required',
+            'placeholder',
+            'autocomplete',
+        ];
     }
 
     protected function blade(): View

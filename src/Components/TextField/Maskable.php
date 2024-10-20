@@ -17,6 +17,25 @@ class Maskable extends WireUiComponent
         'emit-formatted' => false,
     ];
 
+    protected function exclude(): array
+    {
+        return ['x-on:blur'];
+    }
+
+    protected function include(): array
+    {
+        return [
+            'cy',
+            'id',
+            'dusk',
+            'x-on:',
+            'readonly',
+            'required',
+            'placeholder',
+            'autocomplete',
+        ];
+    }
+
     #[Process()]
     protected function process(): void
     {

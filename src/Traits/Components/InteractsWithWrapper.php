@@ -21,7 +21,26 @@ trait InteractsWithWrapper
 
     protected function include(): array
     {
-        return ['cy', 'id', 'max', 'min', 'dusk', 'name', 'step', 'type', 'value', 'x-on:', 'x-ref', 'x-model', 'disabled', 'readonly', 'required', 'wire:model', 'placeholder', 'autocomplete'];
+        return [
+            'cy',
+            'id',
+            'max',
+            'min',
+            'dusk',
+            'name',
+            'step',
+            'type',
+            'value',
+            'x-on:',
+            'x-ref',
+            'x-model',
+            'disabled',
+            'readonly',
+            'required',
+            'wire:model',
+            'placeholder',
+            'autocomplete',
+        ];
     }
 
     #[Mount(20)]
