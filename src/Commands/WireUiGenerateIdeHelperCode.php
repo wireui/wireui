@@ -22,7 +22,7 @@ class WireUiGenerateIdeHelperCode extends Command
 
         foreach (config('wireui.components') as $component) {
             $list[] = [
-                'name' => $prefix . $component['alias'],
+                'name' => $prefix.$component['alias'],
                 'className' => $component['class'],
             ];
         }
@@ -34,7 +34,7 @@ class WireUiGenerateIdeHelperCode extends Command
         ];
 
         file_put_contents(
-            __DIR__ . '/../../ide.json',
+            __DIR__.'/../../ide.json',
             json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
         );
     }
