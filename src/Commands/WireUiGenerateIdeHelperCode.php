@@ -16,11 +16,13 @@ class WireUiGenerateIdeHelperCode extends Command
             '$schema' => 'https://laravel-ide.com/schema/laravel-ide-v2.json',
         ];
 
+        $prefix = config('wireui.prefix');
+
         $list = [];
 
         foreach (config('wireui.components') as $component) {
             $list[] = [
-                'name' => $component['alias'],
+                'name' => $prefix . $component['alias'],
                 'className' => $component['class'],
             ];
         }
