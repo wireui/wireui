@@ -6,14 +6,13 @@ import Currency from './inputs/currency'
 import Maskable from './inputs/maskable'
 import NumberInput from './inputs/number'
 import Password from './inputs/password'
-import modal from './modal'
+import Modal from './modal'
 import notifications from './notifications'
 import Select from './select'
 import TimePicker from './TimePicker'
 import TimeSelector from './TimeSelector'
 
 document.addEventListener('alpine:init', () => {
-  window.Alpine.data('wireui_modal', modal)
   window.Alpine.data('wireui_dialog', dialog)
   window.Alpine.data('wireui_notifications', notifications)
 
@@ -24,6 +23,7 @@ document.addEventListener('alpine:init', () => {
   window.Alpine.data('wireui_inputs_number', () => new NumberInput())
   window.Alpine.data('wireui_inputs_password', () => new Password())
   window.Alpine.data('wireui_inputs_maskable', () => new Maskable())
+  window.Alpine.data('wireui_modal', () => new Modal())
   window.Alpine.data('wireui_select', () => new Select())
   window.Alpine.data('wireui_time_selector', () => new TimeSelector())
   window.Alpine.data('wireui_time_picker', () => new TimePicker())

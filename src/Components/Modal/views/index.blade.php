@@ -1,11 +1,12 @@
 @php($name = $name ?? $attributes->wire('model')->value())
 
-<div x-data="wireui_modal({
-        show: @json($show),
-        @if ($attributes->wire('model')->value())
-            model: @entangle($attributes->wire('model'))
-        @endif
-    })"
+<div
+    x-data="wireui_modal"
+    x-props="{{ WireUi::toJs([
+        'show'        => $show,
+        'wireModel'   => WireUi::wireModel(isset($__livewire) ? $this : null, $attributes),
+        'alpineModel' => WireUi::alpineModel($attributes),
+    ]) }}"
     @class([
         'soft-scrollbar' => data_get($typeClasses, 'soft-scrollbar', false),
         'hide-scrollbar' => data_get($typeClasses, 'hide-scrollbar', false),
@@ -22,11 +23,11 @@
         ->whereStartsWith(['x-on:', '@', 'wire:']) }}
     style="display: none"
     x-cloak
-    x-show="show"
+    x-show="state.value"
     wireui-modal
 >
     <div
-        x-show="show"
+        x-show="state.value"
         @class([
             'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
             'dark:bg-opacity-60 transform transition-opacity',
@@ -42,7 +43,8 @@
     </div>
 
     <div
-        x-show="show"
+        x-show="state.value"
+        x-ref="container"
         @class([
             'w-full min-h-full transform flex items-end justify-center mx-auto',
             $spacing ?? data_get($typeClasses, 'spacing', 'p-4'),
