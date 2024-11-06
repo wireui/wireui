@@ -25,7 +25,7 @@
     <x-wireui-wrapper::element
         x-ref="input"
         :attributes="$input"
-        :x-model="$colorNameAsValue ? 'selected.name' : 'selected.value'"
+        x-model.fill="$wire.colorNameAsValue ? selected.name : selected.value"
         x-on:blur="onBlur($event.target.value)"
         x-on:input="setColor($event.target.value)"
     />
