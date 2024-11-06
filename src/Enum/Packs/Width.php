@@ -4,6 +4,8 @@ namespace WireUi\Enum\Packs;
 
 class Width
 {
+    public const AUTO = 'auto';
+
     public const SM = 'sm';
 
     public const MD = 'md';

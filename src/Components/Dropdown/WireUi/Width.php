@@ -15,6 +15,7 @@ class Width extends ComponentPack
     public function all(): array
     {
         return [
+            Packs\Width::AUTO => 'w-auto',
             Packs\Width::SM => 'w-40',
             Packs\Width::MD => 'w-44',
             Packs\Width::LG => 'w-48',
