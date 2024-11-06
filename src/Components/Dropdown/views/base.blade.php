@@ -11,7 +11,6 @@
     <div
         x-ref="trigger"
         x-on:click="positionable.toggle()"
-        class="cursor-pointer focus:outline-none"
         {{ WireUi::extractAttributes($trigger ?? null)->class('cursor-pointer focus:outline-none') }}
     >
         @if (isset($trigger))
