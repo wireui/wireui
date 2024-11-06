@@ -4,7 +4,7 @@ import { AlpineComponent } from '@/components/alpine2'
 
 export default class Dropdown extends AlpineComponent {
   declare $refs: {
-    triggerContainer: HTMLDivElement
+    trigger: HTMLDivElement
     popover: HTMLDivElement
   }
 
@@ -17,8 +17,8 @@ export default class Dropdown extends AlpineComponent {
   init () {
     this.positionable
       .toggleScrollbar(false)
-      .mobilePositioning(true)
-      .start(this, this.$refs.triggerContainer, this.$refs.popover)
+      .toggleScrollbar(false)
+      .start(this, this.$refs.trigger, this.$refs.popover)
       .position(this.$props.position)
       .offset(8)
 

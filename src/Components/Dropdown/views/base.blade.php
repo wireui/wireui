@@ -9,9 +9,10 @@
     {{ $attributes->only('wire:key') }}
 >
     <div
-        x-ref="triggerContainer"
+        x-ref="trigger"
         x-on:click="positionable.toggle()"
         class="cursor-pointer focus:outline-none"
+        {{ WireUi::extractAttributes($trigger ?? null)->class('cursor-pointer focus:outline-none') }}
     >
         @if (isset($trigger))
             {{ $trigger }}
@@ -39,17 +40,21 @@
         {{ $attributes->except('wire:key')->class([
             'z-30 absolute whitespace-nowrap',
             'transition-all transform',
-            $widthClasses,
         ]) }}
         style="display: none;"
-        @unless($persistent) x-on:click="positionable.close()" @endunless
+        :style="positionable.styles"
     >
-        <div @class([
-            'soft-scrollbar overflow-auto' => $height !== WireUi\Enum\Packs\Height::AUTO,
-            'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
-            'relative border border-secondary-200 rounded-lg',
-            $heightClasses,
-        ])>
+        <div
+            @class([
+                'soft-scrollbar overflow-auto' => $height !== WireUi\Enum\Packs\Height::AUTO,
+                'shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600',
+                'relative border border-secondary-200 rounded-lg',
+                $widthClasses,
+                $heightClasses,
+            ])
+            x-ref="popoverContainer"
+            @unless($persistent) x-on:click="positionable.close()" @endunless
+        >
             {{ $slot }}
         </div>
     </div>

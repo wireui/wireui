@@ -6,7 +6,6 @@ import { autoUpdate, computePosition, flip, hide, offset, Placement, shift } fro
 export type Position = Placement
 
 type Config = {
-  mobilePositioning: boolean
   position: Position
   offset: number
   toggleScrollbar: boolean
@@ -21,7 +20,6 @@ export default class Positionable {
     position: 'bottom',
     offset: 4,
     toggleScrollbar: true,
-    mobilePositioning: false
   }
 
   private cleanupPosition?: CallableFunction = undefined
@@ -54,10 +52,6 @@ export default class Positionable {
     })
 
     this.watch(state => {
-      if (state && !this.config.mobilePositioning && window.innerWidth < 640) {
-        return this.target.removeAttribute('style')
-      }
-
       if (state && !this.cleanupPosition) {
         this.component.$nextTick(() => this.syncPopoverPosition())
       }
@@ -153,12 +147,6 @@ export default class Positionable {
     })
   }
 
-  mobilePositioning (state: boolean): this {
-    this.config.mobilePositioning = state
-
-    return this
-  }
-
   toggleScrollbar (state: boolean): this {
     this.config.toggleScrollbar = state
 
@@ -166,8 +154,7 @@ export default class Positionable {
   }
 
   private shouldToggleScrollbar (): boolean {
-    return !this.config.mobilePositioning
-      && this.config.toggleScrollbar
+    return this.config.toggleScrollbar
       && window.innerWidth < 640
   }
 }
