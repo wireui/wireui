@@ -57,7 +57,7 @@
         <x-dynamic-component
             :component="WireUi::component('popover')"
             :margin="(bool) $label"
-            root-class="justify-end sm:w-full"
+            root-class="ltr:justify-end rtl:justify-start sm:w-full"
             @class([
                 'max-h-64 select-none overflow-hidden',
                 'sm:w-auto sm:max-w-[19rem]',

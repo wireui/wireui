@@ -3,7 +3,7 @@
     x-props="{
         position: '{{ $position }}',
     }"
-    class="relative inline-block text-left"
+    class="relative inline-block ltr:text-left rtl:text-right"
     x-on:click.outside="positionable.close()"
     x-on:keydown.escape.window="positionable.close()"
     {{ $attributes->only('wire:key') }}

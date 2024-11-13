@@ -63,8 +63,8 @@
                 '!bg-gray-100' => $disabled && !$invalidated,
 
                 $padding =>  $padding,
-                'pl-3'   => !$padding && !isset($prepend),
-                'pr-3'   => !$padding && !isset($append),
+                'ps-3 pe-3'   => !$padding && !isset($prepend),
+                'ps-3 pe-3'   => !$padding && !isset($append),
                 'py-2'   => !$padding && !isset($prepend) && !isset($append),
                 'h-10'   => isset($prepend) || isset($append),
 
@@ -98,7 +98,7 @@
             <div name="form.wrapper.container.prepend"
                 {{ $prepend->attributes->class([
                     'group/prepend wrapper-prepend-slot',
-                    'flex h-full py-0.5 pl-0.5',
+                    'flex h-full py-0.5 ps-0.5 pe-0.5',
                 ]) }}
             >
                 {{ $prepend }}
@@ -138,7 +138,7 @@
                 name="form.wrapper.container.append"
                 {{ $append->attributes->class([
                     'group/append shrink-0 wrapper-append-slot',
-                    'flex h-full py-0.5 pr-0.5',
+                    'flex h-full py-0.5 ps-0.5 pe-0.5',
                 ]) }}
             >
                 {{ $append }}

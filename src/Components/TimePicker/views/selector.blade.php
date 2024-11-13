@@ -25,7 +25,7 @@
     />
 
     <div @class([
-        'absolute bg-primary-50 dark:bg-primary-200/10 left-0 h-10 w-full transform transition-opacity',
+        'absolute bg-primary-50 dark:bg-primary-200/10 ltr:left-0 rtl:right-0 h-10 w-full transform transition-opacity',
     ])></div>
 
     <ul wire:ignore class="w-full" x-ref="hours"></ul>

@@ -1,5 +1,5 @@
 <div @class([
-        'fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-5 sm:pt-4',
+        'fixed inset-0 flex ltr:items-end rtl:items-start justify-center px-4 py-6 pointer-events-none sm:p-5 sm:pt-4',
         $positionClasses,
         $zIndex,
     ])
@@ -17,18 +17,18 @@
                  x-transition:enter-end="translate-y-0 opacity-100 sm:translate-x-0"
                  x-on:mouseenter="pauseNotification(notification)"
                  x-on:mouseleave="resumeNotification(notification)">
-                <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
+                <div class="absolute top-0 transition-all duration-150 ease-linear rounded-full ltr:left-0 rtl:right-0 bg-secondary-300 dark:bg-secondary-600"
                      style="height: 2px; width: 100%;"
                      :id="`timeout.bar.${notification.id}`"
                      x-show="Boolean(notification.timer) && notification.progressbar !== false">
                 </div>
                 <div :class="{
-                        'pl-4': Boolean(notification.dense),
+                        'ps-4 pe-4': Boolean(notification.dense),
                         'p-4': !Boolean(notification.rightButtons),
                         'w-0 flex-1 flex items-center p-4': Boolean(notification.rightButtons),
                     }">
                     <div :class="{
-                        'flex items-start': !Boolean(notification.rightButtons),
+                        'flex ltr:items-start rtl:items-end': !Boolean(notification.rightButtons),
                         'w-full flex': Boolean(notification.rightButtons),
                     }">
                         <!-- notification icon|img -->
@@ -48,7 +48,7 @@
                         </template>
 
                         <div class="w-0 flex-1 pt-0.5" :class="{
-                                'ml-3': Boolean(notification.icon || notification.img)
+                                'ms-3 me-3': Boolean(notification.icon || notification.img)
                             }">
                             <p class="text-sm font-medium text-secondary-900 dark:text-secondary-400"
                                x-show="notification.title"
@@ -87,7 +87,7 @@
                             </template>
                         </div>
 
-                        <div class="flex ml-4 shrink-0">
+                        <div class="flex ms-4 me-4 shrink-0">
                             <!-- accept button -->
                             <button class="mr-4 text-sm font-medium rounded-md shrink-0 focus:outline-none"
                                     :class="{

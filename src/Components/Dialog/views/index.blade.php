@@ -47,13 +47,13 @@
                 'sm:p-5 sm:pt-7': style === 'center',
                 'sm:p-0 sm:pt-1': style === 'inline',
             }">
-            <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
+            <div class="absolute top-0 transition-all duration-150 ease-linear rounded-full ltr:left-0 rtl:right-0 bg-secondary-300 dark:bg-secondary-600"
                 style="height: 2px; width: 100%;"
                 x-ref="progressbar"
                 x-show="dialog && dialog.progressbar && dialog.timeout">
             </div>
 
-            <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
+            <div x-show="dialog && dialog.closeButton" class="absolute ltr:right-2 rtl:left-2 -top-2">
                 <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                     x-on:click="close"
                     type="button">
@@ -75,13 +75,13 @@
 
                 <div class="w-full mt-4" :class="{ 'sm:mt-5': style === 'center' }">
                     <h3 class="text-lg font-medium leading-6 text-center text-secondary-900 dark:text-secondary-400"
-                        :class="{ 'sm:text-left': style === 'inline' }"
+                        :class="{ 'ltr:sm:text-left rtl:sm:text-right': style === 'inline' }"
                         @unless($title) x-ref="title" @endunless>
                         {{ $title }}
                     </h3>
 
                     <p class="mt-2 text-sm text-center text-secondary-500"
-                        :class="{ 'sm:text-left': style === 'inline' }"
+                        :class="{ 'ltr:sm:text-left rtl:sm:text-right': style === 'inline' }"
                         @unless($description) x-ref="description" @endunless>
                         {{ $description }}
                     </p>
@@ -93,7 +93,7 @@
             <div class="grid grid-cols-1 gap-y-2 sm:gap-x-3 rounded-b-xl"
                 :class="{
                     'sm:grid-cols-2 sm:gap-y-0': style === 'center',
-                    'sm:p-4 sm:bg-secondary-100 sm:dark:bg-secondary-800 sm:grid-cols-none sm:flex sm:justify-end': style === 'inline',
+                    'sm:p-4 sm:bg-secondary-100 sm:dark:bg-secondary-800 sm:grid-cols-none sm:flex ltr:sm:justify-end rtl:sm:justify-start ': style === 'inline',
                 }"
                 x-show="dialog && (dialog.accept || dialog.reject)">
                 <div x-show="dialog && dialog.accept" class="sm:order-last" x-ref="accept"></div>
