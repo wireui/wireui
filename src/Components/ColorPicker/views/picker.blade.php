@@ -22,13 +22,23 @@
         ></div>
     </x-slot:prefix>
 
-    <x-wireui-wrapper::element
-        x-ref="input"
-        :attributes="$input"
-        x-model.fill="selected.value"
-        x-on:blur="onBlur($event.target.value)"
-        x-on:input="setColor($event.target.value)"
-    />
+    @if($colorNameAsValue)
+        <x-wireui-wrapper::element
+            x-ref="input"
+            :attributes="$input"
+            x-model.fill="selected.name"
+            x-on:blur="onBlur($event.target.value)"
+            x-on:input="setColor($event.target.value)"
+        />
+    @else
+        <x-wireui-wrapper::element
+            x-ref="input"
+            :attributes="$input"
+            x-model.fill="selected.value"
+            x-on:blur="onBlur($event.target.value)"
+            x-on:input="setColor($event.target.value)"
+        />
+    @endif
 
     <x-slot:append>
         <x-dynamic-component
