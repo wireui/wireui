@@ -17,7 +17,7 @@
         }
     ],
     "require": {
-        "php": "^8.2|^8.3",
+        "php": "^8.2|^8.3|^8.4",
         "laravel/framework": "^10.0|^11.0",
         "wireui/heroicons": "^2.6"
     },

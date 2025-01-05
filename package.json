@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Laravel blade components",
     "repository": "git@github.com:wireui/wireui.git",
-    "author": "PH7-Jack <pedrolivertwd@gmail.com>",
+    "author": "ph7jack <pedrolivertwd@gmail.com>",
     "license": "MIT",
     "scripts": {
         "test": "jest",

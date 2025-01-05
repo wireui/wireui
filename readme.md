@@ -40,7 +40,7 @@ There will you see all the latest news about features, ideas, discussions and mo
 
 ### 💡 Philosophy
 
-WireUI is and will always be FREE to anyone who would like to use it. This project is created by [Pedro Oliveira](https://github.com/PH7-Jack), and it is maintained by the author and your team with the help of the community. All contributions are welcome!
+WireUI is and will always be FREE to anyone who would like to use it. This project is created by [Pedro Oliveira](https://github.com/ph7jack), and it is maintained by the author and your team with the help of the community. All contributions are welcome!
 
 ### 📝 License
 

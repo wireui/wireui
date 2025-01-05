@@ -3,7 +3,7 @@ name: Feature Request
 about: Suggest an idea for this project
 title: ''
 labels: Feature Request
-assignees: PH7-Jack
+assignees: ph7jack
 
 ---
 
