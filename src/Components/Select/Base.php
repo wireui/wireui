@@ -65,7 +65,7 @@ class Base extends WireUiComponent
 
     public function getOptionLabel(mixed $option): string
     {
-        return data_get($option, $this->optionLabel);
+        return (string) data_get($option, $this->optionLabel);
     }
 
     public function optionsToArray(): array
