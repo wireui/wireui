@@ -233,7 +233,7 @@
 
                 <div x-show="tab === 'time-picker'" class="flex items-center justify-between">
                     <h3 class="font-medium text-slate-600">
-                        Time Selection
+                        {{ trans('wireui::messages.select_time') }}
                     </h3>
 
                     <x-dynamic-component
