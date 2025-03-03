@@ -5,6 +5,7 @@ namespace WireUi\Components\Dialog\tests\Browser;
 use Laravel\Dusk\Browser;
 use Livewire\Component;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Browser\BrowserTestCase;
 use WireUi\Traits\WireUiActions;
 
@@ -47,12 +48,8 @@ class IndexTest extends BrowserTestCase
         });
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_simple_alert_dialog_from_js(
+    #[DataProvider('provideAlertMessages')]
+    public function test_it_should_show_simple_alert_dialog_from_js(
         string $icon,
         string $title,
         string $description,
@@ -69,12 +66,8 @@ class IndexTest extends BrowserTestCase
             ->waitForText($description)->assertSee($description);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_simple_alert_dialog_from_livewire_component(
+    #[DataProvider('provideAlertMessages')]
+    public function test_it_should_show_simple_alert_dialog_from_livewire_component(
         string $icon,
         string $title,
         string $description,
@@ -91,12 +84,8 @@ class IndexTest extends BrowserTestCase
             ->waitForText($description)->assertSee($description);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_custom_simple_alert_dialog(
+    #[DataProvider('provideAlertMessages')]
+    public function test_it_should_show_custom_simple_alert_dialog(
         string $icon,
         string $title,
         string $description,

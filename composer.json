@@ -13,25 +13,22 @@
     "authors": [
         {
             "name": "Pedro Oliveira",
-            "email": "pedro@wireui.dev"
+            "email": "pedrolivertwd@gmail.com"
         }
     ],
     "require": {
         "php": "^8.2|^8.3|^8.4",
-        "laravel/framework": "^10.0|^11.0",
-        "wireui/heroicons": "^2.6"
+        "laravel/framework": "^10.0|^11.0|^12.0",
+        "wireui/heroicons": "^2.8"
     },
     "require-dev": {
-        "mockery/mockery": "^1.6",
-        "phpunit/phpunit": "^10.5",
-        "orchestra/testbench": "^8.14|^9.0",
-        "orchestra/testbench-dusk": "^8.14|^9.0",
-        "psy/psysh": "^0.12.3",
-        "pestphp/pest": "^2.34",
-        "pestphp/pest-plugin-livewire": "^2.1",
-        "pestphp/pest-plugin-laravel": "^2.4",
-        "laravel/pint": "^1.16",
-        "livewire/livewire": "^3.5"
+        "orchestra/testbench": "^10.0",
+        "orchestra/testbench-dusk": "^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-livewire": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "laravel/pint": "^1.19",
+        "livewire/livewire": "^3.6"
     },
     "autoload": {
         "psr-4": {
