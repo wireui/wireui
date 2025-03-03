@@ -99,7 +99,6 @@
     <x-wireui-wrapper::element
         readonly
         autocomplete="off"
-        :attributes="$input"
         class="cursor-pointer"
         x-bind:value="display"
         x-show="selectedDates.length === 0"
