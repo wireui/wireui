@@ -99,7 +99,7 @@
                             border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
                             dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
                         ">
-                            <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
+                            <span style="max-width: 5rem" class="truncate select-none" x-html="option.label"></span>
 
                             <button
                                 class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
