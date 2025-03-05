@@ -21,7 +21,7 @@
     >
         @if (!$persistent && !$hideClose)
             @slot('action')
-                <button class="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-secondary-200 text-secondary-300"
+                <button class="p-1 rounded-full focus:outline-hidden focus:ring-2 focus:ring-secondary-200 text-secondary-300"
                     x-on:click="close"
                     tabindex="-1"
                 >

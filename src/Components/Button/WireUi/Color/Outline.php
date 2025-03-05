@@ -38,12 +38,12 @@ class Outline extends ComponentPack
             Color::INVALIDATED => [
                 'base' => 'invalidated:text-negative-600 invalidated:border invalidated:border-negative-600',
                 'hover' => [
-                    "{$this->hover} invalidated:hover:text-negative-700 invalidated:hover:bg-negative-400",
-                    'invalidated:dark:hover:text-negative-500 invalidated:dark:hover:bg-negative-600',
+                    "{$this->hover} hover:invalidated:text-negative-700 hover:invalidated:bg-negative-400",
+                    'dark:hover:invalidated:text-negative-500 dark:hover:invalidated:bg-negative-600',
                 ],
                 'focus' => [
-                    "{$this->focus} invalidated:focus:text-negative-700 invalidated:focus:bg-negative-400 invalidated:focus:ring-negative-600",
-                    'invalidated:dark:focus:text-negative-500 invalidated:dark:focus:bg-negative-600 invalidated:dark:focus:ring-negative-700',
+                    "{$this->focus} focus:invalidated:text-negative-700 focus:invalidated:bg-negative-400 focus:invalidated:ring-negative-600",
+                    'dark:focus:invalidated:text-negative-500 dark:focus:invalidated:bg-negative-600 dark:focus:invalidated:ring-negative-700',
                 ],
             ],
             Color::PRIMARY => [

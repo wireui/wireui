@@ -1,5 +1,5 @@
 <span {{ $attributes->class([
-    'outline-none inline-flex justify-center items-center group',
+    'outline-hidden inline-flex justify-center items-center group',
     $roundedClasses,
     $colorClasses,
     $sizeClasses,

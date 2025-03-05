@@ -1,7 +1,7 @@
 export default (slot: string) => `
 <div
     class="
-        py-2 px-3 border-0 outline-none transition-all ease-in-out duration-150 relative group
+        py-2 px-3 border-0 outline-hidden transition-all ease-in-out duration-150 relative group
         text-secondary-600 dark:text-secondary-400 flex items-center justify-between snap-start
     "
     :class="{
@@ -18,7 +18,7 @@ export default (slot: string) => `
     ${slot}
 
     <template x-if="option.isSelected">
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
             <svg class="w-5 h-5 text-primary-600 dark:text-secondary-500 group-hover:text-white group-focus:text-primary-600"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"

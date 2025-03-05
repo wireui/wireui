@@ -7,9 +7,9 @@ use WireUi\Support\ComponentPack;
 
 class Flat extends ComponentPack
 {
-    protected string $hover = 'hover:bg-opacity-25 dark:hover:bg-opacity-15';
+    protected string $hover = '';
 
-    protected string $focus = 'focus:bg-opacity-25 dark:focus:bg-opacity-15 focus:ring-offset-0';
+    protected string $focus = 'focus:ring-offset-0';
 
     public function default(): string
     {
@@ -38,12 +38,12 @@ class Flat extends ComponentPack
             Color::INVALIDATED => [
                 'base' => 'invalidated:text-negative-600',
                 'hover' => [
-                    "{$this->hover} invalidated:hover:text-negative-700 invalidated:hover:bg-negative-200",
-                    'invalidated:dark:hover:text-negative-500 invalidated:dark:hover:bg-negative-600/15',
+                    "{$this->hover} hover:invalidated:text-negative-700 hover:invalidated:bg-negative-200",
+                    'dark:hover:invalidated:text-negative-500 dark:hover:invalidated:bg-negative-600',
                 ],
                 'focus' => [
-                    "{$this->focus} invalidated:focus:text-negative-700 invalidated:focus:bg-negative-200 invalidated:focus:ring-negative-600",
-                    'invalidated:dark:focus:text-negative-500 invalidated:dark:focus:bg-negative-600/15 invalidated:dark:focus:ring-negative-700',
+                    "{$this->focus} focus:invalidated:text-negative-700 focus:invalidated:bg-negative-200 focus:invalidated:ring-negative-600",
+                    'dark:focus:invalidated:text-negative-500 dark:focus:invalidated:bg-negative-600 dark:focus:invalidated:ring-negative-700',
                 ],
             ],
             Color::PRIMARY => [
@@ -132,7 +132,7 @@ class Flat extends ComponentPack
                 ],
                 'focus' => [
                     "{$this->focus} focus:text-black focus:bg-black/10 focus:ring-black",
-                    'dark:focus:text-black dark:focus:bg-black dark:focus:ring-black',
+                    'dark:focus:text-black dark:focus:bg-black/20 dark:focus:ring-black',
                 ],
             ],
             Color::SLATE => [

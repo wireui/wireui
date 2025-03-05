@@ -16,8 +16,9 @@ class Blur extends ComponentPack
     {
         return [
             Packs\Blur::NONE => 'backdrop-blur-none',
+            Packs\Blur::XS => 'backdrop-blur-xs',
             Packs\Blur::SM => 'backdrop-blur-sm',
-            Packs\Blur::BASE => 'backdrop-blur',
+            Packs\Blur::BASE => 'backdrop-blur-sm',
             Packs\Blur::MD => 'backdrop-blur-md',
             Packs\Blur::LG => 'backdrop-blur-lg',
             Packs\Blur::XL => 'backdrop-blur-xl',

@@ -36,7 +36,7 @@ trait InteractsWithButton
     {
         if (property_exists($this, 'wireLoadEnabled') && $this->wireLoadEnabled) {
             $this->attributes->offsetSet('wire:loading.attr', 'disabled');
-            $this->attributes->offsetSet('wire:loading.class', '!cursor-wait');
+            $this->attributes->offsetSet('wire:loading.class', 'cursor-wait!');
         }
     }
 }

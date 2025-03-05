@@ -1,0 +1,14 @@
+@custom-variant invalidated {
+    &[invalid],
+    [group-invalidated] &,
+    [with-validation-colors] > div[form-wrapper] > &:has(input:invalid),
+    [with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) ~ &,
+    [with-validation-colors] > div[form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid) &,
+    [with-validation-colors] > div[form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid) > &,
+    [with-validation-colors][form-wrapper] > &:has(input:invalid:not(:placeholder-shown)),
+    [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) ~ &,
+    [with-validation-colors][form-wrapper] > label[name="form.wrapper.container"]:has(input:invalid:not(:placeholder-shown)) &,
+    [with-validation-colors][form-wrapper] > div[name="form.wrapper.header"]:has(+ label[name="form.wrapper.container"] > input:invalid:not(:placeholder-shown)) > & {
+        @slot;
+    }
+}

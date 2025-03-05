@@ -65,13 +65,13 @@
         tabindex="-1"
     >
         <span
-            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 invalidated:dark:text-negative-400"
+            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 dark:invalidated:text-negative-400"
             x-show="isEmpty()"
             x-text="getPlaceholder"
         ></span>
 
         <span
-            class="text-sm truncate text-secondary-600 dark:text-secondary-400 invalidated:text-negative-600 invalidated:dark:text-negative-400"
+            class="text-sm truncate text-secondary-600 dark:text-secondary-400 invalidated:text-negative-600 dark:invalidated:text-negative-400"
             x-show="!config.multiselect && isNotEmpty()"
             x-html="getSelectedDisplayText()"
         ></span>
@@ -134,7 +134,7 @@
                     :component="WireUi::component('icon')"
                     @class([
                         'w-4 h-4 text-secondary-400 hover:text-negative-400',
-                        'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                        'invalidated:text-negative-400 dark:invalidated:text-negative-600',
                     ])
                     name="x-mark"
                 />
@@ -146,7 +146,7 @@
                 :component="WireUi::component('icon')"
                 @class([
                     'w-5 h-5 text-secondary-400',
-                    'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                    'invalidated:text-negative-400 dark:invalidated:text-negative-600',
                 ])
                 :name="$rightIcon"
             />
@@ -208,7 +208,7 @@
                     <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                         <li tabindex="-1" :index="index">
                             <div class="px-2 py-0.5">
-                                <div class="w-full h-8 rounded animate-pulse bg-slate-200 dark:bg-slate-600"></div>
+                                <div class="w-full h-8 rounded-sm animate-pulse bg-slate-200 dark:bg-slate-600"></div>
                             </div>
                         </li>
                     </template>

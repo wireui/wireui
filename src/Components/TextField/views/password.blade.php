@@ -20,9 +20,9 @@
             x-on:click="toggle"
             tabindex="-1"
             @class([
-                'outline-none text-gray-400 cursor-pointer mr-2',
+                'outline-hidden text-gray-400 cursor-pointer mr-2',
                 'input-focus:text-primary-600 focus:text-primary-600',
-                'invalidated:text-negative-600 invalidated:focus:text-negative-600',
+                'invalidated:text-negative-600 focus:invalidated:text-negative-600',
             ])
         >
             <x-dynamic-component

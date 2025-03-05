@@ -54,7 +54,7 @@
             </div>
 
             <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
-                <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
+                <button class="{{ $dialog }}-button-close focus:outline-hidden p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                     x-on:click="close"
                     type="button">
                     <span class="sr-only">close</span>

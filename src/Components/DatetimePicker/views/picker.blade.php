@@ -83,8 +83,8 @@
                         flex items-center transition-all ease-in-out duration-150 cursor-pointer
                         hover:bg-negative-100 hover:text-negative-600 hover:border-negative-200
                         focus:bg-negative-100 focus:text-negative-600 focus:border-negative-200
-                        focus:ring-1 focus:ring-negative-500 focus:outline-none
-                        appearance-none outline-none
+                        focus:ring-1 focus:ring-negative-500 focus:outline-hidden
+                        appearance-none outline-hidden
                     "
                     type="button"
                     title="{{ __('wireui::messages.labels.remove') }}"
@@ -134,7 +134,7 @@
                     @class([
                         'w-4 h-4 group-focus:text-primary-700 text-gray-400 dark:text-gray-600',
                         'dark:group-hover:text-gray-500 dark:group-focus:text-primary-500',
-                        'invalidated:text-negative-500 invalidated:group-hover:text-negative-500 invalidated:group-focus:text-negative-500',
+                        'invalidated:text-negative-500 group-hover:invalidated:text-negative-500 group-focus:invalidated:text-negative-500',
                     ])
                 />
             </x-dynamic-component>
@@ -146,7 +146,7 @@
             :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="overflow-hidden sm:w-72"
-            root-class="justify-end sm:!w-72 ml-auto sm:w-full"
+            root-class="justify-end sm:w-72! ml-auto sm:w-full"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
@@ -171,7 +171,7 @@
                 <div x-show="tab !== 'time-picker'" class="flex items-center justify-between">
                     <div class="flex items-center w-full gap-x-2 text-secondary-600 dark:text-secondary-500">
                         <button
-                            class="flex items-center gap-x-2 focus:outline-none focus:underline"
+                            class="flex items-center gap-x-2 focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('years-picker')"
                             type="button"
                         >
@@ -187,7 +187,7 @@
                         </button>
 
                         <button
-                            class="flex items-center gap-x-2 focus:outline-none focus:underline"
+                            class="flex items-center gap-x-2 focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('months-picker')"
                             type="button"
                         >
@@ -256,11 +256,11 @@
                     <div class="grid grid-cols-3 gap-2">
                         <template x-for="(name, index) in $props.calendar.monthNames" :key="`month.${name}`">
                             <button
-                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-none border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
+                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-hidden border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
                                 :class="{
                                     'text-white bg-primary-500 font-semibold focus:ring-primary-600': index === calendar.month,
                                     'hover:bg-primary-100 hover:text-primary-900 hover:font-medium': index !== calendar.month,
-                                    'bg-primary-50 shadow-sm font-medium text-slate-600': index !== calendar.month,
+                                    'bg-primary-50 shadow-xs font-medium text-slate-600': index !== calendar.month,
                                     'focus:ring-primary-200 focus:bg-primary-100': index !== calendar.month,
                                 }"
                                 x-on:click="selectMonth(index)"
@@ -279,13 +279,13 @@
                                     rounded-md p-2.5 uppercase text-xs text-gray-700
                                     transition-all ease-in-out duration-150
                                     border border-primary-100
-                                    outline-none focus:ring-2 focus:ring-offset-2
+                                    outline-hidden focus:ring-2 focus:ring-offset-2
                                     disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200
                                 "
                                 :class="{
                                     'text-white bg-primary-500 font-semibold focus:ring-primary-600':  year.isSelected,
                                     'hover:bg-primary-100 hover:text-primary-900 hover:font-medium': !year.isSelected,
-                                    'bg-primary-50 shadow-sm font-medium text-slate-600': !year.isSelected,
+                                    'bg-primary-50 shadow-xs font-medium text-slate-600': !year.isSelected,
                                     'focus:ring-primary-200 focus:bg-primary-100': !year.isSelected,
                                 }"
                                 :disabled="year.isDisabled"
@@ -311,9 +311,9 @@
                         >
                             <button
                                 @class([
-                                    'relative text-sm h-8 w-full rounded disabled:cursor-not-allowed',
+                                    'relative text-sm h-8 w-full rounded-sm disabled:cursor-not-allowed',
                                     'flex items-center justify-center',
-                                    'focus:outline-none',
+                                    'focus:outline-hidden',
                                     'disabled:opacity-50',
                                 ])
                                 :class="{
@@ -355,7 +355,7 @@
                 <template x-if="tab === 'time-picker'">
                     <x-dynamic-component
                         :component="WireUi::component('time-selector')"
-                        class="!mt-0"
+                        class="mt-0!"
                         x-model="time"
                         :military-time="false"
                         :without-seconds="$withoutTimeSeconds"

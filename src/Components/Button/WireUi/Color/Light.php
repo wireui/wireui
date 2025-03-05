@@ -38,14 +38,14 @@ class Light extends ComponentPack
                 ],
             ],
             Color::INVALIDATED => [
-                'base' => "{$this->base} invalidated:text-negative-600 invalidated:bg-negative-300 invalidated:dark:bg-negative-600 invalidated:dark:text-negative-500",
+                'base' => "{$this->base} invalidated:text-negative-600 invalidated:bg-negative-300 dark:invalidated:bg-negative-600 dark:invalidated:text-negative-500",
                 'hover' => [
-                    "{$this->hover} invalidated:hover:text-negative-800 invalidated:hover:bg-negative-400",
-                    'invalidated:dark:hover:text-negative-400 invalidated:dark:hover:bg-negative-500',
+                    "{$this->hover} hover:invalidated:text-negative-800 hover:invalidated:bg-negative-400",
+                    'dark:hover:invalidated:text-negative-400 dark:hover:invalidated:bg-negative-500',
                 ],
                 'focus' => [
-                    "{$this->focus} invalidated:focus:text-negative-800 invalidated:focus:bg-negative-400 invalidated:focus:ring-negative-400",
-                    'invalidated:dark:focus:text-negative-400 invalidated:dark:focus:bg-negative-500 invalidated:dark:focus:ring-negative-700',
+                    "{$this->focus} focus:invalidated:text-negative-800 focus:invalidated:bg-negative-400 focus:invalidated:ring-negative-400",
+                    'dark:focus:invalidated:text-negative-400 dark:focus:invalidated:bg-negative-500 dark:focus:invalidated:ring-negative-700',
                 ],
             ],
             Color::PRIMARY => [

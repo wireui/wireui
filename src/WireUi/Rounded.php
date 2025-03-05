@@ -16,8 +16,9 @@ class Rounded extends ComponentPack
     {
         return [
             Packs\Rounded::NONE => 'rounded-none',
+            Packs\Rounded::XS => 'rounded-xs',
             Packs\Rounded::SM => 'rounded-sm',
-            Packs\Rounded::BASE => 'rounded',
+            Packs\Rounded::BASE => 'rounded-sm',
             Packs\Rounded::MD => 'rounded-md',
             Packs\Rounded::LG => 'rounded-lg',
             Packs\Rounded::XL => 'rounded-xl',

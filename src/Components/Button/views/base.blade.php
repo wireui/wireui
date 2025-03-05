@@ -1,5 +1,5 @@
 <{{ $tag }} {{ $attributes->class([
-    'outline-none inline-flex justify-center items-center group hover:shadow-sm',
+    'cursor-pointer outline-hidden inline-flex justify-center items-center group hover:shadow-xs',
     'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
     'transition-all ease-in-out duration-200 focus:ring-2',
     'disabled:opacity-80 disabled:cursor-not-allowed',

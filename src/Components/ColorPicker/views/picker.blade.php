@@ -17,7 +17,7 @@
 
     <x-slot:prefix x-show="selected?.value">
         <div
-            class="w-4 h-4 border rounded shadow"
+            class="w-4 h-4 border rounded-sm shadow-sm"
             :style="{ 'background-color': selected?.value }"
         ></div>
     </x-slot:prefix>
@@ -81,8 +81,8 @@
                  <template x-for="(color, index) in colors" :key="index + color.value + color.name">
                      <button
                         @class([
-                            'w-6 h-6 rounded shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
-                            'hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400',
+                            'w-6 h-6 rounded-sm shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
+                            'hover:border-gray-400 focus:outline-hidden focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400',
                             'dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400',
                         ])
                          :style="{ 'background-color': color.value }"

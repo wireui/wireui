@@ -11,7 +11,7 @@
     <div
         x-ref="triggerContainer"
         x-on:click="positionable.toggle()"
-        class="cursor-pointer focus:outline-none"
+        class="cursor-pointer focus:outline-hidden"
     >
         @if (isset($trigger))
             {{ $trigger }}
