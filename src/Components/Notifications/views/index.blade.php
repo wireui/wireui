@@ -9,7 +9,7 @@
      wire:ignore>
     <div class="flex flex-col-reverse w-full max-w-sm space-y-2 pointer-events-auto">
         <template x-for="notification in notifications" :key="`notification-${notification.id}`">
-            <div class="relative w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black ring-opacity-5 dark:bg-secondary-800 dark:border dark:border-secondary-700"
+            <div class="relative w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg pointer-events-auto ring-1 ring-black/5 dark:bg-secondary-800 dark:border dark:border-secondary-700"
                  :class="{ 'flex': notification.rightButtons }"
                  :id="`notification.${notification.id}`"
                  x-transition:enter="transform ease-out duration-300 transition"

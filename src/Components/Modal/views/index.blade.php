@@ -28,8 +28,8 @@
     <div
         x-show="show"
         @class([
-            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
-            'dark:bg-opacity-60 transform transition-opacity',
+            'fixed inset-0 bg-secondary-400/60 dark:bg-secondary-700/60',
+            'transform transition-opacity',
             $blurClasses => !$blurless,
         ])
         @unless($persistent) x-on:click="close" @endunless

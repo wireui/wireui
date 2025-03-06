@@ -11,3 +11,4 @@ yarn-error.log
 .idea
 .vscode
 .php-cs-fixer.cache
+dist/wireui.css
