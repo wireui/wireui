@@ -65,7 +65,7 @@ test('it should ensure wire loading', function () {
     $this->invokeMethod($this->component, 'ensureWireLoading');
 
     expect($this->component->attributes->get('wire:loading.attr'))->toBe('disabled');
-    expect($this->component->attributes->get('wire:loading.class'))->toBe('!cursor-wait');
+    expect($this->component->attributes->get('wire:loading.class'))->toBe('cursor-wait!');
 });
 
 test('it should setup button', function () {
