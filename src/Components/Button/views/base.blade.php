@@ -1,5 +1,5 @@
 <{{ $tag }} {{ $attributes->class([
-    'cursor-pointer outline-hidden inline-flex justify-center items-center group hover:shadow-xs',
+    'cursor-pointer outline-none outline-hidden inline-flex justify-center items-center group hover:shadow-xs',
     'focus:ring-offset-background-white dark:focus:ring-offset-background-dark',
     'transition-all ease-in-out duration-200 focus:ring-2',
     'disabled:opacity-80 disabled:cursor-not-allowed',
@@ -12,7 +12,7 @@
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$icon"
-            @class([$iconSizeClasses, 'shrink-0'])
+            @class([$iconSizeClasses, 'flex-shrink-0 shrink-0'])
         />
     @elseif (isset($prepend))
         <div {{ $prepend->attributes }}>
@@ -25,7 +25,7 @@
     @if ($rightIcon)
         @php($spinnerRemove = $spinnerRemove->merge([
             'name' => $rightIcon,
-            'class' => "{$iconSizeClasses} shrink-0",
+            'class' => "{$iconSizeClasses} flex-shrink-0 shrink-0",
         ]))
         <x-dynamic-component
             :component="WireUi::component('icon')"
@@ -40,7 +40,7 @@
     @if ($spinner)
         <x-wireui-icon::spinner
             :attributes="$spinner"
-            @class([$iconSizeClasses, 'shrink-0 animate-spin'])
+            @class([$iconSizeClasses, 'flex-shrink-0 shrink-0 animate-spin'])
         />
     @endif
 </{{ $tag }}>

@@ -20,7 +20,7 @@
             x-on:click="toggle"
             tabindex="-1"
             @class([
-                'outline-hidden text-gray-400 cursor-pointer mr-2',
+                'outline-none outline-hidden text-gray-400 cursor-pointer mr-2',
                 'input-focus:text-primary-600 focus:text-primary-600',
                 'invalidated:text-negative-600 focus:invalidated:text-negative-600',
             ])

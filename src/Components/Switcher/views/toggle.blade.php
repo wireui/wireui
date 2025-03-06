@@ -14,7 +14,7 @@
             ->merge(['type' => 'checkbox'])
             ->class([
                 'translate-x-0 transform transition ease-in-out duration-200 cursor-pointer shadow-sm',
-                'checked:bg-none peer focus:ring-0 focus:ring-offset-0 focus:outline-hidden bg-white',
+                'checked:bg-none peer focus:ring-0 focus:ring-offset-0 focus:outline-none focus:outline-hidden bg-white',
                 'absolute mx-0.5 my-auto inset-y-0 border-0 appearance-none',
                 'checked:text-white dark:bg-secondary-200',
                 data_get($sizeClasses, 'circle'),

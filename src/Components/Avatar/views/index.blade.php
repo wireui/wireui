@@ -1,5 +1,5 @@
 <div {{ $attributes->class([
-    'shrink-0 inline-flex items-center justify-center overflow-hidden',
+    'flex-shrink-0 shrink-0 inline-flex items-center justify-center overflow-hidden',
     data_get($colorClasses, 'border', '') => !$borderless,
     data_get($colorClasses, 'label', '') => !$src,
     $borderClasses => !$borderless,
@@ -18,7 +18,7 @@
             alt="{{ $alt }}"
             src="{{ $src }}"
             @class([
-                'shrink-0 object-cover object-center',
+                'flex-shrink-0 shrink-0 object-cover object-center',
                 $roundedClasses,
                 $sizeClasses,
             ])
@@ -30,7 +30,7 @@
             solid
             @class([
                 data_get($iconSizeClasses, 'icon', 'w-7 h-7'),
-                'text-white dark:text-gray-200 shrink-0',
+                'text-white dark:text-gray-200 flex-shrink-0 shrink-0',
             ])
         />
     @endif

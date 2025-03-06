@@ -17,7 +17,7 @@ export const template: UserInitTemplate = (config): UserTemplate => ({
   render (option: Option) {
     return baseTemplate(`
       <div class="flex items-center gap-x-3">
-        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 object-cover rounded-full">
+        <img src="${this.getSrc(option)}" class="flex-shrink-0 shrink-0 h-6 w-6 object-cover rounded-full">
 
         <div :class="{ 'text-sm': Boolean(option.description) }">
           ${option.label}
@@ -32,7 +32,7 @@ export const template: UserInitTemplate = (config): UserTemplate => ({
   renderSelected (option) {
     return `
       <div class="flex items-center gap-x-3">
-        <img src="${this.getSrc(option)}" class="shrink-0 h-6 w-6 object-cover rounded-full">
+        <img src="${this.getSrc(option)}" class="flex-shrink-0 shrink-0 h-6 w-6 object-cover rounded-full">
 
         <span>${option.label}</span>
       </div>

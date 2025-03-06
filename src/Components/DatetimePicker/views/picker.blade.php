@@ -83,8 +83,8 @@
                         flex items-center transition-all ease-in-out duration-150 cursor-pointer
                         hover:bg-negative-100 hover:text-negative-600 hover:border-negative-200
                         focus:bg-negative-100 focus:text-negative-600 focus:border-negative-200
-                        focus:ring-1 focus:ring-negative-500 focus:outline-hidden
-                        appearance-none outline-hidden
+                        focus:ring-1 focus:ring-negative-500 focus:outline-none focus:outline-hidden
+                        appearance-none outline-none outline-hidden
                     "
                     type="button"
                     title="{{ __('wireui::messages.labels.remove') }}"
@@ -146,7 +146,7 @@
             :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="overflow-hidden sm:w-72"
-            root-class="justify-end sm:w-72! ml-auto sm:w-full"
+            root-class="justify-end !sm:w-72 sm:w-72! ml-auto sm:w-full"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"
@@ -171,7 +171,7 @@
                 <div x-show="tab !== 'time-picker'" class="flex items-center justify-between">
                     <div class="flex items-center w-full gap-x-2 text-secondary-600 dark:text-secondary-500">
                         <button
-                            class="flex items-center gap-x-2 focus:outline-hidden focus:underline"
+                            class="flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('years-picker')"
                             type="button"
                         >
@@ -187,7 +187,7 @@
                         </button>
 
                         <button
-                            class="flex items-center gap-x-2 focus:outline-hidden focus:underline"
+                            class="flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('months-picker')"
                             type="button"
                         >
@@ -206,7 +206,7 @@
                     <div class="flex items-center">
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="shrink-0"
+                            class="flex-shrink-0 shrink-0"
                             x-on:click="previous"
                             icon="chevron-left"
                             gray flat rounded="lg"
@@ -214,7 +214,7 @@
 
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="shrink-0"
+                            class="flex-shrink-0 shrink-0"
                             x-on:click="goToday"
                             gray flat rounded
                         >
@@ -223,7 +223,7 @@
 
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="shrink-0"
+                            class="flex-shrink-0 shrink-0"
                             x-on:click="next"
                             icon="chevron-right"
                             gray flat rounded="lg"
@@ -256,7 +256,7 @@
                     <div class="grid grid-cols-3 gap-2">
                         <template x-for="(name, index) in $props.calendar.monthNames" :key="`month.${name}`">
                             <button
-                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-hidden border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
+                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-none outline-hidden border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
                                 :class="{
                                     'text-white bg-primary-500 font-semibold focus:ring-primary-600': index === calendar.month,
                                     'hover:bg-primary-100 hover:text-primary-900 hover:font-medium': index !== calendar.month,
@@ -279,7 +279,7 @@
                                     rounded-md p-2.5 uppercase text-xs text-gray-700
                                     transition-all ease-in-out duration-150
                                     border border-primary-100
-                                    outline-hidden focus:ring-2 focus:ring-offset-2
+                                    outline-none outline-hidden focus:ring-2 focus:ring-offset-2
                                     disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200
                                 "
                                 :class="{
@@ -313,7 +313,7 @@
                                 @class([
                                     'relative text-sm h-8 w-full rounded-sm disabled:cursor-not-allowed',
                                     'flex items-center justify-center',
-                                    'focus:outline-hidden',
+                                    'focus:outline-none focus:outline-hidden',
                                     'disabled:opacity-50',
                                 ])
                                 :class="{
@@ -355,7 +355,7 @@
                 <template x-if="tab === 'time-picker'">
                     <x-dynamic-component
                         :component="WireUi::component('time-selector')"
-                        class="mt-0!"
+                        class="!mt-0 mt-0!"
                         x-model="time"
                         :military-time="false"
                         :without-seconds="$withoutTimeSeconds"
