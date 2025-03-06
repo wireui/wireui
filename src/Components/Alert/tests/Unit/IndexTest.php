@@ -84,7 +84,7 @@ test('it should set icon in component and using iconless', function () {
 
     $iconColor = data_get($pack, 'class.iconColor');
 
-    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 flex-shrink-0 shrink-0"]) />', compact('icon', 'iconColor'));
+    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
     expect('<x-alert :$icon :$color :$title :$variant />')
         ->render(compact('icon', 'color', 'title', 'variant'))
@@ -114,7 +114,7 @@ test('it should set random color and variant in component', function () {
     $icon = data_get($pack, 'class.icon');
     $iconColor = data_get($pack, 'class.iconColor');
 
-    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 flex-shrink-0 shrink-0"]) />', compact('icon', 'iconColor'));
+    $html = render('<x-icon :name="$icon" @class([$iconColor, "w-5 h-5 mr-3 shrink-0"]) />', compact('icon', 'iconColor'));
 
     expect('<x-alert :title="$title" :$color :$variant />')
         ->render(compact('title', 'color', 'variant'))

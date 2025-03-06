@@ -89,8 +89,8 @@ test('it should set icon and right icon in component with random size', function
     expect('<x-badge :$size :$icon :$rightIcon />')
         ->render(compact('size', 'icon', 'rightIcon'))
         ->toContain($sizeClasses)
-        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "flex-shrink-0 shrink-0"]) />', compact('icon', 'iconSizeClasses')))
-        ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "flex-shrink-0 shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
+        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')))
+        ->toContain(render('<x-icon :name="$rightIcon" @class([$iconSizeClasses, "shrink-0"]) />', compact('rightIcon', 'iconSizeClasses')));
 });
 
 test('it should set random color and variant in component', function () {

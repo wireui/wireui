@@ -9,7 +9,7 @@
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$icon"
-            @class([$iconSizeClasses, 'flex-shrink-0 shrink-0'])
+            @class([$iconSizeClasses, 'shrink-0'])
         />
     @elseif (isset($prepend))
         <div {{ $prepend->attributes }}>
@@ -23,7 +23,7 @@
         <x-dynamic-component
             :component="WireUi::component('icon')"
             :name="$rightIcon"
-            @class([$iconSizeClasses, 'flex-shrink-0 shrink-0'])
+            @class([$iconSizeClasses, 'shrink-0'])
         />
     @elseif (isset($append))
         <div {{ $append->attributes }}>

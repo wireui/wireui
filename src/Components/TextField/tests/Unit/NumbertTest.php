@@ -55,8 +55,8 @@ test('it should set icon and right icon in component', function () {
     expect($this->component->rightIcon)->toBe($rightIcon);
 
     expect('<x-number :$icon :$rightIcon />')->render(compact('icon', 'rightIcon'))
-        ->toContain(render('<x-icon :name="$icon" class="w-4 h-4 flex-shrink-0 shrink-0" />', compact('icon')))
-        ->toContain(render('<x-icon :name="$rightIcon" class="w-4 h-4 flex-shrink-0 shrink-0" />', compact('rightIcon')));
+        ->toContain(render('<x-icon :name="$icon" class="w-4 h-4 shrink-0" />', compact('icon')))
+        ->toContain(render('<x-icon :name="$rightIcon" class="w-4 h-4 shrink-0" />', compact('rightIcon')));
 });
 
 test('it should set random color in component', function () {

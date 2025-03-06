@@ -102,7 +102,7 @@
                             <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
                             <button
-                                class="flex items-center justify-center w-4 h-4 flex-shrink-0 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
                                 x-on:click.stop="unSelect(option)"
                                 tabindex="-1"
                                 type="button"

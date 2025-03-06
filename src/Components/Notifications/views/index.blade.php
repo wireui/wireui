@@ -33,7 +33,7 @@
                     }">
                         <!-- notification icon|img -->
                         <template x-if="notification.icon || notification.img">
-                            <div class="flex-shrink-0 shrink-0" :class="{
+                            <div class="shrink-0" :class="{
                                     'w-6': Boolean(notification.icon),
                                     'pt-0.5': Boolean(notification.img),
                                 }">
@@ -87,9 +87,9 @@
                             </template>
                         </div>
 
-                        <div class="flex ml-4 flex-shrink-0 shrink-0">
+                        <div class="flex ml-4 shrink-0">
                             <!-- accept button -->
-                            <button class="mr-4 text-sm font-medium rounded-md flex-shrink-0 shrink-0 focus:outline-none focus:outline-hidden"
+                            <button class="mr-4 text-sm font-medium rounded-md shrink-0 focus:outline-none focus:outline-hidden"
                                     :class="{
                                     'text-primary-600 hover:text-primary-500': !Boolean($wireui.dataGet(notification, 'accept.style')),
                                     [$wireui.dataGet(notification, 'accept.style')]: Boolean($wireui.dataGet(notification, 'accept.style'))

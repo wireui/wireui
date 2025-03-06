@@ -206,7 +206,7 @@
                     <div class="flex items-center">
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="flex-shrink-0 shrink-0"
+                            class="shrink-0"
                             x-on:click="previous"
                             icon="chevron-left"
                             gray flat rounded="lg"
@@ -214,7 +214,7 @@
 
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="flex-shrink-0 shrink-0"
+                            class="shrink-0"
                             x-on:click="goToday"
                             gray flat rounded
                         >
@@ -223,7 +223,7 @@
 
                         <x-dynamic-component
                             :component="WireUi::component('mini-button')"
-                            class="flex-shrink-0 shrink-0"
+                            class="shrink-0"
                             x-on:click="next"
                             icon="chevron-right"
                             gray flat rounded="lg"

@@ -137,7 +137,7 @@
             <div
                 name="form.wrapper.container.append"
                 {{ $append->attributes->class([
-                    'group/append flex-shrink-0 shrink-0 wrapper-append-slot',
+                    'group/append shrink-0 wrapper-append-slot',
                     'flex h-full py-0.5 pr-0.5',
                 ]) }}
             >
