@@ -41,7 +41,8 @@
         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-on:mouseenter="pauseTimeout"
-        x-on:mouseleave="resumeTimeout">
+        x-on:mouseleave="resumeTimeout"
+    >
         <div class="relative p-4 space-y-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
@@ -53,8 +54,8 @@
                 x-show="dialog && dialog.progressbar && dialog.timeout">
             </div>
 
-            <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
-                <button class="{{ $dialog }}-button-close focus:outline-none focus:outline-hidden p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
+            <div x-show="dialog && dialog.closeButton" class="absolute right-2 top-2">
+                <button class="{{ $dialog }}-button-close cursor-pointer focus:outline-none focus:outline-hidden p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                     x-on:click="close"
                     type="button">
                     <span class="sr-only">close</span>
@@ -66,7 +67,12 @@
                 </button>
             </div>
 
-            <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
+            <div
+                class="space-y-4"
+                :class="{
+                    'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline'
+                }"
+            >
                 <div class="flex items-center self-start justify-center mx-auto shrink-0"
                     :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                     x-show="dialog && dialog.icon">

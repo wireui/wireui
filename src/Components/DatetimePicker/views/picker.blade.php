@@ -171,7 +171,7 @@
                 <div x-show="tab !== 'time-picker'" class="flex items-center justify-between">
                     <div class="flex items-center w-full gap-x-2 text-secondary-600 dark:text-secondary-500">
                         <button
-                            class="flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
+                            class="cursor-pointer flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('years-picker')"
                             type="button"
                         >
@@ -187,7 +187,7 @@
                         </button>
 
                         <button
-                            class="flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
+                            class="cursor-pointer flex items-center gap-x-2 focus:outline-none focus:outline-hidden focus:underline"
                             x-on:click="toggleTab('months-picker')"
                             type="button"
                         >
@@ -256,7 +256,7 @@
                     <div class="grid grid-cols-3 gap-2">
                         <template x-for="(name, index) in $props.calendar.monthNames" :key="`month.${name}`">
                             <button
-                                class="px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-none outline-hidden border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
+                                class="cursor-pointer disabled:cursor-not-allowed px-2 py-4 text-xs text-gray-700 uppercase transition-all duration-150 ease-in-out border rounded-md outline-none outline-hidden border-primary-100 focus:ring-2 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-slate-200 disabled:opacity-50 disabled:border-slate-200"
                                 :class="{
                                     'text-white bg-primary-500 font-semibold focus:ring-primary-600': index === calendar.month,
                                     'hover:bg-primary-100 hover:text-primary-900 hover:font-medium': index !== calendar.month,
@@ -276,7 +276,7 @@
                         <template x-for="year in calendar.years" :key="`month.${year.number}`">
                             <button
                                 class="
-                                    rounded-md p-2.5 uppercase text-xs text-gray-700
+                                    cursor-pointer rounded-md p-2.5 uppercase text-xs text-gray-700
                                     transition-all ease-in-out duration-150
                                     border border-primary-100
                                     outline-none outline-hidden focus:ring-2 focus:ring-offset-2
@@ -311,7 +311,7 @@
                         >
                             <button
                                 @class([
-                                    'relative text-sm h-8 w-full rounded-sm disabled:cursor-not-allowed',
+                                    'relative text-sm h-8 w-full rounded-sm cursor-pointer disabled:cursor-not-allowed',
                                     'flex items-center justify-center',
                                     'focus:outline-none focus:outline-hidden',
                                     'disabled:opacity-50',

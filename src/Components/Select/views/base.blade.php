@@ -61,7 +61,7 @@
 
     <button
         type="button"
-        class="flex items-center w-full truncate border-0 outline-0"
+        class="cursor-pointer flex items-center w-full truncate border-0 outline-0"
         tabindex="-1"
     >
         <span
@@ -102,7 +102,7 @@
                             <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
                             <button
-                                class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                class="cursor-pointer flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
                                 x-on:click.stop="unSelect(option)"
                                 tabindex="-1"
                                 type="button"
@@ -124,6 +124,7 @@
     <x-slot name="append" class="flex items-center pr-2.5 gap-x-1">
         @if ($clearable && !$readonly && !$disabled)
             <button
+                class="cursor-pointer"
                 x-show="isNotEmpty()"
                 x-on:click.stop="clear"
                 tabindex="-1"
@@ -141,7 +142,7 @@
             </button>
         @endif
 
-        <button tabindex="-1" type="button">
+        <button class="cursor-pointer" tabindex="-1" type="button">
             <x-dynamic-component
                 :component="WireUi::component('icon')"
                 @class([
