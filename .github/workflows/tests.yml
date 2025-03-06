@@ -61,6 +61,7 @@ jobs:
       - name: Run Jest tests
         run: |
           yarn build
+          yarn build:css
           yarn test
 
       - name: Run PHPUnit tests
