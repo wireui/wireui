@@ -100,7 +100,7 @@ test('it should set icon in component with random size', function () {
     expect('<x-mini-button :$size :$icon />')
         ->render(compact('size', 'icon'))
         ->toContain($sizeClasses)
-        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "shrink-0"]) />', compact('icon', 'iconSizeClasses')));
+        ->toContain(render('<x-icon :name="$icon" @class([$iconSizeClasses, "flex-shrink-0 shrink-0"]) />', compact('icon', 'iconSizeClasses')));
 });
 
 test('it should set random color and variant in component', function () {

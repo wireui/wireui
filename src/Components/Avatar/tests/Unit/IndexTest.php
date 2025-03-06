@@ -99,7 +99,7 @@ test('it should render icon in component', function () {
 
     $iconSizeClasses = data_get($iconSizeClasses, 'icon');
 
-    $html = render('<x-icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
+    $html = render('<x-icon :name="$icon" @class([$iconSizeClasses, "text-white dark:text-gray-200 flex-shrink-0 shrink-0"]) solid />', compact('icon', 'iconSizeClasses'));
 
     expect('<x-avatar :$icon :$size />')
         ->render(compact('icon', 'size'))
