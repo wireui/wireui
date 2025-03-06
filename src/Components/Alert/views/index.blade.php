@@ -48,7 +48,7 @@
         <div {{ WireUi::extractAttributes($slot)->class([
             data_get($colorClasses, 'text', ''),
             $paddingClasses,
-            'flex-grow grow text-sm',
+            'grow text-sm',
         ]) }}>
             {{ $slot }}
         </div>
