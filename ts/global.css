@@ -5,9 +5,9 @@
 @import './tailwindcss/plugins/form/validation.css';
 @import './tailwindcss/plugins/form/input-state.css';
 
-@plugin '@tailwindcss/forms' {
-    strategy: 'class';
-}
+/*@plugin '@tailwindcss/forms' {*/
+/*    strategy: 'class';*/
+/*}*/
 
 @source '.';
 @source '../src/';
