@@ -81,7 +81,7 @@
                  <template x-for="(color, index) in colors" :key="index + color.value + color.name">
                      <button
                         @class([
-                            'w-6 h-6 rounded-sm shadow-lg border hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
+                            'w-6 h-6 rounded-sm shadow-sm border border-gray-200 hover:scale-125 transition-all ease-in-out duration-100 cursor-pointer',
                             'hover:border-gray-400 focus:outline-none focus:outline-hidden focus:ring-2 focus:ring-primary-600 dark:focus:ring-gray-400',
                             'dark:border-0 dark:hover:ring-2 dark:hover:ring-gray-400',
                         ])
