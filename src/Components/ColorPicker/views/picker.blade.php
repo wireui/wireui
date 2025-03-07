@@ -38,7 +38,7 @@
             :rounded="data_get($roundedClasses, 'append', '')"
             use-validation-colors
             flat
-            x-on:click="positionable.toggle()"
+            x-on:click="positionable.openIfClosed()"
             :disabled="$disabled"
             x-on:keydown.arrow-down.prevent="focusable.walk.to('down')"
         >

@@ -4,8 +4,6 @@
         position: '{{ $position }}',
     }"
     class="relative inline-block text-left"
-    x-on:click.outside="positionable.close()"
-    x-on:keydown.escape.window="positionable.close()"
     {{ $attributes->only('wire:key') }}
 >
     <div
@@ -30,6 +28,8 @@
     <div
         x-ref="popover"
         x-show="positionable.state"
+        x-on:click.outside="positionable.close()"
+        x-on:keydown.escape.window="positionable.close()"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100"

@@ -32,7 +32,7 @@ export default class Select extends AlpineComponent {
     optionsPath: null,
     fetching: false,
     params: {},
-    alwaysFetch: false
+    alwaysFetch: false,
   }
 
   config: Config = {
@@ -46,7 +46,7 @@ export default class Select extends AlpineComponent {
     optionLabel: null,
     optionDescription: null,
     placeholder: null,
-    template: templates['default']()
+    template: templates['default'](),
   }
 
   search: string|null = ''
@@ -102,7 +102,7 @@ export default class Select extends AlpineComponent {
     const config: IntersectionObserverInit = {
       root: this.$refs.optionsContainer,
       rootMargin: '20px',
-      threshold: 0.9
+      threshold: 0.9,
     }
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -255,7 +255,7 @@ export default class Select extends AlpineComponent {
 
     observer.observe(this.$refs.json, {
       subtree: true,
-      characterData: true
+      characterData: true,
     })
 
     this.$destroy(() => observer.disconnect())
@@ -270,7 +270,7 @@ export default class Select extends AlpineComponent {
     observer.observe(element, {
       characterData: true,
       childList: true,
-      subtree: true
+      subtree: true,
     })
   }
 
@@ -287,7 +287,7 @@ export default class Select extends AlpineComponent {
 
     const template = {
       name: props.template?.name ?? 'default',
-      config: props.template?.config ?? {}
+      config: props.template?.config ?? {},
     }
 
     this.config = {
@@ -301,7 +301,7 @@ export default class Select extends AlpineComponent {
       optionValue: props.optionValue,
       optionLabel: props.optionLabel,
       optionDescription: props.optionDescription,
-      template: templates[template.name](template.config)
+      template: templates[template.name](template.config),
     }
 
     this.asyncData = Object.assign(this.asyncData, {
@@ -310,7 +310,7 @@ export default class Select extends AlpineComponent {
       optionsPath: props.asyncData.optionsPath,
       params: props.asyncData.params,
       alwaysFetch: props.asyncData.alwaysFetch,
-      credentials: props.asyncData.credentials
+      credentials: props.asyncData.credentials,
     })
   }
 
@@ -348,7 +348,7 @@ export default class Select extends AlpineComponent {
     const parameters = Object.assign(
       params,
       window.Alpine.raw(this.asyncData.params),
-      ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value }))
+      ...Array.from(url.searchParams).map(([key, value]) => ({ [key]: value })),
     )
 
     url.search = ''
@@ -360,7 +360,7 @@ export default class Select extends AlpineComponent {
     const request = new Request(url, {
       method,
       body: method === 'POST' ? JSON.stringify(parameters) : undefined,
-      credentials
+      credentials,
     })
 
     request.headers.set('Content-Type', 'application/json')
@@ -396,20 +396,20 @@ export default class Select extends AlpineComponent {
         if (!Array.isArray(rawOptions)) return
 
         this.setOptions(
-          rawOptions.map(rawOption => this.mapOption(rawOption))
+          rawOptions.map(rawOption => this.mapOption(rawOption)),
         )
 
         this.$nextTick(() => this.initRenderObserver())
       }).catch((message: Error) => {
-        notify({
-          title: String(message.message),
-          description: 'Try to reload the page',
-          icon: 'error',
-          timeout: 2500
-        })
-      }).finally(() => {
-        this.asyncData.fetching = false
+      notify({
+        title: String(message.message),
+        description: 'Try to reload the page',
+        icon: 'error',
+        timeout: 2500,
       })
+    }).finally(() => {
+      this.asyncData.fetching = false
+    })
   }
 
   fetchSelected (): void {
@@ -436,8 +436,8 @@ export default class Select extends AlpineComponent {
 
         this.selected = this.mapOption(rawOptions[0])
       }).catch(error => {
-        reportError(error)
-      })
+      reportError(error)
+    })
   }
 
   mapOption (rawOption: Record<string, any>): Option {
@@ -448,7 +448,7 @@ export default class Select extends AlpineComponent {
       description: dataGet(rawOption, 'description'),
       template: rawOption.template,
       disabled: rawOption.disabled,
-      readonly: rawOption.readonly || rawOption.disabled
+      readonly: rawOption.readonly || rawOption.disabled,
     }
 
     if (this.config.optionDescription) {
@@ -591,6 +591,12 @@ export default class Select extends AlpineComponent {
     if (!this.$root.contains(document.activeElement) && this.positionable.state) {
       this.positionable.close()
     }
+  }
+
+  openIfClosed (): void {
+    if (this.config.readonly) return
+
+    this.positionable.openIfClosed()
   }
 
   toggle (): void {

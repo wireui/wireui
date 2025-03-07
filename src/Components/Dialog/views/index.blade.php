@@ -11,7 +11,8 @@
     x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
     x-on:keydown.escape.window="handleEscape"
     style="display: none"
-    x-cloak>
+    x-cloak
+>
     <div @class([
             'fixed inset-0 bg-secondary-400/60 transform transition-opacity',
             'dark:bg-secondary-700/60',
