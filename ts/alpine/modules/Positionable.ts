@@ -79,22 +79,18 @@ export default class Positionable {
   }
 
   open (): void {
-    console.log('open')
     this.state = true
   }
 
   close (): void {
-    console.log('close')
     this.state = false
   }
 
   toggle (): void {
-    console.log('toggle')
     this.state = !this.state
   }
 
   openIfClosed() {
-    console.log('openIfClosed')
     if (this.isClosed()) {
       this.open()
     }
