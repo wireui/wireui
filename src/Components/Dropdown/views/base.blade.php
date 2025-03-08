@@ -8,7 +8,7 @@
 >
     <div
         x-ref="triggerContainer"
-        x-on:click="positionable.toggle()"
+        x-on:click="positionable.openIfClosed()"
         class="cursor-pointer focus:outline-none focus:outline-hidden"
     >
         @if (isset($trigger))

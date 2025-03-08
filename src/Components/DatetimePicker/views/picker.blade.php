@@ -51,10 +51,10 @@
     x-bind:class="{
         'ring-2 ring-primary-600': positionable.isOpen(),
     }"
-    x-on:click="positionable.toggle()"
-    x-on:keydown.enter.stop.prevent="positionable.toggle()"
-    x-on:keydown.space.stop.prevent="positionable.toggle()"
-    x-on:keydown.arrow-down.stop.prevent="positionable.open()"
+    x-on:click="positionable.openIfClosed()"
+    x-on:keydown.enter.stop.prevent="positionable.openIfClosed()"
+    x-on:keydown.space.stop.prevent="positionable.openIfClosed()"
+    x-on:keydown.arrow-down.stop.prevent="positionable.openIfClosed()"
     tabindex="0"
 >
     <div class="hidden" hidden>
