@@ -24,9 +24,9 @@
     x-bind:class="{
         'ring-2 ring-primary-600': positionable.isOpen(),
     }"
-    x-on:click="toggle"
-    x-on:keydown.enter.stop.prevent="toggle"
-    x-on:keydown.space.stop.prevent="toggle"
+    x-on:click="openIfClosed"
+    x-on:keydown.enter.stop.prevent="openIfClosed"
+    x-on:keydown.space.stop.prevent="openIfClosed"
     x-on:keydown.arrow-down.prevent="positionable.open()"
     tabindex="0"
 >
@@ -61,17 +61,17 @@
 
     <button
         type="button"
-        class="flex items-center w-full truncate border-0 outline-0"
+        class="cursor-pointer flex items-center w-full truncate border-0 outline-0"
         tabindex="-1"
     >
         <span
-            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 invalidated:dark:text-negative-400"
+            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 dark:invalidated:text-negative-400"
             x-show="isEmpty()"
             x-text="getPlaceholder"
         ></span>
 
         <span
-            class="text-sm truncate text-secondary-600 dark:text-secondary-400 invalidated:text-negative-600 invalidated:dark:text-negative-400"
+            class="text-sm truncate text-secondary-600 dark:text-secondary-400 invalidated:text-negative-600 dark:invalidated:text-negative-400"
             x-show="!config.multiselect && isNotEmpty()"
             x-html="getSelectedDisplayText()"
         ></span>
@@ -102,7 +102,7 @@
                             <span style="max-width: 5rem" class="truncate select-none" x-text="option.label"></span>
 
                             <button
-                                class="flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
+                                class="cursor-pointer flex items-center justify-center w-4 h-4 shrink-0 text-secondary-400 hover:text-secondary-500"
                                 x-on:click.stop="unSelect(option)"
                                 tabindex="-1"
                                 type="button"
@@ -124,6 +124,7 @@
     <x-slot name="append" class="flex items-center pr-2.5 gap-x-1">
         @if ($clearable && !$readonly && !$disabled)
             <button
+                class="cursor-pointer"
                 x-show="isNotEmpty()"
                 x-on:click.stop="clear"
                 tabindex="-1"
@@ -134,19 +135,19 @@
                     :component="WireUi::component('icon')"
                     @class([
                         'w-4 h-4 text-secondary-400 hover:text-negative-400',
-                        'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                        'invalidated:text-negative-400 dark:invalidated:text-negative-600',
                     ])
                     name="x-mark"
                 />
             </button>
         @endif
 
-        <button tabindex="-1" type="button">
+        <button class="cursor-pointer" tabindex="-1" type="button">
             <x-dynamic-component
                 :component="WireUi::component('icon')"
                 @class([
                     'w-5 h-5 text-secondary-400',
-                    'invalidated:text-negative-400 invalidated:dark:text-negative-600',
+                    'invalidated:text-negative-400 dark:invalidated:text-negative-600',
                 ])
                 :name="$rightIcon"
             />
@@ -208,7 +209,7 @@
                     <template x-for="(option, index) in displayOptions" :key="`${index}.${option.value}`">
                         <li tabindex="-1" :index="index">
                             <div class="px-2 py-0.5">
-                                <div class="w-full h-8 rounded animate-pulse bg-slate-200 dark:bg-slate-600"></div>
+                                <div class="w-full h-8 rounded-sm animate-pulse bg-slate-200 dark:bg-slate-600"></div>
                             </div>
                         </li>
                     </template>

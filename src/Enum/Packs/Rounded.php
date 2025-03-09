@@ -6,6 +6,8 @@ class Rounded
 {
     public const NONE = 'none';
 
+    public const XS = 'xs';
+
     public const SM = 'sm';
 
     public const BASE = 'base';

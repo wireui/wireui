@@ -16,8 +16,9 @@ class Shadow extends ComponentPack
     {
         return [
             Packs\Shadow::NONE => 'shadow-none',
+            Packs\Shadow::XS => 'shadow-xs',
             Packs\Shadow::SM => 'shadow-sm',
-            Packs\Shadow::BASE => 'shadow',
+            Packs\Shadow::BASE => 'shadow-sm',
             Packs\Shadow::MD => 'shadow-md',
             Packs\Shadow::LG => 'shadow-lg',
             Packs\Shadow::XL => 'shadow-xl',
