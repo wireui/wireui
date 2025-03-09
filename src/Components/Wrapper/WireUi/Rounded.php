@@ -20,15 +20,20 @@ class Rounded extends ComponentPack
                 'prepend' => 'rounded-none',
                 'append' => 'rounded-none',
             ],
+            Packs\Rounded::XS => [
+                'input' => 'rounded-xs',
+                'prepend' => 'rounded-l-xs',
+                'append' => 'rounded-r-xs',
+            ],
             Packs\Rounded::SM => [
                 'input' => 'rounded-sm',
                 'prepend' => 'rounded-l-sm',
                 'append' => 'rounded-r-sm',
             ],
             Packs\Rounded::BASE => [
-                'input' => 'rounded',
-                'prepend' => 'rounded-l',
-                'append' => 'rounded-r',
+                'input' => 'rounded-sm',
+                'prepend' => 'rounded-l-sm',
+                'append' => 'rounded-r-sm',
             ],
             Packs\Rounded::MD => [
                 'input' => 'rounded-md',

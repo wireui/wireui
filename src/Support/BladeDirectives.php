@@ -67,7 +67,13 @@ class BladeDirectives
 
         $manifest = json_decode(file_get_contents($manifestPath), $assoc = true);
 
-        $version = last(explode('=', $manifest["/{$file}"]));
+        $version = data_get($manifest, $file);
+
+        if (! $version) {
+            return null;
+        }
+
+        $version = last(explode('=', $version));
 
         $route = $route ? "{$route}?id={$version}" : $route;
 

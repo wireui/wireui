@@ -37,7 +37,7 @@ test('it should manage packs', function () {
     $this->invokeMethod($this->component, 'managePacks', ['shadow']);
 
     expect($this->component->shadow)->toBeNull();
-    expect($this->component->shadowClasses)->toBe('shadow');
+    expect($this->component->shadowClasses)->toBe('shadow-sm');
     expect($this->component)->toHaveProperties(['shadow', 'shadowClasses']);
 
     $this->setAttributes($this->component, ['shadow' => 'md']);

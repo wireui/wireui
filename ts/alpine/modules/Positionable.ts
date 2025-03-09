@@ -90,8 +90,14 @@ export default class Positionable {
     this.state = !this.state
   }
 
+  openIfClosed() {
+    if (this.isClosed()) {
+      this.open()
+    }
+  }
+
   closeIfNotFocused (): void {
-    if (!this.container.contains(document.activeElement) && this.state) {
+    if (this.state && !this.container.contains(document.activeElement)) {
       this.close()
     }
   }
