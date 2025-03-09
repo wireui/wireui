@@ -26,8 +26,8 @@
         x-on:click="positionable.close()"
         aria-hidden="true"
         @class([
-            'fixed inset-0 transition-opacity bg-secondary-400 bg-opacity-60 sm:hidden',
-            'pointer-events-auto dark:bg-secondary-700 dark:bg-opacity-60',
+            'fixed inset-0 transition-opacity bg-secondary-400/60 sm:hidden',
+            'pointer-events-auto dark:bg-secondary-700/60',
         ])
     ></div>
 
