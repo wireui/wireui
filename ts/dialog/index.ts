@@ -66,7 +66,9 @@ export const showDialog: ShowDialog = (options, componentId?): void => {
 
 export const showConfirmDialog: ShowConfirmDialog = (options, componentId?): void => {
   if (!options.icon) { options.icon = 'question' }
+
   const event = new CustomEvent(`wireui:confirm-${makeEventName(options.id)}`, { detail: { options, componentId } })
+
   window.dispatchEvent(event)
 }
 

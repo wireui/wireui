@@ -44,10 +44,10 @@
         x-on:mouseenter="pauseTimeout"
         x-on:mouseleave="resumeTimeout"
     >
-        <div class="relative p-4 space-y-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
+        <div class="relative p-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
-                'sm:p-0 sm:pt-1': style === 'inline',
+                'sm:p-0 sm:pt-3': style === 'inline',
             }">
             <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
                 style="height: 2px; width: 100%;"
@@ -69,9 +69,9 @@
             </div>
 
             <div
-                class="space-y-4"
+                class="flex flex-col gap-4"
                 :class="{
-                    'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline'
+                    'sm:flex-row sm:items-center sm:px-5 sm:py-2': style === 'inline'
                 }"
             >
                 <div class="flex items-center self-start justify-center mx-auto shrink-0"
@@ -80,7 +80,7 @@
                     <div x-ref="iconContainer"></div>
                 </div>
 
-                <div class="w-full mt-4" :class="{ 'sm:mt-5': style === 'center' }">
+                <div class="w-full pb-6" :class="{ 'sm:mt-5': style === 'center' }">
                     <h3 class="text-lg font-medium leading-6 text-center text-secondary-900 dark:text-secondary-400"
                         :class="{ 'sm:text-left': style === 'inline' }"
                         @unless($title) x-ref="title" @endunless>
