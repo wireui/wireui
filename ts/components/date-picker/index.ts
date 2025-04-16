@@ -424,10 +424,6 @@ export default class DatetimePicker extends AlpineComponent {
       })
     }
 
-    if (disabled.weekdays.length) {
-      return disabled.weekdays.includes(day.getDayOfWeek())
-    }
-
     if (disabled.months.length) {
       return disabled.months.includes(day.getRealMonth())
     }
@@ -440,6 +436,10 @@ export default class DatetimePicker extends AlpineComponent {
 
         return day.getYear() === year
       })
+    }
+
+    if (disabled.weekdays.length && disabled.weekdays.includes(day.getDayOfWeek())) {
+      return true
     }
 
     const { min, max } = this.$props.calendar

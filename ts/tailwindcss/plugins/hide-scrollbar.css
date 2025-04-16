@@ -1,10 +1,8 @@
 @utility hide-scrollbar {
-    .hide-scrollbar::-webkit-scrollbar {
-        @apply hidden;
+    &::-webkit-scrollbar {
+        display: none;
     }
 
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

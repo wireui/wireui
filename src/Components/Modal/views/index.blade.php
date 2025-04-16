@@ -12,7 +12,9 @@
         $zIndex  ?? data_get($typeClasses, 'z-index', 'z-40'),
         'fixed inset-0 overflow-y-auto',
     ])
-    x-on:keydown.escape.window="handleEscape"
+    @unless($persistent)
+        x-on:keydown.escape.window="handleEscape"
+    @endunless
     x-on:keydown.tab.prevent="handleTab"
     x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"

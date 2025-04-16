@@ -24,6 +24,7 @@ export interface Action extends ButtonOptions {
 
 export interface ActionOptions extends ButtonOptions {
   method?: string
+  dispatch?: string
   params?: any
   url?: string
   execute?: CallableFunction
@@ -37,6 +38,9 @@ export type Actions = {
 export const parseAction = (options: ActionOptions, componentId?: string): CallableFunction => {
   if (options?.url) return parseRedirect(options.url)
   if (options?.method && componentId) return parseLivewire({ ...options, id: componentId } as LivewireOptions)
+  if (options?.dispatch) {
+    return () => window.Livewire.dispatch(options.dispatch, options.params)
+  }
 
   return () => null
 }
