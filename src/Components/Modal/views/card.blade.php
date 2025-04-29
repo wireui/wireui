@@ -17,7 +17,7 @@
     <x-dynamic-component
         :component="WireUi::component('card')"
         :attributes="$attributes->only($except)"
-        @class(['w-full', 'min-h-screen' => $fullscreen])
+        @class(['relative w-full', 'min-h-screen' => $fullscreen])
     >
         @if (!$persistent && !$hideClose)
             @slot('action')
