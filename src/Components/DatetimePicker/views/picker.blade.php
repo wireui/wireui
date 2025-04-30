@@ -357,7 +357,7 @@
                         :component="WireUi::component('time-selector')"
                         class="!mt-0 mt-0!"
                         x-model="time"
-                        :military-time="false"
+                        :military-time="$timeFormat == '24'"
                         :without-seconds="$withoutTimeSeconds"
                         borderless
                         shadowless
