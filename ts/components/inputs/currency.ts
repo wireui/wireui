@@ -24,6 +24,9 @@ export default class Currency extends AlpineComponent {
 
   entangleable = new Entangleable<string|number|null>()
 
+  // This is used to prevent the input from being formatted again and causing an infinite loop
+  tangleIgnoreNextInput = false
+
   get value (): string|number|null {
     return this.$props.emitFormatted
       ? this.input
@@ -32,6 +35,10 @@ export default class Currency extends AlpineComponent {
 
   init () {
     this.entangleable.watch(value => {
+      if (this.tangleIgnoreNextInput) {
+        this.tangleIgnoreNextInput = false
+        return
+      }
       this.input = this.$props.emitFormatted
         ? String(value)
         : this.mask(value)
@@ -39,7 +46,7 @@ export default class Currency extends AlpineComponent {
 
     this.$watch('input', () => {
       this.input = this.mask(this.input)
-
+      this.tangleIgnoreNextInput = true
       this.entangleable.set(this.value)
     })
 
