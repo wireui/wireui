@@ -105,7 +105,7 @@ export default class DatetimePicker extends AlpineComponent {
     }
 
     return this.$props.timePicker.enabled
-      ? 'YYYY-MM-DDTHH:mm:ss'
+      ? 'YYYY-MM-DD HH:mm:ss'
       : 'YYYY-MM-DD'
   }
 
