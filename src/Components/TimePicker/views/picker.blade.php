@@ -83,7 +83,7 @@
                 :component="WireUi::component('time-selector')"
                 :name="$name . ':raw'"
                 x-model="value"
-                :military-time="$militaryTime"
+                :military-time="$militaryTime === 'true' || !$militaryTime"
                 :without-seconds="$withoutSeconds"
                 :disabled="$disabled"
                 :readonly="$readonly"
