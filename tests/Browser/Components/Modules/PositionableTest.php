@@ -2,11 +2,12 @@
 
 namespace Tests\Browser\Components\Modules;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Browser\BrowserTestCase;
 
 class PositionableTest extends BrowserTestCase
 {
-    /** @dataProvider components */
+    #[DataProvider('components')]
     public function test_it_should_open_and_close_the_popover(string $html)
     {
         $name = 'testing';

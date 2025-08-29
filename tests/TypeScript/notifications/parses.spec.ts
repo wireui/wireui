@@ -36,13 +36,13 @@ describe('Testing notifications parses', () => {
     const successIcon = parseIcon({ name: 'success' })
     expect(successIcon).toEqual({
       name: 'check-circle',
-      color: 'text-positive-400'
+      color: 'text-positive-500'
     })
 
-    const customIcon = parseIcon({ name: 'x', color: 'text-red-400' })
+    const customIcon = parseIcon({ name: 'x', color: 'text-red-500' })
     expect(customIcon).toEqual({
       name: 'x',
-      color: 'text-red-400'
+      color: 'text-red-500'
     })
   })
 })

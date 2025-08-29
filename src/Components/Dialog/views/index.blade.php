@@ -11,10 +11,11 @@
     x-on:wireui:confirm-{{ $dialog }}.window="confirmDialog($event.detail)"
     x-on:keydown.escape.window="handleEscape"
     style="display: none"
-    x-cloak>
+    x-cloak
+>
     <div @class([
-            'fixed inset-0 bg-secondary-400 bg-opacity-60 transform transition-opacity',
-            'dark:bg-secondary-700 dark:bg-opacity-60',
+            'fixed inset-0 bg-secondary-400/60 transform transition-opacity',
+            'dark:bg-secondary-700/60',
             $blurClasses => !$blurless,
             "{$dialog}-backdrop",
         ])
@@ -41,11 +42,12 @@
         x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
         x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         x-on:mouseenter="pauseTimeout"
-        x-on:mouseleave="resumeTimeout">
-        <div class="relative p-4 space-y-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
+        x-on:mouseleave="resumeTimeout"
+    >
+        <div class="relative p-4 bg-white shadow-md dark:bg-secondary-800 rounded-xl"
             :class="{
                 'sm:p-5 sm:pt-7': style === 'center',
-                'sm:p-0 sm:pt-1': style === 'inline',
+                'sm:p-0 sm:pt-3': style === 'inline',
             }">
             <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
                 style="height: 2px; width: 100%;"
@@ -53,8 +55,8 @@
                 x-show="dialog && dialog.progressbar && dialog.timeout">
             </div>
 
-            <div x-show="dialog && dialog.closeButton" class="absolute right-2 -top-2">
-                <button class="{{ $dialog }}-button-close focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
+            <div x-show="dialog && dialog.closeButton" class="absolute right-2 top-2">
+                <button class="{{ $dialog }}-button-close cursor-pointer focus:outline-none focus:outline-hidden p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
                     x-on:click="close"
                     type="button">
                     <span class="sr-only">close</span>
@@ -66,14 +68,19 @@
                 </button>
             </div>
 
-            <div class="space-y-4" :class="{ 'sm:space-x-4 sm:flex sm:items-center sm:space-y-0 sm:px-5 sm:py-2': style === 'inline' }">
+            <div
+                class="flex flex-col gap-4"
+                :class="{
+                    'sm:flex-row sm:items-center sm:px-5 sm:py-2': style === 'inline'
+                }"
+            >
                 <div class="flex items-center self-start justify-center mx-auto shrink-0"
                     :class="{ 'sm:items-start sm:mx-0': style === 'inline' }"
                     x-show="dialog && dialog.icon">
                     <div x-ref="iconContainer"></div>
                 </div>
 
-                <div class="w-full mt-4" :class="{ 'sm:mt-5': style === 'center' }">
+                <div class="w-full pb-6" :class="{ 'sm:mt-5': style === 'center' }">
                     <h3 class="text-lg font-medium leading-6 text-center text-secondary-900 dark:text-secondary-400"
                         :class="{ 'sm:text-left': style === 'inline' }"
                         @unless($title) x-ref="title" @endunless>

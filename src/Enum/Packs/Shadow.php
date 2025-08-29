@@ -6,6 +6,8 @@ class Shadow
 {
     public const NONE = 'none';
 
+    public const XS = 'XS';
+
     public const SM = 'sm';
 
     public const BASE = 'base';

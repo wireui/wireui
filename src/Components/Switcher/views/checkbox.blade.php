@@ -12,10 +12,10 @@
             $roundedClasses,
             $colorClasses,
             $sizeClasses,
-            'invalidated:focus:ring-negative-500 invalidated:ring-negative-500 invalidated:border-negative-400 invalidated:text-negative-600',
-            'invalidated:focus:border-negative-400 invalidated:dark:focus:border-negative-600 invalidated:dark:ring-negative-600',
-            'invalidated:dark:border-negative-600 invalidated:dark:bg-negative-700 invalidated:dark:checked:bg-negative-700',
-            'invalidated:dark:focus:ring-offset-secondary-800 invalidated:dark:checked:border-negative-700',
+            'focus:invalidated:ring-negative-500 invalidated:ring-negative-500 invalidated:border-negative-400 invalidated:text-negative-600',
+            'focus:invalidated:border-negative-400 dark:focus:invalidated:border-negative-600 dark:invalidated:ring-negative-600',
+            'dark:invalidated:border-negative-600 dark:invalidated:bg-negative-700 dark:checked:invalidated:bg-negative-700',
+            'dark:focus:invalidated:ring-offset-secondary-800 dark:checked:invalidated:border-negative-700',
         ])
     }} />
 </x-dynamic-component>

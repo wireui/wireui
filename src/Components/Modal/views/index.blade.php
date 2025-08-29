@@ -12,7 +12,9 @@
         $zIndex  ?? data_get($typeClasses, 'z-index', 'z-40'),
         'fixed inset-0 overflow-y-auto',
     ])
-    x-on:keydown.escape.window="handleEscape"
+    @unless($persistent)
+        x-on:keydown.escape.window="handleEscape"
+    @endunless
     x-on:keydown.tab.prevent="handleTab"
     x-on:keydown.shift.tab.prevent="handleShiftTab"
     x-on:open-wireui-modal:{{ Str::kebab($name) }}.window="open"
@@ -28,8 +30,8 @@
     <div
         x-show="show"
         @class([
-            'fixed inset-0 bg-secondary-400 dark:bg-secondary-700 bg-opacity-60',
-            'dark:bg-opacity-60 transform transition-opacity',
+            'fixed inset-0 bg-secondary-400/60 dark:bg-secondary-700/60',
+            'transform transition-opacity',
             $blurClasses => !$blurless,
         ])
         @unless($persistent) x-on:click="close" @endunless

@@ -2,7 +2,7 @@
 
 namespace WireUi\Components\Badge\tests\Unit;
 
-use WireUi\Components\Label\Description as Description;
+use WireUi\Components\Label\Description;
 
 beforeEach(function () {
     $this->component = (new Description)->withName('description');
