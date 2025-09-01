@@ -9,12 +9,11 @@
         <div {{ $header->attributes }}>
             {{ $header }}
         </div>
-    @elseif($title)
+    @elseif($title || $icon)
         <div @class([
-            'flex justify-between items-center',
-            'pb-3' => $slot->isNotEmpty(),
+            'flex justify-between items-start',
         ])>
-            <div class="flex items-center">
+            <div class="flex items-start">
                 @if ($icon && !$iconless)
                     <x-dynamic-component
                         :component="WireUi::component('icon')"
