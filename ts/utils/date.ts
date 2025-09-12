@@ -264,7 +264,7 @@ export class FluentDate {
   }
 
   toIsoString (timezone?: string): string {
-    let format = 'YYYY-MM-DDTHH:mm:ss'
+    let format = 'YYYY-MM-DD HH:mm:ss'
 
     if (timezone) {
       format += 'Z'
