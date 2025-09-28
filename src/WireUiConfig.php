@@ -23,6 +23,7 @@ use WireUi\Components\Switcher;
 use WireUi\Components\TextField;
 use WireUi\Components\TimePicker;
 use WireUi\Components\Wrapper;
+use WireUi\Components\Tooltip;
 use WireUi\Enum\Packs;
 
 class WireUiConfig
@@ -490,6 +491,10 @@ class WireUiConfig
             'toggle' => [
                 'class' => Switcher\Toggle::class,
                 'alias' => 'toggle',
+            ],
+            'tooltip' => [
+                'class' => Tooltip\Index::class,
+                'alias' => 'tooltip',
             ],
             /**
              * Popovers
