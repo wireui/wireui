@@ -1,4 +1,4 @@
-import { ConfirmDialogOptions, ConfirmDialog, Dialog, DialogOptions } from './index'
+import { ConfirmDialog, ConfirmDialogOptions, Dialog, DialogOptions } from './index'
 import { iconsMap, parseActions } from './actions'
 import { parseEvents } from './events'
 import { parseIcon } from './icons'
@@ -17,14 +17,14 @@ export const parseDialog: ParseDialog = (options, componentId?): Dialog => {
     closeButton: true,
     progressbar: true,
     style: 'center',
-    close: 'OK'
+    close: 'OK',
   }, options) as DialogOptions
 
   if (typeof dialog.icon === 'string') {
     dialog.icon = parseIcon({
       name: dialog.icon,
       color: options.iconColor,
-      background: options.iconBackground
+      background: options.iconBackground,
     })
   }
 
@@ -47,7 +47,7 @@ export const parseDialog: ParseDialog = (options, componentId?): Dialog => {
     ...dialog,
     onClose,
     onDismiss,
-    onTimeout
+    onTimeout,
   } as Dialog
 }
 
@@ -61,6 +61,6 @@ export const parseConfirmation: ParseConfirmation = (options, componentId?): Con
   return {
     ...dialog,
     accept,
-    reject
+    reject,
   }
 }
