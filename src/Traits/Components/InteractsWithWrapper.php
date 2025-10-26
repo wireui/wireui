@@ -40,6 +40,7 @@ trait InteractsWithWrapper
             'wire:model',
             'placeholder',
             'autocomplete',
+            'checked',
         ];
     }
 
