@@ -517,9 +517,13 @@ class WireUiConfig
      */
     protected static function mix(array $default, array $options): array
     {
-        collect($options)->dot()->each(function ($value, $key) use (&$default) {
-            data_set($default, $key, $value);
-        });
+        foreach ($options as $key => $value) {
+            if (array_key_exists($key, $default) && is_array($default[$key]) && is_array($value)) {
+                $default[$key] = array_merge($default[$key], $value);
+            } else {
+                $default[$key] = $value;
+            }
+        }
 
         return $default;
     }

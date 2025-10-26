@@ -35,11 +35,11 @@ class Solid extends ComponentPack
                 ],
             ],
             Color::INVALIDATED => [
-                'base' => "{$this->base} invalidated:bg-negative-500 invalidated:dark:bg-negative-700",
-                'hover' => "{$this->hover} invalidated:hover:bg-negative-600 invalidated:dark:hover:bg-negative-600",
+                'base' => "{$this->base} invalidated:bg-negative-500 dark:invalidated:bg-negative-700",
+                'hover' => "{$this->hover} hover:invalidated:bg-negative-600 dark:hover:invalidated:bg-negative-600",
                 'focus' => [
-                    "{$this->focus} invalidated:focus:bg-negative-600 invalidated:focus:ring-negative-600",
-                    'invalidated:dark:focus:bg-negative-600 invalidated:dark:focus:ring-negative-600',
+                    "{$this->focus} focus:invalidated:bg-negative-600 focus:invalidated:ring-negative-600",
+                    'dark:focus:invalidated:bg-negative-600 dark:focus:invalidated:ring-negative-600',
                 ],
             ],
             Color::PRIMARY => [

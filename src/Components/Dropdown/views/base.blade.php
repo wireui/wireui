@@ -4,14 +4,12 @@
         position: '{{ $position }}',
     }"
     class="relative inline-block text-left"
-    x-on:click.outside="positionable.close()"
-    x-on:keydown.escape.window="positionable.close()"
     {{ $attributes->only('wire:key') }}
 >
     <div
         x-ref="triggerContainer"
-        x-on:click="positionable.toggle()"
-        class="cursor-pointer focus:outline-none"
+        x-on:click="positionable.openIfClosed()"
+        class="cursor-pointer focus:outline-none focus:outline-hidden"
     >
         @if (isset($trigger))
             {{ $trigger }}
@@ -30,6 +28,8 @@
     <div
         x-ref="popover"
         x-show="positionable.state"
+        x-on:click.outside="positionable.close()"
+        x-on:keydown.escape.window="positionable.close()"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100"
@@ -37,7 +37,7 @@
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
         {{ $attributes->except('wire:key')->class([
-            'z-30 absolute whitespace-nowrap',
+            'z-30 absolute',
             'transition-all transform',
             $widthClasses,
         ]) }}

@@ -1,0 +1,21 @@
+@utility soft-scrollbar {
+    &::-webkit-scrollbar {
+        @apply size-1 cursor-pointer;
+    }
+
+    &::-webkit-scrollbar-track {
+        @apply bg-secondary-200 cursor-pointer;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @apply bg-secondary-400 cursor-pointer;
+    }
+
+    :is(.dark &)::-webkit-scrollbar-track {
+        @apply bg-secondary-500 cursor-pointer;
+    }
+
+    :is(.dark &)::-webkit-scrollbar-thumb {
+        @apply bg-secondary-700 cursor-pointer;
+    }
+}

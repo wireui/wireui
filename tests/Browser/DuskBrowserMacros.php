@@ -145,7 +145,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
     {
         return function (string $name) {
             /** @var Browser $this */
-            return $this->click("[form-wrapper=\"{$name}\"] [x-on\\:click=\"positionable.toggle()\"]");
+            return $this->click("[form-wrapper=\"{$name}\"] [x-on\\:click=\"positionable.openIfClosed()\"]");
         };
     }
 

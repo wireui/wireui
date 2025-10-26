@@ -6,6 +6,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Dusk\Browser;
 use Livewire\Component;
 use Livewire\Livewire;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Browser\BrowserTestCase;
 
 class PickerTest extends BrowserTestCase
@@ -210,12 +211,8 @@ class PickerTest extends BrowserTestCase
             ->waitForWrapperValue('11-12-2021 20:44');
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider datesProvider
-     */
-    public function it_should_select_only_the_dates_inside_a_range_min_and_max(int $day, string $model)
+    #[DataProvider('datesProvider')]
+    public function test_it_should_select_only_the_dates_inside_a_range_min_and_max(int $day, string $model)
     {
         $this->browser()
             ->toggleWrapper()

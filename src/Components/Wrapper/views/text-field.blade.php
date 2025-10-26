@@ -60,7 +60,7 @@
                 'ring-1 ring-inset ring-gray-300 dark:ring-gray-500 focus-within:ring-2',
                 'outline-0',
 
-                '!bg-gray-100' => $disabled && !$invalidated,
+                '!bg-gray-100 bg-gray-100!' => $disabled && !$invalidated,
 
                 $padding =>  $padding,
                 'pl-3'   => !$padding && !isset($prepend),
@@ -68,8 +68,8 @@
                 'py-2'   => !$padding && !isset($prepend) && !isset($append),
                 'h-10'   => isset($prepend) || isset($append),
 
-                'invalidated:bg-negative-50 invalidated:ring-negative-500 invalidated:dark:ring-negative-700',
-                'invalidated:dark:bg-negative-700/10 invalidated:dark:ring-negative-600',
+                'invalidated:bg-negative-50 invalidated:ring-negative-500 dark:invalidated:ring-negative-700',
+                'dark:invalidated:bg-negative-700/10 dark:invalidated:ring-negative-600',
             ])
         }}
         name="form.wrapper.container"
@@ -79,7 +79,7 @@
                 name="form.wrapper.container.prefix"
                 {{ WireUi::extractAttributes($prefix)->class([
                     'text-gray-400 pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500 input-focus:invalidated:text-negative-500',
                     data_get($roundedClasses, 'prepend', ''),
                     data_get($colorClasses, 'prepend', ''),
                 ]) }}
@@ -112,7 +112,7 @@
                 name="form.wrapper.container.suffix"
                 {{ WireUi::extractAttributes($suffix)->class([
                     'text-gray-500 pointer-events-none select-none flex items-center whitespace-nowrap',
-                    'invalidated:text-negative-500 invalidated:input-focus:text-negative-500',
+                    'invalidated:text-negative-500 input-focus:invalidated:text-negative-500',
                     data_get($roundedClasses, 'append', ''),
                     data_get($colorClasses, 'append', ''),
                 ]) }}

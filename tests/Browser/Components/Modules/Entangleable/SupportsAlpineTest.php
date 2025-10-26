@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Components\Modules\Entangleable;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\Browser\BrowserTestCase;
 
 class SupportsAlpineTest extends BrowserTestCase
@@ -20,7 +21,7 @@ class SupportsAlpineTest extends BrowserTestCase
         ];
     }
 
-    /** @dataProvider componentsInXData */
+    #[DataProvider('componentsInXData')]
     public function test_it_should_auto_fill_the_value_from_x_modelable_attribute(
         string $html,
         string|int $value,
@@ -40,7 +41,7 @@ class SupportsAlpineTest extends BrowserTestCase
         ];
     }
 
-    /** @dataProvider components */
+    #[DataProvider('components')]
     public function test_it_should_auto_fill_the_value_from_input_element_value_attribute(
         string $html,
         string|int $value,
