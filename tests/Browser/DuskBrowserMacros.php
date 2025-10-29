@@ -53,7 +53,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
-            return $this->pause(100)->click("label[name=\"{$name}\"] > button")->pause(100);
+            return $this->pause(100)->click("label[data-name=\"{$name}\"] > button")->pause(100);
         };
     }
 
@@ -63,7 +63,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
-            return $this->pause(100)->click("label[name=\"{$name}\"] > input")->pause(100);
+            return $this->pause(100)->click("label[data-name=\"{$name}\"] > input")->pause(100);
         };
     }
 
@@ -73,7 +73,7 @@ class DuskBrowserMacros extends BaseDuskBrowserMacros
             $name ??= 'form.wrapper.container';
 
             /** @var Browser $this */
-            return $this->assertInputValue("label[name=\"{$name}\"] > input", $value);
+            return $this->assertInputValue("label[data-name=\"{$name}\"] > input", $value);
         };
     }
 
