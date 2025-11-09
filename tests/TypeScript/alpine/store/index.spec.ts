@@ -9,8 +9,8 @@ describe('Testing the alpine store', () => {
   it('should register all store modules', () => {
     document.dispatchEvent(new Event('alpine:init'))
 
-    expect(window.Alpine.store).toBeCalledTimes(2)
-    expect(window.Alpine.store).toBeCalledWith('wireui:color-picker', colorPicker)
-    expect(window.Alpine.store).toBeCalledWith('wireui:modal', modal)
+    expect(window.Alpine.store).toHaveBeenCalledTimes(2)
+    expect(window.Alpine.store).toHaveBeenCalledWith('wireui:color-picker', colorPicker)
+    expect(window.Alpine.store).toHaveBeenCalledWith('wireui:modal', modal)
   })
 })
