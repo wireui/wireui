@@ -173,7 +173,7 @@
             >
                 <x-dynamic-component
                     :component="WireUi::component('input')"
-                    class="bg-slate-100"
+                    class="bg-slate-100 dark:bg-slate-700"
                     x-ref="search"
                     x-model.debounce.500ms="search"
                     shadowless
