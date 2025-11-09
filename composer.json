@@ -17,16 +17,16 @@
         }
     ],
     "require": {
-        "php": "^8.2|^8.3|^8.4",
+        "php": "^8.2|^8.3|^8.4|^8.5",
         "laravel/framework": "^10.0|^11.0|^12.0",
         "wireui/heroicons": "^2.8"
     },
     "require-dev": {
         "orchestra/testbench": "^10.0",
         "orchestra/testbench-dusk": "^10.0",
-        "pestphp/pest": "^3.0",
-        "pestphp/pest-plugin-livewire": "^3.0",
-        "pestphp/pest-plugin-laravel": "^3.0",
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-livewire": "^4.0",
+        "pestphp/pest-plugin-laravel": "^4.0",
         "laravel/pint": "^1.19",
         "livewire/livewire": "^3.6"
     },
