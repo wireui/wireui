@@ -72,7 +72,7 @@
                 'dark:invalidated:bg-negative-700/10 dark:invalidated:ring-negative-600',
             ])
         }}
-        name="form.wrapper.container"
+        data-name="form.wrapper.container"
     >
         @if (!isset($prepend) && ($prefix || $icon))
             <div
