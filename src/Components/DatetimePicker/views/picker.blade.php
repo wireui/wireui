@@ -99,7 +99,11 @@
     <x-wireui-wrapper::element
         readonly
         autocomplete="off"
-        :attributes="$input"
+        :attributes="$input->except([
+            'readonly',
+            'disabled',
+            'required',
+        ])"
         class="cursor-pointer"
         x-bind:value="display"
         x-show="selectedDates.length === 0"
