@@ -37,7 +37,7 @@ trait InteractsWithWrapper
             'disabled',
             'readonly',
             'required',
-            'wire:model',
+            'wire:',
             'placeholder',
             'autocomplete',
             'checked',
