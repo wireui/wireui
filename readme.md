@@ -45,3 +45,7 @@ WireUI is and will always be FREE to anyone who would like to use it. This proje
 ### 📝 License
 
 WireUi is open-sourced software licensed under the [MIT license](license.md).
+
+### Powered by
+
+[![JetBrains logo.](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.svg)](https://jb.gg/OpenSource)
