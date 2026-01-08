@@ -99,7 +99,11 @@
     <x-wireui-wrapper::element
         readonly
         autocomplete="off"
-        :attributes="$input"
+        :attributes="$input->except([
+            'readonly',
+            'disabled',
+            'required',
+        ])"
         class="cursor-pointer"
         x-bind:value="display"
         x-show="selectedDates.length === 0"
@@ -110,7 +114,7 @@
             @if ($clearable)
                 <x-dynamic-component
                     :component="WireUi::component('icon')"
-                    class="w-4 h-4 mr-2 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500 invalidated:text-negative-600"
+                    class="w-4 h-4 text-gray-400 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500 invalidated:text-negative-600"
                     name="x-mark"
                     x-show="entangleable.isNotEmpty()"
                     x-on:click.stop.prevent="clear"

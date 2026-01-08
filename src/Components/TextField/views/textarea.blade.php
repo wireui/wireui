@@ -20,10 +20,10 @@
             ])
             ->class([
                 'bg-transparent block !border-0 border-0! text-gray-900 dark:text-gray-400',
-                'pl-3 pr-2.5 py-2 !outline-0 !ring-0 outline-0! ring-0! sm:text-sm sm:leading-normal',
-                'placeholder:text-gray-400 dark:placeholder:text-gray-300',
-                'invalidated:text-negative-800 dark:invalidated:text-negative-600',
-                'invalidated:placeholder-negative-400 dark:invalidated:placeholder-negative-600/70',
+                'pl-3 pr-2.5 py-2 !outline-0 outline-0! !ring-0 ring-0! sm:text-sm sm:leading-normal',
+                'placeholder:text-gray-400 dark:placeholder:text-gray-500',
+                'invalidated:text-negative-800 invalidated:dark:text-negative-600',
+                'invalidated:placeholder-negative-400 invalidated:dark:placeholder-negative-600/70',
                 'w-full' => $cols === 'auto'
             ]) }}
     >{{ $slot }}</textarea>
