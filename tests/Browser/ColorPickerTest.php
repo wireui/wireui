@@ -36,8 +36,7 @@ class Component extends \Livewire\Component
 
 class ColorPickerTest extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_toggle_the_colors_dropdown()
+    public function test_it_should_toggle_the_colors_dropdown()
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
@@ -57,9 +56,7 @@ class ColorPickerTest extends BrowserTestCase
             ;
         });
     }
-
-    /** @test */
-    public function it_should_select_a_color()
+    public function test_it_should_select_a_color()
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
@@ -78,9 +75,7 @@ class ColorPickerTest extends BrowserTestCase
                 });
         });
     }
-
-    /** @test */
-    public function it_should_select_the_color_more_than_one_time()
+    public function test_it_should_select_the_color_more_than_one_time()
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
@@ -112,9 +107,7 @@ class ColorPickerTest extends BrowserTestCase
                 });
         });
     }
-
-    /** @test */
-    public function it_should_type_the_color_value()
+    public function test_it_should_type_the_color_value()
     {
         $this->browse(function (Browser $browser) {
             /** @var Browser|Testable $testable */
@@ -132,27 +125,21 @@ class ColorPickerTest extends BrowserTestCase
                 ->assertInputValue('color-picker', '#123456');
         });
     }
-
-    /** @test */
-    public function it_should_auto_fill_the_color_from_input_element()
+    public function test_it_should_auto_fill_the_color_from_input_element()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->assertInputValue('color-picker', '#123');
         });
     }
-
-    /** @test */
-    public function it_should_auto_fill_the_color_from_wire_model()
+    public function test_it_should_auto_fill_the_color_from_wire_model()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
                 ->assertInputValue('color-picker-wire', '#001');
         });
     }
-
-    /** @test */
-    public function it_should_pass_the_colors_to_js_component()
+    public function test_it_should_pass_the_colors_to_js_component()
     {
         Livewire::test(Component::class)
             ->assertSee("colors: JSON.parse(atob('W3sibmFtZSI6IiMxMjMiLCJ2YWx1ZSI6IiMxMjMifSx7Im5hbWUiOiIjNDU2IiwidmFsdWUiOiIjNDU2In1d'))", false)

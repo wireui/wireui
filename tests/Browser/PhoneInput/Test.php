@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_type_formatted_phone_number()
+    public function test_it_should_type_formatted_phone_number()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -25,9 +24,7 @@ class Test extends BrowserTestCase
                 });
         });
     }
-
-    /** @test */
-    public function it_should_type_custom_masked_phone_number()
+    public function test_it_should_type_custom_masked_phone_number()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)

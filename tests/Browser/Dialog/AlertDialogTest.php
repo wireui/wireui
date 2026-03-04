@@ -8,11 +8,8 @@ use Tests\Browser\BrowserTestCase;
 
 class AlertDialogTest extends BrowserTestCase
 {
-    /**
-     * @test
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_simple_alert_dialog_from_js(
+    #[\PHPUnit\Framework\Attributes\DataProvider("provideAlertMessages")]
+    public function test_it_should_show_simple_alert_dialog_from_js(
         string $icon,
         string $title,
         string $description
@@ -32,12 +29,8 @@ class AlertDialogTest extends BrowserTestCase
                 ->assertSee($description);
         });
     }
-
-    /**
-     * @test
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_simple_alert_dialog_from_livewire_component(
+    #[\PHPUnit\Framework\Attributes\DataProvider("provideAlertMessages")]
+    public function test_it_should_show_simple_alert_dialog_from_livewire_component(
         string $icon,
         string $title,
         string $description
@@ -55,12 +48,8 @@ class AlertDialogTest extends BrowserTestCase
                 ->assertSee($description);
         });
     }
-
-    /**
-     * @test
-     * @dataProvider provideAlertMessages
-     */
-    public function it_should_show_custom_simple_alert_dialog(
+    #[\PHPUnit\Framework\Attributes\DataProvider("provideAlertMessages")]
+    public function test_it_should_show_custom_simple_alert_dialog(
         string $icon,
         string $title,
         string $description
@@ -81,9 +70,7 @@ class AlertDialogTest extends BrowserTestCase
                 ->assertSee($description);
         });
     }
-
-    /** @test */
-    public function it_should_close_when_timeout_is_end()
+    public function test_it_should_close_when_timeout_is_end()
     {
         $this->browse(function (Browser $browser) {
             $title = 'Autoclosing...';
@@ -98,9 +85,7 @@ class AlertDialogTest extends BrowserTestCase
                 ->assertDontSee($title);
         });
     }
-
-    /** @test */
-    public function it_should_call_callable_events_actions()
+    public function test_it_should_call_callable_events_actions()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -139,7 +124,7 @@ class AlertDialogTest extends BrowserTestCase
         ");
     }
 
-    public function provideAlertMessages(): array
+    public static function provideAlertMessages(): array
     {
         return [
             [

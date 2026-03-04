@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class DebounceTest extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
+    public function test_it_should_type_the_color_value_and_update_the_model_only_when_the_debounce_time_up()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, DebounceComponent::class)

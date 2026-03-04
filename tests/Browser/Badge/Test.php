@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_badges_without_errors(): void
+    public function test_it_should_render_badges_without_errors(): void
     {
         Livewire::test(BadgeComponent::class)
             ->assertSee('Label')

@@ -18,7 +18,8 @@
         "php": "^8.5",
         "orchestra/testbench": "^10.0",
         "orchestra/testbench-dusk": "^10.0",
-        "pestphp/pest": "^4.0"
+        "pestphp/pest": "^4.0",
+        "pestphp/pest-plugin-browser": "^4.3"
     },
     "authors": [
         {

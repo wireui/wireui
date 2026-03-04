@@ -2,104 +2,74 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Support\Facades\{Artisan, File};
 use Laravel\Dusk\Browser;
-use Livewire\LivewireServiceProvider;
-use Orchestra\Testbench\Dusk\{Options, TestCase};
+use Livewire\Features\SupportTesting\Testable;
 use Tests\Browser\Macros\DuskBrowserMacros;
-use WireUi\Providers\WireUiServiceProvider;
+use function Livewire\trigger;
 
-/** @link https://github.com/livewire/livewire/blob/main/tests/BrowserTestCase.php */
 class BrowserTestCase extends TestCase
 {
-    use BrowserFunctions;
-
-    protected function setUp(): void
+    public static function tweakApplicationHook()
     {
-        if (isset($_SERVER['CI'])) {
-            Options::withoutUI();
-        }
-
-        Browser::$waitSeconds = 7;
-
-        Browser::mixin(new DuskBrowserMacros());
-
-        $this->afterApplicationCreated(function () {
-            $this->makeACleanSlate();
-        });
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->makeACleanSlate();
-        });
-
-        parent::setUp();
-
-        $testCase = new self('browser');
-
-        $this->tweakApplication(function () use ($testCase) {
-            $testCase->auxAutoloadComponents();
-
-            $testCase->auxDefineRoutes();
-
-            $testCase->auxUpdateConfigs();
-        });
+        return function () {};
     }
 
-    protected function tearDown(): void
+    protected function defineWebRoutes($router): void
     {
-        $this->removeApplicationTweaks();
+        $router->get('/api/options', function () {
+            return collect([
+                ['id' => 1, 'name' => 'Pedro'],
+                ['id' => 2, 'name' => 'Keithy'],
+                ['id' => 3, 'name' => 'Fernando'],
+                ['id' => 4, 'name' => 'Andre'],
+            ])->filter(function (array $option) {
+                return str_contains(
+                    strtolower($option['name']),
+                    strtolower(request()->query('search', '')),
+                );
+            })->values();
+        })->name('api.options');
+
+        $router->get('/api/options/nested', function () {
+            $data = collect([
+                ['id' => 1, 'name' => 'Pedro'],
+                ['id' => 2, 'name' => 'Keithy'],
+                ['id' => 3, 'name' => 'Fernando'],
+                ['id' => 4, 'name' => 'Andre'],
+                ['id' => 5, 'name' => 'Tommy'],
+            ])->filter(function (array $option) {
+                return str_contains(
+                    strtolower($option['name']),
+                    strtolower(request()->query('search', '')),
+                );
+            })->values();
+
+            return ['data' => ['nested' => $data]];
+        })->name('api.options.nested');
+    }
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        trigger('browser.testCase.setUp', $this);
+        Browser::mixin(new DuskBrowserMacros());
+    }
+
+    public function tearDown(): void
+    {
+        trigger('browser.testCase.tearDown', $this);
 
         parent::tearDown();
     }
 
-    public function makeACleanSlate()
+    public function visit(Browser $browser, string $component, array $queryParams = []): Browser|Testable
     {
-        Artisan::call('view:clear');
-
-        File::deleteDirectory($this->livewireViewsPath());
-        File::deleteDirectory($this->livewireClassesPath());
-        File::deleteDirectory($this->livewireTestsPath());
-        File::delete(app()->bootstrapPath('cache/livewire-components.php'));
+        return $this->livewire($browser, $component, $queryParams);
     }
 
-    protected function getPackageProviders($app)
+    public function livewire(Browser $browser, string $component, array $queryParams = []): Browser|Testable
     {
-        return [
-            LivewireServiceProvider::class,
-            WireUiServiceProvider::class,
-        ];
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('view.paths', [
-            __DIR__ . '/views',
-            resource_path('views'),
-        ]);
-
-        $app['config']->set('app.key', 'base64:Hupx3yAySikrM2/edkZQNQHslgDWYfiBfCuSThJ5SK8=');
-
-        $app['config']->set('database.default', 'testbench');
-
-        $app['config']->set('database.connections.testbench', [
-            'driver'   => 'sqlite',
-            'database' => ':memory:',
-            'prefix'   => '',
-        ]);
-    }
-
-    protected function livewireClassesPath($path = '')
-    {
-        return app_path('Livewire' . ($path ? '/' . $path : ''));
-    }
-
-    protected function livewireViewsPath($path = '')
-    {
-        return resource_path('views') . '/livewire' . ($path ? '/' . $path : '');
-    }
-
-    protected function livewireTestsPath($path = '')
-    {
-        return base_path('tests/Feature/Livewire' . ($path ? '/' . $path : ''));
+        return $browser->livewire($component, $queryParams);
     }
 }

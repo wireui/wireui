@@ -8,33 +8,26 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_see_label_and_corner_hint()
+    public function test_it_should_see_label_and_corner_hint()
     {
         Livewire::test(Component::class)
             ->assertSee('Input 1')
             ->assertSee('Corner 1');
     }
-
-    /** @test */
-    public function it_should_see_hint_and_not_see_prefix_and_suffix()
+    public function test_it_should_see_hint_and_not_see_prefix_and_suffix()
     {
         Livewire::test(Component::class)
             ->assertSee('Hint 1')
             ->assertDontSee('Prefix 1')
             ->assertDontSee('Suffix 1');
     }
-
-    /** @test */
-    public function it_should_not_see_prepend_and_append_slots()
+    public function test_it_should_not_see_prepend_and_append_slots()
     {
         Livewire::test(Component::class)
             ->assertDontSeeHtml('<a>prepend</a>')
             ->assertDontSeeHtml('<a>append</a>');
     }
-
-    /** @test */
-    public function it_should_not_see_prefix_suffix_append_and_prepend()
+    public function test_it_should_not_see_prefix_suffix_append_and_prepend()
     {
         Livewire::test(Component::class)
             ->assertDontSee('prefix 2')
@@ -42,9 +35,7 @@ class Test extends BrowserTestCase
             ->assertDontSeeHtml('<a>prepend 2</a>')
             ->assertDontSeeHtml('<a>append 2</a>');
     }
-
-    /** @test */
-    public function it_should_see_input_error()
+    public function test_it_should_see_input_error()
     {
         Livewire::test(Component::class)
             ->call('validateInput')
@@ -60,9 +51,7 @@ class Test extends BrowserTestCase
             ->assertDontSee('input must be an integer')
             ->assertDontSee('input must be within the specified range');
     }
-
-    /** @test */
-    public function it_should_set_model_value_to_livewire()
+    public function test_it_should_set_model_value_to_livewire()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -71,9 +60,7 @@ class Test extends BrowserTestCase
                 ->waitForTextIn('@number-value', 8);
         });
     }
-
-    /** @test */
-    public function it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon()
+    public function test_it_should_change_the_input_value_when_clicking_on_the_plus_or_minus_icon()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)

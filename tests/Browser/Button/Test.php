@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_buttons_without_errors(): void
+    public function test_it_should_render_buttons_without_errors(): void
     {
         Livewire::test(ButtonComponent::class)
             ->assertSee('Label')
@@ -19,9 +18,7 @@ class Test extends BrowserTestCase
             ->assertSee('info')
             ->assertSee('dark');
     }
-
-    /** @test */
-    public function it_should_render_a_tag_buttons_without_errors(): void
+    public function test_it_should_render_a_tag_buttons_without_errors(): void
     {
         Livewire::test(ATagComponent::class)
             ->assertSeeHtml('<a')

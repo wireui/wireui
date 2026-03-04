@@ -2,11 +2,23 @@
 
 namespace Tests\Browser\Macros;
 
+use Illuminate\Support\Arr;
 use Laravel\Dusk\Browser;
 use Livewire\Features\SupportTesting\DuskBrowserMacros as BaseDuskBrowserMacros;
 
 class DuskBrowserMacros extends BaseDuskBrowserMacros
 {
+    public function livewire()
+    {
+        return function (string $component, array $queryParams = []) {
+            /** @var Browser $this */
+            $query = Arr::query($queryParams);
+            $url = '/livewire-dusk/'.urlencode($component).($query === '' ? '' : '?'.$query);
+
+            return $this->visit($url)->waitForLivewireToLoad();
+        };
+    }
+
     public function openSelect()
     {
         return function (string $name) {

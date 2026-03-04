@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_select_time_and_clear_am_pm_time()
+    public function test_it_should_select_time_and_clear_am_pm_time()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -37,9 +36,7 @@ class Test extends BrowserTestCase
                 });
         });
     }
-
-    /** @test */
-    public function it_should_select_time_and_clear_24h_time()
+    public function test_it_should_select_time_and_clear_24h_time()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -69,11 +66,8 @@ class Test extends BrowserTestCase
         });
     }
 
-    /**
-     * @test
-     * @warn must use .defer if using model property as datetime, datetime cannot has empty hours
-     * */
-    public function it_should_select_time_using_model_property_datetime()
+    // Must use `.defer` if using model property as datetime, datetime cannot have empty hours.
+    public function test_it_should_select_time_using_model_property_datetime()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)

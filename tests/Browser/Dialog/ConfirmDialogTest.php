@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class ConfirmDialogTest extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_perform_accept_and_reject_action()
+    public function test_it_should_perform_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -25,9 +24,7 @@ class ConfirmDialogTest extends BrowserTestCase
                 ->waitUsing(7, 100, fn () => $browser->assertSeeIn('@events', 'accepted, rejected'));
         });
     }
-
-    /** @test */
-    public function it_should_prevent_twice_calls_on_accept_and_reject_action()
+    public function test_it_should_prevent_twice_calls_on_accept_and_reject_action()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)

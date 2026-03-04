@@ -8,11 +8,8 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /**
-     * @test
-     * @dataProvider datesProvider
-     */
-    public function it_should_select_only_the_dates_inside_a_range_min_and_max(
+    #[\PHPUnit\Framework\Attributes\DataProvider("datesProvider")]
+    public function test_it_should_select_only_the_dates_inside_a_range_min_and_max(
         bool $disabled,
         int $day,
         string $model,
@@ -38,12 +35,8 @@ class Test extends BrowserTestCase
             }
         });
     }
-
-    /**
-     * @test
-     * @dataProvider timesProvider
-     */
-    public function it_should_select_only_times_inside_the_limit(
+    #[\PHPUnit\Framework\Attributes\DataProvider("timesProvider")]
+    public function test_it_should_select_only_times_inside_the_limit(
         int $day,
         string $time,
         bool $exists
@@ -62,7 +55,7 @@ class Test extends BrowserTestCase
         );
     }
 
-    public function datesProvider(): array
+    public static function datesProvider(): array
     {
         return [
             ['disabled' => true,  'day' => 1,  'model' => '',                     'input' => ''],
@@ -75,7 +68,7 @@ class Test extends BrowserTestCase
         ];
     }
 
-    public function timesProvider(): array
+    public static function timesProvider(): array
     {
         return [
             ['day' => 8,  'time' => '12:30', 'exists' => true],

@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_call_confirm_notification_by_directive_with_alpine_js()
+    public function test_it_should_call_confirm_notification_by_directive_with_alpine_js()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, DirectiveComponent::class)
@@ -19,9 +18,7 @@ class Test extends BrowserTestCase
                 ->waitForTextIn('@value', 'Accepted by Alpine');
         });
     }
-
-    /** @test */
-    public function it_should_call_confirm_notification_by_directive_js()
+    public function test_it_should_call_confirm_notification_by_directive_js()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, DirectiveComponent::class)

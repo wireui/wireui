@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class BlurTest extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_type_the_color_value_and_apply_only_when_the_component_loses_the_focus()
+    public function test_it_should_type_the_color_value_and_apply_only_when_the_component_loses_the_focus()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, BlurComponent::class)

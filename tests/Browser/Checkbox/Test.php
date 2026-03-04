@@ -7,12 +7,10 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_render_with_label_and_change_value()
+    public function test_it_should_render_with_label_and_change_value()
     {
-        $this->browse(
-            fn (Browser $browser) => $this
-                ->visit($browser, CheckComponent::class)
+        $this->browse(function (Browser $browser) {
+            $browser->livewire(CheckComponent::class)
                 ->assertSee('Remember me')
                 ->check('checkbox')
                 ->assertChecked('checkbox')
@@ -21,7 +19,7 @@ class Test extends BrowserTestCase
                 ->assertNotChecked('checkbox')
                 ->waitForTextIn('@checkbox', 'false')
                 ->click('@validate')
-                ->waitForText('accept it')
-        );
+                ->waitForText('accept it');
+        });
     }
 }

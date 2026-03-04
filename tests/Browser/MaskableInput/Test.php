@@ -7,8 +7,7 @@ use Tests\Browser\BrowserTestCase;
 
 class Test extends BrowserTestCase
 {
-    /** @test */
-    public function it_should_start_input_with_formatted_value()
+    public function test_it_should_start_input_with_formatted_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -16,9 +15,7 @@ class Test extends BrowserTestCase
                 ->assertInputValue('singleMask', '12.34');
         });
     }
-
-    /** @test */
-    public function it_should_type_input_value_and_emit_formatted_value()
+    public function test_it_should_type_input_value_and_emit_formatted_value()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
@@ -30,9 +27,7 @@ class Test extends BrowserTestCase
                 });
         });
     }
-
-    /** @test */
-    public function it_should_type_input_value_and_apply_multiples_masks()
+    public function test_it_should_type_input_value_and_apply_multiples_masks()
     {
         $this->browse(function (Browser $browser) {
             $this->visit($browser, Component::class)
