@@ -98,17 +98,17 @@ describe('Testing the color picker component', () => {
   it('should init the livewire watchers when the wire model is given', () => {
     const component = mockComponent({ wireModel: '#FFF', colorNameAsValue: false })
 
-    expect(component.$watch).toBeCalledTimes(3)
-    expect(component.$watch).toBeCalledWith('selected', expect.any(Function))
-    expect(component.$watch).toBeCalledWith('wireModel', expect.any(Function))
-    expect(component.$watch).toBeCalledWith('popover', expect.any(Function))
+    expect(component.$watch).toHaveBeenCalledTimes(3)
+    expect(component.$watch).toHaveBeenCalledWith('selected', expect.any(Function))
+    expect(component.$watch).toHaveBeenCalledWith('wireModel', expect.any(Function))
+    expect(component.$watch).toHaveBeenCalledWith('popover', expect.any(Function))
   })
 
   test('ensure that the livewire watches is not created when dont have a wire model', () => {
     const component = mockComponent()
 
-    expect(component.$watch).toBeCalledTimes(1)
-    expect(component.$watch).toBeCalledWith('popover', expect.any(Function))
+    expect(component.$watch).toHaveBeenCalledTimes(1)
+    expect(component.$watch).toHaveBeenCalledWith('popover', expect.any(Function))
   })
 
   it('should show colors from a custom provider', () => {

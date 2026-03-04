@@ -25,7 +25,7 @@ describe('Testing the props magic helper', () => {
 
     expect(props(el)).toEqual({})
     expect(window.Alpine.evaluate).toHaveBeenCalledWith(el, '$root')
-    expect(window.Alpine.evaluate).toBeCalledTimes(1)
+    expect(window.Alpine.evaluate).toHaveBeenCalledTimes(1)
   })
 
   it('should run the callback when the props is changed', async () => {
