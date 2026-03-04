@@ -385,9 +385,11 @@ export default (options: InitOptions): DateTimePicker => ({
 
     this.syncWireModel()
 
-    !this.withoutTime
-      ? this.tab = 'time'
-      : this.popover = false
+    if (!this.withoutTime) {
+      this.tab = 'time'
+    } else {
+      this.popover = false
+    }
   },
   selectTime (time) {
     if (!this.withoutTimezone) {

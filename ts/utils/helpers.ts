@@ -19,7 +19,7 @@ export const occurrenceCount: OccurrenceCount = (haystack, needle): number => {
 export const jsonParse = (value?: string | null, fallback: any = null): any => {
   try {
     return JSON.parse(value ?? '')
-  } catch (error) {
+  } catch {
     return fallback
   }
 }

@@ -1,9 +1,8 @@
 import { parseRedirect, parseLivewire, LivewireOptions } from '../notifications/parses'
 import { ConfirmationOptions } from './options'
 
-const colors = ['primary', 'secondary', 'positive', 'negative', 'warning', 'info', 'dark']
 export type Size = 'xs' | 'md' | 'lg'
-export type Color = typeof colors[number]
+export type Color = 'primary' | 'secondary' | 'positive' | 'negative' | 'warning' | 'info' | 'dark'
 
 export interface ButtonOptions {
   label?: string

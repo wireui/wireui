@@ -54,16 +54,20 @@ export default (initOptions: InitOptions): Select => ({
     watchProps(this, this.syncProps.bind(this))
 
     if (!this.asyncData.api) {
-      this.config.hasSlot
-        ? this.initSlotObserver()
-        : this.initOptionsObserver()
+      if (this.config.hasSlot) {
+        this.initSlotObserver()
+      } else {
+        this.initOptionsObserver()
+      }
     } else if (!this.hasWireModel && this.asyncData.api) {
       this.fetchSelected()
     }
 
-    this.hasWireModel
-      ? this.initWireModel()
-      : this.fillSelectedFromInputValue()
+    if (this.hasWireModel) {
+      this.initWireModel()
+    } else {
+      this.fillSelectedFromInputValue()
+    }
 
     this.initDeferredWatchers()
   },
@@ -162,9 +166,11 @@ export default (initOptions: InitOptions): Select => ({
         }
 
         if (this.mustSyncWireModel()) {
-          this.asyncData.api
-            ? this.fetchSelected()
-            : this.syncSelectedFromWireModel()
+          if (this.asyncData.api) {
+            this.fetchSelected()
+          } else {
+            this.syncSelectedFromWireModel()
+          }
         }
       })
 
@@ -600,9 +606,11 @@ export default (initOptions: InitOptions): Select => ({
 
     this.syncSelectedOptions()
 
-    this.config.multiselect
-      ? this.selectedOptions = []
-      : this.selected = undefined
+    if (this.config.multiselect) {
+      this.selectedOptions = []
+    } else {
+      this.selected = undefined
+    }
 
     this.$refs.input.dispatchEvent(new Event('clear'))
   },

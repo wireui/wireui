@@ -13,7 +13,6 @@ export type WireModifiers = {
 }
 
 export interface DirectiveUtilities {
-  // eslint-disable-next-line no-use-before-define
   Alpine: Alpine
   effect: () => void
   cleanup: (callback: CallableFunction) => void
