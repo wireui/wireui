@@ -2,7 +2,7 @@
 
 return [
     'select_time' => 'Izaberi vrijeme',
-    'empty_options' => 'Očisti izbor',
+    'empty_options' => 'Nema rezultata',
     'loading' => 'Učitavanje...',
     'search_here' => 'Potraži ovdje',
     'date_picker' => [
