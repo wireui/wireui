@@ -2,11 +2,13 @@
     :component="WireUi::component('text-field')"
     :config="$config"
     :attributes="$wrapper"
+    :right-icon="$rightIcon"
     :with-error-icon="false"
 >
     @include('wireui-wrapper::components.slots')
 
     <select {{ $input->class([
+        'appearance-none',
         'bg-transparent w-full p-0 !border-0 border-0! !outline-none outline-hidden! !ring-0 ring-0!',
         'sm:text-sm sm:leading-6 text-gray-900 dark:text-gray-400',
         'placeholder:text-gray-400 dark:placeholder:text-gray-300',

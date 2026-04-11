@@ -21,6 +21,7 @@ test('it should have array properties', function () {
     expect($props)->toBe([
         'options' => null,
         'placeholder' => null,
+        'right-icon' => 'chevron-down',
         'flip-options' => false,
         'option-value' => null,
         'option-label' => null,
@@ -41,6 +42,7 @@ test('it should have properties in component', function () {
         'optionValue',
         'optionLabel',
         'placeholder',
+        'rightIcon',
         'emptyMessage',
         'optionKeyValue',
         'hideEmptyMessage',
@@ -48,6 +50,7 @@ test('it should have properties in component', function () {
     ]);
 
     expect($this->component->flipOptions)->toBeFalse();
+    expect($this->component->rightIcon)->toBe('chevron-down');
     expect($this->component->optionKeyValue)->toBeFalse();
     expect($this->component->hideEmptyMessage)->toBeFalse();
 });

@@ -20,6 +20,7 @@ class Native extends WireUiComponent
     protected array $props = [
         'options' => null,
         'placeholder' => null,
+        'right-icon' => 'chevron-down',
         'flip-options' => false,
         'option-value' => null,
         'option-label' => null,
