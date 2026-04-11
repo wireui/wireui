@@ -3,7 +3,7 @@
     x-props="{
         position: '{{ $position }}',
     }"
-    class="relative inline-block text-left"
+    class="relative inline-block text-start"
     {{ $attributes->only('wire:key') }}
 >
     <div

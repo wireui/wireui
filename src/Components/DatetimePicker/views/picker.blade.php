@@ -150,7 +150,7 @@
             :component="WireUi::component('popover')"
             :margin="(bool) $label"
             class="overflow-hidden sm:w-72"
-            root-class="justify-end !sm:w-72 sm:w-72! ml-auto sm:w-full"
+            root-class="justify-end !sm:w-72 sm:w-72! ms-auto sm:w-full"
             x-ref="optionsContainer"
             tabindex="-1"
             x-on:keydown.tab.prevent="$event.shiftKey || focusable.next()?.focus()"

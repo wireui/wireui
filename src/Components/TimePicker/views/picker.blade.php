@@ -37,7 +37,7 @@
         <x-dynamic-component
             :component="WireUi::component('icon')"
             @class([
-                'w-4 h-4 mr-2 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500',
+                'w-4 h-4 me-2 transition-colors duration-150 ease-in-out cursor-pointer hover:text-negative-500',
                 'text-gray-400 dark:text-gray-600',
                 'invalidated:text-negative-500',
             ])

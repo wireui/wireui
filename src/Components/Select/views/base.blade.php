@@ -95,7 +95,7 @@
                 <div wire:ignore class="flex items-center gap-1 flex-nowrap">
                     <template x-for="(option, index) in selectedOptions" :key="`selected.${index}.${option.value}.${option.label}`">
                         <span class="
-                            inline-flex items-center py-0.5 pl-2 pr-0.5 rounded-full text-xs font-medium
+                            inline-flex items-center py-0.5 ps-2 pe-0.5 rounded-full text-xs font-medium
                             border border-secondary-200 shadow-sm bg-secondary-100 text-secondary-700
                             dark:bg-secondary-700 dark:text-secondary-400 dark:border-none
                         ">
@@ -121,7 +121,7 @@
         </div>
     </button>
 
-    <x-slot name="append" class="flex items-center pr-2.5 gap-x-1">
+    <x-slot name="append" class="flex items-center pe-2.5 gap-x-1">
         @if ($clearable && !$readonly && !$disabled)
             <button
                 class="cursor-pointer"
@@ -217,7 +217,7 @@
 
                 @unless ($hideEmptyMessage)
                     <div
-                        class="px-3 py-12 text-center cursor-pointer sm:py-2 sm:px-3 sm:text-left text-secondary-500"
+                        class="px-3 py-12 text-center cursor-pointer sm:py-2 sm:px-3 sm:text-start text-secondary-500"
                         x-show="displayOptions.length === 0"
                         x-on:click="search ? resetSearch() : positionable.close()"
                     >

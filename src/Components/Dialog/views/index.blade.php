@@ -49,7 +49,7 @@
                 'sm:p-5 sm:pt-7': style === 'center',
                 'sm:p-0 sm:pt-3': style === 'inline',
             }">
-            <div class="absolute top-0 left-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
+            <div class="absolute top-0 start-0 transition-all duration-150 ease-linear rounded-full bg-secondary-300 dark:bg-secondary-600"
                 style="height: 2px; width: 100%;"
                 x-ref="progressbar"
                 x-show="dialog && dialog.progressbar && dialog.timeout">
@@ -82,13 +82,13 @@
 
                 <div class="w-full pb-6" :class="{ 'sm:mt-5': style === 'center' }">
                     <h3 class="text-lg font-medium leading-6 text-center text-secondary-900 dark:text-secondary-400"
-                        :class="{ 'sm:text-left': style === 'inline' }"
+                        :class="{ 'sm:text-start': style === 'inline' }"
                         @unless($title) x-ref="title" @endunless>
                         {{ $title }}
                     </h3>
 
                     <p class="mt-2 text-sm text-center text-secondary-500"
-                        :class="{ 'sm:text-left': style === 'inline' }"
+                        :class="{ 'sm:text-start': style === 'inline' }"
                         @unless($description) x-ref="description" @endunless>
                         {{ $description }}
                     </p>
