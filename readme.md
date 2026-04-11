@@ -9,6 +9,18 @@
 <a href="https://x.com/Wire_Ui"><img src="https://img.shields.io/twitter/url?url=https://x.com/Wire_Ui" alt="Twitter"></a>
 </p>
 
+### 🌐 RTL / LTR Support (This Fork)
+
+This fork adds **native RTL/LTR support** to WireUI by replacing fixed directional spacing classes (`ml-`, `pr-`, `pl-`, `mr-`, etc.) with [Tailwind CSS logical properties](https://tailwindcss.com/docs/margin#using-logical-properties) (`ms-`, `me-`, `ps-`, `pe-`, etc.).
+
+This means your WireUI components will **automatically flip** for right-to-left languages (Arabic, Persian, Kurdish, Hebrew, etc.) when you set `dir="rtl"` on your HTML element — no extra CSS required.
+
+**Affected components:** Alert, DatetimePicker, Dialog, Dropdown, Notifications, Popover, Select, TextField, TimePicker, Wrapper.
+
+> This work is intended as a Pull Request contribution to the upstream [wireui/wireui](https://github.com/wireui/wireui) project.
+
+---
+
 ### 🚀 Introduction
 
 Wire UI is a library of components and resources to empower your Laravel and Livewire application development.
@@ -17,12 +29,12 @@ Starting a new project with Livewire can be time-consuming when you have to crea
 
 #### 🔥 You get with Wire UI:
 
--   Form and UI components
--   Notifications
--   Confirmation notifications
--   Card, modals, avatar, buttons, badges, dropdowns, and more
--   All Heroicons
--   All Phosphor icons
+- Form and UI components
+- Notifications
+- Confirmation notifications
+- Card, modals, avatar, buttons, badges, dropdowns, and more
+- All Heroicons
+- All Phosphor icons
 
 ### 📚 Documentation
 
