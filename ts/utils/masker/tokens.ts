@@ -30,7 +30,17 @@ export type MaskerTokens = {
 }
 
 export const tokens: MaskerTokens = {
-  '#': { pattern: /\d/ },
+  // Accept ASCII digits plus Arabic-Indic (٠-٩) and Extended Arabic-Indic/Persian (۰-۹),
+  // then normalise to ASCII so downstream logic always sees 0-9.
+  '#': {
+    pattern: /[\d\u0660-\u0669\u06F0-\u06F9]/,
+    transform: (v: string): string => {
+      const code = v.charCodeAt(0)
+      if (code >= 0x0660 && code <= 0x0669) return String(code - 0x0660)
+      if (code >= 0x06F0 && code <= 0x06F9) return String(code - 0x06F0)
+      return v
+    },
+  },
   'X': { pattern: /[0-9a-zA-Z]/ },
   'S': { pattern: /[a-zA-Z]/ },
   'A': { pattern: /[a-zA-Z]/, transform: (v: string): string => v.toLocaleUpperCase() },

@@ -45,3 +45,14 @@ export const isEmpty = (value: any): value is null => {
 export const isNotEmpty = (value: any): boolean => {
   return !isEmpty(value)
 }
+
+/**
+ * Normalize Arabic-Indic (٠-٩ U+0660–U+0669) and
+ * Extended Arabic-Indic / Persian (۰-۹ U+06F0–U+06F9)
+ * digits to their ASCII equivalents (0-9).
+ */
+export const normalizeDigits = (value: string): string => {
+  return value
+    .replace(/[\u0660-\u0669]/g, d => String(d.charCodeAt(0) - 0x0660))
+    .replace(/[\u06F0-\u06F9]/g, d => String(d.charCodeAt(0) - 0x06F0))
+}
