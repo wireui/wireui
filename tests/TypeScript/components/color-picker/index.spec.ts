@@ -163,7 +163,7 @@ describe('Testing the color picker component', () => {
     const component = mockComponent()
 
     queueMicrotask(() => {
-      expect(component.$watch).toBeCalledTimes(2)
+      expect(component.$watch).toHaveBeenCalledTimes(2)
       expect(component.$watch).toHaveBeenNthCalledWith(1, 'positionable.state', expect.any(Function))
       expect(component.$watch).toHaveBeenNthCalledWith(2, 'positionable.state', expect.any(Function))
     })

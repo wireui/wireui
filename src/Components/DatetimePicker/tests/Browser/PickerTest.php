@@ -65,11 +65,11 @@ class PickerTest extends BrowserTestCase
                 BLADE;
             }
         })
-            ->assertInputValue('model', '2021-05-22T02:48:00')
+            ->assertInputValue('model', '2021-05-22 02:48:00')
             ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 5))
-            ->waitForTextIn('@model', '2021-05-05T02:48:00')
-            ->assertInputValue('model', '2021-05-05T02:48:00')
+            ->waitForTextIn('@model', '2021-05-05 02:48:00')
+            ->assertInputValue('model', '2021-05-05 02:48:00')
             ->waitForWrapperValue('2021-05-05 02:48');
     }
 
@@ -99,11 +99,11 @@ class PickerTest extends BrowserTestCase
                 BLADE;
             }
         })
-            ->assertInputValue('model', '2021-07-21T21:30:00')
+            ->assertInputValue('model', '2021-07-21 21:30:00')
             ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 31))
-            ->waitForTextIn('@model', '2021-08-01T00:30:00')
-            ->assertInputValue('model', '2021-07-31T21:30:00')
+            ->waitForTextIn('@model', '2021-08-01 00:30:00')
+            ->assertInputValue('model', '2021-07-31 21:30:00')
             ->waitForWrapperValue('2021-07-31 21:30');
     }
 
@@ -133,11 +133,11 @@ class PickerTest extends BrowserTestCase
                 BLADE;
             }
         })
-            ->assertInputValue('model', '2021-07-25T22:00:00')
+            ->assertInputValue('model', '2021-07-25 22:00:00')
             ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 31))
-            ->waitForTextIn('@model', '2021-08-01T10:00:00')
-            ->assertInputValue('model', '2021-07-31T22:00:00')
+            ->waitForTextIn('@model', '2021-08-01 10:00:00')
+            ->assertInputValue('model', '2021-07-31 22:00:00')
             ->waitForWrapperValue('2021-07-31 22:00');
     }
 
@@ -197,16 +197,52 @@ class PickerTest extends BrowserTestCase
                 BLADE;
             }
         })
-            ->assertInputValue('model', '2021-12-25T00:00:00')
+            ->assertInputValue('model', '2021-12-25 00:00:00')
             ->toggleWrapper()
             ->tap(fn (Browser $browser) => $browser->selectDate('model', 11))
-            ->waitForTextIn('@model', '2021-12-11T00:00:00')
+            ->waitForTextIn('@model', '2021-12-11 00:00:00')
             ->downTimePicker('hours', 4)
             ->downTimePicker('minutes', 16)
             ->downTimePicker('seconds', 21)
-            ->assertInputValue('model', '2021-12-11T08:44:39')
+            ->assertInputValue('model', '2021-12-11 08:44:39')
             ->downTimePicker('period', 1)
-            ->assertInputValue('model', '2021-12-11T20:44:39')
+            ->assertInputValue('model', '2021-12-11 20:44:39')
+            ->toggleWrapper()
+            ->waitForWrapperValue('11-12-2021 20:44');
+    }
+
+    public function test_it_should_select_date_and_time_when_using_blur(): void
+    {
+        Livewire::visit(new class extends Component
+        {
+            public $model = '2021-12-25T00:00:00';
+
+            public function render(): string
+            {
+                return <<<'BLADE'
+                <div>
+                    <x-badge dusk="model" :label="$model" />
+
+                    <x-datetime-picker
+                        wire:model.blur="model"
+                        label="Date and Time"
+                        without-timezone
+                        display-format="DD-MM-YYYY HH:mm"
+                    />
+                </div>
+                BLADE;
+            }
+        })
+            ->assertInputValue('model', '2021-12-25 00:00:00')
+            ->toggleWrapper()
+            ->tap(fn (Browser $browser) => $browser->selectDate('model', 11))
+            ->waitForTextIn('@model', '2021-12-11 00:00:00')
+            ->downTimePicker('hours', 4)
+            ->downTimePicker('minutes', 16)
+            ->downTimePicker('seconds', 21)
+            ->assertInputValue('model', '2021-12-11 08:44:39')
+            ->downTimePicker('period', 1)
+            ->assertInputValue('model', '2021-12-11 20:44:39')
             ->toggleWrapper()
             ->waitForWrapperValue('11-12-2021 20:44');
     }
@@ -224,13 +260,13 @@ class PickerTest extends BrowserTestCase
     public static function datesProvider(): array
     {
         return [
-            ['day' => 1,  'model' => '2021-12-15T10:30:00'], // Doesn't change
-            ['day' => 7,  'model' => '2021-12-15T10:30:00'], // Doesn't change
-            ['day' => 8,  'model' => '2021-12-08T10:30:00'],
-            ['day' => 16, 'model' => '2021-12-16T10:30:00'],
-            ['day' => 22, 'model' => '2021-12-22T10:30:00'],
-            ['day' => 23, 'model' => '2021-12-15T10:30:00'], // Doesn't change
-            ['day' => 30, 'model' => '2021-12-15T10:30:00'], // Doesn't change
+            ['day' => 1,  'model' => '2021-12-15 10:30:00'], // Doesn't change
+            ['day' => 7,  'model' => '2021-12-15 10:30:00'], // Doesn't change
+            ['day' => 8,  'model' => '2021-12-08 10:30:00'],
+            ['day' => 16, 'model' => '2021-12-16 10:30:00'],
+            ['day' => 22, 'model' => '2021-12-22 10:30:00'],
+            ['day' => 23, 'model' => '2021-12-15 10:30:00'], // Doesn't change
+            ['day' => 30, 'model' => '2021-12-15 10:30:00'], // Doesn't change
         ];
     }
 }

@@ -100,6 +100,6 @@ trait InteractsWithVariables
 
     protected function useValidation(): bool
     {
-        return rescue(fn () => $this->useValidationColors, false, false);
+        return (bool) rescue(fn () => $this->useValidationColors, false, false);
     }
 }

@@ -109,7 +109,7 @@ describe('Fluent date api tests', () => {
   })
 
   it('can get date as json', () => {
-    const date = parseDate('2020-05-22')
+    const date = parseDate('2020-05-22', 'UTC')
 
     expect('2020-05-22T00:00:00.000Z').toEqual(date.toJson())
   })

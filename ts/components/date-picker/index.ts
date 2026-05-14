@@ -279,7 +279,7 @@ export default class DatetimePicker extends AlpineComponent {
       }
     }
 
-    this.entangleable.set(date)
+    this.entangleable.set(date, { triggerBlur: true })
     this.calendar.year = day.year
     this.calendar.month = day.month
 
@@ -309,7 +309,7 @@ export default class DatetimePicker extends AlpineComponent {
       dates.splice(index, 1)
     }
 
-    this.entangleable.set(dates, { force: true })
+    this.entangleable.set(dates, { force: true, triggerBlur: true })
 
     this.$events.dispatch('selected::day', day)
   }
@@ -321,7 +321,7 @@ export default class DatetimePicker extends AlpineComponent {
 
     dates.splice(index, 1)
 
-    this.entangleable.set(dates, { force: true })
+    this.entangleable.set(dates, { force: true, triggerBlur: true })
   }
 
   selectMonth (month: number) {

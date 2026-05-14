@@ -65,7 +65,7 @@
         tabindex="-1"
     >
         <span
-            class="text-sm text-gray-400 truncate select-none invalidated:text-negative-400 dark:invalidated:text-negative-400"
+            class="text-sm text-gray-400 dark:text-gray-500 truncate select-none invalidated:text-negative-400 invalidated:dark:text-negative-400"
             x-show="isEmpty()"
             x-text="getPlaceholder"
         ></span>
@@ -173,7 +173,7 @@
             >
                 <x-dynamic-component
                     :component="WireUi::component('input')"
-                    class="bg-slate-100"
+                    class="bg-slate-100 dark:bg-transparent"
                     x-ref="search"
                     x-model.debounce.500ms="search"
                     shadowless

@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin')
 
 module.exports = plugin(function ({ addVariant }) {
-  const make = selector => [`label[name="form.wrapper.container"]:has(${selector}) &`]
+  const make = selector => [`label[data-name="form.wrapper.container"]:has(${selector}) &`]
 
   addVariant('input-hover', make('input:hover'))
   addVariant('input-focus', make('input:focus'))

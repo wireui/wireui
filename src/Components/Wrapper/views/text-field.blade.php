@@ -57,7 +57,7 @@
                 'bg-background-white dark:bg-background-dark',
                 'relative flex justify-between gap-x-2 items-center',
                 'transition-all ease-in-out duration-150',
-                'ring-1 ring-inset ring-gray-300 focus-within:ring-2',
+                'ring-1 ring-inset ring-gray-300 dark:ring-gray-500 focus-within:ring-2',
                 'outline-0',
 
                 '!bg-gray-100 bg-gray-100!' => $disabled && !$invalidated,
@@ -72,7 +72,7 @@
                 'dark:invalidated:bg-negative-700/10 dark:invalidated:ring-negative-600',
             ])
         }}
-        name="form.wrapper.container"
+        data-name="form.wrapper.container"
     >
         @if (!isset($prepend) && ($prefix || $icon))
             <div
