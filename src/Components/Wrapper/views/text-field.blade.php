@@ -62,7 +62,7 @@
 
                 '!bg-gray-100 bg-gray-100!' => $disabled && !$invalidated,
 
-                $padding =>  $padding,
+                ...($padding ? [$padding => true] : []),
                 'pl-3'   => !$padding && !isset($prepend),
                 'pr-3'   => !$padding && !isset($append),
                 'py-2'   => !$padding && !isset($prepend) && !isset($append),
