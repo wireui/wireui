@@ -167,7 +167,11 @@ export default class Select extends AlpineComponent {
     })
 
     this.$watch('options', (options: Options) => {
-      this.displayOptions = options
+      this.displayOptions = this.search
+        ? this.searchOptions(String(this.search).toLocaleLowerCase())
+        : options
+
+      this.$nextTick(() => this.initRenderObserver())
     })
   }
 
